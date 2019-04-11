@@ -9,6 +9,7 @@
 
     public class StaticMatchApi : IMatchApi
     {
+        private static Random random = new Random();
         private readonly IAppSettings appSettings;
 
         public StaticMatchApi(IAppSettings appSettings)
@@ -28,9 +29,28 @@
             foreach (var result in dailyScheduleDto.results)
             {
                 result.sport_event.scheduled = date;
+
+                foreach (var competitor in result.sport_event.competitors)
+                {
+                    competitor.name = $"{competitor.name} - {CreateString(5)}";
+                }
             }
 
             return Task.FromResult(dailyScheduleDto);
+        }
+
+        internal static string CreateString(int stringLength)
+        {
+            
+            const string allowedChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz0123456789!@$?_-";
+            char[] chars = new char[stringLength];
+
+            for (int i = 0; i < stringLength; i++)
+            {
+                chars[i] = allowedChars[random.Next(0, allowedChars.Length)];
+            }
+
+            return new string(chars);
         }
     }
 }
