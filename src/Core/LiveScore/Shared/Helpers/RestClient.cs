@@ -40,7 +40,10 @@
 
             var response = await restClient.ExecuteTaskAsync<T>(request).ConfigureAwait(false);
 
-            if (response.IsSuccessful)
+            if (response.IsSuccessful
+#pragma warning disable RECS0017 // Possible compare of value type with 'null'
+                || response.Data != null)
+#pragma warning restore RECS0017 // Possible compare of value type with 'null'
             {
                 return response.Data;
             }

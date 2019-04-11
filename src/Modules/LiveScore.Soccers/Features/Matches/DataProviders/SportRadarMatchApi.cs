@@ -10,6 +10,13 @@
 
     public class SportRadarMatchApi : IMatchApi
     {
+        private static IDictionary<int, Func<string, DateTime, string, string>> FormatEndPointFuncs = 
+            new Dictionary<int, Func<string, DateTime, string, string>>
+        {
+            { 1,  FormatEndPointType1 },
+            { 2,  FormatEndPointType2 }
+        };
+
         private const string SportRadarDateFormat = "yyyy-MM-dd";
         private readonly IAppSettings appSettings;
         private readonly IRestClient restClient;
@@ -22,7 +29,7 @@
             this.restClient = restClient;
         }
 
-        public async Task<DailyScheduleDto> GetDailySchedules(int sportId, DateTime date, string lang)
+        public async Task<DailyScheduleDto> GetDailySchedules(int sportId, DateTime date, string language)
         {
             var sportSetting = appSettings.DataProviderSettings.Sports.FirstOrDefault(sport => sport.Id == sportId);
             if (sportSetting == null)
@@ -34,13 +41,27 @@
 
             foreach (var endPoint in sportSetting.EndPoints)
             {
-                var formattedEndPoint = string.Format(endPoint, lang, date.ToString(SportRadarDateFormat));
+                var formatEndPointFunc = FormatEndPointFuncs.ContainsKey(endPoint.FormatId)
+                    ? FormatEndPointFuncs[endPoint.FormatId]
+                    : throw new InvalidOperationException($"Missing function format for endpoint {endPoint.Path}");
+                var formattedEndPoint = formatEndPointFunc(endPoint.Path, date, language);
                 var dailyResult = await restClient.ExecuteGetAsync<DailyScheduleDto>(formattedEndPoint);
 
-                dailyScheduleDtoSum.results = dailyScheduleDtoSum.results.Concat(dailyResult.results).ToList();
+                if (dailyResult.results != null && dailyResult.results.Any())
+                {
+                    dailyScheduleDtoSum.results = dailyScheduleDtoSum.results.Concat(dailyResult.results).ToList();
+                }
             }
 
             return await Task.FromResult(dailyScheduleDtoSum);
         }
+
+        private static string FormatEndPointType1(string endPoint, DateTime date, string language)
+            => string.Format(endPoint, language, date.ToString(SportRadarDateFormat));
+
+#pragma warning disable S1172 // Unused method parameters should be removed
+        private static string FormatEndPointType2(string endPoint, DateTime date, string language)
+#pragma warning restore S1172 // Unused method parameters should be removed
+            => string.Format(endPoint, language);
     }
 }

@@ -18,8 +18,15 @@
 
         public string Name { get; set; }
 
-        public IEnumerable<string> EndPoints { get; set; }
+        public IEnumerable<EndPointSetting> EndPoints { get; set; }
 
         public int MaxDaysStoredData { get; set; }
+    }
+
+    public class EndPointSetting
+    {
+        public int FormatId { get; set; }
+
+        public string Path { get; set; }
     }
 }

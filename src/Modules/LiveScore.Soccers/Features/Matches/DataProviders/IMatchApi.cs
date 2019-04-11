@@ -9,6 +9,6 @@
         Task<DailyScheduleDto> GetDailySchedules(
             int sportId,
             DateTime date,
-            string lang);
+            string language);
     }
 }
