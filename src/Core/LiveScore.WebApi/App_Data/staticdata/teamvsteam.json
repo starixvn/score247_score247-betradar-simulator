@@ -1,0 +1,3661 @@
+{
+  "generated_at": "2019-04-04T04:46:00+00:00",
+  "schema": "http:\/\/schemas.sportradar.com\/bsa\/soccer\/v1\/json\/endpoints\/soccer\/team_versus_matches.json",
+  "teams": [
+    {
+      "id": "sr:competitor:17",
+      "name": "Manchester City",
+      "country": "England",
+      "country_code": "ENG",
+      "abbreviation": "MCI"
+    },
+    {
+      "id": "sr:competitor:35",
+      "name": "Manchester United",
+      "country": "England",
+      "country_code": "ENG",
+      "abbreviation": "MUN"
+    }
+  ],
+  "last_meetings": {
+    "results": [
+      {
+        "sport_event": {
+          "id": "sr:match:14736475",
+          "scheduled": "2018-11-11T16:30:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 12,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:54571",
+            "name": "Premier League 18\/19",
+            "start_date": "2018-08-10",
+            "end_date": "2019-05-13",
+            "year": "18\/19",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "away"
+            }
+          ],
+          "venue": {
+            "id": "sr:venue:606",
+            "name": "Etihad Stadium",
+            "capacity": 46708,
+            "city_name": "Manchester",
+            "country_name": "England",
+            "map_coordinates": "53.484592,-2.202695",
+            "country_code": "ENG"
+          }
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "match_status": "ended",
+          "home_score": 3,
+          "away_score": 1,
+          "winner_id": "sr:competitor:17",
+          "period_scores": [
+            {
+              "home_score": 1,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 2,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:11830134",
+          "scheduled": "2018-04-07T16:30:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 33,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:40942",
+            "name": "Premier League 17\/18",
+            "start_date": "2017-08-11",
+            "end_date": "2018-05-14",
+            "year": "17\/18",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "away"
+            }
+          ],
+          "venue": {
+            "id": "sr:venue:606",
+            "name": "Etihad Stadium",
+            "capacity": 46708,
+            "city_name": "Manchester",
+            "country_name": "England",
+            "map_coordinates": "53.484592,-2.202695",
+            "country_code": "ENG"
+          }
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "match_status": "ended",
+          "home_score": 2,
+          "away_score": 3,
+          "winner_id": "sr:competitor:35",
+          "period_scores": [
+            {
+              "home_score": 2,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 0,
+              "away_score": 3,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:11830174",
+          "scheduled": "2017-12-10T16:30:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 16,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:40942",
+            "name": "Premier League 17\/18",
+            "start_date": "2017-08-11",
+            "end_date": "2018-05-14",
+            "year": "17\/18",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "away"
+            }
+          ],
+          "venue": {
+            "id": "sr:venue:9",
+            "name": "Old Trafford",
+            "capacity": 75635,
+            "city_name": "Manchester",
+            "country_name": "England",
+            "map_coordinates": "53.463150,-2.291444",
+            "country_code": "ENG"
+          }
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 1,
+          "away_score": 2,
+          "winner_id": "sr:competitor:17",
+          "period_scores": [
+            {
+              "home_score": 1,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 0,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:11760788",
+          "scheduled": "2017-07-21T02:00:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 1
+          },
+          "season": {
+            "id": "sr:season:41572",
+            "name": "Int. Champions Cup 2017",
+            "start_date": "2017-07-18",
+            "end_date": "2017-07-31",
+            "year": "2017",
+            "tournament_id": "sr:tournament:1337"
+          },
+          "tournament": {
+            "id": "sr:tournament:1337",
+            "name": "Int. Champions Cup",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:393",
+              "name": "International Clubs"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "away"
+            }
+          ],
+          "venue": {
+            "id": "sr:venue:2402",
+            "name": "Nrg Stadium",
+            "capacity": 71054,
+            "city_name": "Houston",
+            "country_name": "USA",
+            "map_coordinates": "29.684735,-95.410725",
+            "country_code": "USA"
+          }
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 2,
+          "away_score": 0,
+          "winner_id": "sr:competitor:35",
+          "period_scores": [
+            {
+              "home_score": 2,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 0,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:11371771",
+          "scheduled": "2017-04-27T19:00:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 26,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:32887",
+            "name": "Premier League 16\/17",
+            "start_date": "2016-08-13",
+            "end_date": "2017-05-25",
+            "year": "16\/17",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "away"
+            }
+          ],
+          "venue": {
+            "id": "sr:venue:606",
+            "name": "Etihad Stadium",
+            "capacity": 46708,
+            "city_name": "Manchester",
+            "country_name": "England",
+            "map_coordinates": "53.484592,-2.202695",
+            "country_code": "ENG"
+          }
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 0,
+          "away_score": 0,
+          "period_scores": [
+            {
+              "home_score": 0,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 0,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:10254819",
+          "scheduled": "2016-10-26T19:00:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "cup",
+            "number": 4,
+            "name": "cupround",
+            "cup_round_match_number": 1,
+            "cup_round_matches": 1,
+            "phase": "knockout_stage"
+          },
+          "season": {
+            "id": "sr:season:33095",
+            "name": "EFL Cup 16\/17",
+            "start_date": "2016-08-08",
+            "end_date": "2017-02-27",
+            "year": "16\/17",
+            "tournament_id": "sr:tournament:21"
+          },
+          "tournament": {
+            "id": "sr:tournament:21",
+            "name": "EFL Cup",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "away"
+            }
+          ],
+          "venue": {
+            "id": "sr:venue:9",
+            "name": "Old Trafford",
+            "capacity": 75635,
+            "city_name": "Manchester",
+            "country_name": "England",
+            "map_coordinates": "53.463150,-2.291444",
+            "country_code": "ENG"
+          }
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 1,
+          "away_score": 0,
+          "winner_id": "sr:competitor:35",
+          "period_scores": [
+            {
+              "home_score": 0,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 1,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:9599809",
+          "scheduled": "2016-09-10T11:30:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 4,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:32887",
+            "name": "Premier League 16\/17",
+            "start_date": "2016-08-13",
+            "end_date": "2017-05-25",
+            "year": "16\/17",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "away"
+            }
+          ],
+          "venue": {
+            "id": "sr:venue:9",
+            "name": "Old Trafford",
+            "capacity": 75635,
+            "city_name": "Manchester",
+            "country_name": "England",
+            "map_coordinates": "53.463150,-2.291444",
+            "country_code": "ENG"
+          }
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 1,
+          "away_score": 2,
+          "winner_id": "sr:competitor:17",
+          "period_scores": [
+            {
+              "home_score": 1,
+              "away_score": 2,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 0,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:7465056",
+          "scheduled": "2016-03-20T16:00:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 31,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:10412",
+            "name": "Premier League 15\/16",
+            "start_date": "2015-08-08",
+            "end_date": "2016-05-18",
+            "year": "15\/16",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "away"
+            }
+          ],
+          "venue": {
+            "id": "sr:venue:606",
+            "name": "Etihad Stadium",
+            "capacity": 46708,
+            "city_name": "Manchester",
+            "country_name": "England",
+            "map_coordinates": "53.484592,-2.202695",
+            "country_code": "ENG"
+          }
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 0,
+          "away_score": 1,
+          "winner_id": "sr:competitor:35",
+          "period_scores": [
+            {
+              "home_score": 0,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 0,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:7464636",
+          "scheduled": "2015-10-25T14:05:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 10,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:10412",
+            "name": "Premier League 15\/16",
+            "start_date": "2015-08-08",
+            "end_date": "2016-05-18",
+            "year": "15\/16",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "away"
+            }
+          ],
+          "venue": {
+            "id": "sr:venue:9",
+            "name": "Old Trafford",
+            "capacity": 75635,
+            "city_name": "Manchester",
+            "country_name": "England",
+            "map_coordinates": "53.463150,-2.291444",
+            "country_code": "ENG"
+          }
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 0,
+          "away_score": 0,
+          "period_scores": [
+            {
+              "home_score": 0,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 0,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:5583098",
+          "scheduled": "2015-04-12T15:00:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 32,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:8186",
+            "name": "Premier League 14\/15",
+            "start_date": "2014-08-15",
+            "end_date": "2015-05-25",
+            "year": "14\/15",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "away"
+            }
+          ],
+          "venue": {
+            "id": "sr:venue:9",
+            "name": "Old Trafford",
+            "capacity": 75635,
+            "city_name": "Manchester",
+            "country_name": "England",
+            "map_coordinates": "53.463150,-2.291444",
+            "country_code": "ENG"
+          }
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 4,
+          "away_score": 2,
+          "winner_id": "sr:competitor:35",
+          "period_scores": [
+            {
+              "home_score": 2,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 2,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:5582626",
+          "scheduled": "2014-11-02T13:30:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 10,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:8186",
+            "name": "Premier League 14\/15",
+            "start_date": "2014-08-15",
+            "end_date": "2015-05-25",
+            "year": "14\/15",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "away"
+            }
+          ],
+          "venue": {
+            "id": "sr:venue:606",
+            "name": "Etihad Stadium",
+            "capacity": 46708,
+            "city_name": "Manchester",
+            "country_name": "England",
+            "map_coordinates": "53.484592,-2.202695",
+            "country_code": "ENG"
+          }
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 1,
+          "away_score": 0,
+          "winner_id": "sr:competitor:17",
+          "period_scores": [
+            {
+              "home_score": 0,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 1,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:3965605",
+          "scheduled": "2014-03-25T19:45:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 28,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:6311",
+            "name": "Premier League 13\/14",
+            "start_date": "2013-08-17",
+            "end_date": "2014-05-12",
+            "year": "13\/14",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 0,
+          "away_score": 3,
+          "winner_id": "sr:competitor:17",
+          "period_scores": [
+            {
+              "home_score": 0,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 0,
+              "away_score": 2,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:3965147",
+          "scheduled": "2013-09-22T15:00:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 5,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:6311",
+            "name": "Premier League 13\/14",
+            "start_date": "2013-08-17",
+            "end_date": "2014-05-12",
+            "year": "13\/14",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "away"
+            }
+          ],
+          "venue": {
+            "id": "sr:venue:606",
+            "name": "Etihad Stadium",
+            "capacity": 46708,
+            "city_name": "Manchester",
+            "country_name": "England",
+            "map_coordinates": "53.484592,-2.202695",
+            "country_code": "ENG"
+          }
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 4,
+          "away_score": 1,
+          "winner_id": "sr:competitor:17",
+          "period_scores": [
+            {
+              "home_score": 2,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 2,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:2757240",
+          "scheduled": "2013-04-08T19:00:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 32,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:4710",
+            "name": "Premier League 12\/13",
+            "start_date": "2012-08-18",
+            "end_date": "2013-05-20",
+            "year": "12\/13",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "away"
+            }
+          ],
+          "venue": {
+            "id": "sr:venue:9",
+            "name": "Old Trafford",
+            "capacity": 75635,
+            "city_name": "Manchester",
+            "country_name": "England",
+            "map_coordinates": "53.463150,-2.291444",
+            "country_code": "ENG"
+          }
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 1,
+          "away_score": 2,
+          "winner_id": "sr:competitor:17",
+          "period_scores": [
+            {
+              "home_score": 0,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 1,
+              "away_score": 2,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:2754978",
+          "scheduled": "2012-12-09T13:30:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 16,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:4710",
+            "name": "Premier League 12\/13",
+            "start_date": "2012-08-18",
+            "end_date": "2013-05-20",
+            "year": "12\/13",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "away"
+            }
+          ],
+          "venue": {
+            "id": "sr:venue:606",
+            "name": "Etihad Stadium",
+            "capacity": 46708,
+            "city_name": "Manchester",
+            "country_name": "England",
+            "map_coordinates": "53.484592,-2.202695",
+            "country_code": "ENG"
+          }
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 2,
+          "away_score": 3,
+          "winner_id": "sr:competitor:35",
+          "period_scores": [
+            {
+              "home_score": 0,
+              "away_score": 2,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 2,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:1769310",
+          "scheduled": "2012-04-30T19:00:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 36,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:3391",
+            "name": "Premier League 11\/12",
+            "start_date": "2011-08-13",
+            "end_date": "2012-05-14",
+            "year": "11\/12",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "away"
+            }
+          ],
+          "venue": {
+            "id": "sr:venue:606",
+            "name": "Etihad Stadium",
+            "capacity": 46708,
+            "city_name": "Manchester",
+            "country_name": "England",
+            "map_coordinates": "53.484592,-2.202695",
+            "country_code": "ENG"
+          }
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 1,
+          "away_score": 0,
+          "winner_id": "sr:competitor:17",
+          "period_scores": [
+            {
+              "home_score": 1,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 0,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:2208638",
+          "scheduled": "2012-01-08T13:00:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "cup",
+            "number": 3,
+            "name": "cupround",
+            "cup_round_match_number": 1,
+            "cup_round_matches": 1,
+            "phase": "knockout_stage"
+          },
+          "season": {
+            "id": "sr:season:3967",
+            "name": "FA Cup 11\/12",
+            "start_date": "2011-10-01",
+            "end_date": "2012-06-04",
+            "year": "11\/12",
+            "tournament_id": "sr:tournament:19"
+          },
+          "tournament": {
+            "id": "sr:tournament:19",
+            "name": "FA Cup",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "away"
+            }
+          ],
+          "venue": {
+            "id": "sr:venue:606",
+            "name": "Etihad Stadium",
+            "capacity": 46708,
+            "city_name": "Manchester",
+            "country_name": "England",
+            "map_coordinates": "53.484592,-2.202695",
+            "country_code": "ENG"
+          }
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 2,
+          "away_score": 3,
+          "winner_id": "sr:competitor:35",
+          "period_scores": [
+            {
+              "home_score": 0,
+              "away_score": 3,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 2,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:1769031",
+          "scheduled": "2011-10-23T12:30:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 9,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:3391",
+            "name": "Premier League 11\/12",
+            "start_date": "2011-08-13",
+            "end_date": "2012-05-14",
+            "year": "11\/12",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "away"
+            }
+          ],
+          "venue": {
+            "id": "sr:venue:9",
+            "name": "Old Trafford",
+            "capacity": 75635,
+            "city_name": "Manchester",
+            "country_name": "England",
+            "map_coordinates": "53.463150,-2.291444",
+            "country_code": "ENG"
+          }
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 1,
+          "away_score": 6,
+          "winner_id": "sr:competitor:17",
+          "period_scores": [
+            {
+              "home_score": 0,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 1,
+              "away_score": 5,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:1756231",
+          "scheduled": "2011-08-07T13:30:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "cup",
+            "name": "final",
+            "cup_round_match_number": 1,
+            "cup_round_matches": 1
+          },
+          "season": {
+            "id": "sr:season:3365",
+            "name": "Community Shield 2011",
+            "start_date": "2011-08-07",
+            "end_date": "2011-08-08",
+            "year": "2011",
+            "tournament_id": "sr:tournament:346"
+          },
+          "tournament": {
+            "id": "sr:tournament:346",
+            "name": "Community Shield",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "away"
+            }
+          ],
+          "venue": {
+            "id": "sr:venue:8",
+            "name": "Wembley Stadium",
+            "capacity": 90000,
+            "city_name": "London",
+            "country_name": "England",
+            "map_coordinates": "51.555833,-0.279722",
+            "country_code": "ENG"
+          }
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 3,
+          "away_score": 2,
+          "winner_id": "sr:competitor:35",
+          "period_scores": [
+            {
+              "home_score": 0,
+              "away_score": 2,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 3,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:1684650",
+          "scheduled": "2011-04-16T16:15:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "cup",
+            "name": "semifinal",
+            "cup_round_match_number": 1,
+            "cup_round_matches": 1,
+            "phase": "knockout_stage"
+          },
+          "season": {
+            "id": "sr:season:3078",
+            "name": "FA Cup 10\/11",
+            "start_date": "2010-09-25",
+            "end_date": "2011-05-31",
+            "year": "10\/11",
+            "tournament_id": "sr:tournament:19"
+          },
+          "tournament": {
+            "id": "sr:tournament:19",
+            "name": "FA Cup",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "away"
+            }
+          ],
+          "venue": {
+            "id": "sr:venue:8",
+            "name": "Wembley Stadium",
+            "capacity": 90000,
+            "city_name": "London",
+            "country_name": "England",
+            "map_coordinates": "51.555833,-0.279722",
+            "country_code": "ENG"
+          }
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 1,
+          "away_score": 0,
+          "winner_id": "sr:competitor:17",
+          "period_scores": [
+            {
+              "home_score": 0,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 1,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:1380029",
+          "scheduled": "2011-02-12T12:45:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 27,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:2746",
+            "name": "Premier League 10\/11",
+            "start_date": "2010-08-14",
+            "end_date": "2011-05-31",
+            "year": "10\/11",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 2,
+          "away_score": 1,
+          "winner_id": "sr:competitor:35",
+          "period_scores": [
+            {
+              "home_score": 1,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 1,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:1379880",
+          "scheduled": "2010-11-10T20:00:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 12,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:2746",
+            "name": "Premier League 10\/11",
+            "start_date": "2010-08-14",
+            "end_date": "2011-05-31",
+            "year": "10\/11",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 0,
+          "away_score": 0,
+          "period_scores": [
+            {
+              "home_score": 0,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 0,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:1062808",
+          "scheduled": "2010-04-17T11:45:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 35,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:2139",
+            "name": "Premier League 09\/10",
+            "start_date": "2009-08-15",
+            "end_date": "2010-05-10",
+            "year": "09\/10",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 0,
+          "away_score": 1,
+          "winner_id": "sr:competitor:35",
+          "period_scores": [
+            {
+              "home_score": 0,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 0,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:1249177",
+          "scheduled": "2010-01-27T20:00:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "cup",
+            "name": "semifinal",
+            "cup_round_match_number": 2,
+            "cup_round_matches": 2,
+            "other_match_id": "sr:match:1269782",
+            "phase": "knockout_stage"
+          },
+          "season": {
+            "id": "sr:season:2138",
+            "name": "Carling Cup 09\/10",
+            "start_date": "2009-08-10",
+            "end_date": "2010-03-31",
+            "year": "09\/10",
+            "tournament_id": "sr:tournament:21"
+          },
+          "tournament": {
+            "id": "sr:tournament:21",
+            "name": "EFL Cup",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 3,
+          "away_score": 1,
+          "winner_id": "sr:competitor:35",
+          "aggregate_home_score": 4,
+          "aggregate_away_score": 3,
+          "aggregate_winner_id": "sr:competitor:35",
+          "period_scores": [
+            {
+              "home_score": 0,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 3,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:1269782",
+          "scheduled": "2010-01-19T20:00:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "cup",
+            "name": "semifinal",
+            "cup_round_match_number": 1,
+            "cup_round_matches": 2,
+            "other_match_id": "sr:match:1249177",
+            "phase": "knockout_stage"
+          },
+          "season": {
+            "id": "sr:season:2138",
+            "name": "Carling Cup 09\/10",
+            "start_date": "2009-08-10",
+            "end_date": "2010-03-31",
+            "year": "09\/10",
+            "tournament_id": "sr:tournament:21"
+          },
+          "tournament": {
+            "id": "sr:tournament:21",
+            "name": "EFL Cup",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 2,
+          "away_score": 1,
+          "winner_id": "sr:competitor:17",
+          "period_scores": [
+            {
+              "home_score": 1,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 1,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:1062521",
+          "scheduled": "2009-09-20T12:30:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 6,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:2139",
+            "name": "Premier League 09\/10",
+            "start_date": "2009-08-15",
+            "end_date": "2010-05-10",
+            "year": "09\/10",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 4,
+          "away_score": 3,
+          "winner_id": "sr:competitor:35",
+          "period_scores": [
+            {
+              "home_score": 1,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 3,
+              "away_score": 2,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:782547",
+          "scheduled": "2009-05-10T12:30:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 36,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:1544",
+            "name": "Premier League 08\/09",
+            "start_date": "2008-08-16",
+            "end_date": "2009-05-25",
+            "year": "08\/09",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 2,
+          "away_score": 0,
+          "winner_id": "sr:competitor:35",
+          "period_scores": [
+            {
+              "home_score": 2,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 0,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:782078",
+          "scheduled": "2008-11-30T13:30:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 15,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:1544",
+            "name": "Premier League 08\/09",
+            "start_date": "2008-08-16",
+            "end_date": "2009-05-25",
+            "year": "08\/09",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 0,
+          "away_score": 1,
+          "winner_id": "sr:competitor:35",
+          "period_scores": [
+            {
+              "home_score": 0,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 0,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:501459",
+          "scheduled": "2008-02-10T13:30:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 26,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:581",
+            "name": "Premier League 07\/08",
+            "start_date": "2007-08-10",
+            "end_date": "2008-05-12",
+            "year": "07\/08",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "away"
+            }
+          ],
+          "venue": {
+            "id": "sr:venue:9",
+            "name": "Old Trafford",
+            "capacity": 75635,
+            "city_name": "Manchester",
+            "country_name": "England",
+            "map_coordinates": "53.463150,-2.291444",
+            "country_code": "ENG"
+          }
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 1,
+          "away_score": 2,
+          "winner_id": "sr:competitor:17",
+          "period_scores": [
+            {
+              "home_score": 0,
+              "away_score": 2,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 1,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:500197",
+          "scheduled": "2007-08-19T12:30:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 3,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:581",
+            "name": "Premier League 07\/08",
+            "start_date": "2007-08-10",
+            "end_date": "2008-05-12",
+            "year": "07\/08",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "away"
+            }
+          ],
+          "venue": {
+            "id": "sr:venue:606",
+            "name": "Etihad Stadium",
+            "capacity": 46708,
+            "city_name": "Manchester",
+            "country_name": "England",
+            "map_coordinates": "53.484592,-2.202695",
+            "country_code": "ENG"
+          }
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 1,
+          "away_score": 0,
+          "winner_id": "sr:competitor:17",
+          "period_scores": [
+            {
+              "home_score": 1,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 0,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:269886",
+          "scheduled": "2007-05-05T11:45:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 37,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:4",
+            "name": "Premier League 06\/07",
+            "start_date": "2006-08-18",
+            "end_date": "2007-05-14",
+            "year": "06\/07",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 0,
+          "away_score": 1,
+          "winner_id": "sr:competitor:35",
+          "period_scores": [
+            {
+              "home_score": 0,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 0,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:269422",
+          "scheduled": "2006-12-09T12:45:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 17,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:4",
+            "name": "Premier League 06\/07",
+            "start_date": "2006-08-18",
+            "end_date": "2007-05-14",
+            "year": "06\/07",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 3,
+          "away_score": 1,
+          "winner_id": "sr:competitor:35",
+          "period_scores": [
+            {
+              "home_score": 2,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 1,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:178173",
+          "scheduled": "2006-01-14T12:45:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 22,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:3",
+            "name": "Premier League 05\/06",
+            "start_date": "2005-08-13",
+            "end_date": "2006-05-07",
+            "year": "05\/06",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 3,
+          "away_score": 1,
+          "winner_id": "sr:competitor:17",
+          "period_scores": [
+            {
+              "home_score": 2,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 1,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:177991",
+          "scheduled": "2005-09-10T14:00:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 5,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:3",
+            "name": "Premier League 05\/06",
+            "start_date": "2005-08-13",
+            "end_date": "2006-05-07",
+            "year": "05\/06",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 1,
+          "away_score": 1,
+          "period_scores": [
+            {
+              "home_score": 1,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 0,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:108360",
+          "scheduled": "2005-02-13T13:00:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 27,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:2",
+            "name": "Premier League 04\/05",
+            "start_date": "2004-08-14",
+            "end_date": "2005-05-15",
+            "year": "04\/05",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 0,
+          "away_score": 2,
+          "winner_id": "sr:competitor:35",
+          "period_scores": [
+            {
+              "home_score": 0,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 0,
+              "away_score": 2,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:108175",
+          "scheduled": "2004-11-07T16:05:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 12,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:2",
+            "name": "Premier League 04\/05",
+            "start_date": "2004-08-14",
+            "end_date": "2005-05-15",
+            "year": "04\/05",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 0,
+          "away_score": 0,
+          "period_scores": [
+            {
+              "home_score": 0,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 0,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:76472",
+          "scheduled": "2004-03-14T14:00:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 28,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:1",
+            "name": "Premier League 03\/04",
+            "start_date": "2003-08-16",
+            "end_date": "2004-05-17",
+            "year": "03\/04",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 4,
+          "away_score": 1,
+          "winner_id": "sr:competitor:17",
+          "period_scores": [
+            {
+              "home_score": 2,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 2,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:73482",
+          "scheduled": "2004-02-14T12:30:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "cup",
+            "name": "round_of_16",
+            "cup_round_match_number": 1,
+            "cup_round_matches": 1,
+            "phase": "knockout_stage"
+          },
+          "season": {
+            "id": "sr:season:9",
+            "name": "FA Cup 03\/04",
+            "start_date": "2004-01-03",
+            "end_date": "2004-05-23",
+            "year": "03\/04",
+            "tournament_id": "sr:tournament:19"
+          },
+          "tournament": {
+            "id": "sr:tournament:19",
+            "name": "FA Cup",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 4,
+          "away_score": 2,
+          "winner_id": "sr:competitor:35",
+          "period_scores": [
+            {
+              "home_score": 1,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 3,
+              "away_score": 2,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:58115",
+          "scheduled": "2003-12-13T12:30:00+00:00",
+          "start_time_tbd": false,
+          "tournament_round": {
+            "type": "group",
+            "number": 16,
+            "phase": "regular season"
+          },
+          "season": {
+            "id": "sr:season:1",
+            "name": "Premier League 03\/04",
+            "start_date": "2003-08-16",
+            "end_date": "2004-05-17",
+            "year": "03\/04",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 3,
+          "away_score": 1,
+          "winner_id": "sr:competitor:35",
+          "period_scores": [
+            {
+              "home_score": 2,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 1,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:9167",
+          "scheduled": "2003-02-09T12:30:00+00:00",
+          "start_time_tbd": false,
+          "season": {
+            "id": "sr:season:46",
+            "name": "Premier League 02\/03",
+            "start_date": "2002-08-17",
+            "end_date": "2003-05-11",
+            "year": "02\/03",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 1,
+          "away_score": 1,
+          "period_scores": [
+            {
+              "home_score": 1,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 0,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:1258",
+          "scheduled": "2002-11-09T12:15:00+00:00",
+          "start_time_tbd": false,
+          "season": {
+            "id": "sr:season:46",
+            "name": "Premier League 02\/03",
+            "start_date": "2002-08-17",
+            "end_date": "2003-05-11",
+            "year": "02\/03",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 3,
+          "away_score": 1,
+          "winner_id": "sr:competitor:17",
+          "period_scores": [
+            {
+              "home_score": 2,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 1,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:353317",
+          "scheduled": "2001-04-21T16:00:00+00:00",
+          "start_time_tbd": false,
+          "season": {
+            "id": "sr:season:48",
+            "name": "Premier League 00\/01",
+            "start_date": "2000-08-19",
+            "end_date": "2001-05-19",
+            "year": "00\/01",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 1,
+          "away_score": 1,
+          "period_scores": [
+            {
+              "home_score": 0,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 1,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:353110",
+          "scheduled": "2000-11-18T17:00:00+00:00",
+          "start_time_tbd": false,
+          "season": {
+            "id": "sr:season:48",
+            "name": "Premier League 00\/01",
+            "start_date": "2000-08-19",
+            "end_date": "2001-05-19",
+            "year": "00\/01",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 0,
+          "away_score": 1,
+          "winner_id": "sr:competitor:35",
+          "period_scores": [
+            {
+              "home_score": 0,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 0,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:356000",
+          "scheduled": "1996-04-06T16:00:00+00:00",
+          "start_time_tbd": false,
+          "season": {
+            "id": "sr:season:53",
+            "name": "Premier League 95\/96",
+            "start_date": "1995-08-19",
+            "end_date": "1996-05-04",
+            "year": "95\/96",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 2,
+          "away_score": 3,
+          "winner_id": "sr:competitor:35",
+          "period_scores": [
+            {
+              "home_score": 1,
+              "away_score": 2,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 1,
+              "away_score": 1,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:355759",
+          "scheduled": "1995-10-14T17:00:00+00:00",
+          "start_time_tbd": false,
+          "season": {
+            "id": "sr:season:53",
+            "name": "Premier League 95\/96",
+            "start_date": "1995-08-19",
+            "end_date": "1996-05-04",
+            "year": "95\/96",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 1,
+          "away_score": 0,
+          "winner_id": "sr:competitor:35",
+          "period_scores": [
+            {
+              "home_score": 1,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 1
+            },
+            {
+              "home_score": 0,
+              "away_score": 0,
+              "type": "regular_period",
+              "number": 2
+            }
+          ]
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:356350",
+          "scheduled": "1995-02-11T17:00:00+00:00",
+          "start_time_tbd": false,
+          "season": {
+            "id": "sr:season:54",
+            "name": "Premier League 94\/95",
+            "start_date": "1994-08-20",
+            "end_date": "1995-05-14",
+            "year": "94\/95",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 0,
+          "away_score": 3,
+          "winner_id": "sr:competitor:35"
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:356205",
+          "scheduled": "1994-11-10T17:00:00+00:00",
+          "start_time_tbd": false,
+          "season": {
+            "id": "sr:season:54",
+            "name": "Premier League 94\/95",
+            "start_date": "1994-08-20",
+            "end_date": "1995-05-14",
+            "year": "94\/95",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 5,
+          "away_score": 0,
+          "winner_id": "sr:competitor:35"
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:356936",
+          "scheduled": "1994-04-23T16:00:00+00:00",
+          "start_time_tbd": false,
+          "season": {
+            "id": "sr:season:55",
+            "name": "Premier League 93\/94",
+            "start_date": "1993-08-14",
+            "end_date": "1994-05-09",
+            "year": "93\/94",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 2,
+          "away_score": 0,
+          "winner_id": "sr:competitor:35"
+        }
+      },
+      {
+        "sport_event": {
+          "id": "sr:match:356668",
+          "scheduled": "1993-11-07T17:00:00+00:00",
+          "start_time_tbd": false,
+          "season": {
+            "id": "sr:season:55",
+            "name": "Premier League 93\/94",
+            "start_date": "1993-08-14",
+            "end_date": "1994-05-09",
+            "year": "93\/94",
+            "tournament_id": "sr:tournament:17"
+          },
+          "tournament": {
+            "id": "sr:tournament:17",
+            "name": "Premier League",
+            "sport": {
+              "id": "sr:sport:1",
+              "name": "Soccer"
+            },
+            "category": {
+              "id": "sr:category:1",
+              "name": "England",
+              "country_code": "ENG"
+            }
+          },
+          "competitors": [
+            {
+              "id": "sr:competitor:17",
+              "name": "Manchester City",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MCI",
+              "qualifier": "home"
+            },
+            {
+              "id": "sr:competitor:35",
+              "name": "Manchester United",
+              "country": "England",
+              "country_code": "ENG",
+              "abbreviation": "MUN",
+              "qualifier": "away"
+            }
+          ]
+        },
+        "sport_event_status": {
+          "status": "closed",
+          "home_score": 2,
+          "away_score": 3,
+          "winner_id": "sr:competitor:35"
+        }
+      }
+    ]
+  },
+  "next_meetings": [
+    {
+      "sport_event": {
+        "id": "sr:match:17487549",
+        "scheduled": "2019-04-24T19:00:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "group",
+          "number": 31,
+          "phase": "regular season"
+        },
+        "season": {
+          "id": "sr:season:54571",
+          "name": "Premier League 18\/19",
+          "start_date": "2018-08-10",
+          "end_date": "2019-05-13",
+          "year": "18\/19",
+          "tournament_id": "sr:tournament:17"
+        },
+        "tournament": {
+          "id": "sr:tournament:17",
+          "name": "Premier League",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:1",
+            "name": "England",
+            "country_code": "ENG"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:35",
+            "name": "Manchester United",
+            "country": "England",
+            "country_code": "ENG",
+            "abbreviation": "MUN",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:17",
+            "name": "Manchester City",
+            "country": "England",
+            "country_code": "ENG",
+            "abbreviation": "MCI",
+            "qualifier": "away"
+          }
+        ],
+        "venue": {
+          "id": "sr:venue:9",
+          "name": "Old Trafford",
+          "capacity": 75635,
+          "city_name": "Manchester",
+          "country_name": "England",
+          "map_coordinates": "53.463150,-2.291444",
+          "country_code": "ENG"
+        }
+      }
+    }
+  ]
+}

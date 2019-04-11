@@ -1,0 +1,1944 @@
+{
+  "generated_at": "2019-04-04T04:46:32+00:00",
+  "schema": "http:\/\/schemas.sportradar.com\/bsa\/soccer\/v1\/json\/endpoints\/soccer\/tournament_team_statistics.json",
+  "tournament": {
+    "id": "sr:tournament:7",
+    "name": "UEFA Champions League",
+    "sport": {
+      "id": "sr:sport:1",
+      "name": "Soccer"
+    },
+    "category": {
+      "id": "sr:category:393",
+      "name": "International Clubs"
+    },
+    "current_season": {
+      "id": "sr:season:54533",
+      "name": "UEFA Champions League 18\/19",
+      "start_date": "2018-06-26",
+      "end_date": "2019-06-02",
+      "year": "18\/19"
+    }
+  },
+  "team": {
+    "id": "sr:competitor:17",
+    "name": "Manchester City",
+    "country": "England",
+    "country_code": "ENG",
+    "sport": {
+      "id": "sr:sport:1",
+      "name": "Soccer"
+    },
+    "category": {
+      "id": "sr:category:1",
+      "name": "England",
+      "country_code": "ENG"
+    },
+    "abbreviation": "MCI"
+  },
+  "team_season_coverage": {
+    "scheduled": 10,
+    "played": 8,
+    "platinum": 8
+  },
+  "team_statistics": {
+    "matches_played": 8,
+    "matches_won": 6,
+    "form": "WWWDWWWL",
+    "goal_attempts": {
+      "total": 150,
+      "matches": 8
+    },
+    "shots_on_goal": {
+      "total": 63,
+      "matches": 8
+    },
+    "shots_off_goal": {
+      "total": 55,
+      "matches": 8
+    },
+    "corner_kicks": {
+      "total": 51,
+      "matches": 8
+    },
+    "ball_possession": {
+      "total": 495,
+      "matches": 8
+    },
+    "shots_blocked": {
+      "total": 32,
+      "matches": 8
+    },
+    "cards_given": {
+      "total": 14,
+      "matches": 8
+    },
+    "free_kicks": {
+      "total": 84,
+      "matches": 8
+    },
+    "offsides": {
+      "total": 17,
+      "matches": 8
+    },
+    "shots_on_bar": {
+      "total": 3,
+      "matches": 8
+    },
+    "goals_by_foot": {
+      "total": 23,
+      "matches": 8
+    },
+    "goals_by_head": {
+      "total": 3,
+      "matches": 8
+    },
+    "goals_scored": {
+      "total": 26,
+      "matches": 8
+    },
+    "goals_conceded": {
+      "total": 8,
+      "matches": 8
+    }
+  },
+  "player_statistics": [
+    {
+      "id": "sr:player:331209",
+      "name": "Silva, Bernardo",
+      "matches_played": 7,
+      "statistics": {
+        "goals_scored": {
+          "total": 3,
+          "matches": 7
+        },
+        "offsides": {
+          "total": 1,
+          "matches": 7
+        },
+        "corner_kicks": {
+          "total": 3,
+          "matches": 7
+        },
+        "shots_on_goal": {
+          "total": 5,
+          "matches": 7
+        },
+        "shots_off_goal": {
+          "total": 2,
+          "matches": 7
+        },
+        "shots_blocked": {
+          "total": 1,
+          "matches": 7
+        },
+        "assists": {
+          "total": 1,
+          "matches": 7
+        },
+        "substituted_in": {
+          "total": 2,
+          "matches": 7
+        },
+        "substituted_out": {
+          "total": 1,
+          "matches": 7
+        },
+        "goal_attempts": {
+          "total": 8,
+          "matches": 7
+        },
+        "interceptions": {
+          "total": 2,
+          "matches": 7
+        },
+        "chances_created": {
+          "total": 7,
+          "matches": 7
+        },
+        "crosses": {
+          "total": 12,
+          "successful": 4,
+          "matches": 7
+        },
+        "passes_short": {
+          "total": 87,
+          "successful": 79,
+          "matches": 7
+        },
+        "passes_medium": {
+          "total": 152,
+          "successful": 138,
+          "matches": 7
+        },
+        "passes_long": {
+          "total": 6,
+          "successful": 3,
+          "matches": 7
+        },
+        "duels_header": {
+          "total": 6,
+          "successful": 2,
+          "matches": 7
+        },
+        "duels_sprint": {
+          "total": 8,
+          "successful": 3,
+          "matches": 7
+        },
+        "duels_tackle": {
+          "total": 49,
+          "successful": 23,
+          "matches": 7
+        },
+        "goals_conceded": {
+          "total": 5,
+          "matches": 7
+        },
+        "clean_sheets": {
+          "total": 4,
+          "matches": 7
+        },
+        "performance_score": {
+          "average": 6.51,
+          "matches": 7
+        }
+      },
+      "minutes_played": 398
+    },
+    {
+      "id": "sr:player:835751",
+      "name": "Jesus, Gabriel",
+      "matches_played": 5,
+      "statistics": {
+        "goals_scored": {
+          "total": 4,
+          "matches": 5
+        },
+        "offsides": {
+          "total": 9,
+          "matches": 5
+        },
+        "shots_on_goal": {
+          "total": 10,
+          "matches": 5
+        },
+        "shots_off_goal": {
+          "total": 6,
+          "matches": 5
+        },
+        "shots_blocked": {
+          "total": 4,
+          "matches": 5
+        },
+        "substituted_in": {
+          "total": 1,
+          "matches": 5
+        },
+        "substituted_out": {
+          "total": 2,
+          "matches": 5
+        },
+        "goal_attempts": {
+          "total": 20,
+          "matches": 5
+        },
+        "chances_created": {
+          "total": 4,
+          "matches": 5
+        },
+        "crosses": {
+          "total": 2,
+          "successful": 1,
+          "matches": 5
+        },
+        "passes_short": {
+          "total": 32,
+          "successful": 29,
+          "matches": 5
+        },
+        "passes_medium": {
+          "total": 59,
+          "successful": 46,
+          "matches": 5
+        },
+        "passes_long": {
+          "total": 1,
+          "successful": 0,
+          "matches": 5
+        },
+        "duels_header": {
+          "total": 6,
+          "successful": 1,
+          "matches": 5
+        },
+        "duels_sprint": {
+          "total": 5,
+          "successful": 3,
+          "matches": 5
+        },
+        "duels_tackle": {
+          "total": 30,
+          "successful": 12,
+          "matches": 5
+        },
+        "goals_conceded": {
+          "total": 3,
+          "matches": 5
+        },
+        "clean_sheets": {
+          "total": 3,
+          "matches": 5
+        },
+        "performance_score": {
+          "average": 6.58,
+          "matches": 5
+        }
+      },
+      "minutes_played": 330
+    },
+    {
+      "id": "sr:player:1047129",
+      "name": "Foden, Phil",
+      "matches_played": 4,
+      "statistics": {
+        "goals_scored": {
+          "total": 1,
+          "matches": 4
+        },
+        "corner_kicks": {
+          "total": 1,
+          "matches": 4
+        },
+        "shots_on_goal": {
+          "total": 3,
+          "matches": 4
+        },
+        "shots_off_goal": {
+          "total": 3,
+          "matches": 4
+        },
+        "shots_blocked": {
+          "total": 1,
+          "matches": 4
+        },
+        "substituted_in": {
+          "total": 3,
+          "matches": 4
+        },
+        "goal_attempts": {
+          "total": 7,
+          "matches": 4
+        },
+        "chances_created": {
+          "total": 2,
+          "matches": 4
+        },
+        "crosses": {
+          "total": 4,
+          "successful": 1,
+          "matches": 4
+        },
+        "passes_short": {
+          "total": 32,
+          "successful": 30,
+          "matches": 4
+        },
+        "passes_medium": {
+          "total": 24,
+          "successful": 20,
+          "matches": 4
+        },
+        "passes_long": {
+          "total": 3,
+          "successful": 1,
+          "matches": 4
+        },
+        "duels_header": {
+          "total": 1,
+          "successful": 1,
+          "matches": 4
+        },
+        "duels_sprint": {
+          "total": 6,
+          "successful": 2,
+          "matches": 4
+        },
+        "duels_tackle": {
+          "total": 12,
+          "successful": 9,
+          "matches": 4
+        },
+        "goals_conceded": {
+          "total": 1,
+          "matches": 4
+        },
+        "clean_sheets": {
+          "total": 2,
+          "matches": 4
+        },
+        "performance_score": {
+          "average": 7.79,
+          "matches": 4
+        }
+      },
+      "minutes_played": 93
+    },
+    {
+      "id": "sr:player:138534",
+      "name": "Sterling, Raheem",
+      "matches_played": 8,
+      "statistics": {
+        "goals_scored": {
+          "total": 3,
+          "matches": 8
+        },
+        "cards_given": {
+          "total": 1,
+          "matches": 8
+        },
+        "offsides": {
+          "total": 4,
+          "matches": 8
+        },
+        "corner_kicks": {
+          "total": 2,
+          "matches": 8
+        },
+        "shots_on_goal": {
+          "total": 6,
+          "matches": 8
+        },
+        "shots_off_goal": {
+          "total": 7,
+          "matches": 8
+        },
+        "shots_blocked": {
+          "total": 5,
+          "matches": 8
+        },
+        "assists": {
+          "total": 2,
+          "matches": 8
+        },
+        "substituted_out": {
+          "total": 2,
+          "matches": 8
+        },
+        "goal_attempts": {
+          "total": 18,
+          "matches": 8
+        },
+        "interceptions": {
+          "total": 8,
+          "matches": 8
+        },
+        "chances_created": {
+          "total": 21,
+          "matches": 8
+        },
+        "crosses": {
+          "total": 19,
+          "successful": 6,
+          "matches": 8
+        },
+        "passes_short": {
+          "total": 119,
+          "successful": 93,
+          "matches": 8
+        },
+        "passes_medium": {
+          "total": 175,
+          "successful": 153,
+          "matches": 8
+        },
+        "passes_long": {
+          "total": 2,
+          "successful": 0,
+          "matches": 8
+        },
+        "duels_header": {
+          "total": 5,
+          "successful": 2,
+          "matches": 8
+        },
+        "duels_sprint": {
+          "total": 22,
+          "successful": 14,
+          "matches": 8
+        },
+        "duels_tackle": {
+          "total": 94,
+          "successful": 47,
+          "matches": 8
+        },
+        "goals_conceded": {
+          "total": 8,
+          "matches": 8
+        },
+        "clean_sheets": {
+          "total": 3,
+          "matches": 8
+        },
+        "performance_score": {
+          "average": 7.58,
+          "matches": 8
+        }
+      },
+      "minutes_played": 601
+    },
+    {
+      "id": "sr:player:158213",
+      "name": "Mahrez, Riyad",
+      "matches_played": 5,
+      "statistics": {
+        "goals_scored": {
+          "total": 1,
+          "matches": 5
+        },
+        "corner_kicks": {
+          "total": 4,
+          "matches": 5
+        },
+        "shots_on_goal": {
+          "total": 4,
+          "matches": 5
+        },
+        "shots_off_goal": {
+          "total": 5,
+          "matches": 5
+        },
+        "shots_blocked": {
+          "total": 2,
+          "matches": 5
+        },
+        "assists": {
+          "total": 4,
+          "matches": 5
+        },
+        "substituted_in": {
+          "total": 2,
+          "matches": 5
+        },
+        "goal_attempts": {
+          "total": 11,
+          "matches": 5
+        },
+        "interceptions": {
+          "total": 1,
+          "matches": 5
+        },
+        "chances_created": {
+          "total": 10,
+          "matches": 5
+        },
+        "crosses": {
+          "total": 24,
+          "successful": 8,
+          "matches": 5
+        },
+        "passes_short": {
+          "total": 20,
+          "successful": 15,
+          "matches": 5
+        },
+        "passes_medium": {
+          "total": 148,
+          "successful": 132,
+          "matches": 5
+        },
+        "passes_long": {
+          "total": 2,
+          "successful": 2,
+          "matches": 5
+        },
+        "duels_header": {
+          "total": 2,
+          "successful": 1,
+          "matches": 5
+        },
+        "duels_sprint": {
+          "total": 4,
+          "successful": 0,
+          "matches": 5
+        },
+        "duels_tackle": {
+          "total": 32,
+          "successful": 18,
+          "matches": 5
+        },
+        "goals_conceded": {
+          "total": 2,
+          "matches": 5
+        },
+        "clean_sheets": {
+          "total": 4,
+          "matches": 5
+        },
+        "performance_score": {
+          "average": 7.44,
+          "matches": 5
+        }
+      },
+      "minutes_played": 299
+    },
+    {
+      "id": "sr:player:293519",
+      "name": "Sane, Leroy",
+      "matches_played": 6,
+      "statistics": {
+        "goals_scored": {
+          "total": 4,
+          "matches": 6
+        },
+        "offsides": {
+          "total": 1,
+          "matches": 6
+        },
+        "corner_kicks": {
+          "total": 9,
+          "matches": 6
+        },
+        "shots_on_goal": {
+          "total": 5,
+          "matches": 6
+        },
+        "shots_off_goal": {
+          "total": 4,
+          "matches": 6
+        },
+        "shots_blocked": {
+          "total": 3,
+          "matches": 6
+        },
+        "assists": {
+          "total": 4,
+          "matches": 6
+        },
+        "substituted_in": {
+          "total": 2,
+          "matches": 6
+        },
+        "substituted_out": {
+          "total": 1,
+          "matches": 6
+        },
+        "goal_attempts": {
+          "total": 12,
+          "matches": 6
+        },
+        "interceptions": {
+          "total": 1,
+          "matches": 6
+        },
+        "chances_created": {
+          "total": 10,
+          "matches": 6
+        },
+        "crosses": {
+          "total": 14,
+          "successful": 6,
+          "matches": 6
+        },
+        "passes_short": {
+          "total": 76,
+          "successful": 70,
+          "matches": 6
+        },
+        "passes_medium": {
+          "total": 91,
+          "successful": 81,
+          "matches": 6
+        },
+        "passes_long": {
+          "total": 1,
+          "successful": 0,
+          "matches": 6
+        },
+        "duels_header": {
+          "total": 1,
+          "successful": 0,
+          "matches": 6
+        },
+        "duels_sprint": {
+          "total": 9,
+          "successful": 5,
+          "matches": 6
+        },
+        "duels_tackle": {
+          "total": 76,
+          "successful": 37,
+          "matches": 6
+        },
+        "goals_conceded": {
+          "total": 3,
+          "matches": 6
+        },
+        "clean_sheets": {
+          "total": 3,
+          "matches": 6
+        },
+        "performance_score": {
+          "average": 7.79,
+          "matches": 6
+        }
+      },
+      "minutes_played": 298
+    },
+    {
+      "id": "sr:player:17094",
+      "name": "Aguero, Sergio",
+      "matches_played": 5,
+      "statistics": {
+        "goals_scored": {
+          "total": 5,
+          "matches": 5
+        },
+        "cards_given": {
+          "total": 2,
+          "matches": 5
+        },
+        "offsides": {
+          "total": 2,
+          "matches": 5
+        },
+        "shots_on_goal": {
+          "total": 13,
+          "matches": 5
+        },
+        "shots_off_goal": {
+          "total": 7,
+          "matches": 5
+        },
+        "shots_blocked": {
+          "total": 3,
+          "matches": 5
+        },
+        "goals_by_head": {
+          "total": 1,
+          "matches": 5
+        },
+        "substituted_in": {
+          "total": 1,
+          "matches": 5
+        },
+        "substituted_out": {
+          "total": 3,
+          "matches": 5
+        },
+        "goal_attempts": {
+          "total": 23,
+          "matches": 5
+        },
+        "interceptions": {
+          "total": 1,
+          "matches": 5
+        },
+        "chances_created": {
+          "total": 2,
+          "matches": 5
+        },
+        "crosses": {
+          "total": 6,
+          "successful": 0,
+          "matches": 5
+        },
+        "passes_short": {
+          "total": 50,
+          "successful": 46,
+          "matches": 5
+        },
+        "passes_medium": {
+          "total": 74,
+          "successful": 69,
+          "matches": 5
+        },
+        "duels_header": {
+          "total": 4,
+          "successful": 2,
+          "matches": 5
+        },
+        "duels_sprint": {
+          "total": 6,
+          "successful": 1,
+          "matches": 5
+        },
+        "duels_tackle": {
+          "total": 37,
+          "successful": 12,
+          "matches": 5
+        },
+        "goals_conceded": {
+          "total": 5,
+          "matches": 5
+        },
+        "clean_sheets": {
+          "total": 2,
+          "matches": 5
+        },
+        "performance_score": {
+          "average": 6.87,
+          "matches": 5
+        }
+      },
+      "minutes_played": 285
+    },
+    {
+      "id": "sr:player:149734",
+      "name": "Laporte, Aymeric",
+      "matches_played": 8,
+      "statistics": {
+        "goals_scored": {
+          "total": 2,
+          "matches": 8
+        },
+        "shots_on_goal": {
+          "total": 4,
+          "matches": 8
+        },
+        "shots_off_goal": {
+          "total": 3,
+          "matches": 8
+        },
+        "shots_blocked": {
+          "total": 1,
+          "matches": 8
+        },
+        "goals_by_head": {
+          "total": 2,
+          "matches": 8
+        },
+        "substituted_out": {
+          "total": 1,
+          "matches": 8
+        },
+        "goal_attempts": {
+          "total": 8,
+          "matches": 8
+        },
+        "goal_line_clearances": {
+          "total": 2,
+          "matches": 8
+        },
+        "interceptions": {
+          "total": 12,
+          "matches": 8
+        },
+        "chances_created": {
+          "total": 1,
+          "matches": 8
+        },
+        "crosses": {
+          "total": 5,
+          "successful": 1,
+          "matches": 8
+        },
+        "passes_short": {
+          "total": 137,
+          "successful": 126,
+          "matches": 8
+        },
+        "passes_medium": {
+          "total": 505,
+          "successful": 478,
+          "matches": 8
+        },
+        "passes_long": {
+          "total": 32,
+          "successful": 14,
+          "matches": 8
+        },
+        "duels_header": {
+          "total": 25,
+          "successful": 20,
+          "matches": 8
+        },
+        "duels_sprint": {
+          "total": 13,
+          "successful": 11,
+          "matches": 8
+        },
+        "duels_tackle": {
+          "total": 29,
+          "successful": 11,
+          "matches": 8
+        },
+        "goals_conceded": {
+          "total": 8,
+          "matches": 8
+        },
+        "clean_sheets": {
+          "total": 3,
+          "matches": 8
+        },
+        "performance_score": {
+          "average": 7.06,
+          "matches": 8
+        }
+      },
+      "minutes_played": 630
+    },
+    {
+      "id": "sr:player:11781",
+      "name": "Silva, David",
+      "matches_played": 7,
+      "statistics": {
+        "goals_scored": {
+          "total": 3,
+          "matches": 7
+        },
+        "corner_kicks": {
+          "total": 5,
+          "matches": 7
+        },
+        "shots_on_goal": {
+          "total": 4,
+          "matches": 7
+        },
+        "shots_off_goal": {
+          "total": 3,
+          "matches": 7
+        },
+        "shots_blocked": {
+          "total": 3,
+          "matches": 7
+        },
+        "assists": {
+          "total": 2,
+          "matches": 7
+        },
+        "substituted_out": {
+          "total": 3,
+          "matches": 7
+        },
+        "goal_attempts": {
+          "total": 10,
+          "matches": 7
+        },
+        "interceptions": {
+          "total": 3,
+          "matches": 7
+        },
+        "chances_created": {
+          "total": 12,
+          "matches": 7
+        },
+        "crosses": {
+          "total": 22,
+          "successful": 6,
+          "matches": 7
+        },
+        "passes_short": {
+          "total": 129,
+          "successful": 111,
+          "matches": 7
+        },
+        "passes_medium": {
+          "total": 269,
+          "successful": 232,
+          "matches": 7
+        },
+        "passes_long": {
+          "total": 3,
+          "successful": 2,
+          "matches": 7
+        },
+        "duels_header": {
+          "total": 9,
+          "successful": 5,
+          "matches": 7
+        },
+        "duels_sprint": {
+          "total": 4,
+          "successful": 3,
+          "matches": 7
+        },
+        "duels_tackle": {
+          "total": 56,
+          "successful": 28,
+          "matches": 7
+        },
+        "goals_conceded": {
+          "total": 7,
+          "matches": 7
+        },
+        "clean_sheets": {
+          "total": 3,
+          "matches": 7
+        },
+        "performance_score": {
+          "average": 7.15,
+          "matches": 7
+        }
+      },
+      "minutes_played": 503
+    },
+    {
+      "id": "sr:player:13630",
+      "name": "Fernandinho",
+      "matches_played": 6,
+      "statistics": {
+        "cards_given": {
+          "total": 3,
+          "matches": 6
+        },
+        "shots_on_goal": {
+          "total": 1,
+          "matches": 6
+        },
+        "shots_off_goal": {
+          "total": 2,
+          "matches": 6
+        },
+        "shots_blocked": {
+          "total": 1,
+          "matches": 6
+        },
+        "substituted_out": {
+          "total": 1,
+          "matches": 6
+        },
+        "goal_attempts": {
+          "total": 4,
+          "matches": 6
+        },
+        "goal_line_clearances": {
+          "total": 1,
+          "matches": 6
+        },
+        "interceptions": {
+          "total": 8,
+          "matches": 6
+        },
+        "chances_created": {
+          "total": 1,
+          "matches": 6
+        },
+        "crosses": {
+          "total": 3,
+          "successful": 1,
+          "matches": 6
+        },
+        "passes_short": {
+          "total": 74,
+          "successful": 69,
+          "matches": 6
+        },
+        "passes_medium": {
+          "total": 330,
+          "successful": 299,
+          "matches": 6
+        },
+        "passes_long": {
+          "total": 18,
+          "successful": 11,
+          "matches": 6
+        },
+        "duels_header": {
+          "total": 15,
+          "successful": 11,
+          "matches": 6
+        },
+        "duels_sprint": {
+          "total": 3,
+          "successful": 0,
+          "matches": 6
+        },
+        "duels_tackle": {
+          "total": 44,
+          "successful": 17,
+          "matches": 6
+        },
+        "goals_conceded": {
+          "total": 7,
+          "matches": 6
+        },
+        "clean_sheets": {
+          "total": 2,
+          "matches": 6
+        },
+        "performance_score": {
+          "average": 5.51,
+          "matches": 6
+        }
+      },
+      "minutes_played": 526
+    },
+    {
+      "id": "sr:player:124992",
+      "name": "Danilo",
+      "matches_played": 2,
+      "statistics": {
+        "cards_given": {
+          "total": 1,
+          "matches": 2
+        },
+        "substituted_in": {
+          "total": 1,
+          "matches": 2
+        },
+        "interceptions": {
+          "total": 1,
+          "matches": 2
+        },
+        "chances_created": {
+          "total": 1,
+          "matches": 2
+        },
+        "passes_short": {
+          "total": 30,
+          "successful": 29,
+          "matches": 2
+        },
+        "passes_medium": {
+          "total": 109,
+          "successful": 104,
+          "matches": 2
+        },
+        "passes_long": {
+          "total": 5,
+          "successful": 4,
+          "matches": 2
+        },
+        "duels_header": {
+          "total": 1,
+          "successful": 1,
+          "matches": 2
+        },
+        "duels_sprint": {
+          "total": 1,
+          "successful": 0,
+          "matches": 2
+        },
+        "duels_tackle": {
+          "total": 5,
+          "successful": 1,
+          "matches": 2
+        },
+        "clean_sheets": {
+          "total": 2,
+          "matches": 2
+        },
+        "performance_score": {
+          "average": 6.87,
+          "matches": 2
+        }
+      },
+      "minutes_played": 29
+    },
+    {
+      "id": "sr:player:254491",
+      "name": "Ederson",
+      "matches_played": 8,
+      "statistics": {
+        "cards_given": {
+          "total": 1,
+          "matches": 8
+        },
+        "assists": {
+          "total": 1,
+          "matches": 8
+        },
+        "chances_created": {
+          "total": 2,
+          "matches": 8
+        },
+        "passes_short": {
+          "total": 21,
+          "successful": 20,
+          "matches": 8
+        },
+        "passes_medium": {
+          "total": 164,
+          "successful": 162,
+          "matches": 8
+        },
+        "passes_long": {
+          "total": 31,
+          "successful": 12,
+          "matches": 8
+        },
+        "duels_sprint": {
+          "total": 1,
+          "successful": 1,
+          "matches": 8
+        },
+        "goals_conceded": {
+          "total": 8,
+          "matches": 8
+        },
+        "clean_sheets": {
+          "total": 3,
+          "matches": 8
+        },
+        "shots_faced": {
+          "total": 22,
+          "matches": 8
+        },
+        "penalties_faced": {
+          "total": 3,
+          "matches": 8
+        },
+        "performance_score": {
+          "average": 5.66,
+          "matches": 8
+        }
+      },
+      "minutes_played": 630
+    },
+    {
+      "id": "sr:player:287643",
+      "name": "Zinchenko, Olexandr",
+      "matches_played": 5,
+      "statistics": {
+        "cards_given": {
+          "total": 1,
+          "matches": 5
+        },
+        "shots_off_goal": {
+          "total": 2,
+          "matches": 5
+        },
+        "assists": {
+          "total": 1,
+          "matches": 5
+        },
+        "substituted_in": {
+          "total": 1,
+          "matches": 5
+        },
+        "substituted_out": {
+          "total": 1,
+          "matches": 5
+        },
+        "goal_attempts": {
+          "total": 2,
+          "matches": 5
+        },
+        "interceptions": {
+          "total": 6,
+          "matches": 5
+        },
+        "chances_created": {
+          "total": 1,
+          "matches": 5
+        },
+        "crosses": {
+          "total": 3,
+          "successful": 2,
+          "matches": 5
+        },
+        "passes_short": {
+          "total": 104,
+          "successful": 95,
+          "matches": 5
+        },
+        "passes_medium": {
+          "total": 237,
+          "successful": 218,
+          "matches": 5
+        },
+        "passes_long": {
+          "total": 12,
+          "successful": 8,
+          "matches": 5
+        },
+        "duels_header": {
+          "total": 9,
+          "successful": 5,
+          "matches": 5
+        },
+        "duels_sprint": {
+          "total": 3,
+          "successful": 1,
+          "matches": 5
+        },
+        "duels_tackle": {
+          "total": 17,
+          "successful": 8,
+          "matches": 5
+        },
+        "goals_conceded": {
+          "total": 3,
+          "matches": 5
+        },
+        "clean_sheets": {
+          "total": 3,
+          "matches": 5
+        },
+        "performance_score": {
+          "average": 6.55,
+          "matches": 5
+        }
+      },
+      "minutes_played": 247
+    },
+    {
+      "id": "sr:player:44614",
+      "name": "Walker, Kyle",
+      "matches_played": 8,
+      "statistics": {
+        "cards_given": {
+          "total": 1,
+          "matches": 8
+        },
+        "corner_kicks": {
+          "total": 1,
+          "matches": 8
+        },
+        "shots_off_goal": {
+          "total": 3,
+          "matches": 8
+        },
+        "substituted_in": {
+          "total": 2,
+          "matches": 8
+        },
+        "substituted_out": {
+          "total": 1,
+          "matches": 8
+        },
+        "goal_attempts": {
+          "total": 3,
+          "matches": 8
+        },
+        "interceptions": {
+          "total": 4,
+          "matches": 8
+        },
+        "crosses": {
+          "total": 10,
+          "successful": 4,
+          "matches": 8
+        },
+        "passes_short": {
+          "total": 98,
+          "successful": 96,
+          "matches": 8
+        },
+        "passes_medium": {
+          "total": 348,
+          "successful": 328,
+          "matches": 8
+        },
+        "passes_long": {
+          "total": 17,
+          "successful": 8,
+          "matches": 8
+        },
+        "duels_header": {
+          "total": 10,
+          "successful": 7,
+          "matches": 8
+        },
+        "duels_sprint": {
+          "total": 12,
+          "successful": 7,
+          "matches": 8
+        },
+        "duels_tackle": {
+          "total": 26,
+          "successful": 12,
+          "matches": 8
+        },
+        "goals_conceded": {
+          "total": 7,
+          "matches": 8
+        },
+        "clean_sheets": {
+          "total": 4,
+          "matches": 8
+        },
+        "performance_score": {
+          "average": 6.21,
+          "matches": 8
+        }
+      },
+      "minutes_played": 475
+    },
+    {
+      "id": "sr:player:74915",
+      "name": "Otamendi, Nicolas",
+      "matches_played": 4,
+      "statistics": {
+        "cards_given": {
+          "total": 2,
+          "matches": 4
+        },
+        "shots_on_goal": {
+          "total": 1,
+          "matches": 4
+        },
+        "shots_off_goal": {
+          "total": 2,
+          "matches": 4
+        },
+        "shots_blocked": {
+          "total": 2,
+          "matches": 4
+        },
+        "substituted_out": {
+          "total": 1,
+          "matches": 4
+        },
+        "goal_attempts": {
+          "total": 5,
+          "matches": 4
+        },
+        "interceptions": {
+          "total": 5,
+          "matches": 4
+        },
+        "chances_created": {
+          "total": 1,
+          "matches": 4
+        },
+        "passes_short": {
+          "total": 63,
+          "successful": 61,
+          "matches": 4
+        },
+        "passes_medium": {
+          "total": 230,
+          "successful": 215,
+          "matches": 4
+        },
+        "passes_long": {
+          "total": 12,
+          "successful": 3,
+          "matches": 4
+        },
+        "duels_header": {
+          "total": 12,
+          "successful": 8,
+          "matches": 4
+        },
+        "duels_sprint": {
+          "total": 1,
+          "successful": 0,
+          "matches": 4
+        },
+        "duels_tackle": {
+          "total": 25,
+          "successful": 12,
+          "matches": 4
+        },
+        "goals_conceded": {
+          "total": 4,
+          "matches": 4
+        },
+        "clean_sheets": {
+          "total": 1,
+          "matches": 4
+        },
+        "performance_score": {
+          "average": 5.61,
+          "matches": 4
+        }
+      },
+      "minutes_played": 334
+    },
+    {
+      "id": "sr:player:70996",
+      "name": "De Bruyne, Kevin",
+      "matches_played": 2,
+      "statistics": {
+        "corner_kicks": {
+          "total": 9,
+          "matches": 2
+        },
+        "shots_on_goal": {
+          "total": 2,
+          "matches": 2
+        },
+        "shots_blocked": {
+          "total": 2,
+          "matches": 2
+        },
+        "assists": {
+          "total": 1,
+          "matches": 2
+        },
+        "substituted_out": {
+          "total": 2,
+          "matches": 2
+        },
+        "goal_attempts": {
+          "total": 4,
+          "matches": 2
+        },
+        "chances_created": {
+          "total": 4,
+          "matches": 2
+        },
+        "crosses": {
+          "total": 12,
+          "successful": 3,
+          "matches": 2
+        },
+        "passes_short": {
+          "total": 35,
+          "successful": 31,
+          "matches": 2
+        },
+        "passes_medium": {
+          "total": 51,
+          "successful": 42,
+          "matches": 2
+        },
+        "passes_long": {
+          "total": 4,
+          "successful": 1,
+          "matches": 2
+        },
+        "duels_header": {
+          "total": 1,
+          "successful": 0,
+          "matches": 2
+        },
+        "duels_sprint": {
+          "total": 1,
+          "successful": 0,
+          "matches": 2
+        },
+        "duels_tackle": {
+          "total": 8,
+          "successful": 6,
+          "matches": 2
+        },
+        "goals_conceded": {
+          "total": 2,
+          "matches": 2
+        },
+        "clean_sheets": {
+          "total": 1,
+          "matches": 2
+        },
+        "performance_score": {
+          "average": 6.8,
+          "matches": 2
+        }
+      },
+      "minutes_played": 156
+    },
+    {
+      "id": "sr:player:6019",
+      "name": "Kompany, Vincent",
+      "matches_played": 3,
+      "statistics": {
+        "substituted_in": {
+          "total": 2,
+          "matches": 3
+        },
+        "passes_short": {
+          "total": 21,
+          "successful": 21,
+          "matches": 3
+        },
+        "passes_medium": {
+          "total": 84,
+          "successful": 82,
+          "matches": 3
+        },
+        "passes_long": {
+          "total": 1,
+          "successful": 1,
+          "matches": 3
+        },
+        "duels_header": {
+          "total": 1,
+          "successful": 0,
+          "matches": 3
+        },
+        "duels_sprint": {
+          "total": 1,
+          "successful": 0,
+          "matches": 3
+        },
+        "duels_tackle": {
+          "total": 2,
+          "successful": 1,
+          "matches": 3
+        },
+        "goals_conceded": {
+          "total": 1,
+          "matches": 3
+        },
+        "clean_sheets": {
+          "total": 2,
+          "matches": 3
+        },
+        "performance_score": {
+          "average": 6.38,
+          "matches": 3
+        }
+      },
+      "minutes_played": 115
+    },
+    {
+      "id": "sr:player:24048",
+      "name": "Delph, Fabian",
+      "matches_played": 5,
+      "statistics": {
+        "shots_on_goal": {
+          "total": 2,
+          "matches": 5
+        },
+        "shots_off_goal": {
+          "total": 2,
+          "matches": 5
+        },
+        "shots_blocked": {
+          "total": 1,
+          "matches": 5
+        },
+        "substituted_in": {
+          "total": 4,
+          "matches": 5
+        },
+        "goal_attempts": {
+          "total": 5,
+          "matches": 5
+        },
+        "interceptions": {
+          "total": 3,
+          "matches": 5
+        },
+        "crosses": {
+          "total": 2,
+          "successful": 1,
+          "matches": 5
+        },
+        "passes_short": {
+          "total": 30,
+          "successful": 26,
+          "matches": 5
+        },
+        "passes_medium": {
+          "total": 130,
+          "successful": 119,
+          "matches": 5
+        },
+        "passes_long": {
+          "total": 8,
+          "successful": 4,
+          "matches": 5
+        },
+        "duels_header": {
+          "total": 8,
+          "successful": 3,
+          "matches": 5
+        },
+        "duels_sprint": {
+          "total": 2,
+          "successful": 1,
+          "matches": 5
+        },
+        "duels_tackle": {
+          "total": 14,
+          "successful": 9,
+          "matches": 5
+        },
+        "goals_conceded": {
+          "total": 3,
+          "matches": 5
+        },
+        "clean_sheets": {
+          "total": 3,
+          "matches": 5
+        },
+        "performance_score": {
+          "average": 5.7,
+          "matches": 5
+        }
+      },
+      "minutes_played": 149
+    },
+    {
+      "id": "sr:player:139225",
+      "name": "Mendy, Benjamin",
+      "matches_played": 1,
+      "statistics": {
+        "shots_on_goal": {
+          "total": 1,
+          "matches": 1
+        },
+        "shots_off_goal": {
+          "total": 1,
+          "matches": 1
+        },
+        "goal_attempts": {
+          "total": 2,
+          "matches": 1
+        },
+        "chances_created": {
+          "total": 2,
+          "matches": 1
+        },
+        "crosses": {
+          "total": 6,
+          "successful": 2,
+          "matches": 1
+        },
+        "passes_short": {
+          "total": 5,
+          "successful": 3,
+          "matches": 1
+        },
+        "passes_medium": {
+          "total": 33,
+          "successful": 31,
+          "matches": 1
+        },
+        "passes_long": {
+          "total": 2,
+          "successful": 1,
+          "matches": 1
+        },
+        "duels_tackle": {
+          "total": 8,
+          "successful": 5,
+          "matches": 1
+        },
+        "clean_sheets": {
+          "total": 1,
+          "matches": 1
+        },
+        "performance_score": {
+          "average": 7.4,
+          "matches": 1
+        }
+      },
+      "minutes_played": 90
+    },
+    {
+      "id": "sr:player:45853",
+      "name": "Gundogan, Ilkay",
+      "matches_played": 6,
+      "statistics": {
+        "corner_kicks": {
+          "total": 17,
+          "matches": 6
+        },
+        "shots_on_goal": {
+          "total": 1,
+          "matches": 6
+        },
+        "shots_off_goal": {
+          "total": 2,
+          "matches": 6
+        },
+        "shots_blocked": {
+          "total": 3,
+          "matches": 6
+        },
+        "assists": {
+          "total": 1,
+          "matches": 6
+        },
+        "substituted_in": {
+          "total": 1,
+          "matches": 6
+        },
+        "substituted_out": {
+          "total": 2,
+          "matches": 6
+        },
+        "goal_attempts": {
+          "total": 6,
+          "matches": 6
+        },
+        "interceptions": {
+          "total": 2,
+          "matches": 6
+        },
+        "chances_created": {
+          "total": 6,
+          "matches": 6
+        },
+        "crosses": {
+          "total": 22,
+          "successful": 7,
+          "matches": 6
+        },
+        "passes_short": {
+          "total": 124,
+          "successful": 121,
+          "matches": 6
+        },
+        "passes_medium": {
+          "total": 219,
+          "successful": 205,
+          "matches": 6
+        },
+        "passes_long": {
+          "total": 12,
+          "successful": 7,
+          "matches": 6
+        },
+        "duels_header": {
+          "total": 7,
+          "successful": 4,
+          "matches": 6
+        },
+        "duels_sprint": {
+          "total": 4,
+          "successful": 2,
+          "matches": 6
+        },
+        "duels_tackle": {
+          "total": 37,
+          "successful": 21,
+          "matches": 6
+        },
+        "goals_conceded": {
+          "total": 6,
+          "matches": 6
+        },
+        "clean_sheets": {
+          "total": 2,
+          "matches": 6
+        },
+        "performance_score": {
+          "average": 6.82,
+          "matches": 6
+        }
+      },
+      "minutes_played": 320
+    },
+    {
+      "id": "sr:player:152077",
+      "name": "Stones, John",
+      "matches_played": 6,
+      "statistics": {
+        "shots_on_goal": {
+          "total": 1,
+          "matches": 6
+        },
+        "shots_off_goal": {
+          "total": 1,
+          "matches": 6
+        },
+        "substituted_in": {
+          "total": 1,
+          "matches": 6
+        },
+        "substituted_out": {
+          "total": 2,
+          "matches": 6
+        },
+        "goal_attempts": {
+          "total": 2,
+          "matches": 6
+        },
+        "interceptions": {
+          "total": 5,
+          "matches": 6
+        },
+        "passes_short": {
+          "total": 51,
+          "successful": 47,
+          "matches": 6
+        },
+        "passes_medium": {
+          "total": 347,
+          "successful": 337,
+          "matches": 6
+        },
+        "passes_long": {
+          "total": 11,
+          "successful": 4,
+          "matches": 6
+        },
+        "duels_header": {
+          "total": 9,
+          "successful": 7,
+          "matches": 6
+        },
+        "duels_sprint": {
+          "total": 6,
+          "successful": 5,
+          "matches": 6
+        },
+        "duels_tackle": {
+          "total": 20,
+          "successful": 16,
+          "matches": 6
+        },
+        "goals_conceded": {
+          "total": 5,
+          "matches": 6
+        },
+        "clean_sheets": {
+          "total": 3,
+          "matches": 6
+        },
+        "performance_score": {
+          "average": 6.96,
+          "matches": 6
+        }
+      },
+      "minutes_played": 422
+    }
+  ],
+  "goaltime_statistics": {
+    "scored": {
+      "total": 16,
+      "period": [
+        {
+          "name": "0-15",
+          "value": 2
+        },
+        {
+          "name": "16-30",
+          "value": 2
+        },
+        {
+          "name": "31-45",
+          "value": 2
+        },
+        {
+          "name": "46-60",
+          "value": 1
+        },
+        {
+          "name": "61-75",
+          "value": 5
+        },
+        {
+          "name": "76-90",
+          "value": 4
+        }
+      ]
+    },
+    "conceded": {
+      "total": 6,
+      "period": [
+        {
+          "name": "0-15",
+          "value": 1
+        },
+        {
+          "name": "16-30",
+          "value": 2
+        },
+        {
+          "name": "31-45",
+          "value": 1
+        },
+        {
+          "name": "46-60",
+          "value": 1
+        },
+        {
+          "name": "61-75",
+          "value": 0
+        },
+        {
+          "name": "76-90",
+          "value": 1
+        }
+      ]
+    }
+  }
+}

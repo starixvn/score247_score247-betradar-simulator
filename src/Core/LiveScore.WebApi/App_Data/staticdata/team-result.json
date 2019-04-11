@@ -1,0 +1,816 @@
+{
+  "generated_at": "2019-04-04T04:52:16+00:00",
+  "schema": "http:\/\/schemas.sportradar.com\/bsa\/soccer\/v1\/json\/endpoints\/soccer\/team_results.json",
+  "team": {
+    "id": "sr:competitor:35",
+    "name": "Manchester United",
+    "country": "England",
+    "country_code": "ENG",
+    "abbreviation": "MUN"
+  },
+  "results": [
+    {
+      "sport_event": {
+        "id": "sr:match:14736883",
+        "scheduled": "2019-04-02T18:45:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "group",
+          "number": 33,
+          "phase": "regular season"
+        },
+        "season": {
+          "id": "sr:season:54571",
+          "name": "Premier League 18\/19",
+          "start_date": "2018-08-10",
+          "end_date": "2019-05-13",
+          "year": "18\/19",
+          "tournament_id": "sr:tournament:17"
+        },
+        "tournament": {
+          "id": "sr:tournament:17",
+          "name": "Premier League",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:1",
+            "name": "England",
+            "country_code": "ENG"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:3",
+            "name": "Wolverhampton Wanderers",
+            "country": "England",
+            "country_code": "ENG",
+            "abbreviation": "WOL",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:35",
+            "name": "Manchester United",
+            "country": "England",
+            "country_code": "ENG",
+            "abbreviation": "MUN",
+            "qualifier": "away"
+          }
+        ],
+        "venue": {
+          "id": "sr:venue:1272",
+          "name": "Molineux Stadium",
+          "capacity": 30852,
+          "city_name": "Wolverhampton",
+          "country_name": "England",
+          "map_coordinates": "52.590195,-2.131226",
+          "country_code": "ENG"
+        }
+      },
+      "sport_event_status": {
+        "status": "closed",
+        "match_status": "ended",
+        "home_score": 2,
+        "away_score": 1,
+        "winner_id": "sr:competitor:3",
+        "period_scores": [
+          {
+            "home_score": 1,
+            "away_score": 1,
+            "type": "regular_period",
+            "number": 1
+          },
+          {
+            "home_score": 1,
+            "away_score": 0,
+            "type": "regular_period",
+            "number": 2
+          }
+        ]
+      }
+    },
+    {
+      "sport_event": {
+        "id": "sr:match:14736877",
+        "scheduled": "2019-03-30T15:00:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "group",
+          "number": 32,
+          "phase": "regular season"
+        },
+        "season": {
+          "id": "sr:season:54571",
+          "name": "Premier League 18\/19",
+          "start_date": "2018-08-10",
+          "end_date": "2019-05-13",
+          "year": "18\/19",
+          "tournament_id": "sr:tournament:17"
+        },
+        "tournament": {
+          "id": "sr:tournament:17",
+          "name": "Premier League",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:1",
+            "name": "England",
+            "country_code": "ENG"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:35",
+            "name": "Manchester United",
+            "country": "England",
+            "country_code": "ENG",
+            "abbreviation": "MUN",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:24",
+            "name": "Watford FC",
+            "country": "England",
+            "country_code": "ENG",
+            "abbreviation": "WAT",
+            "qualifier": "away"
+          }
+        ],
+        "venue": {
+          "id": "sr:venue:9",
+          "name": "Old Trafford",
+          "capacity": 75635,
+          "city_name": "Manchester",
+          "country_name": "England",
+          "map_coordinates": "53.463150,-2.291444",
+          "country_code": "ENG"
+        }
+      },
+      "sport_event_status": {
+        "status": "closed",
+        "match_status": "ended",
+        "home_score": 2,
+        "away_score": 1,
+        "winner_id": "sr:competitor:35",
+        "period_scores": [
+          {
+            "home_score": 1,
+            "away_score": 0,
+            "type": "regular_period",
+            "number": 1
+          },
+          {
+            "home_score": 1,
+            "away_score": 1,
+            "type": "regular_period",
+            "number": 2
+          }
+        ]
+      }
+    },
+    {
+      "sport_event": {
+        "id": "sr:match:17420403",
+        "scheduled": "2019-03-16T19:55:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "cup",
+          "name": "quarterfinal",
+          "cup_round_match_number": 1,
+          "cup_round_matches": 1,
+          "phase": "knockout_stage"
+        },
+        "season": {
+          "id": "sr:season:55977",
+          "name": "FA Cup 18\/19",
+          "start_date": "2018-11-09",
+          "end_date": "2019-05-19",
+          "year": "18\/19",
+          "tournament_id": "sr:tournament:19"
+        },
+        "tournament": {
+          "id": "sr:tournament:19",
+          "name": "FA Cup",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:1",
+            "name": "England",
+            "country_code": "ENG"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:3",
+            "name": "Wolverhampton Wanderers",
+            "country": "England",
+            "country_code": "ENG",
+            "abbreviation": "WOL",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:35",
+            "name": "Manchester United",
+            "country": "England",
+            "country_code": "ENG",
+            "abbreviation": "MUN",
+            "qualifier": "away"
+          }
+        ],
+        "venue": {
+          "id": "sr:venue:1272",
+          "name": "Molineux Stadium",
+          "capacity": 30852,
+          "city_name": "Wolverhampton",
+          "country_name": "England",
+          "map_coordinates": "52.590195,-2.131226",
+          "country_code": "ENG"
+        }
+      },
+      "sport_event_status": {
+        "status": "closed",
+        "match_status": "ended",
+        "home_score": 2,
+        "away_score": 1,
+        "winner_id": "sr:competitor:3",
+        "period_scores": [
+          {
+            "home_score": 0,
+            "away_score": 0,
+            "type": "regular_period",
+            "number": 1
+          },
+          {
+            "home_score": 2,
+            "away_score": 1,
+            "type": "regular_period",
+            "number": 2
+          }
+        ]
+      }
+    },
+    {
+      "sport_event": {
+        "id": "sr:match:14736851",
+        "scheduled": "2019-03-16T12:30:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "group",
+          "number": 31,
+          "phase": "regular season"
+        },
+        "season": {
+          "id": "sr:season:54571",
+          "name": "Premier League 18\/19",
+          "start_date": "2018-08-10",
+          "end_date": "2019-05-13",
+          "year": "18\/19",
+          "tournament_id": "sr:tournament:17"
+        },
+        "tournament": {
+          "id": "sr:tournament:17",
+          "name": "Premier League",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:1",
+            "name": "England",
+            "country_code": "ENG"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:35",
+            "name": "Manchester United",
+            "country": "England",
+            "country_code": "ENG",
+            "abbreviation": "MUN",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:17",
+            "name": "Manchester City",
+            "country": "England",
+            "country_code": "ENG",
+            "abbreviation": "MCI",
+            "qualifier": "away"
+          }
+        ],
+        "venue": {
+          "id": "sr:venue:9",
+          "name": "Old Trafford",
+          "capacity": 75635,
+          "city_name": "Manchester",
+          "country_name": "England",
+          "map_coordinates": "53.463150,-2.291444",
+          "country_code": "ENG"
+        },
+        "replaced_by": "sr:match:17487549"
+      },
+      "sport_event_status": {
+        "status": "postponed",
+        "match_status": "postponed"
+      }
+    },
+    {
+      "sport_event": {
+        "id": "sr:match:14736821",
+        "scheduled": "2019-03-10T16:30:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "group",
+          "number": 30,
+          "phase": "regular season"
+        },
+        "season": {
+          "id": "sr:season:54571",
+          "name": "Premier League 18\/19",
+          "start_date": "2018-08-10",
+          "end_date": "2019-05-13",
+          "year": "18\/19",
+          "tournament_id": "sr:tournament:17"
+        },
+        "tournament": {
+          "id": "sr:tournament:17",
+          "name": "Premier League",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:1",
+            "name": "England",
+            "country_code": "ENG"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:42",
+            "name": "Arsenal FC",
+            "country": "England",
+            "country_code": "ENG",
+            "abbreviation": "ARS",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:35",
+            "name": "Manchester United",
+            "country": "England",
+            "country_code": "ENG",
+            "abbreviation": "MUN",
+            "qualifier": "away"
+          }
+        ],
+        "venue": {
+          "id": "sr:venue:624",
+          "name": "Emirates Stadium",
+          "capacity": 60272,
+          "city_name": "London",
+          "country_name": "England",
+          "map_coordinates": "51.555050,-0.108046",
+          "country_code": "ENG"
+        }
+      },
+      "sport_event_status": {
+        "status": "closed",
+        "match_status": "ended",
+        "home_score": 2,
+        "away_score": 0,
+        "winner_id": "sr:competitor:42",
+        "period_scores": [
+          {
+            "home_score": 1,
+            "away_score": 0,
+            "type": "regular_period",
+            "number": 1
+          },
+          {
+            "home_score": 1,
+            "away_score": 0,
+            "type": "regular_period",
+            "number": 2
+          }
+        ]
+      }
+    },
+    {
+      "sport_event": {
+        "id": "sr:match:16514885",
+        "scheduled": "2019-03-06T20:00:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "cup",
+          "name": "round_of_16",
+          "cup_round_match_number": 2,
+          "cup_round_matches": 2,
+          "other_match_id": "sr:match:16514883",
+          "phase": "final_phase"
+        },
+        "season": {
+          "id": "sr:season:54533",
+          "name": "UEFA Champions League 18\/19",
+          "start_date": "2018-06-26",
+          "end_date": "2019-06-02",
+          "year": "18\/19",
+          "tournament_id": "sr:tournament:7"
+        },
+        "tournament": {
+          "id": "sr:tournament:7",
+          "name": "UEFA Champions League",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:393",
+            "name": "International Clubs"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:1644",
+            "name": "Paris Saint-Germain",
+            "country": "France",
+            "country_code": "FRA",
+            "abbreviation": "PSG",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:35",
+            "name": "Manchester United",
+            "country": "England",
+            "country_code": "ENG",
+            "abbreviation": "MUN",
+            "qualifier": "away"
+          }
+        ],
+        "venue": {
+          "id": "sr:venue:843",
+          "name": "Parc Des Princes",
+          "capacity": 45000,
+          "city_name": "Paris",
+          "country_name": "France",
+          "map_coordinates": "48.841389,2.253056",
+          "country_code": "FRA"
+        }
+      },
+      "sport_event_status": {
+        "status": "closed",
+        "match_status": "ended",
+        "home_score": 1,
+        "away_score": 3,
+        "winner_id": "sr:competitor:35",
+        "aggregate_home_score": 3,
+        "aggregate_away_score": 3,
+        "aggregate_winner_id": "sr:competitor:35",
+        "period_scores": [
+          {
+            "home_score": 1,
+            "away_score": 2,
+            "type": "regular_period",
+            "number": 1
+          },
+          {
+            "home_score": 0,
+            "away_score": 1,
+            "type": "regular_period",
+            "number": 2
+          }
+        ]
+      }
+    },
+    {
+      "sport_event": {
+        "id": "sr:match:14736811",
+        "scheduled": "2019-03-02T15:00:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "group",
+          "number": 29,
+          "phase": "regular season"
+        },
+        "season": {
+          "id": "sr:season:54571",
+          "name": "Premier League 18\/19",
+          "start_date": "2018-08-10",
+          "end_date": "2019-05-13",
+          "year": "18\/19",
+          "tournament_id": "sr:tournament:17"
+        },
+        "tournament": {
+          "id": "sr:tournament:17",
+          "name": "Premier League",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:1",
+            "name": "England",
+            "country_code": "ENG"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:35",
+            "name": "Manchester United",
+            "country": "England",
+            "country_code": "ENG",
+            "abbreviation": "MUN",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:45",
+            "name": "Southampton FC",
+            "country": "England",
+            "country_code": "ENG",
+            "abbreviation": "SOU",
+            "qualifier": "away"
+          }
+        ],
+        "venue": {
+          "id": "sr:venue:9",
+          "name": "Old Trafford",
+          "capacity": 75635,
+          "city_name": "Manchester",
+          "country_name": "England",
+          "map_coordinates": "53.463150,-2.291444",
+          "country_code": "ENG"
+        }
+      },
+      "sport_event_status": {
+        "status": "closed",
+        "match_status": "ended",
+        "home_score": 3,
+        "away_score": 2,
+        "winner_id": "sr:competitor:35",
+        "period_scores": [
+          {
+            "home_score": 0,
+            "away_score": 1,
+            "type": "regular_period",
+            "number": 1
+          },
+          {
+            "home_score": 3,
+            "away_score": 1,
+            "type": "regular_period",
+            "number": 2
+          }
+        ]
+      }
+    },
+    {
+      "sport_event": {
+        "id": "sr:match:14736789",
+        "scheduled": "2019-02-27T20:00:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "group",
+          "number": 28,
+          "phase": "regular season"
+        },
+        "season": {
+          "id": "sr:season:54571",
+          "name": "Premier League 18\/19",
+          "start_date": "2018-08-10",
+          "end_date": "2019-05-13",
+          "year": "18\/19",
+          "tournament_id": "sr:tournament:17"
+        },
+        "tournament": {
+          "id": "sr:tournament:17",
+          "name": "Premier League",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:1",
+            "name": "England",
+            "country_code": "ENG"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:7",
+            "name": "Crystal Palace",
+            "country": "England",
+            "country_code": "ENG",
+            "abbreviation": "CRY",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:35",
+            "name": "Manchester United",
+            "country": "England",
+            "country_code": "ENG",
+            "abbreviation": "MUN",
+            "qualifier": "away"
+          }
+        ],
+        "venue": {
+          "id": "sr:venue:10",
+          "name": "Selhurst Park",
+          "capacity": 25073,
+          "city_name": "London",
+          "country_name": "England",
+          "map_coordinates": "51.398333,-0.085556",
+          "country_code": "ENG"
+        }
+      },
+      "sport_event_status": {
+        "status": "closed",
+        "match_status": "ended",
+        "home_score": 1,
+        "away_score": 3,
+        "winner_id": "sr:competitor:35",
+        "period_scores": [
+          {
+            "home_score": 0,
+            "away_score": 1,
+            "type": "regular_period",
+            "number": 1
+          },
+          {
+            "home_score": 1,
+            "away_score": 2,
+            "type": "regular_period",
+            "number": 2
+          }
+        ]
+      }
+    },
+    {
+      "sport_event": {
+        "id": "sr:match:14736775",
+        "scheduled": "2019-02-24T14:05:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "group",
+          "number": 27,
+          "phase": "regular season"
+        },
+        "season": {
+          "id": "sr:season:54571",
+          "name": "Premier League 18\/19",
+          "start_date": "2018-08-10",
+          "end_date": "2019-05-13",
+          "year": "18\/19",
+          "tournament_id": "sr:tournament:17"
+        },
+        "tournament": {
+          "id": "sr:tournament:17",
+          "name": "Premier League",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:1",
+            "name": "England",
+            "country_code": "ENG"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:35",
+            "name": "Manchester United",
+            "country": "England",
+            "country_code": "ENG",
+            "abbreviation": "MUN",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:44",
+            "name": "Liverpool FC",
+            "country": "England",
+            "country_code": "ENG",
+            "abbreviation": "LIV",
+            "qualifier": "away"
+          }
+        ],
+        "venue": {
+          "id": "sr:venue:9",
+          "name": "Old Trafford",
+          "capacity": 75635,
+          "city_name": "Manchester",
+          "country_name": "England",
+          "map_coordinates": "53.463150,-2.291444",
+          "country_code": "ENG"
+        }
+      },
+      "sport_event_status": {
+        "status": "closed",
+        "match_status": "ended",
+        "home_score": 0,
+        "away_score": 0,
+        "period_scores": [
+          {
+            "home_score": 0,
+            "away_score": 0,
+            "type": "regular_period",
+            "number": 1
+          },
+          {
+            "home_score": 0,
+            "away_score": 0,
+            "type": "regular_period",
+            "number": 2
+          }
+        ]
+      }
+    },
+    {
+      "sport_event": {
+        "id": "sr:match:17182331",
+        "scheduled": "2019-02-18T19:30:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "cup",
+          "number": 5,
+          "name": "cupround",
+          "cup_round_match_number": 1,
+          "cup_round_matches": 1,
+          "phase": "knockout_stage"
+        },
+        "season": {
+          "id": "sr:season:55977",
+          "name": "FA Cup 18\/19",
+          "start_date": "2018-11-09",
+          "end_date": "2019-05-19",
+          "year": "18\/19",
+          "tournament_id": "sr:tournament:19"
+        },
+        "tournament": {
+          "id": "sr:tournament:19",
+          "name": "FA Cup",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:1",
+            "name": "England",
+            "country_code": "ENG"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:38",
+            "name": "Chelsea FC",
+            "country": "England",
+            "country_code": "ENG",
+            "abbreviation": "CHE",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:35",
+            "name": "Manchester United",
+            "country": "England",
+            "country_code": "ENG",
+            "abbreviation": "MUN",
+            "qualifier": "away"
+          }
+        ],
+        "venue": {
+          "id": "sr:venue:799",
+          "name": "Stamford Bridge",
+          "capacity": 41798,
+          "city_name": "London",
+          "country_name": "England",
+          "map_coordinates": "51.481579,-0.191094",
+          "country_code": "ENG"
+        }
+      },
+      "sport_event_status": {
+        "status": "closed",
+        "match_status": "ended",
+        "home_score": 0,
+        "away_score": 2,
+        "winner_id": "sr:competitor:35",
+        "period_scores": [
+          {
+            "home_score": 0,
+            "away_score": 2,
+            "type": "regular_period",
+            "number": 1
+          },
+          {
+            "home_score": 0,
+            "away_score": 0,
+            "type": "regular_period",
+            "number": 2
+          }
+        ]
+      }
+    }
+  ]
+}

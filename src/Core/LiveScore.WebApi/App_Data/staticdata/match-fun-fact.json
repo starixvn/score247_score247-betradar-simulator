@@ -1,0 +1,87 @@
+{
+  "generated_at": "2019-04-04T04:51:30+00:00",
+  "schema": "http:\/\/schemas.sportradar.com\/bsa\/soccer\/v1\/json\/endpoints\/soccer\/match_funfacts.json",
+  "sport_event": {
+    "id": "sr:match:16514885",
+    "scheduled": "2019-03-06T20:00:00+00:00",
+    "start_time_tbd": false,
+    "tournament_round": {
+      "type": "cup",
+      "name": "round_of_16",
+      "cup_round_match_number": 2,
+      "cup_round_matches": 2,
+      "other_match_id": "sr:match:16514883"
+    },
+    "season": {
+      "id": "sr:season:54533",
+      "name": "UEFA Champions League 18\/19",
+      "start_date": "2018-06-26",
+      "end_date": "2019-06-02",
+      "year": "18\/19",
+      "tournament_id": "sr:tournament:7"
+    },
+    "tournament": {
+      "id": "sr:tournament:7",
+      "name": "UEFA Champions League",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:393",
+        "name": "International Clubs"
+      }
+    },
+    "competitors": [
+      {
+        "id": "sr:competitor:1644",
+        "name": "Paris Saint-Germain",
+        "country": "France",
+        "country_code": "FRA",
+        "abbreviation": "PSG",
+        "qualifier": "home"
+      },
+      {
+        "id": "sr:competitor:35",
+        "name": "Manchester United",
+        "country": "England",
+        "country_code": "ENG",
+        "abbreviation": "MUN",
+        "qualifier": "away"
+      }
+    ],
+    "venue": {
+      "id": "sr:venue:843",
+      "name": "Parc Des Princes",
+      "capacity": 45000,
+      "city_name": "Paris",
+      "country_name": "France",
+      "map_coordinates": "48.841389,2.253056",
+      "country_code": "FRA"
+    }
+  },
+  "facts": [
+    { "statement": "If  Kylian Mbappe receives a yellow card in today's match, he will be suspended after collecting 2 yellow cards so far this season." },
+    { "statement": "Manchester United haven't lost in their last 4 games." },
+    { "statement": "The result of the first leg: Manchester United - Paris Saint-Germain 0-2." },
+    { "statement": "Paris Saint-Germain have won 7 home matches in a row." },
+    { "statement": "Manchester United have a winning streak of 8 matches away from home." },
+    { "statement": "Paris Saint-Germain have a winning streak of 8 matches." },
+    { "statement": "Paris Saint-Germain wins 1st half in 55% of their matches, Manchester United in 44% of their matches." },
+    { "statement": "Paris Saint-Germain wins 55% of halftimes, Manchester United wins 44%." },
+    { "statement": "Paris Saint-Germain's performance of the last 5 matches is better than Manchester United's." },
+    { "statement": "In UEFA Champions League, Paris Saint-Germain has better performance than Manchester United." },
+    { "statement": "The winner of their last meeting was Paris Saint-Germain." },
+    { "statement": "On their last meeting Paris Saint-Germain won by 2 goals." },
+    { "statement": "Paris Saint-Germain scores 3.29 goals when playing at home and Manchester United scores 1.66 goals when playing away (on average)." },
+    { "statement": "When Paris Saint-Germain leads 1-0 at home, they win in 95% of their matches." },
+    { "statement": "When Manchester United leads 0-1 away, they win in 100% of their matches." },
+    { "statement": "When Paris Saint-Germain is down 0-1 home, they win 25% of their matches." },
+    { "statement": "When Manchester United is down 1-0 away, they win 21% of their matches." },
+    { "statement": "1-2 in today's game is enough for Paris Saint-Germain to go through to the next round, by leading 3-2 on aggregate." },
+    { "statement": "The current draw (3-3) on aggregate is enough for Manchester United to reach the next round on away goals." },
+    { "statement": "Paris Saint-Germain have scored at least one goal for 43 consecutive matches." },
+    { "statement": "If  Kylian Mbappe scores against Manchester United it will be his 5th goal for Paris Saint-Germain this season." },
+    { "statement": "Manchester United is ready for the next round after winning on more away goals, after 3-3 on aggregate." }
+  ]
+}

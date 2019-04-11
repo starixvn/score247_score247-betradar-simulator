@@ -1,0 +1,1755 @@
+{
+  "generated_at": "2019-04-04T04:54:50+00:00",
+  "schema": "http:\/\/schemas.sportradar.com\/bsa\/soccer\/v1\/json\/endpoints\/soccer\/tournament_standings.json",
+  "tournament": {
+    "id": "sr:tournament:7",
+    "name": "UEFA Champions League",
+    "sport": {
+      "id": "sr:sport:1",
+      "name": "Soccer"
+    },
+    "category": {
+      "id": "sr:category:393",
+      "name": "International Clubs"
+    },
+    "current_season": {
+      "id": "sr:season:54533",
+      "name": "UEFA Champions League 18\/19",
+      "start_date": "2018-06-26",
+      "end_date": "2019-06-02",
+      "year": "18\/19"
+    }
+  },
+  "season": {
+    "id": "sr:season:54533",
+    "name": "UEFA Champions League 18\/19",
+    "start_date": "2018-06-26",
+    "end_date": "2019-06-02",
+    "year": "18\/19",
+    "tournament_id": "sr:tournament:7"
+  },
+  "standings": [
+    {
+      "tie_break_rule": "At the end of the group phase, in the event that two (or more) teams have an equal number of points the following rules break the tie:\r\n1. Head-to-head\r\n2. Goal difference\r\n3. Goals scored\r\nDuring the group phase, the following tie-breaking procedures are used:\r\n1. Goal difference\r\n2. Goals scored",
+      "type": "total",
+      "groups": [
+        {
+          "name": "A",
+          "id": "sr:group:35644",
+          "team_standings": [
+            {
+              "team": {
+                "id": "sr:competitor:2673",
+                "name": "Borussia Dortmund"
+              },
+              "rank": 1,
+              "current_outcome": "Playoffs",
+              "played": 6,
+              "win": 4,
+              "draw": 1,
+              "loss": 1,
+              "goals_for": 10,
+              "goals_against": 2,
+              "goal_diff": 8,
+              "points": 13,
+              "change": 1
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2836",
+                "name": "Atletico Madrid"
+              },
+              "rank": 2,
+              "current_outcome": "Playoffs",
+              "played": 6,
+              "win": 4,
+              "draw": 1,
+              "loss": 1,
+              "goals_for": 9,
+              "goals_against": 6,
+              "goal_diff": 3,
+              "points": 13,
+              "change": -1
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2888",
+                "name": "Club Brugge"
+              },
+              "rank": 3,
+              "current_outcome": "Europa League",
+              "played": 6,
+              "win": 1,
+              "draw": 3,
+              "loss": 2,
+              "goals_for": 6,
+              "goals_against": 5,
+              "goal_diff": 1,
+              "points": 6,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:1653",
+                "name": "AS Monaco"
+              },
+              "rank": 4,
+              "played": 6,
+              "win": 0,
+              "draw": 1,
+              "loss": 5,
+              "goals_for": 2,
+              "goals_against": 14,
+              "goal_diff": -12,
+              "points": 1,
+              "change": 0
+            }
+          ]
+        },
+        {
+          "name": "B",
+          "id": "sr:group:35646",
+          "team_standings": [
+            {
+              "team": {
+                "id": "sr:competitor:2817",
+                "name": "FC Barcelona"
+              },
+              "rank": 1,
+              "current_outcome": "Playoffs",
+              "played": 6,
+              "win": 4,
+              "draw": 2,
+              "loss": 0,
+              "goals_for": 14,
+              "goals_against": 5,
+              "goal_diff": 9,
+              "points": 14,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:33",
+                "name": "Tottenham Hotspur"
+              },
+              "rank": 2,
+              "current_outcome": "Playoffs",
+              "played": 6,
+              "win": 2,
+              "draw": 2,
+              "loss": 2,
+              "goals_for": 9,
+              "goals_against": 10,
+              "goal_diff": -1,
+              "points": 8,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2697",
+                "name": "Inter Milan"
+              },
+              "rank": 3,
+              "current_outcome": "Europa League",
+              "played": 6,
+              "win": 2,
+              "draw": 2,
+              "loss": 2,
+              "goals_for": 6,
+              "goals_against": 7,
+              "goal_diff": -1,
+              "points": 8,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2952",
+                "name": "PSV Eindhoven"
+              },
+              "rank": 4,
+              "played": 6,
+              "win": 0,
+              "draw": 2,
+              "loss": 4,
+              "goals_for": 6,
+              "goals_against": 13,
+              "goal_diff": -7,
+              "points": 2,
+              "change": 0
+            }
+          ]
+        },
+        {
+          "name": "C",
+          "id": "sr:group:35648",
+          "team_standings": [
+            {
+              "team": {
+                "id": "sr:competitor:1644",
+                "name": "Paris Saint-Germain"
+              },
+              "rank": 1,
+              "current_outcome": "Playoffs",
+              "played": 6,
+              "win": 3,
+              "draw": 2,
+              "loss": 1,
+              "goals_for": 17,
+              "goals_against": 9,
+              "goal_diff": 8,
+              "points": 11,
+              "change": 1
+            },
+            {
+              "team": {
+                "id": "sr:competitor:44",
+                "name": "Liverpool FC"
+              },
+              "rank": 2,
+              "current_outcome": "Playoffs",
+              "played": 6,
+              "win": 3,
+              "draw": 0,
+              "loss": 3,
+              "goals_for": 9,
+              "goals_against": 7,
+              "goal_diff": 2,
+              "points": 9,
+              "change": 1
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2714",
+                "name": "SSC Napoli"
+              },
+              "rank": 3,
+              "current_outcome": "Europa League",
+              "played": 6,
+              "win": 2,
+              "draw": 3,
+              "loss": 1,
+              "goals_for": 7,
+              "goals_against": 5,
+              "goal_diff": 2,
+              "points": 9,
+              "change": -2
+            },
+            {
+              "team": {
+                "id": "sr:competitor:5149",
+                "name": "FK Red Star Belgrade"
+              },
+              "rank": 4,
+              "played": 6,
+              "win": 1,
+              "draw": 1,
+              "loss": 4,
+              "goals_for": 5,
+              "goals_against": 17,
+              "goal_diff": -12,
+              "points": 4,
+              "change": 0
+            }
+          ]
+        },
+        {
+          "name": "D",
+          "id": "sr:group:35650",
+          "team_standings": [
+            {
+              "team": {
+                "id": "sr:competitor:3002",
+                "name": "FC Porto"
+              },
+              "rank": 1,
+              "current_outcome": "Playoffs",
+              "played": 6,
+              "win": 5,
+              "draw": 1,
+              "loss": 0,
+              "goals_for": 15,
+              "goals_against": 6,
+              "goal_diff": 9,
+              "points": 16,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2530",
+                "name": "FC Schalke 04"
+              },
+              "rank": 2,
+              "current_outcome": "Playoffs",
+              "played": 6,
+              "win": 3,
+              "draw": 2,
+              "loss": 1,
+              "goals_for": 6,
+              "goals_against": 4,
+              "goal_diff": 2,
+              "points": 11,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:3061",
+                "name": "Galatasaray"
+              },
+              "rank": 3,
+              "current_outcome": "Europa League",
+              "played": 6,
+              "win": 1,
+              "draw": 1,
+              "loss": 4,
+              "goals_for": 5,
+              "goals_against": 8,
+              "goal_diff": -3,
+              "points": 4,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2320",
+                "name": "FC Lokomotiv Moscow"
+              },
+              "rank": 4,
+              "played": 6,
+              "win": 1,
+              "draw": 0,
+              "loss": 5,
+              "goals_for": 4,
+              "goals_against": 12,
+              "goal_diff": -8,
+              "points": 3,
+              "change": 0
+            }
+          ]
+        },
+        {
+          "name": "E",
+          "id": "sr:group:35652",
+          "team_standings": [
+            {
+              "team": {
+                "id": "sr:competitor:2672",
+                "name": "Bayern Munich"
+              },
+              "rank": 1,
+              "current_outcome": "Playoffs",
+              "played": 6,
+              "win": 4,
+              "draw": 2,
+              "loss": 0,
+              "goals_for": 15,
+              "goals_against": 5,
+              "goal_diff": 10,
+              "points": 14,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2953",
+                "name": "Ajax Amsterdam"
+              },
+              "rank": 2,
+              "current_outcome": "Playoffs",
+              "played": 6,
+              "win": 3,
+              "draw": 3,
+              "loss": 0,
+              "goals_for": 11,
+              "goals_against": 5,
+              "goal_diff": 6,
+              "points": 12,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:3006",
+                "name": "Benfica Lisbon"
+              },
+              "rank": 3,
+              "current_outcome": "Europa League",
+              "played": 6,
+              "win": 2,
+              "draw": 1,
+              "loss": 3,
+              "goals_for": 6,
+              "goals_against": 11,
+              "goal_diff": -5,
+              "points": 7,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:3250",
+                "name": "AEK Athens FC"
+              },
+              "rank": 4,
+              "played": 6,
+              "win": 0,
+              "draw": 0,
+              "loss": 6,
+              "goals_for": 2,
+              "goals_against": 13,
+              "goal_diff": -11,
+              "points": 0,
+              "change": 0
+            }
+          ]
+        },
+        {
+          "name": "F",
+          "id": "sr:group:35654",
+          "team_standings": [
+            {
+              "team": {
+                "id": "sr:competitor:17",
+                "name": "Manchester City"
+              },
+              "rank": 1,
+              "current_outcome": "Playoffs",
+              "played": 6,
+              "win": 4,
+              "draw": 1,
+              "loss": 1,
+              "goals_for": 16,
+              "goals_against": 6,
+              "goal_diff": 10,
+              "points": 13,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:1649",
+                "name": "Olympique Lyon"
+              },
+              "rank": 2,
+              "current_outcome": "Playoffs",
+              "played": 6,
+              "win": 1,
+              "draw": 5,
+              "loss": 0,
+              "goals_for": 12,
+              "goals_against": 11,
+              "goal_diff": 1,
+              "points": 8,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:3313",
+                "name": "FC Shakhtar Donetsk"
+              },
+              "rank": 3,
+              "current_outcome": "Europa League",
+              "played": 6,
+              "win": 1,
+              "draw": 3,
+              "loss": 2,
+              "goals_for": 8,
+              "goals_against": 16,
+              "goal_diff": -8,
+              "points": 6,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2569",
+                "name": "1899 Hoffenheim"
+              },
+              "rank": 4,
+              "played": 6,
+              "win": 0,
+              "draw": 3,
+              "loss": 3,
+              "goals_for": 11,
+              "goals_against": 14,
+              "goal_diff": -3,
+              "points": 3,
+              "change": 0
+            }
+          ]
+        },
+        {
+          "name": "G",
+          "id": "sr:group:35656",
+          "team_standings": [
+            {
+              "team": {
+                "id": "sr:competitor:2829",
+                "name": "Real Madrid"
+              },
+              "rank": 1,
+              "current_outcome": "Playoffs",
+              "played": 6,
+              "win": 4,
+              "draw": 0,
+              "loss": 2,
+              "goals_for": 12,
+              "goals_against": 5,
+              "goal_diff": 7,
+              "points": 12,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2702",
+                "name": "AS Roma"
+              },
+              "rank": 2,
+              "current_outcome": "Playoffs",
+              "played": 6,
+              "win": 3,
+              "draw": 0,
+              "loss": 3,
+              "goals_for": 11,
+              "goals_against": 8,
+              "goal_diff": 3,
+              "points": 9,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:4502",
+                "name": "FC Viktoria Plzen"
+              },
+              "rank": 3,
+              "current_outcome": "Europa League",
+              "played": 6,
+              "win": 2,
+              "draw": 1,
+              "loss": 3,
+              "goals_for": 7,
+              "goals_against": 16,
+              "goal_diff": -9,
+              "points": 7,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2325",
+                "name": "CSKA Moscow"
+              },
+              "rank": 4,
+              "played": 6,
+              "win": 2,
+              "draw": 1,
+              "loss": 3,
+              "goals_for": 8,
+              "goals_against": 9,
+              "goal_diff": -1,
+              "points": 7,
+              "change": 0
+            }
+          ]
+        },
+        {
+          "name": "H",
+          "id": "sr:group:35658",
+          "team_standings": [
+            {
+              "team": {
+                "id": "sr:competitor:2687",
+                "name": "Juventus Turin"
+              },
+              "rank": 1,
+              "current_outcome": "Playoffs",
+              "played": 6,
+              "win": 4,
+              "draw": 0,
+              "loss": 2,
+              "goals_for": 9,
+              "goals_against": 4,
+              "goal_diff": 5,
+              "points": 12,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:35",
+                "name": "Manchester United"
+              },
+              "rank": 2,
+              "current_outcome": "Playoffs",
+              "played": 6,
+              "win": 3,
+              "draw": 1,
+              "loss": 2,
+              "goals_for": 7,
+              "goals_against": 4,
+              "goal_diff": 3,
+              "points": 10,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2828",
+                "name": "Valencia CF"
+              },
+              "rank": 3,
+              "current_outcome": "Europa League",
+              "played": 6,
+              "win": 2,
+              "draw": 2,
+              "loss": 2,
+              "goals_for": 6,
+              "goals_against": 6,
+              "goal_diff": 0,
+              "points": 8,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2445",
+                "name": "BSC Young Boys"
+              },
+              "rank": 4,
+              "played": 6,
+              "win": 1,
+              "draw": 1,
+              "loss": 4,
+              "goals_for": 4,
+              "goals_against": 12,
+              "goal_diff": -8,
+              "points": 4,
+              "change": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tie_break_rule": "At the end of the group phase, in the event that two (or more) teams have an equal number of points the following rules break the tie:\r\n1. Head-to-head\r\n2. Goal difference\r\n3. Goals scored\r\nDuring the group phase, the following tie-breaking procedures are used:\r\n1. Goal difference\r\n2. Goals scored",
+      "type": "home",
+      "groups": [
+        {
+          "name": "A",
+          "id": "sr:group:35644",
+          "team_standings": [
+            {
+              "team": {
+                "id": "sr:competitor:2836",
+                "name": "Atletico Madrid"
+              },
+              "rank": 1,
+              "played": 3,
+              "win": 3,
+              "draw": 0,
+              "loss": 0,
+              "goals_for": 7,
+              "goals_against": 1,
+              "goal_diff": 6,
+              "points": 9,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2673",
+                "name": "Borussia Dortmund"
+              },
+              "rank": 2,
+              "played": 3,
+              "win": 2,
+              "draw": 1,
+              "loss": 0,
+              "goals_for": 7,
+              "goals_against": 0,
+              "goal_diff": 7,
+              "points": 7,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2888",
+                "name": "Club Brugge"
+              },
+              "rank": 3,
+              "played": 3,
+              "win": 0,
+              "draw": 2,
+              "loss": 1,
+              "goals_for": 1,
+              "goals_against": 2,
+              "goal_diff": -1,
+              "points": 2,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:1653",
+                "name": "AS Monaco"
+              },
+              "rank": 4,
+              "played": 3,
+              "win": 0,
+              "draw": 0,
+              "loss": 3,
+              "goals_for": 1,
+              "goals_against": 8,
+              "goal_diff": -7,
+              "points": 0,
+              "change": 0
+            }
+          ]
+        },
+        {
+          "name": "B",
+          "id": "sr:group:35646",
+          "team_standings": [
+            {
+              "team": {
+                "id": "sr:competitor:2817",
+                "name": "FC Barcelona"
+              },
+              "rank": 1,
+              "played": 3,
+              "win": 2,
+              "draw": 1,
+              "loss": 0,
+              "goals_for": 7,
+              "goals_against": 1,
+              "goal_diff": 6,
+              "points": 7,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:33",
+                "name": "Tottenham Hotspur"
+              },
+              "rank": 2,
+              "played": 3,
+              "win": 2,
+              "draw": 0,
+              "loss": 1,
+              "goals_for": 5,
+              "goals_against": 5,
+              "goal_diff": 0,
+              "points": 6,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2697",
+                "name": "Inter Milan"
+              },
+              "rank": 3,
+              "played": 3,
+              "win": 1,
+              "draw": 2,
+              "loss": 0,
+              "goals_for": 4,
+              "goals_against": 3,
+              "goal_diff": 1,
+              "points": 5,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2952",
+                "name": "PSV Eindhoven"
+              },
+              "rank": 4,
+              "played": 3,
+              "win": 0,
+              "draw": 1,
+              "loss": 2,
+              "goals_for": 4,
+              "goals_against": 6,
+              "goal_diff": -2,
+              "points": 1,
+              "change": 0
+            }
+          ]
+        },
+        {
+          "name": "C",
+          "id": "sr:group:35648",
+          "team_standings": [
+            {
+              "team": {
+                "id": "sr:competitor:44",
+                "name": "Liverpool FC"
+              },
+              "rank": 1,
+              "played": 3,
+              "win": 3,
+              "draw": 0,
+              "loss": 0,
+              "goals_for": 8,
+              "goals_against": 2,
+              "goal_diff": 6,
+              "points": 9,
+              "change": 2
+            },
+            {
+              "team": {
+                "id": "sr:competitor:1644",
+                "name": "Paris Saint-Germain"
+              },
+              "rank": 2,
+              "played": 3,
+              "win": 2,
+              "draw": 1,
+              "loss": 0,
+              "goals_for": 10,
+              "goals_against": 4,
+              "goal_diff": 6,
+              "points": 7,
+              "change": -1
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2714",
+                "name": "SSC Napoli"
+              },
+              "rank": 3,
+              "played": 3,
+              "win": 2,
+              "draw": 1,
+              "loss": 0,
+              "goals_for": 5,
+              "goals_against": 2,
+              "goal_diff": 3,
+              "points": 7,
+              "change": -1
+            },
+            {
+              "team": {
+                "id": "sr:competitor:5149",
+                "name": "FK Red Star Belgrade"
+              },
+              "rank": 4,
+              "played": 3,
+              "win": 1,
+              "draw": 1,
+              "loss": 1,
+              "goals_for": 3,
+              "goals_against": 4,
+              "goal_diff": -1,
+              "points": 4,
+              "change": 0
+            }
+          ]
+        },
+        {
+          "name": "D",
+          "id": "sr:group:35650",
+          "team_standings": [
+            {
+              "team": {
+                "id": "sr:competitor:3002",
+                "name": "FC Porto"
+              },
+              "rank": 1,
+              "played": 3,
+              "win": 3,
+              "draw": 0,
+              "loss": 0,
+              "goals_for": 8,
+              "goals_against": 2,
+              "goal_diff": 6,
+              "points": 9,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2530",
+                "name": "FC Schalke 04"
+              },
+              "rank": 2,
+              "played": 3,
+              "win": 2,
+              "draw": 1,
+              "loss": 0,
+              "goals_for": 4,
+              "goals_against": 1,
+              "goal_diff": 3,
+              "points": 7,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:3061",
+                "name": "Galatasaray"
+              },
+              "rank": 3,
+              "played": 3,
+              "win": 1,
+              "draw": 1,
+              "loss": 1,
+              "goals_for": 5,
+              "goals_against": 3,
+              "goal_diff": 2,
+              "points": 4,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2320",
+                "name": "FC Lokomotiv Moscow"
+              },
+              "rank": 4,
+              "played": 3,
+              "win": 1,
+              "draw": 0,
+              "loss": 2,
+              "goals_for": 3,
+              "goals_against": 4,
+              "goal_diff": -1,
+              "points": 3,
+              "change": 0
+            }
+          ]
+        },
+        {
+          "name": "E",
+          "id": "sr:group:35652",
+          "team_standings": [
+            {
+              "team": {
+                "id": "sr:competitor:2953",
+                "name": "Ajax Amsterdam"
+              },
+              "rank": 1,
+              "played": 3,
+              "win": 2,
+              "draw": 1,
+              "loss": 0,
+              "goals_for": 7,
+              "goals_against": 3,
+              "goal_diff": 4,
+              "points": 7,
+              "change": 1
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2672",
+                "name": "Bayern Munich"
+              },
+              "rank": 2,
+              "played": 3,
+              "win": 2,
+              "draw": 1,
+              "loss": 0,
+              "goals_for": 8,
+              "goals_against": 2,
+              "goal_diff": 6,
+              "points": 7,
+              "change": -1
+            },
+            {
+              "team": {
+                "id": "sr:competitor:3006",
+                "name": "Benfica Lisbon"
+              },
+              "rank": 3,
+              "played": 3,
+              "win": 1,
+              "draw": 1,
+              "loss": 1,
+              "goals_for": 2,
+              "goals_against": 3,
+              "goal_diff": -1,
+              "points": 4,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:3250",
+                "name": "AEK Athens FC"
+              },
+              "rank": 4,
+              "played": 3,
+              "win": 0,
+              "draw": 0,
+              "loss": 3,
+              "goals_for": 2,
+              "goals_against": 7,
+              "goal_diff": -5,
+              "points": 0,
+              "change": 0
+            }
+          ]
+        },
+        {
+          "name": "F",
+          "id": "sr:group:35654",
+          "team_standings": [
+            {
+              "team": {
+                "id": "sr:competitor:17",
+                "name": "Manchester City"
+              },
+              "rank": 1,
+              "played": 3,
+              "win": 2,
+              "draw": 0,
+              "loss": 1,
+              "goals_for": 9,
+              "goals_against": 3,
+              "goal_diff": 6,
+              "points": 6,
+              "change": 1
+            },
+            {
+              "team": {
+                "id": "sr:competitor:1649",
+                "name": "Olympique Lyon"
+              },
+              "rank": 2,
+              "played": 3,
+              "win": 0,
+              "draw": 3,
+              "loss": 0,
+              "goals_for": 6,
+              "goals_against": 6,
+              "goal_diff": 0,
+              "points": 3,
+              "change": -1
+            },
+            {
+              "team": {
+                "id": "sr:competitor:3313",
+                "name": "FC Shakhtar Donetsk"
+              },
+              "rank": 3,
+              "played": 3,
+              "win": 0,
+              "draw": 2,
+              "loss": 1,
+              "goals_for": 3,
+              "goals_against": 6,
+              "goal_diff": -3,
+              "points": 2,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2569",
+                "name": "1899 Hoffenheim"
+              },
+              "rank": 4,
+              "played": 3,
+              "win": 0,
+              "draw": 1,
+              "loss": 2,
+              "goals_for": 6,
+              "goals_against": 8,
+              "goal_diff": -2,
+              "points": 1,
+              "change": 0
+            }
+          ]
+        },
+        {
+          "name": "G",
+          "id": "sr:group:35656",
+          "team_standings": [
+            {
+              "team": {
+                "id": "sr:competitor:2829",
+                "name": "Real Madrid"
+              },
+              "rank": 1,
+              "played": 3,
+              "win": 2,
+              "draw": 0,
+              "loss": 1,
+              "goals_for": 5,
+              "goals_against": 4,
+              "goal_diff": 1,
+              "points": 6,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2702",
+                "name": "AS Roma"
+              },
+              "rank": 2,
+              "played": 3,
+              "win": 2,
+              "draw": 0,
+              "loss": 1,
+              "goals_for": 8,
+              "goals_against": 2,
+              "goal_diff": 6,
+              "points": 6,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:4502",
+                "name": "FC Viktoria Plzen"
+              },
+              "rank": 3,
+              "played": 3,
+              "win": 1,
+              "draw": 1,
+              "loss": 1,
+              "goals_for": 4,
+              "goals_against": 8,
+              "goal_diff": -4,
+              "points": 4,
+              "change": 1
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2325",
+                "name": "CSKA Moscow"
+              },
+              "rank": 4,
+              "played": 3,
+              "win": 1,
+              "draw": 0,
+              "loss": 2,
+              "goals_for": 3,
+              "goals_against": 4,
+              "goal_diff": -1,
+              "points": 3,
+              "change": -1
+            }
+          ]
+        },
+        {
+          "name": "H",
+          "id": "sr:group:35658",
+          "team_standings": [
+            {
+              "team": {
+                "id": "sr:competitor:2687",
+                "name": "Juventus Turin"
+              },
+              "rank": 1,
+              "played": 3,
+              "win": 2,
+              "draw": 0,
+              "loss": 1,
+              "goals_for": 5,
+              "goals_against": 2,
+              "goal_diff": 3,
+              "points": 6,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2828",
+                "name": "Valencia CF"
+              },
+              "rank": 2,
+              "played": 3,
+              "win": 2,
+              "draw": 0,
+              "loss": 1,
+              "goals_for": 5,
+              "goals_against": 4,
+              "goal_diff": 1,
+              "points": 6,
+              "change": 1
+            },
+            {
+              "team": {
+                "id": "sr:competitor:35",
+                "name": "Manchester United"
+              },
+              "rank": 3,
+              "played": 3,
+              "win": 1,
+              "draw": 1,
+              "loss": 1,
+              "goals_for": 1,
+              "goals_against": 1,
+              "goal_diff": 0,
+              "points": 4,
+              "change": -1
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2445",
+                "name": "BSC Young Boys"
+              },
+              "rank": 4,
+              "played": 3,
+              "win": 1,
+              "draw": 1,
+              "loss": 1,
+              "goals_for": 3,
+              "goals_against": 5,
+              "goal_diff": -2,
+              "points": 4,
+              "change": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tie_break_rule": "At the end of the group phase, in the event that two (or more) teams have an equal number of points the following rules break the tie:\r\n1. Head-to-head\r\n2. Goal difference\r\n3. Goals scored\r\nDuring the group phase, the following tie-breaking procedures are used:\r\n1. Goal difference\r\n2. Goals scored",
+      "type": "away",
+      "groups": [
+        {
+          "name": "A",
+          "id": "sr:group:35644",
+          "team_standings": [
+            {
+              "team": {
+                "id": "sr:competitor:2673",
+                "name": "Borussia Dortmund"
+              },
+              "rank": 1,
+              "played": 3,
+              "win": 2,
+              "draw": 0,
+              "loss": 1,
+              "goals_for": 3,
+              "goals_against": 2,
+              "goal_diff": 1,
+              "points": 6,
+              "change": 1
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2836",
+                "name": "Atletico Madrid"
+              },
+              "rank": 2,
+              "played": 3,
+              "win": 1,
+              "draw": 1,
+              "loss": 1,
+              "goals_for": 2,
+              "goals_against": 5,
+              "goal_diff": -3,
+              "points": 4,
+              "change": 1
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2888",
+                "name": "Club Brugge"
+              },
+              "rank": 3,
+              "played": 3,
+              "win": 1,
+              "draw": 1,
+              "loss": 1,
+              "goals_for": 5,
+              "goals_against": 3,
+              "goal_diff": 2,
+              "points": 4,
+              "change": -2
+            },
+            {
+              "team": {
+                "id": "sr:competitor:1653",
+                "name": "AS Monaco"
+              },
+              "rank": 4,
+              "played": 3,
+              "win": 0,
+              "draw": 1,
+              "loss": 2,
+              "goals_for": 1,
+              "goals_against": 6,
+              "goal_diff": -5,
+              "points": 1,
+              "change": 0
+            }
+          ]
+        },
+        {
+          "name": "B",
+          "id": "sr:group:35646",
+          "team_standings": [
+            {
+              "team": {
+                "id": "sr:competitor:2817",
+                "name": "FC Barcelona"
+              },
+              "rank": 1,
+              "played": 3,
+              "win": 2,
+              "draw": 1,
+              "loss": 0,
+              "goals_for": 7,
+              "goals_against": 4,
+              "goal_diff": 3,
+              "points": 7,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2697",
+                "name": "Inter Milan"
+              },
+              "rank": 2,
+              "played": 3,
+              "win": 1,
+              "draw": 0,
+              "loss": 2,
+              "goals_for": 2,
+              "goals_against": 4,
+              "goal_diff": -2,
+              "points": 3,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:33",
+                "name": "Tottenham Hotspur"
+              },
+              "rank": 3,
+              "played": 3,
+              "win": 0,
+              "draw": 2,
+              "loss": 1,
+              "goals_for": 4,
+              "goals_against": 5,
+              "goal_diff": -1,
+              "points": 2,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2952",
+                "name": "PSV Eindhoven"
+              },
+              "rank": 4,
+              "played": 3,
+              "win": 0,
+              "draw": 1,
+              "loss": 2,
+              "goals_for": 2,
+              "goals_against": 7,
+              "goal_diff": -5,
+              "points": 1,
+              "change": 0
+            }
+          ]
+        },
+        {
+          "name": "C",
+          "id": "sr:group:35648",
+          "team_standings": [
+            {
+              "team": {
+                "id": "sr:competitor:1644",
+                "name": "Paris Saint-Germain"
+              },
+              "rank": 1,
+              "played": 3,
+              "win": 1,
+              "draw": 1,
+              "loss": 1,
+              "goals_for": 7,
+              "goals_against": 5,
+              "goal_diff": 2,
+              "points": 4,
+              "change": 1
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2714",
+                "name": "SSC Napoli"
+              },
+              "rank": 2,
+              "played": 3,
+              "win": 0,
+              "draw": 2,
+              "loss": 1,
+              "goals_for": 2,
+              "goals_against": 3,
+              "goal_diff": -1,
+              "points": 2,
+              "change": -1
+            },
+            {
+              "team": {
+                "id": "sr:competitor:44",
+                "name": "Liverpool FC"
+              },
+              "rank": 3,
+              "played": 3,
+              "win": 0,
+              "draw": 0,
+              "loss": 3,
+              "goals_for": 1,
+              "goals_against": 5,
+              "goal_diff": -4,
+              "points": 0,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:5149",
+                "name": "FK Red Star Belgrade"
+              },
+              "rank": 4,
+              "played": 3,
+              "win": 0,
+              "draw": 0,
+              "loss": 3,
+              "goals_for": 2,
+              "goals_against": 13,
+              "goal_diff": -11,
+              "points": 0,
+              "change": 0
+            }
+          ]
+        },
+        {
+          "name": "D",
+          "id": "sr:group:35650",
+          "team_standings": [
+            {
+              "team": {
+                "id": "sr:competitor:3002",
+                "name": "FC Porto"
+              },
+              "rank": 1,
+              "played": 3,
+              "win": 2,
+              "draw": 1,
+              "loss": 0,
+              "goals_for": 7,
+              "goals_against": 4,
+              "goal_diff": 3,
+              "points": 7,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2530",
+                "name": "FC Schalke 04"
+              },
+              "rank": 2,
+              "played": 3,
+              "win": 1,
+              "draw": 1,
+              "loss": 1,
+              "goals_for": 2,
+              "goals_against": 3,
+              "goal_diff": -1,
+              "points": 4,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:3061",
+                "name": "Galatasaray"
+              },
+              "rank": 3,
+              "played": 3,
+              "win": 0,
+              "draw": 0,
+              "loss": 3,
+              "goals_for": 0,
+              "goals_against": 5,
+              "goal_diff": -5,
+              "points": 0,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2320",
+                "name": "FC Lokomotiv Moscow"
+              },
+              "rank": 4,
+              "played": 3,
+              "win": 0,
+              "draw": 0,
+              "loss": 3,
+              "goals_for": 1,
+              "goals_against": 8,
+              "goal_diff": -7,
+              "points": 0,
+              "change": 0
+            }
+          ]
+        },
+        {
+          "name": "E",
+          "id": "sr:group:35652",
+          "team_standings": [
+            {
+              "team": {
+                "id": "sr:competitor:2672",
+                "name": "Bayern Munich"
+              },
+              "rank": 1,
+              "played": 3,
+              "win": 2,
+              "draw": 1,
+              "loss": 0,
+              "goals_for": 7,
+              "goals_against": 3,
+              "goal_diff": 4,
+              "points": 7,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2953",
+                "name": "Ajax Amsterdam"
+              },
+              "rank": 2,
+              "played": 3,
+              "win": 1,
+              "draw": 2,
+              "loss": 0,
+              "goals_for": 4,
+              "goals_against": 2,
+              "goal_diff": 2,
+              "points": 5,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:3006",
+                "name": "Benfica Lisbon"
+              },
+              "rank": 3,
+              "played": 3,
+              "win": 1,
+              "draw": 0,
+              "loss": 2,
+              "goals_for": 4,
+              "goals_against": 8,
+              "goal_diff": -4,
+              "points": 3,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:3250",
+                "name": "AEK Athens FC"
+              },
+              "rank": 4,
+              "played": 3,
+              "win": 0,
+              "draw": 0,
+              "loss": 3,
+              "goals_for": 0,
+              "goals_against": 6,
+              "goal_diff": -6,
+              "points": 0,
+              "change": 0
+            }
+          ]
+        },
+        {
+          "name": "F",
+          "id": "sr:group:35654",
+          "team_standings": [
+            {
+              "team": {
+                "id": "sr:competitor:17",
+                "name": "Manchester City"
+              },
+              "rank": 1,
+              "played": 3,
+              "win": 2,
+              "draw": 1,
+              "loss": 0,
+              "goals_for": 7,
+              "goals_against": 3,
+              "goal_diff": 4,
+              "points": 7,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:1649",
+                "name": "Olympique Lyon"
+              },
+              "rank": 2,
+              "played": 3,
+              "win": 1,
+              "draw": 2,
+              "loss": 0,
+              "goals_for": 6,
+              "goals_against": 5,
+              "goal_diff": 1,
+              "points": 5,
+              "change": 1
+            },
+            {
+              "team": {
+                "id": "sr:competitor:3313",
+                "name": "FC Shakhtar Donetsk"
+              },
+              "rank": 3,
+              "played": 3,
+              "win": 1,
+              "draw": 1,
+              "loss": 1,
+              "goals_for": 5,
+              "goals_against": 10,
+              "goal_diff": -5,
+              "points": 4,
+              "change": -1
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2569",
+                "name": "1899 Hoffenheim"
+              },
+              "rank": 4,
+              "played": 3,
+              "win": 0,
+              "draw": 2,
+              "loss": 1,
+              "goals_for": 5,
+              "goals_against": 6,
+              "goal_diff": -1,
+              "points": 2,
+              "change": 0
+            }
+          ]
+        },
+        {
+          "name": "G",
+          "id": "sr:group:35656",
+          "team_standings": [
+            {
+              "team": {
+                "id": "sr:competitor:2829",
+                "name": "Real Madrid"
+              },
+              "rank": 1,
+              "played": 3,
+              "win": 2,
+              "draw": 0,
+              "loss": 1,
+              "goals_for": 7,
+              "goals_against": 1,
+              "goal_diff": 6,
+              "points": 6,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2325",
+                "name": "CSKA Moscow"
+              },
+              "rank": 2,
+              "played": 3,
+              "win": 1,
+              "draw": 1,
+              "loss": 1,
+              "goals_for": 5,
+              "goals_against": 5,
+              "goal_diff": 0,
+              "points": 4,
+              "change": 2
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2702",
+                "name": "AS Roma"
+              },
+              "rank": 3,
+              "played": 3,
+              "win": 1,
+              "draw": 0,
+              "loss": 2,
+              "goals_for": 3,
+              "goals_against": 6,
+              "goal_diff": -3,
+              "points": 3,
+              "change": -1
+            },
+            {
+              "team": {
+                "id": "sr:competitor:4502",
+                "name": "FC Viktoria Plzen"
+              },
+              "rank": 4,
+              "played": 3,
+              "win": 1,
+              "draw": 0,
+              "loss": 2,
+              "goals_for": 3,
+              "goals_against": 8,
+              "goal_diff": -5,
+              "points": 3,
+              "change": -1
+            }
+          ]
+        },
+        {
+          "name": "H",
+          "id": "sr:group:35658",
+          "team_standings": [
+            {
+              "team": {
+                "id": "sr:competitor:35",
+                "name": "Manchester United"
+              },
+              "rank": 1,
+              "played": 3,
+              "win": 2,
+              "draw": 0,
+              "loss": 1,
+              "goals_for": 6,
+              "goals_against": 3,
+              "goal_diff": 3,
+              "points": 6,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2687",
+                "name": "Juventus Turin"
+              },
+              "rank": 2,
+              "played": 3,
+              "win": 2,
+              "draw": 0,
+              "loss": 1,
+              "goals_for": 4,
+              "goals_against": 2,
+              "goal_diff": 2,
+              "points": 6,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2828",
+                "name": "Valencia CF"
+              },
+              "rank": 3,
+              "played": 3,
+              "win": 0,
+              "draw": 2,
+              "loss": 1,
+              "goals_for": 1,
+              "goals_against": 2,
+              "goal_diff": -1,
+              "points": 2,
+              "change": 0
+            },
+            {
+              "team": {
+                "id": "sr:competitor:2445",
+                "name": "BSC Young Boys"
+              },
+              "rank": 4,
+              "played": 3,
+              "win": 0,
+              "draw": 0,
+              "loss": 3,
+              "goals_for": 1,
+              "goals_against": 7,
+              "goal_diff": -6,
+              "points": 0,
+              "change": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

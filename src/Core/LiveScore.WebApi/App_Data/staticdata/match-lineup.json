@@ -1,0 +1,376 @@
+{
+  "generated_at": "2019-04-04T04:50:09+00:00",
+  "schema": "http:\/\/schemas.sportradar.com\/bsa\/soccer\/v1\/json\/endpoints\/soccer\/match_lineups.json",
+  "sport_event": {
+    "id": "sr:match:16514885",
+    "scheduled": "2019-03-06T20:00:00+00:00",
+    "start_time_tbd": false,
+    "tournament_round": {
+      "type": "cup",
+      "name": "round_of_16",
+      "cup_round_match_number": 2,
+      "cup_round_matches": 2,
+      "other_match_id": "sr:match:16514883"
+    },
+    "season": {
+      "id": "sr:season:54533",
+      "name": "UEFA Champions League 18\/19",
+      "start_date": "2018-06-26",
+      "end_date": "2019-06-02",
+      "year": "18\/19",
+      "tournament_id": "sr:tournament:7"
+    },
+    "tournament": {
+      "id": "sr:tournament:7",
+      "name": "UEFA Champions League",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:393",
+        "name": "International Clubs"
+      }
+    },
+    "competitors": [
+      {
+        "id": "sr:competitor:1644",
+        "name": "Paris Saint-Germain",
+        "country": "France",
+        "country_code": "FRA",
+        "abbreviation": "PSG",
+        "qualifier": "home"
+      },
+      {
+        "id": "sr:competitor:35",
+        "name": "Manchester United",
+        "country": "England",
+        "country_code": "ENG",
+        "abbreviation": "MUN",
+        "qualifier": "away"
+      }
+    ],
+    "venue": {
+      "id": "sr:venue:843",
+      "name": "Parc Des Princes",
+      "capacity": 45000,
+      "city_name": "Paris",
+      "country_name": "France",
+      "map_coordinates": "48.841389,2.253056",
+      "country_code": "FRA"
+    }
+  },
+  "lineups": [
+    {
+      "team": "home",
+      "formation": "4-2-3-1",
+      "manager": {
+        "id": "sr:player:72771",
+        "name": "Tuchel, Thomas",
+        "nationality": "Germany",
+        "country_code": "DEU"
+      },
+      "jersey": {
+        "type": "home",
+        "base": "000066",
+        "sleeve": "000066",
+        "number": "ffffff",
+        "squares": false,
+        "stripes": false,
+        "horizontal_stripes": false,
+        "split": false,
+        "shirt_type": "short_sleeves"
+      },
+      "starting_lineup": [
+        {
+          "id": "sr:player:2069",
+          "name": "Buffon, Gianluigi",
+          "type": "goalkeeper",
+          "jersey_number": 1,
+          "position": "Goalkeeper",
+          "order": 1
+        },
+        {
+          "id": "sr:player:281277",
+          "name": "Kehrer, Thilo",
+          "type": "defender",
+          "jersey_number": 4,
+          "position": "Right back",
+          "order": 2
+        },
+        {
+          "id": "sr:player:33541",
+          "name": "Silva, Thiago",
+          "type": "defender",
+          "jersey_number": 2,
+          "position": "Central defender",
+          "order": 3
+        },
+        {
+          "id": "sr:player:352916",
+          "name": "Kimpembe, Presnel",
+          "type": "defender",
+          "jersey_number": 3,
+          "position": "Central defender",
+          "order": 4
+        },
+        {
+          "id": "sr:player:96368",
+          "name": "Bernat, Juan",
+          "type": "defender",
+          "jersey_number": 14,
+          "position": "Left back",
+          "order": 5
+        },
+        {
+          "id": "sr:player:4419",
+          "name": "Alves, Dani",
+          "type": "defender",
+          "jersey_number": 13,
+          "position": "Right winger",
+          "order": 8
+        },
+        {
+          "id": "sr:player:126691",
+          "name": "Verratti, Marco",
+          "type": "midfielder",
+          "jersey_number": 6,
+          "position": "Central midfielder",
+          "order": 6
+        },
+        {
+          "id": "sr:player:155995",
+          "name": "Marquinhos",
+          "type": "defender",
+          "jersey_number": 5,
+          "position": "Central midfielder",
+          "order": 7
+        },
+        {
+          "id": "sr:player:142680",
+          "name": "Draxler, Julian",
+          "type": "midfielder",
+          "jersey_number": 23,
+          "position": "Central midfielder",
+          "order": 9
+        },
+        {
+          "id": "sr:player:30027",
+          "name": "Di Maria, Angel",
+          "type": "midfielder",
+          "jersey_number": 11,
+          "position": "Left winger",
+          "order": 10
+        },
+        {
+          "id": "sr:player:796046",
+          "name": "Mbappe, Kylian",
+          "type": "forward",
+          "jersey_number": 7,
+          "position": "Striker",
+          "order": 11
+        }
+      ],
+      "substitutes": [
+        {
+          "id": "sr:player:96531",
+          "name": "Areola, Alphonse",
+          "type": "goalkeeper",
+          "jersey_number": 16
+        },
+        {
+          "id": "sr:player:135775",
+          "name": "Kurzawa, Layvin",
+          "type": "defender",
+          "jersey_number": 20
+        },
+        {
+          "id": "sr:player:1057143",
+          "name": "Dagba, Colin",
+          "type": "defender",
+          "jersey_number": 31
+        },
+        {
+          "id": "sr:player:255389",
+          "name": "Paredes, Leandro",
+          "type": "midfielder",
+          "jersey_number": 8
+        },
+        {
+          "id": "sr:player:128587",
+          "name": "Meunier, Thomas",
+          "type": "midfielder",
+          "jersey_number": 12
+        },
+        {
+          "id": "sr:player:21521",
+          "name": "Cavani, Edinson",
+          "type": "forward",
+          "jersey_number": 9
+        },
+        {
+          "id": "sr:player:21626",
+          "name": "Choupo Moting, Eric Maxim",
+          "type": "forward",
+          "jersey_number": 17
+        }
+      ]
+    },
+    {
+      "team": "away",
+      "formation": "4-3-3",
+      "manager": {
+        "id": "sr:player:762",
+        "name": "Solskjaer, Ole Gunnar",
+        "nationality": "Norway",
+        "country_code": "NOR"
+      },
+      "jersey": {
+        "type": "away",
+        "base": "ffb0b0",
+        "sleeve": "ffb0b0",
+        "number": "000000",
+        "squares": false,
+        "stripes": false,
+        "horizontal_stripes": false,
+        "split": false,
+        "shirt_type": "short_sleeves",
+        "sleeve_detail": "ffbbdd"
+      },
+      "starting_lineup": [
+        {
+          "id": "sr:player:69378",
+          "name": "De Gea, David",
+          "type": "goalkeeper",
+          "jersey_number": 1,
+          "position": "Goalkeeper",
+          "order": 1
+        },
+        {
+          "id": "sr:player:143334",
+          "name": "Lindelof, Victor",
+          "type": "defender",
+          "jersey_number": 2,
+          "position": "Right back",
+          "order": 2
+        },
+        {
+          "id": "sr:player:47741",
+          "name": "Smalling, Chris",
+          "type": "defender",
+          "jersey_number": 12,
+          "position": "Central defender",
+          "order": 4
+        },
+        {
+          "id": "sr:player:606346",
+          "name": "Bailly, Eric",
+          "type": "defender",
+          "jersey_number": 3,
+          "position": "Central defender",
+          "order": 3
+        },
+        {
+          "id": "sr:player:190839",
+          "name": "Shaw, Luke",
+          "type": "defender",
+          "jersey_number": 23,
+          "position": "Left back",
+          "order": 5
+        },
+        {
+          "id": "sr:player:243623",
+          "name": "Fred",
+          "type": "midfielder",
+          "jersey_number": 17,
+          "position": "Central midfielder",
+          "order": 8
+        },
+        {
+          "id": "sr:player:10589",
+          "name": "Young, Ashley",
+          "type": "defender",
+          "jersey_number": 18,
+          "position": "Central midfielder",
+          "order": 6
+        },
+        {
+          "id": "sr:player:908372",
+          "name": "McTominay, Scott",
+          "type": "midfielder",
+          "jersey_number": 39,
+          "position": "Central midfielder",
+          "order": 7
+        },
+        {
+          "id": "sr:player:903830",
+          "name": "Rashford, Marcus",
+          "type": "forward",
+          "jersey_number": 10,
+          "position": "Striker",
+          "order": 11
+        },
+        {
+          "id": "sr:player:285949",
+          "name": "Pereira, Andreas",
+          "type": "midfielder",
+          "jersey_number": 15,
+          "position": "Striker",
+          "order": 9
+        },
+        {
+          "id": "sr:player:78893",
+          "name": "Lukaku, Romelu",
+          "type": "forward",
+          "jersey_number": 9,
+          "position": "Striker",
+          "order": 10
+        }
+      ],
+      "substitutes": [
+        {
+          "id": "sr:player:25566",
+          "name": "Romero, Sergio",
+          "type": "goalkeeper",
+          "jersey_number": 22
+        },
+        {
+          "id": "sr:player:46998",
+          "name": "Rojo, Marcos",
+          "type": "defender",
+          "jersey_number": 16
+        },
+        {
+          "id": "sr:player:817522",
+          "name": "Dalot, Diogo",
+          "type": "defender",
+          "jersey_number": 20
+        },
+        {
+          "id": "sr:player:1297412",
+          "name": "Garner, James",
+          "type": "midfielder",
+          "jersey_number": 37
+        },
+        {
+          "id": "sr:player:1089762",
+          "name": "Gomes, Angel",
+          "type": "midfielder",
+          "jersey_number": 47
+        },
+        {
+          "id": "sr:player:934232",
+          "name": "Chong, Tahith",
+          "type": "forward",
+          "jersey_number": 44
+        },
+        {
+          "id": "sr:player:1546543",
+          "name": "Greenwood, Mason",
+          "type": "forward",
+          "jersey_number": 54
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,477 @@
+{
+  "generated_at": "2019-04-04T04:44:12+00:00",
+  "schema": "http:\/\/schemas.sportradar.com\/bsa\/soccer\/v1\/json\/endpoints\/soccer\/tournaments.json",
+  "tournaments": [
+    {
+      "id": "sr:tournament:7",
+      "name": "UEFA Champions League",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:393",
+        "name": "International Clubs"
+      },
+      "current_season": {
+        "id": "sr:season:54533",
+        "name": "UEFA Champions League 18\/19",
+        "start_date": "2018-06-26",
+        "end_date": "2019-06-02",
+        "year": "18\/19"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:54533",
+        "scheduled": 212,
+        "played": 204,
+        "max_coverage_level": "platinum",
+        "max_covered": 112,
+        "min_coverage_level": "bronze"
+      }
+    },
+    {
+      "id": "sr:tournament:8",
+      "name": "LaLiga",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:32",
+        "name": "Spain",
+        "country_code": "ESP"
+      },
+      "current_season": {
+        "id": "sr:season:55917",
+        "name": "LaLiga 18\/19",
+        "start_date": "2018-08-17",
+        "end_date": "2019-05-20",
+        "year": "18\/19"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:55917",
+        "scheduled": 383,
+        "played": 298,
+        "max_coverage_level": "platinum",
+        "max_covered": 297,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:17",
+      "name": "Premier League",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:1",
+        "name": "England",
+        "country_code": "ENG"
+      },
+      "current_season": {
+        "id": "sr:season:54571",
+        "name": "Premier League 18\/19",
+        "start_date": "2018-08-10",
+        "end_date": "2019-05-13",
+        "year": "18\/19"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:54571",
+        "scheduled": 389,
+        "played": 325,
+        "max_coverage_level": "platinum",
+        "max_covered": 319,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:23",
+      "name": "Serie A",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:31",
+        "name": "Italy",
+        "country_code": "ITA"
+      },
+      "current_season": {
+        "id": "sr:season:55737",
+        "name": "Serie A 18\/19",
+        "start_date": "2018-08-18",
+        "end_date": "2019-05-27",
+        "year": "18\/19"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:55737",
+        "scheduled": 384,
+        "played": 300,
+        "max_coverage_level": "platinum",
+        "max_covered": 297,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:34",
+      "name": "Ligue 1",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:7",
+        "name": "France",
+        "country_code": "FRA"
+      },
+      "current_season": {
+        "id": "sr:season:54373",
+        "name": "Ligue 1 18\/19",
+        "start_date": "2018-08-10",
+        "end_date": "2019-06-01",
+        "year": "18\/19"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:54373",
+        "scheduled": 400,
+        "played": 318,
+        "max_coverage_level": "platinum",
+        "max_covered": 298,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:35",
+      "name": "Bundesliga",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:30",
+        "name": "Germany",
+        "country_code": "DEU"
+      },
+      "current_season": {
+        "id": "sr:season:55017",
+        "name": "Bundesliga 18\/19",
+        "start_date": "2018-08-24",
+        "end_date": "2019-05-28",
+        "year": "18\/19"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:55017",
+        "scheduled": 310,
+        "played": 243,
+        "max_coverage_level": "platinum",
+        "max_covered": 243,
+        "min_coverage_level": "platinum"
+      }
+    },
+    {
+      "id": "sr:tournament:37",
+      "name": "Eredivisie",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:35",
+        "name": "Netherlands",
+        "country_code": "NLD"
+      },
+      "current_season": {
+        "id": "sr:season:54555",
+        "name": "Eredivisie 18\/19",
+        "start_date": "2018-08-10",
+        "end_date": "2019-05-27",
+        "year": "18\/19"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:54555",
+        "scheduled": 307,
+        "played": 251,
+        "max_coverage_level": "gold",
+        "max_covered": 251,
+        "min_coverage_level": "gold"
+      }
+    },
+    {
+      "id": "sr:tournament:38",
+      "name": "First Division A",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:33",
+        "name": "Belgium",
+        "country_code": "BEL"
+      },
+      "current_season": {
+        "id": "sr:season:54539",
+        "name": "First Division A 18\/19",
+        "start_date": "2018-07-27",
+        "end_date": "2019-05-30",
+        "year": "18\/19"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:54539",
+        "scheduled": 334,
+        "played": 257,
+        "max_coverage_level": "gold",
+        "max_covered": 129,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:52",
+      "name": "Super Lig",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:46",
+        "name": "Turkey",
+        "country_code": "TUR"
+      },
+      "current_season": {
+        "id": "sr:season:55287",
+        "name": "Super Lig 18\/19",
+        "start_date": "2018-08-10",
+        "end_date": "2019-05-26",
+        "year": "18\/19"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:55287",
+        "scheduled": 306,
+        "played": 234,
+        "max_coverage_level": "gold",
+        "max_covered": 234,
+        "min_coverage_level": "gold"
+      }
+    },
+    {
+      "id": "sr:tournament:185",
+      "name": "Super League",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:67",
+        "name": "Greece",
+        "country_code": "GRC"
+      },
+      "current_season": {
+        "id": "sr:season:55979",
+        "name": "Super League 18\/19",
+        "start_date": "2018-08-25",
+        "end_date": "2019-05-01",
+        "year": "18\/19"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:55979",
+        "scheduled": 241,
+        "played": 216,
+        "max_coverage_level": "gold",
+        "max_covered": 207,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:203",
+      "name": "Premier League",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:21",
+        "name": "Russia",
+        "country_code": "RUS"
+      },
+      "current_season": {
+        "id": "sr:season:55279",
+        "name": "Premier League 18\/19",
+        "start_date": "2018-07-28",
+        "end_date": "2019-06-03",
+        "year": "18\/19"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:55279",
+        "scheduled": 245,
+        "played": 170,
+        "max_coverage_level": "gold",
+        "max_covered": 168,
+        "min_coverage_level": "bronze"
+      }
+    },
+    {
+      "id": "sr:tournament:218",
+      "name": "Premier League",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:86",
+        "name": "Ukraine",
+        "country_code": "UKR"
+      },
+      "current_season": {
+        "id": "sr:season:54563",
+        "name": "Premier League 18\/19",
+        "start_date": "2018-07-21",
+        "end_date": "2019-05-31",
+        "year": "18\/19"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:54563",
+        "scheduled": 193,
+        "played": 137,
+        "max_coverage_level": "gold",
+        "max_covered": 135,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:238",
+      "name": "Primeira Liga",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:44",
+        "name": "Portugal",
+        "country_code": "PRT"
+      },
+      "current_season": {
+        "id": "sr:season:55243",
+        "name": "Primeira Liga 18\/19",
+        "start_date": "2018-08-10",
+        "end_date": "2019-05-19",
+        "year": "18\/19"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:55243",
+        "scheduled": 306,
+        "played": 243,
+        "max_coverage_level": "gold",
+        "max_covered": 243,
+        "min_coverage_level": "gold"
+      }
+    },
+    {
+      "id": "sr:tournament:465",
+      "name": "UEFA Super Cup",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:393",
+        "name": "International Clubs"
+      },
+      "current_season": {
+        "id": "sr:season:54030",
+        "name": "UEFA Super Cup 2018",
+        "start_date": "2018-08-15",
+        "end_date": "2018-08-16",
+        "year": "2018"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:54030",
+        "scheduled": 1,
+        "played": 1,
+        "max_coverage_level": "gold",
+        "max_covered": 1,
+        "min_coverage_level": "gold"
+      }
+    },
+    {
+      "id": "sr:tournament:679",
+      "name": "UEFA Europa League",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:393",
+        "name": "International Clubs"
+      },
+      "current_season": {
+        "id": "sr:season:54531",
+        "name": "UEFA Europa League 18\/19",
+        "start_date": "2018-06-26",
+        "end_date": "2019-05-30",
+        "year": "18\/19"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:54531",
+        "scheduled": 516,
+        "played": 508,
+        "max_coverage_level": "gold",
+        "max_covered": 277,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:2324",
+      "name": "Uefa Youth League",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:392",
+        "name": "International Youth"
+      },
+      "current_season": {
+        "id": "sr:season:57622",
+        "name": "UEFA Youth League 18\/19",
+        "start_date": "2018-09-18",
+        "end_date": "2019-04-30",
+        "year": "18\/19"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:57622",
+        "scheduled": 166,
+        "played": 164,
+        "max_coverage_level": "gold",
+        "max_covered": 5,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:23755",
+      "name": "Uefa Nations League",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:4",
+        "name": "International"
+      },
+      "current_season": {
+        "id": "sr:season:50817",
+        "name": "UEFA Nations League 18\/19",
+        "start_date": "2018-09-06",
+        "end_date": "2019-06-10",
+        "year": "2018"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:50817",
+        "scheduled": 138,
+        "played": 138,
+        "max_coverage_level": "platinum",
+        "max_covered": 24,
+        "min_coverage_level": "silver"
+      }
+    }
+  ]
+}

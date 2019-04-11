@@ -1,0 +1,636 @@
+{
+  "generated_at": "2019-04-04T04:52:33+00:00",
+  "schema": "http:\/\/schemas.sportradar.com\/bsa\/soccer\/v1\/json\/endpoints\/soccer\/team_schedule.json",
+  "team": {
+    "id": "sr:competitor:35",
+    "name": "Manchester United",
+    "country": "England",
+    "country_code": "ENG",
+    "abbreviation": "MUN"
+  },
+  "schedule": [
+    {
+      "id": "sr:match:17679876",
+      "scheduled": "2019-04-10T19:00:00+00:00",
+      "start_time_tbd": false,
+      "status": "not_started",
+      "tournament_round": {
+        "type": "cup",
+        "name": "quarterfinal",
+        "cup_round_match_number": 1,
+        "cup_round_matches": 2,
+        "other_match_id": "sr:match:17679874",
+        "phase": "final_phase"
+      },
+      "season": {
+        "id": "sr:season:54533",
+        "name": "UEFA Champions League 18\/19",
+        "start_date": "2018-06-26",
+        "end_date": "2019-06-02",
+        "year": "18\/19",
+        "tournament_id": "sr:tournament:7"
+      },
+      "tournament": {
+        "id": "sr:tournament:7",
+        "name": "UEFA Champions League",
+        "sport": {
+          "id": "sr:sport:1",
+          "name": "Soccer"
+        },
+        "category": {
+          "id": "sr:category:393",
+          "name": "International Clubs"
+        }
+      },
+      "competitors": [
+        {
+          "id": "sr:competitor:35",
+          "name": "Manchester United",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "MUN",
+          "qualifier": "home"
+        },
+        {
+          "id": "sr:competitor:2817",
+          "name": "FC Barcelona",
+          "country": "Spain",
+          "country_code": "ESP",
+          "abbreviation": "FCB",
+          "qualifier": "away"
+        }
+      ],
+      "venue": {
+        "id": "sr:venue:9",
+        "name": "Old Trafford",
+        "capacity": 75635,
+        "city_name": "Manchester",
+        "country_name": "England",
+        "map_coordinates": "53.463150,-2.291444",
+        "country_code": "ENG"
+      }
+    },
+    {
+      "id": "sr:match:14736907",
+      "scheduled": "2019-04-13T16:30:00+00:00",
+      "start_time_tbd": false,
+      "status": "not_started",
+      "tournament_round": {
+        "type": "group",
+        "number": 34,
+        "phase": "regular season"
+      },
+      "season": {
+        "id": "sr:season:54571",
+        "name": "Premier League 18\/19",
+        "start_date": "2018-08-10",
+        "end_date": "2019-05-13",
+        "year": "18\/19",
+        "tournament_id": "sr:tournament:17"
+      },
+      "tournament": {
+        "id": "sr:tournament:17",
+        "name": "Premier League",
+        "sport": {
+          "id": "sr:sport:1",
+          "name": "Soccer"
+        },
+        "category": {
+          "id": "sr:category:1",
+          "name": "England",
+          "country_code": "ENG"
+        }
+      },
+      "competitors": [
+        {
+          "id": "sr:competitor:35",
+          "name": "Manchester United",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "MUN",
+          "qualifier": "home"
+        },
+        {
+          "id": "sr:competitor:37",
+          "name": "West Ham United",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "WHU",
+          "qualifier": "away"
+        }
+      ],
+      "venue": {
+        "id": "sr:venue:9",
+        "name": "Old Trafford",
+        "capacity": 75635,
+        "city_name": "Manchester",
+        "country_name": "England",
+        "map_coordinates": "53.463150,-2.291444",
+        "country_code": "ENG"
+      }
+    },
+    {
+      "id": "sr:match:17679874",
+      "scheduled": "2019-04-16T19:00:00+00:00",
+      "start_time_tbd": false,
+      "status": "not_started",
+      "tournament_round": {
+        "type": "cup",
+        "name": "quarterfinal",
+        "cup_round_match_number": 2,
+        "cup_round_matches": 2,
+        "other_match_id": "sr:match:17679876",
+        "phase": "final_phase"
+      },
+      "season": {
+        "id": "sr:season:54533",
+        "name": "UEFA Champions League 18\/19",
+        "start_date": "2018-06-26",
+        "end_date": "2019-06-02",
+        "year": "18\/19",
+        "tournament_id": "sr:tournament:7"
+      },
+      "tournament": {
+        "id": "sr:tournament:7",
+        "name": "UEFA Champions League",
+        "sport": {
+          "id": "sr:sport:1",
+          "name": "Soccer"
+        },
+        "category": {
+          "id": "sr:category:393",
+          "name": "International Clubs"
+        }
+      },
+      "competitors": [
+        {
+          "id": "sr:competitor:2817",
+          "name": "FC Barcelona",
+          "country": "Spain",
+          "country_code": "ESP",
+          "abbreviation": "FCB",
+          "qualifier": "home"
+        },
+        {
+          "id": "sr:competitor:35",
+          "name": "Manchester United",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "MUN",
+          "qualifier": "away"
+        }
+      ],
+      "venue": {
+        "id": "sr:venue:709",
+        "name": "Camp Nou",
+        "capacity": 98787,
+        "city_name": "Barcelona",
+        "country_name": "Spain",
+        "map_coordinates": "41.380890,2.122813",
+        "country_code": "ESP"
+      }
+    },
+    {
+      "id": "sr:match:14736931",
+      "scheduled": "2019-04-21T12:30:00+00:00",
+      "start_time_tbd": false,
+      "status": "not_started",
+      "tournament_round": {
+        "type": "group",
+        "number": 35,
+        "phase": "regular season"
+      },
+      "season": {
+        "id": "sr:season:54571",
+        "name": "Premier League 18\/19",
+        "start_date": "2018-08-10",
+        "end_date": "2019-05-13",
+        "year": "18\/19",
+        "tournament_id": "sr:tournament:17"
+      },
+      "tournament": {
+        "id": "sr:tournament:17",
+        "name": "Premier League",
+        "sport": {
+          "id": "sr:sport:1",
+          "name": "Soccer"
+        },
+        "category": {
+          "id": "sr:category:1",
+          "name": "England",
+          "country_code": "ENG"
+        }
+      },
+      "competitors": [
+        {
+          "id": "sr:competitor:48",
+          "name": "Everton FC",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "EVE",
+          "qualifier": "home"
+        },
+        {
+          "id": "sr:competitor:35",
+          "name": "Manchester United",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "MUN",
+          "qualifier": "away"
+        }
+      ],
+      "venue": {
+        "id": "sr:venue:12",
+        "name": "Goodison Park",
+        "capacity": 39571,
+        "city_name": "Liverpool",
+        "country_name": "England",
+        "map_coordinates": "53.439255,-2.967065",
+        "country_code": "ENG"
+      }
+    },
+    {
+      "id": "sr:match:17487549",
+      "scheduled": "2019-04-24T19:00:00+00:00",
+      "start_time_tbd": false,
+      "status": "not_started",
+      "tournament_round": {
+        "type": "group",
+        "number": 31,
+        "phase": "regular season"
+      },
+      "season": {
+        "id": "sr:season:54571",
+        "name": "Premier League 18\/19",
+        "start_date": "2018-08-10",
+        "end_date": "2019-05-13",
+        "year": "18\/19",
+        "tournament_id": "sr:tournament:17"
+      },
+      "tournament": {
+        "id": "sr:tournament:17",
+        "name": "Premier League",
+        "sport": {
+          "id": "sr:sport:1",
+          "name": "Soccer"
+        },
+        "category": {
+          "id": "sr:category:1",
+          "name": "England",
+          "country_code": "ENG"
+        }
+      },
+      "competitors": [
+        {
+          "id": "sr:competitor:35",
+          "name": "Manchester United",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "MUN",
+          "qualifier": "home"
+        },
+        {
+          "id": "sr:competitor:17",
+          "name": "Manchester City",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "MCI",
+          "qualifier": "away"
+        }
+      ],
+      "venue": {
+        "id": "sr:venue:9",
+        "name": "Old Trafford",
+        "capacity": 75635,
+        "city_name": "Manchester",
+        "country_name": "England",
+        "map_coordinates": "53.463150,-2.291444",
+        "country_code": "ENG"
+      }
+    },
+    {
+      "id": "sr:match:14736941",
+      "scheduled": "2019-04-28T15:30:00+00:00",
+      "start_time_tbd": false,
+      "status": "not_started",
+      "tournament_round": {
+        "type": "group",
+        "number": 36,
+        "phase": "regular season"
+      },
+      "season": {
+        "id": "sr:season:54571",
+        "name": "Premier League 18\/19",
+        "start_date": "2018-08-10",
+        "end_date": "2019-05-13",
+        "year": "18\/19",
+        "tournament_id": "sr:tournament:17"
+      },
+      "tournament": {
+        "id": "sr:tournament:17",
+        "name": "Premier League",
+        "sport": {
+          "id": "sr:sport:1",
+          "name": "Soccer"
+        },
+        "category": {
+          "id": "sr:category:1",
+          "name": "England",
+          "country_code": "ENG"
+        }
+      },
+      "competitors": [
+        {
+          "id": "sr:competitor:35",
+          "name": "Manchester United",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "MUN",
+          "qualifier": "home"
+        },
+        {
+          "id": "sr:competitor:38",
+          "name": "Chelsea FC",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "CHE",
+          "qualifier": "away"
+        }
+      ],
+      "venue": {
+        "id": "sr:venue:9",
+        "name": "Old Trafford",
+        "capacity": 75635,
+        "city_name": "Manchester",
+        "country_name": "England",
+        "map_coordinates": "53.463150,-2.291444",
+        "country_code": "ENG"
+      }
+    },
+    {
+      "id": "sr:match:14736969",
+      "scheduled": "2019-05-04T14:00:00+00:00",
+      "start_time_tbd": true,
+      "status": "not_started",
+      "tournament_round": {
+        "type": "group",
+        "number": 37,
+        "phase": "regular season"
+      },
+      "season": {
+        "id": "sr:season:54571",
+        "name": "Premier League 18\/19",
+        "start_date": "2018-08-10",
+        "end_date": "2019-05-13",
+        "year": "18\/19",
+        "tournament_id": "sr:tournament:17"
+      },
+      "tournament": {
+        "id": "sr:tournament:17",
+        "name": "Premier League",
+        "sport": {
+          "id": "sr:sport:1",
+          "name": "Soccer"
+        },
+        "category": {
+          "id": "sr:category:1",
+          "name": "England",
+          "country_code": "ENG"
+        }
+      },
+      "competitors": [
+        {
+          "id": "sr:competitor:59",
+          "name": "Huddersfield Town",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "HUD",
+          "qualifier": "home"
+        },
+        {
+          "id": "sr:competitor:35",
+          "name": "Manchester United",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "MUN",
+          "qualifier": "away"
+        }
+      ],
+      "venue": {
+        "id": "sr:venue:2318",
+        "name": "John Smith's Stadium",
+        "capacity": 24500,
+        "city_name": "Huddersfield",
+        "country_name": "England",
+        "map_coordinates": "53.654167,-1.768333",
+        "country_code": "ENG"
+      }
+    },
+    {
+      "id": "sr:match:14736985",
+      "scheduled": "2019-05-12T14:00:00+00:00",
+      "start_time_tbd": true,
+      "status": "not_started",
+      "tournament_round": {
+        "type": "group",
+        "number": 38,
+        "phase": "regular season"
+      },
+      "season": {
+        "id": "sr:season:54571",
+        "name": "Premier League 18\/19",
+        "start_date": "2018-08-10",
+        "end_date": "2019-05-13",
+        "year": "18\/19",
+        "tournament_id": "sr:tournament:17"
+      },
+      "tournament": {
+        "id": "sr:tournament:17",
+        "name": "Premier League",
+        "sport": {
+          "id": "sr:sport:1",
+          "name": "Soccer"
+        },
+        "category": {
+          "id": "sr:category:1",
+          "name": "England",
+          "country_code": "ENG"
+        }
+      },
+      "competitors": [
+        {
+          "id": "sr:competitor:35",
+          "name": "Manchester United",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "MUN",
+          "qualifier": "home"
+        },
+        {
+          "id": "sr:competitor:61",
+          "name": "Cardiff City",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "CAR",
+          "qualifier": "away"
+        }
+      ],
+      "venue": {
+        "id": "sr:venue:9",
+        "name": "Old Trafford",
+        "capacity": 75635,
+        "city_name": "Manchester",
+        "country_name": "England",
+        "map_coordinates": "53.463150,-2.291444",
+        "country_code": "ENG"
+      }
+    },
+    {
+      "id": "sr:match:17845532",
+      "scheduled": "2019-07-20T11:25:00+00:00",
+      "start_time_tbd": false,
+      "status": "not_started",
+      "tournament_round": {
+        "type": "group",
+        "number": 1,
+        "phase": "pre-season"
+      },
+      "season": {
+        "id": "sr:season:65210",
+        "name": "Int. Champions Cup 2019",
+        "start_date": "2019-07-16",
+        "end_date": "2019-08-11",
+        "year": "2019",
+        "tournament_id": "sr:tournament:1337"
+      },
+      "tournament": {
+        "id": "sr:tournament:1337",
+        "name": "Int. Champions Cup",
+        "sport": {
+          "id": "sr:sport:1",
+          "name": "Soccer"
+        },
+        "category": {
+          "id": "sr:category:393",
+          "name": "International Clubs"
+        }
+      },
+      "competitors": [
+        {
+          "id": "sr:competitor:35",
+          "name": "Manchester United",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "MUN",
+          "qualifier": "home"
+        },
+        {
+          "id": "sr:competitor:2697",
+          "name": "Inter Milan",
+          "country": "Italy",
+          "country_code": "ITA",
+          "abbreviation": "INT",
+          "qualifier": "away"
+        }
+      ]
+    },
+    {
+      "id": "sr:match:17845554",
+      "scheduled": "2019-07-25T11:25:00+00:00",
+      "start_time_tbd": false,
+      "status": "not_started",
+      "tournament_round": {
+        "type": "group",
+        "number": 1,
+        "phase": "pre-season"
+      },
+      "season": {
+        "id": "sr:season:65210",
+        "name": "Int. Champions Cup 2019",
+        "start_date": "2019-07-16",
+        "end_date": "2019-08-11",
+        "year": "2019",
+        "tournament_id": "sr:tournament:1337"
+      },
+      "tournament": {
+        "id": "sr:tournament:1337",
+        "name": "Int. Champions Cup",
+        "sport": {
+          "id": "sr:sport:1",
+          "name": "Soccer"
+        },
+        "category": {
+          "id": "sr:category:393",
+          "name": "International Clubs"
+        }
+      },
+      "competitors": [
+        {
+          "id": "sr:competitor:33",
+          "name": "Tottenham Hotspur",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "TOT",
+          "qualifier": "home"
+        },
+        {
+          "id": "sr:competitor:35",
+          "name": "Manchester United",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "MUN",
+          "qualifier": "away"
+        }
+      ]
+    },
+    {
+      "id": "sr:match:17845620",
+      "scheduled": "2019-08-03T16:25:00+00:00",
+      "start_time_tbd": false,
+      "status": "not_started",
+      "tournament_round": {
+        "type": "group",
+        "number": 1,
+        "phase": "pre-season"
+      },
+      "season": {
+        "id": "sr:season:65210",
+        "name": "Int. Champions Cup 2019",
+        "start_date": "2019-07-16",
+        "end_date": "2019-08-11",
+        "year": "2019",
+        "tournament_id": "sr:tournament:1337"
+      },
+      "tournament": {
+        "id": "sr:tournament:1337",
+        "name": "Int. Champions Cup",
+        "sport": {
+          "id": "sr:sport:1",
+          "name": "Soccer"
+        },
+        "category": {
+          "id": "sr:category:393",
+          "name": "International Clubs"
+        }
+      },
+      "competitors": [
+        {
+          "id": "sr:competitor:35",
+          "name": "Manchester United",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "MUN",
+          "qualifier": "home"
+        },
+        {
+          "id": "sr:competitor:2692",
+          "name": "AC Milan",
+          "country": "Italy",
+          "country_code": "ITA",
+          "abbreviation": "ACM",
+          "qualifier": "away"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+﻿namespace LiveScore.Shared.Helpers
+{
+    using System;
+    using System.Threading.Tasks;
+    using RestSharp;
+
+    public interface IRestClient
+    {
+        Task<T> ExecuteGetAsync<T>(string endPoint, object data = null);
+
+        Task<T> ExecutePostAsync<T>(string endPoint, object data = null);
+    }
+
+    public class RestClient : Helpers.IRestClient
+    {
+        private readonly RestSharp.IRestClient restClient;
+
+        public RestClient(RestSharp.IRestClient restClient = null)
+        {
+            this.restClient = restClient;
+        }
+
+        public Task<T> ExecuteGetAsync<T>(string endPoint, object data = null)
+            => ExecuteSync<T>(endPoint, Method.GET, data);
+
+        public Task<T> ExecutePostAsync<T>(string endPoint, object data = null)
+            => ExecuteSync<T>(endPoint, Method.POST, data);
+
+        private async Task<T> ExecuteSync<T>(string endPoint, Method method, object data)
+        {
+            ValidateEndPoint(endPoint);
+
+            var request = new RestRequest(endPoint, method);
+            request.JsonSerializer = NewtonsoftJsonSerializer.Default;
+
+            if (data != null)
+            {
+                request.AddJsonBody(data);
+            }
+
+            var response = await restClient.ExecuteTaskAsync<T>(request).ConfigureAwait(false);
+
+            if (response.IsSuccessful)
+            {
+                return response.Data;
+            }
+
+            throw new InvalidOperationException(
+                string.Join(
+                    "\r\n",
+                    $"Content: {response.Content}",
+                    $"ErrorMessage: {response.ErrorMessage}"));
+        }
+
+        private static void ValidateEndPoint(string endPoint)
+        {
+            if (string.IsNullOrWhiteSpace(endPoint))
+            {
+                throw new ArgumentNullException(nameof(endPoint));
+            }
+        }
+    }
+}

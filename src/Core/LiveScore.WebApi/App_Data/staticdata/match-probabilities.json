@@ -1,0 +1,84 @@
+{
+  "generated_at": "2019-04-04T04:50:40+00:00",
+  "schema": "http:\/\/schemas.sportradar.com\/bsa\/soccer\/v1\/json\/endpoints\/soccer\/match_probabilities.json",
+  "sport_event": {
+    "id": "sr:match:16514885",
+    "scheduled": "2019-03-06T20:00:00+00:00",
+    "start_time_tbd": false,
+    "tournament_round": {
+      "type": "cup",
+      "name": "round_of_16",
+      "cup_round_match_number": 2,
+      "cup_round_matches": 2,
+      "other_match_id": "sr:match:16514883"
+    },
+    "season": {
+      "id": "sr:season:54533",
+      "name": "UEFA Champions League 18\/19",
+      "start_date": "2018-06-26",
+      "end_date": "2019-06-02",
+      "year": "18\/19",
+      "tournament_id": "sr:tournament:7"
+    },
+    "tournament": {
+      "id": "sr:tournament:7",
+      "name": "UEFA Champions League",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:393",
+        "name": "International Clubs"
+      }
+    },
+    "competitors": [
+      {
+        "id": "sr:competitor:1644",
+        "name": "Paris Saint-Germain",
+        "country": "France",
+        "country_code": "FRA",
+        "abbreviation": "PSG",
+        "qualifier": "home"
+      },
+      {
+        "id": "sr:competitor:35",
+        "name": "Manchester United",
+        "country": "England",
+        "country_code": "ENG",
+        "abbreviation": "MUN",
+        "qualifier": "away"
+      }
+    ],
+    "venue": {
+      "id": "sr:venue:843",
+      "name": "Parc Des Princes",
+      "capacity": 45000,
+      "city_name": "Paris",
+      "country_name": "France",
+      "map_coordinates": "48.841389,2.253056",
+      "country_code": "FRA"
+    }
+  },
+  "probabilities": {
+    "markets": [
+      {
+        "name": "3way",
+        "outcomes": [
+          {
+            "name": "home_team_winner",
+            "probability": 64
+          },
+          {
+            "name": "away_team_winner",
+            "probability": 15.1
+          },
+          {
+            "name": "draw",
+            "probability": 20.9
+          }
+        ]
+      }
+    ]
+  }
+}
