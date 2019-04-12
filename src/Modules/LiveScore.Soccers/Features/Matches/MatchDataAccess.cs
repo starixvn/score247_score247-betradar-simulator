@@ -63,8 +63,8 @@
             var matchResult = new MatchResult
             {
                 EventStatus = Enumeration.FromValue<MatchStatus>(sportEventStatusDto.status),
-                HomeScores = new List<int> { sportEventStatusDto.home_score },
-                AwayScores = new List<int> { sportEventStatusDto.away_score }
+                HomeScore = sportEventStatusDto.home_score,
+                AwayScore = sportEventStatusDto.away_score
             };
 
             if (!string.IsNullOrWhiteSpace(sportEventStatusDto.match_status))

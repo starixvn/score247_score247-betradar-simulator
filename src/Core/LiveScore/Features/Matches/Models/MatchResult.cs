@@ -8,9 +8,9 @@
 
         MatchStatus EventStatus { get; }
 
-        IEnumerable<int> HomeScores { get; }
+        int HomeScore { get; }
 
-        IEnumerable<int> AwayScores { get; }
+        int AwayScore { get; }
 
         int Period { get; }
 
@@ -27,10 +27,6 @@
 
         public MatchStatus EventStatus { get; set; }
 
-        public IEnumerable<int> HomeScores { get; set; }
-
-        public IEnumerable<int> AwayScores { get; set; }
-
         public int Period { get; set; }
 
         public IEnumerable<MatchPeriod> MatchPeriods { get; set; }
@@ -38,5 +34,9 @@
         public string MatchTime { get; set; }
 
         public string WinnerId { get; set; }
+
+        public int HomeScore { get; set; }
+
+        public int AwayScore { get; set; }
     }
 }
