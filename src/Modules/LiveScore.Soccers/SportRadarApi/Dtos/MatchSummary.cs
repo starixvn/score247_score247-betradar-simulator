@@ -80,7 +80,17 @@ namespace LiveScore.Shared.Models.Dtos
         public int aggregate_home_score { get; set; }
         public int aggregate_away_score { get; set; }
         public string aggregate_winner_id { get; set; }
+
+        public int period { get; set; }
+
+        public Clock clock { get; set; }
+
         public IEnumerable<Period_Scores> period_scores { get; set; }
+    }
+
+    public class Clock
+    {
+        public string match_time { get; set; }
     }
 
     public class Period_Scores

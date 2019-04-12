@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Globalization;
+    using System.Linq;
     using System.Threading.Tasks;
     using LiveScore.Features.Leagues.Models;
     using LiveScore.Features.Matches;
@@ -38,26 +39,59 @@
             return matches;
         }
 
-        private static Match CreateMatch(
-            Result matchDto)
+        private static Match CreateMatch(Result matchDto)
         {
             var sportEventDto = matchDto.sport_event;
             var sportEventStatusDto = matchDto.sport_event_status;
+            var matchResult = BuildMatchStatus(sportEventStatusDto);
 
-            return new Match
+            var match = new Match
             {
                 Id = sportEventDto.id,
                 EventDate = sportEventDto.scheduled,
-                MatchResult = new MatchResult
-                {
-                    Status = Enumeration.FromValue<MatchStatus>(sportEventStatusDto.status),
-                    HomeScores = new List<int> { sportEventStatusDto.home_score },
-                    AwayScores = new List<int> { sportEventStatusDto.away_score },
-                },
+                MatchResult = matchResult,
                 Teams = BuildTeams(sportEventDto),
                 League = BuildLeague(matchDto.sport_event.tournament),
                 LeagueRound = BuildLeagueRound(matchDto.sport_event.tournament_round)
             };
+
+            return match;
+        }
+
+        private static MatchResult BuildMatchStatus(Sport_Event_Status sportEventStatusDto)
+        {
+            var matchResult = new MatchResult
+            {
+                EventStatus = Enumeration.FromValue<MatchStatus>(sportEventStatusDto.status),
+                HomeScores = new List<int> { sportEventStatusDto.home_score },
+                AwayScores = new List<int> { sportEventStatusDto.away_score }
+            };
+
+            if (!string.IsNullOrWhiteSpace(sportEventStatusDto.match_status))
+            {
+                matchResult.MatchStatus = Enumeration.FromValue<MatchStatus>(sportEventStatusDto.match_status);
+            }
+
+            matchResult.Period = sportEventStatusDto.period;
+
+            if (sportEventStatusDto.period_scores != null
+                    && sportEventStatusDto.period_scores.Any())
+            {
+                matchResult.MatchPeriods = sportEventStatusDto.period_scores.Select(periodScore => new MatchPeriod
+                {
+                    HomeScore = periodScore.home_score,
+                    AwayScore = periodScore.away_score,
+                    PeriodType = Enumeration.FromValue<PeriodType>(periodScore.type),
+                    Number = periodScore.number
+                });
+
+                if (sportEventStatusDto.clock != null)
+                {
+                    matchResult.MatchTime = sportEventStatusDto.clock.match_time;
+                }
+            }
+
+            return matchResult;
         }
 
         private static LeagueRound BuildLeagueRound(Tournament_Round leagueRoundDto)

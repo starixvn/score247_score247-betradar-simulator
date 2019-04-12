@@ -27,5 +27,12 @@
         {
             return await matchService.GetMatches(sportId, from, to, language);
         }
+
+        ////public async Task<IEnumerable<Match>> GetLiveMatches(
+        ////    int sportId,
+        ////    string language = "en")
+        ////{
+        ////    return await matchService.GetMatches(sportId, from, to, language);
+        ////}
     }
 }

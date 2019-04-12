@@ -1,0 +1,447 @@
+{
+  "generated_at": "2019-04-11T10:07:00+00:00",
+  "schema": "http:\/\/schemas.sportradar.com\/bsa\/soccer\/v1\/json\/endpoints\/soccer\/results.json",
+  "results": [
+    {
+      "sport_event": {
+        "id": "sr:match:17939011",
+        "scheduled": "2019-04-10T13:00:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "group",
+          "number": 23
+        },
+        "season": {
+          "id": "sr:season:57136",
+          "name": "Premier League 18\/19",
+          "start_date": "2018-08-22",
+          "end_date": "2019-05-31",
+          "year": "18\/19",
+          "tournament_id": "sr:tournament:2436"
+        },
+        "tournament": {
+          "id": "sr:tournament:2436",
+          "name": "Premier League",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:803",
+            "name": "Tanzania",
+            "country_code": "TZA"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:361518",
+            "name": "Singida United",
+            "country": "Tanzania",
+            "country_code": "TZA",
+            "abbreviation": "SIN",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:495508",
+            "name": "Kmc FC",
+            "country": "Tanzania",
+            "country_code": "TZA",
+            "abbreviation": "KMC",
+            "qualifier": "away"
+          }
+        ],
+        "venue": {
+          "id": "sr:venue:27469",
+          "name": "Namfua Stadium",
+          "capacity": 10000,
+          "city_name": "Singida",
+          "country_name": "Tanzania",
+          "map_coordinates": "-4.822371,34.746731",
+          "country_code": "TZA"
+        }
+      },
+      "sport_event_status": { "status": "not_started" }
+    },
+    {
+      "sport_event": {
+        "id": "sr:match:17151759",
+        "scheduled": "2019-04-11T09:00:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "group",
+          "number": 12,
+          "phase": "regular season"
+        },
+        "season": {
+          "id": "sr:season:62817",
+          "name": "Premier League",
+          "start_date": "2019-01-18",
+          "end_date": "2019-04-21",
+          "year": "2019",
+          "tournament_id": "sr:tournament:27821"
+        },
+        "tournament": {
+          "id": "sr:tournament:27821",
+          "name": "Premier League",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:469",
+            "name": "Bangladesh",
+            "country_code": "BGD"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:368524",
+            "name": "Bashundhara Kings",
+            "country": "Bangladesh",
+            "country_code": "BGD",
+            "abbreviation": "BAK",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:406147",
+            "name": "Saif SC",
+            "abbreviation": "SAI",
+            "qualifier": "away"
+          }
+        ]
+      },
+      "sport_event_status": { "status": "not_started" }
+    },
+    {
+      "sport_event": {
+        "id": "sr:match:17316577",
+        "scheduled": "2019-04-11T09:00:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "group",
+          "number": 23
+        },
+        "season": {
+          "id": "sr:season:55481",
+          "name": "Youth League 18\/19",
+          "start_date": "2018-07-27",
+          "end_date": "2019-06-24",
+          "year": "18\/19",
+          "tournament_id": "sr:tournament:879"
+        },
+        "tournament": {
+          "id": "sr:tournament:879",
+          "name": "Youth League",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:21",
+            "name": "Russia",
+            "country_code": "RUS"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:49730",
+            "name": "Kryliya Sovetov Youth",
+            "country": "Russia",
+            "country_code": "RUS",
+            "abbreviation": "SKS",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:49729",
+            "name": "Rubin Youth",
+            "country": "Russia",
+            "country_code": "RUS",
+            "abbreviation": "RUB",
+            "qualifier": "away"
+          }
+        ],
+        "venue": {
+          "id": "sr:venue:2283",
+          "name": "Metallurg",
+          "capacity": 30251,
+          "city_name": "Samara",
+          "country_name": "Russia",
+          "map_coordinates": "53.238333,50.271667",
+          "country_code": "RUS"
+        }
+      },
+      "sport_event_status": {
+        "status": "live",
+        "match_status": "2nd_half",
+        "home_score": 2,
+        "away_score": 0,
+        "period": 2,
+        "clock": { "match_time": "49:27" },
+        "period_scores": [
+          {
+            "home_score": 2,
+            "away_score": 0,
+            "type": "regular_period",
+            "number": 1
+          },
+          {
+            "home_score": 0,
+            "away_score": 0,
+            "type": "regular_period",
+            "number": 2
+          }
+        ]
+      }
+    },
+    {
+      "sport_event": {
+        "id": "sr:match:17737532",
+        "scheduled": "2019-04-11T09:00:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "group",
+          "number": 24,
+          "group": "I"
+        },
+        "season": {
+          "id": "sr:season:54569",
+          "name": "U21 18\/19",
+          "start_date": "2018-07-21",
+          "end_date": "2019-05-31",
+          "year": "18\/19",
+          "tournament_id": "sr:tournament:892"
+        },
+        "tournament": {
+          "id": "sr:tournament:892",
+          "name": "U21",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:86",
+            "name": "Ukraine",
+            "country_code": "UKR"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:52669",
+            "name": "Vorskla Poltava",
+            "country": "Ukraine",
+            "country_code": "UKR",
+            "abbreviation": "VOP",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:52680",
+            "name": "Dinamo Kiev",
+            "country": "Ukraine",
+            "country_code": "UKR",
+            "abbreviation": "DKI",
+            "qualifier": "away"
+          }
+        ],
+        "venue": {
+          "id": "sr:venue:2411",
+          "name": "Butovsky Vorskla Stadium",
+          "capacity": 24795,
+          "city_name": "Poltava",
+          "country_name": "Ukraine",
+          "map_coordinates": "49.594833,34.549444",
+          "country_code": "UKR"
+        }
+      },
+      "sport_event_status": { "status": "not_started" }
+    },
+    {
+      "sport_event": {
+        "id": "sr:match:15163031",
+        "scheduled": "2019-04-11T10:00:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "group",
+          "number": 27
+        },
+        "season": {
+          "id": "sr:season:56067",
+          "name": "U21 1. Lig 18\/19",
+          "start_date": "2018-08-10",
+          "end_date": "2019-05-20",
+          "year": "18\/19",
+          "tournament_id": "sr:tournament:17314"
+        },
+        "tournament": {
+          "id": "sr:tournament:17314",
+          "name": "U21 1. Lig",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:254",
+            "name": "Turkey Amateur",
+            "country_code": "TUR"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:170412",
+            "name": "Adana Demirspor",
+            "abbreviation": "DEM",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:278929",
+            "name": "Umraniyespor U21",
+            "abbreviation": "UMR",
+            "qualifier": "away"
+          }
+        ]
+      },
+      "sport_event_status": {
+        "status": "live",
+        "match_status": "1st_half",
+        "home_score": 0,
+        "away_score": 0,
+        "period": 1,
+        "clock": { "match_time": "01:33" },
+        "period_scores": [
+          {
+            "home_score": 0,
+            "away_score": 0,
+            "type": "regular_period",
+            "number": 1
+          }
+        ]
+      }
+    },
+    {
+      "sport_event": {
+        "id": "sr:match:17151749",
+        "scheduled": "2019-04-11T10:00:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "group",
+          "number": 12,
+          "phase": "regular season"
+        },
+        "season": {
+          "id": "sr:season:62817",
+          "name": "Premier League",
+          "start_date": "2019-01-18",
+          "end_date": "2019-04-21",
+          "year": "2019",
+          "tournament_id": "sr:tournament:27821"
+        },
+        "tournament": {
+          "id": "sr:tournament:27821",
+          "name": "Premier League",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:469",
+            "name": "Bangladesh",
+            "country_code": "BGD"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:280243",
+            "name": "Rahmatgonj Mfs",
+            "country": "Bangladesh",
+            "country_code": "BGD",
+            "abbreviation": "RAH",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:178000",
+            "name": "Sheikh Russel KC",
+            "country": "Bangladesh",
+            "country_code": "BGD",
+            "abbreviation": "SHR",
+            "qualifier": "away"
+          }
+        ]
+      },
+      "sport_event_status": {
+        "status": "live",
+        "match_status": "1st_half",
+        "home_score": 0,
+        "away_score": 1,
+        "period": 1,
+        "period_scores": [
+          {
+            "home_score": 0,
+            "away_score": 1,
+            "type": "regular_period",
+            "number": 1
+          }
+        ]
+      }
+    },
+    {
+      "sport_event": {
+        "id": "sr:match:17737528",
+        "scheduled": "2019-04-11T10:00:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "group",
+          "number": 24,
+          "group": "I"
+        },
+        "season": {
+          "id": "sr:season:54569",
+          "name": "U21 18\/19",
+          "start_date": "2018-07-21",
+          "end_date": "2019-05-31",
+          "year": "18\/19",
+          "tournament_id": "sr:tournament:892"
+        },
+        "tournament": {
+          "id": "sr:tournament:892",
+          "name": "U21",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:86",
+            "name": "Ukraine",
+            "country_code": "UKR"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:52679",
+            "name": "Arsenal Kiev",
+            "country": "Ukraine",
+            "country_code": "UKR",
+            "abbreviation": "AKI",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:52672",
+            "name": "FC Oleksandriya",
+            "country": "Ukraine",
+            "country_code": "UKR",
+            "abbreviation": "OLE",
+            "qualifier": "away"
+          }
+        ],
+        "venue": {
+          "id": "sr:venue:4910",
+          "name": "Obolon Arena",
+          "capacity": 5100,
+          "city_name": "Kiev",
+          "country_name": "Ukraine",
+          "map_coordinates": "50.527056,30.507500",
+          "country_code": "UKR"
+        }
+      },
+      "sport_event_status": { "status": "not_started" }
+    }
+  ]
+}

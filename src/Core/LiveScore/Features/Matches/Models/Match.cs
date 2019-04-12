@@ -22,7 +22,11 @@
 
         ITimeLine TimeLine { get; }
 
-        IMatchCondition MatchCondition { get; }
+        int Attendance { get; }
+
+        IVenue Venue { get; }
+
+        string Referee { get; }
     }
 
     public class Match : Entity<string, string>, IMatch
@@ -35,12 +39,16 @@
 
         public ITimeLine TimeLine { get; set; }
 
-        public IMatchCondition MatchCondition { get; set; }
-
         public bool IsLive { get; set; }
 
         public ILeague League { get; set; }
 
         public ILeagueRound LeagueRound { get; set; }
+
+        public int Attendance { get; set; }
+
+        public IVenue Venue { get; set; }
+
+        public string Referee { get; set; }
     }
 }

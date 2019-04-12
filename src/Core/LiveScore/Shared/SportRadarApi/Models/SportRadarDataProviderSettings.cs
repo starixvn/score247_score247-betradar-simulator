@@ -28,5 +28,7 @@
         public int FormatId { get; set; }
 
         public string Path { get; set; }
+
+        public bool IsLive { get; set; }
     }
 }

@@ -84,13 +84,16 @@
         }
 
         public MatchStatus(string value, string displayName)
-            : base(value, displayName)
+            : base(value?.ToLowerInvariant(), displayName)
         {
         }
 
         public MatchStatus(string value)
-            : base(value, value)
+            : base(value?.ToLowerInvariant(), value)
         {
         }
+
+        public bool IsLive()
+            => this == Live;
     }
 }
