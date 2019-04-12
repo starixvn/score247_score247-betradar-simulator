@@ -10,6 +10,8 @@
     {
         DateTime EventDate { get; }
 
+        long EventDateUnixTime { get; }
+
         ILeague League { get; }
 
         ILeagueRound LeagueRound { get; }
@@ -50,5 +52,7 @@
         public IVenue Venue { get; set; }
 
         public string Referee { get; set; }
+
+        public long EventDateUnixTime { get; set; }
     }
 }

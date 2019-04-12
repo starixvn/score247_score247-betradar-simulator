@@ -28,11 +28,17 @@
 
             foreach (var result in dailyScheduleDto.results)
             {
-                result.sport_event.scheduled = date;
+                result.sport_event.scheduled = date.AddMinutes(random.Next(0, 1000));
 
                 foreach (var competitor in result.sport_event.competitors)
                 {
                     competitor.name = $"{competitor.name} - {CreateString(5)}";
+                }
+
+                if(date > DateTime.Now)
+                {
+                    result.sport_event_status.status = "not_started";
+                    result.sport_event_status.match_status = "not_started";
                 }
             }
 
