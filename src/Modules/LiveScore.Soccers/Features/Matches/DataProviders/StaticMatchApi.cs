@@ -40,6 +40,12 @@
                     result.sport_event_status.status = "not_started";
                     result.sport_event_status.match_status = "not_started";
                 }
+
+                if (date < DateTime.Now.Date)
+                {
+                    result.sport_event_status.status = "closed";
+                    result.sport_event_status.match_status = "ended";
+                }
             }
 
             return Task.FromResult(dailyScheduleDto);
