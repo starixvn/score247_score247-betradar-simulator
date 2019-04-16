@@ -15,7 +15,6 @@
     public class MatchServiceImpl : MatchService
     {
         private readonly InstanceFactory instanceFactory;
-        private const string DefaultTimeZoneId = "SE Asia Standard Time";
 
         public MatchServiceImpl(
             InstanceFactory instanceFactory)

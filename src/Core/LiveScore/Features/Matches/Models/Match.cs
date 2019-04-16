@@ -10,15 +10,11 @@
     {
         DateTime EventDate { get; }
 
-        long EventDateUnixTime { get; }
-
         ILeague League { get; }
 
         ILeagueRound LeagueRound { get; }
 
         IEnumerable<ITeam> Teams { get; }
-
-        bool IsLive { get; }
 
         IMatchResult MatchResult { get; }
 
@@ -43,8 +39,6 @@
 
         public ITimeLine TimeLine { get; set; }
 
-        public bool IsLive { get; set; }
-
         public ILeague League { get; set; }
 
         public ILeagueRound LeagueRound { get; set; }
@@ -54,8 +48,6 @@
         public IVenue Venue { get; set; }
 
         public string Referee { get; set; }
-
-        public long EventDateUnixTime { get; set; }
 
         public void ChangeEventDateByTimeZone(TimeSpan timeZone)
         {

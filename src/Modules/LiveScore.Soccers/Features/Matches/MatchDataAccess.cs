@@ -49,7 +49,6 @@
             {
                 Id = sportEventDto.id,
                 EventDate = sportEventDto.scheduled,
-                EventDateUnixTime = new DateTimeOffset(sportEventDto.scheduled).ToUnixTimeMilliseconds(),
                 MatchResult = matchResult,
                 Teams = BuildTeams(sportEventDto),
                 League = BuildLeague(matchDto.sport_event.tournament),

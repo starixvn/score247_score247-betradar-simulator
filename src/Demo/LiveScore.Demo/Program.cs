@@ -24,12 +24,15 @@ namespace LiveScore.Demo
             //    DateTime.Now.ToString())
             //    .Result;
             TimeZoneInfo est = TimeZoneInfo.FindSystemTimeZoneById("Canada Central Standard Time");
+
+            var dateTimeOffset = est.GetUtcOffset(DateTime.UtcNow);
             //var date = new DateTime(2018, 10, 10, )
             DateTime targetTime = TimeZoneInfo.ConvertTime(DateTime.UtcNow, est);
 
-            var dateTimeOffset = est.GetUtcOffset(DateTime.UtcNow);
-
             Console.WriteLine(targetTime.AddSeconds(-dateTimeOffset.TotalSeconds));
+
+
+
         }
     }
 }
