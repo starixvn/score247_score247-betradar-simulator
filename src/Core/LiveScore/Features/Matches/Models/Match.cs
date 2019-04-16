@@ -29,6 +29,8 @@
         IVenue Venue { get; }
 
         string Referee { get; }
+
+        void ChangeEventDateByTimeZone(TimeSpan timeZone);
     }
 
     public class Match : Entity<string, string>, IMatch
@@ -54,5 +56,10 @@
         public string Referee { get; set; }
 
         public long EventDateUnixTime { get; set; }
+
+        public void ChangeEventDateByTimeZone(TimeSpan timeZone)
+        {
+            EventDate = EventDate.ToUniversalTime() + timeZone;
+        }
     }
 }

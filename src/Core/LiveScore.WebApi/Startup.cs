@@ -20,6 +20,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Newtonsoft.Json;
     using Sentry;
     using Swashbuckle.AspNetCore.Swagger;
 
@@ -27,6 +28,7 @@
     {
         private const int SoccerSportId = 1;
         private const string SportRadarSettingPath = "LiveScores:SportRadarSetting";
+        private const string TimeZoneSettingsPath = "LiveScores:TimeZoneSettings";
         private readonly IHostingEnvironment hostingEnvironment;
 
         public Startup(IConfiguration configuration, IHostingEnvironment hostingEnvironment)
@@ -49,7 +51,10 @@
                 var sportRadarDataProviderSettings = new SportRadarDataProviderSettings();
                 Configuration.GetSection(SportRadarSettingPath).Bind(sportRadarDataProviderSettings);
 
-                var appSettings = new AppSettings(hostingEnvironment, Configuration, sportRadarDataProviderSettings);
+                var timeZoneSettings = new Dictionary<int, string>();
+                Configuration.GetSection(TimeZoneSettingsPath).Bind(timeZoneSettings);
+
+                var appSettings = new AppSettings(hostingEnvironment, Configuration, sportRadarDataProviderSettings, timeZoneSettings);
                 services.AddSingleton<IAppSettings>(appSettings);
                 services.AddSingleton<LeagueService, LeagueServiceImpl>();
                 services.AddSingleton<ILeagueApi, StaticLeagueApi>();
@@ -65,7 +70,7 @@
                     },
                     new Dictionary<int, LeagueDataAccess>
                     {
-                    { 1, new LeagueDataAccessImpl() }
+                    { SoccerSportId, new LeagueDataAccessImpl() }
                     }
                     ));
 
@@ -78,6 +83,10 @@
                 });
                 services
                     .AddMvc()
+                    .AddJsonOptions(options =>
+                    {
+                        options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Unspecified;
+                    })
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             }
             catch (Exception ex)

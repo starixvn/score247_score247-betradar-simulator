@@ -19,13 +19,14 @@
         }
 
         [HttpGet("GetMatches")]
-        public async Task<IEnumerable<Match>> GetMatches(
+        public async Task<IEnumerable<IMatch>> GetMatches(
             int sportId,
             DateTime from,
             DateTime to,
+            TimeSpan timeZone,
             string language = "en")
         {
-            return await matchService.GetMatches(sportId, from, to, language);
+            return await matchService.GetMatches(sportId, from, to, timeZone, language);
         }
 
         ////public async Task<IEnumerable<Match>> GetLiveMatches(

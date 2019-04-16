@@ -22,7 +22,7 @@
             this.matchApi = matchApi;
         }
 
-        public async Task<IEnumerable<Match>> GetMatches(int sportId, DateTime date, string language)
+        public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime date, string language)
         {
             var dailySchedule = await matchApi.GetDailySchedules(
                 sportId,

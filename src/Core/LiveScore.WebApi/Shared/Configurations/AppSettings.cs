@@ -1,6 +1,7 @@
 ﻿namespace LiveScore.WebApi.Shared.Configurations
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using LiveScore.Shared.Configurations;
     using Microsoft.AspNetCore.Hosting;
@@ -14,12 +15,14 @@
         public AppSettings(
             IHostingEnvironment hostingEnvironment, 
             IConfiguration configuration,
-            IDataProviderSettings dataProviderSettings)
+            IDataProviderSettings dataProviderSettings,
+            IDictionary<int, string> timeZoneSettings)
         {
             this.hostingEnvironment = hostingEnvironment ?? throw new ArgumentNullException(nameof(hostingEnvironment));
             this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             EnabledStaticData = GetValue<bool>("LiveScores:EnabledStaticData");
             DataProviderSettings = dataProviderSettings;
+            TimeZoneSettings = timeZoneSettings;
         }
 
         public string AppPath => hostingEnvironment.ContentRootPath;
@@ -27,6 +30,8 @@
         public bool EnabledStaticData { get; }
 
         public IDataProviderSettings DataProviderSettings { get; }
+
+        public IDictionary<int, string> TimeZoneSettings { get; }
 
         private T GetValue<T>(string key)
         {

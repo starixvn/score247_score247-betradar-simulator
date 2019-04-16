@@ -10,21 +10,26 @@ namespace LiveScore.Demo
     {
         static void Main()
         {
-            var leagueApi = RestService.For<ILiveScoreLeagueApi>("http://localhost:64296/api");
+            //var leagueApi = RestService.For<ILiveScoreLeagueApi>("http://localhost:64296/api");
 
-            JsonConvert.DefaultSettings =
-                () => new JsonSerializerSettings
-                {
-                    TypeNameHandling = TypeNameHandling.All
-                };
+            //JsonConvert.DefaultSettings =
+            //    () => new JsonSerializerSettings
+            //    {
+            //        TypeNameHandling = TypeNameHandling.All
+            //    };
 
-            var leagues = leagueApi.GetLeagues(
-                1, 
-                DateTime.Now.ToString(), 
-                DateTime.Now.ToString())
-                .Result;
+            //var leagues = leagueApi.GetLeagues(
+            //    1, 
+            //    DateTime.Now.ToString(), 
+            //    DateTime.Now.ToString())
+            //    .Result;
+            TimeZoneInfo est = TimeZoneInfo.FindSystemTimeZoneById("Canada Central Standard Time");
+            //var date = new DateTime(2018, 10, 10, )
+            DateTime targetTime = TimeZoneInfo.ConvertTime(DateTime.UtcNow, est);
 
-            Console.WriteLine("Done");
+            var dateTimeOffset = est.GetUtcOffset(DateTime.UtcNow);
+
+            Console.WriteLine(targetTime.AddSeconds(-dateTimeOffset.TotalSeconds));
         }
     }
 }

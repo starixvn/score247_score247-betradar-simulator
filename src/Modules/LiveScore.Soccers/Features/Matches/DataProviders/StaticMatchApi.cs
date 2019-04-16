@@ -28,7 +28,13 @@
 
             foreach (var result in dailyScheduleDto.results)
             {
-                result.sport_event.scheduled = date.AddMinutes(random.Next(0, 1000));
+                result.sport_event.scheduled = new DateTime(
+                    date.Year, 
+                    date.Month, 
+                    date.Day,
+                    result.sport_event.scheduled.Hour,
+                    result.sport_event.scheduled.Minute,
+                    result.sport_event.scheduled.Second);
 
                 foreach (var competitor in result.sport_event.competitors)
                 {

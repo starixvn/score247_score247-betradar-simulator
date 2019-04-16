@@ -1,0 +1,67 @@
+{
+  "generated_at": "2019-04-15T06:06:14+00:00",
+  "schema": "http:\/\/schemas.sportradar.com\/bsa\/soccer\/v1\/json\/endpoints\/soccer\/results.json",
+  "results": [
+    {
+      "sport_event": {
+        "id": "sr:match:15657974",
+        "scheduled": "2019-04-14T13:00:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "group",
+          "number": 31,
+          "phase": "regular season"
+        },
+        "season": {
+          "id": "sr:season:57878",
+          "name": "Serie D, Girone D 18\/19",
+          "start_date": "2018-09-15",
+          "end_date": "2019-06-10",
+          "year": "18\/19",
+          "tournament_id": "sr:tournament:1380"
+        },
+        "tournament": {
+          "id": "sr:tournament:1380",
+          "name": "Serie D, Girone D",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:31",
+            "name": "Italy",
+            "country_code": "ITA"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:223500",
+            "name": "Lentigione Calcio",
+            "country": "Italy",
+            "country_code": "ITA",
+            "abbreviation": "LEN",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:489602",
+            "name": "USD Classe",
+            "country": "Italy",
+            "country_code": "ITA",
+            "abbreviation": "USD",
+            "qualifier": "away"
+          }
+        ],
+        "venue": {
+          "id": "sr:venue:20095",
+          "name": "Stadio Valente Levantini",
+          "capacity": 1500,
+          "city_name": "Lentigione",
+          "country_name": "Italy",
+          "map_coordinates": "44.869145,10.467770",
+          "country_code": "ITA"
+        }
+      },
+      "sport_event_status": { "status": "not_started" }
+    }
+  ]
+}
