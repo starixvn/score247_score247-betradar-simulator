@@ -28,14 +28,14 @@
 
             foreach (var result in dailyScheduleDto.results)
             {
-                result.sport_event.scheduled = new DateTime(
-                    date.Year, 
-                    date.Month, 
-                    date.Day,
-                    result.sport_event.scheduled.Hour,
-                    result.sport_event.scheduled.Minute,
-                    result.sport_event.scheduled.Second,
-                    DateTimeKind.Utc);
+                var dateFormat = string.Format("{0}-{1}-{2}T{3}:{4}:{5}+00:00",
+                    date.Year.ToString("0000"),
+                    date.Month.ToString("00"),
+                    date.Day.ToString("00"),
+                    result.sport_event.scheduled.Hour.ToString("00"),
+                    result.sport_event.scheduled.Minute.ToString("00"),
+                    result.sport_event.scheduled.Second.ToString("00"));
+                result.sport_event.scheduled = DateTime.Parse(dateFormat);
 
                 foreach (var competitor in result.sport_event.competitors)
                 {
