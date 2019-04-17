@@ -32,9 +32,9 @@
                     date.Year.ToString("0000"),
                     date.Month.ToString("00"),
                     date.Day.ToString("00"),
-                    result.sport_event.scheduled.Hour.ToString("00"),
-                    result.sport_event.scheduled.Minute.ToString("00"),
-                    result.sport_event.scheduled.Second.ToString("00"));
+                    result.sport_event.scheduled.ToUniversalTime().Hour.ToString("00"),
+                    result.sport_event.scheduled.ToUniversalTime().Minute.ToString("00"),
+                    result.sport_event.scheduled.ToUniversalTime().Second.ToString("00"));
                 result.sport_event.scheduled = DateTime.Parse(dateFormat);
 
                 foreach (var competitor in result.sport_event.competitors)
