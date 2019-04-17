@@ -34,7 +34,8 @@
                     date.Day,
                     result.sport_event.scheduled.Hour,
                     result.sport_event.scheduled.Minute,
-                    result.sport_event.scheduled.Second);
+                    result.sport_event.scheduled.Second,
+                    DateTimeKind.Utc);
 
                 foreach (var competitor in result.sport_event.competitors)
                 {
