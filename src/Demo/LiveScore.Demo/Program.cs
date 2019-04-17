@@ -4,6 +4,7 @@ namespace LiveScore.Demo
     using System;
     using System.IO;
     using System.Net;
+    using System.Net.Http;
     using System.Net.Sockets;
     using System.Text;
     using LiveScore.Features.Leagues;
@@ -37,9 +38,78 @@ namespace LiveScore.Demo
             //DateTime targetTime = TimeZoneInfo.ConvertTime(DateTime.UtcNow, est);
 
             //Console.WriteLine(targetTime.AddSeconds(-dateTimeOffset.TotalSeconds));
-            ListenHttpEvents();
+            //ListenHttpEvents();
 
+            //            var httpWReq =
+            //(HttpWebRequest)WebRequest.Create("https://api.sportradar.com/soccer-xt3/as/stream/events/subscribe?api_key=x3zffh29jgzbgz74nf6apvvy");
+            //            httpWReq.AllowAutoRedirect = true;
+            //            httpWReq.Method = "GET";
+            //            httpWReq.Timeout = 50 * 1000;
+            //            httpWReq.AllowReadStreamBuffering = true;
 
+            //            httpWReq.getin
+
+            //            var httpWResp = (HttpWebResponse)httpWReq.GetResponse();
+
+            ReadPushEvent();
+
+           //ListenHttpEvents();
+
+            //using (var client = new HttpClient())
+            //{
+            //    using (var stream = client.GetStreamAsync("https://api.sportradar.com/soccer-xt3/as/stream/events/subscribe?api_key=x3zffh29jgzbgz74nf6apvvy").GetAwaiter().GetResult())
+            //    {
+            //        using (var reader = new StreamReader(stream))
+            //        {
+            //            while (true)
+            //            {
+            //                Console.WriteLine(reader.ReadLine());
+            //            }
+            //        }
+            //    }
+            //}
+
+            Console.ReadLine();
+        }
+
+        public static void ReadPushEvent()
+        {
+                HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("https://api.sportradar.com/soccer-xt3/other/stream/events/subscribe?api_key=npc9md73nrwhykuepets3nqf");
+                req.Credentials = new NetworkCredential("admin", "admin");
+                req.KeepAlive = true;
+
+                string line = "";
+
+                WebResponse reply;
+
+            try
+            {
+                reply = (HttpWebResponse)req.GetResponse();
+
+            }
+            catch (WebException e)
+            {
+
+                reply = e.Response;
+                req = (HttpWebRequest)HttpWebRequest.Create(reply.Headers["Location"]);
+                req.KeepAlive = true;
+                reply = (HttpWebResponse)req.GetResponse();
+            }
+
+                Stream stream = reply.GetResponseStream();
+
+                System.Diagnostics.Debug.WriteLine(reply.ContentType);
+
+                StreamReader reader = new StreamReader(stream);
+                do
+                {
+                    line = reader.ReadLine();
+                    Console.WriteLine(line);
+
+                    System.Threading.Thread.Sleep(30 * 1000);
+
+                } while (line.Length > 0);
+            
         }
 
         public static void ListenEvents()
@@ -70,9 +140,10 @@ namespace LiveScore.Demo
 
         public static void ListenHttpEvents()
         {
-            string AuthServiceUri = "https://api.sportradar.com/soccer-xt3/as/stream/events/subscribe?api_key=x3zffh29jgzbgz74nf6apvvy/";
+            string AuthServiceUri = "https://api.sportradar.com/soccer-xt3/as/stream/events/subscribe?api_key=x3zffh29jgzbgz74nf6apvvy";
             HttpWebRequest httpRequest = HttpWebRequest.Create(AuthServiceUri) as HttpWebRequest;
             httpRequest.Method = "GET";
+            httpRequest.AllowAutoRedirect = true;
             httpRequest.BeginGetRequestStream(new AsyncCallback(GetRequestStream), httpRequest);
 
         }

@@ -5,7 +5,7 @@
     {
       "sport_event": {
         "id": "sr:match:17458343",
-        "scheduled": "2019-03-17T19:45:00+00:00",
+        "scheduled": "2019-04-16T19:45:00+00:00",
         "start_time_tbd": false,
         "tournament_round": {
           "type": "group",
@@ -82,7 +82,7 @@
     {
       "sport_event": {
         "id": "sr:match:15109517",
-        "scheduled": "2019-03-17T19:45:00+00:00",
+        "scheduled": "2019-04-15T19:45:00+00:00",
         "start_time_tbd": false,
         "tournament_round": {
           "type": "group",
@@ -166,7 +166,7 @@
     {
       "sport_event": {
         "id": "sr:match:17737528",
-        "scheduled": "2019-04-11T10:00:00+00:00",
+        "scheduled": "2019-04-14T10:00:00+00:00",
         "start_time_tbd": false,
         "tournament_round": {
           "type": "group",
@@ -227,7 +227,7 @@
     {
       "sport_event": {
         "id": "sr:match:17737528",
-        "scheduled": "2019-04-11T10:00:00+00:00",
+        "scheduled": "2019-04-13T10:00:00+00:00",
         "start_time_tbd": false,
         "tournament_round": {
           "type": "group",
@@ -349,7 +349,7 @@
     {
       "sport_event": {
         "id": "sr:match:17737528",
-        "scheduled": "2019-04-11T10:00:00+00:00",
+        "scheduled": "2019-04-12T10:00:00+00:00",
         "start_time_tbd": false,
         "tournament_round": {
           "type": "group",
@@ -532,7 +532,7 @@
     {
       "sport_event": {
         "id": "sr:match:17737528",
-        "scheduled": "2019-04-11T10:00:00+00:00",
+        "scheduled": "2019-04-17T10:00:00+00:00",
         "start_time_tbd": false,
         "tournament_round": {
           "type": "group",
@@ -593,7 +593,7 @@
     {
       "sport_event": {
         "id": "sr:match:17151749",
-        "scheduled": "2019-04-11T10:00:00+00:00",
+        "scheduled": "2019-04-18T10:00:00+00:00",
         "start_time_tbd": false,
         "tournament_round": {
           "type": "group",
@@ -662,7 +662,7 @@
     {
       "sport_event": {
         "id": "sr:match:17151749",
-        "scheduled": "2019-04-11T10:00:00+00:00",
+        "scheduled": "2019-04-19T10:00:00+00:00",
         "start_time_tbd": false,
         "tournament_round": {
           "type": "group",
@@ -731,7 +731,7 @@
     {
       "sport_event": {
         "id": "sr:match:15163031",
-        "scheduled": "2019-04-11T10:00:00+00:00",
+        "scheduled": "2019-04-20T10:00:00+00:00",
         "start_time_tbd": false,
         "tournament_round": {
           "type": "group",
@@ -793,7 +793,7 @@
     {
       "sport_event": {
         "id": "sr:match:14977477",
-        "scheduled": "2019-03-17T10:30:00+00:00",
+        "scheduled": "2019-04-21T10:30:00+00:00",
         "start_time_tbd": false,
         "tournament_round": {
           "type": "group",

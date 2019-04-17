@@ -4,6 +4,83 @@
   "results": [
     {
       "sport_event": {
+        "id": "sr:match:17458343",
+        "scheduled": "2019-03-17T19:45:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "group",
+          "number": 4,
+          "group": "H"
+        },
+        "season": {
+          "id": "sr:season:62299",
+          "name": "AFC Cup 2019",
+          "start_date": "2019-02-05",
+          "end_date": "2019-11-03",
+          "year": "2019",
+          "tournament_id": "sr:tournament:668"
+        },
+        "tournament": {
+          "id": "sr:tournament:668",
+          "name": "AFC Cup",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:393",
+            "name": "International Clubs"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:142194",
+            "name": "Kaya FC-Iloilo",
+            "country": "Philippines",
+            "country_code": "PHL",
+            "abbreviation": "KAY",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:135864",
+            "name": "PSM Makassar",
+            "country": "Indonesia",
+            "country_code": "IDN",
+            "abbreviation": "MAK",
+            "qualifier": "away"
+          }
+        ],
+        "venue": {
+          "id": "sr:venue:38696",
+          "name": "Iloilo Sports Complex",
+          "capacity": 7000,
+          "city_name": "Iloilo",
+          "country_name": "Philippines",
+          "map_coordinates": "10.72, 122.57",
+          "country_code": "PHL"
+        }
+      },
+      "sport_event_status": {
+        "status": "live",
+        "match_status": "1st_half",
+        "home_score": 0,
+        "away_score": 2,
+        "period": 1,
+        "clock": {
+          "match_time": "29:17"
+        },
+        "period_scores": [
+          {
+            "home_score": 0,
+            "away_score": 2,
+            "type": "regular_period",
+            "number": 1
+          }
+        ]
+      }
+    },
+    {
+      "sport_event": {
         "id": "sr:match:15109517",
         "scheduled": "2019-03-17T19:45:00+00:00",
         "start_time_tbd": false,
@@ -67,6 +144,9 @@
         "home_score": 1,
         "away_score": 4,
         "winner_id": "sr:competitor:2817",
+        "clock": {
+          "match_time": "65:17"
+        },
         "period_scores": [
           {
             "home_score": 0,
@@ -82,6 +162,189 @@
           }
         ]
       }
+    },
+    {
+      "sport_event": {
+        "id": "sr:match:17737528",
+        "scheduled": "2019-04-11T10:00:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "group",
+          "number": 24,
+          "group": "I"
+        },
+        "season": {
+          "id": "sr:season:54569",
+          "name": "U21 18\/19",
+          "start_date": "2018-07-21",
+          "end_date": "2019-05-31",
+          "year": "18\/19",
+          "tournament_id": "sr:tournament:892"
+        },
+        "tournament": {
+          "id": "sr:tournament:892",
+          "name": "U21",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:86",
+            "name": "Ukraine",
+            "country_code": "UKR"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:52679",
+            "name": "Arsenal Kiev",
+            "country": "Ukraine",
+            "country_code": "UKR",
+            "abbreviation": "AKI",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:52672",
+            "name": "FC Oleksandriya",
+            "country": "Ukraine",
+            "country_code": "UKR",
+            "abbreviation": "OLE",
+            "qualifier": "away"
+          }
+        ],
+        "venue": {
+          "id": "sr:venue:4910",
+          "name": "Obolon Arena",
+          "capacity": 5100,
+          "city_name": "Kiev",
+          "country_name": "Ukraine",
+          "map_coordinates": "50.527056,30.507500",
+          "country_code": "UKR"
+        }
+      },
+      "sport_event_status": { "status": "canceled" }
+    },
+    {
+      "sport_event": {
+        "id": "sr:match:17737528",
+        "scheduled": "2019-04-11T10:00:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "group",
+          "number": 24,
+          "group": "I"
+        },
+        "season": {
+          "id": "sr:season:54569",
+          "name": "U21 18\/19",
+          "start_date": "2018-07-21",
+          "end_date": "2019-05-31",
+          "year": "18\/19",
+          "tournament_id": "sr:tournament:892"
+        },
+        "tournament": {
+          "id": "sr:tournament:892",
+          "name": "U21",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:86",
+            "name": "Ukraine",
+            "country_code": "UKR"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:52679",
+            "name": "Arsenal Kiev",
+            "country": "Ukraine",
+            "country_code": "UKR",
+            "abbreviation": "AKI",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:52672",
+            "name": "FC Oleksandriya",
+            "country": "Ukraine",
+            "country_code": "UKR",
+            "abbreviation": "OLE",
+            "qualifier": "away"
+          }
+        ],
+        "venue": {
+          "id": "sr:venue:4910",
+          "name": "Obolon Arena",
+          "capacity": 5100,
+          "city_name": "Kiev",
+          "country_name": "Ukraine",
+          "map_coordinates": "50.527056,30.507500",
+          "country_code": "UKR"
+        }
+      },
+      "sport_event_status": { "status": "postponed" }
+    },
+    {
+      "sport_event": {
+        "id": "sr:match:17737528",
+        "scheduled": "2019-04-11T10:00:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "group",
+          "number": 24,
+          "group": "I"
+        },
+        "season": {
+          "id": "sr:season:54569",
+          "name": "U21 18\/19",
+          "start_date": "2018-07-21",
+          "end_date": "2019-05-31",
+          "year": "18\/19",
+          "tournament_id": "sr:tournament:892"
+        },
+        "tournament": {
+          "id": "sr:tournament:892",
+          "name": "U21",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:86",
+            "name": "Ukraine",
+            "country_code": "UKR"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:52679",
+            "name": "Arsenal Kiev",
+            "country": "Ukraine",
+            "country_code": "UKR",
+            "abbreviation": "AKI",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:52672",
+            "name": "FC Oleksandriya",
+            "country": "Ukraine",
+            "country_code": "UKR",
+            "abbreviation": "OLE",
+            "qualifier": "away"
+          }
+        ],
+        "venue": {
+          "id": "sr:venue:4910",
+          "name": "Obolon Arena",
+          "capacity": 5100,
+          "city_name": "Kiev",
+          "country_name": "Ukraine",
+          "map_coordinates": "50.527056,30.507500",
+          "country_code": "UKR"
+        }
+      },
+      "sport_event_status": { "status": "delayed" }
     },
     {
       "sport_event": {
@@ -268,6 +531,67 @@
     },
     {
       "sport_event": {
+        "id": "sr:match:17737528",
+        "scheduled": "2019-04-11T10:00:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "group",
+          "number": 24,
+          "group": "I"
+        },
+        "season": {
+          "id": "sr:season:54569",
+          "name": "U21 18\/19",
+          "start_date": "2018-07-21",
+          "end_date": "2019-05-31",
+          "year": "18\/19",
+          "tournament_id": "sr:tournament:892"
+        },
+        "tournament": {
+          "id": "sr:tournament:892",
+          "name": "U21",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:86",
+            "name": "Ukraine",
+            "country_code": "UKR"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:52679",
+            "name": "Arsenal Kiev",
+            "country": "Ukraine",
+            "country_code": "UKR",
+            "abbreviation": "AKI",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:52672",
+            "name": "FC Oleksandriya",
+            "country": "Ukraine",
+            "country_code": "UKR",
+            "abbreviation": "OLE",
+            "qualifier": "away"
+          }
+        ],
+        "venue": {
+          "id": "sr:venue:4910",
+          "name": "Obolon Arena",
+          "capacity": 5100,
+          "city_name": "Kiev",
+          "country_name": "Ukraine",
+          "map_coordinates": "50.527056,30.507500",
+          "country_code": "UKR"
+        }
+      },
+      "sport_event_status": { "status": "postponed" }
+    },
+    {
+      "sport_event": {
         "id": "sr:match:17151749",
         "scheduled": "2019-04-11T10:00:00+00:00",
         "start_time_tbd": false,
@@ -322,6 +646,78 @@
         "home_score": 0,
         "away_score": 1,
         "period": 1,
+        "clock": {
+          "match_time": "41:17"
+        },
+        "period_scores": [
+          {
+            "home_score": 0,
+            "away_score": 1,
+            "type": "regular_period",
+            "number": 1
+          }
+        ]
+      }
+    },
+    {
+      "sport_event": {
+        "id": "sr:match:17151749",
+        "scheduled": "2019-04-11T10:00:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "group",
+          "number": 12,
+          "phase": "regular season"
+        },
+        "season": {
+          "id": "sr:season:62817",
+          "name": "Premier League",
+          "start_date": "2019-01-18",
+          "end_date": "2019-04-21",
+          "year": "2019",
+          "tournament_id": "sr:tournament:27821"
+        },
+        "tournament": {
+          "id": "sr:tournament:27821",
+          "name": "Premier League",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:469",
+            "name": "Bangladesh",
+            "country_code": "BGD"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:280243",
+            "name": "Rahmatgonj Mfs",
+            "country": "Bangladesh",
+            "country_code": "BGD",
+            "abbreviation": "RAH",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:178000",
+            "name": "Sheikh Russel KC",
+            "country": "Bangladesh",
+            "country_code": "BGD",
+            "abbreviation": "SHR",
+            "qualifier": "away"
+          }
+        ]
+      },
+      "sport_event_status": {
+        "status": "live",
+        "match_status": "1st_half",
+        "home_score": 0,
+        "away_score": 1,
+        "period": 1,
+        "clock": {
+          "match_time": "11:17"
+        },
         "period_scores": [
           {
             "home_score": 0,

@@ -1,0 +1,165 @@
+{
+  "generated_at": "2019-04-17T09:45:38+00:00",
+  "schema": "http:\/\/schemas.sportradar.com\/bsa\/soccer\/v1\/json\/endpoints\/soccer\/results.json",
+  "results": [
+    {
+      "sport_event": {
+        "id": "sr:match:17458359",
+        "scheduled": "2019-04-17T08:00:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "group",
+          "number": 2,
+          "group": "I"
+        },
+        "season": {
+          "id": "sr:season:62299",
+          "name": "AFC Cup 2019",
+          "start_date": "2019-02-05",
+          "end_date": "2019-11-03",
+          "year": "2019",
+          "tournament_id": "sr:tournament:668"
+        },
+        "tournament": {
+          "id": "sr:tournament:668",
+          "name": "AFC Cup",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:393",
+            "name": "International Clubs"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:42596",
+            "name": "April Twenty-Five",
+            "country": "Korea DPR",
+            "country_code": "PRK",
+            "abbreviation": "ATF",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:42199",
+            "name": "Kitchee SC",
+            "country": "Singapore",
+            "country_code": "SGP",
+            "abbreviation": "KSC",
+            "qualifier": "away"
+          }
+        ],
+        "venue": {
+          "id": "sr:venue:19603",
+          "name": "Rungrado 1St of May Stadium",
+          "capacity": 150000,
+          "city_name": "Pyongyang",
+          "country_name": "Korea DPR",
+          "map_coordinates": "39.049575,125.775219",
+          "country_code": "PRK"
+        }
+      },
+      "sport_event_status": {
+        "status": "live",
+        "match_status": "2nd_half",
+        "home_score": 0,
+        "away_score": 0,
+        "period": 2,
+        "period_scores": [
+          {
+            "home_score": 0,
+            "away_score": 0,
+            "type": "regular_period",
+            "number": 1
+          },
+          {
+            "home_score": 0,
+            "away_score": 0,
+            "type": "regular_period",
+            "number": 2
+          }
+        ]
+      }
+    },
+    {
+      "sport_event": {
+        "id": "sr:match:17458271",
+        "scheduled": "2019-04-17T09:00:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+          "type": "group",
+          "number": 4,
+          "group": "F"
+        },
+        "season": {
+          "id": "sr:season:62299",
+          "name": "AFC Cup 2019",
+          "start_date": "2019-02-05",
+          "end_date": "2019-11-03",
+          "year": "2019",
+          "tournament_id": "sr:tournament:668"
+        },
+        "tournament": {
+          "id": "sr:tournament:668",
+          "name": "AFC Cup",
+          "sport": {
+            "id": "sr:sport:1",
+            "name": "Soccer"
+          },
+          "category": {
+            "id": "sr:category:393",
+            "name": "International Clubs"
+          }
+        },
+        "competitors": [
+          {
+            "id": "sr:competitor:61530",
+            "name": "Yangon United",
+            "country": "Myanmar",
+            "country_code": "MMR",
+            "abbreviation": "YAN",
+            "qualifier": "home"
+          },
+          {
+            "id": "sr:competitor:33130",
+            "name": "Ha Noi FC",
+            "country": "Vietnam",
+            "country_code": "VNM",
+            "abbreviation": "HAN",
+            "qualifier": "away"
+          }
+        ],
+        "venue": {
+          "id": "sr:venue:17873",
+          "name": "Thuwunna Stadium",
+          "capacity": 32000,
+          "city_name": "Yangon",
+          "country_name": "Myanmar",
+          "map_coordinates": "16.821314,96.186828",
+          "country_code": "MMR"
+        }
+      },
+      "sport_event_status": {
+        "status": "live",
+        "match_status": "1st_half",
+        "home_score": 2,
+        "away_score": 2,
+        "period": 1,
+        "clock": {
+          "match_time": "45:00",
+          "stoppage_time": "00:08",
+          "stoppage_time_announced": "03:00"
+        },
+        "period_scores": [
+          {
+            "home_score": 2,
+            "away_score": 2,
+            "type": "regular_period",
+            "number": 1
+          }
+        ]
+      }
+    }
+  ]
+}
