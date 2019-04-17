@@ -77,51 +77,44 @@
             if (sportEventStatusDto.period_scores != null
                     && sportEventStatusDto.period_scores.Any())
             {
-                matchResult.MatchPeriods = sportEventStatusDto.period_scores.Select(periodScore => new MatchPeriod
-                {
-                    HomeScore = periodScore.home_score,
-                    AwayScore = periodScore.away_score,
-                    PeriodType = Enumeration.FromValue<PeriodType>(periodScore.type),
-                    Number = periodScore.number
-                });
+                matchResult.MatchPeriods = sportEventStatusDto.period_scores.Select(
+                    periodScore => 
+                    new MatchPeriod
+                    {
+                        HomeScore = periodScore.home_score,
+                        AwayScore = periodScore.away_score,
+                        PeriodType = Enumeration.FromValue<PeriodType>(periodScore.type),
+                        Number = periodScore.number
+                    });
 
-                if (sportEventStatusDto.clock != null)
-                {
-                    matchResult.MatchTime = sportEventStatusDto.clock.match_time;
-                }
+                matchResult.MatchTime = sportEventStatusDto.clock?.match_time;
             }
 
             return matchResult;
         }
 
         private static LeagueRound BuildLeagueRound(Tournament_Round leagueRoundDto)
-        {
-            return new LeagueRound
+            => new LeagueRound
             {
                 Type = Enumeration.FromValue<LeagueRoundTypes>(leagueRoundDto.type),
                 Name = leagueRoundDto.name,
                 Number = leagueRoundDto.number,
                 Phase = leagueRoundDto.phase
             };
-        }
 
         private static League BuildLeague(
             Tournament leagueDto)
-        {
-            var leagueCategoryDto = leagueDto.category;
-
-            return new League
+            => new League
             {
-                Id = leagueDto.id,
-                Name = leagueDto.name,
+                Id = leagueDto?.id,
+                Name = leagueDto?.name,
                 Category = new LeagueCategory
                 {
-                    Id = leagueCategoryDto?.id,
-                    Name = leagueCategoryDto?.name,
-                    CountryCode = leagueCategoryDto?.country_code
+                    Id = leagueDto?.category?.id,
+                    Name = leagueDto?.category?.name,
+                    CountryCode = leagueDto?.category?.country_code
                 }
             };
-        }
 
         private static List<LiveScore.Features.Teams.Models.Team> BuildTeams(Sport_Event sportEventDto)
         {
