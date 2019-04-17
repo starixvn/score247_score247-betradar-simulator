@@ -2,12 +2,19 @@
 namespace LiveScore.Demo
 {
     using System;
+    using System.IO;
+    using System.Net;
+    using System.Net.Sockets;
+    using System.Text;
     using LiveScore.Features.Leagues;
     using Newtonsoft.Json;
     using Refit;
 
     public class Program
     {
+        private static TcpClient _tcp;
+        private static NetworkStream _netStrm;
+
         static void Main()
         {
             //var leagueApi = RestService.For<ILiveScoreLeagueApi>("http://localhost:64296/api");
@@ -23,16 +30,95 @@ namespace LiveScore.Demo
             //    DateTime.Now.ToString(), 
             //    DateTime.Now.ToString())
             //    .Result;
-            TimeZoneInfo est = TimeZoneInfo.FindSystemTimeZoneById("Canada Central Standard Time");
+            //TimeZoneInfo est = TimeZoneInfo.FindSystemTimeZoneById("Canada Central Standard Time");
 
-            var dateTimeOffset = est.GetUtcOffset(DateTime.UtcNow);
-            //var date = new DateTime(2018, 10, 10, )
-            DateTime targetTime = TimeZoneInfo.ConvertTime(DateTime.UtcNow, est);
+            //var dateTimeOffset = est.GetUtcOffset(DateTime.UtcNow);
+            ////var date = new DateTime(2018, 10, 10, )
+            //DateTime targetTime = TimeZoneInfo.ConvertTime(DateTime.UtcNow, est);
 
-            Console.WriteLine(targetTime.AddSeconds(-dateTimeOffset.TotalSeconds));
-
+            //Console.WriteLine(targetTime.AddSeconds(-dateTimeOffset.TotalSeconds));
+            ListenHttpEvents();
 
 
         }
+
+        public static void ListenEvents()
+        {
+            HttpListener listener = new HttpListener();
+
+            listener.Prefixes.Add("https://api.sportradar.com/soccer-xt3/as/stream/events/subscribe?api_key=x3zffh29jgzbgz74nf6apvvy/");
+            try
+            {
+                listener.Start();
+            }
+            catch (HttpListenerException hlex)
+            {
+                Console.WriteLine("Can't start the agent to listen transaction" + hlex);
+                return;
+            }
+            Console.WriteLine("Now ready to receive events...");
+            while (true)
+            {
+                var context = listener.GetContext(); // get te context 
+
+                StreamReader reader = new StreamReader(context.Response.OutputStream);
+                string text = reader.ReadToEnd();
+
+                Console.WriteLine(text);
+            }
+        }
+
+        public static void ListenHttpEvents()
+        {
+            string AuthServiceUri = "https://api.sportradar.com/soccer-xt3/as/stream/events/subscribe?api_key=x3zffh29jgzbgz74nf6apvvy/";
+            HttpWebRequest httpRequest = HttpWebRequest.Create(AuthServiceUri) as HttpWebRequest;
+            httpRequest.Method = "GET";
+            httpRequest.BeginGetRequestStream(new AsyncCallback(GetRequestStream), httpRequest);
+
+        }
+
+        static void GetRequestStream(IAsyncResult callbackResult)
+        {
+            HttpWebRequest sendRequest = (HttpWebRequest)callbackResult.AsyncState;
+            sendRequest.BeginGetResponse(new AsyncCallback(GetResponseStream), sendRequest);
+        }
+
+        static void GetResponseStream(IAsyncResult callbackResult)
+        {
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)callbackResult.AsyncState;
+                HttpWebResponse response = (HttpWebResponse)request.EndGetResponse(callbackResult);
+                string responseString = string.Empty;
+                Stream streamResponse = response.GetResponseStream();
+                StreamReader reader = new StreamReader(streamResponse);
+                responseString = reader.ReadToEnd();
+                streamResponse.Flush();
+                string result = responseString;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        //public static void Connect()
+        //{
+        //    _tcp = new TcpClient("192.168.255.103", 666);
+        //    _tcp.ReceiveTimeout = 1000;
+        //    _tcp.SendTimeout = 1000;
+        //    _tcp.SendBufferSize = sendBufferSize;
+        //    _tcp.NoDelay = true;
+
+        //    _netStrm = _tcp.GetStream();
+        //    _netStrm?.BeginRead(_byReceived, 0, 8192, DataReceived, null);
+        //}
+
+        //private static void DataReceived(IAsyncResult ar)
+        //{
+
+        //    ar.
+        //    // this code receives the data, pretty boilerplate
+        //}
     }
 }

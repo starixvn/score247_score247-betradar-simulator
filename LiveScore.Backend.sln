@@ -19,9 +19,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unittests", "unittests", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.UnitTests", "test\UnitTests\LiveScore.UnitTests\LiveScore.UnitTests.csproj", "{A146F3F0-E37E-4BC4-8B70-739961FBB609}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore.Soccers", "src\Modules\LiveScore.Soccers\LiveScore.Soccers.csproj", "{D05F13B1-DB9F-43D6-88E9-561C6457B2FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Soccers", "src\Modules\LiveScore.Soccers\LiveScore.Soccers.csproj", "{D05F13B1-DB9F-43D6-88E9-561C6457B2FF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{B346D78F-57FC-4E3E-A9E9-77E796BB0A97}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Jobs", "Jobs", "{7A2D70E1-269D-435A-BB91-265728DA52D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,7 @@ Global
 		{A146F3F0-E37E-4BC4-8B70-739961FBB609} = {72C20749-C34B-4DFC-B557-1D7132149F1A}
 		{D05F13B1-DB9F-43D6-88E9-561C6457B2FF} = {B346D78F-57FC-4E3E-A9E9-77E796BB0A97}
 		{B346D78F-57FC-4E3E-A9E9-77E796BB0A97} = {DAF1D274-483D-4AAA-B945-D6E1E9488FC6}
+		{7A2D70E1-269D-435A-BB91-265728DA52D7} = {DAF1D274-483D-4AAA-B945-D6E1E9488FC6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {246B9D83-0780-47F5-B7E4-DD8514F7293A}

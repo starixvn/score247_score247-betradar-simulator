@@ -41,13 +41,13 @@
                     competitor.name = $"{competitor.name} - {CreateString(5)}";
                 }
 
-                if(date > DateTime.Now)
+                if(date > DateTime.Now.ToUniversalTime())
                 {
                     result.sport_event_status.status = "not_started";
                     result.sport_event_status.match_status = "not_started";
                 }
 
-                if (date < DateTime.Now.Date)
+                if (date < DateTime.Now.ToUniversalTime().Date)
                 {
                     result.sport_event_status.status = "closed";
                     result.sport_event_status.match_status = "ended";
