@@ -12,6 +12,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <CodeAnalysisRuleSet>LiveScore.Demo.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  
+   <PropertyGroup>
+    <!-- Exclude the project from analysis -->
+    <SonarQubeExclude>true</SonarQubeExclude>
+  </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Refit" Version="4.6.99" />

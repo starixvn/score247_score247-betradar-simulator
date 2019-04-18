@@ -73,12 +73,12 @@
                 .GetMatches(1, Arg.Any<DateTime>(), Arg.Any<DateTime>(), "en")
                 .Returns(Task.FromResult(matches as IEnumerable<IMatch>));
 
-            var actualMatches = await matchServiceImpl.GetMatches(
+            var actualMatches = (await matchServiceImpl.GetMatches(
                 1,
                 DateTime.Now,
                 DateTime.Now.AddDays(1),
                 new TimeSpan(1, 0, 0),
-                "en");
+                "en")).ToList();
 
             Assert.True(actualMatches.Any());
             Assert.Equal("11/11/2018 4:04:05 AM", actualMatches.First().EventDate.ToString());

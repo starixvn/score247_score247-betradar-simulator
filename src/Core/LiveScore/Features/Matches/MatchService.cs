@@ -46,8 +46,7 @@
                     match.ChangeEventDateByTimeZone(timeZone);
 
                     return match;
-                })
-                .ToList();
+                });
         }
     }
 }
