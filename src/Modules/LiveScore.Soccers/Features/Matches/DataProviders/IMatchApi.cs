@@ -8,7 +8,8 @@
     {
         Task<DailyScheduleDto> GetDailySchedules(
             int sportId,
-            DateTime date,
+            DateTime from,
+            DateTime to,
             string language);
     }
 }

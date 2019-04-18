@@ -2,6 +2,7 @@
 {
     using System;
     using System.IO;
+    using System.Linq;
     using System.Threading.Tasks;
     using LiveScore.Shared.Configurations;
     using LiveScore.Shared.Models.Dtos;
@@ -19,13 +20,17 @@
 
         public Task<DailyScheduleDto> GetDailySchedules(
             int sportId,
-            DateTime date,
+            DateTime from,
+            DateTime to,
             string language)
         {
             // Temporary for hardcode, please ignore it
             var jsonData = File.ReadAllText($"{appSettings.AppPath}/App_Data/staticdata/daily-schedule.json");
             var dailyScheduleDto = JsonConvert.DeserializeObject<DailyScheduleDto>(jsonData);
 
+
+            dailyScheduleDto.results = dailyScheduleDto.results.Where(result
+                => result.sport_event.scheduled >= from && result.sport_event.scheduled <= to);
             ////foreach (var result in dailyScheduleDto.results)
             ////{
             ////    var dateFormat = string.Format("{0}-{1}-{2}T{3}:{4}:{5}+00:00",

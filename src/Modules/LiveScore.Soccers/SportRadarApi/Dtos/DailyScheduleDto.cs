@@ -8,7 +8,7 @@ namespace LiveScore.Shared.Models.Dtos
     {
         public DateTime generated_at { get; set; }
         public string schema { get; set; }
-        public List<Result> results { get; set; }
+        public IEnumerable<Result> results { get; set; }
     }
 
     public class Result

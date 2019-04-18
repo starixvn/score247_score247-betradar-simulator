@@ -29,7 +29,7 @@
             this.restClient = restClient;
         }
 
-        public async Task<DailyScheduleDto> GetDailySchedules(int sportId, DateTime date, string language)
+        public async Task<DailyScheduleDto> GetDailySchedules(int sportId, DateTime from, DateTime to, string language)
         {
             var sportSetting = appSettings.DataProviderSettings.Sports.FirstOrDefault(sport => sport.Id == sportId);
             if (sportSetting == null)
@@ -37,19 +37,27 @@
                 throw new InvalidOperationException("Please config Sport Setting before using");
             }
 
-            var dailyScheduleDtoSum = new DailyScheduleDto { generated_at = DateTime.Now, results = new List<Result>() };
+            var dailyScheduleDtoSum = new DailyScheduleDto { generated_at = DateTime.Now.ToUniversalTime(), results = new List<Result>() };
+            var fromUtc = from.ToUniversalTime();
+            var toUtc = to.ToUniversalTime();
+            const int dayIncrementIndex = 1;
 
-            foreach (var endPoint in sportSetting.EndPoints)
+            for (var date = fromUtc.Date; date.Date <= toUtc.Date; date = date.AddDays(dayIncrementIndex))
             {
-                var formatEndPointFunc = FormatEndPointFuncs.ContainsKey(endPoint.FormatId)
-                    ? FormatEndPointFuncs[endPoint.FormatId]
-                    : throw new InvalidOperationException($"Missing function format for endpoint {endPoint.Path}");
-                var formattedEndPoint = formatEndPointFunc(endPoint.Path, date, language);
-                var dailyResult = await restClient.ExecuteGetAsync<DailyScheduleDto>(formattedEndPoint);
-
-                if (dailyResult.results != null && dailyResult.results.Any())
+                foreach (var endPoint in sportSetting.EndPoints)
                 {
-                    dailyScheduleDtoSum.results = dailyScheduleDtoSum.results.Concat(dailyResult.results).ToList();
+                    var formatEndPointFunc = FormatEndPointFuncs.ContainsKey(endPoint.FormatId)
+                        ? FormatEndPointFuncs[endPoint.FormatId]
+                        : throw new InvalidOperationException($"Missing function format for endpoint {endPoint.Path}");
+                    var formattedEndPoint = formatEndPointFunc(endPoint.Path, date, language);
+                    var dailyResult = await restClient.ExecuteGetAsync<DailyScheduleDto>(formattedEndPoint);
+
+                    if (dailyResult.results != null 
+                        && dailyResult.results.Any())
+                    {
+                        var resultInRange = dailyResult.results.Where(result => result.sport_event.scheduled >= from && result.sport_event.scheduled <= to);
+                        dailyScheduleDtoSum.results = dailyScheduleDtoSum.results.Concat(resultInRange);
+                    }
                 }
             }
 

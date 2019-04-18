@@ -40,17 +40,8 @@
             var matches = new List<IMatch>();
             var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
 
-            var fromUtc = from.ToUniversalTime();
-            var toUtc = to.ToUniversalTime();
-            const int dayIncrementIndex = 1;
-
-            for (var date = fromUtc.Date; date.Date <= toUtc.Date; date = date.AddDays(dayIncrementIndex))
-            {
-                matches.AddRange(await matchDataAccess.GetMatches(sportId, date.Date, language));
-            }
-
-            return matches
-                .Where(match => match.EventDate > from && match.EventDate < to)
+            return (await matchDataAccess
+                .GetMatches(sportId, from, to, language))
                 .Select(match =>
                 {
                     match.ChangeEventDateByTimeZone(timeZone);
