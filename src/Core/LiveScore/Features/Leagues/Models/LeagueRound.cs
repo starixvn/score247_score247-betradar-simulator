@@ -13,6 +13,8 @@
 
         string Phase { get; }
 
+        string Group { get; }
+
         IEnumerable<Match> Matches { get; }
     }
 
@@ -25,6 +27,8 @@
         public int Number { get; set; }
 
         public string Phase { get; set; }
+
+        public string Group { get; set; }
 
         public IEnumerable<Match> Matches { get; set; }
     }

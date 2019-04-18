@@ -37,7 +37,6 @@
                 return await Task.FromResult(Enumerable.Empty<IMatch>());
             }
 
-            var matches = new List<IMatch>();
             var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
 
             return (await matchDataAccess
@@ -45,8 +44,10 @@
                 .Select(match =>
                 {
                     match.ChangeEventDateByTimeZone(timeZone);
+
                     return match;
-                });
+                })
+                .ToList();
         }
     }
 }

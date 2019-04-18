@@ -6,10 +6,7 @@ namespace LiveScore.Demo
     using System.Net;
     using System.Net.Http;
     using System.Net.Sockets;
-    using System.Text;
-    using LiveScore.Features.Leagues;
-    using Newtonsoft.Json;
-    using Refit;
+    using System.Threading.Tasks;
 
     public class Program
     {
@@ -51,9 +48,9 @@ namespace LiveScore.Demo
 
             //            var httpWResp = (HttpWebResponse)httpWReq.GetResponse();
 
-            ReadPushEvent();
+            ReadPushEvent().GetAwaiter().GetResult();
 
-           //ListenHttpEvents();
+            //ListenHttpEvents();
 
             //using (var client = new HttpClient())
             //{
@@ -72,15 +69,19 @@ namespace LiveScore.Demo
             Console.ReadLine();
         }
 
-        public static void ReadPushEvent()
+        public async static Task ReadPushEvent()
         {
-                HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("https://api.sportradar.com/soccer-xt3/other/stream/events/subscribe?api_key=npc9md73nrwhykuepets3nqf");
-                req.Credentials = new NetworkCredential("admin", "admin");
-                req.KeepAlive = true;
+            HttpClient client = new HttpClient();
 
-                string line = "";
+            HttpResponseMessage response = await client.GetAsync("https://api.sportradar.com/soccer-xt3/other/stream/events/subscribe?api_key=npc9md73nrwhykuepets3nqf");
+            response.EnsureSuccessStatusCode();
+            string responseBody = await response.Content.ReadAsStringAsync();
 
-                WebResponse reply;
+            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("https://api.sportradar.com/soccer-xt3/other/stream/events/subscribe?api_key=npc9md73nrwhykuepets3nqf");
+            req.AllowAutoRedirect = false;
+            string line = "";
+
+            WebResponse reply;
 
             try
             {
@@ -96,20 +97,59 @@ namespace LiveScore.Demo
                 reply = (HttpWebResponse)req.GetResponse();
             }
 
-                Stream stream = reply.GetResponseStream();
+            Stream stream = reply.GetResponseStream();
 
-                System.Diagnostics.Debug.WriteLine(reply.ContentType);
+            System.Diagnostics.Debug.WriteLine(reply.ContentType);
 
-                StreamReader reader = new StreamReader(stream);
-                do
-                {
-                    line = reader.ReadLine();
-                    Console.WriteLine(line);
+            StreamReader reader = new StreamReader(stream);
+            do
+            {
+                line = reader.ReadLine();
+                Console.WriteLine(line);
 
-                    System.Threading.Thread.Sleep(30 * 1000);
+                System.Threading.Thread.Sleep(30 * 1000);
 
-                } while (line.Length > 0);
-            
+            } while (line.Length > 0);
+
+
+        }
+
+        public static void ReadPushEvent1()
+        {
+            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("https://api.sportradar.com/soccer-xt3/other/stream/events/subscribe?api_key=npc9md73nrwhykuepets3nqf");
+            req.AllowAutoRedirect = false;
+            string line = "";
+
+            WebResponse reply;
+
+            try
+            {
+                reply = (HttpWebResponse)req.GetResponse();
+
+            }
+            catch (WebException e)
+            {
+
+                reply = e.Response;
+                req = (HttpWebRequest)HttpWebRequest.Create(reply.Headers["Location"]);
+                req.KeepAlive = true;
+                reply = (HttpWebResponse)req.GetResponse();
+            }
+
+            Stream stream = reply.GetResponseStream();
+
+            System.Diagnostics.Debug.WriteLine(reply.ContentType);
+
+            StreamReader reader = new StreamReader(stream);
+            do
+            {
+                line = reader.ReadLine();
+                Console.WriteLine(line);
+
+                System.Threading.Thread.Sleep(30 * 1000);
+
+            } while (line.Length > 0);
+
         }
 
         public static void ListenEvents()

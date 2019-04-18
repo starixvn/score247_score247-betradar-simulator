@@ -100,7 +100,8 @@
                 Type = Enumeration.FromValue<LeagueRoundTypes>(leagueRoundDto.type),
                 Name = leagueRoundDto.name,
                 Number = leagueRoundDto.number,
-                Phase = leagueRoundDto.phase
+                Phase = leagueRoundDto.phase,
+                Group = leagueRoundDto.group
             };
 
         private static League BuildLeague(

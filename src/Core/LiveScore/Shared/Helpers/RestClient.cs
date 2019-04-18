@@ -31,7 +31,6 @@
             ValidateEndPoint(endPoint);
 
             var request = new RestRequest(endPoint, method);
-            request.JsonSerializer = NewtonsoftJsonSerializer.Default;
 
             if (data != null)
             {
@@ -42,7 +41,9 @@
 
             if (response.IsSuccessful
 #pragma warning disable RECS0017 // Possible compare of value type with 'null'
+#pragma warning disable S2955 // Generic parameters not constrained to reference types should not be compared to "null"
                 || response.Data != null)
+#pragma warning restore S2955 // Generic parameters not constrained to reference types should not be compared to "null"
 #pragma warning restore RECS0017 // Possible compare of value type with 'null'
             {
                 return response.Data;
