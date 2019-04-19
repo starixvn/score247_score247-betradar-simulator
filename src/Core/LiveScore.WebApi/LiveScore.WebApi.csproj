@@ -31,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Modules\LiveScore.Basketballs\LiveScore.Basketballs.csproj" />
     <ProjectReference Include="..\..\Modules\LiveScore.Soccers\LiveScore.Soccers.csproj" />
     <ProjectReference Include="..\LiveScore\LiveScore.csproj" />
   </ItemGroup>

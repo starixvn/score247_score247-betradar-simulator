@@ -3,22 +3,7 @@
     using System.Collections.Generic;
     using LiveScore.Features.Matches.Models;
 
-    public interface ILeagueRound
-    {
-        LeagueRoundTypes Type { get; }
-
-        string Name { get; }
-
-        int Number { get; }
-
-        string Phase { get; }
-
-        string Group { get; }
-
-        IEnumerable<Match> Matches { get; }
-    }
-
-    public class LeagueRound : ILeagueRound
+    public class LeagueRound
     {
         public LeagueRoundTypes Type { get; set; }
 

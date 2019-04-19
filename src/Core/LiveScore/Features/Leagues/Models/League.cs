@@ -10,9 +10,9 @@
 
         string Flag { get; }
 
-        ILeagueCategory Category { get; }
+        LeagueCategory Category { get; }
 
-        IEnumerable<ILeagueRound> Rounds { get; }
+        IEnumerable<LeagueRound> Rounds { get; }
 
         IEnumerable<ITeam> Teams { get; }
     }
@@ -23,9 +23,9 @@
 
         public string Flag { get; set; }
 
-        public ILeagueCategory Category { get; set; }
+        public LeagueCategory Category { get; set; }
 
-        public IEnumerable<ILeagueRound> Rounds { get; set; }
+        public IEnumerable<LeagueRound> Rounds { get; set; }
 
         public IEnumerable<ITeam> Teams { get; set; }
     }

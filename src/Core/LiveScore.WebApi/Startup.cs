@@ -24,7 +24,6 @@
 
     public class Startup
     {
-        private const int SoccerSportId = 1;
         private const string SportRadarSettingPath = "LiveScores:SportRadarSetting";
         private const string TimeZoneSettingsPath = "LiveScores:TimeZoneSettings";
         private readonly IHostingEnvironment hostingEnvironment;
@@ -59,10 +58,8 @@
                 services.AddSingleton((InstanceFactory)new InstanceFactoryImpl(
                     new Dictionary<int, MatchDataAccess>
                     {
-                    {
-                        SoccerSportId,
-                        new MatchDataAccessImpl(GetMatchApiInstance(appSettings))
-                    }
+                        { SportConstants.SoccerId, new MatchDataAccessImpl(GetMatchApiInstance(appSettings)) },
+                        { SportConstants.BasketballId, new LiveScore.Basketballs.Features.Matches.MatchDataAccessImpl() }
                     }
                     ));
 

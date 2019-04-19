@@ -12,7 +12,7 @@
 
         ILeague League { get; }
 
-        ILeagueRound LeagueRound { get; }
+        LeagueRound LeagueRound { get; }
 
         IEnumerable<ITeam> Teams { get; }
 
@@ -41,7 +41,7 @@
 
         public ILeague League { get; set; }
 
-        public ILeagueRound LeagueRound { get; set; }
+        public LeagueRound LeagueRound { get; set; }
 
         public int Attendance { get; set; }
 
