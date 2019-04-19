@@ -10,8 +10,7 @@ namespace LiveScore.Demo
 
     public class Program
     {
-        private static TcpClient _tcp;
-        private static NetworkStream _netStrm;
+        
 
         static void Main()
         {

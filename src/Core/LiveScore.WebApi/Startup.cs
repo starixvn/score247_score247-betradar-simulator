@@ -4,13 +4,11 @@
     using System.Collections.Generic;
     using Fanex.Logging;
     using Fanex.Logging.Sentry;
-    using LiveScore.Features.Leagues;
     using LiveScore.Features.Matches;
     using LiveScore.Shared;
     using LiveScore.Shared.Configurations;
     using LiveScore.Shared.Helpers;
     using LiveScore.Shared.SportRadarApi.Models;
-    using LiveScore.Soccers.Features.Leagues;
     using LiveScore.Soccers.Features.Matches;
     using LiveScore.Soccers.Features.Matches.DataProviders;
     using LiveScore.WebApi.Shared.Configurations;
@@ -56,8 +54,6 @@
 
                 var appSettings = new AppSettings(hostingEnvironment, Configuration, sportRadarDataProviderSettings, timeZoneSettings);
                 services.AddSingleton<IAppSettings>(appSettings);
-                services.AddSingleton<LeagueService, LeagueServiceImpl>();
-                services.AddSingleton<ILeagueApi, StaticLeagueApi>();
                 services.AddSingleton<MatchService, MatchServiceImpl>();
                 services.AddSingleton(CreateRestSharpClient(sportRadarDataProviderSettings));
                 services.AddSingleton((InstanceFactory)new InstanceFactoryImpl(
@@ -67,10 +63,6 @@
                         SoccerSportId,
                         new MatchDataAccessImpl(GetMatchApiInstance(appSettings))
                     }
-                    },
-                    new Dictionary<int, LeagueDataAccess>
-                    {
-                    { SoccerSportId, new LeagueDataAccessImpl() }
                     }
                     ));
 
