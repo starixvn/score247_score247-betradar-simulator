@@ -30,7 +30,7 @@
                           "\"rounds\": null," +
                           "\"teams\": null," +
                           "\"id\": \"sr:tournament:668\"," +
-                          "\"name\": \"AFC Cup\"}"),
+                          "\"name\": \"Basketball Cup\"}"),
                     LeagueRound = JsonConvert.DeserializeObject<LeagueRound>(
                         "{\"type\": {" +
                         "\"displayName\": \"Group\"," +
@@ -53,7 +53,7 @@
                             "\"abbreviation\": \"KAY\"," +
                             "\"substitutions\": null," +
                             "\"id\": \"sr:competitor:142194\"," +
-                            "\"name\": \"Kaya FC-Iloilo\"" +
+                            "\"name\": \"Kaya FC-Iloilo - Baseketball\"" +
                           "}," +
                           "{" +
                             "\"country\": \"Indonesia\"," +
@@ -67,7 +67,7 @@
                             "\"abbreviation\": \"MAK\"," +
                             "\"substitutions\": null," +
                             "\"id\": \"sr:competitor:135864\"," +
-                            "\"name\": \"PSM Makassar\"" +
+                            "\"name\": \"PSM Makassar - Baseketball\"" +
                           "}" +
                         "]"),
                     MatchResult = new MatchResult
