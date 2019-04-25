@@ -19,10 +19,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Refit" Version="4.6.99" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\core\LiveScore\LiveScore.csproj" />
   </ItemGroup>
 
