@@ -125,7 +125,7 @@ namespace LiveScore.WebApi
                 .UseSwagger()
                 .UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint($"../swagger/v1/swagger.json", "Chatbot API Docs");
+                    c.SwaggerEndpoint($"../swagger/v1/swagger.json", "Score247 API Docs");
                 })
                 .UseMvc(routes =>
                 {
