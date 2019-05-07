@@ -5,7 +5,7 @@
     {
       "sport_event": {
         "id": "sr:match:17458343",
-        "scheduled": "2019-04-16T19:45:00+00:00",
+        "scheduled": "2019-05-07T19:45:00+00:00",
         "start_time_tbd": false,
         "tournament_round": {
           "type": "group",
@@ -166,7 +166,7 @@
     {
       "sport_event": {
         "id": "sr:match:17737528",
-        "scheduled": "2019-04-14T10:00:00+00:00",
+        "scheduled": "2019-05-08T10:00:00+00:00",
         "start_time_tbd": false,
         "tournament_round": {
           "type": "group",
@@ -222,7 +222,7 @@
           "country_code": "UKR"
         }
       },
-      "sport_event_status": { "status": "canceled" }
+      "sport_event_status": { "status": "cancelled" }
     },
     {
       "sport_event": {
@@ -288,7 +288,7 @@
     {
       "sport_event": {
         "id": "sr:match:17737528",
-        "scheduled": "2019-04-11T10:00:00+00:00",
+        "scheduled": "2019-05-09T10:00:00+00:00",
         "start_time_tbd": false,
         "tournament_round": {
           "type": "group",
@@ -410,7 +410,7 @@
     {
       "sport_event": {
         "id": "sr:match:17737528",
-        "scheduled": "2019-04-11T10:00:00+00:00",
+        "scheduled": "2019-05-09T10:00:00+00:00",
         "start_time_tbd": false,
         "tournament_round": {
           "type": "group",
@@ -471,7 +471,7 @@
     {
       "sport_event": {
         "id": "sr:match:17737528",
-        "scheduled": "2019-04-11T10:00:00+00:00",
+        "scheduled": "2019-05-09T10:00:00+00:00",
         "start_time_tbd": false,
         "tournament_round": {
           "type": "group",
