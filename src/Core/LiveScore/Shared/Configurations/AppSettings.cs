@@ -8,6 +8,8 @@
 
         bool EnabledStaticData { get; }
 
+        bool AutoGenerateStatus { get; }
+
         IDataProviderSettings DataProviderSettings { get; }
 
         IDictionary<int, string> TimeZoneSettings { get; }

@@ -21,6 +21,7 @@
             this.hostingEnvironment = hostingEnvironment ?? throw new ArgumentNullException(nameof(hostingEnvironment));
             this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             EnabledStaticData = GetValue<bool>("LiveScores:EnabledStaticData");
+            AutoGenerateStatus = GetValue<bool>("LiveScores:AutoGenerateStatus");
             DataProviderSettings = dataProviderSettings;
             TimeZoneSettings = timeZoneSettings;
         }
@@ -32,6 +33,8 @@
         public IDataProviderSettings DataProviderSettings { get; }
 
         public IDictionary<int, string> TimeZoneSettings { get; }
+
+        public bool AutoGenerateStatus { get; }
 
         private T GetValue<T>(string key)
         {
