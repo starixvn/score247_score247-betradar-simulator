@@ -7,6 +7,15 @@
         ////not_started – The match is scheduled to be played
         public static readonly MatchStatus NotStarted = new MatchStatus("not_started", nameof(NotStarted));
 
+        ////postponed – The match has been postponed to a future date
+        public static readonly MatchStatus Postponed = new MatchStatus("postponed", nameof(Postponed));
+
+        ////start_delayed – The start of the match has been temporarily delayed
+        public static readonly MatchStatus StartDelayed = new MatchStatus("start_delayed", nameof(StartDelayed));
+
+        ////cancelled – The match has been canceled and will not be played
+        public static readonly MatchStatus Cancelled = new MatchStatus("cancelled", nameof(Cancelled));
+
         ////live – The match is currently in progress
         public static readonly MatchStatus Live = new MatchStatus("live", nameof(Live));
 
@@ -38,25 +47,7 @@
         public static readonly MatchStatus AwaitingExtraTime = new MatchStatus("awaiting_extra_time", nameof(AwaitingExtraTime));
 
         ////interrupted – The match has been interrupted
-        public static readonly MatchStatus Interrupted = new MatchStatus("not_stainterruptedrted", nameof(Interrupted));
-
-        ////abandoned – The match has been abandoned
-        public static readonly MatchStatus Abandoned = new MatchStatus("abandoned", nameof(Abandoned));
-
-        ////postponed – The match has been postponed to a future date
-        public static readonly MatchStatus Postponed = new MatchStatus("postponed", nameof(Postponed));
-
-        ////delayed – The match has been temporarily delayed and will be continued;
-        public static readonly MatchStatus Delayed = new MatchStatus("delayed", nameof(Delayed));
-
-        ////cancelled – The match has been canceled and will not be played
-        public static readonly MatchStatus Cancelled = new MatchStatus("cancelled", nameof(Cancelled));
-
-        ////ended – The match is over
-        public static readonly MatchStatus Ended = new MatchStatus("ended", nameof(Ended));
-
-        ////closed – The match results have been confirmed
-        public static readonly MatchStatus Closed = new MatchStatus("closed", nameof(Closed));
+        public static readonly MatchStatus Interrupted = new MatchStatus("interrupted", nameof(Interrupted));
 
         ////halftime – The match is in halftime
         public static readonly MatchStatus Halftime = new MatchStatus("halftime", nameof(Halftime));
@@ -67,17 +58,23 @@
         ////extra_time – Extra time has been added
         public static readonly MatchStatus ExtraTime = new MatchStatus("extra_time", nameof(ExtraTime));
 
+        ////delayed – The match has been temporarily delayed and will be continued;
+        public static readonly MatchStatus Delayed = new MatchStatus("delayed", nameof(Delayed));
+
+        ////abandoned – The match has been abandoned
+        public static readonly MatchStatus Abandoned = new MatchStatus("abandoned", nameof(Abandoned));       
+
+        ////ended – The match is over
+        public static readonly MatchStatus Ended = new MatchStatus("ended", nameof(Ended));
+
+        ////closed – The match results have been confirmed
+        public static readonly MatchStatus Closed = new MatchStatus("closed", nameof(Closed));
+
         ////aet – The match has ended after extra time
         public static readonly MatchStatus EndedExtraTime = new MatchStatus("aet", nameof(EndedExtraTime));
 
         ////ap – The match has ended after penalties
         public static readonly MatchStatus EndedAfterPenalties = new MatchStatus("ap", nameof(EndedAfterPenalties));
-
-        ////start_delayed – The start of the match has been temporarily delayed
-        public static readonly MatchStatus StartDelayed = new MatchStatus("start_delayed", nameof(StartDelayed));
-
-        ////canceled – The match has been canceled and will not be played
-        public static readonly MatchStatus Canceled = new MatchStatus("canceled", nameof(Canceled));
 
         public MatchStatus()
         {
