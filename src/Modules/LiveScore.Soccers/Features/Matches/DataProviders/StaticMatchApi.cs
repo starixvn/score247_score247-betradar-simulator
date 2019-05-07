@@ -63,7 +63,7 @@ namespace LiveScore.Soccers.Features.Matches.DataProviders
                 {
                     var randomStatus = matchStatuses[random.Next(0, matchStatuses.Length)];
 
-                    result.sport_event_status.status = randomStatus;
+                    result.sport_event_status.status = CreateEventStatusPre();
                     result.sport_event_status.match_status = randomStatus;
 
                     result.sport_event_status.home_score = 0;
@@ -72,8 +72,8 @@ namespace LiveScore.Soccers.Features.Matches.DataProviders
 
                 if (result.sport_event.scheduled < DateTime.Now.ToUniversalTime().Date)
                 {
-                    result.sport_event_status.status = "closed";
-                    result.sport_event_status.match_status = "ended";
+                    result.sport_event_status.status = MatchStatus.Closed.Value;
+                    result.sport_event_status.match_status = CreateMatchStatusPost();
                 }
             }
         }
@@ -113,6 +113,33 @@ namespace LiveScore.Soccers.Features.Matches.DataProviders
             }
 
             return new string(chars);
+        }
+
+        private string CreateEventStatusPre()
+        {
+            var eventStatuses = new[]
+               {
+                    MatchStatus.NotStarted.Value,
+                    MatchStatus.Postponed.Value,
+                    MatchStatus.StartDelayed.Value,
+                    MatchStatus.Cancelled.Value
+                };
+
+            return eventStatuses[random.Next(0, eventStatuses.Length)];
+        }
+
+        private string CreateMatchStatusPost()
+        {
+            var eventStatuses = new[]
+               {
+                    MatchStatus.Abandoned.Value,
+                    MatchStatus.Ended.Value,
+                    MatchStatus.EndedAfterPenalties.Value,
+                    MatchStatus.EndedExtraTime.Value,
+                    MatchStatus.FullTime.Value
+                };
+
+            return eventStatuses[random.Next(0, eventStatuses.Length)];
         }
     }
 }
