@@ -41,34 +41,6 @@ namespace LiveScore.Soccers.Features.Matches.DataProviders
             return Task.FromResult(dailyScheduleDto);
         }
 
-        private void AutoGenerateScheduledDate(Result result, DateTime date)
-        {
-            var dates = new[]
-            {
-                date.AddDays(-3),
-                date.AddDays(-2),
-                date.AddDays(-1),
-                date,
-                date.AddDays(1),
-                date.AddDays(2),
-                date.AddDays(3)
-            };
-
-            var randomDate = dates[random.Next(0, dates.Length)];
-
-            var dateFormat = string.Format("{0}-{1}-{2}T{3}:{4}:{5}+00:00",
-               randomDate.Year.ToString("0000"),
-               randomDate.Month.ToString("00"),
-               randomDate.Day.ToString("00"),
-               result.sport_event.scheduled.ToUniversalTime().Hour.ToString("00"),
-               result.sport_event.scheduled.ToUniversalTime().Minute.ToString("00"),
-               result.sport_event.scheduled.ToUniversalTime().Second.ToString("00"));
-
-            result.sport_event.scheduled = DateTime.Parse(dateFormat);
-
-
-        }
-
         private void AutoGenerateStatus(DailyScheduleDto dailyScheduleDto, DateTime date)
         {
             foreach (var result in dailyScheduleDto.results)
@@ -87,20 +59,46 @@ namespace LiveScore.Soccers.Features.Matches.DataProviders
 
                 AutoGenerateScheduledDate(result, date);
 
-                if (date > DateTime.Now.ToUniversalTime())
+                if (result.sport_event.scheduled > DateTime.Now.ToUniversalTime())
                 {
                     var randomStatus = matchStatuses[random.Next(0, matchStatuses.Length)];
 
                     result.sport_event_status.status = randomStatus;
                     result.sport_event_status.match_status = randomStatus;
+
+                    result.sport_event_status.home_score = 0;
+                    result.sport_event_status.away_score = 0;
                 }
 
-                if (date < DateTime.Now.ToUniversalTime().Date)
+                if (result.sport_event.scheduled < DateTime.Now.ToUniversalTime().Date)
                 {
                     result.sport_event_status.status = "closed";
                     result.sport_event_status.match_status = "ended";
                 }
             }
+        }
+
+        private void AutoGenerateScheduledDate(Result result, DateTime date)
+        {
+            var dates = new[]
+            {
+                date.AddDays(-1),
+                date,
+                date.AddDays(1),
+                date.AddDays(2),
+            };
+
+            var randomDate = dates[random.Next(0, dates.Length)];
+
+            var dateFormat = string.Format("{0}-{1}-{2}T{3}:{4}:{5}+00:00",
+               randomDate.Year.ToString("0000"),
+               randomDate.Month.ToString("00"),
+               randomDate.Day.ToString("00"),
+               result.sport_event.scheduled.ToUniversalTime().Hour.ToString("00"),
+               result.sport_event.scheduled.ToUniversalTime().Minute.ToString("00"),
+               result.sport_event.scheduled.ToUniversalTime().Second.ToString("00"));
+
+            result.sport_event.scheduled = DateTime.Parse(dateFormat);
         }
 
         internal static string CreateString(int stringLength)
