@@ -7,18 +7,18 @@ namespace LiveScore.WebApi.Features.Matches
     using LiveScore.Features.Matches;
     using LiveScore.Features.Matches.Models;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.SignalR;
-    using Microsoft.AspNetCore.SignalR.Client;
 
     [Route("api/[controller]")]
     [ApiController]
     public class MatchController : ControllerBase
     {
         private readonly MatchService matchService;
+        private readonly MatchStatusService matchStatusService;
 
-        public MatchController(MatchService matchService)
+        public MatchController(MatchService matchService, MatchStatusService matchStatusService)
         {
             this.matchService = matchService;
+            this.matchStatusService = matchStatusService;
         }
 
         [HttpGet("GetMatches")]
@@ -36,15 +36,11 @@ namespace LiveScore.WebApi.Features.Matches
         public async Task PushMatchEvent(
             string text)
         {
-            var hubConnection = new HubConnectionBuilder()
-                .WithUrl($"http://localhost:64296/MatchStatusHub")
-                .Build();
+            await matchStatusService.Connect();
 
-            await hubConnection.StartAsync();
+            await matchStatusService.Send(text);
 
-            await hubConnection.InvokeAsync("SendMessage", text);
-
-            await hubConnection.StopAsync();
+            await matchStatusService.Disconnect();
         }
     }
 }

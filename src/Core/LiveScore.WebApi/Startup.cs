@@ -11,6 +11,7 @@ namespace LiveScore.WebApi
     using LiveScore.Soccers.Features.Matches;
     using LiveScore.Soccers.Features.Matches.DataProviders;
     using LiveScore.WebApi.Features.Matches;
+    using LiveScore.WebApi.Hubs;
     using LiveScore.WebApi.Shared.Configurations;
     using LiveScore.WebApi.Shared.Middlewares;
     using Microsoft.AspNetCore.Builder;
@@ -56,6 +57,7 @@ namespace LiveScore.WebApi
                 var appSettings = new AppSettings(hostingEnvironment, Configuration, sportRadarDataProviderSettings, timeZoneSettings);
                 services.AddSingleton<IAppSettings>(appSettings);
                 services.AddSingleton<MatchService, MatchServiceImpl>();
+                services.AddSingleton<MatchStatusService, MatchStatusServiceImpl>();
                 services.AddSingleton(CreateRestSharpClient(sportRadarDataProviderSettings));
                 services.AddSingleton((InstanceFactory)new InstanceFactoryImpl(
                     new Dictionary<int, MatchDataAccess>
@@ -126,7 +128,7 @@ namespace LiveScore.WebApi
 
             app.UseSignalR(routes =>
             {
-                routes.MapHub<MatchStatusHub>("/MatchStatusHub");
+                routes.MapHub<MatchStatusHub>("/hubs/MatchStatusHub");
             });
 
             app

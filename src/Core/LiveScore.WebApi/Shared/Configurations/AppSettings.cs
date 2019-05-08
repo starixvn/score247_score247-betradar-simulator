@@ -22,6 +22,7 @@
             this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             EnabledStaticData = GetValue<bool>("LiveScores:EnabledStaticData");
             AutoGenerateStatus = GetValue<bool>("LiveScores:AutoGenerateStatus");
+            Host = GetValue<string>("LiveScores:AppUrl");
             DataProviderSettings = dataProviderSettings;
             TimeZoneSettings = timeZoneSettings;
         }
@@ -29,6 +30,8 @@
         public string AppPath => hostingEnvironment.ContentRootPath;
 
         public bool EnabledStaticData { get; }
+
+        public string Host { get; }
 
         public IDataProviderSettings DataProviderSettings { get; }
 

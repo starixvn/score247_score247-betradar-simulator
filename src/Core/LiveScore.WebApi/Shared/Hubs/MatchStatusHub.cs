@@ -1,4 +1,4 @@
-﻿namespace LiveScore.WebApi.Features.Matches
+﻿namespace LiveScore.WebApi.Hubs
 {
     using Microsoft.AspNetCore.SignalR;
     using System.Threading.Tasks;
@@ -7,7 +7,7 @@
     {
         public async Task SendMessage(string message)
         {
-            await Clients.All.SendAsync("SendMessage", message);
+            await Clients.All.SendAsync("Push", message);
         }
     }
 }
