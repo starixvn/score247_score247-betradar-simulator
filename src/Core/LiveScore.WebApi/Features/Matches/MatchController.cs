@@ -7,6 +7,8 @@ namespace LiveScore.WebApi.Features.Matches
     using LiveScore.Features.Matches;
     using LiveScore.Features.Matches.Models;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.SignalR;
+    using Microsoft.AspNetCore.SignalR.Client;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -28,6 +30,21 @@ namespace LiveScore.WebApi.Features.Matches
             string language = "en")
         {
             return await matchService.GetMatches(sportId, from, to, timeZone, language);
+        }
+
+        [HttpPost("PushMatchEvent")]
+        public async Task PushMatchEvent(
+            string text)
+        {
+            var hubConnection = new HubConnectionBuilder()
+                .WithUrl($"http://localhost:64296/MatchStatusHub")
+                .Build();
+
+            await hubConnection.StartAsync();
+
+            await hubConnection.InvokeAsync("SendMessage", text);
+
+            await hubConnection.StopAsync();
         }
     }
 }

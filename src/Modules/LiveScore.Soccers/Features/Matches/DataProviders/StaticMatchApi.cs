@@ -45,36 +45,45 @@ namespace LiveScore.Soccers.Features.Matches.DataProviders
         {
             foreach (var result in dailyScheduleDto.results)
             {
-                foreach (var competitor in result.sport_event.competitors)
-                {
-                    competitor.name = $"{competitor.name} - {CreateString(5)}";
-                }
+                AutoGenerateCompetitorName(result);
 
                 AutoGenerateScheduledDate(result, date);
+                AutoGenerateStatus(result);
+            }
+        }
 
-                if (result.sport_event.scheduled > DateTime.Now.ToUniversalTime())
+        private static void AutoGenerateCompetitorName(Result result)
+        {
+            foreach (var competitor in result.sport_event.competitors)
+            {
+                competitor.name = $"{competitor.name} - {CreateString(5)}";
+            }
+        }
+
+        private void AutoGenerateStatus(Result result)
+        {
+            if (result.sport_event.scheduled > DateTime.Now.ToUniversalTime())
+            {
+                var randomStatus = CreateEventStatusPre();
+
+                result.sport_event_status.status = randomStatus;
+                result.sport_event_status.match_status = randomStatus;
+
+                result.sport_event_status.home_score = 0;
+                result.sport_event_status.away_score = 0;
+            }
+
+            if (result.sport_event.scheduled < DateTime.Now.ToUniversalTime().Date)
+            {
+                result.sport_event_status.status = CreateEventStatusPost();
+
+                if (result.sport_event_status.status.Equals(MatchStatus.Abandoned.Value))
                 {
-                    var randomStatus = CreateEventStatusPre();
-
-                    result.sport_event_status.status = randomStatus;
-                    result.sport_event_status.match_status = randomStatus;
-
-                    result.sport_event_status.home_score = 0;
-                    result.sport_event_status.away_score = 0;
+                    result.sport_event_status.match_status = MatchStatus.Abandoned.Value;
                 }
-
-                if (result.sport_event.scheduled < DateTime.Now.ToUniversalTime().Date)
+                else
                 {
-                    result.sport_event_status.status = CreateEventStatusPost();
-
-                    if (result.sport_event_status.status.Equals(MatchStatus.Abandoned.Value))
-                    {
-                        result.sport_event_status.match_status = MatchStatus.Abandoned.Value;
-                    }
-                    else
-                    {
-                        result.sport_event_status.match_status = CreateMatchStatusPost();
-                    }                    
+                    result.sport_event_status.match_status = CreateMatchStatusPost();
                 }
             }
         }
