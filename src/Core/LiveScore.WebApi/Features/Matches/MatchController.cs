@@ -6,19 +6,21 @@ namespace LiveScore.WebApi.Features.Matches
     using System.Threading.Tasks;
     using LiveScore.Features.Matches;
     using LiveScore.Features.Matches.Models;
+    using LiveScore.WebApi.Hubs;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.SignalR;
 
     [Route("api/[controller]")]
     [ApiController]
     public class MatchController : ControllerBase
     {
         private readonly MatchService matchService;
-        private readonly MatchStatusService matchStatusService;
+        IHubContext<MatchStatusHub> hubContext;
 
-        public MatchController(MatchService matchService, MatchStatusService matchStatusService)
+        public MatchController(MatchService matchService, IHubContext<MatchStatusHub> hubContext)
         {
-            this.matchService = matchService;
-            this.matchStatusService = matchStatusService;
+            this.matchService = matchService;            
+            this.hubContext = hubContext;
         }
 
         [HttpGet("GetMatches")]
@@ -28,19 +30,15 @@ namespace LiveScore.WebApi.Features.Matches
             DateTime to,
             TimeSpan timeZone,
             string language = "en")
-        {
+        {  
             return await matchService.GetMatches(sportId, from, to, timeZone, language);
         }
 
         [HttpPost("PushMatchEvent")]
         public async Task PushMatchEvent(
             string text)
-        {
-            await matchStatusService.Connect();
-
-            await matchStatusService.Send(text);
-
-            await matchStatusService.Disconnect();
+        {            
+            await hubContext.Clients.All.SendAsync("Push", text);
         }
     }
 }

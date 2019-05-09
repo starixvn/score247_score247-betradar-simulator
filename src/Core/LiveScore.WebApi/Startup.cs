@@ -56,8 +56,7 @@ namespace LiveScore.WebApi
 
                 var appSettings = new AppSettings(hostingEnvironment, Configuration, sportRadarDataProviderSettings, timeZoneSettings);
                 services.AddSingleton<IAppSettings>(appSettings);
-                services.AddSingleton<MatchService, MatchServiceImpl>();
-                services.AddSingleton<MatchStatusService, MatchStatusServiceImpl>();
+                services.AddSingleton<MatchService, MatchServiceImpl>();                
                 services.AddSingleton(CreateRestSharpClient(sportRadarDataProviderSettings));
                 services.AddSingleton((InstanceFactory)new InstanceFactoryImpl(
                     new Dictionary<int, MatchDataAccess>
