@@ -23,7 +23,7 @@
         public PushServiceImpl(IAppSettings appSettings)
         {
             hubConnection = new HubConnectionBuilder()
-                .WithUrl($"{appSettings.Host}/hubs/MatchStatusHub")
+                .WithUrl($"{appSettings.Host}/hubs/MatchHub")
                 .Build();
         }
 
