@@ -72,8 +72,7 @@ namespace LiveScore.Soccers.Features.Matches.DataProviders
                 result.sport_event_status.home_score = 0;
                 result.sport_event_status.away_score = 0;
             }
-
-            if (result.sport_event.scheduled < DateTime.Now.ToUniversalTime().Date)
+            else if (result.sport_event.scheduled < DateTime.Now.ToUniversalTime().Date)
             {
                 result.sport_event_status.status = CreateEventStatusPost();
 
@@ -85,6 +84,11 @@ namespace LiveScore.Soccers.Features.Matches.DataProviders
                 {
                     result.sport_event_status.match_status = CreateMatchStatusPost();
                 }
+            }
+            else
+            {
+                result.sport_event_status.status = MatchStatus.Live.Value;
+                result.sport_event_status.match_status = CreateLiveMatchStatus();
             }
         }
 
@@ -157,6 +161,27 @@ namespace LiveScore.Soccers.Features.Matches.DataProviders
                {
                     MatchStatus.Abandoned.Value,                   
                     MatchStatus.Closed.Value
+                };
+
+            return eventStatuses[random.Next(0, eventStatuses.Length)];
+        }
+
+        private string CreateLiveMatchStatus()
+        {
+            var eventStatuses = new[]
+               {
+                    MatchStatus.FirstHaft.Value,
+                    MatchStatus.SecondHaft.Value,
+                    MatchStatus.Overtime.Value,
+                    MatchStatus.Penalties.Value,
+                    MatchStatus.AwaitingPenalties.Value,
+                    MatchStatus.Pause.Value,
+                    MatchStatus.Interrupted.Value,
+                    MatchStatus.Delayed.Value,
+                    MatchStatus.FirstHaftExtra.Value,
+                    MatchStatus.SecondHaftExtra.Value,
+                    MatchStatus.AwaitingExtraTime.Value,
+                    MatchStatus.ExtraTime.Value
                 };
 
             return eventStatuses[random.Next(0, eventStatuses.Length)];
