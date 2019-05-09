@@ -5,6 +5,9 @@
 
     public class MatchStatusHub : Hub
     {
-       
+        public async Task SendMessage(string message)
+        {
+            await Clients.All.SendAsync("Push", message);
+        }
     }
 }

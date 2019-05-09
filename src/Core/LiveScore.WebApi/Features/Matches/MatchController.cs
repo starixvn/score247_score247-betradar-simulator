@@ -16,11 +16,12 @@ namespace LiveScore.WebApi.Features.Matches
     {
         private readonly MatchService matchService;
         IHubContext<MatchStatusHub> hubContext;
+        private readonly MatchStatusService matchStatusService;
 
-        public MatchController(MatchService matchService, IHubContext<MatchStatusHub> hubContext)
+        public MatchController(MatchService matchService, MatchStatusService matchStatusService)
         {
-            this.matchService = matchService;            
-            this.hubContext = hubContext;
+            this.matchService = matchService;
+            this.matchStatusService = matchStatusService;
         }
 
         [HttpGet("GetMatches")]
@@ -37,8 +38,12 @@ namespace LiveScore.WebApi.Features.Matches
         [HttpPost("PushMatchEvent")]
         public async Task PushMatchEvent(
             string text)
-        {            
-            await hubContext.Clients.All.SendAsync("Push", text);
+        {
+            await matchStatusService.Connect();
+
+            await matchStatusService.Send(text);
+
+            await matchStatusService.Disconnect();
         }
     }
 }
