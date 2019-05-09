@@ -11,9 +11,9 @@
             await Clients.All.SendAsync("Push", message);
         }
 
-        public async Task SendMatchEvent(IMatch match)
+        public async Task SendMatchEvent(string matchId, TimeLine timeLine)
         {
-            await Clients.All.SendAsync("PushMatchEvent", match);
+            await Clients.All.SendAsync("PushMatchEvent", matchId, timeLine);
         }
     }
 }

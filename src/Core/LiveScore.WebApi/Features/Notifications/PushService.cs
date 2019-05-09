@@ -13,7 +13,7 @@
 
         Task Send(string message);
 
-        Task Send(string matchId, ITimeLine timelineEvent);
+        Task Send(string matchId, TimeLine timelineEvent);
     }
 
     public class PushServiceImpl : PushService
@@ -33,11 +33,9 @@
 
         public Task Send(string message) => hubConnection.InvokeAsync("SendMessage", message);
 
-        public Task Send(string matchId, ITimeLine timelineEvent)
+        public Task Send(string matchId, TimeLine timelineEvent)
         {
-            var match = new Match { Id = matchId, TimeLine = timelineEvent };
-
-            return hubConnection.InvokeAsync("SendMatchEvent", match);
+            return hubConnection.InvokeAsync("SendMatchEvent", matchId, timelineEvent);
         }
     }
 }
