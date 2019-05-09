@@ -83,15 +83,6 @@ namespace LiveScore.WebApi
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
                 services.AddSignalR();
-
-                services.AddCors(options =>
-                {
-                    options.AddPolicy("CorsPolicy",
-                        builder => builder.AllowAnyOrigin()
-                            .AllowAnyMethod()
-                            .AllowAnyHeader()
-                            .AllowCredentials());
-                });
             }
             catch (Exception ex)
             {
@@ -153,8 +144,6 @@ namespace LiveScore.WebApi
                         template: "{controller=Home}/{action=Index}");
                 })
                 .UseMiddleware(typeof(ErrorHandlingMiddleware));
-
-            app.UseCors("CorsPolicy");
         }
     }
 }
