@@ -1,13 +1,19 @@
 ﻿namespace LiveScore.WebApi.Hubs
 {
+    using LiveScore.Features.Matches.Models;
     using Microsoft.AspNetCore.SignalR;
     using System.Threading.Tasks;
 
-    public class MatchStatusHub : Hub
+    public class MatchHub : Hub
     {
         public async Task SendMessage(string message)
         {
             await Clients.All.SendAsync("Push", message);
+        }
+
+        public async Task SendMatchEvent(IMatch match)
+        {
+            await Clients.All.SendAsync("PushMatchEvent", match);
         }
     }
 }

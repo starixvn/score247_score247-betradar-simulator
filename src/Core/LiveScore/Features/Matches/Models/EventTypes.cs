@@ -5,21 +5,33 @@
     public class EventTypes : Enumeration
     {
         //break_start
+        public static readonly EventTypes BreakStart = new EventTypes("break_start", nameof(BreakStart));
+
         //cancelled_video_assistant_referee
         //corner_kick
         //free_kick
         //goal_kick
         //injury
         //injury_return
+
         //injury_time_shown
+        public static readonly EventTypes InjuryTimeShown = new EventTypes("injury_time_shown", nameof(InjuryTimeShown));
+
         //match_ended
+        public static readonly EventTypes MatchEnded = new EventTypes("match_ended", nameof(MatchEnded));
+
         //match_started
+        public static readonly EventTypes MatchStarted = new EventTypes("match_started", nameof(MatchStarted));
+
         //offside
         //penalty_awarded
         //penalty_missed
         //penalty_shootout
         //period_score
+
         //period_start
+        public static readonly EventTypes PeriodStart = new EventTypes("period_start", nameof(PeriodStart));
+
         //possible_video_assistant_referee
         //red_card
         public static readonly EventTypes RedCard = new EventTypes("red_card", nameof(RedCard));

@@ -1,23 +1,26 @@
-﻿namespace LiveScore.WebApi.Features.Matches
+﻿namespace LiveScore.WebApi.Features.Notifications
 {
+    using LiveScore.Features.Matches.Models;
     using LiveScore.Shared.Configurations;
     using Microsoft.AspNetCore.SignalR.Client;
     using System.Threading.Tasks;
 
-    public interface MatchStatusService
+    public interface PushService
     {
         Task Connect();
 
         Task Disconnect();
 
         Task Send(string message);
+
+        Task Send(string matchId, ITimeLine timelineEvent);
     }
 
-    public class MatchStatusServiceImpl : MatchStatusService
+    public class PushServiceImpl : PushService
     {
         private readonly HubConnection hubConnection;
 
-        public MatchStatusServiceImpl(IAppSettings appSettings)
+        public PushServiceImpl(IAppSettings appSettings)
         {
             hubConnection = new HubConnectionBuilder()
                 .WithUrl($"{appSettings.Host}/hubs/MatchStatusHub")
@@ -29,5 +32,12 @@
         public Task Disconnect() => hubConnection.StopAsync();
 
         public Task Send(string message) => hubConnection.InvokeAsync("SendMessage", message);
+
+        public Task Send(string matchId, ITimeLine timelineEvent)
+        {
+            var match = new Match { Id = matchId, TimeLine = timelineEvent };
+
+            return hubConnection.InvokeAsync("SendMatchEvent", match);
+        }
     }
 }
