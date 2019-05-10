@@ -21,9 +21,12 @@
         [HttpPost("PushMatchEvent")]
         public async Task PushMatchEvent(
             int sportId,
-            IEnumerable<Dictionary<string, MatchPayload>> payloads)
+            Dictionary<string, MatchPayload> payloads)
         {
-            await hubContext.Clients.All.SendAsync("PushMatchEvent", sportId, payloads);
+            if (sportId > 0)
+            {
+                await hubContext.Clients.All.SendAsync("PushMatchEvent", sportId, payloads);
+            }            
         }
     }
 }
