@@ -10,8 +10,6 @@
 
         bool AutoGenerateStatus { get; }
 
-        string Host { get; }
-
         IDataProviderSettings DataProviderSettings { get; }
 
         IDictionary<int, string> TimeZoneSettings { get; }
