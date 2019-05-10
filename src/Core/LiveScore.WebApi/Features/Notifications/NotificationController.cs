@@ -9,13 +9,11 @@
     [Route("api/[controller]")]
     [ApiController]
     public class NotificationController : ControllerBase
-    {
-        private readonly PushService pushService;
+    {        
         private readonly IHubContext<MatchHub> hubContext;
 
-        public NotificationController(PushService pushService, IHubContext<MatchHub> hubContext)
-        {
-            this.pushService = pushService;
+        public NotificationController(IHubContext<MatchHub> hubContext)
+        {            
             this.hubContext = hubContext;
         }
 
@@ -31,11 +29,7 @@
             string matchId, 
             TimeLine timelineEvent)
         {
-            await pushService.Connect();
-
-            await pushService.Send(matchId, timelineEvent);
-
-            await pushService.Disconnect();
+            await hubContext.Clients.All.SendAsync("PushMatchEvent", matchId, timelineEvent);
         }
     }
 }
