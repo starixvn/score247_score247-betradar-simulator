@@ -3,8 +3,8 @@
     using System;
     using System.Collections.Generic;
     using LiveScore.Features.Leagues.Models;
-    using LiveScore.Features.Teams.Models;
-    using LiveScore.Shared.Models;
+    using LiveScore.Features.Teams.Models;    
+    using LiveScore.Shared.Models;    
 
     public interface IMatch : IEntity<string, string>
     {
@@ -18,14 +18,6 @@
 
         IMatchResult MatchResult { get; }
 
-        ITimeLine TimeLine { get; }
-
-        int Attendance { get; }
-
-        IVenue Venue { get; }
-
-        string Referee { get; }
-
         void ChangeEventDateByTimeZone(TimeSpan timeZone);
     }
 
@@ -37,17 +29,9 @@
 
         public IMatchResult MatchResult { get; set; }
 
-        public ITimeLine TimeLine { get; set; }
-
         public ILeague League { get; set; }
 
         public LeagueRound LeagueRound { get; set; }
-
-        public int Attendance { get; set; }
-
-        public IVenue Venue { get; set; }
-
-        public string Referee { get; set; }
 
         public void ChangeEventDateByTimeZone(TimeSpan timeZone)
         {

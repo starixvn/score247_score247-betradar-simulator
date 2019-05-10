@@ -1,6 +1,6 @@
 ﻿namespace LiveScore.WebApi.Features.Notifications
-{
-    using LiveScore.Features.Matches.Models;
+{    
+    using LiveScore.Soccers.Shared.TransportMessages;
     using LiveScore.WebApi.Hubs;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.SignalR;
@@ -26,10 +26,9 @@
 
         [HttpPost("PushMatchEvent")]
         public async Task PushMatchEvent(
-            string matchId, 
-            TimeLine timelineEvent)
+            MatchTransportMessage message)
         {
-            await hubContext.Clients.All.SendAsync("PushMatchEvent", matchId, timelineEvent);
+            await hubContext.Clients.All.SendAsync("PushMatchEvent", message);
         }
     }
 }

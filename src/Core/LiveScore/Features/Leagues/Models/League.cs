@@ -1,7 +1,5 @@
 ﻿namespace LiveScore.Features.Leagues.Models
 {
-    using System.Collections.Generic;
-    using LiveScore.Features.Teams.Models;
     using LiveScore.Shared.Models;
 
     public interface ILeague : IEntity<string, string>
@@ -11,10 +9,6 @@
         string Flag { get; }
 
         LeagueCategory Category { get; }
-
-        IEnumerable<LeagueRound> Rounds { get; }
-
-        IEnumerable<ITeam> Teams { get; }
     }
 
     public class League : Entity<string, string>, ILeague
@@ -24,9 +18,5 @@
         public string Flag { get; set; }
 
         public LeagueCategory Category { get; set; }
-
-        public IEnumerable<LeagueRound> Rounds { get; set; }
-
-        public IEnumerable<ITeam> Teams { get; set; }
     }
 }

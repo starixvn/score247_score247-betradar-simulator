@@ -14,7 +14,5 @@
         public string Phase { get; set; }
 
         public string Group { get; set; }
-
-        public IEnumerable<Match> Matches { get; set; }
     }
 }
