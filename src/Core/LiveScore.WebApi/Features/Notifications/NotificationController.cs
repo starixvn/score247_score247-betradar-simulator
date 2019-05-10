@@ -18,13 +18,6 @@
             this.hubContext = hubContext;
         }
 
-        [HttpPost("PushMessage")]
-        public async Task PushMessage(
-            string text)
-        {
-            await hubContext.Clients.All.SendAsync("Push", text);
-        }
-
         [HttpPost("PushMatchEvent")]
         public async Task PushMatchEvent(
             int sportId,
