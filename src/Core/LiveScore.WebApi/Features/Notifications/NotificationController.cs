@@ -1,7 +1,9 @@
 ﻿namespace LiveScore.WebApi.Features.Notifications
 {
     using LiveScore.Features.Matches.Models;
+    using LiveScore.WebApi.Hubs;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.SignalR;
     using System.Threading.Tasks;
 
     [Route("api/[controller]")]
@@ -9,21 +11,19 @@
     public class NotificationController : ControllerBase
     {
         private readonly PushService pushService;
+        private readonly IHubContext<MatchHub> hubContext;
 
-        public NotificationController(PushService pushService)
+        public NotificationController(PushService pushService, IHubContext<MatchHub> hubContext)
         {
             this.pushService = pushService;
+            this.hubContext = hubContext;
         }
 
         [HttpPost("PushMessage")]
         public async Task PushMessage(
             string text)
         {
-            await pushService.Connect();
-
-            await pushService.Send(text);
-
-            await pushService.Disconnect();
+            await hubContext.Clients.All.SendAsync("Push", text);
         }
 
         [HttpPost("PushMatchEvent")]
