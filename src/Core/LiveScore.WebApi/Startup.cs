@@ -3,14 +3,16 @@ namespace LiveScore.WebApi
 {
     using Fanex.Logging;
     using Fanex.Logging.Sentry;
+    using LiveScore.Features.Leagues;
     using LiveScore.Features.Matches;
     using LiveScore.Shared;
     using LiveScore.Shared.Configurations;
     using LiveScore.Shared.Helpers;
     using LiveScore.Shared.SportRadarApi.Models;
+    using LiveScore.Soccers.Features.Leagues;
+    using LiveScore.Soccers.Features.Leagues.DataProviders;
     using LiveScore.Soccers.Features.Matches;
     using LiveScore.Soccers.Features.Matches.DataProviders;
-    using LiveScore.WebApi.Features.Notifications;
     using LiveScore.WebApi.Hubs;
     using LiveScore.WebApi.Shared.Configurations;
     using LiveScore.WebApi.Shared.Middlewares;
@@ -57,12 +59,19 @@ namespace LiveScore.WebApi
                 var appSettings = new AppSettings(hostingEnvironment, Configuration, sportRadarDataProviderSettings, timeZoneSettings);
                 services.AddSingleton<IAppSettings>(appSettings);
                 services.AddSingleton<MatchService, MatchServiceImpl>();
+                services.AddSingleton<LeagueService, LeagueServiceImpl>();
                 services.AddSingleton(CreateRestSharpClient(sportRadarDataProviderSettings));
+
                 services.AddSingleton((InstanceFactory)new InstanceFactoryImpl(
                     new Dictionary<int, MatchDataAccess>
                     {
                         { SportConstants.SoccerId, new MatchDataAccessImpl(GetMatchApiInstance(appSettings)) },
                         { SportConstants.BasketballId, new LiveScore.Basketballs.Features.Matches.MatchDataAccessImpl() }
+                    },
+                     new Dictionary<int, LeagueDataAccess>
+                    {
+                        { SportConstants.SoccerId, new LeagueDataAccessImpl(GetLeagueApiInstance(appSettings)) },
+                        { SportConstants.BasketballId, new LiveScore.Basketballs.Features.Leagues.LeagueDataAccessImpl() }
                     }
                     ));
 
@@ -113,6 +122,11 @@ namespace LiveScore.WebApi
             => appSettings.EnabledStaticData
                                     ? (IMatchApi)new StaticMatchApi(appSettings)
                                     : (IMatchApi)new SportRadarMatchApi(appSettings, CreateRestSharpClient(appSettings.DataProviderSettings));
+
+        private static ILeagueApi GetLeagueApiInstance(AppSettings appSettings)
+            => appSettings.EnabledStaticData
+                                    ? (ILeagueApi)new StaticLeagueApi(appSettings)
+                                    : (ILeagueApi)new SportRadarLeagueApi(appSettings, CreateRestSharpClient(appSettings.DataProviderSettings));
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 #pragma warning disable S2325 // Methods and properties that don't access instance data should be static

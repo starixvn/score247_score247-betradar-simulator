@@ -23,7 +23,7 @@
             int sportId,
             Dictionary<string, MatchPayload> payloads)
         {
-            if (sportId > 0)
+            if (sportId > 0 && payloads != null)
             {
                 await hubContext.Clients.All.SendAsync("PushMatchEvent", sportId, payloads);
             }            
