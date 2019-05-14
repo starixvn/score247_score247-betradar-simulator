@@ -191,9 +191,26 @@ namespace LiveScore.Soccers.Features.Matches.DataProviders
 
         private Clock CreateLiveMatchClock(string matchStatus)
         {
-            var mins = (matchStatus.Equals(MatchStatus.SecondHaft.Value)) 
-                ? random.Next(45, 90) 
-                : random.Next(0, 45);
+            var mins = 0;
+
+            switch (matchStatus)
+            {
+                case "1st_half":
+                    mins = random.Next(0, 45);
+                    break;
+                case "2nd_half":
+                    mins = random.Next(45, 90);
+                    break;
+                case "1st_extra":
+                    mins = random.Next(90, 105);
+                    break;
+                case "2nd_extra":
+                    mins = random.Next(105, 120);
+                    break;
+                default:
+                    mins = random.Next(0, 90);
+                    break;
+            }           
 
             var sec = random.Next(0, 60);
 
