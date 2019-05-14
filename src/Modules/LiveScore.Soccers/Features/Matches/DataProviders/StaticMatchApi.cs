@@ -90,7 +90,7 @@ namespace LiveScore.Soccers.Features.Matches.DataProviders
                 result.sport_event_status.status = MatchStatus.Live.Value;                
                 result.sport_event_status.match_status = CreateLiveMatchStatus();
 
-                result.sport_event_status.clock = CreateLiveMatchClock();
+                result.sport_event_status.clock = CreateLiveMatchClock(result.sport_event_status.match_status);
             }
         }
 
@@ -189,9 +189,12 @@ namespace LiveScore.Soccers.Features.Matches.DataProviders
             return eventStatuses[random.Next(0, eventStatuses.Length)];
         }
 
-        private Clock CreateLiveMatchClock()
+        private Clock CreateLiveMatchClock(string matchStatus)
         {
-            var mins = random.Next(0, 90);
+            var mins = (matchStatus.Equals(MatchStatus.SecondHaft.Value)) 
+                ? random.Next(45, 90) 
+                : random.Next(0, 45);
+
             var sec = random.Next(0, 60);
 
             return new Clock { match_time = $"{mins}:{sec}" };
