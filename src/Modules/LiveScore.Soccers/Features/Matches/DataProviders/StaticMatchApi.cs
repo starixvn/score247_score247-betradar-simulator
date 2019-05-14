@@ -87,8 +87,10 @@ namespace LiveScore.Soccers.Features.Matches.DataProviders
             }
             else
             {
-                result.sport_event_status.status = MatchStatus.Live.Value;
+                result.sport_event_status.status = MatchStatus.Live.Value;                
                 result.sport_event_status.match_status = CreateLiveMatchStatus();
+
+                result.sport_event_status.clock = CreateLiveMatchClock();
             }
         }
 
@@ -185,6 +187,14 @@ namespace LiveScore.Soccers.Features.Matches.DataProviders
                 };
 
             return eventStatuses[random.Next(0, eventStatuses.Length)];
+        }
+
+        private Clock CreateLiveMatchClock()
+        {
+            var mins = random.Next(0, 90);
+            var sec = random.Next(0, 60);
+
+            return new Clock { match_time = $"{mins}:{sec}" };
         }
     }
 }
