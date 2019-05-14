@@ -21,17 +21,14 @@
             this.hostingEnvironment = hostingEnvironment ?? throw new ArgumentNullException(nameof(hostingEnvironment));
             this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             EnabledStaticData = GetValue<bool>("LiveScores:EnabledStaticData");
-            AutoGenerateStatus = GetValue<bool>("LiveScores:AutoGenerateStatus");
-            Host = GetValue<string>("LiveScores:AppUrl");
+            AutoGenerateStatus = GetValue<bool>("LiveScores:AutoGenerateStatus");            
             DataProviderSettings = dataProviderSettings;
             TimeZoneSettings = timeZoneSettings;
         }
 
         public string AppPath => hostingEnvironment.ContentRootPath;
 
-        public bool EnabledStaticData { get; }
-
-        public string Host { get; }
+        public bool EnabledStaticData { get; }        
 
         public IDataProviderSettings DataProviderSettings { get; }
 

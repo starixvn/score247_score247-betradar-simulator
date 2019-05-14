@@ -18,6 +18,8 @@
         };
 
         private const string SportRadarDateFormat = "yyyy-MM-dd";
+        private const string FeatureKey = "Match";
+
         private readonly IAppSettings appSettings;
         private readonly IRestClient restClient;
 
@@ -31,7 +33,11 @@
 
         public async Task<DailyScheduleDto> GetDailySchedules(int sportId, DateTime from, DateTime to, string language)
         {
-            var sportSetting = appSettings.DataProviderSettings.Sports.FirstOrDefault(sport => sport.Id == sportId);
+            var sportSetting = appSettings
+                .DataProviderSettings
+                .Sports.FirstOrDefault(sport => sport.Id == sportId)
+                ?.EndPoints.FirstOrDefault(x => x.Name.Equals(FeatureKey));
+
             if (sportSetting == null)
             {
                 throw new InvalidOperationException("Please config Sport Setting before using");
@@ -44,7 +50,7 @@
 
             for (var date = fromUtc.Date; date.Date <= toUtc.Date; date = date.AddDays(dayIncrementIndex))
             {
-                foreach (var endPoint in sportSetting.EndPoints)
+                foreach (var endPoint in sportSetting.EndPointSettings)
                 {
                     var formatEndPointFunc = FormatEndPointFuncs.ContainsKey(endPoint.FormatId)
                         ? FormatEndPointFuncs[endPoint.FormatId]

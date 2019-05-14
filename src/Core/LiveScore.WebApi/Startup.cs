@@ -77,6 +77,7 @@ namespace LiveScore.WebApi
 
                 //
                 services.AddSingleton(GetMatchApiInstance(appSettings));
+                services.AddSingleton(GetLeagueApiInstance(appSettings));
 
                 services.AddSwaggerGen(c =>
                 {
