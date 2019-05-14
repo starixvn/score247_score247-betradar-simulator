@@ -8,6 +8,7 @@
     public interface InstanceFactory
     {
         MatchDataAccess CreateMatchDataAccess(int sportId);
+
         LeagueDataAccess CreateLeagueDataAccess(int sportId);
     }
 
