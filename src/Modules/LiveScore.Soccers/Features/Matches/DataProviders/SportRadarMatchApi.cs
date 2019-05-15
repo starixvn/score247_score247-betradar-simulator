@@ -10,7 +10,7 @@
 
     public class SportRadarMatchApi : IMatchApi
     {
-        private static IDictionary<int, Func<string, DateTime, string, string>> FormatEndPointFuncs = 
+        private static IDictionary<int, Func<string, DateTime, string, string>> FormatEndPointFuncs =
             new Dictionary<int, Func<string, DateTime, string, string>>
         {
             { 1,  FormatEndPointType1 },
@@ -58,7 +58,7 @@
                     var formattedEndPoint = formatEndPointFunc(endPoint.Path, date, language);
                     var dailyResult = await restClient.ExecuteGetAsync<DailyScheduleDto>(formattedEndPoint);
 
-                    if (dailyResult.results != null 
+                    if (dailyResult.results != null
                         && dailyResult.results.Any())
                     {
                         var resultInRange = dailyResult.results.Where(result => result.sport_event.scheduled >= from && result.sport_event.scheduled <= to);
@@ -77,5 +77,10 @@
         private static string FormatEndPointType2(string endPoint, DateTime date, string language)
 #pragma warning restore S1172 // Unused method parameters should be removed
             => string.Format(endPoint, language);
+
+        public Task<DailyScheduleDto> GetLiveSchedules(int sportId, string language)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

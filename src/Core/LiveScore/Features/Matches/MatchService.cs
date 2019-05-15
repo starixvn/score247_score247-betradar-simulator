@@ -1,4 +1,5 @@
-﻿namespace LiveScore.Features.Matches
+﻿using Fanex.Caching;
+namespace LiveScore.Features.Matches
 {
     using System;
     using System.Collections.Generic;
@@ -10,16 +11,19 @@
     public interface MatchService
     {
         Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime from, DateTime to, TimeSpan timeZone, string language);
+
+        Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language);
     }
 
     public class MatchServiceImpl : MatchService
     {
         private readonly InstanceFactory instanceFactory;
+        private readonly ICacheService cacheService;
 
-        public MatchServiceImpl(
-            InstanceFactory instanceFactory)
+        public MatchServiceImpl(InstanceFactory instanceFactory, ICacheService cacheService)
         {
             this.instanceFactory = instanceFactory;
+            this.cacheService = cacheService;
         }
 
         public async Task<IEnumerable<IMatch>> GetMatches(
@@ -43,10 +47,27 @@
                 .GetMatches(sportId, from, to, language))
                 .Select(match =>
                 {
+                    if (match.MatchResult.EventStatus.IsLive())
+                    {
+                        var matchTime = cacheService.Get<int>("MatchTime-" + match.Id);
+
+                        if (matchTime > 0)
+                        {
+                            match.MatchResult.MatchTime = $"{matchTime}:00";
+                        }
+                    }
+
                     match.ChangeEventDateByTimeZone(timeZone);
 
                     return match;
                 });
+        }
+
+        public async Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
+        {
+            var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
+
+            return await matchDataAccess.GetLiveMatches(sportId, language);
         }
     }
 }

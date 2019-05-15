@@ -40,6 +40,20 @@
             return matches;
         }
 
+        public async Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
+        {
+            var liveSchedule = await matchApi.GetLiveSchedules(sportId, language);
+
+            var matches = new List<Match>();
+
+            foreach (var matchDto in liveSchedule.results)
+            {
+                matches.Add(CreateMatch(matchDto));
+            }
+
+            return matches;
+        }
+
         private static Match CreateMatch(Result matchDto)
         {
             var sportEventDto = matchDto.sport_event;
@@ -79,7 +93,7 @@
                     && sportEventStatusDto.period_scores.Any())
             {
                 matchResult.MatchPeriods = sportEventStatusDto.period_scores.Select(
-                    periodScore => 
+                    periodScore =>
                     new MatchPeriod
                     {
                         HomeScore = periodScore.home_score,
@@ -137,5 +151,7 @@
 
             return teams.OrderBy(team => team.IsHome ? 0 : 1).ToList();
         }
+
+
     }
 }

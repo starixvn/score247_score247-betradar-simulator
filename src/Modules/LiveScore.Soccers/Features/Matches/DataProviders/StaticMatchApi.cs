@@ -41,6 +41,17 @@ namespace LiveScore.Soccers.Features.Matches.DataProviders
             return Task.FromResult(dailyScheduleDto);
         }
 
+
+        public Task<DailyScheduleDto> GetLiveSchedules(int sportId, string language)
+        {
+            // Temporary for hardcode, please ignore it
+            var jsonData = File.ReadAllText($"{appSettings.AppPath}/App_Data/staticdata/daily-schedule.json");
+            var dailyScheduleDto = JsonConvert.DeserializeObject<DailyScheduleDto>(jsonData);
+            dailyScheduleDto.results = dailyScheduleDto.results.Where(m => m.sport_event_status.status == "live");
+
+            return Task.FromResult(dailyScheduleDto);
+        }
+
         private void AutoGenerateStatus(DailyScheduleDto dailyScheduleDto, DateTime date)
         {
             foreach (var result in dailyScheduleDto.results)
@@ -87,7 +98,7 @@ namespace LiveScore.Soccers.Features.Matches.DataProviders
             }
             else
             {
-                result.sport_event_status.status = MatchStatus.Live.Value;                
+                result.sport_event_status.status = MatchStatus.Live.Value;
                 result.sport_event_status.match_status = CreateLiveMatchStatus();
 
                 result.sport_event_status.clock = CreateLiveMatchClock(result.sport_event_status.match_status);
@@ -147,7 +158,7 @@ namespace LiveScore.Soccers.Features.Matches.DataProviders
         private string CreateMatchStatusPost()
         {
             var eventStatuses = new[]
-               {                    
+               {
                     MatchStatus.Ended.Value,
                     MatchStatus.EndedAfterPenalties.Value,
                     MatchStatus.EndedExtraTime.Value,
@@ -161,7 +172,7 @@ namespace LiveScore.Soccers.Features.Matches.DataProviders
         {
             var eventStatuses = new[]
                {
-                    MatchStatus.Abandoned.Value,                   
+                    MatchStatus.Abandoned.Value,
                     MatchStatus.Closed.Value
                 };
 
@@ -210,11 +221,12 @@ namespace LiveScore.Soccers.Features.Matches.DataProviders
                 default:
                     mins = random.Next(0, 90);
                     break;
-            }           
+            }
 
             var sec = random.Next(0, 60);
 
             return new Clock { match_time = $"{mins}:{sec}" };
         }
+
     }
 }

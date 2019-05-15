@@ -11,5 +11,9 @@
             DateTime from,
             DateTime to,
             string language);
+
+        Task<DailyScheduleDto> GetLiveSchedules(
+          int sportId,
+          string language);
     }
 }

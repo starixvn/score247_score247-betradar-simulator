@@ -8,5 +8,7 @@
     public interface MatchDataAccess
     {
         Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime from, DateTime to, string language);
+
+        Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language);
     }
 }

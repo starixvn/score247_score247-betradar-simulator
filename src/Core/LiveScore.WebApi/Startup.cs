@@ -3,6 +3,8 @@ using Hangfire;
 using Hangfire.PostgreSql;
 namespace LiveScore.WebApi
 {
+    using Fanex.Caching;
+    using Fanex.Caching.Redis;
     using Fanex.Logging;
     using Fanex.Logging.Sentry;
     using LiveScore.Features.Leagues;
@@ -15,6 +17,7 @@ namespace LiveScore.WebApi
     using LiveScore.Soccers.Features.Leagues.DataProviders;
     using LiveScore.Soccers.Features.Matches;
     using LiveScore.Soccers.Features.Matches.DataProviders;
+    using LiveScore.Soccers.Jobs;
     using LiveScore.WebApi.Hubs;
     using LiveScore.WebApi.Shared.Configurations;
     using LiveScore.WebApi.Shared.Middlewares;
@@ -81,7 +84,9 @@ namespace LiveScore.WebApi
                 services.AddSingleton(GetMatchApiInstance(appSettings));
                 services.AddSingleton(GetLeagueApiInstance(appSettings));
                 services.AddHangfire(x => x.UsePostgreSqlStorage(Configuration.GetConnectionString("hangfireConnection")));
-
+                services.AddMemoryCache();
+                services.AddRedisCache(Configuration.GetSection("fanex.caching.redis"));
+                services.AddSingleton<IAutoUpdateMatchTimeJob, AutoUpdateMatchTimeJob>();
                 services.AddSwaggerGen(c =>
                 {
                     c.SwaggerDoc("v1", new Info { Title = "Live Scores API", Version = "v1" });

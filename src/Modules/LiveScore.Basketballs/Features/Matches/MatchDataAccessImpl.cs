@@ -12,6 +12,11 @@ namespace LiveScore.Basketballs.Features.Matches
 
     public class MatchDataAccessImpl : MatchDataAccess
     {
+        public Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime from, DateTime to, string language)
         {
             return await Task.FromResult(new List<IMatch>

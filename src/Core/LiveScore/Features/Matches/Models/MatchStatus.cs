@@ -62,7 +62,7 @@
         public static readonly MatchStatus Delayed = new MatchStatus("delayed", nameof(Delayed));
 
         ////abandoned – The match has been abandoned
-        public static readonly MatchStatus Abandoned = new MatchStatus("abandoned", nameof(Abandoned));       
+        public static readonly MatchStatus Abandoned = new MatchStatus("abandoned", nameof(Abandoned));
 
         ////ended – The match is over
         public static readonly MatchStatus Ended = new MatchStatus("ended", nameof(Ended));
@@ -90,7 +90,6 @@
         {
         }
 
-        public bool IsLive()
-            => this == Live;
+        public bool IsLive() => this == Live;
     }
 }
