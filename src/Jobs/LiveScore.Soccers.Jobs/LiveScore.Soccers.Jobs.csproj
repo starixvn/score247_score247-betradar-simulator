@@ -9,4 +9,12 @@
     <ProjectReference Include="..\..\Modules\LiveScore.Soccers\LiveScore.Soccers.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Hangfire.AspNetCore" Version="1.7.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Match\">
+      <DependentUpon>Match</DependentUpon>
+    </Folder>
+  </ItemGroup>
 </Project>
