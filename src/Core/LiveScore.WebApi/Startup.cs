@@ -7,6 +7,7 @@ namespace LiveScore.WebApi
     using Fanex.Caching.Redis;
     using Fanex.Logging;
     using Fanex.Logging.Sentry;
+    using Hangfire.Dashboard;
     using LiveScore.Features.Leagues;
     using LiveScore.Features.Matches;
     using LiveScore.Shared;
@@ -31,6 +32,7 @@ namespace LiveScore.WebApi
     using Swashbuckle.AspNetCore.Swagger;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class Startup
     {
@@ -153,7 +155,10 @@ namespace LiveScore.WebApi
                 routes.MapHub<MatchHub>("/hubs/MatchHub");
             });
 
-            app.UseHangfireDashboard(); //Will be available under http://localhost:5000/hangfire"
+            app.UseHangfireDashboard(options: new DashboardOptions
+            {
+                Authorization = Enumerable.Empty<IDashboardAuthorizationFilter>()
+            }); //Will be available under http://localhost:5000/hangfire"
             app.UseHangfireServer();
 
             app
