@@ -21,7 +21,7 @@
         [HttpPost("PushMatchEvent")]
         public async Task PushMatchEvent(
             int sportId,
-            Dictionary<string, MatchPayload> payloads)
+            [FromBody]Dictionary<string, MatchPayload> payloads)
         {
             if (sportId > 0 && payloads != null)
             {
