@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Fanex.Caching;
     using LiveScore.Features.Matches;
     using LiveScore.Features.Matches.Models;
     using LiveScore.Shared;
@@ -16,13 +17,15 @@
         private readonly MatchServiceImpl matchServiceImpl;
         private readonly InstanceFactory instanceFactory;
         private readonly MatchDataAccess matchDataAccess;
+        private readonly ICacheService cacheService;
 
         public MatchServiceTests()
         {
             matchDataAccess = Substitute.For<MatchDataAccess>();
             instanceFactory = Substitute.For<InstanceFactory>();
+            cacheService = Substitute.For<ICacheService>();
             instanceFactory.CreateMatchDataAccess(SoccerSportId).Returns(matchDataAccess);
-            matchServiceImpl = new MatchServiceImpl(instanceFactory);
+            matchServiceImpl = new MatchServiceImpl(instanceFactory, cacheService);
         }
 
         [Theory]
