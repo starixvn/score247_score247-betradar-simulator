@@ -6,6 +6,7 @@ namespace LiveScore.WebApi
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Fanex.Caching;
     using Fanex.Caching.Redis;
     using Fanex.Logging;
     using Fanex.Logging.Sentry;
@@ -87,7 +88,7 @@ namespace LiveScore.WebApi
                 services.AddSingleton(GetLeagueApiInstance(appSettings));
                 services.AddHangfire(x => x.UsePostgreSqlStorage(Configuration.GetConnectionString("hangfireConnection")));
                 services.AddMemoryCache();
-                services.AddRedisCache(Configuration.GetSection("fanex.caching.redis"));
+                services.AddSingleton<ICacheService, CacheService>();
                 services.AddSingleton<IAutoUpdateMatchTimeJob, AutoUpdateMatchTimeJob>();
                 services.AddSwaggerGen(c =>
                 {
