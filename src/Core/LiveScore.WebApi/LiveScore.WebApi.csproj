@@ -41,63 +41,118 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="App_Data\staticdata\daily-schedule - Copy.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="App_Data\staticdata\daily-schedule.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="App_Data\staticdata\match-fun-fact.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="App_Data\staticdata\match-lineup.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="App_Data\staticdata\match-probabilities.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="App_Data\staticdata\match-summary.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="App_Data\staticdata\match-timeline.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="App_Data\staticdata\player-profile.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="App_Data\staticdata\team-profile.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="App_Data\staticdata\team-result.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="App_Data\staticdata\team-schedule.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="App_Data\staticdata\team-statistics.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="App_Data\staticdata\teamvsteam.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="App_Data\staticdata\tournament-info.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="App_Data\staticdata\tournament-leaders.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="App_Data\staticdata\tournament-result.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="App_Data\staticdata\tournament-seasons.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="App_Data\staticdata\tournament-standings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="App_Data\staticdata\tournaments.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Remove="App_Data\staticdata\daily-schedule.json" />
+    <Content Remove="App_Data\staticdata\Otherlivedata.json" />
+    <Content Remove="App_Data\staticdata\daily-schedule - Copy.json" />
+    <Content Remove="App_Data\staticdata\live-result-1.json" />
+    <Content Remove="App_Data\staticdata\live-result.json" />
+    <Content Remove="App_Data\staticdata\match-fun-fact.json" />
+    <Content Remove="App_Data\staticdata\match-lineup.json" />
+    <Content Remove="App_Data\staticdata\match-probabilities.json" />
+    <Content Remove="App_Data\staticdata\match-summary.json" />
+    <Content Remove="App_Data\staticdata\match-timeline.json" />
+    <Content Remove="App_Data\staticdata\player-profile.json" />
+    <Content Remove="App_Data\staticdata\response.json" />
+    <Content Remove="App_Data\staticdata\team-profile.json" />
+    <Content Remove="App_Data\staticdata\team-result.json" />
+    <Content Remove="App_Data\staticdata\team-schedule.json" />
+    <Content Remove="App_Data\staticdata\team-statistics.json" />
+    <Content Remove="App_Data\staticdata\teamvsteam.json" />
+    <Content Remove="App_Data\staticdata\tournament-info.json" />
+    <Content Remove="App_Data\staticdata\tournament-leaders.json" />
+    <Content Remove="App_Data\staticdata\tournament-result.json" />
+    <Content Remove="App_Data\staticdata\tournament-seasons.json" />
+    <Content Remove="App_Data\staticdata\tournament-standings.json" />
+    <Content Remove="App_Data\staticdata\tournaments.json" />
   </ItemGroup>
-
+  <ItemGroup>
+    <None Include="App_Data\staticdata\daily-schedule.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\staticdata\Otherlivedata.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Include="App_Data\staticdata\daily-schedule - Copy.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\staticdata\live-result-1.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Include="App_Data\staticdata\live-result.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Include="App_Data\staticdata\match-fun-fact.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\staticdata\match-lineup.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\staticdata\match-probabilities.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\staticdata\match-summary.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\staticdata\match-timeline.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\staticdata\player-profile.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\staticdata\response.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Include="App_Data\staticdata\team-profile.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\staticdata\team-result.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\staticdata\team-schedule.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\staticdata\team-statistics.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\staticdata\teamvsteam.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\staticdata\tournament-info.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\staticdata\tournament-leaders.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\staticdata\tournament-result.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\staticdata\tournament-seasons.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\staticdata\tournament-standings.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\staticdata\tournaments.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

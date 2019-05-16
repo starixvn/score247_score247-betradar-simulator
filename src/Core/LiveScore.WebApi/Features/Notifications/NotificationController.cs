@@ -3,6 +3,7 @@ namespace LiveScore.WebApi.Features.Notifications
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using LiveScore.Features.Matches.Models;
     using LiveScore.Shared.Hubs;
@@ -34,9 +35,7 @@ namespace LiveScore.WebApi.Features.Notifications
                     if (payloads[matchId].MatchResult.EventStatus.IsLive())
                     {
                         var cacheKey = "MatchTime-" + matchId;
-                        var matchTime = payloads[matchId].MatchResult.MatchTime;
-                        var matchMinute = string.IsNullOrEmpty(matchTime) ? 1 : Convert.ToInt32(matchTime.Split(':')[0]);
-                        cacheService.Set(cacheKey, matchMinute);
+                        cacheService.Set(cacheKey, payloads[matchId].TimeLines.FirstOrDefault().MatchTime);
                     }
                 }
 
