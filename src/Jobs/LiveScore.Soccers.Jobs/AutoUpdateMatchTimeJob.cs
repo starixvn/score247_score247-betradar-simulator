@@ -7,6 +7,8 @@
     using Hangfire.Common;
     using LiveScore.Features.Matches;
     using LiveScore.Shared;
+    using LiveScore.Shared.Hubs;
+    using Microsoft.AspNetCore.SignalR;
 
     public interface IAutoUpdateMatchTimeJob
     {
@@ -18,12 +20,18 @@
         private readonly MatchService matchService;
         private readonly ICacheService cacheService;
         private readonly IRecurringJobManager recurringJobManager;
+        private readonly IHubContext<MatchHub> matchHub;
 
-        public AutoUpdateMatchTimeJob(IRecurringJobManager recurringJobManager, MatchService matchService, ICacheService cacheService)
+        public AutoUpdateMatchTimeJob(
+            IRecurringJobManager recurringJobManager,
+             MatchService matchService,
+             ICacheService cacheService,
+             IHubContext<MatchHub> matchHub)
         {
             this.recurringJobManager = recurringJobManager;
             this.matchService = matchService;
             this.cacheService = cacheService;
+            this.matchHub = matchHub;
         }
 
         public void Start()
@@ -49,6 +57,8 @@
                 }
 
                 await cacheService.SetAsync(cacheKey, matchClock);
+
+                await matchHub.Clients.All.SendAsync("PushMatchTime", SportConstants.SoccerId.ToString(), match.Id, matchClock);
             }
         }
     }

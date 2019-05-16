@@ -1,4 +1,4 @@
-﻿namespace LiveScore.WebApi.Hubs
+﻿namespace LiveScore.Shared.Hubs
 {
     using Microsoft.AspNetCore.SignalR;
 

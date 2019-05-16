@@ -3,7 +3,9 @@ using Hangfire;
 using Hangfire.PostgreSql;
 namespace LiveScore.WebApi
 {
-    using Fanex.Caching;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using Fanex.Caching.Redis;
     using Fanex.Logging;
     using Fanex.Logging.Sentry;
@@ -13,13 +15,13 @@ namespace LiveScore.WebApi
     using LiveScore.Shared;
     using LiveScore.Shared.Configurations;
     using LiveScore.Shared.Helpers;
+    using LiveScore.Shared.Hubs;
     using LiveScore.Shared.SportRadarApi.Models;
     using LiveScore.Soccers.Features.Leagues;
     using LiveScore.Soccers.Features.Leagues.DataProviders;
     using LiveScore.Soccers.Features.Matches;
     using LiveScore.Soccers.Features.Matches.DataProviders;
     using LiveScore.Soccers.Jobs;
-    using LiveScore.WebApi.Hubs;
     using LiveScore.WebApi.Shared.Configurations;
     using LiveScore.WebApi.Shared.Middlewares;
     using Microsoft.AspNetCore.Builder;
@@ -30,9 +32,6 @@ namespace LiveScore.WebApi
     using Newtonsoft.Json;
     using Sentry;
     using Swashbuckle.AspNetCore.Swagger;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
 
     public class Startup
     {
