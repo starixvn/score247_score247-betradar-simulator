@@ -51,7 +51,7 @@
                         () => string.IsNullOrEmpty(match.MatchResult.MatchTime) ? 1 : Convert.ToInt32(match.MatchResult.MatchTime.Split(':')[0]),
                         new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(120)));
 
-                if (matchClock <= 120)
+                if (matchClock < 120)
                 {
                     matchClock++;
                 }
