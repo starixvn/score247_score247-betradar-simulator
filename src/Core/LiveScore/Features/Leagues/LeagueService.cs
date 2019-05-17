@@ -1,7 +1,7 @@
 ﻿namespace LiveScore.Features.Leagues
 {
     using LiveScore.Features.Leagues.Models;
-    using LiveScore.Shared;
+    using LiveScore.Shared;    
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -18,7 +18,7 @@
 
         public LeagueServiceImpl(
             InstanceFactory instanceFactory)
-        {
+        {            
             this.instanceFactory = instanceFactory;
         }
 
@@ -31,9 +31,11 @@
 
             var leagueDataAccess = instanceFactory.CreateLeagueDataAccess(sportId);
 
-            return (await leagueDataAccess
+            var leagues = (await leagueDataAccess
                 .GetLeagues(sportId, language))
-                .OrderBy(x=>x.Order);
+                .OrderBy(x=>x.Order);         
+
+            return leagues;
         }
     }
 }

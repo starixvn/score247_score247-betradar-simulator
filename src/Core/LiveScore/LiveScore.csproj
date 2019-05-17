@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -14,8 +14,6 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-    <PackageReference Include="Npgsql" Version="4.0.6" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.2.0" />
     <PackageReference Include="RestSharp" Version="106.6.9" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="7.12.0.8217">
       <PrivateAssets>all</PrivateAssets>
@@ -30,5 +28,9 @@
     <Folder Include="Shared\Hubs\">
       <DependentUpon>Hubs</DependentUpon>
     </Folder>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LiveScore.Entity\LiveScore.Entity.csproj" />
   </ItemGroup>
 </Project>

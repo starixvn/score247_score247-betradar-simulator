@@ -43,7 +43,7 @@ namespace LiveScore.Features.Matches
 
             var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
 
-            return (await matchDataAccess
+            var matches = (await matchDataAccess
                 .GetMatches(sportId, from, to, language))
                 .Select(match =>
                 {
@@ -61,6 +61,8 @@ namespace LiveScore.Features.Matches
 
                     return match;
                 });
+
+            return matches;
         }
 
         public async Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)

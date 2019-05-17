@@ -80,7 +80,7 @@
 
         public Task<DailyScheduleDto> GetLiveSchedules(int sportId, string language)
         {
-            throw new NotImplementedException();
+            return Task.FromResult( new DailyScheduleDto { results =  Enumerable.Empty<Result>()});
         }
     }
 }

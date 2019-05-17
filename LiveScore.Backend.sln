@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.489
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.452
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{E9AC78D2-2614-4458-A69B-79A161510772}"
 EndProject
@@ -27,13 +27,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Jobs", "Jobs", "{7A2D70E1-2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{AD121F69-6EC8-4E19-86C3-C4BCBCD0D4D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore.Soccers.UnitTests", "test\UnitTests\Modules\LiveScore.Soccers.UnitTests\LiveScore.Soccers.UnitTests.csproj", "{2C017A8A-2505-4706-9F3A-3498CF4B56C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Soccers.UnitTests", "test\UnitTests\Modules\LiveScore.Soccers.UnitTests\LiveScore.Soccers.UnitTests.csproj", "{2C017A8A-2505-4706-9F3A-3498CF4B56C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore.WebApi.UnitTests", "test\UnitTests\LiveScore.WebApi.UnitTests\LiveScore.WebApi.UnitTests.csproj", "{78F6E23E-FFD1-4873-A7B5-281643B98524}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.WebApi.UnitTests", "test\UnitTests\LiveScore.WebApi.UnitTests\LiveScore.WebApi.UnitTests.csproj", "{78F6E23E-FFD1-4873-A7B5-281643B98524}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore.Soccers.Jobs", "src\Jobs\LiveScore.Soccers.Jobs\LiveScore.Soccers.Jobs.csproj", "{F4E83525-9C8C-4D86-91CF-8C1C86931ED1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Soccers.Jobs", "src\Jobs\LiveScore.Soccers.Jobs\LiveScore.Soccers.Jobs.csproj", "{F4E83525-9C8C-4D86-91CF-8C1C86931ED1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore.Basketballs", "src\Modules\LiveScore.Basketballs\LiveScore.Basketballs.csproj", "{6A87992C-B4DC-4103-B7AA-700D6700BC4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Basketballs", "src\Modules\LiveScore.Basketballs\LiveScore.Basketballs.csproj", "{6A87992C-B4DC-4103-B7AA-700D6700BC4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore.Entity", "src\Core\LiveScore.Entity\LiveScore.Entity.csproj", "{B09D3211-FB18-4CDA-B428-9E01093C52D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +79,10 @@ Global
 		{6A87992C-B4DC-4103-B7AA-700D6700BC4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A87992C-B4DC-4103-B7AA-700D6700BC4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A87992C-B4DC-4103-B7AA-700D6700BC4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B09D3211-FB18-4CDA-B428-9E01093C52D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B09D3211-FB18-4CDA-B428-9E01093C52D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B09D3211-FB18-4CDA-B428-9E01093C52D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B09D3211-FB18-4CDA-B428-9E01093C52D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,6 +101,7 @@ Global
 		{78F6E23E-FFD1-4873-A7B5-281643B98524} = {72C20749-C34B-4DFC-B557-1D7132149F1A}
 		{F4E83525-9C8C-4D86-91CF-8C1C86931ED1} = {7A2D70E1-269D-435A-BB91-265728DA52D7}
 		{6A87992C-B4DC-4103-B7AA-700D6700BC4E} = {B346D78F-57FC-4E3E-A9E9-77E796BB0A97}
+		{B09D3211-FB18-4CDA-B428-9E01093C52D6} = {DAF1D274-483D-4AAA-B945-D6E1E9488FC6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {246B9D83-0780-47F5-B7E4-DD8514F7293A}
