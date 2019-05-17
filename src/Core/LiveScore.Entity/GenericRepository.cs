@@ -8,10 +8,17 @@
     public interface GenericRepository<T> where T : class
     {
         IEnumerable<T> GetAll();
+
         Task<T> GetById(object id);
+
         Task Insert(T obj);
+
+        Task InsertRange(List<T> objects);
+
         void Update(T obj);
+
         void Delete(object id);
+
         Task Save();
     }
 
@@ -34,9 +41,15 @@
             return table.FindAsync(id);
         }
         public Task Insert(T obj)
-        {
+        {            
             return table.AddAsync(obj);
         }
+
+        public Task InsertRange(List<T> objects)
+        {
+            return table.AddRangeAsync(objects);
+        }
+
         public void Update(T obj)
         {
             table.Attach(obj);
