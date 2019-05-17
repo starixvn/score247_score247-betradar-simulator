@@ -69,8 +69,8 @@ namespace LiveScore.WebApi
                 var appSettings = new AppSettings(hostingEnvironment, Configuration, sportRadarDataProviderSettings, timeZoneSettings);
 
                 services.AddSingleton<IAppSettings>(appSettings);
-                
-                services.AddSingleton<LeagueService, LeagueServiceImpl>();                
+
+                services.AddSingleton<LeagueService, LeagueServiceImpl>();
                 services.AddSingleton(CreateRestSharpClient(sportRadarDataProviderSettings));
                 services.AddSingleton((InstanceFactory)new InstanceFactoryImpl(
                     new Dictionary<int, MatchDataAccess>
@@ -111,9 +111,8 @@ namespace LiveScore.WebApi
                     .AddDbContext<ScoreAppContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")))
                     .BuildServiceProvider();
 
-                services.AddScoped<GenericRepository<MatchEntity>, GenericRepositoryImpl<MatchEntity>>();
-                services.AddScoped<MatchService, MatchServiceImpl>();
-                services.AddScoped<IAutoUpdateMatchTimeJob, AutoUpdateMatchTimeJob>();
+                RegisterRepositories(services);
+                RegisterServices(services);
             }
             catch (Exception ex)
             {
@@ -121,6 +120,17 @@ namespace LiveScore.WebApi
             }
 
             LogService.Info("LiveScore API has been started.");
+        }
+
+        private static void RegisterServices(IServiceCollection services)
+        {
+            services.AddScoped<MatchService, MatchServiceImpl>();
+            services.AddScoped<IAutoUpdateMatchTimeJob, AutoUpdateMatchTimeJob>();
+        }
+
+        private static void RegisterRepositories(IServiceCollection services)
+        {
+            services.AddScoped<GenericRepository<MatchEntity>, GenericRepositoryImpl<MatchEntity>>();
         }
 
         private static IRestClient CreateRestSharpClient(IDataProviderSettings providerSettings)
