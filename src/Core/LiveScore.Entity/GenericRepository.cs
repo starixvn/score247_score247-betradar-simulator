@@ -3,15 +3,16 @@
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     public interface GenericRepository<T> where T : class
     {
         IEnumerable<T> GetAll();
         T GetById(object id);
-        void Insert(T obj);
+        Task Insert(T obj);
         void Update(T obj);
         void Delete(object id);
-        void Save();
+        Task Save();
     }
 
     public class GenericRepositoryImpl<T> : GenericRepository<T> where T : class
@@ -32,9 +33,9 @@
         {
             return table.Find(id);
         }
-        public void Insert(T obj)
+        public Task Insert(T obj)
         {
-            table.Add(obj);
+            return table.AddAsync(obj);
         }
         public void Update(T obj)
         {
@@ -46,9 +47,9 @@
             T existing = table.Find(id);
             table.Remove(existing);
         }
-        public void Save()
+        public Task Save()
         {
-            context.SaveChanges();
+            return context.SaveChangesAsync();
         }
     }
 }

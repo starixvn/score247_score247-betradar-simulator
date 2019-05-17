@@ -35,7 +35,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Soccers.Jobs", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Basketballs", "src\Modules\LiveScore.Basketballs\LiveScore.Basketballs.csproj", "{6A87992C-B4DC-4103-B7AA-700D6700BC4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore.Entity", "src\Core\LiveScore.Entity\LiveScore.Entity.csproj", "{B09D3211-FB18-4CDA-B428-9E01093C52D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Entity", "src\Core\LiveScore.Entity\LiveScore.Entity.csproj", "{B09D3211-FB18-4CDA-B428-9E01093C52D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore.Jobs", "src\Jobs\LiveScore.Jobs\LiveScore.Jobs.csproj", "{926DA97F-0185-464E-A9EE-4CB7CEFAC10B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +85,10 @@ Global
 		{B09D3211-FB18-4CDA-B428-9E01093C52D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B09D3211-FB18-4CDA-B428-9E01093C52D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B09D3211-FB18-4CDA-B428-9E01093C52D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{926DA97F-0185-464E-A9EE-4CB7CEFAC10B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{926DA97F-0185-464E-A9EE-4CB7CEFAC10B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{926DA97F-0185-464E-A9EE-4CB7CEFAC10B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{926DA97F-0185-464E-A9EE-4CB7CEFAC10B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,6 +108,7 @@ Global
 		{F4E83525-9C8C-4D86-91CF-8C1C86931ED1} = {7A2D70E1-269D-435A-BB91-265728DA52D7}
 		{6A87992C-B4DC-4103-B7AA-700D6700BC4E} = {B346D78F-57FC-4E3E-A9E9-77E796BB0A97}
 		{B09D3211-FB18-4CDA-B428-9E01093C52D6} = {DAF1D274-483D-4AAA-B945-D6E1E9488FC6}
+		{926DA97F-0185-464E-A9EE-4CB7CEFAC10B} = {7A2D70E1-269D-435A-BB91-265728DA52D7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {246B9D83-0780-47F5-B7E4-DD8514F7293A}

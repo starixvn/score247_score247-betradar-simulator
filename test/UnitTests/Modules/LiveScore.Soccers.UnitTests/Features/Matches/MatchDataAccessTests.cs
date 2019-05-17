@@ -118,9 +118,9 @@
             Assert.Equal(1, firstMatchPeriod.Number);
         }
 
-        private DailyScheduleDto StubDailySchedule()
+        private DailyResultDto StubDailySchedule()
         {
-            return new DailyScheduleDto
+            return new DailyResultDto
             {
                 generated_at = new DateTime(2019, 1, 1),
                 schema = "schema",

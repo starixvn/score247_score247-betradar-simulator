@@ -20,6 +20,10 @@
 
         public IEnumerable<EndPoint> EndPoints { get; set; }
 
+        public IEnumerable<EndPoint> NewEndpoints { get; set; }
+
+        public IEnumerable<Region> Regions { get; set; }
+
         public int MaxDaysStoredData { get; set; }
     }
 
@@ -37,5 +41,12 @@
         public string Path { get; set; }
 
         public bool IsLive { get; set; }
+    }
+
+    public class Region
+    {
+        public string Name { get; set; }
+
+        public string Key { get; set; }
     }
 }

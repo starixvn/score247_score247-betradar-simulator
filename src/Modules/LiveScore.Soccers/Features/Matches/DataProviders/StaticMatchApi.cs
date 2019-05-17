@@ -20,7 +20,7 @@ namespace LiveScore.Soccers.Features.Matches.DataProviders
             this.appSettings = appSettings;
         }
 
-        public Task<DailyScheduleDto> GetDailySchedules(
+        public Task<DailyResultDto> GetDailySchedules(
             int sportId,
             DateTime from,
             DateTime to,
@@ -28,7 +28,7 @@ namespace LiveScore.Soccers.Features.Matches.DataProviders
         {
             // Temporary for hardcode, please ignore it
             var jsonData = File.ReadAllText($"{appSettings.AppPath}/App_Data/staticdata/daily-schedule.json");
-            var dailyScheduleDto = JsonConvert.DeserializeObject<DailyScheduleDto>(jsonData);
+            var dailyScheduleDto = JsonConvert.DeserializeObject<DailyResultDto>(jsonData);
 
             if (appSettings.AutoGenerateStatus)
             {
@@ -42,17 +42,17 @@ namespace LiveScore.Soccers.Features.Matches.DataProviders
         }
 
 
-        public Task<DailyScheduleDto> GetLiveSchedules(int sportId, string language)
+        public Task<DailyResultDto> GetLiveSchedules(int sportId, string language)
         {
             // Temporary for hardcode, please ignore it
             var jsonData = File.ReadAllText($"{appSettings.AppPath}/App_Data/staticdata/daily-schedule.json");
-            var dailyScheduleDto = JsonConvert.DeserializeObject<DailyScheduleDto>(jsonData);
+            var dailyScheduleDto = JsonConvert.DeserializeObject<DailyResultDto>(jsonData);
             dailyScheduleDto.results = dailyScheduleDto.results.Where(m => m.sport_event_status.status == "live");
 
             return Task.FromResult(dailyScheduleDto);
         }
 
-        private void AutoGenerateStatus(DailyScheduleDto dailyScheduleDto, DateTime date)
+        private void AutoGenerateStatus(DailyResultDto dailyScheduleDto, DateTime date)
         {
             foreach (var result in dailyScheduleDto.results)
             {

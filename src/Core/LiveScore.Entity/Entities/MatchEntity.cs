@@ -13,5 +13,7 @@
         public DateTime EventDate { get; set; }
 
         public string SeasonId { get; set; }
+
+        public string Language { get; set; }
     }
 }

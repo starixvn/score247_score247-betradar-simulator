@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Modules\LiveScore.Basketballs\LiveScore.Basketballs.csproj" />
+    <ProjectReference Include="..\..\Modules\LiveScore.Soccers\LiveScore.Soccers.csproj" />
+  </ItemGroup>
+
+</Project>

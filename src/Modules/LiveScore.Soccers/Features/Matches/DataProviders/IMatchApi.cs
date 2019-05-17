@@ -6,13 +6,13 @@
 
     public interface IMatchApi
     {
-        Task<DailyScheduleDto> GetDailySchedules(
+        Task<DailyResultDto> GetDailySchedules(
             int sportId,
             DateTime from,
             DateTime to,
             string language);
 
-        Task<DailyScheduleDto> GetLiveSchedules(
+        Task<DailyResultDto> GetLiveSchedules(
           int sportId,
           string language);
     }

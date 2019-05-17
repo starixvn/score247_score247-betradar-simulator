@@ -35,6 +35,7 @@ namespace LiveScore.WebApi
     using Hangfire;
     using Hangfire.PostgreSql;
     using LiveScore.Entity.Entities;
+    using LiveScore.Jobs;
 
     public class Startup
     {
@@ -107,7 +108,7 @@ namespace LiveScore.WebApi
 
                 services
                     .AddEntityFrameworkNpgsql()
-                    .AddDbContext<ScoreAppContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")))
+                    .AddDbContext<ScoreAppContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient)
                     .BuildServiceProvider();
 
                 RegisterRepositories(services);
@@ -125,6 +126,7 @@ namespace LiveScore.WebApi
         {
             services.AddScoped<MatchService, MatchServiceImpl>();
             services.AddScoped<IAutoUpdateMatchTimeJob, AutoUpdateMatchTimeJob>();
+            services.AddScoped<DailyScheduleFetchJob, DailyScheduleFetchJobImpl>();
         }
 
         private static void RegisterRepositories(IServiceCollection services)

@@ -31,7 +31,7 @@
             this.restClient = restClient;
         }
 
-        public async Task<DailyScheduleDto> GetDailySchedules(int sportId, DateTime from, DateTime to, string language)
+        public async Task<DailyResultDto> GetDailySchedules(int sportId, DateTime from, DateTime to, string language)
         {
             var sportSetting = appSettings
                 .DataProviderSettings
@@ -43,7 +43,7 @@
                 throw new InvalidOperationException("Please config Sport Setting before using");
             }
 
-            var dailyScheduleDtoSum = new DailyScheduleDto { generated_at = DateTime.Now.ToUniversalTime(), results = new List<Result>() };
+            var dailyScheduleDtoSum = new DailyResultDto { generated_at = DateTime.Now.ToUniversalTime(), results = new List<Result>() };
             var fromUtc = from.ToUniversalTime();
             var toUtc = to.ToUniversalTime();
             const int dayIncrementIndex = 1;
@@ -56,7 +56,7 @@
                         ? FormatEndPointFuncs[endPoint.FormatId]
                         : throw new InvalidOperationException($"Missing function format for endpoint {endPoint.Path}");
                     var formattedEndPoint = formatEndPointFunc(endPoint.Path, date, language);
-                    var dailyResult = await restClient.ExecuteGetAsync<DailyScheduleDto>(formattedEndPoint);
+                    var dailyResult = await restClient.ExecuteGetAsync<DailyResultDto>(formattedEndPoint);
 
                     if (dailyResult.results != null
                         && dailyResult.results.Any())
@@ -78,9 +78,9 @@
 #pragma warning restore S1172 // Unused method parameters should be removed
             => string.Format(endPoint, language);
 
-        public Task<DailyScheduleDto> GetLiveSchedules(int sportId, string language)
+        public Task<DailyResultDto> GetLiveSchedules(int sportId, string language)
         {
-            return Task.FromResult( new DailyScheduleDto { results =  Enumerable.Empty<Result>()});
+            return Task.FromResult( new DailyResultDto { results =  Enumerable.Empty<Result>()});
         }
     }
 }
