@@ -1,10 +1,9 @@
-﻿using Fanex.Caching;
-namespace LiveScore.WebApi.Features.Notifications
+﻿namespace LiveScore.WebApi.Features.Notifications
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Fanex.Caching;
     using LiveScore.Features.Matches.Models;
     using LiveScore.Shared.Hubs;
     using Microsoft.AspNetCore.Mvc;
