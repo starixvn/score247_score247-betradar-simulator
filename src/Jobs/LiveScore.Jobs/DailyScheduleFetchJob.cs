@@ -109,7 +109,7 @@
                     Language = language
                 };
 
-                if (repository.GetById(matchEntity.Id) == null)
+                if (await repository.GetById(matchEntity.Id) == null)
                 {
                     await repository.Insert(matchEntity);
                 }

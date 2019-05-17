@@ -8,7 +8,7 @@
     public interface GenericRepository<T> where T : class
     {
         IEnumerable<T> GetAll();
-        T GetById(object id);
+        Task<T> GetById(object id);
         Task Insert(T obj);
         void Update(T obj);
         void Delete(object id);
@@ -29,9 +29,9 @@
         {
             return table.ToList();
         }
-        public T GetById(object id)
+        public Task<T> GetById(object id)
         {
-            return table.Find(id);
+            return table.FindAsync(id);
         }
         public Task Insert(T obj)
         {
@@ -42,11 +42,13 @@
             table.Attach(obj);
             context.Entry(obj).State = EntityState.Modified;
         }
+
         public void Delete(object id)
         {
             T existing = table.Find(id);
             table.Remove(existing);
         }
+
         public Task Save()
         {
             return context.SaveChangesAsync();
