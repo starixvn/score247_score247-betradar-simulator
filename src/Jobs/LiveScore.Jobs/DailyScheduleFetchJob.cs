@@ -95,9 +95,7 @@
         }
 
         private async Task MapAndInsertMatches(string language, DailyScheduleDto dailyResult)
-        {
-            var matchEntities = new List<MatchEntity>();
-
+        {            
             foreach (var matchDto in dailyResult.sport_events)
             {
                 var match = CreateMatch(matchDto);
@@ -111,10 +109,12 @@
                     Language = language
                 };
 
-                matchEntities.Add(matchEntity);
+                if (await repository.GetById(matchEntity.Id) == null)
+                {
+                    await repository.Insert(matchEntity);
+                }
             }
-
-            await repository.InsertRange(matchEntities);
+          
             await repository.Save();
         }
 
