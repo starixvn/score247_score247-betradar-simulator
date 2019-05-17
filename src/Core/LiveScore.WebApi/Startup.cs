@@ -5,7 +5,6 @@ namespace LiveScore.WebApi
     using System.Collections.Generic;
     using System.Linq;
     using Fanex.Caching;
-    using Fanex.Caching.Redis;
     using Fanex.Logging;
     using Fanex.Logging.Sentry;
     using Hangfire.Dashboard;
