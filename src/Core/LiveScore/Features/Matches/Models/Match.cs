@@ -10,13 +10,13 @@
     {
         DateTime EventDate { get; }
 
-        ILeague League { get; }
+        League League { get; }
 
         LeagueRound LeagueRound { get; }
 
-        IEnumerable<ITeam> Teams { get; }
+        IEnumerable<Team> Teams { get; }
 
-        IMatchResult MatchResult { get; }
+        MatchResult MatchResult { get; }
 
         void ChangeEventDateByTimeZone(TimeSpan timeZone);
     }
@@ -25,11 +25,11 @@
     {
         public DateTime EventDate { get; set; }
 
-        public IEnumerable<ITeam> Teams { get; set; }
+        public IEnumerable<Team> Teams { get; set; }
 
-        public IMatchResult MatchResult { get; set; }
+        public MatchResult MatchResult { get; set; }
 
-        public ILeague League { get; set; }
+        public League League { get; set; }
 
         public LeagueRound LeagueRound { get; set; }
 

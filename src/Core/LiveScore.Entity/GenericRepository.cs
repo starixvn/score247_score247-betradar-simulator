@@ -7,7 +7,7 @@
 
     public interface GenericRepository<T> where T : class
     {
-        IEnumerable<T> GetAll();
+        Task<List<T>> GetAll();
 
         Task<T> GetById(object id);
 
@@ -32,14 +32,17 @@
             this.context = context;
             table = context.Set<T>();
         }
-        public IEnumerable<T> GetAll()
+
+        public Task<List<T>> GetAll()
         {
-            return table.ToList();
+            return table.ToListAsync();
         }
+
         public Task<T> GetById(object id)
         {
             return table.FindAsync(id);
         }
+
         public Task Insert(T obj)
         {            
             return table.AddAsync(obj);
