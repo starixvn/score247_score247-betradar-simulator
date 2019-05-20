@@ -18,13 +18,13 @@
 
     public class DailyScheduleFetchJob : IDailyScheduleFetchJob
     {
-        private readonly IGenericRepository<MatchEntity> repository;
+        private readonly IDynamicRepository repository;
         private readonly IRecurringJobManager recurringJobManager;
         private readonly InstanceFactory instanceFactory;
 
         public DailyScheduleFetchJob(
             IRecurringJobManager recurringJobManager,
-            IGenericRepository<MatchEntity> repository,
+            IDynamicRepository repository,
             InstanceFactory instanceFactory)
         {
             this.instanceFactory = instanceFactory;
@@ -40,7 +40,7 @@
 
             foreach (var match in matches)
             {
-                if (await repository.GetById(match.Id) == null)
+                if (await repository.GetById<MatchEntity>(match.Id) == null)
                 {
                     var matchEntity = new MatchEntity
                     {

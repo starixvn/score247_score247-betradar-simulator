@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{E9AC78D2-2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{DAF1D274-483D-4AAA-B945-D6E1E9488FC6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore", "src\core\LiveScore\LiveScore.csproj", "{AE165E8B-0020-470F-A4F2-4C0FB1C83B61}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore", "src\core\LiveScore\LiveScore.csproj", "{AE165E8B-0020-470F-A4F2-4C0FB1C83B61}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.WebApi", "src\core\LiveScore.WebApi\LiveScore.WebApi.csproj", "{2D529A50-4FE8-4656-AA2C-340F4B421DDA}"
 EndProject

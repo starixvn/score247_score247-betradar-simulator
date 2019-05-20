@@ -5,8 +5,6 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Fanex.Caching;
-    using LiveScore.Entity;
-    using LiveScore.Entity.Entities;
     using LiveScore.Features.Matches;
     using LiveScore.Features.Matches.Models;
     using LiveScore.Shared;
@@ -45,10 +43,10 @@
         public async Task GetMatches_ToDateIsLowerThanFromDate_ReturnEmptyMatches()
         {
             var matches = await matchServiceImpl.GetMatches(
-                1, 
-                DateTime.Now, 
-                DateTime.Now.AddDays(-1), 
-                new TimeSpan(1, 0, 0), 
+                1,
+                DateTime.Now,
+                DateTime.Now.AddDays(-1),
+                new TimeSpan(1, 0, 0),
                 "en");
 
             Assert.Empty(matches);

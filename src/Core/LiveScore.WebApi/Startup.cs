@@ -150,7 +150,7 @@ namespace LiveScore.WebApi
         {
             var serviceProvider = services.BuildServiceProvider();
 
-            var repository = serviceProvider.GetService<IGenericRepository<MatchEntity>>();
+            var repository = serviceProvider.GetService<IDynamicRepository>();
             var appSettings = serviceProvider.GetService<IAppSettings>();
             var restClient = serviceProvider.GetService<IRestClient>();
 
@@ -176,9 +176,7 @@ namespace LiveScore.WebApi
                         => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Scoped)
                    .BuildServiceProvider();
 
-            services.AddScoped<IGenericRepository<MatchEntity>, GenericRepository<MatchEntity>>();
-            services.AddScoped<IGenericRepository<MatchTimelineEntity>, GenericRepository<MatchTimelineEntity>>();
-            services.AddScoped<IGenericRepository<MatchResultEntity>, GenericRepository<MatchResultEntity>>();
+            services.AddScoped<IDynamicRepository, DynamicRepository>();
         }
 
         private static void RegisterJobs(IServiceCollection services)

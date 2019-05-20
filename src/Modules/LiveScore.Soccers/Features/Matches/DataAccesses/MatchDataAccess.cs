@@ -12,18 +12,11 @@
 
     public class MatchDataAccess : IMatchDataAccess
     {
-        private readonly IGenericRepository<MatchEntity> matchRepository;
-        private readonly IGenericRepository<MatchTimelineEntity> timeLineRepository;
-        private readonly IGenericRepository<MatchResultEntity> resultRepository;
+        private readonly IDynamicRepository dynamicRepository;
 
-        public MatchDataAccess(
-            IGenericRepository<MatchEntity> matchRepository,
-            IGenericRepository<MatchTimelineEntity> timeLineRepository,
-            IGenericRepository<MatchResultEntity> resultRepository)
+        public MatchDataAccess(IDynamicRepository dynamicRepository)
         {
-            this.matchRepository = matchRepository;
-            this.timeLineRepository = timeLineRepository;
-            this.resultRepository = resultRepository;
+            this.dynamicRepository = dynamicRepository;
         }
 
         public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime from, DateTime to, string language)
@@ -32,8 +25,7 @@
             var fromUtc = from.ToUniversalTime();
             var toUtc = to.ToUniversalTime();
 
-            var matchEntities = await matchRepository
-                .Find
+            var matchEntities = await dynamicRepository.Find<MatchEntity>
                 (
                     x => x.SportId == sportId &&
                     x.Language.Equals(language, StringComparison.OrdinalIgnoreCase) &&
@@ -57,7 +49,7 @@
 
         public async Task AddTimeline(string matchId, ITimeline timeline)
         {
-            await timeLineRepository.Insert(
+            await dynamicRepository.Insert(
                 new MatchTimelineEntity
                 {
                     Id = timeline.Id,
@@ -68,7 +60,7 @@
 
         public async Task AddResult(string matchId, IMatchResult matchResult)
         {
-            await resultRepository.Insert(
+            await dynamicRepository.Insert(
                 new MatchResultEntity
                 {
                     MatchId = matchId,

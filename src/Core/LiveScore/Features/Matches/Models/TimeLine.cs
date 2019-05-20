@@ -42,7 +42,7 @@
         IEnumerable<Commentary> Commentaries { get; }
     }
 
-    public class TimeLine : Entity<long, string>, ITimeline
+    public class Timeline : Entity<long, string>, ITimeline
     {
         public string Type { get; set; }
 

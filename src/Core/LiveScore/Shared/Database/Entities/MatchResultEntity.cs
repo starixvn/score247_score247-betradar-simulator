@@ -4,7 +4,7 @@
 
     public class MatchResultEntity
     {
-        public string Id { get; set; }
+        public long Id { get; set; }
 
         [Column(TypeName = "jsonb")]
         public string Value { get; set; }
