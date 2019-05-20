@@ -129,8 +129,8 @@ namespace LiveScore.WebApi
 
             return new Dictionary<DataProvider, IMatchDataAccess>
             {
-                { DataProvider.Database, (IMatchDataAccess)new Soccers.Features.Matches.DataProviders.MatchDataAccess(repository) },
-                { DataProvider.ThirdPartyApi, (IMatchDataAccess)new Soccers.Features.Matches.DataProviders.SportRadarMatchDataAccess(appSettings, restClient) },
+                { DataProvider.Database, (IMatchDataAccess)new Soccers.Features.Matches.DataAccesses.MatchDataAccess(repository) },
+                { DataProvider.ThirdPartyApi, (IMatchDataAccess)new Soccers.Features.Matches.DataAccesses.SportRadarMatchDataAccess(appSettings, restClient) },
             };
         }
 

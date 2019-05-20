@@ -1,6 +1,7 @@
 ﻿namespace LiveScore.Entity
 {
     using Microsoft.EntityFrameworkCore;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -10,6 +11,8 @@
         Task<List<T>> GetAll();
 
         Task<T> GetById(object id);
+
+        IEnumerable<T> Find(Func<T, bool> predicate);
 
         Task Insert(T obj);
 
@@ -26,11 +29,16 @@
     {
         private readonly ScoreAppContext context;
         private readonly DbSet<T> table;
-       
+
         public GenericRepository(ScoreAppContext context)
         {
             this.context = context;
             table = context.Set<T>();
+        }
+
+        public IEnumerable<T> Find(Func<T, bool> predicate)
+        {
+            return table.Where(predicate);
         }
 
         public Task<List<T>> GetAll()
@@ -44,7 +52,7 @@
         }
 
         public Task Insert(T obj)
-        {            
+        {
             return table.AddAsync(obj);
         }
 

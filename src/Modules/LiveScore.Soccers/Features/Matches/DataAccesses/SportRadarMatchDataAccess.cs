@@ -1,4 +1,4 @@
-﻿namespace LiveScore.Soccers.Features.Matches.DataProviders
+﻿namespace LiveScore.Soccers.Features.Matches.DataAccesses
 {
     using System;
     using System.Collections.Generic;
