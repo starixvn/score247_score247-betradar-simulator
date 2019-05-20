@@ -1,11 +1,11 @@
 ﻿namespace LiveScore.Features.Matches.Models
 {
+    using System.Collections.Generic;
     using LiveScore.Shared.Helpers;
     using Newtonsoft.Json;
-    using System.Collections.Generic;
-   
-    public class MatchPayload 
-    {   
+
+    public class MatchPayload
+    {
         [JsonConverter(typeof(JsonConcreteTypeConverter<MatchResult>))]
         public IMatchResult MatchResult { get; set; }
 

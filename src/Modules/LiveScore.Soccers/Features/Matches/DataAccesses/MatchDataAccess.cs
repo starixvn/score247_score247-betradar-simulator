@@ -35,7 +35,22 @@
 
             foreach (var entity in matchEntities)
             {
-                matches.Add(JsonConvert.DeserializeObject<Match>(entity.Value));
+                var match = JsonConvert.DeserializeObject<Match>(entity.Value);
+
+                var lastTimeLine = await dynamicRepository.Last<MatchTimelineEntity>(t => t.MatchId == entity.Id);
+                var result = await dynamicRepository.Last<MatchResultEntity>(t => t.MatchId == entity.Id);
+
+                if (lastTimeLine != null)
+                {
+                    match.TimeLines = new List<Timeline> { JsonConvert.DeserializeObject<Timeline>(lastTimeLine.Value) };
+                }
+
+                if (result != null)
+                {
+                    match.MatchResult = JsonConvert.DeserializeObject<MatchResult>(result.Value);
+                }
+
+                matches.Add(match);
             }
 
             return matches;
@@ -47,18 +62,20 @@
                 .Where(m => m.MatchResult.EventStatus.IsLive());
         }
 
-        public async Task AddTimeline(string matchId, ITimeline timeline)
+        public async Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines)
         {
-            await dynamicRepository.Insert(
-                new MatchTimelineEntity
-                {
-                    Id = timeline.Id,
-                    MatchId = matchId,
-                    Value = JsonConvert.SerializeObject(timeline)
-                });
+            var matchTimelineEntities = timelines.Select(t => new MatchTimelineEntity
+            {
+                MatchId = matchId,
+                Value = JsonConvert.SerializeObject(t)
+            });
+
+            await dynamicRepository.InsertRange(matchTimelineEntities);
+
+            return (await dynamicRepository.Save()) > 0;
         }
 
-        public async Task AddResult(string matchId, IMatchResult matchResult)
+        public async Task<bool> AddResult(string matchId, IMatchResult matchResult)
         {
             await dynamicRepository.Insert(
                 new MatchResultEntity
@@ -66,6 +83,8 @@
                     MatchId = matchId,
                     Value = JsonConvert.SerializeObject(matchResult)
                 });
+
+            return (await dynamicRepository.Save()) > 0;
         }
     }
 }

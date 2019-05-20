@@ -1,4 +1,5 @@
-﻿namespace LiveScore.WebApi.Features.Notifications
+﻿using LiveScore.Features.Matches;
+namespace LiveScore.WebApi.Features.Notifications
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -15,11 +16,16 @@
     {
         private readonly IHubContext<MatchHub> hubContext;
         private readonly ICacheService cacheService;
+        private readonly IMatchService matchService;
 
-        public NotificationController(IHubContext<MatchHub> hubContext, ICacheService cacheService)
+        public NotificationController(
+            IHubContext<MatchHub> hubContext,
+            ICacheService cacheService,
+            IMatchService matchService)
         {
             this.hubContext = hubContext;
             this.cacheService = cacheService;
+            this.matchService = matchService;
         }
 
         [HttpPost("PushMatchEvent")]
@@ -31,11 +37,16 @@
             {
                 foreach (var matchId in payloads.Keys)
                 {
-                    if (payloads[matchId].MatchResult.EventStatus.IsLive())
+                    var payload = payloads[matchId];
+
+                    if (payload.MatchResult.EventStatus.IsLive())
                     {
                         var cacheKey = "MatchTime-" + matchId;
-                        cacheService.Set(cacheKey, payloads[matchId].TimeLines.FirstOrDefault().MatchTime);
+                        cacheService.Set(cacheKey, payload.TimeLines.LastOrDefault().MatchTime);
                     }
+
+                    await matchService.AddTimelines(sportId, matchId, payload.TimeLines);
+                    await matchService.AddResult(sportId, matchId, payload.MatchResult);
                 }
 
                 await hubContext.Clients.All.SendAsync("PushMatchEvent", sportId, payloads);

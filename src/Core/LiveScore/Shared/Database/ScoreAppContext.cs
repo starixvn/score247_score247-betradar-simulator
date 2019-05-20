@@ -12,7 +12,7 @@
 
         public DbSet<MatchEntity> Matches { get; set; }
 
-        public DbSet<MatchTimelineEntity> MatchTimelines { get; set; }
+        public DbSet<MatchTimelineEntity> Timelines { get; set; }
 
         public DbSet<MatchResultEntity> MatchResults { get; set; }
     }

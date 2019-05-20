@@ -1,10 +1,11 @@
 ﻿namespace LiveScore.Shared.Database
 {
-    using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Linq.Expressions;
     using System.Threading.Tasks;
+    using Microsoft.EntityFrameworkCore;
 
     public interface IDynamicRepository
     {
@@ -14,15 +15,19 @@
 
         Task<IEnumerable<T>> Find<T>(Func<T, bool> predicate) where T : class;
 
+        Task<T> First<T>(Expression<Func<T, bool>> predicate) where T : class;
+
+        Task<T> Last<T>(Expression<Func<T, bool>> predicate) where T : class;
+
         Task Insert<T>(T obj) where T : class;
 
-        Task InsertRange<T>(List<T> objects) where T : class;
+        Task InsertRange<T>(IEnumerable<T> objects) where T : class;
 
         void Update<T>(T obj) where T : class;
 
         void Delete<T>(object id) where T : class;
 
-        Task Save();
+        Task<int> Save();
     }
 
     public class DynamicRepository : IDynamicRepository
@@ -37,32 +42,37 @@
 
         public async Task<IEnumerable<T>> Find<T>(Func<T, bool> predicate) where T : class
         {
-            var table = context.Set<T>();
-            return await Task.FromResult(table.Where(predicate));
+            return await Task.FromResult(context.Set<T>().Where(predicate));
+        }
+
+        public Task<T> First<T>(Expression<Func<T, bool>> predicate) where T : class
+        {
+            return context.Set<T>().FirstOrDefaultAsync(predicate);
+        }
+
+        public Task<T> Last<T>(Expression<Func<T, bool>> predicate) where T : class
+        {
+            return context.Set<T>().LastOrDefaultAsync(predicate);
         }
 
         public Task<List<T>> GetAll<T>() where T : class
         {
-            var table = context.Set<T>();
-            return table.ToListAsync();
+            return context.Set<T>().ToListAsync();
         }
 
         public Task<T> GetById<T>(object id) where T : class
         {
-            var table = context.Set<T>();
-            return table.FindAsync(id);
+            return context.Set<T>().FindAsync(id);
         }
 
         public Task Insert<T>(T obj) where T : class
         {
-            var table = context.Set<T>();
-            return table.AddAsync(obj);
+            return context.Set<T>().AddAsync(obj);
         }
 
-        public Task InsertRange<T>(List<T> objects) where T : class
+        public Task InsertRange<T>(IEnumerable<T> objects) where T : class
         {
-            var table = context.Set<T>();
-            return table.AddRangeAsync(objects);
+            return context.Set<T>().AddRangeAsync(objects);
         }
 
         public void Update<T>(T obj) where T : class
@@ -79,7 +89,7 @@
             table.Remove(existing);
         }
 
-        public Task Save()
+        public Task<int> Save()
         {
             return context.SaveChangesAsync();
         }

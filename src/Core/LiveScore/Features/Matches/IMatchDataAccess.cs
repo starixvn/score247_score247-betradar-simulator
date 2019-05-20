@@ -16,5 +16,9 @@
         Task<IEnumerable<IMatch>> GetLiveMatches(
           int sportId,
           string language);
+
+        Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines);
+
+        Task<bool> AddResult(string matchId, IMatchResult matchResult);
     }
 }

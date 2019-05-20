@@ -12,6 +12,16 @@ namespace LiveScore.Basketballs.Features.Matches
 
     public class MatchDataAccessImpl : IMatchDataAccess
     {
+        public Task<bool> AddResult(string matchId, IMatchResult matchResult)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
         {
             throw new NotImplementedException();

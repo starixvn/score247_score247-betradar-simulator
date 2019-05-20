@@ -25,10 +25,8 @@
         <Folder Include="Shared\Hubs\">
         </Folder>
         <Folder Include="Shared\Database\">
-          <DependentUpon>Database</DependentUpon>
         </Folder>
         <Folder Include="Shared\Database\Entities\">
-          <DependentUpon>Entities</DependentUpon>
         </Folder>
     </ItemGroup>
 </Project>

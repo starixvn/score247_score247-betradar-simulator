@@ -20,6 +20,14 @@
 
         IMatchResult MatchResult { get; }
 
+        IEnumerable<ITimeline> TimeLines { get; }
+
+        int Attendance { get; }
+
+        IVenue Venue { get; }
+
+        string Referee { get; }
+
         void ChangeEventDateByTimeZone(TimeSpan timeZone);
     }
 
@@ -37,6 +45,15 @@
         public ILeague League { get; set; }
 
         public LeagueRound LeagueRound { get; set; }
+
+        [JsonConverter(typeof(JsonConcreteTypeConverter<IEnumerable<Timeline>>))]
+        public IEnumerable<ITimeline> TimeLines { get; set; }
+
+        public int Attendance { get; set; }
+
+        public IVenue Venue { get; set; }
+
+        public string Referee { get; set; }
 
         public void ChangeEventDateByTimeZone(TimeSpan timeZone)
         {

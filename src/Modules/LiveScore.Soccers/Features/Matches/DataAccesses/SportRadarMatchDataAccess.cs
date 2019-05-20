@@ -16,7 +16,6 @@
 
     public class SportRadarMatchDataAccess : IMatchDataAccess
     {
-
         private const string Home = "home";
         private const string SportRadarDateFormat = "yyyy-MM-dd";
         private const string FeatureKey = "MatchSchedule";
@@ -90,7 +89,7 @@
 
             return dailyScheduleDtoSum;
         }
-        
+
         private static Match CreateMatch(Sport_Event sportEvent)
         {
             var match = new Match
@@ -162,6 +161,16 @@
             }
 
             return teams.OrderBy(team => team.IsHome ? 0 : 1).ToList();
+        }
+
+        public Task<bool> AddResult(string matchId, IMatchResult matchResult)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines)
+        {
+            throw new NotImplementedException();
         }
     }
 }
