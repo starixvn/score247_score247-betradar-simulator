@@ -15,5 +15,7 @@
         public string SeasonId { get; set; }
 
         public string Language { get; set; }
+
+        public int SportId { get; set; }
     }
 }

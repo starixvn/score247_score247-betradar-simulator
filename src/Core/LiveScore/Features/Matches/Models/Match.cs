@@ -3,20 +3,22 @@
     using System;
     using System.Collections.Generic;
     using LiveScore.Features.Leagues.Models;
-    using LiveScore.Features.Teams.Models;    
-    using LiveScore.Shared.Models;    
+    using LiveScore.Features.Teams.Models;
+    using LiveScore.Shared.Helpers;
+    using LiveScore.Shared.Models;
+    using Newtonsoft.Json;
 
     public interface IMatch : IEntity<string, string>
     {
         DateTime EventDate { get; }
 
-        League League { get; }
+        ILeague League { get; }
 
         LeagueRound LeagueRound { get; }
 
-        IEnumerable<Team> Teams { get; }
+        IEnumerable<ITeam> Teams { get; }
 
-        MatchResult MatchResult { get; }
+        IMatchResult MatchResult { get; }
 
         void ChangeEventDateByTimeZone(TimeSpan timeZone);
     }
@@ -25,11 +27,14 @@
     {
         public DateTime EventDate { get; set; }
 
-        public IEnumerable<Team> Teams { get; set; }
+        [JsonConverter(typeof(JsonConcreteTypeConverter<IEnumerable<Team>>))]
+        public IEnumerable<ITeam> Teams { get; set; }
 
-        public MatchResult MatchResult { get; set; }
+        [JsonConverter(typeof(JsonConcreteTypeConverter<MatchResult>))]
+        public IMatchResult MatchResult { get; set; }
 
-        public League League { get; set; }
+        [JsonConverter(typeof(JsonConcreteTypeConverter<League>))]
+        public ILeague League { get; set; }
 
         public LeagueRound LeagueRound { get; set; }
 

@@ -5,11 +5,8 @@ namespace LiveScore.Features.Matches
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using LiveScore.Entity;
-    using LiveScore.Entity.Entities;
     using LiveScore.Features.Matches.Models;
     using LiveScore.Shared;
-    using Newtonsoft.Json;
 
     public interface MatchService
     {
@@ -22,13 +19,11 @@ namespace LiveScore.Features.Matches
     {
         private readonly InstanceFactory instanceFactory;
         private readonly ICacheService cacheService;
-        private readonly GenericRepository<MatchEntity> repository;
 
-        public MatchServiceImpl(InstanceFactory instanceFactory, ICacheService cacheService, GenericRepository<MatchEntity> repository)
+        public MatchServiceImpl(InstanceFactory instanceFactory, ICacheService cacheService)
         {
             this.instanceFactory = instanceFactory;
             this.cacheService = cacheService;
-            this.repository = repository;
         }
 
         public async Task<IEnumerable<IMatch>> GetMatches(
@@ -46,34 +41,27 @@ namespace LiveScore.Features.Matches
                 return await Task.FromResult(Enumerable.Empty<IMatch>());
             }
 
-            //var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
+            var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
 
-            //var matches = (await matchDataAccess
-            //    .GetMatches(sportId, from, to, language))
-            //    .Select(match =>
-            //    {
-            //        if (match.MatchResult.EventStatus.IsLive())
-            //        {
-            //            var matchTime = cacheService.Get<int>("MatchTime-" + match.Id);
+            var matches = (await matchDataAccess
+                .GetMatches(sportId, from, to, language))
+                .Select(match =>
+                {
+                    if (match.MatchResult.EventStatus.IsLive())
+                    {
+                        var matchTime = cacheService.Get<int>("MatchTime-" + match.Id);
 
-            //            if (matchTime > 0)
-            //            {
-            //                match.MatchResult.MatchTime = $"{matchTime}:00";
-            //            }
-            //        }
+                        if (matchTime > 0)
+                        {
+                            match.MatchResult.MatchTime = $"{matchTime}:00";
+                        }
+                    }
 
-            //        match.ChangeEventDateByTimeZone(timeZone);
+                    match.ChangeEventDateByTimeZone(timeZone);
 
-            //        return match;
-            //    });
+                    return match;
+                });
 
-            var matches = new List<Match>();
-            var matchEntities = await repository.GetAll();
-
-            foreach (var entity in matchEntities)
-            {
-                matches.Add(JsonConvert.DeserializeObject<Match>(entity.Value));
-            }
 
             return matches;
         }

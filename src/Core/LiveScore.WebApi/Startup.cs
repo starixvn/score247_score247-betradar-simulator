@@ -69,13 +69,21 @@ namespace LiveScore.WebApi
                 var appSettings = new AppSettings(hostingEnvironment, Configuration, sportRadarDataProviderSettings, timeZoneSettings);
 
                 services.AddSingleton<IAppSettings>(appSettings);
-
                 services.AddSingleton<LeagueService, LeagueServiceImpl>();
                 services.AddSingleton(CreateRestSharpClient(sportRadarDataProviderSettings));
+
+                services
+                   .AddEntityFrameworkNpgsql()
+                   .AddDbContext<ScoreAppContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient)
+                   .BuildServiceProvider();
+
+                RegisterRepositories(services);
+                RegisterServices(services);
+
                 services.AddSingleton((InstanceFactory)new InstanceFactoryImpl(
                     new Dictionary<int, MatchDataAccess>
                     {
-                        { SportConstants.SoccerId, new MatchDataAccessImpl(GetMatchApiInstance(appSettings)) },
+                        { SportConstants.SoccerId, new MatchDataAccessImpl(GetMatchApiInstance(services) )},
                         { SportConstants.BasketballId, new LiveScore.Basketballs.Features.Matches.MatchDataAccessImpl() }
                     },
                      new Dictionary<int, LeagueDataAccess>
@@ -86,7 +94,6 @@ namespace LiveScore.WebApi
                     ));
 
                 //
-                services.AddSingleton(GetMatchApiInstance(appSettings));
                 services.AddSingleton(GetLeagueApiInstance(appSettings));
                 services.AddHangfire(x => x.UsePostgreSqlStorage(Configuration.GetConnectionString("hangfireConnection")));
                 services.AddMemoryCache();
@@ -106,13 +113,7 @@ namespace LiveScore.WebApi
 
                 services.AddSignalR();
 
-                services
-                    .AddEntityFrameworkNpgsql()
-                    .AddDbContext<ScoreAppContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient)
-                    .BuildServiceProvider();
-
-                RegisterRepositories(services);
-                RegisterServices(services);
+               
             }
             catch (Exception ex)
             {
@@ -122,8 +123,16 @@ namespace LiveScore.WebApi
             LogService.Info("LiveScore API has been started.");
         }
 
-        private static void RegisterServices(IServiceCollection services)
+        private static IMatchApi GetMatchApiInstance(IServiceCollection services)
         {
+            var serviceProvider = services.BuildServiceProvider();
+            var repository = serviceProvider.GetService<GenericRepository<MatchEntity>>();
+
+            return (IMatchApi) new DatabaseMatchApi(repository);
+        }
+
+        private static void RegisterServices(IServiceCollection services)
+        {            
             services.AddScoped<MatchService, MatchServiceImpl>();
             services.AddScoped<IAutoUpdateMatchTimeJob, AutoUpdateMatchTimeJob>();
             services.AddScoped<DailyScheduleFetchJob, DailyScheduleFetchJobImpl>();
@@ -151,11 +160,6 @@ namespace LiveScore.WebApi
 
             services.AddSingleton(Logger.Log);
         }
-
-        private static IMatchApi GetMatchApiInstance(AppSettings appSettings)
-            => appSettings.EnabledStaticData
-                                    ? (IMatchApi)new StaticMatchApi(appSettings)
-                                    : (IMatchApi)new SportRadarMatchApi(appSettings, CreateRestSharpClient(appSettings.DataProviderSettings));
 
         private static ILeagueApi GetLeagueApiInstance(AppSettings appSettings)
             => appSettings.EnabledStaticData

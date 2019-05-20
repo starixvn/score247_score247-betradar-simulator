@@ -20,17 +20,15 @@
         private readonly InstanceFactory instanceFactory;
         private readonly MatchDataAccess matchDataAccess;
         private readonly ICacheService cacheService;
-        private readonly GenericRepository<MatchEntity> repository;
 
         public MatchServiceTests()
         {
             matchDataAccess = Substitute.For<MatchDataAccess>();
             instanceFactory = Substitute.For<InstanceFactory>();
             cacheService = Substitute.For<ICacheService>();
-            repository = Substitute.For<GenericRepository<MatchEntity>>();
             instanceFactory.CreateMatchDataAccess(SoccerSportId).Returns(matchDataAccess);
 
-            matchServiceImpl = new MatchServiceImpl(instanceFactory, cacheService, repository);
+            matchServiceImpl = new MatchServiceImpl(instanceFactory, cacheService);
         }
 
         [Theory]

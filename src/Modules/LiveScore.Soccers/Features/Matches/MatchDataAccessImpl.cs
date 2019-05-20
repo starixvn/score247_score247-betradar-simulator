@@ -5,20 +5,17 @@
     using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
-    using LiveScore.Entity;
-    using LiveScore.Entity.Entities;
     using LiveScore.Features.Leagues.Models;
     using LiveScore.Features.Matches;
     using LiveScore.Features.Matches.Models;
     using LiveScore.Shared.Models;
     using LiveScore.Shared.Models.Dtos;
     using LiveScore.Soccers.Features.Matches.DataProviders;
-    using Newtonsoft.Json;
 
     public class MatchDataAccessImpl : MatchDataAccess
     {
         private const string Home = "home";
-        private readonly IMatchApi matchApi;        
+        private readonly IMatchApi matchApi;
 
         public MatchDataAccessImpl(IMatchApi matchApi)
         {
@@ -27,34 +24,18 @@
 
         public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime from, DateTime to, string language)
         {
-            var matches = new List<Match>();
-
-            var dailySchedule = await matchApi.GetDailySchedules(
+            var matchEntities = await matchApi.GetDailySchedules(
                 sportId,
                 from,
                 to,
                 language);
 
-            foreach (var matchDto in dailySchedule.results)
-            {
-                matches.Add(CreateMatch(matchDto));
-            }
-
-            return matches;
+            return matchEntities.ToList();
         }
 
         public async Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
         {
-            var liveSchedule = await matchApi.GetLiveSchedules(sportId, language);
-
-            var matches = new List<Match>();
-
-            foreach (var matchDto in liveSchedule.results)
-            {
-                matches.Add(CreateMatch(matchDto));
-            }
-
-            return matches;
+            return await matchApi.GetLiveSchedules(sportId, language);
         }
 
         private static Match CreateMatch(Result matchDto)

@@ -1,18 +1,19 @@
 ﻿namespace LiveScore.Soccers.Features.Matches.DataProviders
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
-    using LiveScore.Shared.Models.Dtos;
+    using LiveScore.Features.Matches.Models;
 
     public interface IMatchApi
     {
-        Task<DailyResultDto> GetDailySchedules(
+        Task<IEnumerable<IMatch>> GetDailySchedules(
             int sportId,
             DateTime from,
             DateTime to,
             string language);
 
-        Task<DailyResultDto> GetLiveSchedules(
+        Task<IEnumerable<IMatch>> GetLiveSchedules(
           int sportId,
           string language);
     }
