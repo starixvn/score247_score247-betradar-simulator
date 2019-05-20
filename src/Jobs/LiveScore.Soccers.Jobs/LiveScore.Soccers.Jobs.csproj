@@ -7,6 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\core\LiveScore\LiveScore.csproj" />
     <ProjectReference Include="..\..\Modules\LiveScore.Soccers\LiveScore.Soccers.csproj" />
+    <ProjectReference Include="..\LiveScore.Jobs\LiveScore.Jobs.csproj" />
   </ItemGroup>
 
   <ItemGroup>

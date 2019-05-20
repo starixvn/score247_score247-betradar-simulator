@@ -20,8 +20,6 @@
 
         public IEnumerable<EndPoint> EndPoints { get; set; }
 
-        public IEnumerable<EndPoint> NewEndpoints { get; set; }
-
         public IEnumerable<Region> Regions { get; set; }
 
         public int MaxDaysStoredData { get; set; }

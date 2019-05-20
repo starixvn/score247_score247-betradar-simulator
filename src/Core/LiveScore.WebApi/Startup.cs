@@ -36,6 +36,8 @@ namespace LiveScore.WebApi
     using Hangfire.PostgreSql;
     using LiveScore.Entity.Entities;
     using LiveScore.Jobs;
+    using LiveScore.Jobs.Features.Matches;
+    using LiveScore.Soccers.Jobs.Features.Matches;
 
     public class Startup
     {
@@ -79,6 +81,7 @@ namespace LiveScore.WebApi
 
                 RegisterRepositories(services);
                 RegisterServices(services);
+                RegisterJobs(services);
 
                 services.AddSingleton((InstanceFactory)new InstanceFactoryImpl(
                     new Dictionary<int, MatchDataAccess>
@@ -113,7 +116,7 @@ namespace LiveScore.WebApi
 
                 services.AddSignalR();
 
-               
+
             }
             catch (Exception ex)
             {
@@ -128,19 +131,32 @@ namespace LiveScore.WebApi
             var serviceProvider = services.BuildServiceProvider();
             var repository = serviceProvider.GetService<GenericRepository<MatchEntity>>();
 
-            return (IMatchApi) new DatabaseMatchApi(repository);
+            return (IMatchApi)new DatabaseMatchApi(repository);
         }
 
         private static void RegisterServices(IServiceCollection services)
-        {            
+        {
             services.AddScoped<MatchService, MatchServiceImpl>();
             services.AddScoped<IAutoUpdateMatchTimeJob, AutoUpdateMatchTimeJob>();
-            services.AddScoped<DailyScheduleFetchJob, DailyScheduleFetchJobImpl>();
         }
 
         private static void RegisterRepositories(IServiceCollection services)
         {
             services.AddScoped<GenericRepository<MatchEntity>, GenericRepositoryImpl<MatchEntity>>();
+        }
+
+        private static void RegisterJobs(IServiceCollection services)
+        {
+            var serviceProvider = services.BuildServiceProvider();
+
+            services.AddSingleton((JobInstanceFactory)new JobInstanceFactoryImpl(
+                new Dictionary<int, MatchJobDataAccess>
+                {
+                    { SportConstants.SoccerId, new MatchJobDataAccessImpl(serviceProvider.GetService<IAppSettings>(), serviceProvider.GetService<IRestClient>() )}
+                }
+                ));
+
+            services.AddScoped<DailyScheduleFetchJob, DailyScheduleFetchJobImpl>();
         }
 
         private static IRestClient CreateRestSharpClient(IDataProviderSettings providerSettings)

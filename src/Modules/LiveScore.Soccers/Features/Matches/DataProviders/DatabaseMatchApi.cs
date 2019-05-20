@@ -21,6 +21,8 @@
         public async Task<IEnumerable<IMatch>> GetDailySchedules(int sportId, DateTime from, DateTime to, string language)
         {
             var matches = new List<Match>();
+
+            //TODO implement daterange
             var matchEntities = (await repository.GetAll()).Where(x => x.SportId == sportId && x.Language.Equals(language, StringComparison.OrdinalIgnoreCase));
 
             foreach (var entity in matchEntities)
