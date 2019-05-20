@@ -17,14 +17,14 @@
 
     public class AutoUpdateMatchTimeJob : IAutoUpdateMatchTimeJob
     {
-        private readonly MatchService matchService;
+        private readonly IMatchService matchService;
         private readonly ICacheService cacheService;
         private readonly IRecurringJobManager recurringJobManager;
         private readonly IHubContext<MatchHub> matchHub;
 
         public AutoUpdateMatchTimeJob(
             IRecurringJobManager recurringJobManager,
-             MatchService matchService,
+             IMatchService matchService,
              ICacheService cacheService,
              IHubContext<MatchHub> matchHub)
         {

@@ -6,36 +6,40 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    public interface LeagueService
+    public interface ILeagueService
     {
         Task<IEnumerable<ILeague>> GetLeagues(int sportId, string language);
     }
 
-    public class LeagueServiceImpl : LeagueService
+    public class LeagueService : ILeagueService
     {
 
-        private readonly InstanceFactory instanceFactory;
+        //private readonly InstanceFactory instanceFactory;
 
-        public LeagueServiceImpl(
-            InstanceFactory instanceFactory)
-        {            
-            this.instanceFactory = instanceFactory;
-        }
+        //public LeagueServiceImpl(
+        //    InstanceFactory instanceFactory)
+        //{            
+        //    this.instanceFactory = instanceFactory;
+        //}
 
-        public async Task<IEnumerable<ILeague>> GetLeagues(int sportId, string language)
+        //public async Task<IEnumerable<ILeague>> GetLeagues(int sportId, string language)
+        //{
+        //    if (sportId <= 0)
+        //    {
+        //        return await Task.FromResult(Enumerable.Empty<ILeague>());
+        //    }
+
+        //    var leagueDataAccess = instanceFactory.CreateLeagueDataAccess(sportId);
+
+        //    var leagues = (await leagueDataAccess
+        //        .GetLeagues(sportId, language))
+        //        .OrderBy(x=>x.Order);         
+
+        //    return leagues;
+        //}
+        public Task<IEnumerable<ILeague>> GetLeagues(int sportId, string language)
         {
-            if (sportId <= 0)
-            {
-                return await Task.FromResult(Enumerable.Empty<ILeague>());
-            }
-
-            var leagueDataAccess = instanceFactory.CreateLeagueDataAccess(sportId);
-
-            var leagues = (await leagueDataAccess
-                .GetLeagues(sportId, language))
-                .OrderBy(x=>x.Order);         
-
-            return leagues;
+            throw new System.NotImplementedException();
         }
     }
 }

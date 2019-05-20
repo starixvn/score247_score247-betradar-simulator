@@ -6,19 +6,20 @@
     using System.Threading.Tasks;
     using LiveScore.Entity;
     using LiveScore.Entity.Entities;
+    using LiveScore.Features.Matches;
     using LiveScore.Features.Matches.Models;
     using Newtonsoft.Json;
 
-    public class DatabaseMatchApi : IMatchApi
+    public class MatchDataAccess : IMatchDataAccess
     {
-        private readonly GenericRepository<MatchEntity> repository;
+        private readonly IGenericRepository<MatchEntity> repository;
 
-        public DatabaseMatchApi(GenericRepository<MatchEntity> repository)
+        public MatchDataAccess(IGenericRepository<MatchEntity> repository)
         {
             this.repository = repository;
         }
 
-        public async Task<IEnumerable<IMatch>> GetDailySchedules(int sportId, DateTime from, DateTime to, string language)
+        public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime from, DateTime to, string language)
         {
             var matches = new List<Match>();
 
@@ -33,7 +34,7 @@
             return matches;
         }
 
-        public Task<IEnumerable<IMatch>> GetLiveSchedules(int sportId, string language)
+        public Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
         {
             throw new NotImplementedException();
         }

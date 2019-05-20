@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    public interface GenericRepository<T> where T : class
+    public interface IGenericRepository<T> where T : class
     {
         Task<List<T>> GetAll();
 
@@ -22,12 +22,12 @@
         Task Save();
     }
 
-    public class GenericRepositoryImpl<T> : GenericRepository<T> where T : class
+    public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         private readonly ScoreAppContext context;
         private readonly DbSet<T> table;
        
-        public GenericRepositoryImpl(ScoreAppContext context)
+        public GenericRepository(ScoreAppContext context)
         {
             this.context = context;
             table = context.Set<T>();

@@ -5,44 +5,53 @@
     using LiveScore.Entity;
     using LiveScore.Entity.Entities;
     using LiveScore.Shared;
-    using LiveScore.Shared.SportRadarApi.Models;
+    using Newtonsoft.Json;
     using System;
     using System.Threading.Tasks;
 
-    public interface DailyScheduleFetchJob
+    public interface IDailyScheduleFetchJob
     {
         void Start();
 
-        Task FetchDailySchedule(int sportId, Region region, DateTime date, string language);
+        Task FetchDailySchedule(int sportId, DateTime from, DateTime to, string language);
     }
 
-    public class DailyScheduleFetchJobImpl : DailyScheduleFetchJob
-    {        
-        private readonly GenericRepository<MatchEntity> repository;
+    public class DailyScheduleFetchJob : IDailyScheduleFetchJob
+    {
+        private readonly IGenericRepository<MatchEntity> repository;
         private readonly IRecurringJobManager recurringJobManager;
-        private readonly JobInstanceFactory instanceFactory;
+        private readonly InstanceFactory instanceFactory;
 
-        public DailyScheduleFetchJobImpl(
-            IRecurringJobManager recurringJobManager,         
-            GenericRepository<MatchEntity> repository,
-            JobInstanceFactory instanceFactory)
+        public DailyScheduleFetchJob(
+            IRecurringJobManager recurringJobManager,
+            IGenericRepository<MatchEntity> repository,
+            InstanceFactory instanceFactory)
         {
             this.instanceFactory = instanceFactory;
             this.repository = repository;
             this.recurringJobManager = recurringJobManager;
         }
 
-        public async Task FetchDailySchedule(int sportId, Region region, DateTime date, string language)
+        public async Task FetchDailySchedule(int sportId, DateTime from, DateTime to, string language)
         {
-            var dataAccess = instanceFactory.CreateMatchJobDataAccess(sportId);
+            var dataAccess = instanceFactory.CreateMatchDataAccess(sportId, DataProvider.ThirdPartyApi);
 
-            var matches = await dataAccess.GetDailySchedule(sportId, region, date, language);
+            var matches = await dataAccess.GetMatches(sportId, from, to, language);
 
             foreach (var match in matches)
             {
                 if (await repository.GetById(match.Id) == null)
                 {
-                    await repository.Insert(match);
+                    var matchEntity = new MatchEntity
+                    {
+                        Id = match.Id,
+                        EventDate = match.EventDate,
+                        SeasonId = string.Empty,
+                        Value = JsonConvert.SerializeObject(match),
+                        Language = language
+                    };
+
+                    await repository.Insert(matchEntity);
                 }
             }
 
@@ -52,13 +61,12 @@
         public void Start()
         {
             //TODO apply multiple languages and regions
-            var region = new Region() { Name = "eu", Key = "s37g6cgqfabegn5mu8snw293" };
             var language = "en";
             var date = DateTime.Now;
 
             recurringJobManager.AddOrUpdate(
                 nameof(FetchDailySchedule),
-                Job.FromExpression(() => FetchDailySchedule(SportConstants.SoccerId, region, date, language)),
+                Job.FromExpression(() => FetchDailySchedule(SportConstants.SoccerId, date, date, language)),
                 Cron.Daily());
         }
     }

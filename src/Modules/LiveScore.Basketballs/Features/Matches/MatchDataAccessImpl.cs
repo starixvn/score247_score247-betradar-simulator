@@ -10,7 +10,7 @@ namespace LiveScore.Basketballs.Features.Matches
     using LiveScore.Features.Teams.Models;
     using Newtonsoft.Json;
 
-    public class MatchDataAccessImpl : MatchDataAccess
+    public class MatchDataAccessImpl : IMatchDataAccess
     {
         public Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
         {

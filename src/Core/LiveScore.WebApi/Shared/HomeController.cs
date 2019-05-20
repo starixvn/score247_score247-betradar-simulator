@@ -10,7 +10,7 @@ namespace LiveScore.WebApi.Shared
 
     public class HomeController : Controller
     {
-        public HomeController(IAutoUpdateMatchTimeJob autoUpdateMatchTimeJob, DailyScheduleFetchJob fetchDailySchedule)
+        public HomeController(IAutoUpdateMatchTimeJob autoUpdateMatchTimeJob, IDailyScheduleFetchJob fetchDailySchedule)
         {
             autoUpdateMatchTimeJob.Start();
             fetchDailySchedule.Start();

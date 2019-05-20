@@ -16,19 +16,19 @@
     public class MatchServiceTests
     {
         private const int SoccerSportId = 1;
-        private readonly MatchServiceImpl matchServiceImpl;
+        private readonly MatchService matchServiceImpl;
         private readonly InstanceFactory instanceFactory;
-        private readonly MatchDataAccess matchDataAccess;
+        private readonly IMatchDataAccess matchDataAccess;
         private readonly ICacheService cacheService;
 
         public MatchServiceTests()
         {
-            matchDataAccess = Substitute.For<MatchDataAccess>();
+            matchDataAccess = Substitute.For<IMatchDataAccess>();
             instanceFactory = Substitute.For<InstanceFactory>();
             cacheService = Substitute.For<ICacheService>();
             instanceFactory.CreateMatchDataAccess(SoccerSportId).Returns(matchDataAccess);
 
-            matchServiceImpl = new MatchServiceImpl(instanceFactory, cacheService);
+            matchServiceImpl = new MatchService(instanceFactory, cacheService);
         }
 
         [Theory]

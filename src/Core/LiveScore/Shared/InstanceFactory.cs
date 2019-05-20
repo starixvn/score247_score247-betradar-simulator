@@ -2,41 +2,30 @@
 {
     using System;
     using System.Collections.Generic;
-    using LiveScore.Features.Leagues;
     using LiveScore.Features.Matches;
+
+    public enum DataProvider {
+        Database,
+        ThirdPartyApi
+    }
 
     public interface InstanceFactory
     {
-        MatchDataAccess CreateMatchDataAccess(int sportId);
-
-        LeagueDataAccess CreateLeagueDataAccess(int sportId);
+        IMatchDataAccess CreateMatchDataAccess(int sportId, DataProvider dataProvider = DataProvider.Database);
     }
 
     public class InstanceFactoryImpl : InstanceFactory
     {
-        private readonly IDictionary<int, MatchDataAccess> matchDataAccessContainer;
-        private readonly IDictionary<int, LeagueDataAccess> leagueDataAccessContainer;
+        private readonly IDictionary<int, IDictionary<DataProvider, IMatchDataAccess>> matchDataAccessContainer;
 
         public InstanceFactoryImpl(
-            IDictionary<int, MatchDataAccess> matchDataAccessContainer,
-            IDictionary<int, LeagueDataAccess> leagueDataAccessContainer)
+            IDictionary<int, IDictionary<DataProvider, IMatchDataAccess>> matchDataAccessContainer)
         {
-            this.matchDataAccessContainer = matchDataAccessContainer;
-            this.leagueDataAccessContainer = leagueDataAccessContainer;
+            this.matchDataAccessContainer = matchDataAccessContainer;           
         }
 
-        public LeagueDataAccess CreateLeagueDataAccess(int sportId)
-        {
-            if (leagueDataAccessContainer == null
-               || !leagueDataAccessContainer.ContainsKey(sportId))
-            {
-                throw new InvalidOperationException($"Cannot found implementation of League Data Access for sport {sportId}");
-            }
 
-            return leagueDataAccessContainer[sportId];
-        }
-
-        public MatchDataAccess CreateMatchDataAccess(int sportId)
+        public IMatchDataAccess CreateMatchDataAccess(int sportId, DataProvider dataProvider = DataProvider.Database)
         {
             if (matchDataAccessContainer == null
                 || !matchDataAccessContainer.ContainsKey(sportId))
@@ -44,7 +33,7 @@
                 throw new InvalidOperationException($"Cannot found implementation of Match Data Access for sport {sportId}");
             }
 
-            return matchDataAccessContainer[sportId];
+            return matchDataAccessContainer[sportId][dataProvider];
         }
     }
 }

@@ -8,19 +8,19 @@ namespace LiveScore.Features.Matches
     using LiveScore.Features.Matches.Models;
     using LiveScore.Shared;
 
-    public interface MatchService
+    public interface IMatchService
     {
         Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime from, DateTime to, TimeSpan timeZone, string language);
 
         Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language);
     }
 
-    public class MatchServiceImpl : MatchService
+    public class MatchService : IMatchService
     {
         private readonly InstanceFactory instanceFactory;
         private readonly ICacheService cacheService;
 
-        public MatchServiceImpl(InstanceFactory instanceFactory, ICacheService cacheService)
+        public MatchService(InstanceFactory instanceFactory, ICacheService cacheService)
         {
             this.instanceFactory = instanceFactory;
             this.cacheService = cacheService;

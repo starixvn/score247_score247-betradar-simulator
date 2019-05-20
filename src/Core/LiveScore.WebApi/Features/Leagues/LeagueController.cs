@@ -11,9 +11,9 @@
     [ApiController]
     public class LeagueController : ControllerBase
     {
-        private readonly LeagueService leagueService;
+        private readonly ILeagueService leagueService;
 
-        public LeagueController(LeagueService leagueService)
+        public LeagueController(ILeagueService leagueService)
         {
             this.leagueService = leagueService;
         }

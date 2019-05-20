@@ -13,6 +13,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\Matches\MatchDataAccessImpl.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Features\Teams\" />
   </ItemGroup>
 

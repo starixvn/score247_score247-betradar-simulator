@@ -1,22 +1,20 @@
-﻿namespace LiveScore.Soccers.Jobs.Features.Matches
+﻿namespace LiveScore.Soccers.Features.Matches.DataProviders
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
-    using LiveScore.Entity.Entities;
     using LiveScore.Features.Leagues.Models;
+    using LiveScore.Features.Matches;
     using LiveScore.Features.Matches.Models;
-    using LiveScore.Jobs.Features.Matches;
     using LiveScore.Shared.Configurations;
     using LiveScore.Shared.Helpers;
     using LiveScore.Shared.Models;
     using LiveScore.Shared.Models.Dtos;
     using LiveScore.Shared.SportRadarApi.Models;
-    using Newtonsoft.Json;
 
-    public class MatchJobDataAccessImpl : MatchJobDataAccess
+    public class SportRadarMatchDataAccess : IMatchDataAccess
     {
 
         private const string Home = "home";
@@ -26,7 +24,7 @@
         private readonly IAppSettings appSettings;
         private readonly IRestClient restClient;
 
-        public MatchJobDataAccessImpl(
+        public SportRadarMatchDataAccess(
             IAppSettings appSettings,
             IRestClient restClient)
         {
@@ -34,72 +32,65 @@
             this.restClient = restClient;
         }
 
-        public async Task<IEnumerable<MatchEntity>> GetDailySchedule(int sportId, Region region, DateTime date, string language)
+        public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime from, DateTime to, string language)
         {
             var sportSetting = appSettings
                 .DataProviderSettings
                 .Sports.FirstOrDefault(sport => sport.Id == sportId)
                 ?.EndPoints.FirstOrDefault(x => x.Name.Equals(FeatureKey));
 
+            var regions = appSettings
+                .DataProviderSettings
+                .Sports.FirstOrDefault(sport => sport.Id == sportId)
+                ?.Regions;
+
             if (sportSetting == null)
             {
                 throw new InvalidOperationException("Missing Sport Setting endpoints");
             }
 
-            var dailyScheduleDtoSum = new DailyResultDto { generated_at = DateTime.Now.ToUniversalTime(), results = new List<Result>() };
+            var matches = new List<IMatch>();
 
-            var scheduleDate = date.ToUniversalTime();
+            var fromUtc = from.ToUniversalTime();
+            var toUtc = to.ToUniversalTime();
+            const int dayIncrementIndex = 1;
 
-            var matchEntities = new List<MatchEntity>();
-
-            foreach (var endPoint in sportSetting.EndPointSettings)
+            for (var date = fromUtc.Date; date.Date <= toUtc.Date; date = date.AddDays(dayIncrementIndex))
             {
-                var dailyResult = await FetchMatches(date, language, region, endPoint);
-
-                if (dailyResult.sport_events != null
-                        && dailyResult.sport_events.Any())
+                foreach (var endPoint in sportSetting.EndPointSettings)
                 {
-                    var entities = MapToEntities(language, dailyResult);
+                    //TODO fetch schedule or result
+                    var dailyResult = await FetchMatches(date, language, regions, endPoint);
 
-                    matchEntities.AddRange(entities);
+                    if (dailyResult.sport_events != null && dailyResult.sport_events.Any())
+                    {
+                        dailyResult.sport_events.ToList().ForEach(x => matches.Add(CreateMatch(x)));
+                    }
                 }
             }
 
-            return matchEntities;
+            return matches;
         }
 
-        private async Task<DailyScheduleDto> FetchMatches(DateTime date, string language, Region region, EndPointSetting endPoint)
+        public Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
         {
-            var formattedEndpoint = string.Format(endPoint.Path, region.Name, language, date.ToString(SportRadarDateFormat), region.Key);
-
-            var dailyResult = await restClient.ExecuteGetAsync<DailyScheduleDto>(formattedEndpoint);
-
-            return dailyResult;
+            throw new NotImplementedException();
         }
 
-        private static IEnumerable<MatchEntity> MapToEntities(string language, DailyScheduleDto dailyResult)
+        private async Task<DailyScheduleDto> FetchMatches(DateTime date, string language, IEnumerable<Region> regions, EndPointSetting endPoint)
         {
-            var matchEntities = new List<MatchEntity>();
-
-            foreach (var matchDto in dailyResult.sport_events)
+            var dailyScheduleDtoSum = new DailyScheduleDto { generated_at = DateTime.Now.ToUniversalTime(), sport_events = new List<Sport_Event>() };
+            foreach (var region in regions)
             {
-                var match = CreateMatch(matchDto);
+                var formattedEndpoint = string.Format(endPoint.Path, region.Name, language, date.ToString(SportRadarDateFormat), region.Key);
+                var dailyResult = await restClient.ExecuteGetAsync<DailyScheduleDto>(formattedEndpoint);
 
-                var matchEntity = new MatchEntity
-                {
-                    Id = match.Id,
-                    EventDate = match.EventDate,
-                    SeasonId = string.Empty,
-                    Value = JsonConvert.SerializeObject(match),
-                    Language = language
-                };
-
-                matchEntities.Add(matchEntity);
+                dailyScheduleDtoSum.sport_events = dailyScheduleDtoSum.sport_events.Concat(dailyResult.sport_events);
             }
 
-            return matchEntities;
+            return dailyScheduleDtoSum;
         }
-
+        
         private static Match CreateMatch(Sport_Event sportEvent)
         {
             var match = new Match
