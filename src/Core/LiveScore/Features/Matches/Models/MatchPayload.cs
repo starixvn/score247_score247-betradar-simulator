@@ -10,6 +10,6 @@
         public IMatchResult MatchResult { get; set; }
 
         [JsonConverter(typeof(JsonConcreteTypeConverter<IEnumerable<TimeLine>>))]
-        public IEnumerable<ITimeLine> TimeLines { get; set; }
+        public IEnumerable<ITimeline> TimeLines { get; set; }
     }
 }

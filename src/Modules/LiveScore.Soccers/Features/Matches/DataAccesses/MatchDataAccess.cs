@@ -4,19 +4,26 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using LiveScore.Entity;
-    using LiveScore.Entity.Entities;
     using LiveScore.Features.Matches;
     using LiveScore.Features.Matches.Models;
+    using LiveScore.Shared.Database;
+    using LiveScore.Shared.Database.Entities;
     using Newtonsoft.Json;
 
     public class MatchDataAccess : IMatchDataAccess
     {
-        private readonly IGenericRepository<MatchEntity> repository;
+        private readonly IGenericRepository<MatchEntity> matchRepository;
+        private readonly IGenericRepository<MatchTimelineEntity> timeLineRepository;
+        private readonly IGenericRepository<MatchResultEntity> resultRepository;
 
-        public MatchDataAccess(IGenericRepository<MatchEntity> repository)
+        public MatchDataAccess(
+            IGenericRepository<MatchEntity> matchRepository,
+            IGenericRepository<MatchTimelineEntity> timeLineRepository,
+            IGenericRepository<MatchResultEntity> resultRepository)
         {
-            this.repository = repository;
+            this.matchRepository = matchRepository;
+            this.timeLineRepository = timeLineRepository;
+            this.resultRepository = resultRepository;
         }
 
         public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime from, DateTime to, string language)
@@ -25,7 +32,7 @@
             var fromUtc = from.ToUniversalTime();
             var toUtc = to.ToUniversalTime();
 
-            var matchEntities = await repository
+            var matchEntities = await matchRepository
                 .Find
                 (
                     x => x.SportId == sportId &&
@@ -46,6 +53,27 @@
         {
             return (await GetMatches(sportId, DateTime.Today, DateTime.Today, language))
                 .Where(m => m.MatchResult.EventStatus.IsLive());
+        }
+
+        public async Task AddTimeline(string matchId, ITimeline timeline)
+        {
+            await timeLineRepository.Insert(
+                new MatchTimelineEntity
+                {
+                    Id = timeline.Id,
+                    MatchId = matchId,
+                    Value = JsonConvert.SerializeObject(timeline)
+                });
+        }
+
+        public async Task AddResult(string matchId, IMatchResult matchResult)
+        {
+            await resultRepository.Insert(
+                new MatchResultEntity
+                {
+                    MatchId = matchId,
+                    Value = JsonConvert.SerializeObject(matchResult)
+                });
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace LiveScore.Entity
+﻿namespace LiveScore.Shared.Database
 {
-    using LiveScore.Entity.Entities;
+    using LiveScore.Shared.Database.Entities;
     using Microsoft.EntityFrameworkCore;
 
     public class ScoreAppContext : DbContext
@@ -11,5 +11,9 @@
         }
 
         public DbSet<MatchEntity> Matches { get; set; }
+
+        public DbSet<MatchTimelineEntity> MatchTimelines { get; set; }
+
+        public DbSet<MatchResultEntity> MatchResults { get; set; }
     }
 }

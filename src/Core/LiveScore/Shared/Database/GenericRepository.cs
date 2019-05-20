@@ -1,4 +1,4 @@
-﻿namespace LiveScore.Entity
+﻿namespace LiveScore.Shared.Database
 {
     using Microsoft.EntityFrameworkCore;
     using System;
@@ -38,7 +38,7 @@
 
         public async Task<IEnumerable<T>> Find(Func<T, bool> predicate)
         {
-            return await Task.FromResult( table.Where(predicate));
+            return await Task.FromResult(table.Where(predicate));
         }
 
         public Task<List<T>> GetAll()

@@ -1,0 +1,14 @@
+﻿namespace LiveScore.Shared.Database.Entities
+{
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    public class MatchResultEntity
+    {
+        public string Id { get; set; }
+
+        [Column(TypeName = "jsonb")]
+        public string Value { get; set; }
+
+        public string MatchId { get; set; }
+    }
+}

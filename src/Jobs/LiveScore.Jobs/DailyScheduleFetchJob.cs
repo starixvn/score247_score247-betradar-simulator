@@ -1,13 +1,13 @@
 ﻿namespace LiveScore.Jobs
 {
-    using Hangfire;
-    using Hangfire.Common;
-    using LiveScore.Entity;
-    using LiveScore.Entity.Entities;
-    using LiveScore.Shared;
-    using Newtonsoft.Json;
     using System;
     using System.Threading.Tasks;
+    using Hangfire;
+    using Hangfire.Common;
+    using LiveScore.Shared;
+    using LiveScore.Shared.Database;
+    using LiveScore.Shared.Database.Entities;
+    using Newtonsoft.Json;
 
     public interface IDailyScheduleFetchJob
     {
@@ -49,7 +49,7 @@
                         SeasonId = string.Empty,
                         Language = language,
                         SportId = sportId,
-                        Value = JsonConvert.SerializeObject(match)                        
+                        Value = JsonConvert.SerializeObject(match)
                     };
 
                     await repository.Insert(matchEntity);

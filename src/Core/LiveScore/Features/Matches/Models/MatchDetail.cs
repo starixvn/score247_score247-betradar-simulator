@@ -3,7 +3,7 @@ namespace LiveScore.Features.Matches.Models
 {
     public interface IMatchDetail
     {
-        ITimeLine TimeLine { get; }
+        ITimeline TimeLine { get; }
 
         int Attendance { get; }
 
@@ -14,7 +14,7 @@ namespace LiveScore.Features.Matches.Models
 
     public class MatchDetail : Match, IMatchDetail
     {        
-        public ITimeLine TimeLine { get; set; }
+        public ITimeline TimeLine { get; set; }
 
         public int Attendance { get; set; }
 

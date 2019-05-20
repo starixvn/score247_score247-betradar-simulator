@@ -1,36 +1,34 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <CodeAnalysisRuleSet>LiveScore.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <CodeAnalysisRuleSet>LiveScore.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-    <PackageReference Include="RestSharp" Version="106.6.9" />
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="7.12.0.8217">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Hangfire.AspNetCore" Version="1.7.2" />
-    <PackageReference Include="Fanex.Caching.Redis.AspNetCore" Version="2.2.1" />
-    <PackageReference Include="Microsoft.AspNetCore.SignalR.Core" Version="1.1.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Shared\Hubs\">
-      <DependentUpon>Hubs</DependentUpon>
-    </Folder>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\LiveScore.Entity\LiveScore.Entity.csproj" />
-  </ItemGroup>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <CodeAnalysisRuleSet>LiveScore.ruleset</CodeAnalysisRuleSet>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <CodeAnalysisRuleSet>LiveScore.ruleset</CodeAnalysisRuleSet>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+        <PackageReference Include="RestSharp" Version="106.6.9" />
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="7.12.0.8217">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Hangfire.AspNetCore" Version="1.7.2" />
+        <PackageReference Include="Fanex.Caching.Redis.AspNetCore" Version="2.2.1" />
+        <PackageReference Include="Microsoft.AspNetCore.SignalR.Core" Version="1.1.0" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.2.0" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Shared\Hubs\">
+        </Folder>
+        <Folder Include="Shared\Database\">
+          <DependentUpon>Database</DependentUpon>
+        </Folder>
+        <Folder Include="Shared\Database\Entities\">
+          <DependentUpon>Entities</DependentUpon>
+        </Folder>
+    </ItemGroup>
 </Project>
