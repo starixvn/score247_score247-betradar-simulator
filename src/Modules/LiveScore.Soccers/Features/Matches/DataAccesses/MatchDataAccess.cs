@@ -34,9 +34,10 @@
             return matches;
         }
 
-        public Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
+        public async Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
         {
-            throw new NotImplementedException();
+            return (await GetMatches(sportId, DateTime.Today, DateTime.Today, language))
+                .Where(m => m.MatchResult.EventStatus.IsLive());
         }
     }
 }

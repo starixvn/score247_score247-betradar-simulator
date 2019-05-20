@@ -48,28 +48,22 @@ namespace LiveScore.WebApi
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            InitLogging(services);
-
-            services.AddOptions();
-
             try
             {
+                InitLogging(services);
+                services.AddOptions();
                 RegisterSettings(services);
-
                 RegisterDatabase(services);
                 RegisterServices(services);
                 RegisterJobs(services);
-
                 RegisterInstanceFactory(services);
+                RegisterSwagger(services);
 
                 services.AddHangfire(x => x.UsePostgreSqlStorage(Configuration.GetConnectionString("hangfireConnection")));
                 services.AddMemoryCache();
                 services.AddSignalR();
-
-                RegisterSwagger(services);
             }
             catch (Exception ex)
             {
@@ -79,6 +73,41 @@ namespace LiveScore.WebApi
             LogService.Info("LiveScore API has been started.");
         }
 
+#pragma warning disable S2325 // Methods and properties that don't access instance data should be static
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<MatchHub>("/hubs/MatchHub");
+            });
+
+            app.UseHangfireDashboard(options: new DashboardOptions
+            {
+                Authorization = Enumerable.Empty<IDashboardAuthorizationFilter>()
+            }); //Will be available under http://localhost:5000/hangfire"
+            app.UseHangfireServer();
+
+            app
+                .UseSwagger()
+                .UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint($"../swagger/v1/swagger.json", "Score247 API Docs");
+                })
+                .UseMvc(routes =>
+                {
+                    routes.MapRoute(
+                        name: "default",
+                        template: "{controller=Home}/{action=Index}");
+                })
+                .UseMiddleware(typeof(ErrorHandlingMiddleware));
+        }
+#pragma warning restore S2325 // Methods and properties that don't access instance data should be static
+
         private static void RegisterInstanceFactory(IServiceCollection services)
         {
             services.AddSingleton((InstanceFactory)new InstanceFactoryImpl(
@@ -86,8 +115,7 @@ namespace LiveScore.WebApi
                 {
                         { SportConstants.SoccerId, GetMatchDataAccess(services)},
                     ////{ SportConstants.BasketballId, new LiveScore.Basketballs.Features.Matches.MatchDataAccessImpl() }
-                }
-                ));
+                }));
         }
 
         private void RegisterSettings(IServiceCollection services)
@@ -145,7 +173,8 @@ namespace LiveScore.WebApi
         {
             services
                    .AddEntityFrameworkNpgsql()
-                   .AddDbContext<ScoreAppContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient)
+                   .AddDbContext<ScoreAppContext>(options
+                        => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Scoped)
                    .BuildServiceProvider();
 
             services.AddScoped<IGenericRepository<MatchEntity>, GenericRepository<MatchEntity>>();
@@ -173,42 +202,6 @@ namespace LiveScore.WebApi
                     }));
 
             services.AddSingleton(Logger.Log);
-        }
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-#pragma warning disable S2325 // Methods and properties that don't access instance data should be static
-
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-#pragma warning restore S2325 // Methods and properties that don't access instance data should be static
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseSignalR(routes =>
-            {
-                routes.MapHub<MatchHub>("/hubs/MatchHub");
-            });
-
-            app.UseHangfireDashboard(options: new DashboardOptions
-            {
-                Authorization = Enumerable.Empty<IDashboardAuthorizationFilter>()
-            }); //Will be available under http://localhost:5000/hangfire"
-            app.UseHangfireServer();
-
-            app
-                .UseSwagger()
-                .UseSwaggerUI(c =>
-                {
-                    c.SwaggerEndpoint($"../swagger/v1/swagger.json", "Score247 API Docs");
-                })
-                .UseMvc(routes =>
-                {
-                    routes.MapRoute(
-                        name: "default",
-                        template: "{controller=Home}/{action=Index}");
-                })
-                .UseMiddleware(typeof(ErrorHandlingMiddleware));
         }
     }
 }
