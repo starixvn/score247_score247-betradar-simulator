@@ -12,7 +12,7 @@
 
         Task<T> GetById(object id);
 
-        IEnumerable<T> Find(Func<T, bool> predicate);
+        Task<IEnumerable<T>> Find(Func<T, bool> predicate);
 
         Task Insert(T obj);
 
@@ -36,9 +36,9 @@
             table = context.Set<T>();
         }
 
-        public IEnumerable<T> Find(Func<T, bool> predicate)
+        public async Task<IEnumerable<T>> Find(Func<T, bool> predicate)
         {
-            return table.Where(predicate);
+            return await Task.FromResult( table.Where(predicate));
         }
 
         public Task<List<T>> GetAll()

@@ -47,8 +47,9 @@
                         Id = match.Id,
                         EventDate = match.EventDate,
                         SeasonId = string.Empty,
-                        Value = JsonConvert.SerializeObject(match),
-                        Language = language
+                        Language = language,
+                        SportId = sportId,
+                        Value = JsonConvert.SerializeObject(match)                        
                     };
 
                     await repository.Insert(matchEntity);
@@ -60,7 +61,7 @@
 
         public void Start()
         {
-            //TODO apply multiple languages and regions
+            //TODO apply multiple languages
             var language = "en";
             var date = DateTime.Now;
 

@@ -22,9 +22,17 @@
         public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime from, DateTime to, string language)
         {
             var matches = new List<Match>();
+            var fromUtc = from.ToUniversalTime();
+            var toUtc = to.ToUniversalTime();
 
-            //TODO implement daterange
-            var matchEntities = (await repository.GetAll()).Where(x => x.SportId == sportId && x.Language.Equals(language, StringComparison.OrdinalIgnoreCase));
+            var matchEntities = await repository
+                .Find
+                (
+                    x => x.SportId == sportId &&
+                    x.Language.Equals(language, StringComparison.OrdinalIgnoreCase) &&
+                    x.EventDate > fromUtc.Date &&
+                    x.EventDate < toUtc.Date
+                );
 
             foreach (var entity in matchEntities)
             {
