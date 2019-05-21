@@ -51,16 +51,6 @@
                 .GetMatches(sportId, from, to, language))
                 .Select(match =>
                 {
-                    if (match.MatchResult.EventStatus.IsLive())
-                    {
-                        var matchTime = cacheService.Get<int>("MatchTime-" + match.Id);
-
-                        if (matchTime > 0)
-                        {
-                            match.MatchResult.MatchTime = $"{matchTime}:00";
-                        }
-                    }
-
                     match.ChangeEventDateByTimeZone(timeZone);
 
                     return match;

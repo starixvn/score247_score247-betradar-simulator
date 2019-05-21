@@ -14,7 +14,7 @@
 
         int Period { get; }
 
-        string MatchTime { get; set; }
+        int MatchTime { get; set; }
 
         IEnumerable<MatchPeriod> MatchPeriods { get; }
 
@@ -31,7 +31,7 @@
 
         public IEnumerable<MatchPeriod> MatchPeriods { get; set; }
 
-        public string MatchTime { get; set; }
+        public int MatchTime { get; set; }
 
         public string WinnerId { get; set; }
 

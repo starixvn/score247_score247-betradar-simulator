@@ -1,10 +1,10 @@
-﻿using LiveScore.Features.Matches;
-namespace LiveScore.WebApi.Features.Notifications
+﻿namespace LiveScore.WebApi.Features.Notifications
 {
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Fanex.Caching;
+    using LiveScore.Features.Matches;
     using LiveScore.Features.Matches.Models;
     using LiveScore.Shared.Hubs;
     using Microsoft.AspNetCore.Mvc;
@@ -41,8 +41,22 @@ namespace LiveScore.WebApi.Features.Notifications
 
                     if (payload.MatchResult.EventStatus.IsLive())
                     {
-                        var cacheKey = "MatchTime-" + matchId;
-                        cacheService.Set(cacheKey, payload.TimeLines.LastOrDefault().MatchTime);
+                        var timeline = payload.TimeLines.LastOrDefault();
+                        var matchTime = timeline.MatchTime;
+
+                        if (timeline.Type == EventTypes.PeriodStart.Value)
+                        {
+                            if (timeline.Period == 1)
+                            {
+                                matchTime = 1;
+                            }
+                            else
+                            {
+                                matchTime = 46;
+                            }
+                        }
+
+                        payload.MatchResult.MatchTime = matchTime;
                     }
 
                     await matchService.AddTimelines(sportId, matchId, payload.TimeLines);

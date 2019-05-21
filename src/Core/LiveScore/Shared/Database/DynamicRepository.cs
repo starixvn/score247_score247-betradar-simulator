@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
 
-    public interface IDynamicRepository: IDisposable
+    public interface IDynamicRepository : IDisposable
     {
         Task<List<T>> GetAll<T>() where T : class;
 

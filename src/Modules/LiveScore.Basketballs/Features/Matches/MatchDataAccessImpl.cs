@@ -91,7 +91,7 @@ namespace LiveScore.Basketballs.Features.Matches
                         MatchStatus = new MatchStatus("1st_half", "FirstHaft"),
                         EventStatus = new MatchStatus("live", "Live"),
                         Period = 1,
-                        MatchTime = "29:17",
+                        MatchTime = 29,
                         HomeScore = 1,
                         AwayScore = 0,
                         MatchPeriods = JsonConvert.DeserializeObject<List<MatchPeriod>>(

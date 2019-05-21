@@ -113,7 +113,7 @@
                 MatchStatus = MatchStatus.NotStarted,
                 HomeScore = 0,
                 AwayScore = 0,
-                MatchTime = "0"
+                MatchTime = 0
             };
 
             return matchResult;

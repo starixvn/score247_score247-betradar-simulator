@@ -1,14 +1,17 @@
 ﻿namespace LiveScore.Soccers.Jobs
 {
-    using System;
     using System.Threading.Tasks;
     using Fanex.Caching;
     using Hangfire;
     using Hangfire.Common;
     using LiveScore.Features.Matches;
+    using LiveScore.Features.Matches.Models;
     using LiveScore.Shared;
+    using LiveScore.Shared.Database;
+    using LiveScore.Shared.Database.Entities;
     using LiveScore.Shared.Hubs;
     using Microsoft.AspNetCore.SignalR;
+    using Newtonsoft.Json;
 
     public interface IAutoUpdateMatchTimeJob
     {
@@ -21,17 +24,20 @@
         private readonly ICacheService cacheService;
         private readonly IRecurringJobManager recurringJobManager;
         private readonly IHubContext<MatchHub> matchHub;
+        private readonly IDynamicRepository dynamicRepository;
 
         public AutoUpdateMatchTimeJob(
-            IRecurringJobManager recurringJobManager,
+             IRecurringJobManager recurringJobManager,
              IMatchService matchService,
              ICacheService cacheService,
-             IHubContext<MatchHub> matchHub)
+             IHubContext<MatchHub> matchHub,
+             IDynamicRepository dynamicRepository)
         {
             this.recurringJobManager = recurringJobManager;
             this.matchService = matchService;
             this.cacheService = cacheService;
             this.matchHub = matchHub;
+            this.dynamicRepository = dynamicRepository;
         }
 
         public void Start()
@@ -45,20 +51,41 @@
 
             foreach (var match in liveMatches)
             {
-                var cacheKey = "MatchTime-" + match.Id;
-                var matchClock = await cacheService.GetOrSetAsync(
-                        cacheKey,
-                        () => string.IsNullOrEmpty(match.MatchResult.MatchTime) ? 1 : Convert.ToInt32(match.MatchResult.MatchTime.Split(':')[0]),
-                        new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(120)));
+                var matchTime = match.MatchResult.MatchTime;
 
-                if (matchClock < 120)
+                if (matchTime < 120)
                 {
-                    matchClock++;
+                    matchTime++;
                 }
 
-                await cacheService.SetAsync(cacheKey, matchClock);
+                await matchHub.Clients.All.SendAsync("PushMatchTime", SportConstants.SoccerId.ToString(), match.Id, matchTime);
 
-                await matchHub.Clients.All.SendAsync("PushMatchTime", SportConstants.SoccerId.ToString(), match.Id, matchClock);
+                await UpdateMatchResult(match, matchTime);
+            }
+        }
+
+        private async Task UpdateMatchResult(IMatch match, int matchTime)
+        {
+            var matchResultEntity = await dynamicRepository.Last<MatchResultEntity>(m => m.MatchId == match.Id);
+
+            if (matchResultEntity != null)
+            {
+                var matchResult = JsonConvert.DeserializeObject<MatchResult>(matchResultEntity.Value);
+                matchResult.MatchTime = matchTime;
+                matchResultEntity.Value = JsonConvert.SerializeObject(matchResult);
+
+                dynamicRepository.Update(matchResultEntity);
+                await dynamicRepository.Save();
+            }
+            else
+            {
+                match.MatchResult.MatchTime = matchTime;
+                await dynamicRepository.Insert(new MatchResultEntity
+                {
+                    MatchId = match.Id,
+                    Value = JsonConvert.SerializeObject(match.MatchResult)
+                });
+                await dynamicRepository.Save();
             }
         }
     }
