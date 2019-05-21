@@ -37,32 +37,31 @@
 
                 foreach (var entity in matchEntities)
                 {
-                    var match = JsonConvert.DeserializeObject<Match>(entity.Value);
-
-                    var lastTimeLine = await dynamicRepository.Last<MatchTimelineEntity>(t => t.MatchId == entity.Id);
-                    var result = await dynamicRepository.Last<MatchResultEntity>(t => t.MatchId == entity.Id);
-
-                    if (lastTimeLine != null)
-                    {
-                        match.TimeLines = new List<Timeline> { JsonConvert.DeserializeObject<Timeline>(lastTimeLine.Value) };
-                    }
-
-                    if (result != null)
-                    {
-                        match.MatchResult = JsonConvert.DeserializeObject<MatchResult>(result.Value);
-                    }
+                    var match = await BuildMatch(entity);
 
                     matches.Add(match);
                 }
-
-                return matches;
             }
+
+            return matches;
         }
 
         public async Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
         {
-            return (await GetMatches(sportId, DateTime.Today, DateTime.Today, language))
-                .Where(m => m.MatchResult.EventStatus.IsLive());
+            var matches = new List<Match>();
+            var matchEntities = await dynamicRepository.GetAll<MatchEntity>();
+
+            foreach (var entity in matchEntities)
+            {
+                var match = await BuildMatch(entity);
+
+                if (match.MatchResult.EventStatus.IsLive())
+                {
+                    matches.Add(match);
+                }
+            }
+
+            return matches;
         }
 
         public async Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines)
@@ -89,5 +88,26 @@
 
             return (await dynamicRepository.Save()) > 0;
         }
+
+        private async Task<Match> BuildMatch(MatchEntity entity)
+        {
+            var match = JsonConvert.DeserializeObject<Match>(entity.Value);
+
+            var lastTimeLine = await dynamicRepository.Last<MatchTimelineEntity>(t => t.MatchId == entity.Id);
+            var result = await dynamicRepository.Last<MatchResultEntity>(t => t.MatchId == entity.Id);
+
+            if (lastTimeLine != null)
+            {
+                match.TimeLines = new List<Timeline> { JsonConvert.DeserializeObject<Timeline>(lastTimeLine.Value) };
+            }
+
+            if (result != null)
+            {
+                match.MatchResult = JsonConvert.DeserializeObject<MatchResult>(result.Value);
+            }
+
+            return match;
+        }
+
     }
 }

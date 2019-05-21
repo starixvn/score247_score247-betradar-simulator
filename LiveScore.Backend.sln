@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.UnitTests", "test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Soccers", "src\Modules\LiveScore.Soccers\LiveScore.Soccers.csproj", "{D05F13B1-DB9F-43D6-88E9-561C6457B2FF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{B346D78F-57FC-4E3E-A9E9-77E796BB0A97}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sports", "Sports", "{B346D78F-57FC-4E3E-A9E9-77E796BB0A97}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Jobs", "Jobs", "{7A2D70E1-269D-435A-BB91-265728DA52D7}"
 EndProject

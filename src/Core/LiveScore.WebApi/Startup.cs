@@ -164,7 +164,7 @@ namespace LiveScore.WebApi
         private static void RegisterServices(IServiceCollection services)
         {
             services.AddSingleton<ILeagueService, LeagueService>();
-            services.AddScoped<IMatchService, MatchService>();
+            services.AddSingleton<IMatchService, MatchService>();
             services.AddSingleton<ICacheService, CacheService>();
         }
 
