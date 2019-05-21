@@ -4,10 +4,9 @@
 
 CREATE TABLE public."Timeline"
 (
-    "Id" integer NOT NULL DEFAULT nextval('"Timeline_Id_seq"'::regclass),
+    "Id" SERIAL PRIMARY KEY,
     "Value" jsonb NOT NULL,
-    "MatchId" text COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT "Timeline_pkey" PRIMARY KEY ("Id")
+    "MatchId" text COLLATE pg_catalog."default" NOT NULL
 )
 WITH (
     OIDS = FALSE
