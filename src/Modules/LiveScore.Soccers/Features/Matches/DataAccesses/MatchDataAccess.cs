@@ -94,7 +94,9 @@
             var match = JsonConvert.DeserializeObject<Match>(entity.Value);
 
             var lastTimeLine = await dynamicRepository.Last<MatchTimelineEntity>(t => t.MatchId == entity.Id);
-            var result = await dynamicRepository.Last<MatchResultEntity>(t => t.MatchId == entity.Id);
+
+            // TODO Enhance query later
+            var result = (await dynamicRepository.Find<MatchResultEntity>(t => t.MatchId == entity.Id)).OrderBy(r => r.Id).LastOrDefault();
 
             if (lastTimeLine != null)
             {

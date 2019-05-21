@@ -37,6 +37,7 @@
         public DynamicRepository(ScoreAppContext context)
         {
             this.context = context;
+            context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
         public async Task<IEnumerable<T>> Find<T>(Func<T, bool> predicate) where T : class
