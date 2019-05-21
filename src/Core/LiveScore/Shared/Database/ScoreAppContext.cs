@@ -10,10 +10,10 @@
         {
         }
 
-        public DbSet<MatchEntity> Matches { get; set; }
+        public DbSet<MatchEntity> Match { get; set; }
 
-        public DbSet<MatchTimelineEntity> Timelines { get; set; }
+        public DbSet<MatchTimelineEntity> Timeline { get; set; }
 
-        public DbSet<MatchResultEntity> MatchResults { get; set; }
+        public DbSet<MatchResultEntity> MatchResult { get; set; }
     }
 }

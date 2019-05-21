@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
 
-    public interface IDynamicRepository : IDisposable
+    public interface IDynamicRepository
     {
         Task<List<T>> GetAll<T>() where T : class;
 
@@ -92,22 +92,6 @@
         public Task<int> Save()
         {
             return context.SaveChangesAsync();
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            // Cleanup
-        }
-
-        ~DynamicRepository()
-        {
-            Dispose(false);
         }
     }
 }
