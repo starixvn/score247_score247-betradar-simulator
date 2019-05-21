@@ -25,7 +25,9 @@
             var fromUtc = from.ToUniversalTime();
             var toUtc = to.ToUniversalTime();
 
-            var matchEntities = await dynamicRepository.Find<MatchEntity>
+            using (dynamicRepository)
+            {
+                var matchEntities = await dynamicRepository.Find<MatchEntity>
                 (
                     x => x.SportId == sportId &&
                     x.Language.Equals(language, StringComparison.OrdinalIgnoreCase) &&
@@ -33,27 +35,28 @@
                     x.EventDate <= toUtc.Date
                 );
 
-            foreach (var entity in matchEntities)
-            {
-                var match = JsonConvert.DeserializeObject<Match>(entity.Value);
-
-                var lastTimeLine = await dynamicRepository.Last<MatchTimelineEntity>(t => t.MatchId == entity.Id);
-                var result = await dynamicRepository.Last<MatchResultEntity>(t => t.MatchId == entity.Id);
-
-                if (lastTimeLine != null)
+                foreach (var entity in matchEntities)
                 {
-                    match.TimeLines = new List<Timeline> { JsonConvert.DeserializeObject<Timeline>(lastTimeLine.Value) };
+                    var match = JsonConvert.DeserializeObject<Match>(entity.Value);
+
+                    var lastTimeLine = await dynamicRepository.Last<MatchTimelineEntity>(t => t.MatchId == entity.Id);
+                    var result = await dynamicRepository.Last<MatchResultEntity>(t => t.MatchId == entity.Id);
+
+                    if (lastTimeLine != null)
+                    {
+                        match.TimeLines = new List<Timeline> { JsonConvert.DeserializeObject<Timeline>(lastTimeLine.Value) };
+                    }
+
+                    if (result != null)
+                    {
+                        match.MatchResult = JsonConvert.DeserializeObject<MatchResult>(result.Value);
+                    }
+
+                    matches.Add(match);
                 }
 
-                if (result != null)
-                {
-                    match.MatchResult = JsonConvert.DeserializeObject<MatchResult>(result.Value);
-                }
-
-                matches.Add(match);
+                return matches;
             }
-
-            return matches;
         }
 
         public async Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
