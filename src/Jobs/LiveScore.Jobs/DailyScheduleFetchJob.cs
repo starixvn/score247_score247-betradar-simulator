@@ -62,7 +62,7 @@
         public void Start()
         {
             //TODO apply multiple languages
-            const string language = "en";
+            const string language = "en-US";
             var date = DateTime.Now;
 
             recurringJobManager.AddOrUpdate(
