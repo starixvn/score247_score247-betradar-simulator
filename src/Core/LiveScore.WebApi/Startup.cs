@@ -89,7 +89,11 @@ namespace LiveScore.WebApi
             {
                 Authorization = Enumerable.Empty<IDashboardAuthorizationFilter>()
             }); //Will be available under http://localhost:5000/hangfire"
-            app.UseHangfireServer();
+
+            app.UseHangfireServer(options: new BackgroundJobServerOptions
+            {
+                WorkerCount = 2
+            });
 
             app
                 .UseSwagger()
