@@ -77,16 +77,6 @@
                 dynamicRepository.Update(matchResultEntity);
                 await dynamicRepository.Save();
             }
-            else
-            {
-                match.MatchResult.MatchTime = matchTime;
-                await dynamicRepository.Insert(new MatchResultEntity
-                {
-                    MatchId = match.Id,
-                    Value = JsonConvert.SerializeObject(match.MatchResult)
-                });
-                await dynamicRepository.Save();
-            }
         }
     }
 }
