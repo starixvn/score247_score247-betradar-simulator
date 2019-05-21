@@ -46,7 +46,7 @@
                     {
                         Id = match.Id,
                         EventDate = match.EventDate,
-                        SeasonId = string.Empty,
+                        LeagueId = match.League.Id,
                         Language = language,
                         SportId = sportId,
                         Value = JsonConvert.SerializeObject(match)
