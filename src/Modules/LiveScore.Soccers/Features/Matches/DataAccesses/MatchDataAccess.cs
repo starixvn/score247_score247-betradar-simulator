@@ -25,22 +25,20 @@
             var fromUtc = from.ToUniversalTime();
             var toUtc = to.ToUniversalTime();
 
-            using (dynamicRepository)
+
+            var matchEntities = await dynamicRepository.Find<MatchEntity>
+            (
+                x => x.SportId == sportId &&
+                x.Language.Equals(language, StringComparison.OrdinalIgnoreCase) &&
+                x.EventDate >= fromUtc.Date &&
+                x.EventDate <= toUtc.Date
+            );
+
+            foreach (var entity in matchEntities)
             {
-                var matchEntities = await dynamicRepository.Find<MatchEntity>
-                (
-                    x => x.SportId == sportId &&
-                    x.Language.Equals(language, StringComparison.OrdinalIgnoreCase) &&
-                    x.EventDate >= fromUtc.Date &&
-                    x.EventDate <= toUtc.Date
-                );
+                var match = await BuildMatch(entity);
 
-                foreach (var entity in matchEntities)
-                {
-                    var match = await BuildMatch(entity);
-
-                    matches.Add(match);
-                }
+                matches.Add(match);
             }
 
             return matches;
@@ -96,7 +94,8 @@
             var lastTimeLine = await dynamicRepository.Last<MatchTimelineEntity>(t => t.MatchId == entity.Id);
 
             // TODO Enhance query later
-            var result = (await dynamicRepository.Find<MatchResultEntity>(t => t.MatchId == entity.Id)).OrderBy(r => r.Id).LastOrDefault();
+            var result = (await dynamicRepository.Find<MatchResultEntity>(t => t.MatchId == entity.Id))
+                    .OrderBy(r => r.Id).LastOrDefault();
 
             if (lastTimeLine != null)
             {

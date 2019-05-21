@@ -13,7 +13,7 @@
 
         Task<T> GetById<T>(object id) where T : class;
 
-        Task<IEnumerable<T>> Find<T>(Func<T, bool> predicate) where T : class;
+        Task<List<T>> Find<T>(Func<T, bool> predicate) where T : class;
 
         Task<T> First<T>(Expression<Func<T, bool>> predicate) where T : class;
 
@@ -40,9 +40,9 @@
             context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
-        public async Task<IEnumerable<T>> Find<T>(Func<T, bool> predicate) where T : class
+        public async Task<List<T>> Find<T>(Func<T, bool> predicate) where T : class
         {
-            return await Task.FromResult(context.Set<T>().Where(predicate));
+            return await Task.FromResult(context.Set<T>().Where(predicate).ToList());
         }
 
         public Task<T> First<T>(Expression<Func<T, bool>> predicate) where T : class
