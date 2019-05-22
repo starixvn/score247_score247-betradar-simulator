@@ -1,223 +1,209 @@
-﻿//namespace LiveScore.Soccers.UnitTests.Features.Matches
-//{
-//    using System;
-//    using System.Collections.Generic;
-//    using System.Linq;
-//    using System.Threading.Tasks;
-//    using LiveScore.Features.Matches;
-//    using LiveScore.Shared.Models.Dtos;
-//    using LiveScore.Soccers.Features.Matches;
-//    using LiveScore.Soccers.Features.Matches.DataProviders;
-//    using NSubstitute;
-//    using Xunit;
+﻿namespace LiveScore.Soccers.UnitTests.Features.Matches
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using LiveScore.Shared.Database;
+    using LiveScore.Shared.Database.Entities;
+    using LiveScore.Soccers.Features.Matches.DataAccesses;
+    using NSubstitute;
+    using Xunit;
 
-//    public class MatchDataAccessTests
-//    {
-//        private readonly MatchDataAccess matchDataAccess;
-//        private readonly IMatchApi matchApi;
+    public class MatchDataAccessTests
+    {
+        private readonly MatchDataAccess matchDataAccess;
+        private readonly IDynamicRepository dynamicRepository;
 
-//        public MatchDataAccessTests()
-//        {
-//            matchApi = Substitute.For<IMatchApi>();
-//            matchApi
-//                .GetDailySchedules(1, Arg.Any<DateTime>(), Arg.Any<DateTime>(), "en")
-//                .Returns(Task.FromResult(StubDailySchedule()));
-//            matchDataAccess = new MatchDataAccessImpl(matchApi);
-//        }
+        public MatchDataAccessTests()
+        {
+            dynamicRepository = Substitute.For<IDynamicRepository>();
+            dynamicRepository.Find(Arg.Any<Func<MatchEntity, bool>> ()).Returns(new List<MatchEntity> { StubMatchEntity() });
+            dynamicRepository.Find(Arg.Any<Func<MatchResultEntity, bool>>()).Returns(new List<MatchResultEntity>());
 
-//        [Fact]
-//        public async Task GetMatches_Always_ReturnTeams()
-//        {
-//            var matches = await matchDataAccess.GetMatches(
-//                1,
-//                DateTime.Now,
-//                DateTime.Now.AddDays(1),
-//                "en");
+            matchDataAccess = new MatchDataAccess(dynamicRepository);
+        }
 
-//            var match = matches.First();
-//            var home = match.Teams.ElementAt(0);
-//            var away = match.Teams.ElementAt(1);
+        [Fact]
+        public async Task GetMatches_Always_ReturnTeams()
+        {
+            var matches = await matchDataAccess.GetMatches(
+                1,
+                DateTime.Now,
+                DateTime.Now.AddDays(1),
+                "en",
+                TimeSpan.Zero);
 
-//            Assert.Equal(2, match.Teams.Count());
+            var match = matches.First();
+            var home = match.Teams.ElementAt(0);
+            var away = match.Teams.ElementAt(1);
 
-//            Assert.Equal("sr:competitor:142194", home.Id);
-//            Assert.Equal("Kaya FC-Iloilo", home.Name);
-//            Assert.Equal("Philippines", home.Country);
-//            Assert.Equal("PHL", home.CountryCode);
-//            Assert.Equal("KAY", home.Abbreviation);
-//            Assert.True(home.IsHome);
+            Assert.Equal(2, match.Teams.Count());
 
-//            Assert.Equal("sr:competitor:135864", away.Id);
-//            Assert.Equal("PSM Makassar", away.Name);
-//            Assert.Equal("Indonesia", away.Country);
-//            Assert.Equal("IDN", away.CountryCode);
-//            Assert.Equal("MAK", away.Abbreviation);
-//            Assert.False(away.IsHome);
-//        }
+            Assert.Equal("sr:competitor:559146", home.Id);
+            Assert.Equal("Denton Diablos FC", home.Name);
+            Assert.Equal("USA", home.Country);
+            Assert.Equal("USA", home.CountryCode);
+            Assert.Equal("DEN", home.Abbreviation);
+            Assert.True(home.IsHome);
 
-//        [Fact]
-//        public async Task GetMatches_Always_ReturnLeagueInformation()
-//        {
-//            var matches = await matchDataAccess.GetMatches(
-//                1,
-//                DateTime.Now,
-//                DateTime.Now.AddDays(1),
-//                "en");
+            Assert.Equal("sr:competitor:559156", away.Id);
+            Assert.Equal("Dallas City FC", away.Name);
+            Assert.Equal("USA", away.Country);
+            Assert.Equal("USA", away.CountryCode);
+            Assert.Equal("DAL", away.Abbreviation);
+            Assert.False(away.IsHome);
+        }
 
-//            var match = matches.First();
-//            var league = match.League;
+        [Fact]
+        public async Task GetMatches_Always_ReturnLeagueInformation()
+        {
+            var matches = await matchDataAccess.GetMatches(
+                1,
+                DateTime.Now,
+                DateTime.Now.AddDays(1),
+                "en",
+                TimeSpan.Zero);
 
-//            Assert.Equal("sr:tournament:668", league.Id);
-//            Assert.Equal("AFC Cup", league.Name);
-//            Assert.Equal("sr:category:393", league.Category.Id);
-//            Assert.Equal("International Clubs", league.Category.Name);
-//        }
+            var match = matches.First();
+            var league = match.League;
 
-//        [Fact]
-//        public async Task GetMatches_Always_ReturnLeagueRound()
-//        {
-//            var matches = await matchDataAccess.GetMatches(
-//                1,
-//                DateTime.Now,
-//                DateTime.Now.AddDays(1),
-//                "en");
+            Assert.Equal("sr:tournament:28424", league.Id);
+            Assert.Equal("National Premier Soccer League", league.Name);
+            Assert.Equal("sr:category:26", league.Category.Id);
+            Assert.Equal("USA", league.Category.Name);
+        }
 
-//            var match = matches.First();
-//            var leagueRound = match.LeagueRound;
+        [Fact]
+        public async Task GetMatches_Always_ReturnLeagueRound()
+        {
+            var matches = await matchDataAccess.GetMatches(
+                1,
+                DateTime.Now,
+                DateTime.Now.AddDays(1),
+                "en",
+                TimeSpan.Zero);
 
-//            Assert.Equal("RoundLeague", leagueRound.Name);
-//            Assert.Equal("H", leagueRound.Group);
-//            Assert.Equal(4, leagueRound.Number);
-//            Assert.Equal("phase", leagueRound.Phase);
-//            Assert.Equal("group", leagueRound.Type.Value);
-//        }
+            var match = matches.First();
+            var leagueRound = match.LeagueRound;
+           
+            Assert.Equal("regular season", leagueRound.Phase);
+            Assert.Equal("group", leagueRound.Type.Value);
+        }
 
-//        [Fact]
-//        public async Task GetMatches_Always_ReturnMatchResult()
-//        {
-//            var matches = await matchDataAccess.GetMatches(
-//                1,
-//                DateTime.Now,
-//                DateTime.Now.AddDays(1),
-//                "en");
+        [Fact]
+        public async Task GetMatches_Always_ReturnMatchResult()
+        {
+            var matches = await matchDataAccess.GetMatches(
+                1,
+                DateTime.Now,
+                DateTime.Now.AddDays(1),
+                "en",
+                TimeSpan.Zero);
 
-//            var match = matches.First();
-//            var matchResult = match.MatchResult;
-//            var firstMatchPeriod = matchResult.MatchPeriods.First();
+            var match = matches.First();
+            var matchResult = match.MatchResult;            
 
-//            Assert.Equal("live", matchResult.EventStatus.Value);
-//            Assert.Equal("1st_half", matchResult.MatchStatus.Value);
-//            Assert.Equal(0, matchResult.HomeScore);
-//            Assert.Equal(2, matchResult.AwayScore);
-//            Assert.Equal(1, matchResult.Period);
-//            Assert.Equal("29:17", matchResult.MatchTime);
-//            Assert.NotEmpty(matchResult.MatchPeriods);
-//            Assert.Equal(0, firstMatchPeriod.HomeScore);
-//            Assert.Equal(2, firstMatchPeriod.AwayScore);
-//            Assert.Equal("regular_period", firstMatchPeriod.PeriodType.Value);
-//            Assert.Equal(1, firstMatchPeriod.Number);
-//        }
+            Assert.Equal("not_started", matchResult.EventStatus.Value);
+            Assert.Equal("not_started", matchResult.MatchStatus.Value);
+            Assert.Equal(0, matchResult.HomeScore);
+            Assert.Equal(0, matchResult.AwayScore);
+            Assert.Equal(0, matchResult.Period);
+            Assert.Equal(0, matchResult.MatchTime);
+        }
 
-//        private DailyResultDto StubDailySchedule()
-//        {
-//            return new DailyResultDto
-//            {
-//                generated_at = new DateTime(2019, 1, 1),
-//                schema = "schema",
-//                results = new List<Result>
-//                {
-//                    new Result
-//                    {
-//                        sport_event = new Sport_Event
-//                        {
-//                            tournament_round = new Tournament_Round
-//                            {
-//                                    type = "group",
-//                                    number = 4,
-//                                    group = "H",
-//                                    name = "RoundLeague",
-//                                    phase = "phase"
-//                            },
-//                            tournament = new Tournament
-//                            {
-//                                id = "sr:tournament:668",
-//                                name = "AFC Cup",
-//                                sport = new Sport
-//                                {
-//                                    id = "sr:sport:1",
-//                                    name = "Soccer"
-//                                },
-//                                category = new Category
-//                                {
-//                                    id = "sr:category:393",
-//                                    name = "International Clubs"
-//                                }
-//                            },
-//                            season = new Season
-//                            {
-//                                id= "sr:season:62299",
-//                                  name= "AFC Cup 2019",
-//                                  start_date = "2019-02-05",
-//                                  end_date = "2019-11-03",
-//                                  year = "2019",
-//                                  tournament_id = "sr:tournament:668"
-//                            },
-//                            competitors = new List<Competitor>
-//                            {
-//                                new Competitor
-//                                {
-//                                    id = "sr:competitor:142194",
-//                                    name = "Kaya FC-Iloilo",
-//                                    country = "Philippines",
-//                                    country_code = "PHL",
-//                                    abbreviation = "KAY",
-//                                    qualifier = "home"
-//                                },
-//                                new Competitor
-//                                {
-//                                    id = "sr:competitor:135864",
-//                                    name = "PSM Makassar",
-//                                    country = "Indonesia",
-//                                    country_code = "IDN",
-//                                    abbreviation = "MAK",
-//                                    qualifier = "away"
-//                                }
-//                            },
-//                            venue = new Venue
-//                            {
-//                              id= "sr:venue:38696",
-//                              name= "Iloilo Sports Complex",
-//                              capacity= 7000,
-//                              city_name= "Iloilo",
-//                              country_name= "Philippines",
-//                              map_coordinates= "10.72, 122.57",
-//                              country_code= "PHL"
-//                            }
-//                        },
-//                        sport_event_status = new Sport_Event_Status
-//                        {
-//                            status = "live",
-//                            match_status = "1st_half",
-//                            home_score = 0,
-//                            away_score = 2,
-//                            period = 1,
-//                            clock = new Clock { match_time = "29:17" },
-//                            period_scores = new List<Period_Scores>
-//                            {
-//                                new Period_Scores
-//                                {
-//                                    home_score = 0,
-//                                    away_score = 2,
-//                                    type = "regular_period",
-//                                    number = 1
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            };
-//        }
-//    }
+        private MatchEntity StubMatchEntity()
+        {
+            return new MatchEntity
+            {
+                Id = "sr:match:17809194",
+                Value = StubMatchJson(),
+                LeagueId = "sr:tournament:28424",
+                Language = "en-US",
+                EventDate =DateTime.Parse("2019-05-22 00:00:00+00")
+            };
+        }
+
+        private static string StubMatchJson()
+        {
+            return @"{
+                    'Id': 'sr:match:17809194',
+                    'Name': null,
+                    'Teams': [
+                        {
+                            'Id': 'sr:competitor:559146',
+                            'Flag': null,
+                            'Name': 'Denton Diablos FC',
+                            'Coach': null,
+                            'IsHome': true,
+                            'Country': 'USA',
+                            'Players': null,
+                            'Formation': null,
+                            'Statistic': null,
+                            'CountryCode': 'USA',
+                            'Abbreviation': 'DEN',
+                            'Substitutions': null
+                        },
+                        {
+                            'Id': 'sr:competitor:559156',
+                            'Flag': null,
+                            'Name': 'Dallas City FC',
+                            'Coach': null,
+                            'IsHome': false,
+                            'Country': 'USA',
+                            'Players': null,
+                            'Formation': null,
+                            'Statistic': null,
+                            'CountryCode': 'USA',
+                            'Abbreviation': 'DAL',
+                            'Substitutions': null
+                        }
+                    ],
+                    'Venue': null,
+                    'League': {
+                        'Id': 'sr:tournament:28424',
+                        'Flag': null,
+                        'Name': 'National Premier Soccer League',
+                        'Order': 0,
+                        'Category': {
+                            'Id': 'sr:category:26',
+                            'Name': 'USA',
+                            'CountryCode': 'USA'
+                        }
+                    },
+                    'Referee': null,
+                    'EventDate': '2019-05-22T00:00:00Z',
+                    'TimeLines': null,
+                    'Attendance': 0,
+                    'LeagueRound': {
+                        'Name': null,
+                        'Type': {
+                            'Value': 'group',
+                            'DisplayName': 'Group'
+                        },
+                        'Group': null,
+                        'Phase': 'regular season',
+                        'Number': 1
+                    },
+                    'MatchResult': {
+                        'Period': 0,
+                        'WinnerId': null,
+                        'AwayScore': 0,
+                        'HomeScore': 0,
+                        'MatchTime': 0,
+                        'EventStatus': {
+                            'Value': 'not_started',
+                            'DisplayName': 'NotStarted'
+                        },
+                        'MatchStatus': {
+                            'Value': 'not_started',
+                            'DisplayName': 'NotStarted'
+                        },
+                        'MatchPeriods': null
+                    }
+                }";
+        }
+    }
 
 
-//}
+}
