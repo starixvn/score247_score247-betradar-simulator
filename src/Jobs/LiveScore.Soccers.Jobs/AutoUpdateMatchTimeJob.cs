@@ -50,11 +50,18 @@
             foreach (var match in liveMatches)
             {
                 var matchTime = match.MatchResult.MatchTime;
+                var matchStatus = match.MatchResult.MatchStatus;
 
-                if (matchTime < MaxTime)
+                if (matchTime == 45 && matchStatus.IsFirstHalf()
+                    || matchStatus.IsHalfTime()
+                    || (matchTime == 90 && matchStatus.IsSecondHalf())
+                    || (matchTime == 105 && matchStatus.IsFirstHaftExtra())
+                    || (matchTime == 120 && matchStatus.IsSecondHalfExtra()))
                 {
-                    matchTime++;
+                    return;
                 }
+
+                matchTime++;
 
                 await matchHub.Clients.All.SendAsync("PushMatchTime", SportConstants.SoccerId.ToString(), match.Id, matchTime);
 

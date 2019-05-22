@@ -91,5 +91,15 @@
         }
 
         public bool IsLive() => this == Live;
+
+        public bool IsFirstHalf() => this == FirstHaft;
+
+        public bool IsSecondHalf() => this == SecondHaft;
+
+        public bool IsHalfTime() => this == Halftime;
+
+        public bool IsFirstHaftExtra() => this == FirstHaftExtra;
+
+        public bool IsSecondHalfExtra() => this == SecondHaftExtra;
     }
 }
