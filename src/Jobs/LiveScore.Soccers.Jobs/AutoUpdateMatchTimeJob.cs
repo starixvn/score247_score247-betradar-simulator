@@ -44,19 +44,13 @@
 
         public async Task UpdateMatchTime()
         {
-            const int MaxTime = 120;
             var liveMatches = await matchService.GetLiveMatches(SportConstants.SoccerId, "en-US");
 
             foreach (var match in liveMatches)
             {
                 var matchTime = match.MatchResult.MatchTime;
-                var matchStatus = match.MatchResult.MatchStatus;
 
-                if (matchTime == 45 && matchStatus.IsFirstHalf()
-                    || matchStatus.IsHalfTime()
-                    || (matchTime == 90 && matchStatus.IsSecondHalf())
-                    || (matchTime == 105 && matchStatus.IsFirstHaftExtra())
-                    || (matchTime == 120 && matchStatus.IsSecondHalfExtra()))
+                if (matchTime == 120)
                 {
                     return;
                 }
