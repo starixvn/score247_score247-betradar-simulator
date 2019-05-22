@@ -71,7 +71,7 @@
             };
 
             matchDataAccess
-                .GetMatches(1, Arg.Any<DateTime>(), Arg.Any<DateTime>(), "en")
+                .GetMatches(1, Arg.Any<DateTime>(), Arg.Any<DateTime>(), "en", Arg.Any<TimeSpan>())
                 .Returns(Task.FromResult(matches as IEnumerable<IMatch>));
 
             var actualMatches = (await matchServiceImpl.GetMatches(

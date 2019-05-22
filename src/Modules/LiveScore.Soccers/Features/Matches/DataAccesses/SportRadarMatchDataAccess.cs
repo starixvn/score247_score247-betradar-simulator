@@ -31,7 +31,7 @@
             this.restClient = restClient;
         }
 
-        public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime from, DateTime to, string language)
+        public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime from, DateTime to, string language, TimeSpan timeZone)
         {
             var sportSetting = appSettings
                 .DataProviderSettings

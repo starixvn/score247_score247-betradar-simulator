@@ -11,7 +11,8 @@
             int sportId,
             DateTime from,
             DateTime to,
-            string language);
+            string language,
+            TimeSpan timeZone);
 
         Task<IEnumerable<IMatch>> GetLiveMatches(
           int sportId,

@@ -45,7 +45,7 @@
             var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
 
             var matches = (await matchDataAccess
-                .GetMatches(sportId, from, to, language))
+                .GetMatches(sportId, from, to, language, timeZone))
                 .Select(match =>
                 {
                     match.ChangeEventDateByTimeZone(timeZone);

@@ -8,6 +8,7 @@
     using LiveScore.Features.Matches.Models;
     using LiveScore.Shared.Database;
     using LiveScore.Shared.Database.Entities;
+    using LiveScore.Shared.Helpers;
     using Newtonsoft.Json;
 
     public class MatchDataAccess : IMatchDataAccess
@@ -19,19 +20,19 @@
             this.dynamicRepository = dynamicRepository;
         }
 
-        public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime from, DateTime to, string language)
-        {
+        public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime from, DateTime to, string language, TimeSpan timeZone)
+        {            
             var matches = new List<Match>();
-            var fromUtc = from.ToUniversalTime();
-            var toUtc = to.ToUniversalTime();
 
+            var formattedFromUtcTime = from.ConvertToUtc(timeZone);
+            var formattedToUtcTime = to.ConvertToUtc(timeZone);
 
             var matchEntities = await dynamicRepository.Find<MatchEntity>
             (
                 x => x.SportId == sportId &&
                 x.Language.Equals(language, StringComparison.OrdinalIgnoreCase) &&
-                x.EventDate.ToUniversalTime() >= fromUtc.Date &&
-                x.EventDate.ToUniversalTime() <= toUtc.Date
+                x.EventDate.ToUniversalTime() >= formattedFromUtcTime &&
+                x.EventDate.ToUniversalTime() <= formattedToUtcTime
             );
 
             foreach (var entity in matchEntities)
