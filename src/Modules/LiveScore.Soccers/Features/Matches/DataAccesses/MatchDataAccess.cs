@@ -30,8 +30,8 @@
             (
                 x => x.SportId == sportId &&
                 x.Language.Equals(language, StringComparison.OrdinalIgnoreCase) &&
-                x.EventDate >= fromUtc.Date &&
-                x.EventDate <= toUtc.Date
+                x.EventDate.ToUniversalTime() >= fromUtc.Date &&
+                x.EventDate.ToUniversalTime() <= toUtc.Date
             );
 
             foreach (var entity in matchEntities)

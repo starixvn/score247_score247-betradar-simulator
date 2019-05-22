@@ -25,7 +25,7 @@ namespace LiveScore.WebApi.Features.Matches
             DateTime from,
             DateTime to,
             TimeSpan timeZone,
-            string language = "en")
+            string language = "en-US")
         {  
             return await matchService.GetMatches(sportId, from, to, timeZone, language);
         }

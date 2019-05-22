@@ -79,12 +79,16 @@
         private async Task<DailyScheduleDto> FetchMatches(DateTime date, string language, IEnumerable<Region> regions, EndPointSetting endPoint)
         {
             var dailyScheduleDtoSum = new DailyScheduleDto { generated_at = DateTime.Now.ToUniversalTime(), sport_events = new List<Sport_Event>() };
+
             foreach (var region in regions)
             {
                 var formattedEndpoint = string.Format(endPoint.Path, region.Name, language, date.ToString(SportRadarDateFormat), region.Key);
                 var dailyResult = await restClient.ExecuteGetAsync<DailyScheduleDto>(formattedEndpoint);
 
-                dailyScheduleDtoSum.sport_events = dailyScheduleDtoSum.sport_events.Concat(dailyResult.sport_events);
+                if (dailyResult.sport_events != null && dailyResult.sport_events.Any())
+                {
+                    dailyScheduleDtoSum.sport_events = dailyScheduleDtoSum.sport_events.Concat(dailyResult.sport_events);
+                }
             }
 
             return dailyScheduleDtoSum;
@@ -120,14 +124,20 @@
         }
 
         private static LeagueRound BuildLeagueRound(Tournament_Round leagueRoundDto)
-            => new LeagueRound
+        {
+            var leagueRound = new LeagueRound();
+
+            if (leagueRoundDto != null)
             {
-                Type = Enumeration.FromValue<LeagueRoundTypes>(leagueRoundDto.type),
-                Name = leagueRoundDto.name,
-                Number = leagueRoundDto.number,
-                Phase = leagueRoundDto.phase,
-                Group = leagueRoundDto.group
-            };
+                leagueRound.Type = Enumeration.FromValue<LeagueRoundTypes>(leagueRoundDto.type);
+                leagueRound.Name = leagueRoundDto.name;
+                leagueRound.Number = leagueRoundDto.number;
+                leagueRound.Phase = leagueRoundDto.phase;
+                leagueRound.Group = leagueRoundDto.group;
+            }
+
+            return leagueRound;
+        }
 
         private static League BuildLeague(
             Tournament leagueDto)
