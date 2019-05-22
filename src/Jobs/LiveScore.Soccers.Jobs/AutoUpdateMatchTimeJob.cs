@@ -20,6 +20,7 @@
 
     public class AutoUpdateMatchTimeJob : IAutoUpdateMatchTimeJob
     {
+        private const int MaxMatchTime = 120;
         private readonly IMatchService matchService;
         private readonly IRecurringJobManager recurringJobManager;
         private readonly IHubContext<MatchHub> matchHub;
@@ -50,7 +51,7 @@
             {
                 var matchTime = match.MatchResult.MatchTime;
 
-                if (matchTime == 120)
+                if (matchTime == MaxMatchTime)
                 {
                     return;
                 }
