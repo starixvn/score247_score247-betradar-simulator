@@ -61,15 +61,19 @@
         }
 
         public void Start()
-        {
-            //TODO apply multiple languages
+        {   
             var from = DateTime.Now;
             var to = DateTime.Now;
 
-            recurringJobManager.AddOrUpdate(
+            foreach (var lang in Enumeration.GetAll<Language>())
+            {
+                recurringJobManager.AddOrUpdate(
                 nameof(FetchDailySchedule),
-                Job.FromExpression(() => FetchDailySchedule(SportConstants.SoccerId, from, to, Language.En)),
+                Job.FromExpression(() => FetchDailySchedule(SportConstants.SoccerId, from, to, lang.Value)),
                 Cron.Daily());
+
+                //TODO foreach sport type
+            }
         }
     }
 }
