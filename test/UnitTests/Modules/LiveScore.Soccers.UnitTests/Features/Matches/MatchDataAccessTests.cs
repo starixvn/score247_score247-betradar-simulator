@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Linq.Expressions;
     using System.Threading.Tasks;
     using LiveScore.Shared.Database;
     using LiveScore.Shared.Database.Entities;
@@ -112,6 +113,51 @@
             Assert.Equal(0, matchResult.MatchTime);
         }
 
+        [Fact]
+        public async Task GetMatches_Live_ReturnMatchResult()
+        {
+            dynamicRepository.Find(Arg.Any<Func<MatchResultEntity, bool>>()).Returns(new List<MatchResultEntity> { StubMatchResultEntity() });
+
+            var matches = await matchDataAccess.GetMatches(
+               1,
+               DateTime.Now,
+               DateTime.Now.AddDays(1),
+               "en",
+               TimeSpan.Zero);
+
+            var match = matches.First();
+            var matchResult = match.MatchResult;
+
+            Assert.Equal("live", matchResult.EventStatus.Value);
+            Assert.Equal("1st_half", matchResult.MatchStatus.Value);
+            Assert.Equal(1, matchResult.HomeScore);
+            Assert.Equal(0, matchResult.AwayScore);
+            Assert.Equal(22, matchResult.MatchTime);
+        }
+
+        [Fact]
+        public async Task GetMatches_Live_ReturnMatchTimeline()
+        {
+            dynamicRepository.Last(Arg.Any<Expression<Func<MatchTimelineEntity, bool>>>()).Returns(StubMatchTimelineEntity());
+
+            var matches = await matchDataAccess.GetMatches(
+               1,
+               DateTime.Now,
+               DateTime.Now.AddDays(1),
+               "en",
+               TimeSpan.Zero);
+
+            var match = matches.First();
+            var timeline = match.TimeLines.First();
+
+            Assert.NotEmpty(match.TimeLines);
+            Assert.Equal("injury_time_shown", timeline.Type);
+            Assert.Equal(2, timeline.InjuryTimeAnnounced);
+            Assert.Equal(1, timeline.Period);
+            Assert.Equal(45, timeline.MatchTime);
+            Assert.Equal("45:00", timeline.MatchClock);
+        }
+
         private MatchEntity StubMatchEntity()
         {
             return new MatchEntity
@@ -120,6 +166,7 @@
                 Value = StubMatchJson(),
                 LeagueId = "sr:tournament:28424",
                 Language = "en-US",
+                SportId = 1,
                 EventDate =DateTime.Parse("2019-05-22 00:00:00+00")
             };
         }
@@ -202,6 +249,71 @@
                         'MatchPeriods': null
                     }
                 }";
+        }
+
+        private MatchResultEntity StubMatchResultEntity()
+        {
+            return new MatchResultEntity
+            {
+                Id=1,
+                MatchId = "sr:match:17809194",
+                Value = StubMatchResultJson()
+            };
+        }
+
+        private static string StubMatchResultJson()
+        {
+            return @"{
+                    'Period': 0,
+                    'WinnerId': null,
+                    'AwayScore': 0,
+                    'HomeScore': 1,
+                    'MatchTime': 22,
+                    'EventStatus': {
+                        'Value': 'live',
+                        'DisplayName': 'Live'
+                    },
+                    'MatchStatus': {
+                        'Value': '1st_half',
+                        'DisplayName': 'Halftime'
+                    },
+                    'MatchPeriods': null
+                }";
+        }
+
+        private MatchTimelineEntity StubMatchTimelineEntity()
+        {
+            return new MatchTimelineEntity
+            {
+                Id = 1,
+                MatchId = "sr:match:17809194",
+                Value = StubTimelineJson()
+            };
+        }
+
+        private static string StubTimelineJson()
+        {
+            return @"{
+                'Id': 555147301,
+                'Name': null,
+                'Team': null,
+                'Time': '2019-05-09T02:47:17',
+                'Type': 'injury_time_shown',
+                'Assist': null,
+                'Period': 1,
+                'Outcome': null,
+                'PlayerIn': null,
+                'AwayScore': 0,
+                'HomeScore': 0,
+                'MatchTime': 45,
+                'PlayerOut': null,
+                'GoalScorer': null,
+                'MatchClock': '45:00',
+                'PeriodType': null,
+                'Description': null,
+                'Commentaries': null,
+                'InjuryTimeAnnounced': 2
+            }";
         }
     }
 
