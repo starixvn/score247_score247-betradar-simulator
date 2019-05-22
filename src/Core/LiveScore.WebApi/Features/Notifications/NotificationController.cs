@@ -14,7 +14,14 @@ namespace LiveScore.WebApi.Features.Notifications
     [ApiController]
     public class NotificationController : ControllerBase
     {
-        private const int SecondHalfStartTime = 46;
+        private static readonly IDictionary<string, int> PeriodStartTimes = new Dictionary<string, int>
+        {
+            { MatchStatus.FirstHaft.Value, 1 },
+            { MatchStatus.SecondHaft.Value, 46 },
+            { MatchStatus.FirstHaftExtra.Value, 91 },
+            { MatchStatus.SecondHaftExtra.Value, 106 }
+        };
+
         private readonly IHubContext<MatchHub> hubContext;
         private readonly IMatchService matchService;
 
@@ -52,10 +59,14 @@ namespace LiveScore.WebApi.Features.Notifications
             {
                 var timeline = payload.TimeLines.LastOrDefault();
                 var matchTime = timeline.MatchTime;
+                var matchStatus = payload.MatchResult.MatchStatus.Value;
 
                 if (timeline.Type == EventTypes.PeriodStart.Value)
                 {
-                    matchTime = timeline.Period == 1 ? 1 : SecondHalfStartTime;
+                    if (PeriodStartTimes.ContainsKey(matchStatus))
+                    {
+                        matchTime = PeriodStartTimes[matchStatus];
+                    }
                 }
 
                 payload.MatchResult.MatchTime = matchTime;
