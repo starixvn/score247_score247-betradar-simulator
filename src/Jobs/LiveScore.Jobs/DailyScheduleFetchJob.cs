@@ -63,11 +63,12 @@
         {
             //TODO apply multiple languages
             const string language = "en-US";
-            var date = DateTime.Now;
+            var from = DateTime.Now;
+            var to = DateTime.Now;
 
             recurringJobManager.AddOrUpdate(
                 nameof(FetchDailySchedule),
-                Job.FromExpression(() => FetchDailySchedule(SportConstants.SoccerId, date, date, language)),
+                Job.FromExpression(() => FetchDailySchedule(SportConstants.SoccerId, from, to, language)),
                 Cron.Daily());
         }
     }

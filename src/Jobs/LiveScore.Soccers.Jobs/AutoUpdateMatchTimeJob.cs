@@ -44,13 +44,14 @@
 
         public async Task UpdateMatchTime()
         {
+            const int MaxTime = 120;
             var liveMatches = await matchService.GetLiveMatches(SportConstants.SoccerId, "en-US");
 
             foreach (var match in liveMatches)
             {
                 var matchTime = match.MatchResult.MatchTime;
 
-                if (matchTime < 120)
+                if (matchTime < MaxTime)
                 {
                     matchTime++;
                 }
