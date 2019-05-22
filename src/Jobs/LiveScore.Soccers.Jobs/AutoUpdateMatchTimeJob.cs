@@ -2,7 +2,6 @@
 {
     using System.Linq;
     using System.Threading.Tasks;
-    using Fanex.Caching;
     using Hangfire;
     using Hangfire.Common;
     using LiveScore.Features.Matches;
@@ -22,7 +21,6 @@
     public class AutoUpdateMatchTimeJob : IAutoUpdateMatchTimeJob
     {
         private readonly IMatchService matchService;
-        private readonly ICacheService cacheService;
         private readonly IRecurringJobManager recurringJobManager;
         private readonly IHubContext<MatchHub> matchHub;
         private readonly IDynamicRepository dynamicRepository;
@@ -30,13 +28,11 @@
         public AutoUpdateMatchTimeJob(
              IRecurringJobManager recurringJobManager,
              IMatchService matchService,
-             ICacheService cacheService,
              IHubContext<MatchHub> matchHub,
              IDynamicRepository dynamicRepository)
         {
             this.recurringJobManager = recurringJobManager;
             this.matchService = matchService;
-            this.cacheService = cacheService;
             this.matchHub = matchHub;
             this.dynamicRepository = dynamicRepository;
         }
