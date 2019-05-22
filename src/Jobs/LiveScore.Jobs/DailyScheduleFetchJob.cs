@@ -7,6 +7,7 @@
     using LiveScore.Shared;
     using LiveScore.Shared.Database;
     using LiveScore.Shared.Database.Entities;
+    using LiveScore.Shared.Models;
     using Newtonsoft.Json;
 
     public interface IDailyScheduleFetchJob
@@ -34,12 +35,9 @@
 
         public async Task FetchDailySchedule(int sportId, DateTime from, DateTime to, string language)
         {
-            //TODO mapping from en to en-US
-            const string defaultLanguage = "en-US";
-
             var dataAccess = instanceFactory.CreateMatchDataAccess(sportId, DataProvider.ThirdPartyApi);
-
-            var matches = await dataAccess.GetMatches(sportId, from, to, language);
+                        
+            var matches = await dataAccess.GetMatches(sportId, from, to, Enumeration.FromValue<Language>(language).DisplayName.ToLowerInvariant());
 
             foreach (var match in matches)
             {
@@ -50,7 +48,7 @@
                         Id = match.Id,
                         EventDate = match.EventDate.ToUniversalTime(),
                         LeagueId = match.League.Id,
-                        Language = defaultLanguage,
+                        Language = language,
                         SportId = sportId,
                         Value = JsonConvert.SerializeObject(match)
                     };
@@ -65,13 +63,12 @@
         public void Start()
         {
             //TODO apply multiple languages
-            const string language = "en";
             var from = DateTime.Now;
             var to = DateTime.Now;
 
             recurringJobManager.AddOrUpdate(
                 nameof(FetchDailySchedule),
-                Job.FromExpression(() => FetchDailySchedule(SportConstants.SoccerId, from, to, language)),
+                Job.FromExpression(() => FetchDailySchedule(SportConstants.SoccerId, from, to, Language.En)),
                 Cron.Daily());
         }
     }
