@@ -18,4 +18,8 @@
     <ProjectReference Include="..\..\..\..\src\Modules\LiveScore.Soccers\LiveScore.Soccers.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Leagues\" />
+  </ItemGroup>
+
 </Project>

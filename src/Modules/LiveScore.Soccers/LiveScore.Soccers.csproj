@@ -13,10 +13,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\Leagues\DataProviders\**" />
+    <EmbeddedResource Remove="Features\Leagues\DataProviders\**" />
+    <None Remove="Features\Leagues\DataProviders\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Features\Leagues\LeagueDataAccessImpl.cs" />
     <Compile Remove="Features\Matches\MatchDataAccessImpl.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Leagues\" />
     <Folder Include="Features\Teams\" />
   </ItemGroup>
 

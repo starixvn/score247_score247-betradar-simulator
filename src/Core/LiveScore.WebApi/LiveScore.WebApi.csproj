@@ -13,6 +13,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\Leagues\LeagueController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Leagues\" />
     <Folder Include="Features\Teams\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>

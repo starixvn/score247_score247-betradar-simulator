@@ -5,11 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\Leagues\LeagueDataAccessImpl.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\core\LiveScore\LiveScore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Leagues\" />
   </ItemGroup>
 
 </Project>

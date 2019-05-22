@@ -10,13 +10,11 @@ namespace LiveScore.WebApi
     using Hangfire;
     using Hangfire.Dashboard;
     using Hangfire.PostgreSql;
-    using LiveScore.Features.Leagues;
     using LiveScore.Features.Matches;
     using LiveScore.Jobs;
     using LiveScore.Shared;
     using LiveScore.Shared.Configurations;
     using LiveScore.Shared.Database;
-    using LiveScore.Shared.Database.Entities;
     using LiveScore.Shared.Helpers;
     using LiveScore.Shared.Hubs;
     using LiveScore.Shared.SportRadarApi.Models;
@@ -166,8 +164,7 @@ namespace LiveScore.WebApi
         }
 
         private static void RegisterServices(IServiceCollection services)
-        {
-            services.AddSingleton<ILeagueService, LeagueService>();
+        {            
             services.AddSingleton<IMatchService, MatchService>();
             services.AddSingleton<ICacheService, CacheService>();
         }
