@@ -11,6 +11,8 @@
     public interface IDailyScheduleFetchJob
     {
         Task FetchDailySchedule(int sportId);
+
+        Task FetchFromYesterdayToTomorrowSchedule(int sportId);
     }
 
     public class DailyScheduleFetchJob : IDailyScheduleFetchJob
@@ -37,7 +39,7 @@
             }
         }
 
-        public async Task FetchDailySchedule(int sportId, DateTime from, DateTime to, string language)
+        private async Task FetchDailySchedule(int sportId, DateTime from, DateTime to, string language)
         {
             var dataAccess = instanceFactory.CreateMatchDataAccess(sportId, DataProvider.ThirdPartyApi);
 
@@ -45,9 +47,10 @@
 
             foreach (var match in matches)
             {
-                if (await repository.GetById<MatchEntity>(match.Id) == null)
+                var matchEntity = await repository.GetById<MatchEntity>(match.Id);
+                if (matchEntity == null)
                 {
-                    var matchEntity = new MatchEntity
+                    var newMatchEntity = new MatchEntity
                     {
                         Id = match.Id,
                         EventDate = match.EventDate.ToUniversalTime(),
@@ -57,13 +60,29 @@
                         Value = JsonConvert.SerializeObject(match)
                     };
 
-                    await repository.Insert(matchEntity);
+                    await repository.Insert(newMatchEntity);
+                }
+                else
+                {
+                    matchEntity.EventDate = match.EventDate;
+                    matchEntity.Value = JsonConvert.SerializeObject(match);
+
+                    repository.Update(matchEntity);
                 }
             }
 
             await repository.Save();
         }
 
+        public async Task FetchFromYesterdayToTomorrowSchedule(int sportId)
+        {
+            var from = DateTime.Now.AddDays(-3);
+            var to = DateTime.Now;
 
+            foreach (var lang in Enumeration.GetAll<Language>())
+            {
+                await FetchDailySchedule(sportId, from, to, lang.Value);
+            }
+        }
     }
 }

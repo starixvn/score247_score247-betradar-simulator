@@ -142,10 +142,9 @@
                 EventDate = sportEvent.scheduled,
                 Teams = BuildTeams(sportEvent),
                 League = BuildLeague(sportEvent.tournament),
-                LeagueRound = BuildLeagueRound(sportEvent.tournament_round)
+                LeagueRound = BuildLeagueRound(sportEvent.tournament_round),
+                MatchResult = BuildMatchStatus(sportEventStatusDto)
             };
-
-            match.MatchResult = BuildMatchStatus(sportEventStatusDto);
 
             return match;
         }

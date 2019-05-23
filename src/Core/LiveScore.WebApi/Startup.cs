@@ -115,6 +115,7 @@ namespace LiveScore.WebApi
 
             RecurringJob.AddOrUpdate<IAutoUpdateMatchTimeJob>(nameof(AutoUpdateMatchTimeJob), job => job.UpdateMatchTime(), Cron.Minutely);
             RecurringJob.AddOrUpdate<IDailyScheduleFetchJob>(nameof(DailyScheduleFetchJob), job => job.FetchDailySchedule(SportConstants.SoccerId), Cron.Daily);
+            RecurringJob.AddOrUpdate<IDailyScheduleFetchJob>("FetchFromYesterdayToTomorrowSchedule", job => job.FetchFromYesterdayToTomorrowSchedule(SportConstants.SoccerId), Cron.Monthly);
         }
 #pragma warning restore S2325 // Methods and properties that don't access instance data should be static
 
