@@ -52,23 +52,50 @@
 
             var fromUtc = from.ToUniversalTime();
             var toUtc = to.ToUniversalTime();
+            var today = DateTime.Now.ToUniversalTime();
             const int dayIncrementIndex = 1;
 
             for (var date = fromUtc.Date; date.Date <= toUtc.Date; date = date.AddDays(dayIncrementIndex))
             {
-                foreach (var endPoint in sportSetting.EndPointSettings)
-                {
-                    //TODO fetch schedule or result
-                    var dailySchedule = await FetchDailySchedule(date, language, regions, endPoint);
 
-                    if (dailySchedule.sport_events != null && dailySchedule.sport_events.Any())
-                    {
-                        dailySchedule.sport_events.ToList().ForEach(x => matches.Add(CreateMatch(x)));
-                    }
+                if (date >= today.Date)
+                {
+                    await FetchDailyScheduleAll(language, sportSetting, regions, matches, date);
+                }
+                else
+                {
+                    //TODO fetch result
+                    await FetchResults(language, sportSetting, regions, matches, date);
                 }
             }
 
             return matches;
+        }
+
+        private async Task FetchResults(string language, EndPoint sportSetting, IEnumerable<Region> regions, List<Match> matches, DateTime date)
+        {
+            foreach (var endPoint in sportSetting.EndPointSettings.Where(x => x.IsPast))
+            {
+                var dailyResult = await FetchDailyResult(date, language, regions, endPoint);
+
+                if (dailyResult.results != null && dailyResult.results.Any())
+                {
+                    dailyResult.results.ToList().ForEach(x => matches.Add(CreateMatch(x.sport_event, x.sport_event_status)));
+                }
+            }
+        }
+
+        private async Task FetchDailyScheduleAll(string language, EndPoint sportSetting, IEnumerable<Region> regions, List<Match> matches, DateTime date)
+        {
+            foreach (var endPoint in sportSetting.EndPointSettings.Where(x => !x.IsPast))
+            {
+                var dailySchedule = await FetchDailySchedule(date, language, regions, endPoint);
+
+                if (dailySchedule.sport_events != null && dailySchedule.sport_events.Any())
+                {
+                    dailySchedule.sport_events.ToList().ForEach(x => matches.Add(CreateMatch(x)));
+                }
+            }
         }
 
         private async Task<DailyScheduleDto> FetchDailySchedule(DateTime date, string language, IEnumerable<Region> regions, EndPointSetting endPoint)
@@ -107,22 +134,23 @@
             return finalDailyResults;
         }
 
-        private static Match CreateMatch(Sport_Event sportEvent)
+        private static Match CreateMatch(Sport_Event sportEvent, Sport_Event_Status sportEventStatusDto = null)
         {
             var match = new Match
             {
                 Id = sportEvent.id,
                 EventDate = sportEvent.scheduled,
-                MatchResult = BuildMatchStatus(),
                 Teams = BuildTeams(sportEvent),
                 League = BuildLeague(sportEvent.tournament),
                 LeagueRound = BuildLeagueRound(sportEvent.tournament_round)
             };
 
+            match.MatchResult = BuildMatchStatus(sportEventStatusDto);
+
             return match;
         }
 
-        private static MatchResult BuildMatchStatus()
+        public static MatchResult BuildMatchStatus(Sport_Event_Status sportEventStatusDto = null)
         {
             var matchResult = new MatchResult
             {
@@ -132,6 +160,42 @@
                 AwayScore = 0,
                 MatchTime = 0
             };
+
+            if (sportEventStatusDto != null)
+            {
+                matchResult = new MatchResult
+                {
+                    EventStatus = Enumeration.FromValue<MatchStatus>(sportEventStatusDto.status),
+                    HomeScore = sportEventStatusDto.home_score,
+                    AwayScore = sportEventStatusDto.away_score
+                };
+
+                if (!string.IsNullOrWhiteSpace(sportEventStatusDto.match_status))
+                {
+                    matchResult.MatchStatus = Enumeration.FromValue<MatchStatus>(sportEventStatusDto.match_status);
+                }
+
+                matchResult.Period = sportEventStatusDto.period;
+
+                if (sportEventStatusDto.period_scores != null
+                        && sportEventStatusDto.period_scores.Any())
+                {
+                    matchResult.MatchPeriods = sportEventStatusDto.period_scores.Select(
+                        periodScore =>
+                        new MatchPeriod
+                        {
+                            HomeScore = periodScore.home_score,
+                            AwayScore = periodScore.away_score,
+                            PeriodType = Enumeration.FromValue<PeriodType>(periodScore.type),
+                            Number = periodScore.number
+                        });
+
+                    matchResult.MatchTime = sportEventStatusDto.clock == null
+                        ? 0
+                        : Int32.Parse(sportEventStatusDto.clock.match_time.Split(':')[0]);
+                }
+
+            }
 
             return matchResult;
         }

@@ -38,7 +38,7 @@
 
         public string Path { get; set; }
 
-        public bool IsLive { get; set; }
+        public bool IsPast { get; set; }
     }
 
     public class Region
