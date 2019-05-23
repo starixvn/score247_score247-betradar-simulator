@@ -52,10 +52,12 @@
             foreach (var match in liveMatches)
             {
                 var matchTime = match.MatchResult.MatchTime;
+                var matchEvent = match.TimeLines?.FirstOrDefault();
+                var maxMatchTime = MaxMatchTime + ((matchEvent?.Type == EventTypes.InjuryTimeShown.Value) ? matchEvent.InjuryTimeAnnounced : 0);
 
-                if (matchTime == MaxMatchTime)
+                if (matchTime == maxMatchTime)
                 {
-                    return;
+                    continue;
                 }
 
                 matchTime++;
