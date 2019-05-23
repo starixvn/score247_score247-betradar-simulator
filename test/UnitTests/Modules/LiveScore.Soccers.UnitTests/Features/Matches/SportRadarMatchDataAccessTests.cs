@@ -1,10 +1,12 @@
-﻿using LiveScore.Shared.Configurations;
-using LiveScore.Shared.Helpers;
-using LiveScore.Soccers.Features.Matches.DataAccesses;
-using NSubstitute;
-
-namespace LiveScore.Soccers.UnitTests.Features.Matches
+﻿namespace LiveScore.Soccers.UnitTests.Features.Matches
 {
+    using LiveScore.Shared.Configurations;
+    using LiveScore.Shared.Helpers;
+    using LiveScore.Soccers.Features.Matches.DataAccesses;
+    using NSubstitute;
+    using System.Threading.Tasks;
+    using Xunit;
+
     public class SportRadarMatchDataAccessTests
     {
         private readonly SportRadarMatchDataAccess matchDataAccess;
@@ -17,6 +19,12 @@ namespace LiveScore.Soccers.UnitTests.Features.Matches
             restClient = Substitute.For<IRestClient>();
 
             matchDataAccess = new SportRadarMatchDataAccess(appSettings, restClient);
+        }
+
+        [Fact]
+        public async Task GetMatches_EmptySportSettings_ThrowsException()
+        {
+
         }
     }
 }

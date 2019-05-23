@@ -38,17 +38,17 @@
                 .Sports.FirstOrDefault(sport => sport.Id == sportId)
                 ?.EndPoints.FirstOrDefault(x => x.Name.Equals(FeatureKey));
 
-            var regions = appSettings
-                .DataProviderSettings
-                .Sports.FirstOrDefault(sport => sport.Id == sportId)
-                ?.Regions;
-
             if (sportSetting == null)
             {
                 throw new InvalidOperationException("Missing Sport Setting endpoints");
             }
 
-            var matches = new List<IMatch>();
+            var regions = appSettings
+                .DataProviderSettings
+                .Sports.FirstOrDefault(sport => sport.Id == sportId)
+                ?.Regions;
+
+            var matches = new List<Match>();
 
             var fromUtc = from.ToUniversalTime();
             var toUtc = to.ToUniversalTime();
@@ -59,11 +59,11 @@
                 foreach (var endPoint in sportSetting.EndPointSettings)
                 {
                     //TODO fetch schedule or result
-                    var dailyResult = await FetchMatches(date, language, regions, endPoint);
+                    var dailySchedule = await FetchMatches(date, language, regions, endPoint);
 
-                    if (dailyResult.sport_events != null && dailyResult.sport_events.Any())
+                    if (dailySchedule.sport_events != null && dailySchedule.sport_events.Any())
                     {
-                        dailyResult.sport_events.ToList().ForEach(x => matches.Add(CreateMatch(x)));
+                        dailySchedule.sport_events.ToList().ForEach(x => matches.Add(CreateMatch(x)));
                     }
                 }
             }
