@@ -16,6 +16,8 @@
     public interface IAutoUpdateMatchTimeJob
     {
         void Start();
+
+        Task UpdateMatchTime();
     }
 
     public class AutoUpdateMatchTimeJob : IAutoUpdateMatchTimeJob

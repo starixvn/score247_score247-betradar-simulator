@@ -8,6 +8,7 @@ namespace LiveScore.WebApi
     using Fanex.Logging;
     using Fanex.Logging.Sentry;
     using Hangfire;
+    using Hangfire.Common;
     using Hangfire.Dashboard;
     using Hangfire.PostgreSql;
     using LiveScore.Features.Matches;
@@ -83,15 +84,7 @@ namespace LiveScore.WebApi
                 routes.MapHub<MatchHub>("/hubs/MatchHub");
             });
 
-            app.UseHangfireDashboard(options: new DashboardOptions
-            {
-                Authorization = Enumerable.Empty<IDashboardAuthorizationFilter>()
-            }); //Will be available under http://localhost:5000/hangfire"
-
-            app.UseHangfireServer(options: new BackgroundJobServerOptions
-            {
-                WorkerCount = 2
-            });
+            UseHangfire(app);
 
             app
                 .UseSwagger()
@@ -106,6 +99,22 @@ namespace LiveScore.WebApi
                         template: "{controller=Home}/{action=Index}");
                 })
                 .UseMiddleware(typeof(ErrorHandlingMiddleware));
+        }
+
+        private static void UseHangfire(IApplicationBuilder app)
+        {
+            app.UseHangfireDashboard(options: new DashboardOptions
+            {
+                Authorization = Enumerable.Empty<IDashboardAuthorizationFilter>()
+            }); //Will be available under http://localhost:5000/hangfire"
+
+            app.UseHangfireServer(options: new BackgroundJobServerOptions
+            {
+                WorkerCount = 2
+            });
+
+            RecurringJob.AddOrUpdate<IAutoUpdateMatchTimeJob>(nameof(AutoUpdateMatchTimeJob), job => job.UpdateMatchTime(), Cron.Minutely);
+            RecurringJob.AddOrUpdate<IDailyScheduleFetchJob>(nameof(DailyScheduleFetchJob), job => job.FetchDailySchedule(SportConstants.SoccerId), Cron.Daily);
         }
 #pragma warning restore S2325 // Methods and properties that don't access instance data should be static
 
