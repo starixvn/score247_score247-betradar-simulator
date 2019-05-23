@@ -59,7 +59,7 @@
                 foreach (var endPoint in sportSetting.EndPointSettings)
                 {
                     //TODO fetch schedule or result
-                    var dailySchedule = await FetchMatches(date, language, regions, endPoint);
+                    var dailySchedule = await FetchDailySchedule(date, language, regions, endPoint);
 
                     if (dailySchedule.sport_events != null && dailySchedule.sport_events.Any())
                     {
@@ -71,14 +71,9 @@
             return matches;
         }
 
-        public Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
+        private async Task<DailyScheduleDto> FetchDailySchedule(DateTime date, string language, IEnumerable<Region> regions, EndPointSetting endPoint)
         {
-            throw new NotImplementedException();
-        }
-
-        private async Task<DailyScheduleDto> FetchMatches(DateTime date, string language, IEnumerable<Region> regions, EndPointSetting endPoint)
-        {
-            var dailyScheduleDtoSum = new DailyScheduleDto { generated_at = DateTime.Now.ToUniversalTime(), sport_events = new List<Sport_Event>() };
+            var finalDailySchedules = new DailyScheduleDto { generated_at = DateTime.Now.ToUniversalTime(), sport_events = new List<Sport_Event>() };
 
             foreach (var region in regions)
             {
@@ -87,11 +82,29 @@
 
                 if (dailyResult.sport_events != null && dailyResult.sport_events.Any())
                 {
-                    dailyScheduleDtoSum.sport_events = dailyScheduleDtoSum.sport_events.Concat(dailyResult.sport_events);
+                    finalDailySchedules.sport_events = finalDailySchedules.sport_events.Concat(dailyResult.sport_events);
                 }
             }
 
-            return dailyScheduleDtoSum;
+            return finalDailySchedules;
+        }
+
+        public async Task<DailyResultDto> FetchDailyResult(DateTime date, string language, IEnumerable<Region> regions, EndPointSetting endPoint)
+        {
+            var finalDailyResults = new DailyResultDto { generated_at = DateTime.Now.ToUniversalTime(), results = new List<Result>() };
+
+            foreach (var region in regions)
+            {
+                var formattedEndpoint = string.Format(endPoint.Path, region.Name, language, date.ToString(SportRadarDateFormat), region.Key);
+                var dailyResult = await restClient.ExecuteGetAsync<DailyResultDto>(formattedEndpoint);
+
+                if (dailyResult.results != null && dailyResult.results.Any())
+                {
+                    finalDailyResults.results = finalDailyResults.results.Concat(dailyResult.results);
+                }
+            }
+
+            return finalDailyResults;
         }
 
         private static Match CreateMatch(Sport_Event sportEvent)
@@ -171,6 +184,11 @@
             }
 
             return teams.OrderBy(team => team.IsHome ? 0 : 1).ToList();
+        }
+
+        public Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
+        {
+            throw new NotImplementedException();
         }
 
         public Task<bool> AddResult(string matchId, IMatchResult matchResult)
