@@ -53,7 +53,7 @@
             {
                 var matchTime = match.MatchResult.MatchTime;
                 var matchEvent = match.TimeLines?.FirstOrDefault();
-                var maxMatchTime = MaxMatchTime + ((matchEvent?.Type == EventTypes.InjuryTimeShown.Value) ? matchEvent.InjuryTimeAnnounced : 0);
+                var maxMatchTime = MaxMatchTime + ((matchEvent?.Type == EventTypes.InjuryTimeShown.Value) ? matchEvent?.InjuryTimeAnnounced : 0);
 
                 if (matchTime == maxMatchTime)
                 {
