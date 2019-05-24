@@ -35,18 +35,12 @@
         {
             var sportSetting = appSettings
                 .DataProviderSettings
-                .Sports.FirstOrDefault(sport => sport.Id == sportId)
-                ?.EndPoints.FirstOrDefault(x => x.Name.Equals(FeatureKey));
+                .Sports.FirstOrDefault(sport => sport.Id == sportId);
 
             if (sportSetting == null)
             {
                 throw new InvalidOperationException("Missing Sport Setting endpoints");
             }
-
-            var regions = appSettings
-                .DataProviderSettings
-                .Sports.FirstOrDefault(sport => sport.Id == sportId)
-                ?.Regions;
 
             var matches = new List<Match>();
 
@@ -57,24 +51,28 @@
 
             for (var date = fromUtc.Date; date.Date <= toUtc.Date; date = date.AddDays(dayIncrementIndex))
             {
-
-                if (date >= today.Date)
-                {
-                    await FetchDailyScheduleAll(language, sportSetting, regions, matches, date);
-                }
-                else
-                {
-                    //TODO fetch result
-                    await FetchResults(language, sportSetting, regions, matches, date);
-                }
+                matches.AddRange(
+                    date >= today.Date
+                    ? await FetchSchedule(language, sportSetting, date)
+                    : await FetchResults(language, sportSetting, date));
             }
 
             return matches;
         }
 
-        private async Task FetchResults(string language, EndPoint sportSetting, IEnumerable<Region> regions, List<Match> matches, DateTime date)
+        private async Task<List<Match>> FetchResults(string language, SportSetting sportSetting, DateTime date)
         {
-            foreach (var endPoint in sportSetting.EndPointSettings.Where(x => x.IsPast))
+            var matches = new List<Match>();
+
+            var endpointSettings = sportSetting
+                .EndPoints
+                .FirstOrDefault(x => x.Name.Equals(FeatureKey))
+                .EndPointSettings
+                .Where(x => x.IsPast);
+
+            var regions = sportSetting.Regions;
+
+            foreach (var endPoint in endpointSettings)
             {
                 var dailyResult = await FetchDailyResult(date, language, regions, endPoint);
 
@@ -83,11 +81,23 @@
                     dailyResult.results.ToList().ForEach(x => matches.Add(CreateMatch(x.sport_event, x.sport_event_status)));
                 }
             }
+
+            return matches;
         }
 
-        private async Task FetchDailyScheduleAll(string language, EndPoint sportSetting, IEnumerable<Region> regions, List<Match> matches, DateTime date)
+        private async Task<List<Match>> FetchSchedule(string language, SportSetting sportSetting, DateTime date)
         {
-            foreach (var endPoint in sportSetting.EndPointSettings.Where(x => !x.IsPast))
+            var matches = new List<Match>();
+
+            var endpointSettings = sportSetting
+                .EndPoints
+                .FirstOrDefault(x => x.Name.Equals(FeatureKey))
+                .EndPointSettings
+                .Where(x => !x.IsPast);
+
+            var regions = sportSetting.Regions;
+
+            foreach (var endPoint in endpointSettings)
             {
                 var dailySchedule = await FetchDailySchedule(date, language, regions, endPoint);
 
@@ -96,6 +106,8 @@
                     dailySchedule.sport_events.ToList().ForEach(x => matches.Add(CreateMatch(x)));
                 }
             }
+
+            return matches;
         }
 
         private async Task<DailyScheduleDto> FetchDailySchedule(DateTime date, string language, IEnumerable<Region> regions, EndPointSetting endPoint)

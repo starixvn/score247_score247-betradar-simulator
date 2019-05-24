@@ -73,7 +73,7 @@
         }
 
         [Fact]
-        public async Task GetMatches_Always_ReturnTeams()
+        public async Task GetMatches_Schedule_ReturnTeams()
         {
             appSettings.DataProviderSettings.Returns(new StubDataProviderSettings());
             restClient.ExecuteGetAsync<DailyScheduleDto>(Arg.Any<string>()).Returns(StubDailySchedule());
@@ -107,7 +107,7 @@
         }
 
         [Fact]
-        public async Task GetMatches_Always_ReturnLeagueInformation()
+        public async Task GetMatches_Schedule_ReturnLeagueInformation()
         {
             appSettings.DataProviderSettings.Returns(new StubDataProviderSettings());
             restClient.ExecuteGetAsync<DailyScheduleDto>(Arg.Any<string>()).Returns(StubDailySchedule());
@@ -129,7 +129,7 @@
         }
 
         [Fact]
-        public async Task GetMatches_Always_ReturnLeagueRound()
+        public async Task GetMatches_Schedule_ReturnLeagueRound()
         {
             appSettings.DataProviderSettings.Returns(new StubDataProviderSettings());
             restClient.ExecuteGetAsync<DailyScheduleDto>(Arg.Any<string>()).Returns(StubDailySchedule());
@@ -152,7 +152,7 @@
         }
 
         [Fact]
-        public async Task GetMatches_Always_ReturnMatchResult()
+        public async Task GetMatches_Schedule_ReturnMatchResult()
         {
             appSettings.DataProviderSettings.Returns(new StubDataProviderSettings());
             restClient.ExecuteGetAsync<DailyScheduleDto>(Arg.Any<string>()).Returns(StubDailySchedule());
@@ -170,8 +170,117 @@
             Assert.Equal("not_started", matchResult.EventStatus.Value);
             Assert.Equal("not_started", matchResult.MatchStatus.Value);
             Assert.Equal(0, matchResult.HomeScore);
-            Assert.Equal(0, matchResult.AwayScore);            
+            Assert.Equal(0, matchResult.AwayScore);
             Assert.Equal(0, matchResult.MatchTime);
+        }
+
+        [Fact]
+        public async Task GetMatches_Result_ReturnTeams()
+        {
+            appSettings.DataProviderSettings.Returns(new StubDataProviderSettings());
+            restClient.ExecuteGetAsync<DailyResultDto>(Arg.Any<string>()).Returns(StubDailyResult());
+
+            var matches = await matchDataAccess.GetMatches(
+                1,
+                DateTime.Now.AddDays(-2),
+                DateTime.Now.AddDays(-1),
+                "en",
+                TimeSpan.Zero);
+
+            var match = matches.First();
+            var home = match.Teams.ElementAt(0);
+            var away = match.Teams.ElementAt(1);
+
+            Assert.Equal(2, match.Teams.Count());
+
+            Assert.Equal("sr:competitor:142194", home.Id);
+            Assert.Equal("Kaya FC-Iloilo", home.Name);
+            Assert.Equal("Philippines", home.Country);
+            Assert.Equal("PHL", home.CountryCode);
+            Assert.Equal("KAY", home.Abbreviation);
+            Assert.True(home.IsHome);
+
+            Assert.Equal("sr:competitor:135864", away.Id);
+            Assert.Equal("PSM Makassar", away.Name);
+            Assert.Equal("Indonesia", away.Country);
+            Assert.Equal("IDN", away.CountryCode);
+            Assert.Equal("MAK", away.Abbreviation);
+            Assert.False(away.IsHome);
+        }
+
+        [Fact]
+        public async Task GetMatches_Result_ReturnLeagueInformation()
+        {
+            appSettings.DataProviderSettings.Returns(new StubDataProviderSettings());
+            restClient.ExecuteGetAsync<DailyResultDto>(Arg.Any<string>()).Returns(StubDailyResult());
+
+            var matches = await matchDataAccess.GetMatches(
+                1,
+                DateTime.Now.AddDays(-2),
+                DateTime.Now.AddDays(-1),
+                "en",
+                TimeSpan.Zero);
+
+            var match = matches.First();
+            var league = match.League;
+
+            Assert.Equal("sr:tournament:668", league.Id);
+            Assert.Equal("AFC Cup", league.Name);
+            Assert.Equal("sr:category:393", league.Category.Id);
+            Assert.Equal("International Clubs", league.Category.Name);
+        }
+
+        [Fact]
+        public async Task GetMatches_Result_ReturnLeagueRound()
+        {
+            appSettings.DataProviderSettings.Returns(new StubDataProviderSettings());
+            restClient.ExecuteGetAsync<DailyResultDto>(Arg.Any<string>()).Returns(StubDailyResult());
+
+            var matches = await matchDataAccess.GetMatches(
+                1,
+                DateTime.Now.AddDays(-2),
+                DateTime.Now.AddDays(-1),
+                "en",
+                TimeSpan.Zero);
+
+            var match = matches.First();
+            var leagueRound = match.LeagueRound;
+
+            Assert.Equal("RoundLeague", leagueRound.Name);
+            Assert.Equal("H", leagueRound.Group);
+            Assert.Equal(4, leagueRound.Number);
+            Assert.Equal("phase", leagueRound.Phase);
+            Assert.Equal("group", leagueRound.Type.Value);
+        }
+
+        [Fact]
+        public async Task GetMatches_Result_ReturnMatchResult()
+        {
+            appSettings.DataProviderSettings.Returns(new StubDataProviderSettings());
+            restClient.ExecuteGetAsync<DailyResultDto>(Arg.Any<string>()).Returns(StubDailyResult());
+
+            var matches = await matchDataAccess.GetMatches(
+                1,
+                DateTime.Now.AddDays(-2),
+                DateTime.Now.AddDays(-1),
+                "en",
+                TimeSpan.Zero);
+
+            var match = matches.First();
+            var matchResult = match.MatchResult;
+            var matchPeriod = match.MatchResult.MatchPeriods.First();
+
+            Assert.Equal("live", matchResult.EventStatus.Value);
+            Assert.Equal("1st_half", matchResult.MatchStatus.Value);
+            Assert.Equal(0, matchResult.HomeScore);
+            Assert.Equal(2, matchResult.AwayScore);
+            Assert.Equal(29, matchResult.MatchTime);
+            Assert.Equal(1, matchResult.Period);
+            Assert.NotEmpty(matchResult.MatchPeriods);
+            Assert.Equal(0, matchPeriod.HomeScore);
+            Assert.Equal(2, matchPeriod.AwayScore);
+            Assert.Equal(1, matchPeriod.Number);
+            Assert.Equal("regular_period", matchPeriod.PeriodType.Value);
         }
 
 
@@ -254,6 +363,105 @@
 
             };
         }
+
+        private DailyResultDto StubDailyResult()
+        {
+            return new DailyResultDto
+            {
+                generated_at = new DateTime(2019, 1, 1),
+                schema = "schema",
+                results = new List<Result>
+                {
+                    new Result{
+                        sport_event =  new Sport_Event
+                        {
+                            tournament_round = new Tournament_Round
+                            {
+                                    type = "group",
+                                    number = 4,
+                                    group = "H",
+                                    name = "RoundLeague",
+                                    phase = "phase"
+                            },
+                            tournament = new Tournament
+                            {
+                                id = "sr:tournament:668",
+                                name = "AFC Cup",
+                                sport = new Sport
+                                {
+                                    id = "sr:sport:1",
+                                    name = "Soccer"
+                                },
+                                category = new Category
+                                {
+                                    id = "sr:category:393",
+                                    name = "International Clubs"
+                                }
+                            },
+                            season = new Season
+                            {
+                                id= "sr:season:62299",
+                                  name= "AFC Cup 2019",
+                                  start_date = "2019-02-05",
+                                  end_date = "2019-11-03",
+                                  year = "2019",
+                                  tournament_id = "sr:tournament:668"
+                            },
+                            competitors = new List<Competitor>
+                            {
+                                new Competitor
+                                {
+                                    id = "sr:competitor:142194",
+                                    name = "Kaya FC-Iloilo",
+                                    country = "Philippines",
+                                    country_code = "PHL",
+                                    abbreviation = "KAY",
+                                    qualifier = "home"
+                                },
+                                new Competitor
+                                {
+                                    id = "sr:competitor:135864",
+                                    name = "PSM Makassar",
+                                    country = "Indonesia",
+                                    country_code = "IDN",
+                                    abbreviation = "MAK",
+                                    qualifier = "away"
+                                }
+                            },
+                            venue = new Venue
+                            {
+                              id= "sr:venue:38696",
+                              name= "Iloilo Sports Complex",
+                              capacity= 7000,
+                              city_name= "Iloilo",
+                              country_name= "Philippines",
+                              map_coordinates= "10.72, 122.57",
+                              country_code= "PHL"
+                            }
+                        },
+                        sport_event_status = new Sport_Event_Status
+                        {
+                            status="live",
+                            match_status = "1st_half",
+                            home_score = 0,
+                            away_score = 2,
+                            period = 1,
+                            clock = new Clock{
+                                match_time = "29:17"
+                            },
+                            period_scores = new List<Period_Scores>{
+                                new Period_Scores{
+                                    home_score = 0,
+                                    away_score = 2,
+                                    type = "regular_period",
+                                    number = 1
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+        }
     }
 
     public class StubDataProviderSettings : IDataProviderSettings
@@ -271,7 +479,8 @@
                             Name = "MatchSchedule",
                             EndPointSettings = new List<EndPointSetting>
                             {
-                                new EndPointSetting { Path = "soccer-t3/{0}/{1}/schedules/{2}/schedule.json?api_key={3}" }
+                                new EndPointSetting { Path = "soccer-t3/{0}/{1}/schedules/{2}/schedule.json?api_key={3}" },
+                                new EndPointSetting { Path = "soccer-t3/{0}/{1}/schedules/{2}/results.json?api_key={3}", IsPast=true }
                             } }
                     },
                     Regions = new List<Region>
