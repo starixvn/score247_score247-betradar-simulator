@@ -12,7 +12,7 @@
     {
         Task FetchDailySchedule(int sportId);
 
-        Task FetchFromYesterdayToTomorrowSchedule(int sportId);
+        Task FetchYesterdayResult(int sportId);
     }
 
     public class DailyScheduleFetchJob : IDailyScheduleFetchJob
@@ -74,10 +74,10 @@
             await repository.Save();
         }
 
-        public async Task FetchFromYesterdayToTomorrowSchedule(int sportId)
+        public async Task FetchYesterdayResult(int sportId)
         {
-            var from = DateTime.Now.AddDays(-3);
-            var to = DateTime.Now;
+            var from = DateTime.Now.AddDays(-1);
+            var to = DateTime.Now.AddDays(-1);
 
             foreach (var lang in Enumeration.GetAll<Language>())
             {
