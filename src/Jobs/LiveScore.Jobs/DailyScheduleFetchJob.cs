@@ -31,7 +31,7 @@
         public async Task FetchDailySchedule(int sportId)
         {
             var from = DateTime.Now;
-            var to = DateTime.Now.AddDays(1);
+            var to = DateTime.Now.AddDays(3);
 
             foreach (var lang in Enumeration.GetAll<Language>())
             {
