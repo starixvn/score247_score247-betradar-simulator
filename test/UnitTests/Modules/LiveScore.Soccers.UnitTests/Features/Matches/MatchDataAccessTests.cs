@@ -19,8 +19,8 @@
         public MatchDataAccessTests()
         {
             dynamicRepository = Substitute.For<IDynamicRepository>();
-            dynamicRepository.Find(Arg.Any<Func<MatchEntity, bool>> ()).Returns(new List<MatchEntity> { StubMatchEntity() });
-            dynamicRepository.Find(Arg.Any<Func<MatchResultEntity, bool>>()).Returns(new List<MatchResultEntity>());
+            dynamicRepository.Query(Arg.Any<Func<MatchEntity, bool>> ()).Returns(new List<MatchEntity> { StubMatchEntity() });
+            dynamicRepository.Query(Arg.Any<Func<MatchResultEntity, bool>>()).Returns(new List<MatchResultEntity>());
 
             matchDataAccess = new MatchDataAccess(dynamicRepository);
         }
@@ -116,7 +116,7 @@
         [Fact]
         public async Task GetMatches_Live_ReturnMatchResult()
         {
-            dynamicRepository.Find(Arg.Any<Func<MatchResultEntity, bool>>()).Returns(new List<MatchResultEntity> { StubMatchResultEntity() });
+            dynamicRepository.Query(Arg.Any<Func<MatchResultEntity, bool>>()).Returns(new List<MatchResultEntity> { StubMatchResultEntity() });
 
             var matches = await matchDataAccess.GetMatches(
                1,

@@ -21,13 +21,13 @@
         }
 
         public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime from, DateTime to, string language, TimeSpan timeZone)
-        {            
+        {
             var matches = new List<Match>();
 
             var formattedFromUtcTime = from.ConvertToUtc(timeZone);
             var formattedToUtcTime = to.ConvertToUtc(timeZone);
 
-            var matchEntities = await dynamicRepository.Find<MatchEntity>
+            var matchEntities = await dynamicRepository.Query<MatchEntity>
             (
                 x => x.SportId == sportId &&
                 x.Language.Equals(language, StringComparison.OrdinalIgnoreCase) &&
@@ -95,7 +95,7 @@
             var lastTimeLine = await dynamicRepository.Last<MatchTimelineEntity>(t => t.MatchId == entity.Id);
 
             // TODO Enhance query later
-            var result = (await dynamicRepository.Find<MatchResultEntity>(t => t.MatchId == entity.Id))
+            var result = (await dynamicRepository.Query<MatchResultEntity>(t => t.MatchId == entity.Id))
                     .OrderBy(r => r.Id).LastOrDefault();
 
             if (lastTimeLine != null)

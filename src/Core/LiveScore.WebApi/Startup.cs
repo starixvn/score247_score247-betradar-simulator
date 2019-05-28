@@ -8,7 +8,6 @@ namespace LiveScore.WebApi
     using Fanex.Logging;
     using Fanex.Logging.Sentry;
     using Hangfire;
-    using Hangfire.Common;
     using Hangfire.Dashboard;
     using Hangfire.PostgreSql;
     using LiveScore.Features.Matches;
@@ -28,6 +27,8 @@ namespace LiveScore.WebApi
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
+    using Microsoft.Extensions.Logging.Console;
     using Newtonsoft.Json;
     using Sentry;
     using Swashbuckle.AspNetCore.Swagger;
@@ -59,6 +60,7 @@ namespace LiveScore.WebApi
                 RegisterInstanceFactory(services);
                 RegisterSwagger(services);
 
+                services.AddLogging(b => b.AddConsole();
                 services.AddHangfire(x => x.UsePostgreSqlStorage(Configuration.GetConnectionString("hangfireConnection")));
                 services.AddMemoryCache();
                 services.AddSignalR();
@@ -174,17 +176,22 @@ namespace LiveScore.WebApi
         }
 
         private static void RegisterServices(IServiceCollection services)
-        {            
+        {
             services.AddSingleton<IMatchService, MatchService>();
             services.AddSingleton<ICacheService, CacheService>();
         }
 
         private void RegisterDatabase(IServiceCollection services)
         {
+            var loggerFactory = services.BuildServiceProvider().GetService<ILoggerFactory>();
             services
                    .AddEntityFrameworkNpgsql()
                    .AddDbContext<ScoreAppContext>(options
-                        => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Scoped)
+                        => options
+                            .UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
+                            .EnableSensitiveDataLogging(true)
+                            .UseLoggerFactory(loggerFactory),
+                        ServiceLifetime.Scoped)
                    .BuildServiceProvider();
 
             services.AddScoped<IDynamicRepository, DynamicRepository>();

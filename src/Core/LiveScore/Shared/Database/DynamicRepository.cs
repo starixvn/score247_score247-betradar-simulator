@@ -14,7 +14,9 @@ namespace LiveScore.Shared.Database
 
         Task<T> GetById<T>(object id) where T : class;
 
-        Task<List<T>> Find<T>(Func<T, bool> predicate) where T : class;
+        Task<List<T>> Query<T>(string value, params string[] jsonHierachy) where T : class;
+
+        Task<List<T>> Query<T>(Func<T, bool> predicate) where T : class;
 
         Task<T> First<T>(Expression<Func<T, bool>> predicate) where T : class;
 
@@ -24,9 +26,9 @@ namespace LiveScore.Shared.Database
 
         Task InsertRange<T>(IEnumerable<T> objects) where T : class;
 
-        void Update<T>(T obj) where T : class;
+        IDynamicRepository Update<T>(T obj) where T : class;
 
-        void Delete<T>(object id) where T : class;
+        IDynamicRepository Delete<T>(object id) where T : class;
 
         Task<int> Save();
     }
@@ -41,7 +43,30 @@ namespace LiveScore.Shared.Database
             context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
-        public async Task<List<T>> Find<T>(Func<T, bool> predicate) where T : class
+        public async Task<List<T>> Query<T>(string value, params string[] jsonHierachy) where T : class
+        {
+            var tableName = context.GetTableName<T>();
+            var queryCondition = $"\"{jsonHierachy[0]}\" @> '";
+            var closeBrace = string.Empty;
+
+            for (int i = 1; i < jsonHierachy.Length; i++)
+            {
+                var jsonPropName = jsonHierachy[i];
+
+                if (!string.IsNullOrEmpty(jsonPropName))
+                {
+                    queryCondition += "{{\"" + jsonPropName + "\":";
+                    closeBrace += "}}";
+                }
+            }
+
+            queryCondition += $"\"{value}\"{closeBrace}'";
+            var queryCommand = $"SELECT * FROM public.\"{tableName}\" WHERE {queryCondition};";
+
+            return await context.Set<T>().FromSql(queryCommand).ToListAsync();
+        }
+
+        public async Task<List<T>> Query<T>(Func<T, bool> predicate) where T : class
         {
             return await Task.FromResult(context.Set<T>().Where(predicate).ToList());
         }
@@ -76,18 +101,22 @@ namespace LiveScore.Shared.Database
             return context.Set<T>().AddRangeAsync(objects);
         }
 
-        public void Update<T>(T obj) where T : class
+        public IDynamicRepository Update<T>(T obj) where T : class
         {
             var table = context.Set<T>();
             table.Attach(obj);
             context.Entry(obj).State = EntityState.Modified;
+
+            return this;
         }
 
-        public void Delete<T>(object id) where T : class
+        public IDynamicRepository Delete<T>(object id) where T : class
         {
             var table = context.Set<T>();
             T existing = table.Find(id);
             table.Remove(existing);
+
+            return this;
         }
 
         public Task<int> Save()

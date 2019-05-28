@@ -70,7 +70,7 @@
 
         private async Task UpdateMatchResult(IMatch match, int matchTime)
         {
-            var matchResultEntity = (await dynamicRepository.Find<MatchResultEntity>(t => t.MatchId == match.Id))
+            var matchResultEntity = (await dynamicRepository.Query<MatchResultEntity>(t => t.MatchId == match.Id))
                 .OrderBy(r => r.Id)
                 .LastOrDefault();
 

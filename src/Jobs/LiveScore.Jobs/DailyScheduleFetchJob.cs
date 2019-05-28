@@ -48,6 +48,7 @@
             foreach (var match in matches)
             {
                 var matchEntity = await repository.GetById<MatchEntity>(match.Id);
+
                 if (matchEntity == null)
                 {
                     var newMatchEntity = new MatchEntity
