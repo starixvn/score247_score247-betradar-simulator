@@ -10,9 +10,9 @@
 
     public interface IDailyScheduleFetchJob
     {
-        Task FetchDailySchedule(int sportId);
+        Task FetchSchedule(int sportId, int dateSpan);
 
-        Task FetchYesterdayResult(int sportId);
+        Task FetchResult(int sportId, int dateSpan);
     }
 
     public class DailyScheduleFetchJob : IDailyScheduleFetchJob
@@ -28,10 +28,10 @@
             this.repository = repository;
         }
 
-        public async Task FetchDailySchedule(int sportId)
+        public async Task FetchSchedule(int sportId, int dateSpan)
         {
             var from = DateTime.Now;
-            var to = DateTime.Now.AddDays(3);
+            var to = DateTime.Now.AddDays(dateSpan);
 
             foreach (var lang in Enumeration.GetAll<Language>())
             {
@@ -75,10 +75,10 @@
             await repository.Save();
         }
 
-        public async Task FetchYesterdayResult(int sportId)
+        public async Task FetchResult(int sportId, int dateSpan)
         {
-            var from = DateTime.Now.AddDays(-1);
-            var to = DateTime.Now.AddDays(-1);
+            var from = DateTime.Now.AddDays(-dateSpan);
+            var to = DateTime.Now;
 
             foreach (var lang in Enumeration.GetAll<Language>())
             {

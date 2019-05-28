@@ -8,6 +8,7 @@ namespace LiveScore.WebApi
     using Fanex.Logging;
     using Fanex.Logging.Sentry;
     using Hangfire;
+    using Hangfire.Common;
     using Hangfire.Dashboard;
     using Hangfire.PostgreSql;
     using LiveScore.Features.Matches;
@@ -37,6 +38,7 @@ namespace LiveScore.WebApi
     {
         private const string SportRadarSettingPath = "LiveScores:SportRadarSetting";
         private const string TimeZoneSettingsPath = "LiveScores:TimeZoneSettings";
+        private const string JobDateSpanSettingsPath = "Jobs:DefaultDateSpan";
         private readonly IHostingEnvironment hostingEnvironment;
 
         public Startup(IConfiguration configuration, IHostingEnvironment hostingEnvironment)
@@ -104,7 +106,7 @@ namespace LiveScore.WebApi
                 .UseMiddleware(typeof(ErrorHandlingMiddleware));
         }
 
-        private static void UseHangfire(IApplicationBuilder app)
+        private void UseHangfire(IApplicationBuilder app)
         {
             app.UseHangfireDashboard(options: new DashboardOptions
             {
@@ -116,9 +118,11 @@ namespace LiveScore.WebApi
                 WorkerCount = 2
             });
 
+            var dateSpan = Int32.Parse(Configuration.GetSection(JobDateSpanSettingsPath).Value);
+
             RecurringJob.AddOrUpdate<IAutoUpdateMatchTimeJob>(nameof(AutoUpdateMatchTimeJob), job => job.UpdateMatchTime(), Cron.Minutely);
-            RecurringJob.AddOrUpdate<IDailyScheduleFetchJob>(nameof(DailyScheduleFetchJob), job => job.FetchDailySchedule(SportConstants.SoccerId), Cron.Daily);
-            RecurringJob.AddOrUpdate<IDailyScheduleFetchJob>("FetchYesterdayResult", job => job.FetchYesterdayResult(SportConstants.SoccerId), Cron.Daily);
+            RecurringJob.AddOrUpdate<IDailyScheduleFetchJob>("FetchSchedule", job => job.FetchSchedule(SportConstants.SoccerId, dateSpan), Cron.Daily);
+            RecurringJob.AddOrUpdate<IDailyScheduleFetchJob>("FetchResult", job => job.FetchResult(SportConstants.SoccerId, dateSpan), Cron.Daily);
             BackgroundJob.Enqueue<IMatchPushEventListenerJob>(job => job.StartListeningPushEvent(SportConstants.SoccerId));
         }
 #pragma warning restore S2325 // Methods and properties that don't access instance data should be static
