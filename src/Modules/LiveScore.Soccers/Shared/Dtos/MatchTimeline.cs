@@ -257,69 +257,71 @@
 //        public int penalty_goals_scored { get; set; }
 //    }
 
-//    public class Timeline
-//    {
-//        public int id { get; set; }
-//        public string type { get; set; }
-//        public DateTime time { get; set; }
-//        public Commentary[] commentaries { get; set; }
-//        public int period { get; set; }
-//        public string period_type { get; set; }
-//        public string period_name { get; set; }
-//        public int match_time { get; set; }
-//        public string match_clock { get; set; }
-//        public string team { get; set; }
-//        public int x { get; set; }
-//        public int y { get; set; }
-//        public int home_score { get; set; }
-//        public int away_score { get; set; }
-//        public Goal_Scorer goal_scorer { get; set; }
-//        public Assist assist { get; set; }
-//        public Player1 player { get; set; }
-//        public string outcome { get; set; }
-//        public Player_Out player_out { get; set; }
-//        public Player_In player_in { get; set; }
-//        public string stoppage_time { get; set; }
-//        public int injury_time_announced { get; set; }
-//        public string description { get; set; }
-//    }
+using System;
 
-//    public class Goal_Scorer
-//    {
-//        public string id { get; set; }
-//        public string name { get; set; }
-//        public string method { get; set; }
-//    }
+public class TimelineDto
+{
+    public int id { get; set; }
+    public string type { get; set; }
+    public DateTime time { get; set; }
+    public Commentary[] commentaries { get; set; }
+    public int period { get; set; }
+    public string period_type { get; set; }
+    public string period_name { get; set; }
+    public int match_time { get; set; }
+    public string match_clock { get; set; }
+    public string team { get; set; }
+    public int x { get; set; }
+    public int y { get; set; }
+    public int home_score { get; set; }
+    public int away_score { get; set; }
+    public Goal_Scorer goal_scorer { get; set; }
+    public Assist assist { get; set; }
+    public Player1 player { get; set; }
+    public string outcome { get; set; }
+    public Player_Out player_out { get; set; }
+    public Player_In player_in { get; set; }
+    public string stoppage_time { get; set; }
+    public int injury_time_announced { get; set; }
+    public string description { get; set; }
+}
 
-//    public class Assist
-//    {
-//        public string id { get; set; }
-//        public string type { get; set; }
-//        public string name { get; set; }
-//    }
+public class Goal_Scorer
+{
+    public string id { get; set; }
+    public string name { get; set; }
+    public string method { get; set; }
+}
 
-//    public class Player1
-//    {
-//        public string id { get; set; }
-//        public string name { get; set; }
-//    }
+public class Assist
+{
+    public string id { get; set; }
+    public string type { get; set; }
+    public string name { get; set; }
+}
 
-//    public class Player_Out
-//    {
-//        public string id { get; set; }
-//        public string name { get; set; }
-//    }
+public class Player1
+{
+    public string id { get; set; }
+    public string name { get; set; }
+}
 
-//    public class Player_In
-//    {
-//        public string id { get; set; }
-//        public string name { get; set; }
-//    }
+public class Player_Out
+{
+    public string id { get; set; }
+    public string name { get; set; }
+}
 
-//    public class Commentary
-//    {
-//        public string text { get; set; }
-//    }
+public class Player_In
+{
+    public string id { get; set; }
+    public string name { get; set; }
+}
+
+public class Commentary
+{
+    public string text { get; set; }
+}
 
 
 

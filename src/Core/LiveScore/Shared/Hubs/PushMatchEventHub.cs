@@ -2,7 +2,7 @@
 {
     using Microsoft.AspNetCore.SignalR;
 
-    public class MatchHub : Hub
+    public class PushMatchEventHub : Hub
     {
 
     }

@@ -17,7 +17,5 @@
         public string Language { get; set; }
 
         public int SportId { get; set; }
-
-        public bool IsLive { get; set; }
     }
 }

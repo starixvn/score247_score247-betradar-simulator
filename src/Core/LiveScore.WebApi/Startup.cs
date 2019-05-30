@@ -28,7 +28,6 @@ namespace LiveScore.WebApi
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
-    using Microsoft.Extensions.Logging.Console;
     using Newtonsoft.Json;
     using Sentry;
     using Swashbuckle.AspNetCore.Swagger;
@@ -57,10 +56,10 @@ namespace LiveScore.WebApi
                 RegisterDatabase(services);
                 RegisterServices(services);
                 RegisterJobs(services);
-                RegisterInstanceFactory(services);
                 RegisterSwagger(services);
 
-                services.AddLogging(b => b.AddConsole();
+                services.RegisterInstanceFactory();
+                services.AddLogging(b => b.AddConsole());
                 services.AddHangfire(x => x.UsePostgreSqlStorage(Configuration.GetConnectionString("hangfireConnection")));
                 services.AddMemoryCache();
                 services.AddSignalR();
@@ -83,7 +82,7 @@ namespace LiveScore.WebApi
 
             app.UseSignalR(routes =>
             {
-                routes.MapHub<MatchHub>("/hubs/MatchHub");
+                routes.MapHub<PushMatchEventHub>("/hubs/MatchHub");
             });
 
             UseHangfire(app);
@@ -118,18 +117,12 @@ namespace LiveScore.WebApi
             RecurringJob.AddOrUpdate<IAutoUpdateMatchTimeJob>(nameof(AutoUpdateMatchTimeJob), job => job.UpdateMatchTime(), Cron.Minutely);
             RecurringJob.AddOrUpdate<IDailyScheduleFetchJob>(nameof(DailyScheduleFetchJob), job => job.FetchDailySchedule(SportConstants.SoccerId), Cron.Daily);
             RecurringJob.AddOrUpdate<IDailyScheduleFetchJob>("FetchYesterdayResult", job => job.FetchYesterdayResult(SportConstants.SoccerId), Cron.Daily);
+            //RecurringJob.AddOrUpdate<IPushEventListenerJob>("PushEventListenerJob", job => job.StartListeningPushEvent(), "*/2 * * * *");
+            BackgroundJob.Enqueue<IPushEventListenerJob>(job => job.StartListeningPushEvent(SportConstants.SoccerId));
         }
 #pragma warning restore S2325 // Methods and properties that don't access instance data should be static
 
-        private static void RegisterInstanceFactory(IServiceCollection services)
-        {
-            services.AddSingleton((InstanceFactory)new InstanceFactoryImpl(
-                new Dictionary<int, IDictionary<DataProvider, IMatchDataAccess>>
-                {
-                        { SportConstants.SoccerId, GetMatchDataAccess(services)},
-                    ////{ SportConstants.BasketballId, new LiveScore.Basketballs.Features.Matches.MatchDataAccessImpl() }
-                }));
-        }
+
 
         private void RegisterSettings(IServiceCollection services)
         {
@@ -160,21 +153,6 @@ namespace LiveScore.WebApi
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
-        private static Dictionary<DataProvider, IMatchDataAccess> GetMatchDataAccess(IServiceCollection services)
-        {
-            var serviceProvider = services.BuildServiceProvider();
-
-            var repository = serviceProvider.GetService<IDynamicRepository>();
-            var appSettings = serviceProvider.GetService<IAppSettings>();
-            var restClient = serviceProvider.GetService<IRestClient>();
-
-            return new Dictionary<DataProvider, IMatchDataAccess>
-            {
-                { DataProvider.Database, (IMatchDataAccess)new Soccers.Features.Matches.DataAccesses.MatchDataAccess(repository) },
-                { DataProvider.ThirdPartyApi, (IMatchDataAccess)new Soccers.Features.Matches.DataAccesses.SportRadarMatchDataAccess(appSettings, restClient) },
-            };
-        }
-
         private static void RegisterServices(IServiceCollection services)
         {
             services.AddSingleton<IMatchService, MatchService>();
@@ -201,6 +179,7 @@ namespace LiveScore.WebApi
         {
             services.AddScoped<IAutoUpdateMatchTimeJob, AutoUpdateMatchTimeJob>();
             services.AddScoped<IDailyScheduleFetchJob, DailyScheduleFetchJob>();
+            services.AddScoped<IPushEventListenerJob, PushEventListenerJob>();
         }
 
         private static IRestClient CreateRestSharpClient(IDataProviderSettings providerSettings)

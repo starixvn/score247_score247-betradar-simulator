@@ -2,8 +2,6 @@
 {
     using System.Linq;
     using System.Threading.Tasks;
-    using Hangfire;
-    using Hangfire.Common;
     using LiveScore.Features.Matches;
     using LiveScore.Features.Matches.Models;
     using LiveScore.Shared;
@@ -15,8 +13,6 @@
 
     public interface IAutoUpdateMatchTimeJob
     {
-        void Start();
-
         Task UpdateMatchTime();
     }
 
@@ -24,25 +20,17 @@
     {
         private const int MaxMatchTime = 120;
         private readonly IMatchService matchService;
-        private readonly IRecurringJobManager recurringJobManager;
-        private readonly IHubContext<MatchHub> matchHub;
+        private readonly IHubContext<PushMatchEventHub> matchHub;
         private readonly IDynamicRepository dynamicRepository;
 
         public AutoUpdateMatchTimeJob(
-             IRecurringJobManager recurringJobManager,
              IMatchService matchService,
-             IHubContext<MatchHub> matchHub,
+             IHubContext<PushMatchEventHub> matchHub,
              IDynamicRepository dynamicRepository)
         {
-            this.recurringJobManager = recurringJobManager;
             this.matchService = matchService;
             this.matchHub = matchHub;
             this.dynamicRepository = dynamicRepository;
-        }
-
-        public void Start()
-        {
-            recurringJobManager.AddOrUpdate(nameof(AutoUpdateMatchTimeJob), Job.FromExpression(() => UpdateMatchTime()), Cron.Minutely());
         }
 
         public async Task UpdateMatchTime()
