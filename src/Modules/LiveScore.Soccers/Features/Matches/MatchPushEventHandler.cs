@@ -60,16 +60,23 @@
             {
                 return;
             }
+            var pushChangeToClientsTask = Task.Run(() => PushChangeToClients(pushEvents));
+            var updateDatabaseTask = Task.Run(() => UpdateDatabase(pushEvents));
 
-            await PushChangeToClients(pushEvents);
+            await Task.WhenAll(pushChangeToClientsTask, updateDatabaseTask);
+        }
 
+        private async Task UpdateDatabase(Dictionary<string, MatchPushEvent> pushEvents)
+        {
             foreach (var matchId in pushEvents.Keys)
             {
                 var pushEvent = pushEvents[matchId];
 
-                await HandleMatchEvent(matchId, pushEvent);
-                await matchDataAccess.AddTimelines(matchId, pushEvent.TimeLines);
-                await matchDataAccess.AddResult(matchId, pushEvent.MatchResult);
+                var handleMatchEventTask = Task.Run(() => HandleMatchEvent(matchId, pushEvent));
+                var addTimelineTask = Task.Run(() => matchDataAccess.AddTimelines(matchId, pushEvent.TimeLines));
+                var addResultTask = Task.Run(() => matchDataAccess.AddResult(matchId, pushEvent.MatchResult));
+
+                await Task.WhenAll(handleMatchEventTask, addTimelineTask, addResultTask);
             }
         }
 
