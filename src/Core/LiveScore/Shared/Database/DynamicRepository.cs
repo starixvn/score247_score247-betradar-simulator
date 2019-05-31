@@ -6,29 +6,32 @@ namespace LiveScore.Shared.Database
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
+    using LiveScore.Shared.Database.Entities;
     using Microsoft.EntityFrameworkCore;
 
     public interface IDynamicRepository
     {
-        Task<List<T>> GetAll<T>() where T : class;
+        Task<List<T>> GetAll<T>() where T : DatabaseEntity;
 
-        Task<T> GetById<T>(object id) where T : class;
+        Task<T> GetById<T>(object id) where T : DatabaseEntity;
 
-        Task<List<T>> Query<T>(string value, params string[] jsonHierachy) where T : class;
+        Task<List<T>> Query<T>(string value, params string[] jsonHierachy) where T : DatabaseEntity;
 
-        Task<List<T>> Query<T>(Func<T, bool> predicate) where T : class;
+        Task<List<T>> Query<T>(Func<T, bool> predicate) where T : DatabaseEntity;
 
-        Task<T> First<T>(Expression<Func<T, bool>> predicate) where T : class;
+        Task<T> First<T>(Expression<Func<T, bool>> predicate) where T : DatabaseEntity;
 
-        Task<T> Last<T>(Expression<Func<T, bool>> predicate) where T : class;
+        Task<T> Last<T>(Expression<Func<T, bool>> predicate) where T : DatabaseEntity;
 
-        Task Insert<T>(T obj) where T : class;
+        Task InsertOrUpdate<T>(string id, T obj) where T : DatabaseEntity;
 
-        Task InsertRange<T>(IEnumerable<T> objects) where T : class;
+        Task Insert<T>(T obj) where T : DatabaseEntity;
 
-        IDynamicRepository Update<T>(T obj) where T : class;
+        Task InsertRange<T>(IEnumerable<T> objects) where T : DatabaseEntity;
 
-        IDynamicRepository Delete<T>(object id) where T : class;
+        IDynamicRepository Update<T>(T obj) where T : DatabaseEntity;
+
+        IDynamicRepository Delete<T>(object id) where T : DatabaseEntity;
 
         Task<int> Save();
     }
@@ -43,7 +46,7 @@ namespace LiveScore.Shared.Database
             context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
-        public async Task<List<T>> Query<T>(string value, params string[] jsonHierachy) where T : class
+        public async Task<List<T>> Query<T>(string value, params string[] jsonHierachy) where T : DatabaseEntity
         {
             var tableName = context.GetTableName<T>();
             var queryCondition = $"\"{jsonHierachy[0]}\" @> '";
@@ -66,51 +69,80 @@ namespace LiveScore.Shared.Database
             return await context.Set<T>().FromSql(queryCommand).ToListAsync();
         }
 
-        public async Task<List<T>> Query<T>(Func<T, bool> predicate) where T : class
+        public async Task<List<T>> Query<T>(Func<T, bool> predicate) where T : DatabaseEntity
         {
             return await Task.FromResult(context.Set<T>().Where(predicate).ToList());
         }
 
-        public Task<T> First<T>(Expression<Func<T, bool>> predicate) where T : class
+        public Task<T> First<T>(Expression<Func<T, bool>> predicate) where T : DatabaseEntity
         {
             return context.Set<T>().FirstOrDefaultAsync(predicate);
         }
 
-        public Task<T> Last<T>(Expression<Func<T, bool>> predicate) where T : class
+        public Task<T> Last<T>(Expression<Func<T, bool>> predicate) where T : DatabaseEntity
         {
             return context.Set<T>().LastOrDefaultAsync(predicate);
         }
 
-        public Task<List<T>> GetAll<T>() where T : class
+        public Task<List<T>> GetAll<T>() where T : DatabaseEntity
         {
             return context.Set<T>().ToListAsync();
         }
 
-        public Task<T> GetById<T>(object id) where T : class
+        public Task<T> GetById<T>(object id) where T : DatabaseEntity
         {
             return context.Set<T>().FindAsync(id);
         }
 
-        public Task Insert<T>(T obj) where T : class
+        public Task Insert<T>(T obj) where T : DatabaseEntity
         {
+            obj.CreatedTime = DateTime.Now;
+            obj.ModifiedTime = DateTime.Now;
+
             return context.Set<T>().AddAsync(obj);
         }
 
-        public Task InsertRange<T>(IEnumerable<T> objects) where T : class
+        public async Task InsertOrUpdate<T>(string id, T obj) where T : DatabaseEntity
         {
+            var dataSet = context.Set<T>();
+
+            if (await dataSet.AnyAsync(e => e.Id == id))
+            {
+                obj.ModifiedTime = DateTime.Now;
+
+                await Update(obj).Save();
+            }
+            else
+            {
+                obj.CreatedTime = DateTime.Now;
+                obj.ModifiedTime = DateTime.Now;
+
+                await dataSet.AddAsync(obj);
+            }
+        }
+
+        public Task InsertRange<T>(IEnumerable<T> objects) where T : DatabaseEntity
+        {
+            foreach (var obj in objects)
+            {
+                obj.CreatedTime = DateTime.Now;
+                obj.ModifiedTime = DateTime.Now;
+            }
+
             return context.Set<T>().AddRangeAsync(objects);
         }
 
-        public IDynamicRepository Update<T>(T obj) where T : class
+        public IDynamicRepository Update<T>(T obj) where T : DatabaseEntity
         {
             var table = context.Set<T>();
+            obj.ModifiedTime = DateTime.Now;
             table.Attach(obj);
             context.Entry(obj).State = EntityState.Modified;
 
             return this;
         }
 
-        public IDynamicRepository Delete<T>(object id) where T : class
+        public IDynamicRepository Delete<T>(object id) where T : DatabaseEntity
         {
             var table = context.Set<T>();
             T existing = table.Find(id);

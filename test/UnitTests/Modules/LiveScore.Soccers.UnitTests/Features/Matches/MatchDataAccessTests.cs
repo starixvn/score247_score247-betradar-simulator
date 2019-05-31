@@ -19,7 +19,7 @@
         public MatchDataAccessTests()
         {
             dynamicRepository = Substitute.For<IDynamicRepository>();
-            dynamicRepository.Query(Arg.Any<Func<MatchEntity, bool>> ()).Returns(new List<MatchEntity> { StubMatchEntity() });
+            dynamicRepository.Query(Arg.Any<Func<MatchEntity, bool>>()).Returns(new List<MatchEntity> { StubMatchEntity() });
             dynamicRepository.Query(Arg.Any<Func<MatchResultEntity, bool>>()).Returns(new List<MatchResultEntity>());
 
             matchDataAccess = new MatchDataAccess(dynamicRepository);
@@ -87,7 +87,7 @@
 
             var match = matches.First();
             var leagueRound = match.LeagueRound;
-           
+
             Assert.Equal("regular season", leagueRound.Phase);
             Assert.Equal("group", leagueRound.Type.Value);
         }
@@ -103,7 +103,7 @@
                 TimeSpan.Zero);
 
             var match = matches.First();
-            var matchResult = match.MatchResult;            
+            var matchResult = match.MatchResult;
 
             Assert.Equal("not_started", matchResult.EventStatus.Value);
             Assert.Equal("not_started", matchResult.MatchStatus.Value);
@@ -167,7 +167,7 @@
                 LeagueId = "sr:tournament:28424",
                 Language = "en-US",
                 SportId = 1,
-                EventDate =DateTime.Parse("2019-05-22 00:00:00+00")
+                EventDate = DateTime.Parse("2019-05-22 00:00:00+00")
             };
         }
 
@@ -255,7 +255,7 @@
         {
             return new MatchResultEntity
             {
-                Id=1,
+                Id = "1",
                 MatchId = "sr:match:17809194",
                 Value = StubMatchResultJson()
             };
@@ -285,7 +285,7 @@
         {
             return new MatchTimelineEntity
             {
-                Id = 1,
+                Id = "1",
                 MatchId = "sr:match:17809194",
                 Value = StubTimelineJson()
             };

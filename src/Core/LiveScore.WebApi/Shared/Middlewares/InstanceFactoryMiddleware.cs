@@ -1,6 +1,7 @@
 ﻿namespace LiveScore.WebApi.Shared.Middlewares
 {
     using System.Collections.Generic;
+    using Fanex.Caching;
     using LiveScore.Features.Matches;
     using LiveScore.Shared;
     using LiveScore.Shared.Configurations;
@@ -32,13 +33,21 @@
             return matchDataAccessContainer;
         }
 
-        private static Dictionary<int, IPushEventHandler> BuildPushEventHandlerContainer(IServiceCollection services, Dictionary<int, IDictionary<DataProvider, IMatchDataAccess>> matchDataAccessContainer)
+        private static Dictionary<int, IMatchPushEventHandler> BuildPushEventHandlerContainer(IServiceCollection services, Dictionary<int, IDictionary<DataProvider, IMatchDataAccess>> matchDataAccessContainer)
         {
-            var hubContext = services.BuildServiceProvider().GetService<IHubContext<PushMatchEventHub>>();
+            var serviceProvider = services.BuildServiceProvider();
+            var hubContext = serviceProvider.GetService<IHubContext<MatchHub>>();
+            var cacheService = serviceProvider.GetService<ICacheService>();
 
-            var pushEventHandlerContainer = new Dictionary<int, IPushEventHandler>
+            var pushEventHandlerContainer = new Dictionary<int, IMatchPushEventHandler>
             {
-                { SportConstants.SoccerId, new PushEventHandler(matchDataAccessContainer[SportConstants.SoccerId][DataProvider.Database], hubContext) }
+                {
+                    SportConstants.SoccerId,
+                    new MatchPushEventHandler(
+                        matchDataAccessContainer[SportConstants.SoccerId][DataProvider.Database],
+                        hubContext,
+                        cacheService)
+                }
             };
 
             return pushEventHandlerContainer;
@@ -47,7 +56,6 @@
         private static Dictionary<DataProvider, IMatchDataAccess> GetMatchDataAccess(IServiceCollection services)
         {
             var serviceProvider = services.BuildServiceProvider();
-
             var repository = serviceProvider.GetService<IDynamicRepository>();
             var appSettings = serviceProvider.GetService<IAppSettings>();
             var restClient = serviceProvider.GetService<IRestClient>();

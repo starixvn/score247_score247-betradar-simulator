@@ -3,10 +3,8 @@
     using System;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class MatchEntity
+    public class MatchEntity : DatabaseEntity
     {
-        public string Id { get; set; }
-
         [Column(TypeName = "jsonb")]
         public string Value { get; set; }
 

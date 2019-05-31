@@ -4,7 +4,7 @@
     using LiveScore.Shared.Helpers;
     using Newtonsoft.Json;
 
-    public class PushEvent
+    public class MatchPushEvent
     {
         [JsonConverter(typeof(JsonConcreteTypeConverter<MatchResult>))]
         public IMatchResult MatchResult { get; set; }

@@ -13,6 +13,8 @@ namespace LiveScore.Shared.Database
 
         public DbSet<MatchEntity> Match { get; set; }
 
+        public DbSet<LiveMatchEntity> LiveMatch { get; set; }
+
         public DbSet<MatchTimelineEntity> Timeline { get; set; }
 
         public DbSet<MatchResultEntity> MatchResult { get; set; }

@@ -20,12 +20,12 @@
     {
         private const int MaxMatchTime = 120;
         private readonly IMatchService matchService;
-        private readonly IHubContext<PushMatchEventHub> matchHub;
+        private readonly IHubContext<MatchHub> matchHub;
         private readonly IDynamicRepository dynamicRepository;
 
         public AutoUpdateMatchTimeJob(
              IMatchService matchService,
-             IHubContext<PushMatchEventHub> matchHub,
+             IHubContext<MatchHub> matchHub,
              IDynamicRepository dynamicRepository)
         {
             this.matchService = matchService;

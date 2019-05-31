@@ -12,12 +12,22 @@ namespace LiveScore.Basketballs.Features.Matches
 
     public class MatchDataAccessImpl : IMatchDataAccess
     {
+        public Task<IMatch> AddOrUpdateMatch(string matchId, MatchPushEvent pushEvent, bool isLive)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<bool> AddResult(string matchId, IMatchResult matchResult)
         {
             throw new NotImplementedException();
         }
 
         public Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> DeleteMatch(string matchId, bool isLive = false)
         {
             throw new NotImplementedException();
         }
@@ -109,5 +119,6 @@ namespace LiveScore.Basketballs.Features.Matches
                 },
             });
         }
+
     }
 }

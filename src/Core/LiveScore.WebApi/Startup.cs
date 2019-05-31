@@ -30,6 +30,7 @@ namespace LiveScore.WebApi
     using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
     using Sentry;
+    using Fanex.Caching.Memory;
     using Swashbuckle.AspNetCore.Swagger;
 
     public class Startup
@@ -61,7 +62,7 @@ namespace LiveScore.WebApi
                 services.RegisterInstanceFactory();
                 services.AddLogging(b => b.AddConsole());
                 services.AddHangfire(x => x.UsePostgreSqlStorage(Configuration.GetConnectionString("hangfireConnection")));
-                services.AddMemoryCache();
+                services.AddMemoryCache(Configuration.GetSection("fanex.caching"));
                 services.AddSignalR();
             }
             catch (Exception ex)
@@ -82,7 +83,7 @@ namespace LiveScore.WebApi
 
             app.UseSignalR(routes =>
             {
-                routes.MapHub<PushMatchEventHub>("/hubs/MatchHub");
+                routes.MapHub<MatchHub>("/hubs/MatchHub");
             });
 
             UseHangfire(app);
@@ -117,8 +118,7 @@ namespace LiveScore.WebApi
             RecurringJob.AddOrUpdate<IAutoUpdateMatchTimeJob>(nameof(AutoUpdateMatchTimeJob), job => job.UpdateMatchTime(), Cron.Minutely);
             RecurringJob.AddOrUpdate<IDailyScheduleFetchJob>(nameof(DailyScheduleFetchJob), job => job.FetchDailySchedule(SportConstants.SoccerId), Cron.Daily);
             RecurringJob.AddOrUpdate<IDailyScheduleFetchJob>("FetchYesterdayResult", job => job.FetchYesterdayResult(SportConstants.SoccerId), Cron.Daily);
-            //RecurringJob.AddOrUpdate<IPushEventListenerJob>("PushEventListenerJob", job => job.StartListeningPushEvent(), "*/2 * * * *");
-            BackgroundJob.Enqueue<IPushEventListenerJob>(job => job.StartListeningPushEvent(SportConstants.SoccerId));
+            BackgroundJob.Enqueue<IMatchPushEventListenerJob>(job => job.StartListeningPushEvent(SportConstants.SoccerId));
         }
 #pragma warning restore S2325 // Methods and properties that don't access instance data should be static
 
@@ -179,7 +179,7 @@ namespace LiveScore.WebApi
         {
             services.AddScoped<IAutoUpdateMatchTimeJob, AutoUpdateMatchTimeJob>();
             services.AddScoped<IDailyScheduleFetchJob, DailyScheduleFetchJob>();
-            services.AddScoped<IPushEventListenerJob, PushEventListenerJob>();
+            services.AddScoped<IMatchPushEventListenerJob, MatchPushEventListenerJob>();
         }
 
         private static IRestClient CreateRestSharpClient(IDataProviderSettings providerSettings)

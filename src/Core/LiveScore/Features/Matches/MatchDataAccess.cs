@@ -18,6 +18,10 @@
           int sportId,
           string language);
 
+        Task<IMatch> AddOrUpdateMatch(string matchId, MatchPushEvent pushEvent, bool isLive = false);
+
+        Task<bool> DeleteMatch(string matchId, bool isLive = false);
+
         Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines);
 
         Task<bool> AddResult(string matchId, IMatchResult matchResult);

@@ -3,7 +3,7 @@
     using LiveScore.Shared.Models.Dtos;
     using Newtonsoft.Json;
 
-    public class PushEventDto
+    public class MatchPushEventDto
     {
         public PushEventPayload payload { get; set; }
 

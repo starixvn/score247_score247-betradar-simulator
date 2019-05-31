@@ -21,7 +21,7 @@ namespace LiveScore.WebApi.Features.Notifications
         [HttpPost("PushMatchEvent")]
         public async Task PushMatchEvent(
             int sportId,
-            [FromBody]Dictionary<string, PushEvent> pushEvents)
+            [FromBody]Dictionary<string, MatchPushEvent> pushEvents)
         {
             if (sportId > 0 && pushEvents != null)
             {

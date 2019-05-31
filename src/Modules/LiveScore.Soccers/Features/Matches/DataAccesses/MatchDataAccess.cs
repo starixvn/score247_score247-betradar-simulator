@@ -11,6 +11,7 @@
     using LiveScore.Shared.Helpers;
     using Newtonsoft.Json;
 
+
     public class MatchDataAccess : IMatchDataAccess
     {
         private readonly IDynamicRepository dynamicRepository;
@@ -37,7 +38,7 @@
 
             foreach (var entity in matchEntities)
             {
-                var match = await BuildMatch(entity);
+                var match = JsonConvert.DeserializeObject<Match>(entity.Value);
 
                 matches.Add(match);
             }
@@ -48,11 +49,11 @@
         public async Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
         {
             var matches = new List<Match>();
-            var matchEntities = await dynamicRepository.GetAll<MatchEntity>();
+            var matchEntities = await dynamicRepository.GetAll<LiveMatchEntity>();
 
             foreach (var entity in matchEntities)
             {
-                var match = await BuildMatch(entity);
+                var match = JsonConvert.DeserializeObject<Match>(entity.Value);
 
                 if (match.MatchResult.EventStatus.IsLive())
                 {
@@ -63,10 +64,66 @@
             return matches;
         }
 
+        public async Task<IMatch> AddOrUpdateMatch(string matchId, MatchPushEvent pushEvent, bool isLive = false)
+        {
+            try
+            {
+                var matchEntity = await dynamicRepository.GetById<MatchEntity>(matchId);
+                var match = JsonConvert.DeserializeObject<Match>(matchEntity.Value);
+                match.MatchResult = pushEvent.MatchResult;
+                match.TimeLines = pushEvent.TimeLines;
+                matchEntity.Value = JsonConvert.SerializeObject(match);
+
+                if (isLive)
+                {
+                    var liveMatchEntity = new LiveMatchEntity
+                    {
+                        Id = matchEntity.Id,
+                        SportId = matchEntity.SportId,
+                        Language = matchEntity.Language,
+                        Value = matchEntity.Value,
+                        EventDate = matchEntity.EventDate
+                    };
+
+                    await dynamicRepository.InsertOrUpdate(matchId, liveMatchEntity);
+                }
+                else
+                {
+                    await dynamicRepository.InsertOrUpdate(matchId, matchEntity);
+                }
+
+                return match;
+            }
+            catch
+            {
+                // Write log
+                return null;
+            }
+        }
+
+        public async Task<bool> DeleteMatch(string matchId, bool isLive = false)
+        {
+            try
+            {
+                if (isLive)
+                {
+                    return await dynamicRepository.Delete<LiveMatchEntity>(matchId).Save() > 0;
+                }
+
+                return await dynamicRepository.Delete<MatchEntity>(matchId).Save() > 0;
+            }
+            catch
+            {
+                // Write log
+                return false;
+            }
+        }
+
         public async Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines)
         {
             var matchTimelineEntities = timelines.Select(t => new MatchTimelineEntity
             {
+                Id = Guid.NewGuid().ToString(),
                 MatchId = matchId,
                 Value = JsonConvert.SerializeObject(t)
             });
@@ -81,35 +138,12 @@
             await dynamicRepository.Insert(
                 new MatchResultEntity
                 {
+                    Id = Guid.NewGuid().ToString(),
                     MatchId = matchId,
                     Value = JsonConvert.SerializeObject(matchResult)
                 });
 
             return (await dynamicRepository.Save()) > 0;
         }
-
-        private async Task<Match> BuildMatch(MatchEntity entity)
-        {
-            var match = JsonConvert.DeserializeObject<Match>(entity.Value);
-
-            var lastTimeLine = await dynamicRepository.Last<MatchTimelineEntity>(t => t.MatchId == entity.Id);
-
-            // TODO Enhance query later
-            var result = (await dynamicRepository.Query<MatchResultEntity>(t => t.MatchId == entity.Id))
-                    .OrderBy(r => r.Id).LastOrDefault();
-
-            if (lastTimeLine != null)
-            {
-                match.TimeLines = new List<Timeline> { JsonConvert.DeserializeObject<Timeline>(lastTimeLine.Value) };
-            }
-
-            if (result != null)
-            {
-                match.MatchResult = JsonConvert.DeserializeObject<MatchResult>(result.Value);
-            }
-
-            return match;
-        }
-
     }
 }

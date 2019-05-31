@@ -2,10 +2,8 @@
 {
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class MatchTimelineEntity
+    public class MatchTimelineEntity : DatabaseEntity
     {
-        public long Id { get; set; }
-
         [Column(TypeName = "jsonb")]
         public string Value { get; set; }
 

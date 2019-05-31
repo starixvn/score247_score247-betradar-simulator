@@ -1,6 +1,5 @@
 ﻿namespace LiveScore.Jobs
 {
-    using System;
     using System.Diagnostics;
     using System.IO;
     using System.Net;
@@ -8,18 +7,18 @@
     using Hangfire;
     using LiveScore.Shared;
 
-    public interface IPushEventListenerJob
+    public interface IMatchPushEventListenerJob
     {
         Task StartListeningPushEvent(byte sportId);
     }
 
-    public class PushEventListenerJob : IPushEventListenerJob
+    public class MatchPushEventListenerJob : IMatchPushEventListenerJob
     {
         private const int MillisecondsTimeout = 30 * 1000;
         private readonly IBackgroundJobClient backgroundJob;
         private readonly InstanceFactory instanceFactory;
 
-        public PushEventListenerJob(
+        public MatchPushEventListenerJob(
             IBackgroundJobClient backgroundJob,
             InstanceFactory instanceFactory)
         {
@@ -71,8 +70,8 @@
                 using (StreamWriter sw = File.AppendText(path))
                 {
                     sw.WriteLine(pushEvent);
-                    await pushEventHandler.OnReceive(pushEvent);
                     Debug.WriteLine(pushEvent);
+                    await pushEventHandler.OnReceive(pushEvent);
                 }
 
                 System.Threading.Thread.Sleep(MillisecondsTimeout);
