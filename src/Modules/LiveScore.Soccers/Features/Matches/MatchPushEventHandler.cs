@@ -72,11 +72,9 @@
             {
                 var pushEvent = pushEvents[matchId];
 
-                var handleMatchEventTask = Task.Run(() => HandleMatchEvent(matchId, pushEvent));
-                var addTimelineTask = Task.Run(() => matchDataAccess.AddTimelines(matchId, pushEvent.TimeLines));
-                var addResultTask = Task.Run(() => matchDataAccess.AddResult(matchId, pushEvent.MatchResult));
-
-                await Task.WhenAll(handleMatchEventTask, addTimelineTask, addResultTask);
+                await HandleMatchEvent(matchId, pushEvent);
+                await matchDataAccess.AddResult(matchId, pushEvent.MatchResult);
+                await matchDataAccess.AddTimelines(matchId, pushEvent.TimeLines);
             }
         }
 

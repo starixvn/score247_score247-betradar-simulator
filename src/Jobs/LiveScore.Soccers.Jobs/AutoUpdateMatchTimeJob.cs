@@ -51,25 +51,6 @@
                 matchTime++;
 
                 await matchHub.Clients.All.SendAsync("PushMatchTime", SportConstants.SoccerId.ToString(), match.Id, matchTime);
-
-                await UpdateMatchResult(match, matchTime);
-            }
-        }
-
-        private async Task UpdateMatchResult(IMatch match, int matchTime)
-        {
-            var matchResultEntity = (await dynamicRepository.Query<MatchResultEntity>(t => t.MatchId == match.Id))
-                .OrderBy(r => r.Id)
-                .LastOrDefault();
-
-            if (matchResultEntity != null)
-            {
-                var matchResult = JsonConvert.DeserializeObject<MatchResult>(matchResultEntity.Value);
-                matchResult.MatchTime = matchTime;
-                matchResultEntity.Value = JsonConvert.SerializeObject(matchResult);
-
-                dynamicRepository.Update(matchResultEntity);
-                await dynamicRepository.Save();
             }
         }
     }

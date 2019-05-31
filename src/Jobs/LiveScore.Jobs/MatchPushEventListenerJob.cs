@@ -1,5 +1,6 @@
 ﻿namespace LiveScore.Jobs
 {
+    using System;
     using System.Diagnostics;
     using System.IO;
     using System.Net;
@@ -66,6 +67,7 @@
             {
                 pushEvent = reader.ReadLine();
                 Debug.WriteLine(pushEvent);
+                Console.WriteLine(pushEvent);
                 await pushEventHandler.OnReceive(pushEvent);
                 System.Threading.Thread.Sleep(MillisecondsTimeout);
 

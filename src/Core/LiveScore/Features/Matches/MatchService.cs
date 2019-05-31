@@ -1,4 +1,5 @@
-﻿namespace LiveScore.Features.Matches
+﻿using Fanex.Caching;
+namespace LiveScore.Features.Matches
 {
     using System;
     using System.Collections.Generic;
@@ -21,10 +22,12 @@
     public class MatchService : IMatchService
     {
         private readonly InstanceFactory instanceFactory;
+        private readonly ICacheService cacheService;
 
-        public MatchService(InstanceFactory instanceFactory)
+        public MatchService(InstanceFactory instanceFactory, ICacheService cacheService)
         {
             this.instanceFactory = instanceFactory;
+            this.cacheService = cacheService;
         }
 
         public async Task<IEnumerable<IMatch>> GetMatches(

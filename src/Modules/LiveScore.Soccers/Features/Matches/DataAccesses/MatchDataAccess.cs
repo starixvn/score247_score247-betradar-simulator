@@ -82,6 +82,7 @@
                         SportId = matchEntity.SportId,
                         Language = matchEntity.Language,
                         Value = matchEntity.Value,
+                        LeagueId = matchEntity.LeagueId,
                         EventDate = matchEntity.EventDate
                     };
 
