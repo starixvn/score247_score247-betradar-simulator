@@ -65,15 +65,8 @@
             do
             {
                 pushEvent = reader.ReadLine();
-                var path = @"responses.txt";
-
-                using (StreamWriter sw = File.AppendText(path))
-                {
-                    sw.WriteLine(pushEvent);
-                    Debug.WriteLine(pushEvent);
-                    await pushEventHandler.OnReceive(pushEvent);
-                }
-
+                Debug.WriteLine(pushEvent);
+                await pushEventHandler.OnReceive(pushEvent);
                 System.Threading.Thread.Sleep(MillisecondsTimeout);
 
             } while (pushEvent.Length > 0);
