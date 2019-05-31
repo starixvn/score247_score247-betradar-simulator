@@ -105,7 +105,12 @@
 
                 if (match != null)
                 {
-                    await cacheService.SetAsync(matchId, match, new CacheItemOptions
+                    var liveMatches = await cacheService.GetOrSetAsync(
+                        $"LiveMatch_{SportConstants.SoccerId}", () => new Dictionary<string, IMatch>());
+
+                    liveMatches[matchId] = match;
+
+                    await cacheService.SetAsync($"LiveMatch_{SportConstants.SoccerId}", liveMatches, new CacheItemOptions
                     {
                         SlidingExpiration = TimeSpan.FromMinutes(LiveMatchSlidingExpirationMinute)
                     });

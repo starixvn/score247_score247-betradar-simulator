@@ -50,8 +50,13 @@
 
                 matchTime++;
 
+                match.MatchResult.MatchTime = matchTime;
+
+
                 await matchHub.Clients.All.SendAsync("PushMatchTime", SportConstants.SoccerId.ToString(), match.Id, matchTime);
             }
+
+            await matchService.UpdateLiveMatches(SportConstants.SoccerId, liveMatches);
         }
     }
 }

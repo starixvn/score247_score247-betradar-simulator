@@ -20,6 +20,8 @@
 
         Task<IMatch> AddOrUpdateMatch(string matchId, MatchPushEvent pushEvent, bool isLive = false);
 
+        Task<bool> UpdateLiveMatches(IEnumerable<IMatch> matches);
+
         Task<bool> DeleteMatch(string matchId, bool isLive = false);
 
         Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines);

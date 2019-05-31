@@ -170,5 +170,10 @@
         {
             throw new NotImplementedException();
         }
+
+        public Task<bool> UpdateLiveMatches(IEnumerable<IMatch> matches)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

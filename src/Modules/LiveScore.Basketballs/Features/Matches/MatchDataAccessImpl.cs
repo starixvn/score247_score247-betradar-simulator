@@ -120,5 +120,9 @@ namespace LiveScore.Basketballs.Features.Matches
             });
         }
 
+        public Task<bool> UpdateLiveMatches(IEnumerable<IMatch> matches)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -31,6 +31,8 @@ namespace LiveScore.Shared.Database
 
         IDynamicRepository Update<T>(T obj) where T : DatabaseEntity;
 
+        Task<int> UpdateRange<T>(IEnumerable<T> objects) where T : DatabaseEntity;
+
         IDynamicRepository Delete<T>(object id) where T : DatabaseEntity;
 
         Task<int> Save();
@@ -71,22 +73,22 @@ namespace LiveScore.Shared.Database
 
         public async Task<List<T>> Query<T>(Func<T, bool> predicate) where T : DatabaseEntity
         {
-            return await Task.FromResult(context.Set<T>().Where(predicate).ToList());
+            return await Task.FromResult(context.Set<T>().AsNoTracking().Where(predicate).ToList());
         }
 
         public Task<T> First<T>(Expression<Func<T, bool>> predicate) where T : DatabaseEntity
         {
-            return context.Set<T>().FirstOrDefaultAsync(predicate);
+            return context.Set<T>().AsNoTracking().FirstOrDefaultAsync(predicate);
         }
 
         public Task<T> Last<T>(Expression<Func<T, bool>> predicate) where T : DatabaseEntity
         {
-            return context.Set<T>().LastOrDefaultAsync(predicate);
+            return context.Set<T>().AsNoTracking().LastOrDefaultAsync(predicate);
         }
 
         public Task<List<T>> GetAll<T>() where T : DatabaseEntity
         {
-            return context.Set<T>().ToListAsync();
+            return context.Set<T>().AsNoTracking().ToListAsync();
         }
 
         public Task<T> GetById<T>(object id) where T : DatabaseEntity
@@ -130,6 +132,15 @@ namespace LiveScore.Shared.Database
             }
 
             return context.Set<T>().AddRangeAsync(objects);
+        }
+
+        public Task<int> UpdateRange<T>(IEnumerable<T> objects) where T : DatabaseEntity
+        {
+            var table = context.Set<T>();
+            context.AttachRange(objects);
+            context.Entry(objects).State = EntityState.Modified;
+
+            return Save();
         }
 
         public IDynamicRepository Update<T>(T obj) where T : DatabaseEntity

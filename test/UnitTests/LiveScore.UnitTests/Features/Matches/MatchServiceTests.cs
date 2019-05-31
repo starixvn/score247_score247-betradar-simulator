@@ -23,7 +23,7 @@
             instanceFactory = Substitute.For<InstanceFactory>();
             instanceFactory.CreateMatchDataAccess(SoccerSportId).Returns(matchDataAccess);
 
-            matchServiceImpl = new MatchService(instanceFactory);
+            matchServiceImpl = new MatchService(instanceFactory, null);
         }
 
         [Theory]

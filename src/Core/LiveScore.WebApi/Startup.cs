@@ -173,7 +173,8 @@ namespace LiveScore.WebApi
                         => options
                             .UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
                             .EnableSensitiveDataLogging(true)
-                            .UseLoggerFactory(loggerFactory),
+                            .UseLoggerFactory(loggerFactory)
+                            .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking),
                         ServiceLifetime.Scoped)
                    .BuildServiceProvider();
 

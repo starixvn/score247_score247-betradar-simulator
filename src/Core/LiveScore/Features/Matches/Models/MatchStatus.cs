@@ -92,6 +92,8 @@
 
         public bool IsLive() => this == Live;
 
+        public bool IsClosed() => this == Closed;
+
         public bool IsFirstHalf() => this == FirstHaft;
 
         public bool IsSecondHalf() => this == SecondHaft;

@@ -46,6 +46,11 @@
 
             foreach (var entity in liveMatchEntities)
             {
+                if (matches.Any(m => m.Id == entity.Id && m.MatchResult.EventStatus.IsClosed()))
+                {
+                    continue;
+                }
+
                 var match = JsonConvert.DeserializeObject<Match>(entity.Value);
 
                 liveMatches.Add(match);
@@ -164,6 +169,20 @@
                 });
 
             return (await dynamicRepository.Save()) > 0;
+        }
+
+        public async Task<bool> UpdateLiveMatches(IEnumerable<IMatch> matches)
+        {
+            foreach (var match in matches)
+            {
+                var matchEntity = await dynamicRepository.GetById<MatchEntity>(match.Id);
+                matchEntity.Value = JsonConvert.SerializeObject(match);
+                matchEntity.EventDate = match.EventDate.ToUniversalTime();
+
+                await dynamicRepository.Update(matchEntity).Save();
+            }
+
+            return true;
         }
     }
 }

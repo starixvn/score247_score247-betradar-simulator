@@ -1,10 +1,10 @@
-﻿using Fanex.Caching;
-namespace LiveScore.Features.Matches
+﻿namespace LiveScore.Features.Matches
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Fanex.Caching;
     using LiveScore.Features.Matches.Models;
     using LiveScore.Shared;
 
@@ -17,6 +17,8 @@ namespace LiveScore.Features.Matches
         Task<bool> AddTimelines(int sportId, string matchId, IEnumerable<ITimeline> timelines);
 
         Task<bool> AddResult(int sportId, string matchId, IMatchResult matchResult);
+
+        Task UpdateLiveMatches(int sportId, IEnumerable<IMatch> matches);
     }
 
     public class MatchService : IMatchService
@@ -65,6 +67,13 @@ namespace LiveScore.Features.Matches
             var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
 
             return await matchDataAccess.GetLiveMatches(sportId, language);
+        }
+
+        public async Task UpdateLiveMatches(int sportId, IEnumerable<IMatch> matches)
+        {
+            var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
+
+            await matchDataAccess.UpdateLiveMatches(matches);
         }
 
         public async Task<bool> AddTimelines(int sportId, string matchId, IEnumerable<ITimeline> timelines)
