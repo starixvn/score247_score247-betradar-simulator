@@ -14,13 +14,12 @@
     public class MatchDataAccessTests
     {
         private readonly MatchDataAccess matchDataAccess;
-        private readonly IDynamicRepository dynamicRepository;
+        private readonly IDynamicRepository dynamicRepository;        
 
         public MatchDataAccessTests()
-        {
+        {            
             dynamicRepository = Substitute.For<IDynamicRepository>();
             dynamicRepository.Query(Arg.Any<Func<MatchEntity, bool>>()).Returns(new List<MatchEntity> { StubMatchEntity() });
-            dynamicRepository.Query(Arg.Any<Func<MatchResultEntity, bool>>()).Returns(new List<MatchResultEntity>());
 
             matchDataAccess = new MatchDataAccess(dynamicRepository);
         }
@@ -116,7 +115,7 @@
         [Fact]
         public async Task GetMatches_Live_ReturnMatchResult()
         {
-            dynamicRepository.Query(Arg.Any<Func<MatchResultEntity, bool>>()).Returns(new List<MatchResultEntity> { StubMatchResultEntity() });
+            dynamicRepository.Query(Arg.Any<Func<MatchEntity, bool>>()).Returns(new List<MatchEntity> { StubLiveMatchEntity() });
 
             var matches = await matchDataAccess.GetMatches(
                1,
@@ -138,7 +137,7 @@
         [Fact]
         public async Task GetMatches_Live_ReturnMatchTimeline()
         {
-            dynamicRepository.Last(Arg.Any<Expression<Func<MatchTimelineEntity, bool>>>()).Returns(StubMatchTimelineEntity());
+            dynamicRepository.Query(Arg.Any<Func<MatchEntity, bool>>()).Returns(new List<MatchEntity> { StubLiveMatchEntity() });
 
             var matches = await matchDataAccess.GetMatches(
                1,
@@ -251,36 +250,120 @@
                 }";
         }
 
-        private MatchResultEntity StubMatchResultEntity()
+        private MatchEntity StubLiveMatchEntity()
         {
-            return new MatchResultEntity
+            return new MatchEntity
             {
-                Id = "1",
-                MatchId = "sr:match:17809194",
-                Value = StubMatchResultJson()
+                Id = "sr:match:17809194",
+                Value = StubMatchWithLiveResultJson(),
+                LeagueId = "sr:tournament:28424",
+                Language = "en-US",
+                SportId = 1,
+                EventDate = DateTime.Parse("2019-05-22 00:00:00+00")
             };
         }
 
-        private static string StubMatchResultJson()
+        private static string StubMatchWithLiveResultJson()
         {
             return @"{
-                    'Period': 0,
-                    'WinnerId': null,
-                    'AwayScore': 0,
-                    'HomeScore': 1,
-                    'MatchTime': 22,
-                    'EventStatus': {
-                        'Value': 'live',
-                        'DisplayName': 'Live'
+                    'Id': 'sr:match:17809194',
+                    'Name': null,
+                    'Teams': [
+                        {
+                            'Id': 'sr:competitor:559146',
+                            'Flag': null,
+                            'Name': 'Denton Diablos FC',
+                            'Coach': null,
+                            'IsHome': true,
+                            'Country': 'USA',
+                            'Players': null,
+                            'Formation': null,
+                            'Statistic': null,
+                            'CountryCode': 'USA',
+                            'Abbreviation': 'DEN',
+                            'Substitutions': null
+                        },
+                        {
+                            'Id': 'sr:competitor:559156',
+                            'Flag': null,
+                            'Name': 'Dallas City FC',
+                            'Coach': null,
+                            'IsHome': false,
+                            'Country': 'USA',
+                            'Players': null,
+                            'Formation': null,
+                            'Statistic': null,
+                            'CountryCode': 'USA',
+                            'Abbreviation': 'DAL',
+                            'Substitutions': null
+                        }
+                    ],
+                    'Venue': null,
+                    'League': {
+                        'Id': 'sr:tournament:28424',
+                        'Flag': null,
+                        'Name': 'National Premier Soccer League',
+                        'Order': 0,
+                        'Category': {
+                            'Id': 'sr:category:26',
+                            'Name': 'USA',
+                            'CountryCode': 'USA'
+                        }
                     },
-                    'MatchStatus': {
-                        'Value': '1st_half',
-                        'DisplayName': 'Halftime'
+                    'Referee': null,
+                    'EventDate': '2019-05-22T00:00:00Z',
+                    'TimeLines': null,
+                    'Attendance': 0,
+                    'LeagueRound': {
+                        'Name': null,
+                        'Type': {
+                            'Value': 'group',
+                            'DisplayName': 'Group'
+                        },
+                        'Group': null,
+                        'Phase': 'regular season',
+                        'Number': 1
                     },
-                    'MatchPeriods': null
+                    'MatchResult': {
+                        'Period': 0,
+                        'WinnerId': null,
+                        'AwayScore': 0,
+                        'HomeScore': 1,
+                        'MatchTime': 22,
+                        'EventStatus': {
+                            'Value': 'live',
+                            'DisplayName': 'Live'
+                        },
+                        'MatchStatus': {
+                            'Value': '1st_half',
+                            'DisplayName': 'Halftime'
+                        },
+                        'MatchPeriods': null
+                    },
+                    'Timelines':[{
+                        'Id': 555147301,
+                        'Name': null,
+                        'Team': null,
+                        'Time': '2019-05-09T02:47:17',
+                        'Type': 'injury_time_shown',
+                        'Assist': null,
+                        'Period': 1,
+                        'Outcome': null,
+                        'PlayerIn': null,
+                        'AwayScore': 0,
+                        'HomeScore': 0,
+                        'MatchTime': 45,
+                        'PlayerOut': null,
+                        'GoalScorer': null,
+                        'MatchClock': '45:00',
+                        'PeriodType': null,
+                        'Description': null,
+                        'Commentaries': null,
+                        'InjuryTimeAnnounced': 2
+                    }]
                 }";
         }
-
+       
         private MatchTimelineEntity StubMatchTimelineEntity()
         {
             return new MatchTimelineEntity
@@ -316,6 +399,4 @@
             }";
         }
     }
-
-
 }
