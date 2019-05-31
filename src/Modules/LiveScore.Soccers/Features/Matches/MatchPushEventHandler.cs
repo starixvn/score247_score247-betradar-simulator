@@ -60,6 +60,12 @@
             {
                 return;
             }
+
+            foreach (var matchId in pushEvents.Keys)
+            {
+                GenerateMatchTimeForLiveMatch(pushEvents[matchId]);
+            }
+
             var pushChangeToClientsTask = Task.Run(() => PushChangeToClients(pushEvents));
             var updateDatabaseTask = Task.Run(() => UpdateDatabase(pushEvents));
 
@@ -80,11 +86,6 @@
 
         private async Task PushChangeToClients(Dictionary<string, MatchPushEvent> pushEvents)
         {
-            foreach (var matchId in pushEvents.Keys)
-            {
-                GenerateMatchTimeForLiveMatch(pushEvents[matchId]);
-            }
-
             await hubContext.Clients.All.SendAsync("PushMatchEvent", SportConstants.SoccerId, pushEvents);
         }
 
@@ -116,7 +117,7 @@
         {
             if (pushEvent.MatchResult.EventStatus.IsLive())
             {
-                var timeline = pushEvent.TimeLines.LastOrDefault();
+                var timeline = pushEvent.TimeLines.FirstOrDefault();
                 var matchTime = timeline.MatchTime;
                 var matchStatus = pushEvent.MatchResult.MatchStatus.Value;
 

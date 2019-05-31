@@ -24,7 +24,7 @@
         public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime from, DateTime to, string language, TimeSpan timeZone)
         {
             var matches = new List<Match>();
-
+            var liveMatches = new List<Match>();
             var formattedFromUtcTime = from.ConvertToUtc(timeZone);
             var formattedToUtcTime = to.ConvertToUtc(timeZone);
 
@@ -36,14 +36,32 @@
                 x.EventDate.ToUniversalTime() <= formattedToUtcTime
             );
 
-            foreach (var entity in matchEntities)
+            var liveMatchEntities = await dynamicRepository.Query<LiveMatchEntity>
+               (
+                   x => x.SportId == sportId &&
+                   x.Language.Equals(language, StringComparison.OrdinalIgnoreCase) &&
+                   x.EventDate.ToUniversalTime() >= formattedFromUtcTime &&
+                   x.EventDate.ToUniversalTime() <= formattedToUtcTime
+               );
+
+            foreach (var entity in liveMatchEntities)
             {
                 var match = JsonConvert.DeserializeObject<Match>(entity.Value);
 
-                matches.Add(match);
+                liveMatches.Add(match);
             }
 
-            return matches;
+            foreach (var entity in matchEntities)
+            {
+                if (!liveMatches.Any(m => m.Id == entity.Id))
+                {
+                    var match = JsonConvert.DeserializeObject<Match>(entity.Value);
+
+                    matches.Add(match);
+                }
+            }
+
+            return liveMatches.Concat(matches);
         }
 
         public async Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
@@ -83,7 +101,7 @@
                         Language = matchEntity.Language,
                         Value = matchEntity.Value,
                         LeagueId = matchEntity.LeagueId,
-                        EventDate = matchEntity.EventDate
+                        EventDate = matchEntity.EventDate.ToUniversalTime()
                     };
 
                     await dynamicRepository.InsertOrUpdate(matchId, liveMatchEntity);
@@ -126,7 +144,8 @@
             {
                 Id = Guid.NewGuid().ToString(),
                 MatchId = matchId,
-                Value = JsonConvert.SerializeObject(t)
+                Value = JsonConvert.SerializeObject(t),
+                CreatedTime = DateTime.Now
             });
 
             await dynamicRepository.InsertRange(matchTimelineEntities);
