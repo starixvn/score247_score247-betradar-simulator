@@ -273,6 +273,34 @@
         }
 
 
+        [Fact]
+        public async Task GetLiveMatches_Result_ReturnMatchResult()
+        {
+            appSettings.DataProviderSettings.Returns(new StubDataProviderSettings());
+            restClient.ExecuteGetAsync<DailyResultDto>(Arg.Is<string>(x=>x.Contains("schedules/live/results.json")))
+                .Returns(StubDailyResult());
+
+            var matches = await matchDataAccess.GetLiveMatches(
+                1,
+                "en");
+
+            var match = matches.First();
+            var matchResult = match.MatchResult;
+            var matchPeriod = match.MatchResult.MatchPeriods.First();
+
+            Assert.Equal("live", matchResult.EventStatus.Value);
+            Assert.Equal("1st_half", matchResult.MatchStatus.Value);
+            Assert.Equal(0, matchResult.HomeScore);
+            Assert.Equal(2, matchResult.AwayScore);
+            Assert.Equal(29, matchResult.MatchTime);
+            Assert.Equal(1, matchResult.Period);
+            Assert.NotEmpty(matchResult.MatchPeriods);
+            Assert.Equal(0, matchPeriod.HomeScore);
+            Assert.Equal(2, matchPeriod.AwayScore);
+            Assert.Equal(1, matchPeriod.Number);
+            Assert.Equal("regular_period", matchPeriod.PeriodType.Value);
+        }
+
         private DailyScheduleDto StubDailySchedule()
         {
             return new DailyScheduleDto
@@ -470,6 +498,12 @@
                             {
                                 new EndPointSetting { Path = "soccer-t3/{0}/{1}/schedules/{2}/schedule.json?api_key={3}" },
                                 new EndPointSetting { Path = "soccer-t3/{0}/{1}/schedules/{2}/results.json?api_key={3}", IsPast=true }
+                            } },
+                        new EndPoint {
+                            Name = "LiveMatch",
+                            EndPointSettings = new List<EndPointSetting>
+                            {
+                                new EndPointSetting { Path = "soccer-t3/{0}/{1}/schedules/live/results.json?api_key={2}" }                               
                             } }
                     },
                     Regions = new List<Region>

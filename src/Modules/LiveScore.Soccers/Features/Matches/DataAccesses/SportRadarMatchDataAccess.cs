@@ -30,7 +30,7 @@
 
         public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime from, DateTime to, string language)
         {
-            var sportSetting = ValidateSettings(sportId, LiveMatchFeatureKey);
+            var sportSetting = ValidateSettings(sportId, FeatureKey);
 
             var matches = new List<Match>();
             var fromUtc = from.ToUniversalTime();
@@ -204,12 +204,7 @@
         public Task<bool> DeleteMatch(string matchId, string language, bool isLive = false)
         {
             throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
-        {
-            throw new NotImplementedException();
-        }
+        }       
 
         public Task<bool> UpdateLiveMatches(IEnumerable<IMatch> matches, string language)
         {
