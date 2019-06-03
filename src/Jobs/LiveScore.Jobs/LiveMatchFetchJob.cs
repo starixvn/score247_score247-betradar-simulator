@@ -47,25 +47,63 @@
                         
             if (liveMatchIds.Any())
             {
-                UpdateLiveMatches(liveMatchIds);
+                await UpdateLiveMatches(liveMatchIds);
             }
 
             if (closedMatchIds.Any())
             {
-                UpdateClosedMatches(closedMatchIds);
+                await UpdateClosedMatches(closedMatchIds);
             }
         }
 
-        private void UpdateLiveMatches(List<string> matchIds)
+        private async Task UpdateLiveMatches(List<string> matchIds)
         {
             // status == live && not exist in live table -> insert to live table -> update cache
+
+            foreach (var id in matchIds)
+            {
+                var liveMatchEntity = await repository.GetById<LiveMatchEntity>(id);
+
+                if (liveMatchEntity == null)
+                {
+                    var matchEntity = await repository.GetById<MatchEntity>(id);
+
+                    liveMatchEntity = new LiveMatchEntity
+                    {
+                        Id = matchEntity.Id,
+                        SportId = matchEntity.SportId,
+                        Language = matchEntity.Language,
+                        Value = matchEntity.Value,
+                        LeagueId = matchEntity.LeagueId,
+                        EventDate = matchEntity.EventDate.ToUniversalTime()
+                    };
+
+                    await repository.Insert(liveMatchEntity);
+                }
+            }
+
+            await repository.Save();
+
         }
 
-        private void UpdateClosedMatches(List<string> matchIds)
+        private async Task UpdateClosedMatches(List<string> matchIds)
         {
             // status == closed && exist in live table -> delete in live table ->  update cache
-            
 
+            foreach (var id in matchIds)
+            {
+                //TODO update get id pair
+                var matchEntity = await repository.GetById<LiveMatchEntity>(id);
+
+                if (matchEntity != null)
+                {
+                    repository.Delete<LiveMatchEntity>(matchEntity);
+                }
+            }
+
+            //TODO update result of matches?
+
+            await repository.Save();
         }
     }
 }
