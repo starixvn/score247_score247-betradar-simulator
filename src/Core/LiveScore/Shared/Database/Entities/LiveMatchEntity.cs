@@ -1,6 +1,7 @@
 ﻿namespace LiveScore.Shared.Database.Entities
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     public class LiveMatchEntity : DatabaseEntity
@@ -12,6 +13,7 @@
 
         public string LeagueId { get; set; }
 
+        [Key]
         public string Language { get; set; }
 
         public int SportId { get; set; }

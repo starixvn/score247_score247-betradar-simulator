@@ -9,7 +9,7 @@
     using LiveScore.Shared.Database;
     using LiveScore.Shared.Database.Entities;
     using Newtonsoft.Json;
-    
+
     public class MatchDataAccess : IMatchDataAccess
     {
         private readonly IDynamicRepository dynamicRepository;
@@ -134,6 +134,7 @@
                 var matchEntity = await dynamicRepository.GetById<LiveMatchEntity>(match.Id, language);
                 matchEntity.Value = JsonConvert.SerializeObject(match);
                 matchEntity.EventDate = match.EventDate.ToUniversalTime();
+                matchEntity.ModifiedTime = DateTime.UtcNow;
                 matchEntities.Add(matchEntity);
             }
 

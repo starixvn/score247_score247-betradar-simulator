@@ -54,16 +54,16 @@ namespace LiveScore.WebApi
                 services.AddOptions();
                 RegisterSettings(services);
                 RegisterDatabase(services);
-                RegisterServices(services);
-                RegisterJobs(services);
                 RegisterSwagger(services);
                 services.AddSignalR();
                 services.AddLogging(b => b.AddConsole());
                 services.AddHangfire(x => x.UsePostgreSqlStorage(Configuration.GetConnectionString("hangfireConnection")));
                 services.AddMemoryCache(Configuration.GetSection("fanex.caching"));
-
+                RegisterServices(services);
+                RegisterJobs(services);
                 services.RegisterDataAccessFactory();
                 services.RegisterPushHandlerFactory();
+
             }
             catch (Exception ex)
             {

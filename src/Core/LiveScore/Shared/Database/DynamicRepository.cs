@@ -98,8 +98,8 @@ namespace LiveScore.Shared.Database
 
         public Task Insert<T>(T obj) where T : DatabaseEntity
         {
-            obj.CreatedTime = DateTime.Now;
-            obj.ModifiedTime = DateTime.Now;
+            obj.CreatedTime = DateTime.UtcNow;
+            obj.ModifiedTime = DateTime.UtcNow;
 
             return context.Set<T>().AddAsync(obj);
         }
@@ -111,14 +111,14 @@ namespace LiveScore.Shared.Database
 
             if (existingObj != null)
             {
-                obj.ModifiedTime = DateTime.Now;
+                obj.ModifiedTime = DateTime.UtcNow;
 
                 await Update(obj).Save();
             }
             else
             {
-                obj.CreatedTime = DateTime.Now;
-                obj.ModifiedTime = DateTime.Now;
+                obj.CreatedTime = DateTime.UtcNow;
+                obj.ModifiedTime = DateTime.UtcNow;
 
                 await dataSet.AddAsync(obj);
             }
@@ -128,8 +128,8 @@ namespace LiveScore.Shared.Database
         {
             foreach (var obj in objects)
             {
-                obj.CreatedTime = DateTime.Now;
-                obj.ModifiedTime = DateTime.Now;
+                obj.CreatedTime = DateTime.UtcNow;
+                obj.ModifiedTime = DateTime.UtcNow;
             }
 
             return context.Set<T>().AddRangeAsync(objects);
@@ -144,7 +144,7 @@ namespace LiveScore.Shared.Database
 
         public IDynamicRepository Update<T>(T obj) where T : DatabaseEntity
         {
-            obj.ModifiedTime = DateTime.Now;
+            obj.ModifiedTime = DateTime.UtcNow;
             context.Set<T>().Update(obj);
 
             return this;

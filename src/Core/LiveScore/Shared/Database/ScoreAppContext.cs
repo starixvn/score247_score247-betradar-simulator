@@ -18,5 +18,14 @@ namespace LiveScore.Shared.Database
         public DbSet<MatchTimelineEntity> Timeline { get; set; }
 
         public DbSet<MatchResultEntity> MatchResult { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<MatchEntity>()
+                .HasKey(c => new { c.Id, c.Language });
+
+            modelBuilder.Entity<LiveMatchEntity>()
+                .HasKey(c => new { c.Id, c.Language });
+        }
     }
 }

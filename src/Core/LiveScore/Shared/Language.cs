@@ -23,12 +23,7 @@
 
         public static IEnumerable<Language> SupportedLanguages = new List<Language>
         {
-            English,
-            Vietnamese,
-            Thailand,
-            Indonesia,
-            TraditionalChinese,
-            SimplifiedChinese,
+            English
         };
     }
 }
