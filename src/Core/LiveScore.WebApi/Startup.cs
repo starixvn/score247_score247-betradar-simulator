@@ -8,12 +8,10 @@ namespace LiveScore.WebApi
     using Fanex.Logging;
     using Fanex.Logging.Sentry;
     using Hangfire;
-    using Hangfire.Common;
     using Hangfire.Dashboard;
     using Hangfire.PostgreSql;
     using LiveScore.Features.Matches;
     using LiveScore.Jobs;
-    using LiveScore.Shared;
     using LiveScore.Shared.Configurations;
     using LiveScore.Shared.Database;
     using LiveScore.Shared.Helpers;
@@ -132,7 +130,7 @@ namespace LiveScore.WebApi
             var timeZoneSettings = new Dictionary<int, string>();
             Configuration.GetSection(TimeZoneSettingsPath).Bind(timeZoneSettings);
 
-            var appSettings = new AppSettings(hostingEnvironment, Configuration, sportRadarDataProviderSettings, timeZoneSettings);
+            var appSettings = new AppSettings(Configuration, sportRadarDataProviderSettings, timeZoneSettings);
 
             services.AddSingleton<IAppSettings>(appSettings);
             services.AddSingleton(CreateRestSharpClient(sportRadarDataProviderSettings));

@@ -4,39 +4,27 @@
     using System.Collections.Generic;
     using System.ComponentModel;
     using LiveScore.Shared.Configurations;
-    using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
 
     public class AppSettings : IAppSettings
     {
         private readonly IConfiguration configuration;
-        private readonly IHostingEnvironment hostingEnvironment;
 
-        public AppSettings(
-            IHostingEnvironment hostingEnvironment, 
+        public AppSettings(            
             IConfiguration configuration,
             IDataProviderSettings dataProviderSettings,
             IDictionary<int, string> timeZoneSettings)
-        {
-            this.hostingEnvironment = hostingEnvironment ?? throw new ArgumentNullException(nameof(hostingEnvironment));
-            this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
-            EnabledStaticData = GetValue<bool>("LiveScores:EnabledStaticData");
-            AutoGenerateStatus = GetValue<bool>("LiveScores:AutoGenerateStatus");            
+        {           
+            this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));                     
             DataProviderSettings = dataProviderSettings;
             TimeZoneSettings = timeZoneSettings;
         }
 
-        public string AppPath => hostingEnvironment.ContentRootPath;
-
-        public bool EnabledStaticData { get; }        
-
         public IDataProviderSettings DataProviderSettings { get; }
 
-        public IDictionary<int, string> TimeZoneSettings { get; }
+        public IDictionary<int, string> TimeZoneSettings { get; }        
 
-        public bool AutoGenerateStatus { get; }
-
-        private T GetValue<T>(string key)
+        public T GetValue<T>(string key)
         {
             try
             {
