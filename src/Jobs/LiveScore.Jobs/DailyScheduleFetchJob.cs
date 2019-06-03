@@ -39,6 +39,17 @@
             }
         }
 
+        public async Task FetchResult(int sportId, int dateSpan)
+        {
+            var from = DateTime.Now.AddDays(-dateSpan);
+            var to = DateTime.Now;
+
+            foreach (var lang in Enumeration.GetAll<Language>())
+            {
+                await FetchDailySchedule(sportId, from, to, lang.Value);
+            }
+        }
+
         private async Task FetchDailySchedule(int sportId, DateTime from, DateTime to, string language)
         {
             var dataAccess = instanceFactory.CreateMatchDataAccess(sportId, DataProvider.ThirdPartyApi);
@@ -73,17 +84,6 @@
             }
 
             await repository.Save();
-        }
-
-        public async Task FetchResult(int sportId, int dateSpan)
-        {
-            var from = DateTime.Now.AddDays(-dateSpan);
-            var to = DateTime.Now;
-
-            foreach (var lang in Enumeration.GetAll<Language>())
-            {
-                await FetchDailySchedule(sportId, from, to, lang.Value);
-            }
         }
     }
 }

@@ -42,6 +42,8 @@
                 liveMatchIds.AddRange(matches.Where(x => x.MatchResult.EventStatus == MatchStatus.Live).Select(x => x.Id).ToList());
                 closedMatchIds.AddRange(matches.Where(x => x.MatchResult.EventStatus == MatchStatus.Closed).Select(x => x.Id).ToList());
             }
+
+            // status == not_started -> incomming matches?
                         
             if (liveMatchIds.Any())
             {
@@ -62,6 +64,8 @@
         private void UpdateClosedMatches(List<string> matchIds)
         {
             // status == closed && exist in live table -> delete in live table ->  update cache
+            
+
         }
     }
 }
