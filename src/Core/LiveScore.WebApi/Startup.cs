@@ -33,12 +33,12 @@ namespace LiveScore.WebApi
     using Sentry;
     using Fanex.Caching.Memory;
     using Swashbuckle.AspNetCore.Swagger;
+    using LiveScore.WebApi.Shared.HangfireJob;
 
     public class Startup
     {
         private const string SportRadarSettingPath = "LiveScores:SportRadarSetting";
-        private const string TimeZoneSettingsPath = "LiveScores:TimeZoneSettings";
-        private const string JobDateSpanSettingsPath = "Jobs:DefaultDateSpan";
+        private const string TimeZoneSettingsPath = "LiveScores:TimeZoneSettings";        
         private readonly IHostingEnvironment hostingEnvironment;
 
         public Startup(IConfiguration configuration, IHostingEnvironment hostingEnvironment)
@@ -118,12 +118,7 @@ namespace LiveScore.WebApi
                 WorkerCount = 2
             });
 
-            var dateSpan = Int32.Parse(Configuration.GetSection(JobDateSpanSettingsPath).Value);
-
-            RecurringJob.AddOrUpdate<IAutoUpdateMatchTimeJob>(nameof(AutoUpdateMatchTimeJob), job => job.UpdateMatchTime(), Cron.Minutely);
-            RecurringJob.AddOrUpdate<IDailyScheduleFetchJob>("FetchSchedule", job => job.FetchSchedule(SportConstants.SoccerId, dateSpan), Cron.Daily);
-            RecurringJob.AddOrUpdate<IDailyScheduleFetchJob>("FetchResult", job => job.FetchResult(SportConstants.SoccerId, dateSpan), Cron.Daily);
-            BackgroundJob.Enqueue<IMatchPushEventListenerJob>(job => job.StartListeningPushEvent(SportConstants.SoccerId));
+            JobManager.Register(Configuration);
         }
 #pragma warning restore S2325 // Methods and properties that don't access instance data should be static
 
