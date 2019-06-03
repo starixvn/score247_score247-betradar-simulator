@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{E9AC78D2-2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{DAF1D274-483D-4AAA-B945-D6E1E9488FC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore", "src\core\LiveScore\LiveScore.csproj", "{AE165E8B-0020-470F-A4F2-4C0FB1C83B61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore", "src\core\LiveScore\LiveScore.csproj", "{AE165E8B-0020-470F-A4F2-4C0FB1C83B61}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.WebApi", "src\core\LiveScore.WebApi\LiveScore.WebApi.csproj", "{2D529A50-4FE8-4656-AA2C-340F4B421DDA}"
 EndProject
@@ -35,7 +35,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Soccers.Jobs", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Basketballs", "src\Modules\LiveScore.Basketballs\LiveScore.Basketballs.csproj", "{6A87992C-B4DC-4103-B7AA-700D6700BC4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore.Jobs", "src\Jobs\LiveScore.Jobs\LiveScore.Jobs.csproj", "{926DA97F-0185-464E-A9EE-4CB7CEFAC10B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Jobs", "src\Jobs\LiveScore.Jobs\LiveScore.Jobs.csproj", "{926DA97F-0185-464E-A9EE-4CB7CEFAC10B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegrationTests", "IntegrationTests", "{281B1F04-4203-4F55-8239-2E8E4A83F0BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Jobs", "Jobs", "{646CD871-8FA1-4CF5-9A03-00A3D4CB8B2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore.Jobs.IntegrationTests", "test\IntegrationTests\LiveScore.Jobs.IntegrationTests\LiveScore.Jobs.IntegrationTests.csproj", "{297D8C9A-A368-4FC1-AB0A-F9D96A0CC957}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sports", "Sports", "{AC1B8CAB-3009-409E-A943-A41BD5F1FD7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore.Soccers.IntegrationTests", "test\IntegrationTests\LiveScore.Soccers.IntegrationTests\LiveScore.Soccers.IntegrationTests.csproj", "{11B20005-9F1D-4BEC-9196-41040459A33C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +93,14 @@ Global
 		{926DA97F-0185-464E-A9EE-4CB7CEFAC10B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{926DA97F-0185-464E-A9EE-4CB7CEFAC10B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{926DA97F-0185-464E-A9EE-4CB7CEFAC10B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{297D8C9A-A368-4FC1-AB0A-F9D96A0CC957}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{297D8C9A-A368-4FC1-AB0A-F9D96A0CC957}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{297D8C9A-A368-4FC1-AB0A-F9D96A0CC957}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{297D8C9A-A368-4FC1-AB0A-F9D96A0CC957}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11B20005-9F1D-4BEC-9196-41040459A33C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11B20005-9F1D-4BEC-9196-41040459A33C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11B20005-9F1D-4BEC-9196-41040459A33C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11B20005-9F1D-4BEC-9196-41040459A33C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,6 +120,11 @@ Global
 		{F4E83525-9C8C-4D86-91CF-8C1C86931ED1} = {7A2D70E1-269D-435A-BB91-265728DA52D7}
 		{6A87992C-B4DC-4103-B7AA-700D6700BC4E} = {B346D78F-57FC-4E3E-A9E9-77E796BB0A97}
 		{926DA97F-0185-464E-A9EE-4CB7CEFAC10B} = {7A2D70E1-269D-435A-BB91-265728DA52D7}
+		{281B1F04-4203-4F55-8239-2E8E4A83F0BF} = {78DC0A6C-9232-429D-9088-912159345FA7}
+		{646CD871-8FA1-4CF5-9A03-00A3D4CB8B2D} = {281B1F04-4203-4F55-8239-2E8E4A83F0BF}
+		{297D8C9A-A368-4FC1-AB0A-F9D96A0CC957} = {646CD871-8FA1-4CF5-9A03-00A3D4CB8B2D}
+		{AC1B8CAB-3009-409E-A943-A41BD5F1FD7B} = {281B1F04-4203-4F55-8239-2E8E4A83F0BF}
+		{11B20005-9F1D-4BEC-9196-41040459A33C} = {AC1B8CAB-3009-409E-A943-A41BD5F1FD7B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {246B9D83-0780-47F5-B7E4-DD8514F7293A}
