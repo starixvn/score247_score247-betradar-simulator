@@ -29,7 +29,6 @@ namespace LiveScore.WebApi
     using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
     using Sentry;
-    using Fanex.Caching.Memory;
     using Swashbuckle.AspNetCore.Swagger;
 
     public class Startup
@@ -58,7 +57,7 @@ namespace LiveScore.WebApi
                 services.AddSignalR();
                 services.AddLogging(b => b.AddConsole());
                 services.AddHangfire(x => x.UsePostgreSqlStorage(Configuration.GetConnectionString("hangfireConnection")));
-                services.AddMemoryCache(Configuration.GetSection("fanex.caching"));
+                services.AddMemoryCache();
                 RegisterServices(services);
                 RegisterJobs(services);
                 services.RegisterDataAccessFactory();

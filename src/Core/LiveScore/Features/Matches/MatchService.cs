@@ -4,10 +4,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Fanex.Caching;
     using LiveScore.Features.Matches.Models;
     using LiveScore.Shared;
     using LiveScore.Shared.Helpers;
+    using Microsoft.Extensions.Caching.Memory;
 
     public interface IMatchService
     {
@@ -28,17 +28,15 @@
 
     public class MatchService : IMatchService
     {
-        private static readonly CacheItemOptions LiveMatchCacheOption = new CacheItemOptions
-        {
-            SlidingExpiration = TimeSpan.FromMinutes(10)
-        };
+        private static readonly TimeSpan LiveMatchSlidingExpiration = TimeSpan.FromMinutes(10);
+        private static readonly TimeSpan NormalMatchSlidingExpiration = TimeSpan.FromMinutes(120);
         private readonly DataAccessFactory instanceFactory;
-        private readonly ICacheService cacheService;
+        private readonly IMemoryCache memoryCache;
 
-        public MatchService(DataAccessFactory instanceFactory, ICacheService cacheService)
+        public MatchService(DataAccessFactory instanceFactory, IMemoryCache memoryCache)
         {
             this.instanceFactory = instanceFactory;
-            this.cacheService = cacheService;
+            this.memoryCache = memoryCache;
         }
 
         public async Task<IEnumerable<IMatch>> GetMatches(
@@ -61,10 +59,12 @@
             var utcTo = to.ConvertToUtc(clientTimeZone);
             var normalMatchCacheKey = $"Match_{sportId}_{language}_{utcFrom}_{utcTo}";
 
-            var normalMatches = await await cacheService.GetOrSetAsync(normalMatchCacheKey, async () =>
-            {
-                return await matchDataAccess.GetMatches(sportId, utcFrom, utcTo, language);
-            });
+            var normalMatches = await memoryCache.GetOrCreateAsync(normalMatchCacheKey,
+                async (entry) =>
+                {
+                    entry.SlidingExpiration = NormalMatchSlidingExpiration;
+                    return await matchDataAccess.GetMatches(sportId, utcFrom, utcTo, language);
+                });
 
             var liveMatches = await GetLiveMatches(sportId, language);
 
@@ -80,10 +80,12 @@
             var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
             var liveMatchCacheKey = GetLiveMatchCacheKey(sportId, language);
 
-            var liveMatches = await await cacheService.GetOrSetAsync(
-                    liveMatchCacheKey,
-                    async () => (await matchDataAccess.GetLiveMatches(sportId, language)).ToDictionary(m => m.Id),
-                    LiveMatchCacheOption);
+            var liveMatches = await memoryCache.GetOrCreateAsync<IDictionary<string, IMatch>>(
+                    liveMatchCacheKey, async (entry) =>
+                    {
+                        entry.SlidingExpiration = LiveMatchSlidingExpiration;
+                        return (await matchDataAccess.GetLiveMatches(sportId, language)).ToDictionary(m => m.Id);
+                    });
 
             return liveMatches.Values;
         }
@@ -93,7 +95,7 @@
             var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
             var liveMatchCacheKey = GetLiveMatchCacheKey(sportId, language);
 
-            await cacheService.SetAsync(liveMatchCacheKey, matches.ToDictionary(m => m.Id), LiveMatchCacheOption);
+            memoryCache.Set(liveMatchCacheKey, matches.ToDictionary(m => m.Id));
 
             await matchDataAccess.UpdateLiveMatches(matches, language);
         }
@@ -111,12 +113,16 @@
             if (isLive)
             {
                 var liveMatchCacheKey = GetLiveMatchCacheKey(sportId, language);
-                var liveMatches = await cacheService.GetOrSetAsync(
-                        liveMatchCacheKey, () => new Dictionary<string, IMatch>());
+                var liveMatches = memoryCache.GetOrCreate(
+                        liveMatchCacheKey, (entry) =>
+                        {
+                            entry.SlidingExpiration = LiveMatchSlidingExpiration;
+                            return new Dictionary<string, IMatch>();
+                        });
 
                 liveMatches[matchId] = match;
 
-                await cacheService.SetAsync(liveMatchCacheKey, liveMatches, LiveMatchCacheOption);
+                memoryCache.Set(liveMatchCacheKey, liveMatches);
             }
 
             return true;
@@ -129,12 +135,12 @@
             if (isLive)
             {
                 var liveMatchCacheKey = GetLiveMatchCacheKey(sportId, language);
-                var liveMatches = await cacheService.GetAsync<IDictionary<string, IMatch>>(liveMatchCacheKey);
+                var liveMatches = memoryCache.Get<IDictionary<string, IMatch>>(liveMatchCacheKey);
 
                 if (liveMatches != null && liveMatches.ContainsKey(matchId))
                 {
                     liveMatches.Remove(matchId);
-                    await cacheService.SetAsync(liveMatchCacheKey, liveMatches);
+                    memoryCache.Set(liveMatchCacheKey, liveMatches);
                 }
             }
 
