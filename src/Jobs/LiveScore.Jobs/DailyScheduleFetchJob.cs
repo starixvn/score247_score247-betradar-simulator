@@ -58,7 +58,7 @@
 
             foreach (var match in matches)
             {
-                var matchEntity = await repository.GetById<MatchEntity>(match.Id);
+                var matchEntity = await repository.GetById<MatchEntity>(match.Id, language);
 
                 if (matchEntity == null)
                 {

@@ -1,4 +1,5 @@
-﻿namespace LiveScore.UnitTests.Features.Matches
+﻿using Microsoft.Extensions.Caching.Memory;
+namespace LiveScore.UnitTests.Features.Matches
 {
     using System;
     using System.Collections.Generic;
@@ -16,14 +17,16 @@
         private readonly MatchService matchServiceImpl;
         private readonly DataAccessFactory instanceFactory;
         private readonly IMatchDataAccess matchDataAccess;
+        private readonly IMemoryCache memoryCache;
 
         public MatchServiceTests()
         {
             matchDataAccess = Substitute.For<IMatchDataAccess>();
             instanceFactory = Substitute.For<DataAccessFactory>();
+            memoryCache = Substitute.For<IMemoryCache>();
             instanceFactory.CreateMatchDataAccess(SoccerSportId).Returns(matchDataAccess);
 
-            matchServiceImpl = new MatchService(instanceFactory, null);
+            matchServiceImpl = new MatchService(instanceFactory, memoryCache);
         }
 
         [Theory]
