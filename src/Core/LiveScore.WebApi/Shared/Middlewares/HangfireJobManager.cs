@@ -1,23 +1,22 @@
-﻿namespace LiveScore.WebApi.Shared.HangfireJob
+﻿namespace LiveScore.WebApi.Shared.Middlewares
 {
     using Hangfire;
     using LiveScore.Jobs;
     using LiveScore.Shared;
     using LiveScore.Soccers.Jobs;
+    using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
-    using System;
 
-    public static class JobManager
+    public static class HangfireJobManager
     {
         private const string ResultDateSpanPath = "LiveScores:Jobs:FetchResultDateSpan";
         private const string ScheduleDateSpanPath = "LiveScores:Jobs:FetchScheduleDateSpan";
-
         private const string ScheduleIntervalCron = " 0 0/6 * * *";
 
-        public static void Register(IConfiguration Configuration)
+        public static void StartHangfireJobs(this IApplicationBuilder app, IConfiguration Configuration)
         {
-            var resultDateSpan = Int32.Parse(Configuration.GetSection(ResultDateSpanPath).Value);
-            var scheduleDateSpan = Int32.Parse(Configuration.GetSection(ScheduleDateSpanPath).Value);
+            var resultDateSpan = int.Parse(Configuration.GetSection(ResultDateSpanPath).Value);
+            var scheduleDateSpan = int.Parse(Configuration.GetSection(ScheduleDateSpanPath).Value);
 
             RecurringJob.AddOrUpdate<IAutoUpdateMatchTimeJob>(nameof(AutoUpdateMatchTimeJob), job => job.UpdateMatchTime(), Cron.Minutely);
             RecurringJob.AddOrUpdate<IDailyScheduleFetchJob>("FetchSchedule", job => job.FetchSchedule(SportConstants.SoccerId, scheduleDateSpan), ScheduleIntervalCron);

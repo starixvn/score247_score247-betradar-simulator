@@ -17,14 +17,12 @@
     {
         private const int MillisecondsTimeout = 30 * 1000;
         private readonly IBackgroundJobClient backgroundJob;
-        private readonly InstanceFactory instanceFactory;
+        private readonly PushHandlerFactory handlerFactory;
 
-        public MatchPushEventListenerJob(
-            IBackgroundJobClient backgroundJob,
-            InstanceFactory instanceFactory)
+        public MatchPushEventListenerJob(IBackgroundJobClient backgroundJob, PushHandlerFactory handlerFactory)
         {
             this.backgroundJob = backgroundJob;
-            this.instanceFactory = instanceFactory;
+            this.handlerFactory = handlerFactory;
         }
 
         public async Task StartListeningPushEvent(byte sportId)
@@ -43,12 +41,11 @@
             var req = (HttpWebRequest)WebRequest.Create("https://api.sportradar.com/soccer-xt3/other/stream/events/subscribe?api_key=npc9md73nrwhykuepets3nqf&format=json");
             req.AllowAutoRedirect = false;
             WebResponse reply;
-            var pushEventHandler = instanceFactory.CreatePushEventHandler(sportId);
+            var pushEventHandler = handlerFactory.CreateMatchPushEventHandler(sportId);
 
             try
             {
                 reply = (HttpWebResponse)req.GetResponse();
-
             }
             catch (WebException e)
             {

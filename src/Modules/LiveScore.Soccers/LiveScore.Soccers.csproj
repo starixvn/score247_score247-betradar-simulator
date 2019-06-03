@@ -27,7 +27,6 @@
     <Folder Include="Features\Leagues\" />
     <Folder Include="Features\Teams\" />
     <Folder Include="Shared\ModelBuilders\">
-      <DependentUpon>ModelBuilders</DependentUpon>
     </Folder>
   </ItemGroup>
 

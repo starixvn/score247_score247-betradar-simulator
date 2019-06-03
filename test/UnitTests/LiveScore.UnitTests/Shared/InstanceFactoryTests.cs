@@ -24,7 +24,7 @@
                 { SportConstants.BasketballId, null }
             };
 
-            instanceFactory = new InstanceFactoryImpl(matches, null);
+            instanceFactory = new InstanceFactoryImpl(matches);
         }
 
         [Fact]

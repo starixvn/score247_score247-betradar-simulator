@@ -31,12 +31,11 @@ namespace LiveScore.WebApi
     using Sentry;
     using Fanex.Caching.Memory;
     using Swashbuckle.AspNetCore.Swagger;
-    using LiveScore.WebApi.Shared.HangfireJob;
 
     public class Startup
     {
         private const string SportRadarSettingPath = "LiveScores:SportRadarSetting";
-        private const string TimeZoneSettingsPath = "LiveScores:TimeZoneSettings";        
+        private const string TimeZoneSettingsPath = "LiveScores:TimeZoneSettings";
         private readonly IHostingEnvironment hostingEnvironment;
 
         public Startup(IConfiguration configuration, IHostingEnvironment hostingEnvironment)
@@ -64,7 +63,7 @@ namespace LiveScore.WebApi
                 services.AddMemoryCache(Configuration.GetSection("fanex.caching"));
 
                 services.RegisterInstanceFactory();
-
+                services.RegisterPushHandlerFactory();
             }
             catch (Exception ex)
             {
@@ -109,14 +108,10 @@ namespace LiveScore.WebApi
             app.UseHangfireDashboard(options: new DashboardOptions
             {
                 Authorization = Enumerable.Empty<IDashboardAuthorizationFilter>()
-            }); //Will be available under http://localhost:5000/hangfire"
-
-            app.UseHangfireServer(options: new BackgroundJobServerOptions
+            }).UseHangfireServer(options: new BackgroundJobServerOptions
             {
                 WorkerCount = 2
-            });
-
-            JobManager.Register(Configuration);
+            }).StartHangfireJobs(Configuration);
         }
 #pragma warning restore S2325 // Methods and properties that don't access instance data should be static
 

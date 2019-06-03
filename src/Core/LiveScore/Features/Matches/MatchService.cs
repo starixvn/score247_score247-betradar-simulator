@@ -28,12 +28,12 @@
 
     public class MatchService : IMatchService
     {
-        private readonly InstanceFactory instanceFactory;
-        private readonly ICacheService cacheService;
-        private readonly CacheItemOptions LiveMatchCacheOption = new CacheItemOptions
+        private static readonly CacheItemOptions LiveMatchCacheOption = new CacheItemOptions
         {
             SlidingExpiration = TimeSpan.FromMinutes(10)
         };
+        private readonly InstanceFactory instanceFactory;
+        private readonly ICacheService cacheService;
 
         public MatchService(InstanceFactory instanceFactory, ICacheService cacheService)
         {
@@ -66,7 +66,13 @@
                 return await matchDataAccess.GetMatches(sportId, utcFrom, utcTo, language);
             });
 
-            return normalMatches.Select(match => match.ChangeEventDateByTimeZone(clientTimeZone));
+            var liveMatches = await GetLiveMatches(sportId, language);
+
+            var matches = liveMatches
+                .Union(normalMatches, new MatchComparer())
+                .Select(match => match.ChangeEventDateByTimeZone(clientTimeZone));
+
+            return matches;
         }
 
         public async Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
@@ -91,7 +97,6 @@
 
             await matchDataAccess.UpdateLiveMatches(matches, language);
         }
-
 
         public async Task<bool> AddOrUpdateMatch(int sportId, string language, string matchId, MatchPushEvent pushEvent, bool isLive = false)
         {

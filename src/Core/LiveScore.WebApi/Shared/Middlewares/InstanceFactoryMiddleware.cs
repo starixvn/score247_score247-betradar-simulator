@@ -7,45 +7,41 @@
     using LiveScore.Shared.Database;
     using LiveScore.Shared.Helpers;
     using LiveScore.Shared.Hubs;
-    using LiveScore.Soccers.Features.Matches;
     using Microsoft.AspNetCore.SignalR;
     using Microsoft.Extensions.DependencyInjection;
+    using LiveScore.Soccers.Features.Matches;
 
     public static class InstanceFactoryMiddleware
     {
         public static void RegisterInstanceFactory(this IServiceCollection services)
         {
             var matchDataAccessContainer = BuildMatchDataAccessContainer(services);
-            var pushEventHandlerContainer = BuildPushEventHandlerContainer(services, matchDataAccessContainer);
 
-            services.AddSingleton((InstanceFactory)new InstanceFactoryImpl(matchDataAccessContainer, pushEventHandlerContainer));
+            services.AddSingleton((InstanceFactory)new InstanceFactoryImpl(matchDataAccessContainer));
+        }
+
+        public static void RegisterPushHandlerFactory(this IServiceCollection services)
+        {
+            var serviceProvider = services.BuildServiceProvider();
+            var hubContext = serviceProvider.GetService<IHubContext<MatchHub>>();
+            var matchService = serviceProvider.GetService<IMatchService>();
+
+            var pushHandlerContainer = new Dictionary<int, IMatchPushEventHandler>
+            {
+                { SportConstants.SoccerId, new MatchPushEventHandler(matchService, hubContext) }
+            };
+
+            services.AddSingleton((PushHandlerFactory)new PushHandlerFactoryImpl(pushHandlerContainer));
         }
 
         private static Dictionary<int, IDictionary<DataProvider, IMatchDataAccess>> BuildMatchDataAccessContainer(IServiceCollection services)
         {
             var matchDataAccessContainer = new Dictionary<int, IDictionary<DataProvider, IMatchDataAccess>>
                 {
-                        { SportConstants.SoccerId, GetMatchDataAccess(services)},
-                    ////{ SportConstants.BasketballId, new LiveScore.Basketballs.Features.Matches.MatchDataAccessImpl() }
+                    { SportConstants.SoccerId, GetMatchDataAccess(services)},
                 };
 
             return matchDataAccessContainer;
-        }
-
-        private static Dictionary<int, IMatchPushEventHandler> BuildPushEventHandlerContainer(IServiceCollection services, Dictionary<int, IDictionary<DataProvider, IMatchDataAccess>> matchDataAccessContainer)
-        {
-            var serviceProvider = services.BuildServiceProvider();
-            var hubContext = serviceProvider.GetService<IHubContext<MatchHub>>();
-            var matchService = serviceProvider.GetService<IMatchService>();
-
-            var pushEventHandlerContainer = new Dictionary<int, IMatchPushEventHandler>
-            {
-                {
-                    SportConstants.SoccerId, new MatchPushEventHandler(matchService, hubContext)
-                }
-            };
-
-            return pushEventHandlerContainer;
         }
 
         private static Dictionary<DataProvider, IMatchDataAccess> GetMatchDataAccess(IServiceCollection services)

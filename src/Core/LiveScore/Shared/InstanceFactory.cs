@@ -13,21 +13,16 @@
     public interface InstanceFactory
     {
         IMatchDataAccess CreateMatchDataAccess(int sportId, DataProvider dataProvider = DataProvider.Database);
-
-        IMatchPushEventHandler CreatePushEventHandler(int sportId);
     }
 
     public class InstanceFactoryImpl : InstanceFactory
     {
         private readonly IDictionary<int, IDictionary<DataProvider, IMatchDataAccess>> matchDataAccessContainer;
-        private readonly IDictionary<int, IMatchPushEventHandler> pushEventHandlerContainer;
 
         public InstanceFactoryImpl(
-            IDictionary<int, IDictionary<DataProvider, IMatchDataAccess>> matchDataAccessContainer,
-            IDictionary<int, IMatchPushEventHandler> pushEventHandlerContainer)
+            IDictionary<int, IDictionary<DataProvider, IMatchDataAccess>> matchDataAccessContainer)
         {
             this.matchDataAccessContainer = matchDataAccessContainer;
-            this.pushEventHandlerContainer = pushEventHandlerContainer;
         }
 
 
@@ -40,16 +35,6 @@
             }
 
             return matchDataAccessContainer[sportId][dataProvider];
-        }
-
-        public IMatchPushEventHandler CreatePushEventHandler(int sportId)
-        {
-            if (pushEventHandlerContainer == null || !pushEventHandlerContainer.ContainsKey(sportId))
-            {
-                throw new InvalidOperationException($"Cannot found implementation of Push Event Handler for sport {sportId}");
-            }
-
-            return pushEventHandlerContainer[sportId];
         }
     }
 }
