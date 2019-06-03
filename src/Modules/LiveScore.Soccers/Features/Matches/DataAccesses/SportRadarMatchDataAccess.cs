@@ -135,6 +135,7 @@
             return finalDailyResults;
         }
 
+        //TODO combine live match and daily results
         public async Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
         {
             var matches = new List<Match>();

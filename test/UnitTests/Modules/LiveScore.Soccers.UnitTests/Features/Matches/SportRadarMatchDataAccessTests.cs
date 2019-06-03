@@ -272,6 +272,20 @@
             Assert.Equal("regular_period", matchPeriod.PeriodType.Value);
         }
 
+        [Fact]
+        public async Task GetLiveMatches_EmptyResult_ReturnEmpty()
+        {
+            appSettings.DataProviderSettings.Returns(new StubDataProviderSettings());
+            restClient.ExecuteGetAsync<DailyResultDto>(Arg.Is<string>(x => x.Contains("schedules/live/results.json")))
+                .Returns(new DailyResultDto());
+
+            var matches = await matchDataAccess.GetLiveMatches(
+                1,
+                "en"
+                );
+
+            Assert.Empty(matches);
+        }
 
         [Fact]
         public async Task GetLiveMatches_Result_ReturnMatchResult()
