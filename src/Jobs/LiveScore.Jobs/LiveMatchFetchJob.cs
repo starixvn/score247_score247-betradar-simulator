@@ -2,7 +2,11 @@
 {
     using LiveScore.Features.Matches.Models;
     using LiveScore.Shared;
+    using LiveScore.Shared.Database;
+    using LiveScore.Shared.Database.Entities;
     using LiveScore.Shared.Models;
+    using Newtonsoft.Json;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -14,18 +18,21 @@
 
     public class LiveMatchFetchJob : ILiveMatchFetchJob
     {
-        private readonly DataAccessFactory instanceFactory;
+        private readonly IDynamicRepository repository;
+        private readonly DataAccessFactory instanceFactory;        
 
         public LiveMatchFetchJob(
+            IDynamicRepository repository,
             DataAccessFactory instanceFactory)
         {
+            this.repository = repository;
             this.instanceFactory = instanceFactory;
         }
 
         public async Task Fetch(int sportId)
         {
-            var liveMatchIds = new List<string>();
-            var closedMatchIds = new List<string>();
+            var liveMatches = new List<IMatch>();
+            var closedMatches = new List<IMatch>();
 
             var dataAccess = instanceFactory.CreateMatchDataAccess(sportId, DataProvider.ThirdPartyApi);
                         
@@ -34,21 +41,75 @@
                 var language = Enumeration.FromValue<Language>(lang.Value).DisplayName.ToLowerInvariant();
                 var matches = await dataAccess.GetLiveMatches(sportId, language);
 
-                liveMatchIds.AddRange(matches.Where(x => x.MatchResult.EventStatus == MatchStatus.Live).Select(x => x.Id).ToList());
-                closedMatchIds.AddRange(matches.Where(x => x.MatchResult.EventStatus == MatchStatus.Closed).Select(x => x.Id).ToList());
+                liveMatches.AddRange(matches.Where(x => x.MatchResult.EventStatus == MatchStatus.Live).ToList());
+                closedMatches.AddRange(matches.Where(x => x.MatchResult.EventStatus == MatchStatus.Closed).ToList());
+
+                if (closedMatches.Any())
+                {                    
+                    await DeleteLiveMatches(closedMatches, language);
+                }
+
+                if (liveMatches.Any())
+                {                    
+                    await InsertLiveMatches(liveMatches, language);
+                }
 
                 // status == not_started -> incomming matches?
             }
 
-            if (liveMatchIds.Any())
-            {
-                //TODO enqueue job to insert new live matches
+            //TODO update cache
+        }
+
+        private async Task DeleteLiveMatches(List<IMatch> matches, string language)
+        {
+            // status == closed && exist in live table -> delete in live table ->  update cache
+
+            foreach (var match in matches)
+            {                
+                var liveMatchEntity = await repository.GetById<LiveMatchEntity>(match.Id, language);
+
+                if (liveMatchEntity != null)
+                {
+                    repository.Delete<LiveMatchEntity>(liveMatchEntity);
+                   
+                    var matchEntity = await repository.GetById<MatchEntity>(match.Id, language);
+                    matchEntity.Value = JsonConvert.SerializeObject(match);
+                    matchEntity.ModifiedTime = DateTime.Now.ToUniversalTime();
+
+                    repository.Update(matchEntity);
+                }
             }
 
-            if (closedMatchIds.Any())
+            await repository.Save();
+        }
+
+        private async Task InsertLiveMatches(List<IMatch> matches, string language)
+        {
+            // status == live && not exist in live table -> insert to live table -> update cache
+
+            foreach (var match in matches)
             {
-                //TODO enqueue job to delete live matches
+                var liveMatchEntity = await repository.GetById<LiveMatchEntity>(match.Id, language);
+
+                if (liveMatchEntity == null)
+                {
+                    var matchEntity = await repository.GetById<MatchEntity>(match.Id, language);
+
+                    liveMatchEntity = new LiveMatchEntity
+                    {
+                        Id = matchEntity.Id,
+                        SportId = matchEntity.SportId,
+                        Language = matchEntity.Language,
+                        Value = matchEntity.Value,
+                        LeagueId = matchEntity.LeagueId,
+                        EventDate = matchEntity.EventDate.ToUniversalTime()
+                    };
+
+                    await repository.Insert(liveMatchEntity);
+                }
             }
+
+            await repository.Save();
         }
     }
 }
