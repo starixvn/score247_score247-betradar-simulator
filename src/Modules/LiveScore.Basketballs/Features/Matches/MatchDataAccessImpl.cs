@@ -42,12 +42,7 @@ namespace LiveScore.Basketballs.Features.Matches
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<IMatch>> GetAllLiveMatches(int sportId, string language)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, DateTime utcFrom, DateTime utcTo, string language)
+        public Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
         {
             throw new NotImplementedException();
         }

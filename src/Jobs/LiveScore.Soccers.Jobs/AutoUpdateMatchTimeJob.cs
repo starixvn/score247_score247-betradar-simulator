@@ -31,7 +31,7 @@
         {
             foreach (var language in Language.SupportedLanguages)
             {
-                var liveMatches = await matchService.GetAllLiveMatches(SportConstants.SoccerId, language.Value);
+                var liveMatches = await matchService.GetLiveMatches(SportConstants.SoccerId, language.Value);
 
                 foreach (var match in liveMatches)
                 {

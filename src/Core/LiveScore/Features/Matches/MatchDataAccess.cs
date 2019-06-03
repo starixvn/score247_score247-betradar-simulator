@@ -13,9 +13,7 @@
 
         Task<bool> DeleteMatch(string matchId, string language, bool isLive = false);
 
-        Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, DateTime utcFrom, DateTime utcTo, string language);
-
-        Task<IEnumerable<IMatch>> GetAllLiveMatches(int sportId, string language);
+        Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language);
 
         Task<bool> UpdateLiveMatches(IEnumerable<IMatch> matches, string language);
 

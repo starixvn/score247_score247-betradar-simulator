@@ -33,20 +33,7 @@
             return matchEntities.Select(m => JsonConvert.DeserializeObject<Match>(m.Value));
         }
 
-        public async Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, DateTime utcFrom, DateTime utcTo, string language)
-        {
-            var liveMatchEntities = await dynamicRepository.Query<LiveMatchEntity>
-              (
-                  x => x.SportId == sportId &&
-                  x.Language.Equals(language, StringComparison.OrdinalIgnoreCase) &&
-                  x.EventDate.ToUniversalTime() >= utcFrom &&
-                  x.EventDate.ToUniversalTime() <= utcTo
-              );
-
-            return liveMatchEntities.Select(m => JsonConvert.DeserializeObject<Match>(m.Value));
-        }
-
-        public async Task<IEnumerable<IMatch>> GetAllLiveMatches(int sportId, string language)
+        public async Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
         {
             var matchEntities = await dynamicRepository.Query<LiveMatchEntity>(m =>
                     m.SportId == sportId &&

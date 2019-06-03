@@ -13,9 +13,7 @@
     {
         Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime from, DateTime to, TimeSpan clientTimeZone, string language);
 
-        Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, DateTime from, DateTime to, TimeSpan clientTimeZone, string language);
-
-        Task<IEnumerable<IMatch>> GetAllLiveMatches(int sportId, string language);
+        Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language);
 
         Task<bool> AddOrUpdateMatch(int sportId, string language, string matchId, MatchPushEvent pushEvent, bool isLive = false);
 
@@ -63,35 +61,22 @@
             var utcTo = to.ConvertToUtc(clientTimeZone);
             var normalMatchCacheKey = $"Match_{sportId}_{language}_{utcFrom}_{utcTo}";
 
-            var matches = await await cacheService.GetOrSetAsync(normalMatchCacheKey, async () =>
+            var normalMatches = await await cacheService.GetOrSetAsync(normalMatchCacheKey, async () =>
             {
                 return await matchDataAccess.GetMatches(sportId, utcFrom, utcTo, language);
             });
 
-            return matches.Select(match => match.ChangeEventDateByTimeZone(clientTimeZone));
+            return normalMatches.Select(match => match.ChangeEventDateByTimeZone(clientTimeZone));
         }
 
-        public async Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, DateTime from, DateTime to, TimeSpan clientTimeZone, string language)
-        {
-            var utcFrom = from.ConvertToUtc(clientTimeZone);
-            var utcTo = to.ConvertToUtc(clientTimeZone);
-
-            var liveMatches = await GetAllLiveMatches(sportId, language);
-
-            return liveMatches.Where(m =>
-               m.EventDate.ToUniversalTime() >= utcFrom &&
-               m.EventDate.ToUniversalTime() <= utcTo);
-
-        }
-
-        public async Task<IEnumerable<IMatch>> GetAllLiveMatches(int sportId, string language)
+        public async Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
         {
             var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
             var liveMatchCacheKey = GetLiveMatchCacheKey(sportId, language);
 
             var liveMatches = await await cacheService.GetOrSetAsync(
                     liveMatchCacheKey,
-                    async () => (await matchDataAccess.GetAllLiveMatches(sportId, language)).ToDictionary(m => m.Id),
+                    async () => (await matchDataAccess.GetLiveMatches(sportId, language)).ToDictionary(m => m.Id),
                     LiveMatchCacheOption);
 
             return liveMatches.Values;
