@@ -191,12 +191,7 @@
 
             return sportSetting;
         }
-       
-        public Task<bool> AddResult(string matchId, IMatchResult matchResult)
-        {
-            throw new NotImplementedException();
-        }
-      
+
         public Task<IMatch> AddOrUpdateMatch(string matchId, string language, MatchPushEvent pushEvent, bool isLive = false)
         {
             throw new NotImplementedException();
@@ -205,7 +200,7 @@
         public Task<bool> DeleteMatch(string matchId, string language, bool isLive = false)
         {
             throw new NotImplementedException();
-        }       
+        }
 
         public Task<bool> UpdateLiveMatches(IEnumerable<IMatch> matches, string language)
         {
@@ -213,6 +208,11 @@
         }
 
         public Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> AddResult(string matchId, IMatchResult matchResult)
         {
             throw new NotImplementedException();
         }

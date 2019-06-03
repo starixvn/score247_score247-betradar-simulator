@@ -9,8 +9,7 @@
     using LiveScore.Shared.Database;
     using LiveScore.Shared.Database.Entities;
     using Newtonsoft.Json;
-
-
+    
     public class MatchDataAccess : IMatchDataAccess
     {
         private readonly IDynamicRepository dynamicRepository;
