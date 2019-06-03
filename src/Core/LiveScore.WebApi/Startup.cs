@@ -173,6 +173,7 @@ namespace LiveScore.WebApi
         {
             services.AddScoped<IAutoUpdateMatchTimeJob, AutoUpdateMatchTimeJob>();
             services.AddScoped<IDailyScheduleFetchJob, DailyScheduleFetchJob>();
+            services.AddScoped<ILiveMatchFetchJob, LiveMatchFetchJob>();
             services.AddScoped<IMatchPushEventListenerJob, MatchPushEventListenerJob>();
         }
 
