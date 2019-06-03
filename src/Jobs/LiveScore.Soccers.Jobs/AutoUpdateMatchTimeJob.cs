@@ -6,6 +6,7 @@
     using LiveScore.Features.Matches.Models;
     using LiveScore.Shared;
     using LiveScore.Shared.Hubs;
+    using LiveScore.Shared.Models;
     using Microsoft.AspNetCore.SignalR;
 
     public interface IAutoUpdateMatchTimeJob
@@ -29,7 +30,7 @@
 
         public async Task UpdateMatchTime()
         {
-            foreach (var language in Language.SupportedLanguages)
+            foreach (var language in Enumeration.GetAll<Language>())
             {
                 var liveMatches = await matchService.GetLiveMatches(SportConstants.SoccerId, language.Value);
 

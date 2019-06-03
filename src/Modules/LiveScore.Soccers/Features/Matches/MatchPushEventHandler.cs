@@ -8,6 +8,7 @@
     using LiveScore.Features.Matches.Models;
     using LiveScore.Shared;
     using LiveScore.Shared.Hubs;
+    using LiveScore.Shared.Models;
     using LiveScore.Soccers.Shared.Dtos;
     using LiveScore.Soccers.Shared.ModelBuilders;
     using Microsoft.AspNetCore.SignalR;
@@ -88,7 +89,7 @@
         {
             var timeline = pushEvent.TimeLines.FirstOrDefault();
 
-            foreach (var language in Language.SupportedLanguages)
+            foreach (var language in Enumeration.GetAll<Language>())
             {
                 if (timeline.Type == EventTypes.MatchEnded.Value)
                 {

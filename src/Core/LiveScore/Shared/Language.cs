@@ -21,15 +21,5 @@
             : base(value, displayName)
         {
         }
-
-        public static IEnumerable<Language> SupportedLanguages = new List<Language>
-        {
-            En,
-            //Vietnamese,
-            //Thailand,
-            //Indonesia,
-            //TraditionalChinese,
-            //SimplifiedChinese,
-        };
     }
 }
