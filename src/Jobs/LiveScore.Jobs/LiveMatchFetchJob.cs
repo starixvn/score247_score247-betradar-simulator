@@ -14,10 +14,10 @@
 
     public class LiveMatchFetchJob : ILiveMatchFetchJob
     {
-        private readonly InstanceFactory instanceFactory;
+        private readonly DataAccessFactory instanceFactory;
 
         public LiveMatchFetchJob(
-            InstanceFactory instanceFactory)
+            DataAccessFactory instanceFactory)
         {
             this.instanceFactory = instanceFactory;
         }

@@ -13,11 +13,11 @@
 
     public static class InstanceFactoryMiddleware
     {
-        public static void RegisterInstanceFactory(this IServiceCollection services)
+        public static void RegisterDataAccessFactory(this IServiceCollection services)
         {
             var matchDataAccessContainer = BuildMatchDataAccessContainer(services);
 
-            services.AddSingleton((InstanceFactory)new InstanceFactoryImpl(matchDataAccessContainer));
+            services.AddSingleton((DataAccessFactory)new DataAccessFactoryImpl(matchDataAccessContainer));
         }
 
         public static void RegisterPushHandlerFactory(this IServiceCollection services)

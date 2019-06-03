@@ -32,10 +32,10 @@
         {
             SlidingExpiration = TimeSpan.FromMinutes(10)
         };
-        private readonly InstanceFactory instanceFactory;
+        private readonly DataAccessFactory instanceFactory;
         private readonly ICacheService cacheService;
 
-        public MatchService(InstanceFactory instanceFactory, ICacheService cacheService)
+        public MatchService(DataAccessFactory instanceFactory, ICacheService cacheService)
         {
             this.instanceFactory = instanceFactory;
             this.cacheService = cacheService;

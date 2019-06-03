@@ -11,7 +11,7 @@
     {
         private readonly IMatchDataAccess matchDataAccess;
 
-        private readonly InstanceFactory instanceFactory;
+        private readonly DataAccessFactory instanceFactory;
 
         public InstanceFactoryTests()
         {
@@ -24,7 +24,7 @@
                 { SportConstants.BasketballId, null }
             };
 
-            instanceFactory = new InstanceFactoryImpl(matches);
+            instanceFactory = new DataAccessFactoryImpl(matches);
         }
 
         [Fact]

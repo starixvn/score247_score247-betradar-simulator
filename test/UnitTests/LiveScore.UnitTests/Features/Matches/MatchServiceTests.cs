@@ -14,13 +14,13 @@
     {
         private const int SoccerSportId = 1;
         private readonly MatchService matchServiceImpl;
-        private readonly InstanceFactory instanceFactory;
+        private readonly DataAccessFactory instanceFactory;
         private readonly IMatchDataAccess matchDataAccess;
 
         public MatchServiceTests()
         {
             matchDataAccess = Substitute.For<IMatchDataAccess>();
-            instanceFactory = Substitute.For<InstanceFactory>();
+            instanceFactory = Substitute.For<DataAccessFactory>();
             instanceFactory.CreateMatchDataAccess(SoccerSportId).Returns(matchDataAccess);
 
             matchServiceImpl = new MatchService(instanceFactory, null);

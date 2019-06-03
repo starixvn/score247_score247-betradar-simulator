@@ -62,7 +62,7 @@ namespace LiveScore.WebApi
                 services.AddHangfire(x => x.UsePostgreSqlStorage(Configuration.GetConnectionString("hangfireConnection")));
                 services.AddMemoryCache(Configuration.GetSection("fanex.caching"));
 
-                services.RegisterInstanceFactory();
+                services.RegisterDataAccessFactory();
                 services.RegisterPushHandlerFactory();
             }
             catch (Exception ex)

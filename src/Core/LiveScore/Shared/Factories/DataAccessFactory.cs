@@ -10,16 +10,16 @@
         ThirdPartyApi
     }
 
-    public interface InstanceFactory
+    public interface DataAccessFactory
     {
         IMatchDataAccess CreateMatchDataAccess(int sportId, DataProvider dataProvider = DataProvider.Database);
     }
 
-    public class InstanceFactoryImpl : InstanceFactory
+    public class DataAccessFactoryImpl : DataAccessFactory
     {
         private readonly IDictionary<int, IDictionary<DataProvider, IMatchDataAccess>> matchDataAccessContainer;
 
-        public InstanceFactoryImpl(
+        public DataAccessFactoryImpl(
             IDictionary<int, IDictionary<DataProvider, IMatchDataAccess>> matchDataAccessContainer)
         {
             this.matchDataAccessContainer = matchDataAccessContainer;

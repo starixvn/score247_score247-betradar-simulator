@@ -18,11 +18,11 @@
     public class DailyScheduleFetchJob : IDailyScheduleFetchJob
     {
         private readonly IDynamicRepository repository;
-        private readonly InstanceFactory instanceFactory;
+        private readonly DataAccessFactory instanceFactory;
 
         public DailyScheduleFetchJob(
             IDynamicRepository repository,
-            InstanceFactory instanceFactory)
+            DataAccessFactory instanceFactory)
         {
             this.instanceFactory = instanceFactory;
             this.repository = repository;
