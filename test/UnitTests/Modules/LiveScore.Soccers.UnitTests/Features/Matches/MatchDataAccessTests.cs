@@ -14,10 +14,10 @@
     public class MatchDataAccessTests
     {
         private readonly MatchDataAccess matchDataAccess;
-        private readonly IDynamicRepository dynamicRepository;        
+        private readonly IDynamicRepository dynamicRepository;
 
         public MatchDataAccessTests()
-        {            
+        {
             dynamicRepository = Substitute.For<IDynamicRepository>();
             dynamicRepository.Query(Arg.Any<Func<MatchEntity, bool>>()).Returns(new List<MatchEntity> { StubMatchEntity() });
 
@@ -31,8 +31,7 @@
                 1,
                 DateTime.Now,
                 DateTime.Now.AddDays(1),
-                "en",
-                TimeSpan.Zero);
+                "en");
 
             var match = matches.First();
             var home = match.Teams.ElementAt(0);
@@ -62,8 +61,7 @@
                 1,
                 DateTime.Now,
                 DateTime.Now.AddDays(1),
-                "en",
-                TimeSpan.Zero);
+                "en");
 
             var match = matches.First();
             var league = match.League;
@@ -81,8 +79,7 @@
                 1,
                 DateTime.Now,
                 DateTime.Now.AddDays(1),
-                "en",
-                TimeSpan.Zero);
+                "en");
 
             var match = matches.First();
             var leagueRound = match.LeagueRound;
@@ -98,8 +95,7 @@
                 1,
                 DateTime.Now,
                 DateTime.Now.AddDays(1),
-                "en",
-                TimeSpan.Zero);
+                "en");
 
             var match = matches.First();
             var matchResult = match.MatchResult;
@@ -121,8 +117,7 @@
                1,
                DateTime.Now,
                DateTime.Now.AddDays(1),
-               "en",
-               TimeSpan.Zero);
+               "en");
 
             var match = matches.First();
             var matchResult = match.MatchResult;
@@ -143,8 +138,7 @@
                1,
                DateTime.Now,
                DateTime.Now.AddDays(1),
-               "en",
-               TimeSpan.Zero);
+               "en");
 
             var match = matches.First();
             var timeline = match.TimeLines.First();
@@ -363,7 +357,7 @@
                     }]
                 }";
         }
-       
+
         private MatchTimelineEntity StubMatchTimelineEntity()
         {
             return new MatchTimelineEntity

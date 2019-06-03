@@ -13,7 +13,7 @@ namespace LiveScore.Shared.Database
     {
         Task<List<T>> GetAll<T>() where T : DatabaseEntity;
 
-        Task<T> GetById<T>(object id) where T : DatabaseEntity;
+        Task<T> GetById<T>(params object[] ids) where T : DatabaseEntity;
 
         Task<List<T>> Query<T>(string value, params string[] jsonHierachy) where T : DatabaseEntity;
 
@@ -23,7 +23,7 @@ namespace LiveScore.Shared.Database
 
         Task<T> Last<T>(Expression<Func<T, bool>> predicate) where T : DatabaseEntity;
 
-        Task InsertOrUpdate<T>(string id, T obj) where T : DatabaseEntity;
+        Task InsertOrUpdate<T>(T obj, params object[] ids) where T : DatabaseEntity;
 
         Task Insert<T>(T obj) where T : DatabaseEntity;
 
@@ -33,7 +33,7 @@ namespace LiveScore.Shared.Database
 
         Task<int> UpdateRange<T>(IEnumerable<T> objects) where T : DatabaseEntity;
 
-        IDynamicRepository Delete<T>(object id) where T : DatabaseEntity;
+        IDynamicRepository Delete<T>(params object[] ids) where T : DatabaseEntity;
 
         Task<int> Save();
     }
@@ -91,9 +91,9 @@ namespace LiveScore.Shared.Database
             return context.Set<T>().AsNoTracking().ToListAsync();
         }
 
-        public Task<T> GetById<T>(object id) where T : DatabaseEntity
+        public Task<T> GetById<T>(params object[] ids) where T : DatabaseEntity
         {
-            return context.Set<T>().FindAsync(id);
+            return context.Set<T>().FindAsync(ids);
         }
 
         public Task Insert<T>(T obj) where T : DatabaseEntity
@@ -104,11 +104,12 @@ namespace LiveScore.Shared.Database
             return context.Set<T>().AddAsync(obj);
         }
 
-        public async Task InsertOrUpdate<T>(string id, T obj) where T : DatabaseEntity
+        public async Task InsertOrUpdate<T>(T obj, params object[] ids) where T : DatabaseEntity
         {
             var dataSet = context.Set<T>();
+            T existingObj = dataSet.Find(ids);
 
-            if (await dataSet.AnyAsync(e => e.Id == id))
+            if (existingObj != null)
             {
                 obj.ModifiedTime = DateTime.Now;
 
@@ -136,27 +137,23 @@ namespace LiveScore.Shared.Database
 
         public Task<int> UpdateRange<T>(IEnumerable<T> objects) where T : DatabaseEntity
         {
-            var table = context.Set<T>();
-            context.AttachRange(objects);
-            context.Entry(objects).State = EntityState.Modified;
+            context.Set<T>().UpdateRange(objects);
 
             return Save();
         }
 
         public IDynamicRepository Update<T>(T obj) where T : DatabaseEntity
         {
-            var table = context.Set<T>();
             obj.ModifiedTime = DateTime.Now;
-            table.Attach(obj);
-            context.Entry(obj).State = EntityState.Modified;
+            context.Set<T>().Update(obj);
 
             return this;
         }
 
-        public IDynamicRepository Delete<T>(object id) where T : DatabaseEntity
+        public IDynamicRepository Delete<T>(params object[] ids) where T : DatabaseEntity
         {
             var table = context.Set<T>();
-            T existing = table.Find(id);
+            T existing = table.Find(ids);
             table.Remove(existing);
 
             return this;

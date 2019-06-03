@@ -1,7 +1,6 @@
 ﻿namespace LiveScore.WebApi.Shared.Middlewares
 {
     using System.Collections.Generic;
-    using Fanex.Caching;
     using LiveScore.Features.Matches;
     using LiveScore.Shared;
     using LiveScore.Shared.Configurations;
@@ -37,16 +36,12 @@
         {
             var serviceProvider = services.BuildServiceProvider();
             var hubContext = serviceProvider.GetService<IHubContext<MatchHub>>();
-            var cacheService = serviceProvider.GetService<ICacheService>();
+            var matchService = serviceProvider.GetService<IMatchService>();
 
             var pushEventHandlerContainer = new Dictionary<int, IMatchPushEventHandler>
             {
                 {
-                    SportConstants.SoccerId,
-                    new MatchPushEventHandler(
-                        matchDataAccessContainer[SportConstants.SoccerId][DataProvider.Database],
-                        hubContext,
-                        cacheService)
+                    SportConstants.SoccerId, new MatchPushEventHandler(matchService, hubContext)
                 }
             };
 

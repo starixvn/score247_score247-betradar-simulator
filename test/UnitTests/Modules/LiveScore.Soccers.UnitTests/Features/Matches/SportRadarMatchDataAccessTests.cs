@@ -34,8 +34,7 @@
                 1,
                 DateTime.Now,
                 DateTime.Now.AddDays(1),
-                "en",
-                TimeSpan.Zero
+                "en"
                 ));
         }
 
@@ -48,8 +47,7 @@
                 2,
                 DateTime.Now,
                 DateTime.Now.AddDays(1),
-                "en",
-                TimeSpan.Zero
+                "en"
                 );
 
             Assert.Empty(matches);
@@ -65,8 +63,7 @@
                 1,
                 DateTime.Now,
                 DateTime.Now.AddDays(1),
-                "en",
-                TimeSpan.Zero
+                "en"
                 );
 
             Assert.Empty(matches);
@@ -82,8 +79,7 @@
                 1,
                 DateTime.Now,
                 DateTime.Now.AddDays(1),
-                "en",
-                TimeSpan.Zero);
+                "en");
 
             var match = matches.First();
             var home = match.Teams.ElementAt(0);
@@ -116,8 +112,7 @@
                 1,
                 DateTime.Now,
                 DateTime.Now.AddDays(1),
-                "en",
-                TimeSpan.Zero);
+                "en");
 
             var match = matches.First();
             var league = match.League;
@@ -138,8 +133,7 @@
                 1,
                 DateTime.Now,
                 DateTime.Now.AddDays(1),
-                "en",
-                TimeSpan.Zero);
+                "en");
 
             var match = matches.First();
             var leagueRound = match.LeagueRound;
@@ -161,8 +155,7 @@
                 1,
                 DateTime.Now,
                 DateTime.Now.AddDays(1),
-                "en",
-                TimeSpan.Zero);
+                "en");
 
             var match = matches.First();
             var matchResult = match.MatchResult;
@@ -184,8 +177,7 @@
                 1,
                 DateTime.Now.AddDays(-2),
                 DateTime.Now.AddDays(-1),
-                "en",
-                TimeSpan.Zero);
+                "en");
 
             var match = matches.First();
             var home = match.Teams.ElementAt(0);
@@ -218,8 +210,7 @@
                 1,
                 DateTime.Now.AddDays(-2),
                 DateTime.Now.AddDays(-1),
-                "en",
-                TimeSpan.Zero);
+                "en");
 
             var match = matches.First();
             var league = match.League;
@@ -240,8 +231,7 @@
                 1,
                 DateTime.Now.AddDays(-2),
                 DateTime.Now.AddDays(-1),
-                "en",
-                TimeSpan.Zero);
+                "en");
 
             var match = matches.First();
             var leagueRound = match.LeagueRound;
@@ -263,8 +253,7 @@
                 1,
                 DateTime.Now.AddDays(-2),
                 DateTime.Now.AddDays(-1),
-                "en",
-                TimeSpan.Zero);
+                "en");
 
             var match = matches.First();
             var matchResult = match.MatchResult;

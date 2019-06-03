@@ -17,6 +17,11 @@ namespace LiveScore.Basketballs.Features.Matches
             throw new NotImplementedException();
         }
 
+        public Task<IMatch> AddOrUpdateMatch(string matchId, string language, MatchPushEvent pushEvent, bool isLive = false)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<bool> AddResult(string matchId, IMatchResult matchResult)
         {
             throw new NotImplementedException();
@@ -32,12 +37,22 @@ namespace LiveScore.Basketballs.Features.Matches
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
+        public Task<bool> DeleteMatch(string matchId, string language, bool isLive = false)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime from, DateTime to, string language, TimeSpan timeZone)
+        public Task<IEnumerable<IMatch>> GetAllLiveMatches(int sportId, string language)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, DateTime utcFrom, DateTime utcTo, string language)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime from, DateTime to, string language)
         {
             return await Task.FromResult(new List<IMatch>
             {
@@ -121,6 +136,11 @@ namespace LiveScore.Basketballs.Features.Matches
         }
 
         public Task<bool> UpdateLiveMatches(IEnumerable<IMatch> matches)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UpdateLiveMatches(IEnumerable<IMatch> matches, string language)
         {
             throw new NotImplementedException();
         }

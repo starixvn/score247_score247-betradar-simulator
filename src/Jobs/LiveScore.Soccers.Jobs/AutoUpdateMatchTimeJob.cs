@@ -5,11 +5,8 @@
     using LiveScore.Features.Matches;
     using LiveScore.Features.Matches.Models;
     using LiveScore.Shared;
-    using LiveScore.Shared.Database;
-    using LiveScore.Shared.Database.Entities;
     using LiveScore.Shared.Hubs;
     using Microsoft.AspNetCore.SignalR;
-    using Newtonsoft.Json;
 
     public interface IAutoUpdateMatchTimeJob
     {
@@ -21,42 +18,40 @@
         private const int MaxMatchTime = 120;
         private readonly IMatchService matchService;
         private readonly IHubContext<MatchHub> matchHub;
-        private readonly IDynamicRepository dynamicRepository;
 
         public AutoUpdateMatchTimeJob(
              IMatchService matchService,
-             IHubContext<MatchHub> matchHub,
-             IDynamicRepository dynamicRepository)
+             IHubContext<MatchHub> matchHub)
         {
             this.matchService = matchService;
             this.matchHub = matchHub;
-            this.dynamicRepository = dynamicRepository;
         }
 
         public async Task UpdateMatchTime()
         {
-            var liveMatches = await matchService.GetLiveMatches(SportConstants.SoccerId, "en-US");
-
-            foreach (var match in liveMatches)
+            foreach (var language in Language.SupportedLanguages)
             {
-                var matchTime = match.MatchResult.MatchTime;
-                var matchEvent = match.TimeLines?.FirstOrDefault();
-                var maxMatchTime = MaxMatchTime + ((matchEvent?.Type == EventTypes.InjuryTimeShown.Value) ? matchEvent?.InjuryTimeAnnounced : 0);
+                var liveMatches = await matchService.GetAllLiveMatches(SportConstants.SoccerId, language.Value);
 
-                if (matchTime == maxMatchTime)
+                foreach (var match in liveMatches)
                 {
-                    continue;
+                    var matchTime = match.MatchResult.MatchTime;
+                    var matchEvent = match.TimeLines?.FirstOrDefault();
+                    var maxMatchTime = MaxMatchTime + ((matchEvent?.Type == EventTypes.InjuryTimeShown.Value) ? matchEvent?.InjuryTimeAnnounced : 0);
+
+                    if (matchTime == maxMatchTime)
+                    {
+                        continue;
+                    }
+
+                    matchTime++;
+                    match.MatchResult.MatchTime = matchTime;
+
+                    await matchHub.Clients.All.SendAsync("PushMatchTime", SportConstants.SoccerId.ToString(), match.Id, matchTime);
                 }
 
-                matchTime++;
-
-                match.MatchResult.MatchTime = matchTime;
-
-
-                await matchHub.Clients.All.SendAsync("PushMatchTime", SportConstants.SoccerId.ToString(), match.Id, matchTime);
+                await matchService.UpdateLiveMatches(SportConstants.SoccerId, language.Value, liveMatches);
             }
-
-            await matchService.UpdateLiveMatches(SportConstants.SoccerId, liveMatches);
         }
     }
 }

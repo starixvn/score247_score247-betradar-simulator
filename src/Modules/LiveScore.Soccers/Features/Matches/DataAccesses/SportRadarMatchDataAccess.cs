@@ -27,7 +27,7 @@
             this.restClient = restClient;
         }
 
-        public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime from, DateTime to, string language, TimeSpan timeZone)
+        public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime from, DateTime to, string language)
         {
             var sportSetting = appSettings
                 .DataProviderSettings
@@ -71,26 +71,6 @@
             }
 
             return finalDailyResults;
-        }
-
-        public Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> AddResult(string matchId, IMatchResult matchResult)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> AddLiveMatch(string matchId, MatchPushEvent pushEvent)
-        {
-            throw new NotImplementedException();
         }
 
         private async Task<List<Match>> FetchResults(string language, SportSetting sportSetting, DateTime date)
@@ -161,17 +141,37 @@
             return finalDailySchedules;
         }
 
-        public Task<IMatch> AddOrUpdateMatch(string matchId, MatchPushEvent pushEvent, bool isLive = false)
+        public Task<IMatch> AddOrUpdateMatch(string matchId, string language, MatchPushEvent pushEvent, bool isLive = false)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteMatch(string matchId, bool isLive = false)
+        public Task<bool> DeleteMatch(string matchId, string language, bool isLive = false)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateLiveMatches(IEnumerable<IMatch> matches)
+        public Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, DateTime utcFrom, DateTime utcTo, string language)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<IMatch>> GetAllLiveMatches(int sportId, string language)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UpdateLiveMatches(IEnumerable<IMatch> matches, string language)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> AddResult(string matchId, IMatchResult matchResult)
         {
             throw new NotImplementedException();
         }

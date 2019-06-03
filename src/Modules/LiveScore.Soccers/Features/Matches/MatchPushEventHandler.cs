@@ -12,11 +12,9 @@
     using LiveScore.Soccers.Shared.ModelBuilders;
     using Microsoft.AspNetCore.SignalR;
     using Newtonsoft.Json;
-    using Fanex.Caching;
 
     public class MatchPushEventHandler : IMatchPushEventHandler
     {
-        private const int LiveMatchSlidingExpirationMinute = 130;
         private static readonly IDictionary<string, int> PeriodStartTimes = new Dictionary<string, int>
         {
             { MatchStatus.FirstHaft.Value, 1 },
@@ -25,18 +23,15 @@
             { MatchStatus.SecondHaftExtra.Value, 106 }
         };
 
-        private readonly IMatchDataAccess matchDataAccess;
+        private readonly IMatchService matchService;
         private readonly IHubContext<MatchHub> hubContext;
-        private readonly ICacheService cacheService;
 
         public MatchPushEventHandler(
-            IMatchDataAccess matchDataAccess,
-            IHubContext<MatchHub> hubContext,
-            ICacheService cacheService)
+            IMatchService matchService,
+            IHubContext<MatchHub> hubContext)
         {
-            this.matchDataAccess = matchDataAccess;
+            this.matchService = matchService;
             this.hubContext = hubContext;
-            this.cacheService = cacheService;
         }
 
         public async Task OnReceive(string eventData)
@@ -48,9 +43,9 @@
 
                 await Handle(pushEvents);
             }
-            catch (Exception ex)
+            catch
             {
-
+                Console.WriteLine(eventData);
             }
         }
 
@@ -78,9 +73,9 @@
             {
                 var pushEvent = pushEvents[matchId];
 
-                await HandleMatchEvent(matchId, pushEvent);
-                await matchDataAccess.AddResult(matchId, pushEvent.MatchResult);
-                await matchDataAccess.AddTimelines(matchId, pushEvent.TimeLines);
+                await UpdateMatch(matchId, pushEvent);
+                await matchService.AddResult(SportConstants.SoccerId, matchId, pushEvent.MatchResult);
+                await matchService.AddTimelines(SportConstants.SoccerId, matchId, pushEvent.TimeLines);
             }
         }
 
@@ -89,31 +84,20 @@
             await hubContext.Clients.All.SendAsync("PushMatchEvent", SportConstants.SoccerId, pushEvents);
         }
 
-        private async Task HandleMatchEvent(string matchId, MatchPushEvent pushEvent)
+        private async Task UpdateMatch(string matchId, MatchPushEvent pushEvent)
         {
             var timeline = pushEvent.TimeLines.FirstOrDefault();
 
-            if (timeline.Type == EventTypes.MatchEnded.Value)
+            foreach (var language in Language.SupportedLanguages)
             {
-                await cacheService.RemoveAsync(matchId);
-                await matchDataAccess.DeleteMatch(matchId, isLive: true);
-                await matchDataAccess.AddOrUpdateMatch(matchId, pushEvent);
-            }
-            else
-            {
-                var match = await matchDataAccess.AddOrUpdateMatch(matchId, pushEvent, isLive: true);
-
-                if (match != null)
+                if (timeline.Type == EventTypes.MatchEnded.Value)
                 {
-                    var liveMatches = await cacheService.GetOrSetAsync(
-                        $"LiveMatch_{SportConstants.SoccerId}", () => new Dictionary<string, IMatch>());
-
-                    liveMatches[matchId] = match;
-
-                    await cacheService.SetAsync($"LiveMatch_{SportConstants.SoccerId}", liveMatches, new CacheItemOptions
-                    {
-                        SlidingExpiration = TimeSpan.FromMinutes(LiveMatchSlidingExpirationMinute)
-                    });
+                    await matchService.DeleteMatch(SportConstants.SoccerId, language.Value, matchId, isLive: true);
+                    await matchService.AddOrUpdateMatch(SportConstants.SoccerId, language.Value, matchId, pushEvent);
+                }
+                else
+                {
+                    await matchService.AddOrUpdateMatch(SportConstants.SoccerId, language.Value, matchId, pushEvent, isLive: true);
                 }
             }
         }

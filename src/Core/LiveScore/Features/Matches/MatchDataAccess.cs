@@ -7,22 +7,17 @@
 
     public interface IMatchDataAccess
     {
-        Task<IEnumerable<IMatch>> GetMatches(
-            int sportId,
-            DateTime from,
-            DateTime to,
-            string language,
-            TimeSpan timeZone);
+        Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime utcFrom, DateTime utcTo, string language);
 
-        Task<IEnumerable<IMatch>> GetLiveMatches(
-          int sportId,
-          string language);
+        Task<IMatch> AddOrUpdateMatch(string matchId, string language, MatchPushEvent pushEvent, bool isLive = false);
 
-        Task<IMatch> AddOrUpdateMatch(string matchId, MatchPushEvent pushEvent, bool isLive = false);
+        Task<bool> DeleteMatch(string matchId, string language, bool isLive = false);
 
-        Task<bool> UpdateLiveMatches(IEnumerable<IMatch> matches);
+        Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, DateTime utcFrom, DateTime utcTo, string language);
 
-        Task<bool> DeleteMatch(string matchId, bool isLive = false);
+        Task<IEnumerable<IMatch>> GetAllLiveMatches(int sportId, string language);
+
+        Task<bool> UpdateLiveMatches(IEnumerable<IMatch> matches, string language);
 
         Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines);
 
