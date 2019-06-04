@@ -53,7 +53,7 @@
             }
             catch (Exception ex)
             {
-                await logger.ErrorAsync($"Error occurs OnReceive {eventData}. Exception: {ex.Message}");
+                await logger.ErrorAsync($"Error occurs OnReceive {eventData}", ex);
             }
         }
 
