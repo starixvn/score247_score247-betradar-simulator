@@ -70,6 +70,8 @@
             }
 
             await PushChangeToClients(pushEvents);
+            await UpdateDatabase(pushEvents);
+
             //var pushChangeToClientsTask = Task.Run(() => PushChangeToClients(pushEvents));
             //var updateDatabaseTask = Task.Run(() => UpdateDatabase(pushEvents));
 
