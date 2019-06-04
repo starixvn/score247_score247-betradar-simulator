@@ -45,7 +45,7 @@
 
             var pushListenerContainer = new Dictionary<int, IMatchPushEventListener>
             {
-                { SportConstants.SoccerId, new MatchPushEventListener(pushHandlerFactory, appSettings) }
+                { SportConstants.SoccerId, new MatchPushEventListener(pushHandlerFactory.CreateMatchPushEventHandler(SportConstants.SoccerId), appSettings) }
             };
 
             services.AddSingleton((PushListenerFactory)new PushListenerFactoryImpl(pushListenerContainer));

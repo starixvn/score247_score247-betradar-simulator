@@ -89,6 +89,7 @@
 
         private async Task PushChangeToClients(Dictionary<string, MatchPushEvent> pushEvents)
         {
+            //TODO only push events: period_start, period_end, injury_time_shown, score_change
             await hubContext.Clients.All.SendAsync("PushMatchEvent", SportConstants.SoccerId, pushEvents);
         }
 

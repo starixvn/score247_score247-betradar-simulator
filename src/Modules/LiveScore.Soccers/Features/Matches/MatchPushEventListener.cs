@@ -4,9 +4,9 @@
     using System.IO;
     using System.Linq;
     using System.Net;
+    using System.Net.Http;
     using System.Threading.Tasks;
     using LiveScore.Features.Matches;
-    using LiveScore.Shared;
     using LiveScore.Shared.Configurations;
     using LiveScore.Shared.SportRadarApi.Models;
 
@@ -14,21 +14,21 @@
     {
         private const string FeatureKey = "Push";
         private const int MillisecondsTimeout = 5 * 1000;
-        private readonly PushHandlerFactory handlerFactory;
+        private readonly IMatchPushEventHandler pushHandler;
         private readonly IAppSettings appSettings;
 
         public MatchPushEventListener(
-            PushHandlerFactory handlerFactory,
+            IMatchPushEventHandler pushHandler,
             IAppSettings appSettings)
         {
-            this.handlerFactory = handlerFactory;
+            this.pushHandler = pushHandler;
             this.appSettings = appSettings;
         }
 
         public async Task<bool> Start(byte sportId)
         {
 
-            var sportSetting = ValidateSettings(1, FeatureKey);
+            var sportSetting = ValidateSettings(sportId, FeatureKey);
 
             var endpointSettings = sportSetting
                 .EndPoints
@@ -45,36 +45,30 @@
             //TODO ensure only one push channel created
             var formattedEndpoint = $"{appSettings.DataProviderSettings.ApiUrl}{string.Format(endpoint.Path, region.Name, region.PushKey)}";
 
-            var req = (HttpWebRequest)WebRequest.Create(new Uri(formattedEndpoint));
-            req.AllowAutoRedirect = false;
-            WebResponse reply;
-            var pushEventHandler = handlerFactory.CreateMatchPushEventHandler(sportId);
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.AllowAutoRedirect = true;            
+            var _httpClient = new HttpClient(handler);
 
-            try
+            HttpResponseMessage clientResponse = await _httpClient.GetAsync(new Uri(formattedEndpoint));
+
+            if (clientResponse.StatusCode == HttpStatusCode.Found)
             {
-                reply = (HttpWebResponse)req.GetResponse();
-            }
-            catch (WebException e)
-            {
-                reply = e.Response;
-                req = (HttpWebRequest)WebRequest.Create(new Uri(reply.Headers["Location"]));
+                var req = (HttpWebRequest)WebRequest.Create(clientResponse.Headers.Location);
                 req.KeepAlive = true;
-                reply = (HttpWebResponse)req.GetResponse();
+                var reply = (HttpWebResponse)req.GetResponse();
+
+                var stream = reply.GetResponseStream();
+                var reader = new StreamReader(stream);
+                var pushEvent = string.Empty;
+
+                do
+                {
+                    pushEvent = reader.ReadLine();
+                    await pushHandler.OnReceive(pushEvent);
+                    await Task.Delay(MillisecondsTimeout);
+
+                } while (pushEvent.Length > 0);
             }
-
-            var stream = reply.GetResponseStream();
-            var reader = new StreamReader(stream);
-            var pushEvent = string.Empty;
-
-            do
-            {
-                pushEvent = reader.ReadLine();
-                await pushEventHandler.OnReceive(pushEvent);
-                await Task.Delay(MillisecondsTimeout);
-
-            } while (pushEvent.Length > 0);
-
-            //TODO write logs for exception
 
             return true;
         }
