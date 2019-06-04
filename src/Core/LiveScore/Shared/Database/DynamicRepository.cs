@@ -113,7 +113,7 @@ namespace LiveScore.Shared.Database
             {
                 obj.ModifiedTime = DateTime.UtcNow;
 
-                await Update(obj).Save();
+                Update(obj);
             }
             else
             {
@@ -122,6 +122,8 @@ namespace LiveScore.Shared.Database
 
                 await dataSet.AddAsync(obj);
             }
+
+            await Save();
         }
 
         public Task InsertRange<T>(IEnumerable<T> objects) where T : DatabaseEntity

@@ -79,7 +79,7 @@
             }
             catch(Exception ex)
             {                
-                await logger.ErrorAsync($"AddOrUpdateMatch {matchId}", ex);
+                await logger.ErrorAsync($"AddOrUpdateMatch {matchId} - {isLive}", ex);
 
                 return null;
             }
