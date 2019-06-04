@@ -63,14 +63,13 @@
         private async Task DeleteLiveMatches(List<IMatch> matches, string language)
         {
             // status == closed && exist in live table -> delete in live table ->  update cache
-
             foreach (var match in matches)
             {                
                 var liveMatchEntity = await repository.GetById<LiveMatchEntity>(match.Id, language);
 
                 if (liveMatchEntity != null)
                 {
-                    repository.Delete<LiveMatchEntity>(liveMatchEntity);
+                    repository.Delete<LiveMatchEntity>(match.Id, language);
                    
                     var matchEntity = await repository.GetById<MatchEntity>(match.Id, language);
                     matchEntity.Value = JsonConvert.SerializeObject(match);
@@ -86,7 +85,6 @@
         private async Task InsertLiveMatches(List<IMatch> matches, string language)
         {
             // status == live && not exist in live table -> insert to live table -> update cache
-
             foreach (var match in matches)
             {
                 var liveMatchEntity = await repository.GetById<LiveMatchEntity>(match.Id, language);
