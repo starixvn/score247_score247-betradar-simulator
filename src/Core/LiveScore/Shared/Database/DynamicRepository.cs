@@ -23,8 +23,6 @@ namespace LiveScore.Shared.Database
 
         Task<T> Last<T>(Expression<Func<T, bool>> predicate) where T : DatabaseEntity;
 
-        Task InsertOrUpdate<T>(T obj, params object[] ids) where T : DatabaseEntity;
-
         Task Insert<T>(T obj) where T : DatabaseEntity;
 
         Task InsertRange<T>(IEnumerable<T> objects) where T : DatabaseEntity;
@@ -68,7 +66,7 @@ namespace LiveScore.Shared.Database
             queryCondition += $"\"{value}\"{closeBrace}'";
             var queryCommand = $"SELECT * FROM public.\"{tableName}\" WHERE {queryCondition};";
 
-            return await context.Set<T>().FromSql(queryCommand).ToListAsync();
+            return await context.Set<T>().AsNoTracking().FromSql(queryCommand).ToListAsync();
         }
 
         public async Task<List<T>> Query<T>(Func<T, bool> predicate) where T : DatabaseEntity
@@ -104,28 +102,7 @@ namespace LiveScore.Shared.Database
             return context.Set<T>().AddAsync(obj);
         }
 
-        public async Task InsertOrUpdate<T>(T obj, params object[] ids) where T : DatabaseEntity
-        {
-            var dataSet = context.Set<T>();
-            T existingObj = dataSet.Find(ids);
-
-            if (existingObj != null)
-            {
-                obj.ModifiedTime = DateTime.UtcNow;
-
-                Update(obj);
-            }
-            else
-            {
-                obj.CreatedTime = DateTime.UtcNow;
-                obj.ModifiedTime = DateTime.UtcNow;
-
-                await dataSet.AddAsync(obj);
-            }
-
-            await Save();
-        }
-
+       
         public Task InsertRange<T>(IEnumerable<T> objects) where T : DatabaseEntity
         {
             foreach (var obj in objects)

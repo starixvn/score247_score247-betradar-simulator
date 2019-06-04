@@ -58,22 +58,38 @@
 
                 if (isLive)
                 {
-                    var liveMatchEntity = new LiveMatchEntity
+                    var liveMatchEntity = await dynamicRepository.GetById<LiveMatchEntity>(matchId, language);
+                    if (liveMatchEntity != null)
                     {
-                        Id = matchEntity.Id,
-                        SportId = matchEntity.SportId,
-                        Language = matchEntity.Language,
-                        Value = matchEntity.Value,
-                        LeagueId = matchEntity.LeagueId,
-                        EventDate = matchEntity.EventDate.ToUniversalTime()
-                    };
+                        liveMatchEntity.Value = JsonConvert.SerializeObject(match);
+                        liveMatchEntity.CreatedTime = DateTime.UtcNow;
+                        liveMatchEntity.ModifiedTime = DateTime.UtcNow;
+                    }
+                    else
+                    {
+                        liveMatchEntity = new LiveMatchEntity
+                        {
+                            Id = matchEntity.Id,
+                            SportId = matchEntity.SportId,
+                            Language = matchEntity.Language,
+                            Value = matchEntity.Value,
+                            LeagueId = matchEntity.LeagueId,
+                            EventDate = matchEntity.EventDate.ToUniversalTime(),
+                            CreatedTime = DateTime.UtcNow,
+                            ModifiedTime = DateTime.UtcNow
+                        };
 
-                    await dynamicRepository.InsertOrUpdate(liveMatchEntity, matchId, language);
+                        dynamicRepository.Update(liveMatchEntity);
+                    }
                 }
                 else
                 {
-                    await dynamicRepository.InsertOrUpdate(matchEntity, matchId, language);
+                    dynamicRepository.Update(matchEntity);
+                    
+                    //TODO delete live match???
                 }
+
+                await dynamicRepository.Save();
 
                 return match;
             }
