@@ -92,7 +92,9 @@
 
         private async Task PushChangeToClients(Dictionary<string, MatchPushEvent> pushEvents)
         {
-            await logger.InfoAsync(JsonConvert.SerializeObject(pushEvents));
+            var users = hubContext.Clients.All;
+            await logger.InfoAsync("signalR user: " + JsonConvert.SerializeObject(users));
+
             //TODO only push events: period_start, period_end, injury_time_shown, score_change
             await hubContext.Clients.All.SendAsync("PushMatchEvent", SportConstants.SoccerId, pushEvents);
         }
