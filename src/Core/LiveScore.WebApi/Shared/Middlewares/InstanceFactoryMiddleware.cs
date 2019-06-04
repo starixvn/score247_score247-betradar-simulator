@@ -41,10 +41,11 @@
         {
             var serviceProvider = services.BuildServiceProvider();            
             var pushHandlerFactory = serviceProvider.GetService<PushHandlerFactory>();
+            var appSettings = serviceProvider.GetService<IAppSettings>();
 
             var pushListenerContainer = new Dictionary<int, IMatchPushEventListener>
             {
-                { SportConstants.SoccerId, new MatchPushEventListener(pushHandlerFactory) }
+                { SportConstants.SoccerId, new MatchPushEventListener(pushHandlerFactory, appSettings) }
             };
 
             services.AddSingleton((PushListenerFactory)new PushListenerFactoryImpl(pushListenerContainer));

@@ -44,9 +44,12 @@
             try
             {
                 var pushEventDto = JsonConvert.DeserializeObject<MatchPushEventDto>(eventData);
-                var pushEvents = MatchBuilder.BuildPushEvents(pushEventDto);
 
-                await Handle(pushEvents);
+                if (pushEventDto.payload != null)
+                {                    
+                    var pushEvents = MatchBuilder.BuildPushEvents(pushEventDto);
+                    await Handle(pushEvents);
+                }                
             }
             catch (Exception ex)
             {
