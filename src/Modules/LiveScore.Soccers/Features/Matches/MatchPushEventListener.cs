@@ -1,6 +1,7 @@
 ﻿namespace LiveScore.Soccers.Features.Matches
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Net;
@@ -14,8 +15,11 @@
     {
         private const string FeatureKey = "Push";
         private const int MillisecondsTimeout = 5 * 1000;
+
         private readonly IMatchPushEventHandler pushHandler;
         private readonly IAppSettings appSettings;
+
+        private Dictionary<string, HttpWebRequest> Requests;
 
         public MatchPushEventListener(
             IMatchPushEventHandler pushHandler,
@@ -23,6 +27,8 @@
         {
             this.pushHandler = pushHandler;
             this.appSettings = appSettings;
+
+            Requests = new Dictionary<string, HttpWebRequest>();
         }
 
         public async Task<bool> Start(byte sportId)
