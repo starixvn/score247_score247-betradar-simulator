@@ -1,12 +1,8 @@
 ﻿namespace LiveScore.Jobs
-{
-    using System;
-    using System.Diagnostics;
-    using System.IO;
-    using System.Net;
+{   
     using System.Threading.Tasks;
-    using Hangfire;
-    using LiveScore.Shared;
+    using Hangfire; 
+    using LiveScore.Shared.Factories;
 
     public interface IMatchPushEventListenerJob
     {
@@ -15,14 +11,13 @@
 
     public class MatchPushEventListenerJob : IMatchPushEventListenerJob
     {
-        private const int MillisecondsTimeout = 30 * 1000;
         private readonly IBackgroundJobClient backgroundJob;
-        private readonly PushHandlerFactory handlerFactory;
+        private readonly PushListenerFactory listenerFactory;
 
-        public MatchPushEventListenerJob(IBackgroundJobClient backgroundJob, PushHandlerFactory handlerFactory)
+        public MatchPushEventListenerJob(IBackgroundJobClient backgroundJob, PushListenerFactory listenerFactory)
         {
             this.backgroundJob = backgroundJob;
-            this.handlerFactory = handlerFactory;
+            this.listenerFactory = listenerFactory;
         }
 
         public async Task StartListeningPushEvent(byte sportId)
@@ -38,45 +33,7 @@
 
         private async Task<bool> ListenPushEvent(byte sportId)
         {
-            // TODO: generate request for each sport
-            // TODO: generate request for regions
-            var host = "https://api.sportradar.com";
-            var apiSetting = "soccer-xt3/other/stream/events/subscribe?format=json&api_key=";
-            var key = "npc9md73nrwhykuepets3nqf";
-
-            var req = (HttpWebRequest)WebRequest.Create($"{host}/{apiSetting}{key}");
-            req.AllowAutoRedirect = false;
-            WebResponse reply;
-            var pushEventHandler = handlerFactory.CreateMatchPushEventHandler(sportId);
-
-            try
-            {
-                reply = (HttpWebResponse)req.GetResponse();
-            }
-            catch (WebException e)
-            {
-
-                reply = e.Response;
-                req = (HttpWebRequest)WebRequest.Create(reply.Headers["Location"]);
-                req.KeepAlive = true;
-                reply = (HttpWebResponse)req.GetResponse();
-            }
-
-            var stream = reply.GetResponseStream();
-            var reader = new StreamReader(stream);
-            var pushEvent = string.Empty;
-
-            do
-            {
-                pushEvent = reader.ReadLine();                
-                await pushEventHandler.OnReceive(pushEvent);
-                System.Threading.Thread.Sleep(MillisecondsTimeout);
-
-            } while (pushEvent.Length > 0);
-
-            //TODO write logs for exception
-
-            return true;
+            return await listenerFactory.CreatePushEventListener(sportId).Start(sportId);
         }
     }
 }

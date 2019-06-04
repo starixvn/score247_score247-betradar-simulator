@@ -11,6 +11,7 @@
     using Microsoft.Extensions.DependencyInjection;
     using LiveScore.Soccers.Features.Matches;
     using Fanex.Logging;
+    using LiveScore.Shared.Factories;
 
     public static class InstanceFactoryMiddleware
     {
@@ -34,6 +35,19 @@
             };
 
             services.AddSingleton((PushHandlerFactory)new PushHandlerFactoryImpl(pushHandlerContainer));
+        }
+
+        public static void RegisterPushListenerFactory(this IServiceCollection services)
+        {
+            var serviceProvider = services.BuildServiceProvider();            
+            var pushHandlerFactory = serviceProvider.GetService<PushHandlerFactory>();
+
+            var pushListenerContainer = new Dictionary<int, IMatchPushEventListener>
+            {
+                { SportConstants.SoccerId, new MatchPushEventListener(pushHandlerFactory) }
+            };
+
+            services.AddSingleton((PushListenerFactory)new PushListenerFactoryImpl(pushListenerContainer));
         }
 
         private static Dictionary<int, IDictionary<DataProvider, IMatchDataAccess>> BuildMatchDataAccessContainer(IServiceCollection services)
