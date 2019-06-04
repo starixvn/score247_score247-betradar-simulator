@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Fanex.Logging;
     using LiveScore.Features.Matches;
     using LiveScore.Features.Matches.Models;
     using LiveScore.Shared;
@@ -11,7 +12,7 @@
     using LiveScore.Shared.Models;
     using LiveScore.Soccers.Shared.Dtos;
     using LiveScore.Soccers.Shared.ModelBuilders;
-    using Microsoft.AspNetCore.SignalR;
+    using Microsoft.AspNetCore.SignalR;    
     using Newtonsoft.Json;
 
     public class MatchPushEventHandler : IMatchPushEventHandler
@@ -26,13 +27,16 @@
 
         private readonly IMatchService matchService;
         private readonly IHubContext<MatchHub> hubContext;
+        private readonly ILogger logger;
 
         public MatchPushEventHandler(
             IMatchService matchService,
-            IHubContext<MatchHub> hubContext)
+            IHubContext<MatchHub> hubContext,
+            ILogger logger)
         {
             this.matchService = matchService;
             this.hubContext = hubContext;
+            this.logger = logger;
         }
 
         public async Task OnReceive(string eventData)
@@ -44,9 +48,9 @@
 
                 await Handle(pushEvents);
             }
-            catch
+            catch (Exception ex)
             {
-                Console.WriteLine(eventData);
+                await logger.ErrorAsync($"Error occurs OnReceive {eventData}. Exception: {ex.Message}");
             }
         }
 

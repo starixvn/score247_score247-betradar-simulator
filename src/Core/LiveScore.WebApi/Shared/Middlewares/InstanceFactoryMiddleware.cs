@@ -10,6 +10,7 @@
     using Microsoft.AspNetCore.SignalR;
     using Microsoft.Extensions.DependencyInjection;
     using LiveScore.Soccers.Features.Matches;
+    using Fanex.Logging;
 
     public static class InstanceFactoryMiddleware
     {
@@ -25,10 +26,11 @@
             var serviceProvider = services.BuildServiceProvider();
             var hubContext = serviceProvider.GetService<IHubContext<MatchHub>>();
             var matchService = serviceProvider.GetService<IMatchService>();
+            var logger = serviceProvider.GetService<ILogger>();
 
             var pushHandlerContainer = new Dictionary<int, IMatchPushEventHandler>
             {
-                { SportConstants.SoccerId, new MatchPushEventHandler(matchService, hubContext) }
+                { SportConstants.SoccerId, new MatchPushEventHandler(matchService, hubContext, logger) }
             };
 
             services.AddSingleton((PushHandlerFactory)new PushHandlerFactoryImpl(pushHandlerContainer));

@@ -9,9 +9,9 @@
             return x.Id == y.Id;
         }
 
-        public int GetHashCode(IMatch match)
+        public int GetHashCode(IMatch obj)
         {
-            return match.Id.GetHashCode();
+            return obj == null ? 0 : obj.Id.GetHashCode();
         }
     }
 }

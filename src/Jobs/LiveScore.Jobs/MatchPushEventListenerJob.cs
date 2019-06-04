@@ -31,6 +31,7 @@
 
             if (isFail)
             {
+                //TODO call fetch live match results job
                 backgroundJob.Enqueue(() => StartListeningPushEvent(sportId));
             }
         }
@@ -38,7 +39,12 @@
         private async Task<bool> ListenPushEvent(byte sportId)
         {
             // TODO: generate request for each sport
-            var req = (HttpWebRequest)WebRequest.Create("https://api.sportradar.com/soccer-xt3/other/stream/events/subscribe?api_key=npc9md73nrwhykuepets3nqf&format=json");
+            // TODO: generate request for regions
+            var host = "https://api.sportradar.com";
+            var apiSetting = "soccer-xt3/other/stream/events/subscribe?format=json&api_key=";
+            var key = "npc9md73nrwhykuepets3nqf";
+
+            var req = (HttpWebRequest)WebRequest.Create($"{host}/{apiSetting}{key}");
             req.AllowAutoRedirect = false;
             WebResponse reply;
             var pushEventHandler = handlerFactory.CreateMatchPushEventHandler(sportId);
@@ -62,13 +68,13 @@
 
             do
             {
-                pushEvent = reader.ReadLine();
-                Debug.WriteLine(pushEvent);
-                Console.WriteLine(pushEvent);
+                pushEvent = reader.ReadLine();                
                 await pushEventHandler.OnReceive(pushEvent);
                 System.Threading.Thread.Sleep(MillisecondsTimeout);
 
             } while (pushEvent.Length > 0);
+
+            //TODO write logs for exception
 
             return true;
         }

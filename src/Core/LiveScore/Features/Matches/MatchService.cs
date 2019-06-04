@@ -46,6 +46,8 @@
             TimeSpan clientTimeZone,
             string language)
         {
+            var matches = Enumerable.Empty<IMatch>();
+
             if (sportId <= 0
                 || from > to
                 || from == DateTime.MinValue
@@ -68,9 +70,11 @@
 
             var liveMatches = await GetLiveMatches(sportId, language);
 
-            var matches = liveMatches
-                .Union(normalMatches, new MatchComparer())
-                .Select(match => match.ChangeEventDateByTimeZone(clientTimeZone));
+            matches = liveMatches.Any()
+                ? liveMatches
+                   .Union(normalMatches, new MatchComparer())
+                   .Select(match => match.ChangeEventDateByTimeZone(clientTimeZone))
+                : normalMatches.Select(match => match.ChangeEventDateByTimeZone(clientTimeZone));
 
             return matches;
         }
