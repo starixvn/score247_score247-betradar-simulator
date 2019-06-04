@@ -96,7 +96,7 @@
             await logger.InfoAsync("signalR user: " + JsonConvert.SerializeObject(users));
 
             //TODO only push events: period_start, period_end, injury_time_shown, score_change
-            await hubContext.Clients.All.SendAsync("PushMatchEvent", SportConstants.SoccerId, pushEvents);
+            await hubContext.Clients.All.SendAsync("PushMatchEvent", SportConstants.SoccerId.ToString(), pushEvents);
         }
 
         private async Task UpdateMatch(string matchId, MatchPushEvent pushEvent)
