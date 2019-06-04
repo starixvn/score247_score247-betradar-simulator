@@ -20,5 +20,7 @@
         Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines);
 
         Task<bool> AddResult(string matchId, IMatchResult matchResult);
+
+        Task<IMatch> GetMatch(int sportId, string matchId, string language);
     }
 }

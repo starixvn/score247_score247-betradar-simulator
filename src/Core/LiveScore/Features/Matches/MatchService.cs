@@ -24,6 +24,8 @@
         Task<bool> AddTimelines(int sportId, string matchId, IEnumerable<ITimeline> timelines);
 
         Task<bool> AddResult(int sportId, string matchId, IMatchResult matchResult);
+
+        Task<IMatch> GetMatch(int sportId, string matchId, string language);
     }
 
     public class MatchService : IMatchService
@@ -166,5 +168,12 @@
         }
 
         private static string GetLiveMatchCacheKey(int sportId, string language) => $"LiveMatch_{sportId}_{language}";
+
+        public Task<IMatch> GetMatch(int sportId, string matchId, string language)
+        {                        
+            var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
+
+            return matchDataAccess.GetMatch(sportId, matchId, language);
+        }
     }
 }

@@ -29,5 +29,14 @@ namespace LiveScore.WebApi.Features.Matches
         {  
             return await matchService.GetMatches(sportId, from, to, timeZone, language);
         }
+
+        [HttpGet("GetMatch")]
+        public async Task<IMatch> GetMatch(
+            int sportId,
+            string matchId,
+            string language = "en-US")
+        {
+            return await matchService.GetMatch(sportId, matchId, language);
+        }
     }
 }

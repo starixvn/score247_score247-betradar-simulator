@@ -142,5 +142,12 @@
 
             return true;
         }
+
+        public async Task<IMatch> GetMatch(int sportId, string matchId, string language)
+        {
+            var matchEntity = await dynamicRepository.GetById<MatchEntity>(matchId, language);
+
+            return JsonConvert.DeserializeObject<Match>(matchEntity.Value);
+        }
     }
 }

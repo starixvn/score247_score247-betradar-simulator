@@ -214,5 +214,10 @@
         {
             throw new NotImplementedException();
         }
+
+        public Task<IMatch> GetMatch(int sportId, string matchId, string language)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

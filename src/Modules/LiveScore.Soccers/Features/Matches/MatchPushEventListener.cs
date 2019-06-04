@@ -39,7 +39,6 @@
                 .Where(x => x.Name.Equals("other")); // TODO: remove specific other region
 
             //TODO loop for endpoints and regions
-
             var endpoint = endpointSettings.First();
             var region = regions.First();
 
@@ -57,7 +56,6 @@
             }
             catch (WebException e)
             {
-
                 reply = e.Response;
                 req = (HttpWebRequest)WebRequest.Create(new Uri(reply.Headers["Location"]));
                 req.KeepAlive = true;
@@ -77,7 +75,6 @@
             } while (pushEvent.Length > 0);
 
             //TODO write logs for exception
-
 
             return true;
         }
