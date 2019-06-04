@@ -6,16 +6,17 @@ namespace LiveScore.WebApi.Features.Notifications
     using LiveScore.Features.Matches.Models;
     using Microsoft.AspNetCore.Mvc;
     using LiveScore.Shared;
+    using LiveScore.Features.Matches;
 
     [Route("api/[controller]")]
     [ApiController]
     public class NotificationController : ControllerBase
     {
-        private PushHandlerFactory pushHandlerFactory;
+        private IMatchPushEventHandler pushEventHandler;
 
-        public NotificationController(PushHandlerFactory pushHandlerFactory)
+        public NotificationController(IMatchPushEventHandler pushEventHandler)
         {
-            this.pushHandlerFactory = pushHandlerFactory;
+            this.pushEventHandler = pushEventHandler;
         }
 
         [HttpPost("PushMatchEvent")]
@@ -25,8 +26,6 @@ namespace LiveScore.WebApi.Features.Notifications
         {
             if (sportId > 0 && pushEvents != null)
             {
-                var pushEventHandler = pushHandlerFactory.CreateMatchPushEventHandler(sportId);
-
                 await pushEventHandler.Handle(pushEvents);
             }
         }
