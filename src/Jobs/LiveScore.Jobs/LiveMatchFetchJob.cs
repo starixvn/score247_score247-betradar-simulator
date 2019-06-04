@@ -100,7 +100,9 @@
                         Language = matchEntity.Language,
                         Value = matchEntity.Value,
                         LeagueId = matchEntity.LeagueId,
-                        EventDate = matchEntity.EventDate.ToUniversalTime()
+                        EventDate = matchEntity.EventDate.ToUniversalTime(),
+                        CreatedTime = matchEntity.CreatedTime.ToUniversalTime(),
+                        ModifiedTime = matchEntity.ModifiedTime.ToUniversalTime()
                     };
 
                     await repository.Insert(liveMatchEntity);
