@@ -53,7 +53,7 @@
                 || from == DateTime.MinValue
                 || to == DateTime.MinValue)
             {
-                return await Task.FromResult(Enumerable.Empty<IMatch>());
+                return await Task.FromResult(matches);
             }
 
             var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);

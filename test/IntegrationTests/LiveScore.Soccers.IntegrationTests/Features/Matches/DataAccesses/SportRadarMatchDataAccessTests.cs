@@ -6,15 +6,12 @@
     public class SportRadarMatchDataAccessTests
     {
         
-        private readonly SportRadarMatchDataAccess dataAccess;
-
-
         public SportRadarMatchDataAccessTests()
         {
             
         }
 
-        public async Task GetLiveMatches_Soccer_SuccessResponse()
+        public void GetLiveMatches_Soccer_SuccessResponse()
         {
 
         }

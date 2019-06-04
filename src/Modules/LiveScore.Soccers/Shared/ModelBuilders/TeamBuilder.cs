@@ -6,7 +6,7 @@ using LiveScore.Shared.Models.Dtos;
 
 namespace LiveScore.Soccers.Shared.ModelBuilders
 {
-    public class TeamBuilder
+    public static class TeamBuilder
     {
         private const string Home = "home";
 

@@ -58,7 +58,11 @@
             var liveMatchIds = new List<string>();
             var dataAccess = instanceFactory.CreateMatchDataAccess(sportId, DataProvider.ThirdPartyApi);
 
-            var matches = await dataAccess.GetMatches(sportId, from, to, Enumeration.FromValue<Language>(language).DisplayName.ToLowerInvariant());
+            var matches = await dataAccess.GetMatches(
+                sportId, 
+                from.ToUniversalTime(), 
+                to.ToUniversalTime(), 
+                Enumeration.FromValue<Language>(language).DisplayName.ToLowerInvariant());
 
             foreach (var match in matches)
             {

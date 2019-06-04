@@ -28,17 +28,15 @@
             this.restClient = restClient;
         }
 
-        public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime from, DateTime to, string language)
+        public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime utcFrom, DateTime utcTo, string language)
         {
             var sportSetting = ValidateSettings(sportId, FeatureKey);
 
             var matches = new List<Match>();
-            var fromUtc = from.ToUniversalTime();
-            var toUtc = to.ToUniversalTime();
             var today = DateTime.Now.ToUniversalTime();
             const int dayIncrementIndex = 1;
 
-            for (var date = fromUtc.Date; date.Date <= toUtc.Date; date = date.AddDays(dayIncrementIndex))
+            for (var date = utcFrom.Date; date.Date <= utcTo.Date; date = date.AddDays(dayIncrementIndex))
             {
                 matches.AddRange(
                     date >= today.Date

@@ -5,7 +5,7 @@ using LiveScore.Shared.Models.Dtos;
 
 namespace LiveScore.Soccers.Shared.ModelBuilders
 {
-    public class LeagueBuilder
+    public static class LeagueBuilder
     {
         public static LeagueRound BuildLeagueRound(Tournament_Round leagueRoundDto)
         {
