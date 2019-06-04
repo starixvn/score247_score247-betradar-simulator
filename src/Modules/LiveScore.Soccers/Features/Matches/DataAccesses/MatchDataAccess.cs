@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Fanex.Logging;
     using LiveScore.Features.Matches;
     using LiveScore.Features.Matches.Models;
     using LiveScore.Shared.Database;
@@ -13,10 +14,14 @@
     public class MatchDataAccess : IMatchDataAccess
     {
         private readonly IDynamicRepository dynamicRepository;
+        private readonly ILogger logger;
 
-        public MatchDataAccess(IDynamicRepository dynamicRepository)
+        public MatchDataAccess(
+            IDynamicRepository dynamicRepository,
+            ILogger logger)
         {
             this.dynamicRepository = dynamicRepository;
+            this.logger = logger;
         }
 
         public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime utcFrom, DateTime utcTo, string language)
@@ -72,9 +77,10 @@
 
                 return match;
             }
-            catch
-            {
-                // Write log
+            catch(Exception ex)
+            {                
+                await logger.ErrorAsync($"AddOrUpdateMatch {matchId}", ex);
+
                 return null;
             }
         }
@@ -90,9 +96,10 @@
 
                 return await dynamicRepository.Delete<MatchEntity>(matchId, language).Save() > 0;
             }
-            catch
+            catch (Exception ex)
             {
-                // Write log
+                await logger.ErrorAsync($"DeleteMatch {matchId}", ex);
+
                 return false;
             }
         }

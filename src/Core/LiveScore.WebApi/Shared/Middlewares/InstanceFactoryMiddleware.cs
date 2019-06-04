@@ -67,10 +67,11 @@
             var repository = serviceProvider.GetService<IDynamicRepository>();
             var appSettings = serviceProvider.GetService<IAppSettings>();
             var restClient = serviceProvider.GetService<IRestClient>();
+            var logger = serviceProvider.GetService<ILogger>();
 
             return new Dictionary<DataProvider, IMatchDataAccess>
             {
-                { DataProvider.Database, new Soccers.Features.Matches.DataAccesses.MatchDataAccess(repository) },
+                { DataProvider.Database, new Soccers.Features.Matches.DataAccesses.MatchDataAccess(repository, logger) },
                 { DataProvider.ThirdPartyApi, new Soccers.Features.Matches.DataAccesses.SportRadarMatchDataAccess(appSettings, restClient) },
             };
         }

@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
+    using Fanex.Logging;
     using LiveScore.Shared.Database;
     using LiveScore.Shared.Database.Entities;
     using LiveScore.Soccers.Features.Matches.DataAccesses;
@@ -21,7 +22,9 @@
             dynamicRepository = Substitute.For<IDynamicRepository>();
             dynamicRepository.Query(Arg.Any<Func<MatchEntity, bool>>()).Returns(new List<MatchEntity> { StubMatchEntity() });
 
-            matchDataAccess = new MatchDataAccess(dynamicRepository);
+            var logger = Substitute.For<ILogger>();
+
+            matchDataAccess = new MatchDataAccess(dynamicRepository, logger);
         }
 
         [Fact]
