@@ -29,9 +29,10 @@
         [Fact]
         public async Task GetMatches_EmptySportSettings_ThrowsException()
         {
+            appSettings.DataProviderSettings.Returns(new StubDataProviderSettings());
 
             await Assert.ThrowsAsync<InvalidOperationException>(() => matchDataAccess.GetMatches(
-                1,
+                3,
                 DateTime.Now,
                 DateTime.Now.AddDays(1),
                 "en"
@@ -539,7 +540,14 @@
 
         public SportSetting GetSportSetting(int Id)
         {
-            return Sports.FirstOrDefault(sport => sport.Id == Id);
+            var sportSetting = Sports.FirstOrDefault(sport => sport.Id == Id);
+
+            if (sportSetting == null)
+            {
+                throw new InvalidOperationException($"Missing Setting for sportId {Id}");
+            }
+
+            return sportSetting;
         }
     }
 }
