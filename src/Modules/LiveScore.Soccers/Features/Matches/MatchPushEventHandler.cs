@@ -12,7 +12,7 @@
     using LiveScore.Shared.Models;
     using LiveScore.Soccers.Shared.Dtos;
     using LiveScore.Soccers.Shared.ModelBuilders;
-    using Microsoft.AspNetCore.SignalR;    
+    using Microsoft.AspNetCore.SignalR;
     using Newtonsoft.Json;
 
     public class MatchPushEventHandler : IMatchPushEventHandler
@@ -46,10 +46,10 @@
                 var pushEventDto = JsonConvert.DeserializeObject<MatchPushEventDto>(eventData);
 
                 if (pushEventDto.payload != null)
-                {                    
+                {
                     var pushEvents = MatchBuilder.BuildPushEvents(pushEventDto);
                     await Handle(pushEvents);
-                }                
+                }
             }
             catch (Exception ex)
             {
@@ -69,10 +69,11 @@
                 GenerateMatchTimeForLiveMatch(pushEvents[matchId]);
             }
 
-            var pushChangeToClientsTask = Task.Run(() => PushChangeToClients(pushEvents));
-            var updateDatabaseTask = Task.Run(() => UpdateDatabase(pushEvents));
+            await PushChangeToClients(pushEvents);
+            //var pushChangeToClientsTask = Task.Run(() => PushChangeToClients(pushEvents));
+            //var updateDatabaseTask = Task.Run(() => UpdateDatabase(pushEvents));
 
-            await Task.WhenAll(pushChangeToClientsTask, updateDatabaseTask);
+            //await Task.WhenAll(pushChangeToClientsTask, updateDatabaseTask);
         }
 
         private async Task UpdateDatabase(Dictionary<string, MatchPushEvent> pushEvents)
@@ -89,6 +90,7 @@
 
         private async Task PushChangeToClients(Dictionary<string, MatchPushEvent> pushEvents)
         {
+            await logger.InfoAsync(JsonConvert.SerializeObject(pushEvents));
             //TODO only push events: period_start, period_end, injury_time_shown, score_change
             await hubContext.Clients.All.SendAsync("PushMatchEvent", SportConstants.SoccerId, pushEvents);
         }
