@@ -30,8 +30,8 @@
 
         public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime utcFrom, DateTime utcTo, string language)
         {
-            var sportSetting = ValidateSettings(sportId, FeatureKey);
-
+            var sportSetting = appSettings.DataProviderSettings.GetSportSetting(sportId);
+            
             var matches = new List<Match>();
             var today = DateTime.Now.ToUniversalTime();
             const int dayIncrementIndex = 1;
@@ -51,11 +51,7 @@
         {
             var matches = new List<Match>();
 
-            var endpointSettings = sportSetting
-                .EndPoints
-                .FirstOrDefault(x => x.Name.Equals(FeatureKey))
-                .EndPointSettings
-                .Where(x => x.IsPast);
+            var endpointSettings = sportSetting.GetEndPointSetting(FeatureKey).Where(x => x.IsPast);
 
             var regions = sportSetting.Regions;
 
@@ -76,11 +72,7 @@
         {
             var matches = new List<Match>();
 
-            var endpointSettings = sportSetting
-                .EndPoints
-                .FirstOrDefault(x => x.Name.Equals(FeatureKey))
-                .EndPointSettings
-                .Where(x => !x.IsPast);
+            var endpointSettings = sportSetting.GetEndPointSetting(FeatureKey).Where(x => !x.IsPast);
 
             var regions = sportSetting.Regions;
 
@@ -138,12 +130,8 @@
         {
             var matches = new List<Match>();
 
-            var sportSetting = ValidateSettings(sportId, LiveMatchFeatureKey);
-
-            var endpointSettings = sportSetting
-               .EndPoints
-               .FirstOrDefault(x => x.Name.Equals(LiveMatchFeatureKey))
-               .EndPointSettings;
+            var sportSetting = appSettings.DataProviderSettings.GetSportSetting(sportId);
+            var endpointSettings = sportSetting.GetEndPointSetting(LiveMatchFeatureKey);
 
             var regions = sportSetting.Regions;
 
@@ -169,25 +157,6 @@
             }
 
             return matches;
-        }
-
-        private SportSetting ValidateSettings(int sportId, string key)
-        {
-            var sportSetting = appSettings
-                .DataProviderSettings
-                .Sports.FirstOrDefault(sport => sport.Id == sportId);
-
-            if (sportSetting == null)
-            {
-                throw new InvalidOperationException($"Missing Setting for sportId {sportId}");
-            }
-
-            if (!sportSetting.EndPoints.Any(x => x.Name.Equals(key)))
-            {
-                throw new InvalidOperationException($"Missing endpoint settings for {key}");
-            }
-
-            return sportSetting;
         }
 
         public Task<IMatch> AddOrUpdateMatch(string matchId, string language, MatchPushEvent pushEvent, bool isLive = false)

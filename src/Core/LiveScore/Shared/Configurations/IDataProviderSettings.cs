@@ -10,5 +10,7 @@
 #pragma warning restore S3996 // URI properties should not be strings
 
         IEnumerable<SportSetting> Sports { get; }
+
+        SportSetting GetSportSetting(int Id);
     }
 }

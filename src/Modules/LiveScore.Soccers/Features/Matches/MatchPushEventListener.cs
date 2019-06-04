@@ -27,13 +27,8 @@
 
         public async Task<bool> Start(byte sportId)
         {
-
-            var sportSetting = ValidateSettings(sportId, FeatureKey);
-
-            var endpointSettings = sportSetting
-                .EndPoints
-                .FirstOrDefault(x => x.Name.Equals(FeatureKey))
-                .EndPointSettings;
+            var sportSetting = appSettings.DataProviderSettings.GetSportSetting(sportId);
+            var endpointSettings = sportSetting.GetEndPointSetting(FeatureKey);
 
             var regions = sportSetting.Regions
                 .Where(x => x.Name.Equals("other")); // TODO: remove specific other region
@@ -71,25 +66,6 @@
             }
 
             return true;
-        }
-
-        public SportSetting ValidateSettings(int sportId, string key)
-        {
-            var sportSetting = appSettings
-                .DataProviderSettings
-                .Sports.FirstOrDefault(sport => sport.Id == sportId);
-
-            if (sportSetting == null)
-            {
-                throw new InvalidOperationException($"Missing Setting for sportId {sportId}");
-            }
-
-            if (!sportSetting.EndPoints.Any(x => x.Name.Equals(key)))
-            {
-                throw new InvalidOperationException($"Missing endpoint settings for {key}");
-            }
-
-            return sportSetting;
         }
     }
 }

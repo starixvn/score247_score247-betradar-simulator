@@ -536,5 +536,10 @@
                     Regions = new List<Region>{ }
                 }
         };
+
+        public SportSetting GetSportSetting(int Id)
+        {
+            return Sports.FirstOrDefault(sport => sport.Id == Id);
+        }
     }
 }

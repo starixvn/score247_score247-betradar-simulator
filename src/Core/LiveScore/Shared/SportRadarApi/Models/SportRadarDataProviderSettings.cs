@@ -1,6 +1,8 @@
 ﻿namespace LiveScore.Shared.SportRadarApi.Models
 {
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
     using LiveScore.Shared.Configurations;
 
     public class SportRadarDataProviderSettings : IDataProviderSettings
@@ -10,6 +12,18 @@
 #pragma warning restore S3996 // URI properties should not be strings
 
         public IEnumerable<SportSetting> Sports { get; set; }
+
+        public SportSetting GetSportSetting(int Id)
+        {
+            var sportSetting = Sports.FirstOrDefault(sport => sport.Id == Id);
+
+            if (sportSetting == null)
+            {
+                throw new InvalidOperationException($"Missing Setting for sportId {Id}");
+            }
+
+            return sportSetting;
+        }
     }
 
     public class SportSetting
@@ -23,6 +37,18 @@
         public IEnumerable<Region> Regions { get; set; }
 
         public int MaxDaysStoredData { get; set; }
+
+        public IEnumerable<EndPointSetting> GetEndPointSetting(string key)
+        {
+            var endpoint = EndPoints.FirstOrDefault(x => x.Name.Equals(key));
+
+            if (endpoint == null)
+            {
+                throw new InvalidOperationException($"Missing endpoint settings for {key}");
+            }
+
+            return endpoint.EndPointSettings;
+        }
     }
 
     public class EndPoint
