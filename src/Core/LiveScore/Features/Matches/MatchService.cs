@@ -170,7 +170,13 @@
         private static string GetLiveMatchCacheKey(int sportId, string language) => $"LiveMatch_{sportId}_{language}";
 
         public Task<IMatch> GetMatch(int sportId, string matchId, string language)
-        {                        
+        {
+            if (sportId <= 0
+                || string.IsNullOrWhiteSpace(matchId))
+            {
+                throw new ArgumentException("Missing sportId or matchId argument");
+            }
+
             var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
 
             return matchDataAccess.GetMatch(sportId, matchId, language);
