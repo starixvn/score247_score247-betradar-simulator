@@ -64,6 +64,8 @@
                         liveMatchEntity.Value = JsonConvert.SerializeObject(match);
                         liveMatchEntity.CreatedTime = DateTime.UtcNow;
                         liveMatchEntity.ModifiedTime = DateTime.UtcNow;
+
+                        dynamicRepository.Update(liveMatchEntity);
                     }
                     else
                     {
@@ -79,7 +81,7 @@
                             ModifiedTime = DateTime.UtcNow
                         };
 
-                        dynamicRepository.Update(liveMatchEntity);
+                        await dynamicRepository.Insert(liveMatchEntity);
                     }
                 }
                 else
