@@ -15,6 +15,13 @@
     using Microsoft.AspNetCore.SignalR;
     using Newtonsoft.Json;
 
+    public interface IMatchPushEventHandler
+    {
+        Task OnReceive(string eventData);
+
+        Task Handle(Dictionary<string, MatchPushEvent> pushEvents);
+    }
+
     public class MatchPushEventHandler : IMatchPushEventHandler
     {
         private static readonly IDictionary<string, int> PeriodStartTimes = new Dictionary<string, int>
@@ -69,13 +76,10 @@
                 GenerateMatchTimeForLiveMatch(pushEvents[matchId]);
             }
 
-            await PushChangeToClients(pushEvents);
-            await UpdateDatabase(pushEvents);
+            var pushChangeToClientsTask = Task.Run(() => PushChangeToClients(pushEvents));
+            var updateDatabaseTask = Task.Run(() => UpdateDatabase(pushEvents));
 
-            //var pushChangeToClientsTask = Task.Run(() => PushChangeToClients(pushEvents));
-            //var updateDatabaseTask = Task.Run(() => UpdateDatabase(pushEvents));
-
-            //await Task.WhenAll(pushChangeToClientsTask, updateDatabaseTask);
+            await Task.WhenAll(pushChangeToClientsTask, updateDatabaseTask);
         }
 
         private async Task UpdateDatabase(Dictionary<string, MatchPushEvent> pushEvents)
@@ -92,9 +96,6 @@
 
         private async Task PushChangeToClients(Dictionary<string, MatchPushEvent> pushEvents)
         {
-            var users = hubContext.Clients.All;
-            await logger.InfoAsync("signalR user: " + JsonConvert.SerializeObject(users));
-
             //TODO only push events: period_start, period_end, injury_time_shown, score_change
             await hubContext.Clients.All.SendAsync("PushMatchEvent", SportConstants.SoccerId.ToString(), pushEvents);
         }

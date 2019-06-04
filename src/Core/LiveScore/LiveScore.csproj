@@ -33,7 +33,6 @@
         <Folder Include="Shared\Database\Entities\">
         </Folder>
         <Folder Include="Shared\Factories\">
-          <DependentUpon>Factories</DependentUpon>
         </Folder>
     </ItemGroup>
 </Project>
