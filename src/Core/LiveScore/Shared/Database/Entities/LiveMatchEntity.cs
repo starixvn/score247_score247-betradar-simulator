@@ -9,7 +9,7 @@
         [Column(TypeName = "jsonb")]
         public string Value { get; set; }
 
-        public DateTime EventDate { get; set; }
+        public DateTimeOffset EventDate { get; set; }
 
         public string LeagueId { get; set; }
 

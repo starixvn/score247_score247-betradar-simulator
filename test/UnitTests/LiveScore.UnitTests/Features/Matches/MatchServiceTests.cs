@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
+using Fanex.Caching;
 namespace LiveScore.UnitTests.Features.Matches
 {
     using System;
@@ -17,7 +18,7 @@ namespace LiveScore.UnitTests.Features.Matches
         private readonly MatchService matchServiceImpl;
         private readonly DataAccessFactory instanceFactory;
         private readonly IMatchDataAccess matchDataAccess;
-        private readonly IMemoryCache memoryCache;
+        private readonly ICacheService cacheService;
 
         public MatchServiceTests()
         {
@@ -25,11 +26,10 @@ namespace LiveScore.UnitTests.Features.Matches
 
             matchDataAccess = Substitute.For<IMatchDataAccess>();
             instanceFactory = Substitute.For<DataAccessFactory>();
-            //memoryCache = Substitute.For<IMemoryCache>();
-
+            cacheService = Substitute.For<ICacheService>();
             instanceFactory.CreateMatchDataAccess(SoccerSportId).Returns(matchDataAccess);
 
-            matchServiceImpl = new MatchService(instanceFactory, memoryCache);
+            matchServiceImpl = new MatchService(instanceFactory, cacheService);
         }
 
         [Theory]

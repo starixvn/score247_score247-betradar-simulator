@@ -10,7 +10,7 @@
 
     public interface IMatch : IEntity<string, string>
     {
-        DateTime EventDate { get; }
+        DateTimeOffset EventDate { get; }
 
         ILeague League { get; }
 
@@ -33,7 +33,7 @@
 
     public class Match : Entity<string, string>, IMatch
     {
-        public DateTime EventDate { get; set; }
+        public DateTimeOffset EventDate { get; set; }
 
         [JsonConverter(typeof(JsonConcreteTypeConverter<IEnumerable<Team>>))]
         public IEnumerable<ITeam> Teams { get; set; }
