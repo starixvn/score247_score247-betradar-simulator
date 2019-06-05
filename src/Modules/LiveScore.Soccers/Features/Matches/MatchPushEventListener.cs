@@ -18,8 +18,8 @@
 
         private readonly IMatchPushEventHandler pushHandler;
         private readonly IAppSettings appSettings;
-
-        private Dictionary<string, HttpWebRequest> Requests;
+                
+        private readonly Dictionary<string, HttpWebRequest> httpRequests;
 
         public MatchPushEventListener(
             IMatchPushEventHandler pushHandler,
@@ -28,7 +28,7 @@
             this.pushHandler = pushHandler;
             this.appSettings = appSettings;
 
-            Requests = new Dictionary<string, HttpWebRequest>();
+            httpRequests = new Dictionary<string, HttpWebRequest>();
         }
 
         public async Task<bool> Start(byte sportId)
@@ -41,8 +41,7 @@
 
             //TODO loop for regions            
             var region = regions.First();
-
-            //TODO ensure only one push channel created
+           
             var req = await CreateSubscribeRequest(endpoint, region);
             var reply = (HttpWebResponse)req.GetResponse();
 
@@ -64,25 +63,31 @@
 
         public async Task<HttpWebRequest> CreateSubscribeRequest(EndPointSetting endpoint, Region region)
         {
-            var formattedEndpoint = $"{appSettings.DataProviderSettings.ApiUrl}{string.Format(endpoint.Path, region.Name, region.PushKey)}";
-
-            HttpClientHandler handler = new HttpClientHandler();
-            handler.AllowAutoRedirect = true;
-            var httpClient = new HttpClient(handler);
-
-            HttpResponseMessage clientResponse = await httpClient.GetAsync(new Uri(formattedEndpoint));
-
-            if (clientResponse.StatusCode == HttpStatusCode.Found)
+            if (!httpRequests.ContainsKey(region.Name))
             {
-                var req = (HttpWebRequest)WebRequest.Create(clientResponse.Headers.Location);
-                req.KeepAlive = true;
+                var formattedEndpoint = $"{appSettings.DataProviderSettings.ApiUrl}{string.Format(endpoint.Path, region.Name, region.PushKey)}";
 
-                return req;
+                HttpClientHandler handler = new HttpClientHandler();
+                handler.AllowAutoRedirect = true;
+                var httpClient = new HttpClient(handler);
+
+                HttpResponseMessage clientResponse = await httpClient.GetAsync(new Uri(formattedEndpoint));
+
+                if (clientResponse.StatusCode == HttpStatusCode.Found)
+                {
+                    var req = (HttpWebRequest)WebRequest.Create(clientResponse.Headers.Location);
+                    req.KeepAlive = true;
+
+                    httpRequests.Add(region.Name, req);
+
+                }
+                else
+                {
+                    throw new InvalidOperationException($"Cannot subscribe {formattedEndpoint}. Status Code: {clientResponse.StatusCode}");
+                }
             }
-            else
-            {
-                throw new InvalidOperationException($"Cannot subscribe {formattedEndpoint}");
-            }
+
+            return httpRequests[region.Name];
         }
     }
 }
