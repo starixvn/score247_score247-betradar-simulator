@@ -21,9 +21,12 @@ namespace LiveScore.UnitTests.Features.Matches
 
         public MatchServiceTests()
         {
+            memoryCache = new MemoryCache(new MemoryCacheOptions { });
+
             matchDataAccess = Substitute.For<IMatchDataAccess>();
             instanceFactory = Substitute.For<DataAccessFactory>();
-            memoryCache = Substitute.For<IMemoryCache>();
+            //memoryCache = Substitute.For<IMemoryCache>();
+
             instanceFactory.CreateMatchDataAccess(SoccerSportId).Returns(matchDataAccess);
 
             matchServiceImpl = new MatchService(instanceFactory, memoryCache);
@@ -86,6 +89,39 @@ namespace LiveScore.UnitTests.Features.Matches
 
             Assert.True(actualMatches.Any());
             Assert.Equal("11/11/2018 4:04:05 AM", actualMatches.First().EventDate.ToString());
+        }
+
+        [Fact]
+        public async Task GetMatches_HasLiveMatches_ShouldPrioritizeLiveMatches()
+        {
+            var matches = new List<Match>
+            {
+                new Match { Id ="1", Name = "A", EventDate = DateTime.Parse("2018-11-11T03:04:05+00:00") },
+                new Match { Id ="2", Name = "B", EventDate = DateTime.Parse("2018-11-11T03:04:05+00:00") },
+                new Match { Id ="3", Name = "C", EventDate = DateTime.Parse("2018-11-11T03:04:05+00:00") }
+            };
+
+            var liveMatches = new Dictionary<string, IMatch>
+            {
+                { "1", new Match { Id ="1", Name = "A", EventDate = DateTime.Parse("2018-11-11T03:04:05+00:00"), MatchResult = new MatchResult{ MatchTime = 3 } } }
+            };
+
+            memoryCache.GetOrCreate("LiveMatch_1_en", (entry) => { return liveMatches; });
+
+            matchDataAccess
+                .GetMatches(1, Arg.Any<DateTime>(), Arg.Any<DateTime>(), "en")
+                .Returns(Task.FromResult(matches as IEnumerable<IMatch>));
+
+            var actualMatches = (await matchServiceImpl.GetMatches(
+                1,
+                DateTime.Now,
+                DateTime.Now.AddDays(1),
+                new TimeSpan(1, 0, 0),
+                "en")).ToList();
+
+            Assert.True(actualMatches.Any());
+            Assert.Equal(3, actualMatches.Count);
+            Assert.Equal(3, actualMatches.First(x => x.Id.Equals("1")).MatchResult.MatchTime);
         }
     }
 }
