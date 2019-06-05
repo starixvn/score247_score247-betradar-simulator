@@ -74,6 +74,7 @@
                         LeagueId = match.League.Id,
                         Language = language,
                         SportId = sportId,
+                        Region = match.Region,
                         Value = JsonConvert.SerializeObject(match)
                     };
 

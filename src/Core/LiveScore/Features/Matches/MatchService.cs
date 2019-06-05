@@ -184,17 +184,32 @@ namespace LiveScore.Features.Matches
 
         private static string GetLiveMatchCacheKey(int sportId, string language) => $"LiveMatch_{sportId}_{language}";
 
-        public Task<IMatch> GetMatch(int sportId, string matchId, string language)
+        public async Task<IMatch> GetMatch(int sportId, string matchId, string language)
         {
             if (sportId <= 0
                 || string.IsNullOrWhiteSpace(matchId))
             {
                 throw new ArgumentException("Missing sportId or matchId argument");
             }
-
+           
             var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
+            var match = await matchDataAccess.GetMatch(sportId, matchId, language);
 
-            return matchDataAccess.GetMatch(sportId, matchId, language);
+            if (match != null)
+            {
+                //TODO check when final timelines
+                var sportRadarAccess = instanceFactory.CreateMatchDataAccess(sportId, DataProvider.ThirdPartyApi);
+                var timelines = await sportRadarAccess.GetTimelines(sportId, match.Region, matchId, language);
+
+                if (timelines != null && timelines.Any())
+                {
+                    match.TimeLines = timelines.ToList();
+                }
+
+                //TODO update db for final timelines
+            }
+
+            return match;
         }
     }
 }

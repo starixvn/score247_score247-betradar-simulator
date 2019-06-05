@@ -20,7 +20,7 @@
 
         IMatchResult MatchResult { get; }
 
-        IEnumerable<ITimeline> TimeLines { get; }
+        IEnumerable<ITimeline> TimeLines { get; set; }
 
         int Attendance { get; }
 
@@ -29,6 +29,8 @@
         string Referee { get; }
 
         IMatch ChangeEventDateByTimeZone(TimeSpan timeZone);
+
+        string Region { get; }
     }
 
     public class Match : Entity<string, string>, IMatch
@@ -54,6 +56,8 @@
         public IVenue Venue { get; set; }
 
         public string Referee { get; set; }
+
+        public string Region { get; set; }
 
         public IMatch ChangeEventDateByTimeZone(TimeSpan timeZone)
         {

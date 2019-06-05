@@ -11,7 +11,7 @@
 
     public static class MatchBuilder
     {
-        public static Match BuildMatch(Sport_Event sportEvent, Sport_Event_Status sportEventStatusDto = null)
+        public static Match BuildMatch(Sport_Event sportEvent, Sport_Event_Status sportEventStatusDto, string region)
         {
             var match = new Match
             {
@@ -20,7 +20,8 @@
                 Teams = TeamBuilder.BuildTeams(sportEvent),
                 League = LeagueBuilder.BuildLeague(sportEvent.tournament),
                 LeagueRound = LeagueBuilder.BuildLeagueRound(sportEvent.tournament_round),
-                MatchResult = BuildMatchResult(sportEventStatusDto)
+                MatchResult = BuildMatchResult(sportEventStatusDto),
+                Region = region
             };
 
             return match;
