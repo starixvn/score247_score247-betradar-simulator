@@ -199,12 +199,15 @@
             var endpoint = sportSetting.GetEndPointSetting(Feature).First();
             var key = sportSetting.Regions.FirstOrDefault(x => x.Name.Equals(region)).Key;
 
-            var formattedEndpoint = string.Format(endpoint.Path, region, language, matchId, key);
-            var matchTimeline = await restClient.ExecuteGetAsync<MatchTimelineDto>(formattedEndpoint);
-
-            if (matchTimeline.timeline != null && matchTimeline.timeline.Any())
+            if (!string.IsNullOrWhiteSpace(key))
             {
-                matchTimeline.timeline.ToList().ForEach(x => timelines.Add(MatchBuilder.BuildTimeLine(x)));
+                var formattedEndpoint = string.Format(endpoint.Path, region, language, matchId, key);
+                var matchTimeline = await restClient.ExecuteGetAsync<MatchTimelineDto>(formattedEndpoint);
+
+                if (matchTimeline != null && matchTimeline.timeline != null && matchTimeline.timeline.Any())
+                {
+                    matchTimeline.timeline.ToList().ForEach(x => timelines.Add(MatchBuilder.BuildTimeLine(x)));
+                }
             }
 
             return timelines;

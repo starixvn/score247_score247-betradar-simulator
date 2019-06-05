@@ -25,13 +25,15 @@
 
         int AwayScore { get; }
 
-        Player GoalScorer { get; }
+        GoalScorer GoalScorer { get; }
 
         Player Assist { get; }
 
         Player PlayerOut { get; }
 
         Player PlayerIn { get; }
+
+        Player Player { get; }
 
         int InjuryTimeAnnounced { get; }
 
@@ -62,7 +64,7 @@
 
         public int AwayScore { get; set; }
 
-        public Player GoalScorer { get; set; }
+        public GoalScorer GoalScorer { get; set; }
 
         public IEnumerable<Commentary> Commentaries { get; set; }
 
@@ -71,6 +73,8 @@
         public Player PlayerOut { get; set; }
 
         public Player PlayerIn { get; set; }
+
+        public Player Player { get; set; }
 
         public int InjuryTimeAnnounced { get; set; }
 

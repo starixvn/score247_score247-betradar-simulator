@@ -113,7 +113,7 @@ namespace LiveScore.Shared.Models.Dtos
         public string abbreviation { get; set; }
         public string qualifier { get; set; }
         public Statistics1 statistics { get; set; }
-        public IEnumerable<Player> players { get; set; }
+        public IEnumerable<PlayerDto> players { get; set; }
     }
 
     public class Statistics1
@@ -133,7 +133,7 @@ namespace LiveScore.Shared.Models.Dtos
         public int injuries { get; set; }
     }
 
-    public class Player
+    public class PlayerDto
     {
         public string id { get; set; }
         public string name { get; set; }

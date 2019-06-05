@@ -20,10 +20,10 @@ public class MatchTimelineDto
 
 public class TimelineDto
 {    
-    public int id { get; set; }
+    public long id { get; set; }
     public string type { get; set; }
     public DateTime time { get; set; }
-    public IEnumerable<Commentary> commentaries { get; set; }
+    public IEnumerable<CommentaryDto> commentaries { get; set; }
     public int period { get; set; }
     public string period_type { get; set; }
     public string period_name { get; set; }
@@ -36,7 +36,7 @@ public class TimelineDto
     public int away_score { get; set; }
     public Goal_Scorer goal_scorer { get; set; }
     public Assist assist { get; set; }
-    public Player1 player { get; set; }
+    public TimelinePlayer player { get; set; }
     public string outcome { get; set; }
     public Player_Out player_out { get; set; }
     public Player_In player_in { get; set; }
@@ -59,7 +59,7 @@ public class Assist
     public string name { get; set; }
 }
 
-public class Player1
+public class TimelinePlayer
 {
     public string id { get; set; }
     public string name { get; set; }
@@ -77,7 +77,7 @@ public class Player_In
     public string name { get; set; }
 }
 
-public class Commentary
+public class CommentaryDto
 {
     public string text { get; set; }
 }

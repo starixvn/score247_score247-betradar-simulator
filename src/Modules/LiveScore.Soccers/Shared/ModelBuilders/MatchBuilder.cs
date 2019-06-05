@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using LiveScore.Features.Matches.Models;
+    using LiveScore.Features.Teams.Models;
     using LiveScore.Shared.Models;
     using LiveScore.Shared.Models.Dtos;
     using LiveScore.Soccers.Shared.Dtos;
@@ -89,6 +90,12 @@
                 timeline.PeriodType = timelineDto.period_type;
                 timeline.Period = timelineDto.period;
                 timeline.Time = timelineDto.time;
+                timeline.HomeScore = timelineDto.home_score;
+                timeline.AwayScore = timelineDto.away_score;
+                timeline.Commentaries = timelineDto.commentaries?.Select(x => new Commentary { Text = x.text });
+                timeline.GoalScorer = new GoalScorer { Name = timelineDto.goal_scorer?.name, Id = timelineDto.goal_scorer?.id, Method = timelineDto.goal_scorer?.method  };
+                timeline.Assist = new Player { Name = timelineDto.assist?.name, Id = timelineDto.assist?.id };
+                timeline.Player = new Player { Name = timelineDto.player?.name, Id = timelineDto.player?.id };
             }
 
             return timeline;

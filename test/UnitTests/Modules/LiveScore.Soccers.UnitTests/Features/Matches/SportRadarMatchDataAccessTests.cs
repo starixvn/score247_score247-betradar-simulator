@@ -5,6 +5,7 @@
     using LiveScore.Shared.Models.Dtos;
     using LiveScore.Shared.SportRadarApi.Models;
     using LiveScore.Soccers.Features.Matches.DataAccesses;
+    using LiveScore.Soccers.UnitTests.Shared;
     using NSubstitute;
     using System;
     using System.Collections.Generic;
@@ -292,7 +293,7 @@
         public async Task GetLiveMatches_Result_ReturnMatchResult()
         {
             appSettings.DataProviderSettings.Returns(new StubDataProviderSettings());
-            restClient.ExecuteGetAsync<DailyResultDto>(Arg.Is<string>(x=>x.Contains("schedules/live/results.json")))
+            restClient.ExecuteGetAsync<DailyResultDto>(Arg.Is<string>(x => x.Contains("schedules/live/results.json")))
                 .Returns(StubDailyResult());
 
             var matches = await matchDataAccess.GetLiveMatches(
@@ -314,6 +315,113 @@
             Assert.Equal(2, matchPeriod.AwayScore);
             Assert.Equal(1, matchPeriod.Number);
             Assert.Equal("regular_period", matchPeriod.PeriodType.Value);
+        }
+
+        [Fact]
+        public async Task GetTimelines_EmptySportSettings_ThrowsException()
+        {
+            appSettings.DataProviderSettings.Returns(new StubDataProviderSettings());
+
+            await Assert.ThrowsAsync<InvalidOperationException>(() => matchDataAccess.GetTimelines(
+                2,
+                "eu",
+                "sr:match:1",
+                "en"
+                ));
+        }
+
+        [Fact]
+        public async Task GetTimelines_EmptyRegionSettings_ReturnEmpty()
+        {
+            appSettings.DataProviderSettings.Returns(new StubDataProviderSettings());
+
+            var timelines = await matchDataAccess.GetTimelines(
+                1,
+                "eu",
+                "sr:match:1",
+                "en"
+                );
+
+            Assert.Empty(timelines);
+        }
+
+        [Fact]
+        public async Task GetTimelines_EmptyMatchTimelineDto_ReturnEmpty()
+        {
+            appSettings.DataProviderSettings.Returns(new StubDataProviderSettings());
+            restClient.ExecuteGetAsync<MatchTimelineDto>(Arg.Any<string>()).Returns(new MatchTimelineDto());
+
+            var timelines = await matchDataAccess.GetTimelines(
+                1,
+                "eu",
+                "sr:match:1",
+                "en"
+                );
+
+            Assert.Empty(timelines);
+        }
+
+        [Fact]
+        public async Task GetTimelines_MatchTimelineDto_ReturnTimelines()
+        {
+            appSettings.DataProviderSettings.Returns(new StubDataProviderSettings());
+            restClient.ExecuteGetAsync<MatchTimelineDto>(Arg.Any<string>()).Returns(StubTimelines.StubMatchTimeLineDto());
+
+            var timelines = await matchDataAccess.GetTimelines(
+                1,
+                "eu",
+                "sr:match:1",
+                "en"
+                );
+
+            Assert.NotEmpty(timelines);
+            Assert.Equal(8, timelines.Count());
+            Assert.Equal("match_started", timelines.First().Type);
+            Assert.Equal("match_ended", timelines.Last().Type);
+        }
+
+        [Fact]
+        public async Task GetTimelines_MatchTimelineDto_ContainsScoreChange()
+        {
+            appSettings.DataProviderSettings.Returns(new StubDataProviderSettings());
+            restClient.ExecuteGetAsync<MatchTimelineDto>(Arg.Any<string>()).Returns(StubTimelines.StubMatchTimeLineDto());
+
+            var timelines = await matchDataAccess.GetTimelines(
+                1,
+                "eu",
+                "sr:match:1",
+                "en"
+                );
+
+            var scoreChange = timelines.First(x => x.Type.Equals("score_change"));
+
+            Assert.NotNull(scoreChange);
+            Assert.NotEmpty(scoreChange.Commentaries);
+            Assert.NotNull(scoreChange.GoalScorer);
+            Assert.NotNull(scoreChange.Assist);
+            Assert.Equal(1, scoreChange.AwayScore);
+            Assert.Equal(0, scoreChange.HomeScore);
+        }
+
+        [Fact]
+        public async Task GetTimelines_MatchTimelineDto_ContainsYellowCard()
+        {
+            appSettings.DataProviderSettings.Returns(new StubDataProviderSettings());
+            restClient.ExecuteGetAsync<MatchTimelineDto>(Arg.Any<string>()).Returns(StubTimelines.StubMatchTimeLineDto());
+
+            var timelines = await matchDataAccess.GetTimelines(
+                1,
+                "eu",
+                "sr:match:1",
+                "en"
+                );
+
+            var yellowCard = timelines.First(x => x.Type.Equals("yellow_card"));
+
+            Assert.NotNull(yellowCard);
+            Assert.NotEmpty(yellowCard.Commentaries);
+            Assert.NotNull(yellowCard.Player);
+            Assert.Equal("home", yellowCard.Team);
         }
 
         private DailyScheduleDto StubDailySchedule()
@@ -518,7 +626,13 @@
                             Name = "LiveMatch",
                             EndPointSettings = new List<EndPointSetting>
                             {
-                                new EndPointSetting { Path = "soccer-t3/{0}/{1}/schedules/live/results.json?api_key={2}" }                               
+                                new EndPointSetting { Path = "soccer-t3/{0}/{1}/schedules/live/results.json?api_key={2}" }
+                            } },
+                        new EndPoint {
+                            Name = "Timeline",
+                            EndPointSettings = new List<EndPointSetting>
+                            {
+                                new EndPointSetting { Path = "soccer-xt3/{0}/{1}/matches/{2}/timeline.json?api_key={3}" }
                             } }
                     },
                     Regions = new List<Region>
