@@ -22,7 +22,7 @@ namespace LiveScore.UnitTests.Features.Matches
 
         public MatchServiceTests()
         {
-            memoryCache = new MemoryCache(new MemoryCacheOptions { });
+            cacheService = new CacheService();
 
             matchDataAccess = Substitute.For<IMatchDataAccess>();
             instanceFactory = Substitute.For<DataAccessFactory>();
@@ -106,7 +106,7 @@ namespace LiveScore.UnitTests.Features.Matches
                 { "1", new Match { Id ="1", Name = "A", EventDate = DateTime.Parse("2018-11-11T03:04:05+00:00"), MatchResult = new MatchResult{ MatchTime = 3 } } }
             };
 
-            memoryCache.GetOrCreate("LiveMatch_1_en", (entry) => { return liveMatches; });
+            cacheService.GetAsync<Dictionary<string, IMatch>>("LiveMatch_1_en").Returns(liveMatches);
 
             matchDataAccess
                 .GetMatches(1, Arg.Any<DateTime>(), Arg.Any<DateTime>(), "en")
