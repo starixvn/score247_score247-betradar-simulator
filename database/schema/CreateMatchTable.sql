@@ -10,7 +10,9 @@ CREATE TABLE public."Match"
     "SportId" integer NOT NULL DEFAULT 1,
     "LeagueId" text COLLATE pg_catalog."default" NOT NULL DEFAULT ''::text,
     "EventDate" timestamp with time zone,
-    CONSTRAINT "Match_PrimaryKey" PRIMARY KEY ("Id")
+    "CreatedTime" timestamp with time zone,
+    "ModifiedTime" timestamp with time zone,
+    CONSTRAINT "Match_PrimaryKey" PRIMARY KEY ("Id", "Language")
 )
 WITH (
     OIDS = FALSE
@@ -19,3 +21,4 @@ TABLESPACE pg_default;
 
 ALTER TABLE public."Match"
     OWNER to postgres;
+

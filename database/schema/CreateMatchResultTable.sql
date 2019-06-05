@@ -4,9 +4,12 @@
 
 CREATE TABLE public."MatchResult"
 (
-    "Value" json NOT NULL,
+    "Id" text COLLATE pg_catalog."default" NOT NULL,
     "MatchId" text COLLATE pg_catalog."default" NOT NULL,
-    "Id" SERIAL PRIMARY KEY
+    "Value" jsonb NOT NULL,
+    "CreatedTime" timestamp with time zone,
+    "ModifiedTime" timestamp with time zone,
+    CONSTRAINT "MatchResult_pkey" PRIMARY KEY ("Id")
 )
 WITH (
     OIDS = FALSE

@@ -4,9 +4,12 @@
 
 CREATE TABLE public."Timeline"
 (
-    "Id" SERIAL PRIMARY KEY,
+    "Id" text COLLATE pg_catalog."default" NOT NULL,
+    "MatchId" text COLLATE pg_catalog."default" NOT NULL,
     "Value" jsonb NOT NULL,
-    "MatchId" text COLLATE pg_catalog."default" NOT NULL
+    "CreatedTime" timestamp with time zone,
+    "ModifiedTime" timestamp with time zone,
+    CONSTRAINT "Timeline_pkey" PRIMARY KEY ("Id")
 )
 WITH (
     OIDS = FALSE
