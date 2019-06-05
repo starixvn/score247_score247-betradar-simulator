@@ -1,8 +1,6 @@
 ﻿namespace LiveScore.Jobs
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
+    using System;    
     using System.Threading.Tasks;
     using LiveScore.Features.Matches.Models;
     using LiveScore.Shared;
@@ -54,8 +52,7 @@
         }
 
         private async Task FetchDailySchedule(int sportId, DateTime from, DateTime to, string language)
-        {
-            var liveMatchIds = new List<string>();
+        {            
             var dataAccess = instanceFactory.CreateMatchDataAccess(sportId, DataProvider.ThirdPartyApi);
 
             var matches = await dataAccess.GetMatches(
@@ -91,18 +88,12 @@
                 }
 
                 if (match.MatchResult.EventStatus == MatchStatus.Closed)
-                {
-                    ////update live match to closed
+                {                    
                     var liveMatchEntity = await repository.GetById<LiveMatchEntity>(match.Id, language);
 
                     if (liveMatchEntity != null)
                     {
                         repository.Delete<LiveMatchEntity>(match.Id, language);
-
-                        if (liveMatchIds.Any(x => x.Equals(match.Id)))
-                        {
-                            liveMatchIds.Add(match.Id);
-                        }                        
                     }
                 }
             }
