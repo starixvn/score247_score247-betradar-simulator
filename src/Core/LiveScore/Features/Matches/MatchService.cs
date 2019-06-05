@@ -9,6 +9,7 @@ namespace LiveScore.Features.Matches
     using LiveScore.Shared;
     using LiveScore.Shared.Helpers;
     using Fanex.Caching;
+    using LiveScore.Shared.Models;
 
     public interface IMatchService
     {
@@ -195,11 +196,12 @@ namespace LiveScore.Features.Matches
             var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
             var match = await matchDataAccess.GetMatch(sportId, matchId, language);
 
+            //Check pre_status to not fetch timelines => not_started, cancelled, postponed
             if (match != null)
             {
                 //TODO check when final timelines
                 var sportRadarAccess = instanceFactory.CreateMatchDataAccess(sportId, DataProvider.ThirdPartyApi);
-                var timelines = await sportRadarAccess.GetTimelines(sportId, match.Region, matchId, language);
+                var timelines = await sportRadarAccess.GetTimelines(sportId, match.Region, matchId, Enumeration.FromValue<Language>(language).DisplayName.ToLowerInvariant());
 
                 if (timelines != null && timelines.Any())
                 {
