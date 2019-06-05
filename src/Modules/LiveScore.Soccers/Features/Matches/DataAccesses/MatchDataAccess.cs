@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using System.Web.Http;
     using Fanex.Logging;
     using LiveScore.Features.Matches;
     using LiveScore.Features.Matches.Models;
@@ -171,6 +172,11 @@
         public async Task<IMatch> GetMatch(int sportId, string matchId, string language)
         {
             var matchEntity = await dynamicRepository.GetById<MatchEntity>(matchId, language);
+
+            if (matchEntity == null)
+            {
+                throw new HttpResponseException(System.Net.HttpStatusCode.NotFound);
+            }
 
             return JsonConvert.DeserializeObject<Match>(matchEntity.Value);
         }
