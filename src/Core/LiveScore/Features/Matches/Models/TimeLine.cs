@@ -9,7 +9,7 @@
     {
         string Type { get; }
 
-        DateTime Time { get; }
+        string Time { get; }
 
         int MatchTime { get; }
 
@@ -48,7 +48,7 @@
     {
         public string Type { get; set; }
 
-        public DateTime Time { get; set; }
+        public string Time { get; set; }
 
         public int MatchTime { get; set; }
 

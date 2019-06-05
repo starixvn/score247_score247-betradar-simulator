@@ -76,10 +76,12 @@
                 GenerateMatchTimeForLiveMatch(pushEvents[matchId]);
             }
 
-            var pushChangeToClientsTask = Task.Run(() => PushChangeToClients(pushEvents));
+            await PushChangeToClients(pushEvents);
+
+            //var pushChangeToClientsTask = Task.Run(() => PushChangeToClients(pushEvents));
             var updateDatabaseTask = Task.Run(() => UpdateDatabase(pushEvents));
 
-            await Task.WhenAll(pushChangeToClientsTask, updateDatabaseTask);
+            await Task.WhenAll(updateDatabaseTask);
         }
 
         private async Task UpdateDatabase(Dictionary<string, MatchPushEvent> pushEvents)
@@ -97,6 +99,7 @@
         private async Task PushChangeToClients(Dictionary<string, MatchPushEvent> pushEvents)
         {
             //TODO only push events: period_start, period_end, injury_time_shown, score_change
+            await logger.InfoAsync($"Client {JsonConvert.SerializeObject(hubContext.Clients.All)} - Push Event: {JsonConvert.SerializeObject(pushEvents)}");
             await hubContext.Clients.All.SendAsync("PushMatchEvent", SportConstants.SoccerId.ToString(), pushEvents);
         }
 
