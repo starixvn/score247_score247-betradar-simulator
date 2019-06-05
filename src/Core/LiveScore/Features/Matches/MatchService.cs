@@ -67,7 +67,12 @@ namespace LiveScore.Features.Matches
             var utcFrom = from.ConvertToUtc(clientTimeZone);
             var utcTo = to.ConvertToUtc(clientTimeZone);
             var nonLiveMatches = await GetNonLiveMatches(sportId, language, utcFrom, utcTo);
-            var liveMatches = await GetLiveMatches(sportId, language);
+            IEnumerable<IMatch> liveMatches = new List<IMatch>();
+
+            if (utcFrom == DateTime.Today.ToUniversalTime() || utcTo == DateTime.Today.ToUniversalTime())
+            {
+                liveMatches = await GetLiveMatches(sportId, language);
+            }
 
             matches = (liveMatches.Any()
                     ? liveMatches.Union(nonLiveMatches, new MatchComparer())
