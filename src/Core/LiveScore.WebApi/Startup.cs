@@ -64,7 +64,6 @@ namespace LiveScore.WebApi
                 RegisterServices(services);
                 RegisterJobs(services);
                 services.RegisterDataAccessFactory();
-                services.RegisterPushListenerFactory();
             }
             catch (Exception ex)
             {
@@ -167,7 +166,6 @@ namespace LiveScore.WebApi
             services.AddScoped<IAutoUpdateMatchTimeJob, AutoUpdateMatchTimeJob>();
             services.AddScoped<IDailyScheduleFetchJob, DailyScheduleFetchJob>();
             services.AddScoped<ILiveMatchFetchJob, LiveMatchFetchJob>();
-            services.AddScoped<IMatchPushEventListenerJob, MatchPushEventListenerJob>();
             services.AddScoped<IMatchPushEventHandler, MatchPushEventHandler>();
         }
 

@@ -6,9 +6,7 @@
     using LiveScore.Shared;
     using LiveScore.Shared.Configurations;
     using LiveScore.Shared.Database;
-    using LiveScore.Shared.Factories;
     using LiveScore.Shared.Helpers;
-    using LiveScore.Soccers.Features.Matches;
     using Microsoft.Extensions.DependencyInjection;
 
     public static class InstanceFactoryMiddleware
@@ -20,19 +18,6 @@
             services.AddSingleton((DataAccessFactory)new DataAccessFactoryImpl(matchDataAccessContainer));
         }
 
-        public static void RegisterPushListenerFactory(this IServiceCollection services)
-        {
-            var serviceProvider = services.BuildServiceProvider();
-            var soccerMatchPushEventHandler = serviceProvider.GetService<IMatchPushEventHandler>();
-            var appSettings = serviceProvider.GetService<IAppSettings>();
-
-            var pushListenerContainer = new Dictionary<int, IMatchPushEventListener>
-            {
-                { SportConstants.SoccerId, new MatchPushEventListener(soccerMatchPushEventHandler, appSettings) }
-            };
-
-            services.AddSingleton((PushListenerFactory)new PushListenerFactoryImpl(pushListenerContainer));
-        }
 
         private static Dictionary<int, IDictionary<DataProvider, IMatchDataAccess>> BuildMatchDataAccessContainer(IServiceCollection services)
         {

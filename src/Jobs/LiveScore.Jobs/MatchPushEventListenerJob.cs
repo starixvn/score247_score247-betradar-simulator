@@ -1,8 +1,8 @@
 ﻿namespace LiveScore.Jobs
-{   
+{
     using System.Threading.Tasks;
-    using Hangfire; 
-    using LiveScore.Shared.Factories;
+    using Hangfire;
+    using LiveScore.Features.Matches;
 
     public interface IMatchPushEventListenerJob
     {
@@ -12,13 +12,14 @@
     public class MatchPushEventListenerJob : IMatchPushEventListenerJob
     {
         private readonly IBackgroundJobClient backgroundJob;
-        private readonly PushListenerFactory listenerFactory;
 
-        public MatchPushEventListenerJob(IBackgroundJobClient backgroundJob, PushListenerFactory listenerFactory)
+        public MatchPushEventListenerJob(IBackgroundJobClient backgroundJob, IMatchPushEventListener pushEventListener)
         {
             this.backgroundJob = backgroundJob;
-            this.listenerFactory = listenerFactory;
+            PushEventListener = pushEventListener;
         }
+
+        public IMatchPushEventListener PushEventListener { get; set; }
 
         public async Task StartListeningPushEvent(byte sportId)
         {
@@ -33,7 +34,7 @@
 
         private async Task<bool> ListenPushEvent(byte sportId)
         {
-            return await listenerFactory.CreatePushEventListener(sportId).Start(sportId);
+            return await PushEventListener.Start(sportId);
         }
     }
 }
