@@ -87,7 +87,7 @@
                 else
                 {
                     dynamicRepository.Update(matchEntity);
-                    
+
                     //TODO delete live match???
                 }
 
@@ -95,8 +95,8 @@
 
                 return match;
             }
-            catch(Exception ex)
-            {                
+            catch (Exception ex)
+            {
                 await logger.ErrorAsync($"AddOrUpdateMatch {matchId} - {isLive}", ex);
 
                 return null;

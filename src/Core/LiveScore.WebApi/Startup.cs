@@ -5,6 +5,7 @@ namespace LiveScore.WebApi
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Net;
     using Fanex.Caching;
     using Fanex.Logging;
     using Fanex.Logging.Sentry;
@@ -22,7 +23,9 @@ namespace LiveScore.WebApi
     using LiveScore.WebApi.Shared.Configurations;
     using LiveScore.WebApi.Shared.Middlewares;
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Diagnostics;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
@@ -75,21 +78,14 @@ namespace LiveScore.WebApi
 #pragma warning disable S2325 // Methods and properties that don't access instance data should be static
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
             app.UseSignalR(routes =>
             {
                 routes.MapHub<MatchHub>("/hubs/MatchHub");
             });
 
             UseHangfire(app);
-
-            app
-                .UseSwagger()
-                .UseSwaggerUI(c =>
+            app.ConfigureExceptionHandler();
+            app.UseSwagger().UseSwaggerUI(c =>
                 {
                     c.SwaggerEndpoint($"../swagger/v1/swagger.json", "Score247 API Docs");
                 })
@@ -98,8 +94,7 @@ namespace LiveScore.WebApi
                     routes.MapRoute(
                         name: "default",
                         template: "{controller=Home}/{action=Index}");
-                })
-                .UseMiddleware(typeof(ErrorHandlingMiddleware));
+                });
         }
 
         private void UseHangfire(IApplicationBuilder app)
