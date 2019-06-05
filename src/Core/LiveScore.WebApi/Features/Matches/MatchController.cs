@@ -36,7 +36,14 @@ namespace LiveScore.WebApi.Features.Matches
             string matchId,
             string language = "en-US")
         {
-            return await matchService.GetMatch(sportId, matchId, language);
+            var match= await matchService.GetMatch(sportId, matchId, language);
+
+            if (match == null)
+            {
+                throw new InvalidOperationException($"Not found {matchId}");
+            }
+
+            return match;
         }
     }
 }

@@ -22,5 +22,7 @@
         Task<bool> AddResult(string matchId, IMatchResult matchResult);
 
         Task<IMatch> GetMatch(int sportId, string matchId, string language);
+
+        Task<IEnumerable<ITimeline>> GetTimelines(int sportId, string region, string matchId, string language);
     }
 }

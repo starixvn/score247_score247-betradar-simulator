@@ -134,6 +134,11 @@ namespace LiveScore.Basketballs.Features.Matches
                 },
             });
         }
+   
+        public Task<IEnumerable<ITimeline>> GetTimelines(int sportId, string region, string matchId, string language)
+        {
+            throw new NotImplementedException();
+        }
 
         public Task<bool> UpdateLiveMatches(IEnumerable<IMatch> matches)
         {

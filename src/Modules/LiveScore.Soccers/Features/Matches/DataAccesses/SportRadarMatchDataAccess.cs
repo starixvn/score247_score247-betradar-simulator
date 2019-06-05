@@ -31,7 +31,7 @@
         public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime utcFrom, DateTime utcTo, string language)
         {
             var sportSetting = appSettings.DataProviderSettings.GetSportSetting(sportId);
-            
+
             var matches = new List<Match>();
             var today = DateTime.Now.ToUniversalTime();
             const int dayIncrementIndex = 1;
@@ -187,6 +187,27 @@
         public Task<IMatch> GetMatch(int sportId, string matchId, string language)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<ITimeline>> GetTimelines(int sportId, string region, string matchId, string language)
+        {
+            const string Feature = "Timeline";
+
+            var timelines = new List<Timeline>();
+
+            var sportSetting = appSettings.DataProviderSettings.GetSportSetting(sportId);
+            var endpoint = sportSetting.GetEndPointSetting(Feature).First();
+            var key = sportSetting.Regions.FirstOrDefault(x => x.Name.Equals(region)).Key;
+
+            var formattedEndpoint = string.Format(endpoint.Path, region, language, matchId, key);
+            var matchTimeline = await restClient.ExecuteGetAsync<MatchTimelineDto>(formattedEndpoint);
+
+            if (matchTimeline.timeline != null && matchTimeline.timeline.Any())
+            {
+                matchTimeline.timeline.ToList().ForEach(x => timelines.Add(MatchBuilder.BuildTimeLine(x)));
+            }
+
+            return timelines;
         }
     }
 }
