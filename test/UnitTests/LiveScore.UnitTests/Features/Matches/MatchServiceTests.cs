@@ -73,8 +73,13 @@ namespace LiveScore.UnitTests.Features.Matches
         {
             var matches = new List<Match>
             {
-                new Match { EventDate = DateTime.Parse("2018-11-11T03:04:05+00:00") }
+                new Match {
+                    EventDate = DateTime.Parse("2018-11-11T03:04:05+00:00"),
+                    MatchResult = new MatchResult {  EventStatus = MatchStatus.Closed }
+                }
             };
+
+            cacheService.GetAsync<IEnumerable<IMatch>>(Arg.Any<string>()).Returns(matches as IEnumerable<IMatch>);
 
             matchDataAccess
                 .GetMatches(1, Arg.Any<DateTime>(), Arg.Any<DateTime>(), "en")
@@ -82,13 +87,13 @@ namespace LiveScore.UnitTests.Features.Matches
 
             var actualMatches = (await matchServiceImpl.GetMatches(
                 1,
-                DateTime.Now,
-                DateTime.Now.AddDays(1),
+                DateTime.Today,
+                DateTime.Today.AddDays(1),
                 new TimeSpan(1, 0, 0),
                 "en")).ToList();
 
             Assert.True(actualMatches.Any());
-            Assert.Equal("11/11/2018 4:04:05 AM", actualMatches.First().EventDate.ToString());
+            Assert.Equal("11/11/2018 04:04:05", actualMatches.First().EventDate.ToString());
         }
 
         [Fact]
@@ -96,9 +101,9 @@ namespace LiveScore.UnitTests.Features.Matches
         {
             var matches = new List<Match>
             {
-                new Match { Id ="1", Name = "A", EventDate = DateTime.Parse("2018-11-11T03:04:05+00:00") },
-                new Match { Id ="2", Name = "B", EventDate = DateTime.Parse("2018-11-11T03:04:05+00:00") },
-                new Match { Id ="3", Name = "C", EventDate = DateTime.Parse("2018-11-11T03:04:05+00:00") }
+                new Match { Id ="1", Name = "A", EventDate = DateTime.Parse("2018-11-11T03:04:05+00:00"), MatchResult = new MatchResult {  EventStatus = MatchStatus.Closed }},
+                new Match { Id ="2", Name = "B", EventDate = DateTime.Parse("2018-11-11T03:04:05+00:00"), MatchResult = new MatchResult {  EventStatus = MatchStatus.Closed } },
+                new Match { Id ="3", Name = "C", EventDate = DateTime.Parse("2018-11-11T03:04:05+00:00"), MatchResult = new MatchResult {  EventStatus = MatchStatus.Closed } }
             };
 
             var liveMatches = new Dictionary<string, IMatch>
@@ -106,7 +111,8 @@ namespace LiveScore.UnitTests.Features.Matches
                 { "1", new Match { Id ="1", Name = "A", EventDate = DateTime.Parse("2018-11-11T03:04:05+00:00"), MatchResult = new MatchResult{ MatchTime = 3 } } }
             };
 
-            cacheService.GetAsync<Dictionary<string, IMatch>>("LiveMatch_1_en").Returns(liveMatches);
+            cacheService.GetAsync<IDictionary<string, IMatch>>("LiveMatch_1_en").Returns(liveMatches);
+            cacheService.GetAsync<IEnumerable<IMatch>>(Arg.Any<string>()).Returns(matches as IEnumerable<IMatch>);
 
             matchDataAccess
                 .GetMatches(1, Arg.Any<DateTime>(), Arg.Any<DateTime>(), "en")
@@ -114,9 +120,9 @@ namespace LiveScore.UnitTests.Features.Matches
 
             var actualMatches = (await matchServiceImpl.GetMatches(
                 1,
-                DateTime.Now,
-                DateTime.Now.AddDays(1),
-                new TimeSpan(1, 0, 0),
+                DateTime.Today,
+                DateTime.Today.AddDays(1),
+                TimeZoneInfo.Local.GetUtcOffset(DateTime.Today),
                 "en")).ToList();
 
             Assert.True(actualMatches.Any());

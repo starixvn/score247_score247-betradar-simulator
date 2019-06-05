@@ -57,11 +57,9 @@ namespace LiveScore.Features.Matches
             TimeSpan clientTimeZone,
             string language)
         {
-            var matches = Enumerable.Empty<IMatch>();
-
             if (sportId <= 0 || from > to || from == DateTime.MinValue || to == DateTime.MinValue)
             {
-                return await Task.FromResult(matches);
+                return Enumerable.Empty<IMatch>();
             }
 
             var utcFrom = from.ConvertToUtc(clientTimeZone);
@@ -69,17 +67,16 @@ namespace LiveScore.Features.Matches
             var nonLiveMatches = await GetNonLiveMatches(sportId, language, utcFrom, utcTo);
             IEnumerable<IMatch> liveMatches = new List<IMatch>();
 
-            if (utcFrom == DateTime.Today.ToUniversalTime() || utcTo == DateTime.Today.ToUniversalTime())
+            if (utcFrom <= DateTime.Today.ToUniversalTime() && utcTo >= DateTime.Today.ToUniversalTime())
             {
                 liveMatches = await GetLiveMatches(sportId, language);
             }
 
-            matches = (liveMatches.Any()
-                    ? liveMatches.Union(nonLiveMatches, new MatchComparer())
-                    : nonLiveMatches)
-                .Select(match => match.ChangeEventDateByTimeZone(clientTimeZone));
+            var matches = liveMatches.Any()
+                      ? liveMatches.Union(nonLiveMatches, new MatchComparer())
+                      : nonLiveMatches;
 
-            return matches;
+            return matches.Select(m => m.ChangeEventDateByTimeZone(clientTimeZone));
         }
 
         public async Task<IEnumerable<IMatch>> GetNonLiveMatches(int sportId, string language, DateTime utcFrom, DateTime utcTo)
