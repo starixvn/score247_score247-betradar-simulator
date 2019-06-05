@@ -1,4 +1,5 @@
-﻿namespace LiveScore.Features.Matches
+﻿using Newtonsoft.Json;
+namespace LiveScore.Features.Matches
 {
     using System;
     using System.Collections.Generic;
@@ -86,7 +87,7 @@
             if (normalMatches == null)
             {
                 normalMatches = await matchDataAccess.GetMatches(sportId, utcFrom, utcTo, language);
-                await cacheService.SetAsync(normalMatchCacheKey, normalMatches, NormalMatchCacheOptions);
+                await cacheService.SetAsync(normalMatchCacheKey, JsonConvert.SerializeObject(normalMatches), NormalMatchCacheOptions);
             }
 
             return normalMatches;
@@ -101,7 +102,7 @@
             if (liveMatches == null || liveMatches.Count == 0)
             {
                 liveMatches = (await matchDataAccess.GetLiveMatches(sportId, language)).ToDictionary(m => m.Id);
-                await cacheService.SetAsync(liveMatchCacheKey, liveMatches, LiveMatchCacheOptions);
+                await cacheService.SetAsync(liveMatchCacheKey, JsonConvert.SerializeObject(liveMatches), LiveMatchCacheOptions);
             }
 
             return liveMatches.Values;
@@ -112,7 +113,7 @@
             var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
             var liveMatchCacheKey = GetLiveMatchCacheKey(sportId, language);
 
-            cacheService.Set(liveMatchCacheKey, matches.ToDictionary(m => m.Id), LiveMatchCacheOptions);
+            cacheService.Set(liveMatchCacheKey, JsonConvert.SerializeObject(matches.ToDictionary(m => m.Id)), LiveMatchCacheOptions);
 
             await matchDataAccess.UpdateLiveMatches(matches, language);
         }
@@ -140,7 +141,7 @@
                 liveMatches[matchId] = match;
 
                 //TODO update only new match
-                cacheService.Set(liveMatchCacheKey, liveMatches);
+                cacheService.Set(liveMatchCacheKey, JsonConvert.SerializeObject(liveMatches));
             }
 
             return true;
@@ -158,7 +159,7 @@
                 if (liveMatches != null && liveMatches.ContainsKey(matchId))
                 {
                     liveMatches.Remove(matchId);
-                    cacheService.Set(liveMatchCacheKey, liveMatches, LiveMatchCacheOptions);
+                    cacheService.Set(liveMatchCacheKey, JsonConvert.SerializeObject(liveMatches), LiveMatchCacheOptions);
                 }
             }
 
