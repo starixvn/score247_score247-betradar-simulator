@@ -90,7 +90,7 @@ namespace LiveScore.Features.Matches
                 await cacheService.SetAsync(normalMatchCacheKey, JsonConvert.SerializeObject(normalMatches), NormalMatchCacheOptions);
             }
 
-            return normalMatches;
+            return normalMatches.Where(m => !m.MatchResult.EventStatus.IsLive());
         }
 
         public async Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
