@@ -2,6 +2,7 @@
 {
     using System.Linq;
     using System.Threading.Tasks;
+    using Hangfire;
     using LiveScore.Features.Matches;
     using LiveScore.Features.Matches.Models;
     using LiveScore.Shared;
@@ -14,6 +15,7 @@
         Task UpdateMatchTime();
     }
 
+    [AutomaticRetry(OnAttemptsExceeded = AttemptsExceededAction.Delete)]
     public class AutoUpdateMatchTimeJob : IAutoUpdateMatchTimeJob
     {
         private const int MaxMatchTime = 120;
