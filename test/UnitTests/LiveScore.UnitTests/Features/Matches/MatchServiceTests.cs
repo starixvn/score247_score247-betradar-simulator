@@ -93,7 +93,7 @@ namespace LiveScore.UnitTests.Features.Matches
                 "en")).ToList();
 
             Assert.True(actualMatches.Any());
-            Assert.Equal("11/11/2018 04:04:05", actualMatches.First().EventDate.ToString());
+            Assert.Equal("04:04:05", actualMatches.First().EventDate.ToString("HH:mm:ss"));
         }
 
         [Fact]
