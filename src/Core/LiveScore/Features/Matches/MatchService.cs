@@ -204,7 +204,7 @@ namespace LiveScore.Features.Matches
                 var timelines = await sportRadarAccess.GetTimelines(sportId, match.Region, matchId, Enumeration.FromValue<Language>(language).DisplayName.ToLowerInvariant());
 
                 if (timelines != null && timelines.Any())
-                {
+                {                    
                     match.TimeLines = timelines.ToList();
                 }
 
