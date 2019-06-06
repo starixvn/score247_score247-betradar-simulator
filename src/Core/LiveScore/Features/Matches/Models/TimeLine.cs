@@ -51,7 +51,7 @@
         string Outcome { get; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        IEnumerable<Commentary> Commentaries { get; }
+        IEnumerable<Commentary> Commentaries { get; set; }
 
         string StoppageTime { get; }
     }

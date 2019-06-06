@@ -19,12 +19,17 @@ namespace LiveScore.Shared.Database
 
         public DbSet<MatchResultEntity> MatchResult { get; set; }
 
+        public DbSet<CommentaryEntity> Commentary { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MatchEntity>()
                 .HasKey(c => new { c.Id, c.Language });
 
             modelBuilder.Entity<LiveMatchEntity>()
+                .HasKey(c => new { c.Id, c.Language });
+
+            modelBuilder.Entity<CommentaryEntity>()
                 .HasKey(c => new { c.Id, c.Language });
         }
     }

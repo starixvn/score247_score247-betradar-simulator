@@ -123,8 +123,7 @@
         }
         
         public async Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines, bool isDeleteExisting = false)
-        {
-            //TODO timelines must exclude commentaries
+        {           
             if (isDeleteExisting)
             {
                 await DeleteAllTimelines(matchId);
@@ -205,6 +204,24 @@
                 .ToList();
 
             return timelines;
+        }
+
+        public async Task<bool> AddCommentaries(string matchId, IEnumerable<ITimeline> timelines, string language)
+        {
+            var commentaries = timelines
+                .Where(x=> x.Commentaries != null && x.Commentaries.Any())
+                .Select(x => new CommentaryEntity
+                {
+                    Id = x.Id.ToString(),
+                    Value = JsonConvert.SerializeObject(x.Commentaries),
+                    MatchId = matchId,
+                    Language = language,
+                    CreatedTime = DateTime.UtcNow
+                }).ToList();
+
+            await dynamicRepository.InsertRange(commentaries);
+
+            return (await dynamicRepository.Save()) > 0;
         }
     }
 }

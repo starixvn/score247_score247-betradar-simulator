@@ -11,8 +11,6 @@
         [Key]
         public string Language { get; set; }
 
-        public long TimelineId { get; set; }
-
         public string MatchId { get; set; }
     }
 }

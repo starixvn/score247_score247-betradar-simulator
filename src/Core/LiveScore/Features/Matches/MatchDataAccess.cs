@@ -24,5 +24,7 @@
         Task<IMatch> GetMatch(int sportId, string matchId, string language);
 
         Task<IEnumerable<ITimeline>> GetTimelines(int sportId, string region, string matchId, string language);
+
+        Task<bool> AddCommentaries(string matchId, IEnumerable<ITimeline> timelines, string language);
     }
 }

@@ -158,7 +158,7 @@
             throw new NotImplementedException();
         }
 
-        public async Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines, bool isDeleteExisting = false)
+        public Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines, bool isDeleteExisting = false)
         {
             throw new NotImplementedException();            
         }
@@ -195,6 +195,11 @@
             }
 
             return timelines;
+        }
+
+        public Task<bool> AddCommentaries(string matchId, IEnumerable<ITimeline> timelines, string language)
+        {
+            throw new NotImplementedException();
         }
     }
 }

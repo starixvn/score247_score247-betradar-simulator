@@ -174,7 +174,7 @@ namespace LiveScore.Features.Matches
             var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
 
             return await matchDataAccess.AddTimelines(matchId, timelines);
-        }        
+        }
 
         public async Task<bool> AddResult(int sportId, string matchId, IMatchResult matchResult)
         {
@@ -197,11 +197,30 @@ namespace LiveScore.Features.Matches
             var match = await matchDataAccess.GetMatch(sportId, matchId, language);
 
             if (match != null && !match.MatchResult.EventStatus.IsNotStartOrDelay())
-            {                
+            {
                 match.TimeLines = await matchDataAccess.GetTimelines(sportId, match.Region, matchId, language);
             }
 
             return match;
+        }
+
+        public async Task AddFullTimelines(int sportId, string matchId, string language, string region)
+        {
+            var dataAccess = instanceFactory.CreateMatchDataAccess(sportId, DataProvider.ThirdPartyApi);
+            var timelines = await dataAccess.GetTimelines(sportId, region, matchId, Enumeration.FromValue<Language>(language).DisplayName.ToLowerInvariant());
+
+            var dbDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
+            await dbDataAccess.AddCommentaries(matchId, timelines, language);
+
+            var timelinesExcludeComment = timelines.Select(x => RemoveCommentary(x)).ToList();
+            await dbDataAccess.AddTimelines(matchId, timelinesExcludeComment, isDeleteExisting: true);
+        }
+
+        private static ITimeline RemoveCommentary(ITimeline timeline)
+        {
+            timeline.Commentaries = null;
+
+            return timeline;
         }
     }
 }
