@@ -1,6 +1,5 @@
 ﻿namespace LiveScore.Soccers.Shared.ModelBuilders
-{
-    using System;
+{   
     using System.Collections.Generic;
     using System.Linq;
     using LiveScore.Features.Matches.Models;
@@ -21,7 +20,8 @@
                 League = LeagueBuilder.BuildLeague(sportEvent.tournament),
                 LeagueRound = LeagueBuilder.BuildLeagueRound(sportEvent.tournament_round),
                 MatchResult = BuildMatchResult(sportEventStatusDto),
-                Region = region
+                Region = region,
+                Venue = BuildVenue(sportEvent.venue)
             };
 
             return match;
@@ -115,6 +115,18 @@
             pushEvents.Add(matchId, pushEvent);
 
             return pushEvents;
+        }
+
+        public static Venue BuildVenue(VenueDto venueDto)
+        {
+            return new Venue
+            {
+                Name = venueDto.name,
+                Capacity = venueDto.capacity,
+                CityName = venueDto.city_name,
+                CountryName = venueDto.country_name,
+                CountryCode = venueDto.country_code
+            };
         }
     }
 }

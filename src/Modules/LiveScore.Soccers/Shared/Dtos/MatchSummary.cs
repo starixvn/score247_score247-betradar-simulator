@@ -24,7 +24,7 @@ namespace LiveScore.Shared.Models.Dtos
         public Season season { get; set; }
         public Tournament tournament { get; set; }
         public IEnumerable<Competitor> competitors { get; set; }
-        public Venue venue { get; set; }
+        public VenueDto venue { get; set; }
     }
 
     public class Sport_Event_Conditions

@@ -487,7 +487,7 @@
                                     qualifier = "away"
                                 }
                             },
-                            venue = new Venue
+                            venue = new VenueDto
                             {
                               id= "sr:venue:38696",
                               name= "Iloilo Sports Complex",
@@ -568,7 +568,7 @@
                                     qualifier = "away"
                                 }
                             },
-                            venue = new Venue
+                            venue = new VenueDto
                             {
                               id= "sr:venue:38696",
                               name= "Iloilo Sports Complex",

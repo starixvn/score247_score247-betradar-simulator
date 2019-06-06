@@ -81,7 +81,7 @@ namespace LiveScore.Shared.Models.Dtos
         public string country_code { get; set; }
     }
 
-    public class Venue
+    public class VenueDto
     {
         public string id { get; set; }
         public string name { get; set; }
