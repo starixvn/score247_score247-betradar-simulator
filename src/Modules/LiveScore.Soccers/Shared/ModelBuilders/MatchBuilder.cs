@@ -93,6 +93,7 @@
                 timeline.Time = timelineDto.time;
                 timeline.HomeScore = timelineDto.home_score;
                 timeline.AwayScore = timelineDto.away_score;
+                timeline.StoppageTime = timelineDto.stoppage_time;
                 timeline.Commentaries = timelineDto.commentaries?.Select(x => new Commentary { Text = x.text });
 
                 timeline.GoalScorer = timelineDto.goal_scorer == null 

@@ -51,6 +51,8 @@
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         IEnumerable<Commentary> Commentaries { get; }
+
+        string StoppageTime { get; }
     }
 
     public class Timeline : Entity<long, string>, ITimeline
@@ -90,6 +92,8 @@
         public string Description { get; set; }
 
         public string Outcome { get; set; }
+
+        public string StoppageTime { get; set; }
     }
 
     public class Commentary
