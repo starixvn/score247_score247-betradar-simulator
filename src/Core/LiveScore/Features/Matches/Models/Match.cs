@@ -22,6 +22,8 @@
 
         IEnumerable<ITimeline> TimeLines { get; set; }
 
+        ITimeline LatestTimeline { get;}
+
         int Attendance { get; }
 
         IVenue Venue { get; }
@@ -58,6 +60,8 @@
         public string Referee { get; set; }
 
         public string Region { get; set; }
+
+        public ITimeline LatestTimeline { get; set; }
 
         public IMatch ChangeEventDateByTimeZone(TimeSpan timeZone)
         {

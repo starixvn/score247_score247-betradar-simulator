@@ -2,6 +2,7 @@
 namespace LiveScore.Features.Matches.Models
 {
     using LiveScore.Shared.Models;
+    using System.Collections.Generic;
 
     public class EventTypes : Enumeration
     {
@@ -28,6 +29,7 @@ namespace LiveScore.Features.Matches.Models
         //penalty_awarded
         //penalty_missed
         //penalty_shootout
+        public static readonly EventTypes PenaltyShootout = new EventTypes("penalty_shootout", nameof(PenaltyShootout));
         //period_score
 
         //period_start
@@ -68,5 +70,18 @@ namespace LiveScore.Features.Matches.Models
             : base(value, value)
         {
         }
+
+        public static List<string> BasicSoccerEventTypes 
+            =>new List<string>
+            {
+                MatchStarted.Value,
+                PeriodStart.Value,
+                BreakStart.Value,
+                ScoreChange.Value,
+                YellowCard.Value,
+                YellowRedCard.Value,
+                RedCard.Value,
+                PenaltyShootout.Value
+            };
     }
 }

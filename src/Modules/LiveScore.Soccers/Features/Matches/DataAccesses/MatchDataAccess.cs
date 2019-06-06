@@ -175,9 +175,15 @@
             return matchEntity == null ? null : JsonConvert.DeserializeObject<Match>(matchEntity.Value);
         }
 
-        public Task<IEnumerable<ITimeline>> GetTimelines(int sportId, string region, string matchId, string language)
+        public async Task<IEnumerable<ITimeline>> GetTimelines(int sportId, string region, string matchId, string language)
         {
-            throw new NotImplementedException();
+            var timelines = (await dynamicRepository
+                .Query<MatchTimelineEntity>(x => x.MatchId.Equals(matchId, StringComparison.OrdinalIgnoreCase)))
+                .Select(x => JsonConvert.DeserializeObject<Timeline>(x.Value))
+                .Where(x => EventTypes.BasicSoccerEventTypes.Contains(x.Type))
+                .ToList();
+
+            return timelines;
         }
     }
 }

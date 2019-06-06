@@ -1,6 +1,5 @@
 ﻿namespace LiveScore.Features.Matches.Models
-{
-    using System;
+{   
     using System.Collections.Generic;
     using LiveScore.Features.Teams.Models;
     using LiveScore.Shared.Models;

@@ -182,8 +182,8 @@ namespace LiveScore.UnitTests.Features.Matches
                 .GetMatch(1, "sr:match:1", "en-US")
                 .Returns(match);
 
-            sportRadarDataAccess
-                .GetTimelines(1, "eu", "sr:match:1", "en")
+            matchDataAccess
+                .GetTimelines(1, "eu", "sr:match:1", "en-US")
                 .Returns(timelines);
 
             var actualMatch = await matchServiceImpl.GetMatch(

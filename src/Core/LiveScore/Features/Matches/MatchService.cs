@@ -198,17 +198,13 @@ namespace LiveScore.Features.Matches
 
             //Check pre_status to not fetch timelines => not_started, cancelled, postponed
             if (match != null)
-            {
-                //TODO check when final timelines
-                var sportRadarAccess = instanceFactory.CreateMatchDataAccess(sportId, DataProvider.ThirdPartyApi);
-                var timelines = await sportRadarAccess.GetTimelines(sportId, match.Region, matchId, Enumeration.FromValue<Language>(language).DisplayName.ToLowerInvariant());
+            {                
+                var timelines = await matchDataAccess.GetTimelines(sportId, match.Region, matchId, language);               
 
                 if (timelines != null && timelines.Any())
-                {                    
-                    match.TimeLines = timelines.ToList();
+                {   
+                    match.TimeLines = timelines;
                 }
-
-                //TODO update db for final timelines
             }
 
             return match;

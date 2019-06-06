@@ -28,10 +28,6 @@
     <ItemGroup>
         <Folder Include="Shared\Hubs\">
         </Folder>
-        <Folder Include="Shared\Database\">
-        </Folder>
-        <Folder Include="Shared\Database\Entities\">
-        </Folder>
         <Folder Include="Shared\Factories\">
         </Folder>
     </ItemGroup>
