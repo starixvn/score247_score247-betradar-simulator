@@ -103,5 +103,7 @@
         public bool IsFirstHaftExtra() => this == FirstHaftExtra;
 
         public bool IsSecondHalfExtra() => this == SecondHaftExtra;
+
+        public bool IsNotStartOrDelay() => this == NotStarted || this == Postponed || this == Cancelled || this == StartDelayed;
     }
 }

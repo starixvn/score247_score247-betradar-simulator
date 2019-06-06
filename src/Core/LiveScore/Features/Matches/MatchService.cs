@@ -192,19 +192,13 @@ namespace LiveScore.Features.Matches
             {
                 throw new ArgumentException("Missing sportId or matchId argument");
             }
-           
+
             var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
             var match = await matchDataAccess.GetMatch(sportId, matchId, language);
 
-            //Check pre_status to not fetch timelines => not_started, cancelled, postponed
-            if (match != null)
-            {                
-                var timelines = await matchDataAccess.GetTimelines(sportId, match.Region, matchId, language);               
-
-                if (timelines != null && timelines.Any())
-                {   
-                    match.TimeLines = timelines;
-                }
+            if (match != null && !match.MatchResult.EventStatus.IsNotStartOrDelay())
+            {
+                match.TimeLines = await matchDataAccess.GetTimelines(sportId, match.Region, matchId, language);
             }
 
             return match;
