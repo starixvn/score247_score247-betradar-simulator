@@ -22,7 +22,7 @@
 
         IEnumerable<ITimeline> TimeLines { get; set; }
 
-        ITimeline LatestTimeline { get;}
+        ITimeline LatestTimeline { get; }
 
         int Attendance { get; }
 
@@ -55,12 +55,14 @@
 
         public int Attendance { get; set; }
 
+        [JsonConverter(typeof(JsonConcreteTypeConverter<Venue>))]
         public IVenue Venue { get; set; }
 
         public string Referee { get; set; }
 
         public string Region { get; set; }
 
+        [JsonConverter(typeof(JsonConcreteTypeConverter<Timeline>))]
         public ITimeline LatestTimeline { get; set; }
 
         public IMatch ChangeEventDateByTimeZone(TimeSpan timeZone)
