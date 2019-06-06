@@ -158,9 +158,9 @@
             throw new NotImplementedException();
         }
 
-        public Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines)
+        public async Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines, bool isDeleteExisting = false)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException();            
         }
 
         public Task<bool> AddResult(string matchId, IMatchResult matchResult)

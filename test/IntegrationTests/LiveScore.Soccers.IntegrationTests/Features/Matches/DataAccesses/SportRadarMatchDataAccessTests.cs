@@ -2,6 +2,7 @@
 {
     using LiveScore.Shared;
     using LiveScore.Shared.Configurations;
+    using LiveScore.Shared.Database;
     using LiveScore.Shared.Helpers;
     using LiveScore.Shared.SportRadarApi.Models;
     using LiveScore.Soccers.Features.Matches.DataAccesses;
@@ -22,13 +23,13 @@
                 BaseUrl = new Uri("https://api.sportradar.us/")
             });
 
-            dataAccess = new SportRadarMatchDataAccess(new StubAppSettings(), restClient);
+            //dataAccess = new SportRadarMatchDataAccess(new StubAppSettings(), restClient);
         }
 
         [Fact]
         public async Task GetTimelines_ShouldNotEmpty()
         {
-            //var timelines = await dataAccess.GetTimelines(SportConstants.SoccerId, "eu", "sr:match:16514885", "en");
+            //var timelines = await dataAccess.GetTimelines(SportConstants.SoccerId, "eu", "sr:match:18297893", "en");
 
             //Assert.NotEmpty(timelines);
         }

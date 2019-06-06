@@ -17,7 +17,7 @@
 
         Task<bool> UpdateLiveMatches(IEnumerable<IMatch> matches, string language);
 
-        Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines);
+        Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines, bool isDeleteExisting = false);
 
         Task<bool> AddResult(string matchId, IMatchResult matchResult);
 

@@ -121,9 +121,15 @@
                 return false;
             }
         }
-
-        public async Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines)
+        
+        public async Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines, bool isDeleteExisting = false)
         {
+            //TODO timelines must exclude commentaries
+            if (isDeleteExisting)
+            {
+                await DeleteAllTimelines(matchId);
+            }
+
             var matchTimelineEntities = timelines.Select(t => new MatchTimelineEntity
             {
                 Id = Guid.NewGuid().ToString(),
@@ -135,6 +141,21 @@
             await dynamicRepository.InsertRange(matchTimelineEntities);
 
             return (await dynamicRepository.Save()) > 0;
+        }
+
+        private async Task DeleteAllTimelines(string matchId)
+        {
+            var eixstingTimelines = (await dynamicRepository.Query<MatchTimelineEntity>(x => x.MatchId.Equals(matchId, StringComparison.OrdinalIgnoreCase))).Select(x => x.Id);
+
+            if (eixstingTimelines != null && eixstingTimelines.Any())
+            {
+                foreach (var existing in eixstingTimelines)
+                {
+                    dynamicRepository.Delete<MatchTimelineEntity>(existing);
+                }
+
+                await dynamicRepository.Save();
+            }
         }
 
         public async Task<bool> AddResult(string matchId, IMatchResult matchResult)

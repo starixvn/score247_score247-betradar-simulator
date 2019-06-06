@@ -1,5 +1,6 @@
 ﻿namespace LiveScore.Features.Matches.Models
-{   
+{
+    using System;
     using System.Collections.Generic;
     using LiveScore.Features.Teams.Models;
     using LiveScore.Shared.Models;
@@ -9,7 +10,7 @@
     {
         string Type { get; }
 
-        string Time { get; }
+        DateTime Time { get; }
 
         int MatchTime { get; }
 
@@ -59,7 +60,7 @@
     {
         public string Type { get; set; }
 
-        public string Time { get; set; }
+        public DateTime Time { get; set; }
 
         public int MatchTime { get; set; }
 

@@ -174,7 +174,7 @@ namespace LiveScore.Features.Matches
             var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
 
             return await matchDataAccess.AddTimelines(matchId, timelines);
-        }
+        }        
 
         public async Task<bool> AddResult(int sportId, string matchId, IMatchResult matchResult)
         {
@@ -197,7 +197,7 @@ namespace LiveScore.Features.Matches
             var match = await matchDataAccess.GetMatch(sportId, matchId, language);
 
             if (match != null && !match.MatchResult.EventStatus.IsNotStartOrDelay())
-            {
+            {                
                 match.TimeLines = await matchDataAccess.GetTimelines(sportId, match.Region, matchId, language);
             }
 

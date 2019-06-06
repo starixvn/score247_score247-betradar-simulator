@@ -26,8 +26,8 @@ namespace LiveScore.Basketballs.Features.Matches
         {
             throw new NotImplementedException();
         }
-
-        public Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines)
+               
+        public Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines, bool isDeleteExisting = false)
         {
             throw new NotImplementedException();
         }
