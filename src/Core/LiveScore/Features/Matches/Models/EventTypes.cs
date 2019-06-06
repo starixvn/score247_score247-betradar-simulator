@@ -81,7 +81,9 @@ namespace LiveScore.Features.Matches.Models
                 YellowCard.Value,
                 YellowRedCard.Value,
                 RedCard.Value,
-                PenaltyShootout.Value
+                PenaltyShootout.Value,
+                MatchEnded.Value,
+                InjuryTimeShown.Value
             };
     }
 }
