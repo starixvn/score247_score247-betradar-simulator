@@ -54,6 +54,7 @@
                 var match = JsonConvert.DeserializeObject<Match>(matchEntity.Value);
                 match.MatchResult = pushEvent.MatchResult;
                 match.TimeLines = pushEvent.TimeLines;
+                match.LatestTimeline = pushEvent.TimeLines.OrderBy(x=>x.Time).Last();
                 matchEntity.Value = JsonConvert.SerializeObject(match);
 
                 if (isLive)

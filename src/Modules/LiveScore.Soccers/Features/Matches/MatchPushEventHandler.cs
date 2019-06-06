@@ -76,27 +76,47 @@
                 GenerateMatchTimeForLiveMatch(pushEvents[matchId]);
             }
 
-            await PushChangeToClients(pushEvents);
-            await UpdateDatabase(pushEvents);
+            var basicPushEvents = await PushToClients(pushEvents);
+
+            foreach (var matchId in basicPushEvents.Keys)
+            {
+                var pushEvent = pushEvents[matchId];
+                await UpdateMatch(matchId, pushEvent);
+            }
+
+            await InsertResultAndTimeline(pushEvents);
+
         }
 
-        private async Task UpdateDatabase(Dictionary<string, MatchPushEvent> pushEvents)
+        private async Task<Dictionary<string, MatchPushEvent>> PushToClients(Dictionary<string, MatchPushEvent> pushEvents)
         {
+            var basicPushEvents = new Dictionary<string, MatchPushEvent>();
+
+            foreach (var matchId in pushEvents.Keys)
+            {
+                var pushEvent = pushEvents[matchId];
+                if (pushEvent.TimeLines.Any(x => EventTypes.BasicSoccerEventTypes.Contains(x.Type)))
+                {
+                    basicPushEvents[matchId] = pushEvent;
+                }
+
+            }
+
+            await hubContext.Clients.All.SendAsync("PushMatchEvent", SportConstants.SoccerId.ToString(), pushEvents);
+
+            return basicPushEvents;
+        }
+
+        public async Task InsertResultAndTimeline(Dictionary<string, MatchPushEvent> pushEvents)
+        {
+
             foreach (var matchId in pushEvents.Keys)
             {
                 var pushEvent = pushEvents[matchId];
 
-                await UpdateMatch(matchId, pushEvent);
                 await matchService.AddResult(SportConstants.SoccerId, matchId, pushEvent.MatchResult);
                 await matchService.AddTimelines(SportConstants.SoccerId, matchId, pushEvent.TimeLines);
             }
-        }
-
-        private async Task PushChangeToClients(Dictionary<string, MatchPushEvent> pushEvents)
-        {
-            //TODO only push events: period_start, period_end, injury_time_shown, score_change            
-            await logger.InfoAsync($"Client {JsonConvert.SerializeObject(hubContext.Clients.All)} - Push Event: {JsonConvert.SerializeObject(pushEvents)}");
-            await hubContext.Clients.All.SendAsync("PushMatchEvent", SportConstants.SoccerId.ToString(), pushEvents);
         }
 
         private async Task UpdateMatch(string matchId, MatchPushEvent pushEvent)
