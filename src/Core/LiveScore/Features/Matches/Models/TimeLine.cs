@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using LiveScore.Features.Teams.Models;
     using LiveScore.Shared.Models;
+    using Newtonsoft.Json;
 
     public interface ITimeline : IEntity<long, string>
     {
@@ -12,26 +13,34 @@
 
         int MatchTime { get; }
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         string MatchClock { get; }
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         string Team { get; }
 
         int Period { get; }
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         string PeriodType { get; }
 
         int HomeScore { get; }
 
         int AwayScore { get; }
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         GoalScorer GoalScorer { get; }
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         Player Assist { get; }
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         Player PlayerOut { get; }
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         Player PlayerIn { get; }
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         Player Player { get; }
 
         int InjuryTimeAnnounced { get; }
@@ -40,6 +49,7 @@
 
         string Outcome { get; }
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         IEnumerable<Commentary> Commentaries { get; }
     }
 

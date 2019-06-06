@@ -94,9 +94,18 @@
                 timeline.HomeScore = timelineDto.home_score;
                 timeline.AwayScore = timelineDto.away_score;
                 timeline.Commentaries = timelineDto.commentaries?.Select(x => new Commentary { Text = x.text });
-                timeline.GoalScorer = new GoalScorer { Name = timelineDto.goal_scorer?.name, Id = timelineDto.goal_scorer?.id, Method = timelineDto.goal_scorer?.method  };
-                timeline.Assist = new Player { Name = timelineDto.assist?.name, Id = timelineDto.assist?.id };
-                timeline.Player = new Player { Name = timelineDto.player?.name, Id = timelineDto.player?.id };
+
+                timeline.GoalScorer = timelineDto.goal_scorer == null 
+                    ? null 
+                    : new GoalScorer { Name = timelineDto.goal_scorer.name, Id = timelineDto.goal_scorer.id, Method = timelineDto.goal_scorer.method  };
+
+                timeline.Assist = timelineDto.assist == null 
+                    ? null
+                    : new Player { Name = timelineDto.assist.name, Id = timelineDto.assist.id };
+
+                timeline.Player = timelineDto.player == null
+                    ? null
+                    : new Player { Name = timelineDto.player.name, Id = timelineDto.player.id };
             }
 
             return timeline;
