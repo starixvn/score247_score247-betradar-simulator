@@ -24,19 +24,17 @@ namespace LiveScore.WebApi.Shared.Middlewares
             var resultDateSpan = int.Parse(Configuration.GetSection(ResultDateSpanPath).Value);
             var scheduleDateSpan = int.Parse(Configuration.GetSection(ScheduleDateSpanPath).Value);
 
-            RecurringJob.AddOrUpdate<IAutoUpdateMatchTimeJob>(nameof(AutoUpdateMatchTimeJob), job => job.UpdateMatchTime(), Cron.Minutely);
+            //RecurringJob.AddOrUpdate<IAutoUpdateMatchTimeJob>(nameof(AutoUpdateMatchTimeJob), job => job.UpdateMatchTime(), Cron.Minutely);
 
             RecurringJob.AddOrUpdate<IDailyScheduleFetchJob>("FetchSchedule", job => job.FetchSchedule(SportConstants.SoccerId, scheduleDateSpan), ScheduleIntervalCron);
             RecurringJob.AddOrUpdate<IDailyScheduleFetchJob>("FetchResult", job => job.FetchResult(SportConstants.SoccerId, resultDateSpan), Cron.Daily);
             RecurringJob.AddOrUpdate<ILiveMatchFetchJob>("FetchLive", job => job.Fetch(SportConstants.SoccerId), Cron.Daily);
 
-            var backgroundJob = app.ApplicationServices.GetService<IBackgroundJobClient>();
             var pushHandler = app.ApplicationServices.GetService<IMatchPushEventHandler>();
             var appSettings = app.ApplicationServices.GetService<IAppSettings>();
             var soccerMatchPushEventListener = new MatchPushEventListener(pushHandler, appSettings);
-            var matchPushEventListenerJob = new MatchPushEventListenerJob(backgroundJob, soccerMatchPushEventListener);
 
-            BackgroundJob.Enqueue(() => matchPushEventListenerJob.StartListeningPushEvent(SportConstants.SoccerId));
+            BackgroundJob.Enqueue<IMatchPushEventListenerJob>(job => job.StartListeningPushEvent(SportConstants.SoccerId, soccerMatchPushEventListener));
         }
     }
 }

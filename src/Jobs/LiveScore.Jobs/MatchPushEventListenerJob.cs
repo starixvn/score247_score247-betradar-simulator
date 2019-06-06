@@ -6,35 +6,33 @@
 
     public interface IMatchPushEventListenerJob
     {
-        Task StartListeningPushEvent(byte sportId);
+        Task StartListeningPushEvent(byte sportId, IMatchPushEventListener pushEventListener);
     }
 
     public class MatchPushEventListenerJob : IMatchPushEventListenerJob
     {
         private readonly IBackgroundJobClient backgroundJob;
 
-        public MatchPushEventListenerJob(IBackgroundJobClient backgroundJob, IMatchPushEventListener pushEventListener)
+        public MatchPushEventListenerJob(IBackgroundJobClient backgroundJob)
         {
             this.backgroundJob = backgroundJob;
-            PushEventListener = pushEventListener;
+
         }
 
-        public IMatchPushEventListener PushEventListener { get; set; }
-
-        public async Task StartListeningPushEvent(byte sportId)
+        public async Task StartListeningPushEvent(byte sportId, IMatchPushEventListener pushEventListener)
         {
-            var isFail = await ListenPushEvent(sportId);
+            var isFail = await ListenPushEvent(sportId, pushEventListener);
 
             if (isFail)
             {
                 //TODO call fetch live match results job
-                backgroundJob.Enqueue(() => StartListeningPushEvent(sportId));
+                backgroundJob.Enqueue(() => StartListeningPushEvent(sportId, pushEventListener));
             }
         }
 
-        private async Task<bool> ListenPushEvent(byte sportId)
+        private async Task<bool> ListenPushEvent(byte sportId, IMatchPushEventListener pushEventListener)
         {
-            return await PushEventListener.Start(sportId);
+            return await pushEventListener.Start(sportId);
         }
     }
 }

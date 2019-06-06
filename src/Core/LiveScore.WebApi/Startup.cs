@@ -142,6 +142,7 @@ namespace LiveScore.WebApi
         {
             services.AddSingleton<IMatchService, MatchService>();
             services.AddSingleton<ICacheService, CacheService>();
+            services.AddSingleton<IMatchPushEventHandler, MatchPushEventHandler>();
         }
 
         private void RegisterDatabase(IServiceCollection services)
@@ -166,7 +167,7 @@ namespace LiveScore.WebApi
             services.AddScoped<IAutoUpdateMatchTimeJob, AutoUpdateMatchTimeJob>();
             services.AddScoped<IDailyScheduleFetchJob, DailyScheduleFetchJob>();
             services.AddScoped<ILiveMatchFetchJob, LiveMatchFetchJob>();
-            services.AddScoped<IMatchPushEventHandler, MatchPushEventHandler>();
+            services.AddScoped<IMatchPushEventListenerJob, MatchPushEventListenerJob>();
         }
 
         private static IRestClient CreateRestSharpClient(IDataProviderSettings providerSettings)
