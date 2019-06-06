@@ -77,11 +77,7 @@
             }
 
             await PushChangeToClients(pushEvents);
-
-            //var pushChangeToClientsTask = Task.Run(() => PushChangeToClients(pushEvents));
-            var updateDatabaseTask = Task.Run(() => UpdateDatabase(pushEvents));
-
-            await Task.WhenAll(updateDatabaseTask);
+            await UpdateDatabase(pushEvents);
         }
 
         private async Task UpdateDatabase(Dictionary<string, MatchPushEvent> pushEvents)

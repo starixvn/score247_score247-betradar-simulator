@@ -30,7 +30,7 @@
             }
         }
 
-        private async Task<bool> ListenPushEvent(byte sportId, IMatchPushEventListener pushEventListener)
+        private static async Task<bool> ListenPushEvent(byte sportId, IMatchPushEventListener pushEventListener)
         {
             return await pushEventListener.Start(sportId);
         }
