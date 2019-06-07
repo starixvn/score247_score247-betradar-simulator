@@ -92,7 +92,7 @@ namespace LiveScore.Shared.Database
             return context.Set<T>().AddAsync(obj);
         }
 
-       
+
         public Task InsertRange<T>(IEnumerable<T> objects) where T : DatabaseEntity
         {
             foreach (var obj in objects)
@@ -123,7 +123,11 @@ namespace LiveScore.Shared.Database
         {
             var table = context.Set<T>();
             T existing = table.Find(ids);
-            table.Remove(existing);
+
+            if (existing != null)
+            {
+                table.Remove(existing);
+            }
 
             return this;
         }
