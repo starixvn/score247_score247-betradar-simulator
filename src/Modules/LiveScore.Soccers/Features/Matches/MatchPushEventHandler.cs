@@ -141,7 +141,7 @@
         {
             if (pushEvent.MatchResult.EventStatus.IsLive())
             {
-                var timeline = pushEvent.TimeLines.FirstOrDefault();
+                var timeline = pushEvent.TimeLines.LastOrDefault();
                 var matchTime = timeline.MatchTime;
                 var matchStatus = pushEvent.MatchResult.MatchStatus.Value;
 
