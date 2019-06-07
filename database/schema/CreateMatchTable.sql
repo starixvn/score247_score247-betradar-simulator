@@ -12,6 +12,7 @@ CREATE TABLE public."Match"
     "EventDate" timestamp with time zone,
     "CreatedTime" timestamp with time zone,
     "ModifiedTime" timestamp with time zone,
+    "Region" text COLLATE pg_catalog."default",
     CONSTRAINT "Match_PrimaryKey" PRIMARY KEY ("Id", "Language")
 )
 WITH (
@@ -21,4 +22,3 @@ TABLESPACE pg_default;
 
 ALTER TABLE public."Match"
     OWNER to postgres;
-
