@@ -192,9 +192,12 @@ namespace LiveScore.Features.Matches
             {
                 throw new ArgumentException("Missing sportId or matchId argument");
             }
-
             var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
-            var match = await matchDataAccess.GetMatch(sportId, matchId, language);
+
+            var liveMatches = await GetLiveMatches(sportId, language);
+            var match = liveMatches.Any(m => m.Id == matchId)
+                  ? liveMatches.FirstOrDefault(m => m.Id == matchId)
+                  : await matchDataAccess.GetMatch(sportId, matchId, language);
 
             if (match != null && !match.MatchResult.EventStatus.IsNotStartOrDelay())
             {
