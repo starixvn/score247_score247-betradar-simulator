@@ -28,6 +28,8 @@ namespace LiveScore.Features.Matches.Models
         //offside
         //penalty_awarded
         //penalty_missed
+        public static readonly EventTypes PenaltyMissed = new EventTypes("penalty_missed", nameof(PenaltyMissed));
+
         //penalty_shootout
         public static readonly EventTypes PenaltyShootout = new EventTypes("penalty_shootout", nameof(PenaltyShootout));
         //period_score
@@ -71,8 +73,8 @@ namespace LiveScore.Features.Matches.Models
         {
         }
 
-        public static List<string> BasicSoccerEventTypes 
-            =>new List<string>
+        public static List<string> BasicSoccerEventTypes
+            => new List<string>
             {
                 MatchStarted.Value,
                 PeriodStart.Value,
@@ -83,7 +85,8 @@ namespace LiveScore.Features.Matches.Models
                 RedCard.Value,
                 PenaltyShootout.Value,
                 MatchEnded.Value,
-                InjuryTimeShown.Value
+                InjuryTimeShown.Value,
+                PenaltyMissed.Value
             };
     }
 }
