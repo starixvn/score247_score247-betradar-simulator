@@ -70,29 +70,19 @@ namespace LiveScore.Shared.Database
         }
 
         public async Task<List<T>> Query<T>(Func<T, bool> predicate) where T : DatabaseEntity
-        {
-            return await Task.FromResult(context.Set<T>().AsNoTracking().Where(predicate).ToList());
-        }
+            => await Task.FromResult(context.Set<T>().AsNoTracking().Where(predicate).ToList());
 
         public Task<T> First<T>(Expression<Func<T, bool>> predicate) where T : DatabaseEntity
-        {
-            return context.Set<T>().AsNoTracking().FirstOrDefaultAsync(predicate);
-        }
+            => context.Set<T>().AsNoTracking().FirstOrDefaultAsync(predicate);
 
         public Task<T> Last<T>(Expression<Func<T, bool>> predicate) where T : DatabaseEntity
-        {
-            return context.Set<T>().AsNoTracking().LastOrDefaultAsync(predicate);
-        }
+            => context.Set<T>().AsNoTracking().LastOrDefaultAsync(predicate);
 
         public Task<List<T>> GetAll<T>() where T : DatabaseEntity
-        {
-            return context.Set<T>().AsNoTracking().ToListAsync();
-        }
+            => context.Set<T>().AsNoTracking().ToListAsync();
 
         public Task<T> GetById<T>(params object[] ids) where T : DatabaseEntity
-        {
-            return context.Set<T>().FindAsync(ids);
-        }
+            => context.Set<T>().FindAsync(ids);
 
         public Task Insert<T>(T obj) where T : DatabaseEntity
         {
@@ -139,8 +129,6 @@ namespace LiveScore.Shared.Database
         }
 
         public Task<int> Save()
-        {
-            return context.SaveChangesAsync();
-        }
+            => context.SaveChangesAsync();
     }
 }

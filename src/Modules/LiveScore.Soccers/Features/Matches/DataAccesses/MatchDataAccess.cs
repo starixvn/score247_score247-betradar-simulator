@@ -59,31 +59,7 @@
 
                 if (isLive)
                 {
-                    var liveMatchEntity = await dynamicRepository.GetById<LiveMatchEntity>(matchId, language);
-                    if (liveMatchEntity != null)
-                    {
-                        liveMatchEntity.Value = JsonConvert.SerializeObject(match);
-                        liveMatchEntity.CreatedTime = DateTime.UtcNow;
-                        liveMatchEntity.ModifiedTime = DateTime.UtcNow;
-
-                        dynamicRepository.Update(liveMatchEntity);
-                    }
-                    else
-                    {
-                        liveMatchEntity = new LiveMatchEntity
-                        {
-                            Id = matchEntity.Id,
-                            SportId = matchEntity.SportId,
-                            Language = matchEntity.Language,
-                            Value = matchEntity.Value,
-                            LeagueId = matchEntity.LeagueId,
-                            EventDate = matchEntity.EventDate.ToUniversalTime(),
-                            CreatedTime = DateTime.UtcNow,
-                            ModifiedTime = DateTime.UtcNow
-                        };
-
-                        await dynamicRepository.Insert(liveMatchEntity);
-                    }
+                    await AddOrUpdateLiveMatch(matchId, language, matchEntity, match);
                 }
                 else
                 {
@@ -101,6 +77,36 @@
                 await logger.ErrorAsync($"AddOrUpdateMatch {matchId} - {isLive}", ex);
 
                 return null;
+            }
+        }
+
+        private async Task AddOrUpdateLiveMatch(string matchId, string language, MatchEntity matchEntity, Match match)
+        {
+            var liveMatchEntity = await dynamicRepository.GetById<LiveMatchEntity>(matchId, language);
+
+            if (liveMatchEntity != null)
+            {
+                liveMatchEntity.Value = JsonConvert.SerializeObject(match);
+                liveMatchEntity.CreatedTime = DateTime.UtcNow;
+                liveMatchEntity.ModifiedTime = DateTime.UtcNow;
+
+                dynamicRepository.Update(liveMatchEntity);
+            }
+            else
+            {
+                liveMatchEntity = new LiveMatchEntity
+                {
+                    Id = matchEntity.Id,
+                    SportId = matchEntity.SportId,
+                    Language = matchEntity.Language,
+                    Value = matchEntity.Value,
+                    LeagueId = matchEntity.LeagueId,
+                    EventDate = matchEntity.EventDate.ToUniversalTime(),
+                    CreatedTime = DateTime.UtcNow,
+                    ModifiedTime = DateTime.UtcNow
+                };
+
+                await dynamicRepository.Insert(liveMatchEntity);
             }
         }
 
@@ -130,13 +136,14 @@
                 await DeleteAllTimelines(matchId);
             }
 
-            var matchTimelineEntities = timelines.Select(t => new MatchTimelineEntity
-            {
-                Id = Guid.NewGuid().ToString(),
-                MatchId = matchId,
-                Value = JsonConvert.SerializeObject(t),
-                CreatedTime = DateTime.Now
-            });
+            var matchTimelineEntities = timelines.Select(
+                t => new MatchTimelineEntity
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        MatchId = matchId,
+                        Value = JsonConvert.SerializeObject(t),
+                        CreatedTime = DateTime.Now
+                    });
 
             await dynamicRepository.InsertRange(matchTimelineEntities);
 
@@ -193,7 +200,9 @@
         {
             var matchEntity = await dynamicRepository.GetById<MatchEntity>(matchId, language);
 
-            return matchEntity == null ? null : JsonConvert.DeserializeObject<Match>(matchEntity.Value);
+            return matchEntity == null 
+                    ? null 
+                    : JsonConvert.DeserializeObject<Match>(matchEntity.Value);
         }
 
         public async Task<IEnumerable<ITimeline>> GetTimelines(int sportId, string region, string matchId, string language)

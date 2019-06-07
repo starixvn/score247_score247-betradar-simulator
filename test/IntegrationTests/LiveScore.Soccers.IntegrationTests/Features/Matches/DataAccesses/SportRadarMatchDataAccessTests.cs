@@ -40,6 +40,8 @@
         public IDataProviderSettings DataProviderSettings => new StubDataProviderSettings();
 
         public IDictionary<int, string> TimeZoneSettings => new Dictionary<int, string>();
+
+        public bool EnabledJobs => true;
     }
 
     public class StubDataProviderSettings : IDataProviderSettings

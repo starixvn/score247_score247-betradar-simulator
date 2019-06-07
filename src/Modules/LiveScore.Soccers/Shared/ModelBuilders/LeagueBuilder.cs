@@ -1,10 +1,9 @@
-﻿using System;
-using LiveScore.Features.Leagues.Models;
-using LiveScore.Shared.Models;
-using LiveScore.Shared.Models.Dtos;
-
-namespace LiveScore.Soccers.Shared.ModelBuilders
+﻿namespace LiveScore.Soccers.Shared.ModelBuilders
 {
+    using LiveScore.Features.Leagues.Models;
+    using LiveScore.Shared.Models;
+    using LiveScore.Shared.Models.Dtos;
+
     public static class LeagueBuilder
     {
         public static LeagueRound BuildLeagueRound(Tournament_Round leagueRoundDto)
@@ -35,6 +34,5 @@ namespace LiveScore.Soccers.Shared.ModelBuilders
                     CountryCode = leagueDto?.category?.country_code
                 }
             };
-
     }
 }

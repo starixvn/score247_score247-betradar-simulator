@@ -19,18 +19,16 @@ namespace LiveScore.WebApi.Features.Matches
             this.matchService = matchService;
         }
 
-        [HttpGet("GetMatches")]
+        [HttpGet(nameof(GetMatches))]
         public async Task<IEnumerable<IMatch>> GetMatches(
             int sportId,
             DateTime from,
             DateTime to,
             TimeSpan timeZone,
             string language = "en-US")
-        {  
-            return await matchService.GetMatches(sportId, from, to, timeZone, language);
-        }
+            => await matchService.GetMatches(sportId, from, to, timeZone, language);
 
-        [HttpGet("GetMatch")]
+        [HttpGet(nameof(GetMatch))]
         public async Task<IMatch> GetMatch(
             int sportId,
             string matchId,

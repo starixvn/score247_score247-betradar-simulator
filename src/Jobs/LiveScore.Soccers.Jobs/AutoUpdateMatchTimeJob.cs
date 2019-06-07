@@ -40,9 +40,9 @@
                 {
                     var matchTime = match.MatchResult.MatchTime;
                     var matchEvent = match.TimeLines?.FirstOrDefault();
-                    var maxMatchTime = MaxMatchTime + ((matchEvent?.Type == EventTypes.InjuryTimeShown.Value) ? matchEvent?.InjuryTimeAnnounced : 0);
+                    var injuryTime = matchEvent?.Type == EventTypes.InjuryTimeShown.Value ? matchEvent?.InjuryTimeAnnounced : 0;
 
-                    if (matchTime == maxMatchTime)
+                    if (matchTime == (MaxMatchTime + injuryTime))
                     {
                         continue;
                     }

@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using LiveScore.Shared.Models.Dtos;
-
-namespace LiveScore.Soccers.Shared.ModelBuilders
+﻿namespace LiveScore.Soccers.Shared.ModelBuilders
 {
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using LiveScore.Shared.Models.Dtos;
+
     public static class TeamBuilder
     {
         private const string Home = "home";

@@ -73,8 +73,8 @@ namespace LiveScore.Features.Matches.Models
         {
         }
 
-        public static List<string> BasicSoccerEventTypes
-            => new List<string>
+        public static List<string> BasicSoccerEventTypes { get; } 
+            = new List<string>
             {
                 MatchStarted.Value,
                 PeriodStart.Value,

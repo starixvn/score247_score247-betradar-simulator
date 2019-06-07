@@ -61,6 +61,7 @@ namespace LiveScore.WebApi
                 services.AddLogging(b => b.AddConsole());
                 services.AddHangfire(x => x.UsePostgreSqlStorage(Configuration.GetConnectionString("hangfireConnection")));
                 services.AddMemoryCache(Configuration.GetSection("fanex.caching"));
+
                 RegisterServices(services);
                 RegisterJobs(services);
                 services.RegisterDataAccessFactory();
@@ -74,7 +75,9 @@ namespace LiveScore.WebApi
         }
 
 #pragma warning disable S2325 // Methods and properties that don't access instance data should be static
+#pragma warning disable RECS0154 // Parameter is never used
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+#pragma warning restore RECS0154 // Parameter is never used
         {
             app.UseSignalR(routes =>
             {
@@ -82,6 +85,7 @@ namespace LiveScore.WebApi
             });
 
             UseHangfire(app);
+
             app.ConfigureExceptionHandler();
             app.UseSwagger().UseSwaggerUI(c =>
                 {
@@ -129,6 +133,7 @@ namespace LiveScore.WebApi
             {
                 c.SwaggerDoc("v1", new Info { Title = "Live Scores API", Version = "v1" });
             });
+
             services
                 .AddMvc()
                 .AddJsonOptions(options =>

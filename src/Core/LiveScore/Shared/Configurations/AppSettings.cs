@@ -7,5 +7,7 @@
         IDataProviderSettings DataProviderSettings { get; }
 
         IDictionary<int, string> TimeZoneSettings { get; }
+
+        bool EnabledJobs { get; }
     }
 }

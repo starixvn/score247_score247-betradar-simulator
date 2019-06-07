@@ -55,6 +55,7 @@
                 if (pushEventDto.payload != null)
                 {
                     var pushEvents = MatchBuilder.BuildPushEvents(pushEventDto);
+
                     await Handle(pushEvents);
                 }
             }
@@ -140,7 +141,8 @@
                 var matchTime = timeline.MatchTime;
                 var matchStatus = pushEvent.MatchResult.MatchStatus.Value;
 
-                if (timeline.Type == EventTypes.PeriodStart.Value && PeriodStartTimes.ContainsKey(matchStatus))
+                if (timeline.Type == EventTypes.PeriodStart.Value
+                    && PeriodStartTimes.ContainsKey(matchStatus))
                 {
                     matchTime = PeriodStartTimes[matchStatus];
                 }

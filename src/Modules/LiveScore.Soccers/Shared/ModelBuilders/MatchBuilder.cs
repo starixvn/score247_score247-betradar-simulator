@@ -128,8 +128,7 @@
         }
 
         public static Venue BuildVenue(VenueDto venueDto)
-        {
-            return new Venue
+            => new Venue
             {
                 Name = venueDto.name,
                 Capacity = venueDto.capacity,
@@ -137,6 +136,5 @@
                 CountryName = venueDto.country_name,
                 CountryCode = venueDto.country_code
             };
-        }
     }
 }

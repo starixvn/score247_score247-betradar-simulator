@@ -18,11 +18,14 @@
             this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));                     
             DataProviderSettings = dataProviderSettings;
             TimeZoneSettings = timeZoneSettings;
+            EnabledJobs = GetValue<bool>($"LiveScores:{nameof(EnabledJobs)}");
         }
 
         public IDataProviderSettings DataProviderSettings { get; }
 
-        public IDictionary<int, string> TimeZoneSettings { get; }        
+        public IDictionary<int, string> TimeZoneSettings { get; }
+
+        public bool EnabledJobs { get; }
 
         public T GetValue<T>(string key)
         {
