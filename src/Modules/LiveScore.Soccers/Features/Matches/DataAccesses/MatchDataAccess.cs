@@ -54,7 +54,7 @@
                 var match = JsonConvert.DeserializeObject<Match>(matchEntity.Value);
                 match.MatchResult = pushEvent.MatchResult;
                 match.TimeLines = pushEvent.TimeLines;
-                match.LatestTimeline = pushEvent.TimeLines.OrderBy(x=>x.Time).Last();
+                match.LatestTimeline = pushEvent.TimeLines.OrderBy(x => x.Time).Last();
                 matchEntity.Value = JsonConvert.SerializeObject(match);
 
                 if (isLive)
@@ -116,10 +116,10 @@
             {
                 if (isLive)
                 {
-                    return await dynamicRepository.Delete<LiveMatchEntity>(matchId, language).Save() > 0;
+                    return await dynamicRepository.Delete<LiveMatchEntity>(matchId, language) > 0;
                 }
 
-                return await dynamicRepository.Delete<MatchEntity>(matchId, language).Save() > 0;
+                return await dynamicRepository.Delete<MatchEntity>(matchId, language) > 0;
             }
             catch (Exception ex)
             {
@@ -128,9 +128,9 @@
                 return false;
             }
         }
-        
+
         public async Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines, bool isDeleteExisting = false)
-        {           
+        {
             if (isDeleteExisting)
             {
                 await DeleteAllTimelines(matchId);
@@ -138,12 +138,12 @@
 
             var matchTimelineEntities = timelines.Select(
                 t => new MatchTimelineEntity
-                    {
-                        Id = Guid.NewGuid().ToString(),
-                        MatchId = matchId,
-                        Value = JsonConvert.SerializeObject(t),
-                        CreatedTime = DateTime.Now
-                    });
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    MatchId = matchId,
+                    Value = JsonConvert.SerializeObject(t),
+                    CreatedTime = DateTime.Now
+                });
 
             await dynamicRepository.InsertRange(matchTimelineEntities);
 
@@ -158,10 +158,8 @@
             {
                 foreach (var existing in eixstingTimelines)
                 {
-                    dynamicRepository.Delete<MatchTimelineEntity>(existing);
+                    await dynamicRepository.Delete<MatchTimelineEntity>(existing);
                 }
-
-                await dynamicRepository.Save();
             }
         }
 
@@ -200,8 +198,8 @@
         {
             var matchEntity = await dynamicRepository.GetById<MatchEntity>(matchId, language);
 
-            return matchEntity == null 
-                    ? null 
+            return matchEntity == null
+                    ? null
                     : JsonConvert.DeserializeObject<Match>(matchEntity.Value);
         }
 
@@ -219,7 +217,7 @@
         public async Task<bool> AddCommentaries(string matchId, IEnumerable<ITimeline> timelines, string language)
         {
             var commentaries = timelines
-                .Where(x=> x.Commentaries != null && x.Commentaries.Any())
+                .Where(x => x.Commentaries != null && x.Commentaries.Any())
                 .Select(x => new CommentaryEntity
                 {
                     Id = x.Id.ToString(),

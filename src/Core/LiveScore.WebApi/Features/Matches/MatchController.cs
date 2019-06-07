@@ -5,7 +5,7 @@ namespace LiveScore.WebApi.Features.Matches
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using LiveScore.Features.Matches;
-    using LiveScore.Features.Matches.Models;    
+    using LiveScore.Features.Matches.Models;
     using Microsoft.AspNetCore.Mvc;
 
     [Route("api/[controller]")]
@@ -32,9 +32,10 @@ namespace LiveScore.WebApi.Features.Matches
         public async Task<IMatch> GetMatch(
             int sportId,
             string matchId,
+            TimeSpan timeZone,
             string language = "en-US")
         {
-            var match= await matchService.GetMatch(sportId, matchId, language);
+            var match = await matchService.GetMatch(sportId, matchId, language, timeZone);
 
             if (match == null)
             {

@@ -31,7 +31,7 @@ namespace LiveScore.Shared.Database
 
         Task<int> UpdateRange<T>(IEnumerable<T> objects) where T : DatabaseEntity;
 
-        IDynamicRepository Delete<T>(params object[] ids) where T : DatabaseEntity;
+        Task<int> Delete<T>(params object[] ids) where T : DatabaseEntity;
 
         Task<int> Save();
     }
@@ -119,17 +119,19 @@ namespace LiveScore.Shared.Database
             return this;
         }
 
-        public IDynamicRepository Delete<T>(params object[] ids) where T : DatabaseEntity
+        public Task<int> Delete<T>(params object[] ids) where T : DatabaseEntity
         {
             var table = context.Set<T>();
             T existing = table.Find(ids);
 
             if (existing != null)
             {
+                table.Attach(existing);
                 table.Remove(existing);
             }
 
-            return this;
+            return context.SaveChangesAsync();
+
         }
 
         public Task<int> Save()

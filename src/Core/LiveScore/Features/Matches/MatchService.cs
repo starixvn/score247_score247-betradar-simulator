@@ -29,7 +29,7 @@ namespace LiveScore.Features.Matches
 
         Task<bool> AddResult(int sportId, string matchId, IMatchResult matchResult);
 
-        Task<IMatch> GetMatch(int sportId, string matchId, string language);
+        Task<IMatch> GetMatch(int sportId, string matchId, string language, TimeSpan clientTimeZone);
     }
 
     public class MatchService : IMatchService
@@ -80,7 +80,7 @@ namespace LiveScore.Features.Matches
 
         private async Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language, DateTime utcFrom, DateTime utcTo)
         {
-            if (utcFrom <= DateTime.Today.ToUniversalTime() 
+            if (utcFrom <= DateTime.Today.ToUniversalTime()
                 && utcTo >= DateTime.Today.ToUniversalTime())
             {
                 return await GetLiveMatches(sportId, language);
@@ -194,7 +194,7 @@ namespace LiveScore.Features.Matches
 
         private static string GetLiveMatchCacheKey(int sportId, string language) => $"LiveMatch_{sportId}_{language}";
 
-        public async Task<IMatch> GetMatch(int sportId, string matchId, string language)
+        public async Task<IMatch> GetMatch(int sportId, string matchId, string language, TimeSpan clientTimeZone)
         {
             if (sportId <= 0
                 || string.IsNullOrWhiteSpace(matchId))
@@ -213,7 +213,7 @@ namespace LiveScore.Features.Matches
                 match.TimeLines = await matchDataAccess.GetTimelines(sportId, match.Region, matchId, language);
             }
 
-            return match;
+            return match.ChangeEventDateByTimeZone(clientTimeZone);
         }
 
         public async Task AddFullTimelines(int sportId, string matchId, string language, string region)
