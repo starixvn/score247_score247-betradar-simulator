@@ -76,19 +76,24 @@
                 GenerateMatchTimeForLiveMatch(pushEvents[matchId]);
             }
 
-            var basicPushEvents = await PushToClients(pushEvents);
+            var basicPushEvents = GetBasicPushEvents(pushEvents);
+            await PushToClients(basicPushEvents);
 
             foreach (var matchId in basicPushEvents.Keys)
             {
-                var pushEvent = pushEvents[matchId];
+                var pushEvent = basicPushEvents[matchId];
                 await UpdateMatch(matchId, pushEvent);
             }
 
-            await InsertResultAndTimeline(pushEvents);
-
+            foreach (var matchId in pushEvents.Keys)
+            {
+                var pushEvent = pushEvents[matchId];
+                await matchService.AddResult(SportConstants.SoccerId, matchId, pushEvent.MatchResult);
+                await matchService.AddTimelines(SportConstants.SoccerId, matchId, pushEvent.TimeLines);
+            }
         }
 
-        private async Task<Dictionary<string, MatchPushEvent>> PushToClients(Dictionary<string, MatchPushEvent> pushEvents)
+        private static Dictionary<string, MatchPushEvent> GetBasicPushEvents(Dictionary<string, MatchPushEvent> pushEvents)
         {
             var basicPushEvents = new Dictionary<string, MatchPushEvent>();
 
@@ -99,29 +104,19 @@
                 {
                     basicPushEvents[matchId] = pushEvent;
                 }
-
             }
-
-            await hubContext.Clients.All.SendAsync("PushMatchEvent", SportConstants.SoccerId.ToString(), pushEvents);
 
             return basicPushEvents;
         }
 
-        public async Task InsertResultAndTimeline(Dictionary<string, MatchPushEvent> pushEvents)
+        private async Task PushToClients(Dictionary<string, MatchPushEvent> pushEvents)
         {
-
-            foreach (var matchId in pushEvents.Keys)
-            {
-                var pushEvent = pushEvents[matchId];
-
-                await matchService.AddResult(SportConstants.SoccerId, matchId, pushEvent.MatchResult);
-                await matchService.AddTimelines(SportConstants.SoccerId, matchId, pushEvent.TimeLines);
-            }
+            await hubContext.Clients.All.SendAsync("PushMatchEvent", SportConstants.SoccerId.ToString(), pushEvents);
         }
 
         private async Task UpdateMatch(string matchId, MatchPushEvent pushEvent)
         {
-            var timeline = pushEvent.TimeLines.FirstOrDefault();
+            var timeline = pushEvent.TimeLines.LastOrDefault();
 
             foreach (var language in Enumeration.GetAll<Language>())
             {
