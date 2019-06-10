@@ -478,5 +478,21 @@
         }
 
         #endregion
+
+        #region UpdateLiveMatches
+
+        [Fact]
+        public async Task UpdateLiveMatches_Always_UpdateLiveMatchEntity()
+        {
+            dynamicRepository.GetById<LiveMatchEntity>("sr:match:1", "en-US").Returns(StubMatch.StubLiveMatchEntity());
+            var matches = new List<Match> { new Match { EventDate = DateTime.Now, Id = "sr:match:1"  } };
+
+            var result = await matchDataAccess.UpdateLiveMatches(matches, "en-US");
+
+            Assert.True(result);
+            await dynamicRepository.Received(1).UpdateRange(Arg.Any<IEnumerable<LiveMatchEntity>>());
+        }
+
+        #endregion
     }
 }
