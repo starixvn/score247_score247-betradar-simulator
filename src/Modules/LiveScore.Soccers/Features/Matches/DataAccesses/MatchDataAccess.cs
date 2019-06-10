@@ -51,6 +51,8 @@
             try
             {
                 var matchEntity = await dynamicRepository.GetById<MatchEntity>(matchId, language);
+                matchEntity.EventDate = matchEntity.EventDate.ToUniversalTime();
+
                 var match = JsonConvert.DeserializeObject<Match>(matchEntity.Value);
                 match.MatchResult = pushEvent.MatchResult;
                 match.TimeLines = pushEvent.TimeLines;
@@ -86,9 +88,11 @@
 
             if (liveMatchEntity != null)
             {
+                match.EventDate = match.EventDate.ToUniversalTime();
                 liveMatchEntity.Value = JsonConvert.SerializeObject(match);
                 liveMatchEntity.CreatedTime = DateTime.UtcNow;
                 liveMatchEntity.ModifiedTime = DateTime.UtcNow;
+                liveMatchEntity.EventDate = liveMatchEntity.EventDate.ToUniversalTime();
 
                 dynamicRepository.Update(liveMatchEntity);
             }
