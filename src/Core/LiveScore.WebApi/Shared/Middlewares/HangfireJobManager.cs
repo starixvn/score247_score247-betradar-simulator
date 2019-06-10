@@ -8,6 +8,7 @@
     using LiveScore.Soccers.Features.Matches;
     using LiveScore.Shared.Configurations;
     using Microsoft.Extensions.DependencyInjection;
+    using LiveScore.Soccers.Jobs;
 
     public static class HangfireJobManager
     {
@@ -19,26 +20,25 @@
         {
             var appSettings = app.ApplicationServices.GetService<IAppSettings>();
 
-            if(!appSettings.EnabledJobs)
+            RecurringJob.AddOrUpdate<IAutoUpdateMatchTimeJob>(nameof(IAutoUpdateMatchTimeJob), job => job.UpdateMatchTime(), Cron.Minutely);
+
+            if (!appSettings.EnabledJobs)
             {
                 return;
             }
 
             var resultDateSpan = int.Parse(Configuration.GetSection(ResultDateSpanPath).Value);
             var scheduleDateSpan = int.Parse(Configuration.GetSection(ScheduleDateSpanPath).Value);
-            var isEnableHangfireJob = Configuration.GetValue<bool>("EnableHangfireJob");
 
-            if (isEnableHangfireJob)
-            {
-                RecurringJob.AddOrUpdate<IDailyScheduleFetchJob>("FetchSchedule", job => job.FetchSchedule(SportConstants.SoccerId, scheduleDateSpan), ScheduleIntervalCron);
-                RecurringJob.AddOrUpdate<IDailyScheduleFetchJob>("FetchResult", job => job.FetchResult(SportConstants.SoccerId, resultDateSpan), Cron.Daily);
-                RecurringJob.AddOrUpdate<ILiveMatchFetchJob>("FetchLive", job => job.Fetch(SportConstants.SoccerId), Cron.Daily);
+            RecurringJob.AddOrUpdate<IDailyScheduleFetchJob>("FetchSchedule", job => job.FetchSchedule(SportConstants.SoccerId, scheduleDateSpan), ScheduleIntervalCron);
+            RecurringJob.AddOrUpdate<IDailyScheduleFetchJob>("FetchResult", job => job.FetchResult(SportConstants.SoccerId, resultDateSpan), Cron.Daily);
+            RecurringJob.AddOrUpdate<ILiveMatchFetchJob>("FetchLive", job => job.Fetch(SportConstants.SoccerId), Cron.Daily);
 
-                var pushHandler = app.ApplicationServices.GetService<IMatchPushEventHandler>();
-                var soccerMatchPushEventListener = new MatchPushEventListener(pushHandler, appSettings);
+            var pushHandler = app.ApplicationServices.GetService<IMatchPushEventHandler>();
+            var soccerMatchPushEventListener = new MatchPushEventListener(pushHandler, appSettings);
 
-                BackgroundJob.Enqueue<IMatchPushEventListenerJob>(job => job.StartListeningPushEvent(SportConstants.SoccerId, soccerMatchPushEventListener));
-            }
+            BackgroundJob.Enqueue<IMatchPushEventListenerJob>(job => job.StartListeningPushEvent(SportConstants.SoccerId, soccerMatchPushEventListener));
+
         }
     }
 }
