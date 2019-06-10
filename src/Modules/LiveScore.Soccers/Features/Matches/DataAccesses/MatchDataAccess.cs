@@ -55,6 +55,7 @@
                 match.MatchResult = pushEvent.MatchResult;
                 match.TimeLines = pushEvent.TimeLines;
                 match.LatestTimeline = pushEvent.TimeLines.OrderBy(x => x.Time).Last();
+                match.EventDate = match.EventDate.ToUniversalTime();
                 matchEntity.Value = JsonConvert.SerializeObject(match);
 
                 if (isLive)
