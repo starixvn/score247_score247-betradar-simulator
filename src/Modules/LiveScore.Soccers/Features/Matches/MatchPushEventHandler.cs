@@ -123,7 +123,7 @@
             {
                 if (timeline.Type == EventTypes.MatchEnded.Value)
                 {
-                    await matchService.DeleteMatch(SportConstants.SoccerId, language.Value, matchId, isLive: true);
+                    await matchService.DeleteLiveMatch(SportConstants.SoccerId, language.Value, matchId);
                     await matchService.AddOrUpdateMatch(SportConstants.SoccerId, language.Value, matchId, pushEvent);
                 }
                 else

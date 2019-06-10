@@ -385,5 +385,19 @@
         }
 
         #endregion
+
+        #region DeleteLiveMatch
+
+        [Fact]
+        public async Task DeleteLiveMatch_Always_DeleteLiveMatchEntity()
+        {
+            dynamicRepository.Delete<LiveMatchEntity>("sr:match:1", "en_Us").Returns(1);
+
+            var result = await matchDataAccess.DeleteLiveMatch("sr:match:1", "en_Us");
+            
+            Assert.True(result);
+        }
+
+        #endregion
     }
 }

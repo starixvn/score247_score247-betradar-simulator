@@ -114,16 +114,11 @@
             }
         }
 
-        public async Task<bool> DeleteMatch(string matchId, string language, bool isLive = false)
+        public async Task<bool> DeleteLiveMatch(string matchId, string language)
         {
             try
             {
-                if (isLive)
-                {
-                    return await dynamicRepository.Delete<LiveMatchEntity>(matchId, language) > 0;
-                }
-
-                return await dynamicRepository.Delete<MatchEntity>(matchId, language) > 0;
+                return await dynamicRepository.Delete<LiveMatchEntity>(matchId, language) > 0;
             }
             catch (Exception ex)
             {
@@ -168,7 +163,7 @@
         }
 
         public async Task<bool> AddResult(string matchId, IMatchResult matchResult)
-        {            
+        {
             await dynamicRepository.Insert(
                 new MatchResultEntity
                 {
@@ -186,7 +181,7 @@
 
             foreach (var match in matches)
             {
-                var liveMatchEntity = await dynamicRepository.GetById<LiveMatchEntity>(match.Id, language);                
+                var liveMatchEntity = await dynamicRepository.GetById<LiveMatchEntity>(match.Id, language);
                 liveMatchEntity.Value = JsonConvert.SerializeObject(match);
                 liveMatchEntity.EventDate = match.EventDate.ToUniversalTime();
                 liveMatchEntity.ModifiedTime = DateTime.UtcNow;

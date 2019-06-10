@@ -11,7 +11,7 @@
 
         Task<IMatch> AddOrUpdateMatch(string matchId, string language, MatchPushEvent pushEvent, bool isLive = false);
 
-        Task<bool> DeleteMatch(string matchId, string language, bool isLive = false);
+        Task<bool> DeleteLiveMatch(string matchId, string language);
 
         Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language);
 

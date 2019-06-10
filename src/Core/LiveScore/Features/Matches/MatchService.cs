@@ -21,7 +21,7 @@ namespace LiveScore.Features.Matches
 
         Task<bool> AddOrUpdateMatch(int sportId, string language, string matchId, MatchPushEvent pushEvent, bool isLive = false);
 
-        Task<bool> DeleteMatch(int sportId, string language, string matchId, bool isLive = false);
+        Task<bool> DeleteLiveMatch(int sportId, string language, string matchId);
 
         Task UpdateLiveMatches(int sportId, string language, IEnumerable<IMatch> matches);
 
@@ -159,23 +159,20 @@ namespace LiveScore.Features.Matches
             return true;
         }
 
-        public async Task<bool> DeleteMatch(int sportId, string language, string matchId, bool isLive = false)
+        public async Task<bool> DeleteLiveMatch(int sportId, string language, string matchId)
         {
             var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
 
-            if (isLive)
-            {
-                var liveMatchCacheKey = GetLiveMatchCacheKey(sportId, language);
-                var liveMatches = cacheService.Get<IDictionary<string, IMatch>>(liveMatchCacheKey);
+            var liveMatchCacheKey = GetLiveMatchCacheKey(sportId, language);
+            var liveMatches = cacheService.Get<IDictionary<string, IMatch>>(liveMatchCacheKey);
 
-                if (liveMatches != null && liveMatches.ContainsKey(matchId))
-                {
-                    liveMatches.Remove(matchId);
-                    cacheService.Set(liveMatchCacheKey, JsonConvert.SerializeObject(liveMatches), LiveMatchCacheOptions);
-                }
+            if (liveMatches != null && liveMatches.ContainsKey(matchId))
+            {
+                liveMatches.Remove(matchId);
+                cacheService.Set(liveMatchCacheKey, JsonConvert.SerializeObject(liveMatches), LiveMatchCacheOptions);
             }
 
-            return await matchDataAccess.DeleteMatch(matchId, language, isLive);
+            return await matchDataAccess.DeleteLiveMatch(matchId, language);
         }
 
         public async Task<bool> AddTimelines(int sportId, string matchId, IEnumerable<ITimeline> timelines)

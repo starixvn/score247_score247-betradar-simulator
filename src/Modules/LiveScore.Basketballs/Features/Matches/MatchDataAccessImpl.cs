@@ -42,7 +42,7 @@ namespace LiveScore.Basketballs.Features.Matches
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteMatch(string matchId, string language, bool isLive = false)
+        public Task<bool> DeleteLiveMatch(string matchId, string language)
         {
             throw new NotImplementedException();
         }
