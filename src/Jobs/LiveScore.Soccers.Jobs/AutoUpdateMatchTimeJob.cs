@@ -39,7 +39,7 @@
                 foreach (var match in liveMatches)
                 {
                     var matchTime = match.MatchResult.MatchTime;
-                    var matchEvent = match.TimeLines?.LastOrDefault();
+                    var matchEvent = match.LatestTimeline ?? match.TimeLines?.LastOrDefault();
                     var injuryTime = matchEvent?.InjuryTimeAnnounced ?? 0;
 
                     if (matchTime == (MaxMatchTime + injuryTime))
