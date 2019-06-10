@@ -393,9 +393,9 @@
         [Fact]
         public async Task DeleteLiveMatch_Always_DeleteLiveMatchEntity()
         {
-            dynamicRepository.Delete<LiveMatchEntity>("sr:match:1", "en_Us").Returns(1);
+            dynamicRepository.Delete<LiveMatchEntity>("sr:match:1", "en-US").Returns(1);
 
-            var result = await matchDataAccess.DeleteLiveMatch("sr:match:1", "en_Us");
+            var result = await matchDataAccess.DeleteLiveMatch("sr:match:1", "en-US");
 
             Assert.True(result);
         }
@@ -403,9 +403,9 @@
         [Fact]
         public async Task DeleteLiveMatch_ThrowsException_ShouldLogError()
         {
-            dynamicRepository.Delete<LiveMatchEntity>("sr:match:1", "en_Us").Throws(new InvalidOperationException("Cannot delete"));
+            dynamicRepository.Delete<LiveMatchEntity>("sr:match:1", "en-US").Throws(new InvalidOperationException("Cannot delete"));
 
-            var result = await matchDataAccess.DeleteLiveMatch("sr:match:1", "en_Us");
+            var result = await matchDataAccess.DeleteLiveMatch("sr:match:1", "en-US");
 
             Assert.False(result);
             await logger.Received(1).ErrorAsync(Arg.Is<string>(x => x.Contains("DeleteMatch")), Arg.Any<InvalidOperationException>());
@@ -413,6 +413,35 @@
 
         #endregion
 
+        #region AddOrUpdateLiveMatch
 
+        [Fact]
+        public async Task AddOrUpdateMatch_MatchEntityIsNull_ShouldLogError()
+        {
+            var pushEvent = new MatchPushEvent { };
+
+            var match = await matchDataAccess.AddOrUpdateMatch("sr:match:1", "en-US", pushEvent);
+
+            Assert.Null(match);
+            await logger.Received(1).ErrorAsync(Arg.Is<string>(x => x.Contains("AddOrUpdateMatch")), Arg.Any<KeyNotFoundException>());
+        }
+
+        [Fact]
+        public async Task AddOrUpdateMatch_MatchEntityNotNull_ShouldUpdateMatchEntity()
+        {
+            var pushEvent = new MatchPushEvent
+            {
+                MatchResult = new MatchResult  { EventStatus = MatchStatus.Live },
+                TimeLines = new List<Timeline> { new Timeline { Type = EventTypes.MatchStarted.Value } }
+            };
+            dynamicRepository.GetById<MatchEntity>("sr:match:1", "en-US").Returns(StubMatch.StubMatchEntity());
+
+            var match = await matchDataAccess.AddOrUpdateMatch("sr:match:1", "en-US", pushEvent);
+
+            Assert.NotNull(match);
+            dynamicRepository.Received(1).Update(Arg.Any<MatchEntity>());
+        }
+
+        #endregion
     }
 }

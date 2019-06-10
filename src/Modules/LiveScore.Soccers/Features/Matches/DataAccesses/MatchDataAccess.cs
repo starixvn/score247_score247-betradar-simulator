@@ -51,6 +51,12 @@
             try
             {
                 var matchEntity = await dynamicRepository.GetById<MatchEntity>(matchId, language);
+
+                if (matchEntity == null)
+                {
+                    throw new KeyNotFoundException($"NotFound match {matchId} language {language}");
+                }
+
                 matchEntity.EventDate = matchEntity.EventDate.ToUniversalTime();
 
                 var match = JsonConvert.DeserializeObject<Match>(matchEntity.Value);
