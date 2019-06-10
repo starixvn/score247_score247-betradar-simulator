@@ -431,7 +431,7 @@
         {
             var pushEvent = new MatchPushEvent
             {
-                MatchResult = new MatchResult  { EventStatus = MatchStatus.Live },
+                MatchResult = new MatchResult { EventStatus = MatchStatus.Live },
                 TimeLines = new List<Timeline> { new Timeline { Type = EventTypes.MatchStarted.Value } }
             };
             dynamicRepository.GetById<MatchEntity>("sr:match:1", "en-US").Returns(StubMatch.StubMatchEntity());
@@ -440,6 +440,41 @@
 
             Assert.NotNull(match);
             dynamicRepository.Received(1).Update(Arg.Any<MatchEntity>());
+        }
+
+        [Fact]
+        public async Task AddOrUpdateMatch_Live_ShouldInsertLiveMatchEntity()
+        {
+            var pushEvent = new MatchPushEvent
+            {
+                MatchResult = new MatchResult { EventStatus = MatchStatus.Live },
+                TimeLines = new List<Timeline> { new Timeline { Type = EventTypes.MatchStarted.Value } }
+            };
+            dynamicRepository.GetById<MatchEntity>("sr:match:1", "en-US").Returns(StubMatch.StubMatchEntity());
+
+            var match = await matchDataAccess.AddOrUpdateMatch("sr:match:1", "en-US", pushEvent, isLive: true);
+
+            Assert.NotNull(match);
+            dynamicRepository.DidNotReceive().Update(Arg.Any<MatchEntity>());
+            await dynamicRepository.Received(1).Insert(Arg.Any<LiveMatchEntity>());
+        }
+
+        [Fact]
+        public async Task AddOrUpdateMatch_ExistLiveMatch_ShouldUpdateLiveMatchEntity()
+        {
+            var pushEvent = new MatchPushEvent
+            {
+                MatchResult = new MatchResult { EventStatus = MatchStatus.Live },
+                TimeLines = new List<Timeline> { new Timeline { Type = EventTypes.MatchStarted.Value } }
+            };
+            dynamicRepository.GetById<MatchEntity>("sr:match:1", "en-US").Returns(StubMatch.StubMatchEntity());
+            dynamicRepository.GetById<LiveMatchEntity>("sr:match:1", "en-US").Returns(StubMatch.StubLiveMatchEntity());
+
+            var match = await matchDataAccess.AddOrUpdateMatch("sr:match:1", "en-US", pushEvent, isLive: true);
+
+            Assert.NotNull(match);
+            dynamicRepository.DidNotReceive().Update(Arg.Any<MatchEntity>());
+            dynamicRepository.Received(1).Update(Arg.Any<LiveMatchEntity>());
         }
 
         #endregion
