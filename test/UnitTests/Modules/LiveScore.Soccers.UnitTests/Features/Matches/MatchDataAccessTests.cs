@@ -276,5 +276,42 @@
         }
 
         #endregion
+
+        #region AddTimelines
+
+        [Fact]
+        public async Task AddTimelines_NotDeleteExisting_ShouldNotDeleteEntity()
+        {
+            var timelines = new List<Timeline>
+            {
+                StubTimeline.StubScoreChangePenalty()
+            };
+
+            await matchDataAccess.AddTimelines("sr:match:1", timelines, isDeleteExisting: false);
+
+            await dynamicRepository.DidNotReceive().Delete<MatchTimelineEntity>(Arg.Any<object[]>());
+            await dynamicRepository.Received(1).InsertRange(Arg.Any<IEnumerable<MatchTimelineEntity>>());
+        }
+
+        [Fact]
+        public async Task AddTimelines_DeleteExisting_ShouldDeleteExistingEntity()
+        {
+            var timelines = new List<Timeline>
+            {
+                StubTimeline.StubScoreChangePenalty()
+            };
+
+            dynamicRepository.Query(Arg.Any<Func<MatchTimelineEntity, bool>>()).Returns(new List<MatchTimelineEntity>
+            {
+                StubTimeline.StubScoreChangeTimelineEntity("sr:match:1")
+            });
+
+            await matchDataAccess.AddTimelines("sr:match:1", timelines, isDeleteExisting: true);
+
+            await dynamicRepository.Received(1).Delete<MatchTimelineEntity>(Arg.Any<object[]>());
+            await dynamicRepository.Received(1).InsertRange(Arg.Any<IEnumerable<MatchTimelineEntity>>());
+        }
+
+        #endregion
     }
 }
