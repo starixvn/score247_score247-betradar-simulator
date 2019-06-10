@@ -39,7 +39,7 @@
                 foreach (var match in liveMatches)
                 {
                     var matchTime = match.MatchResult.MatchTime;
-                    var matchEvent = match.TimeLines?.FirstOrDefault();
+                    var matchEvent = match.TimeLines?.LastOrDefault();
                     var injuryTime = matchEvent?.Type == EventTypes.InjuryTimeShown.Value ? matchEvent?.InjuryTimeAnnounced : 0;
 
                     if (matchTime == (MaxMatchTime + injuryTime))
@@ -47,7 +47,15 @@
                         continue;
                     }
 
-                    matchTime++;
+                    if (!string.IsNullOrEmpty(matchEvent.StoppageTime))
+                    {
+                        matchTime += int.Parse(matchEvent.StoppageTime);
+                    }
+                    else
+                    {
+                        matchTime++;
+                    }
+
                     match.MatchResult.MatchTime = matchTime;
 
                     await matchHub.Clients.All.SendAsync("PushMatchTime", SportConstants.SoccerId.ToString(), match.Id, matchTime);
