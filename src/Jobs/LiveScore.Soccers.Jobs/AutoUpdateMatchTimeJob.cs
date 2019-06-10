@@ -47,7 +47,7 @@
                         continue;
                     }
 
-                    if (!string.IsNullOrEmpty(matchEvent.StoppageTime))
+                    if (!string.IsNullOrEmpty(matchEvent?.StoppageTime))
                     {
                         matchTime += int.Parse(matchEvent.StoppageTime);
                     }
