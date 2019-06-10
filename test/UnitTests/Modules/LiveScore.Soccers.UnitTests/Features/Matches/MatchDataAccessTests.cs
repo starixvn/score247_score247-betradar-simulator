@@ -12,12 +12,14 @@
     using LiveScore.Soccers.Features.Matches.DataAccesses;
     using LiveScore.Soccers.UnitTests.Shared;
     using NSubstitute;
+    using NSubstitute.ExceptionExtensions;
     using Xunit;
 
     public class MatchDataAccessTests
     {
         private readonly MatchDataAccess matchDataAccess;
         private readonly IDynamicRepository dynamicRepository;
+        private readonly ILogger logger;
 
         public MatchDataAccessTests()
         {
@@ -25,7 +27,7 @@
             dynamicRepository.Query(Arg.Any<Func<MatchEntity, bool>>()).Returns(new List<MatchEntity> { StubMatch.StubMatchEntity() });
             dynamicRepository.Query(Arg.Any<Func<LiveMatchEntity, bool>>()).Returns(new List<LiveMatchEntity> { StubMatch.StubLiveMatchEntity() });
 
-            var logger = Substitute.For<ILogger>();
+            logger = Substitute.For<ILogger>();
 
             matchDataAccess = new MatchDataAccess(dynamicRepository, logger);
         }
@@ -381,7 +383,7 @@
             var result = await matchDataAccess.AddResult("sr:match:1", matchResult);
 
             await dynamicRepository.Received(1).Insert(Arg.Any<MatchResultEntity>());
-            Assert.True(result);            
+            Assert.True(result);
         }
 
         #endregion
@@ -394,10 +396,23 @@
             dynamicRepository.Delete<LiveMatchEntity>("sr:match:1", "en_Us").Returns(1);
 
             var result = await matchDataAccess.DeleteLiveMatch("sr:match:1", "en_Us");
-            
+
             Assert.True(result);
         }
 
+        [Fact]
+        public async Task DeleteLiveMatch_ThrowsException_ShouldLogError()
+        {
+            dynamicRepository.Delete<LiveMatchEntity>("sr:match:1", "en_Us").Throws(new InvalidOperationException("Cannot delete"));
+
+            var result = await matchDataAccess.DeleteLiveMatch("sr:match:1", "en_Us");
+
+            Assert.False(result);
+            await logger.Received(1).ErrorAsync(Arg.Is<string>(x => x.Contains("DeleteMatch")), Arg.Any<InvalidOperationException>());
+        }
+
         #endregion
+
+
     }
 }
