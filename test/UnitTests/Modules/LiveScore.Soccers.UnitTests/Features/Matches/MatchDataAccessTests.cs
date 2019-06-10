@@ -23,6 +23,7 @@
         {
             dynamicRepository = Substitute.For<IDynamicRepository>();
             dynamicRepository.Query(Arg.Any<Func<MatchEntity, bool>>()).Returns(new List<MatchEntity> { StubMatch.StubMatchEntity() });
+            dynamicRepository.Query(Arg.Any<Func<LiveMatchEntity, bool>>()).Returns(new List<LiveMatchEntity> { StubMatch.StubLiveMatchEntity() });
 
             var logger = Substitute.For<ILogger>();
 
@@ -118,7 +119,7 @@
         [Fact]
         public async Task GetMatches_Live_ReturnMatchResult()
         {
-            dynamicRepository.Query(Arg.Any<Func<MatchEntity, bool>>()).Returns(new List<MatchEntity> { StubMatch.StubLiveMatchEntity() });
+            dynamicRepository.Query(Arg.Any<Func<MatchEntity, bool>>()).Returns(new List<MatchEntity> { StubMatch.StubMatchEntityWithLiveResult() });
 
             var matches = await matchDataAccess.GetMatches(
                1,
@@ -139,7 +140,7 @@
         [Fact]
         public async Task GetMatches_Live_ReturnMatchTimeline()
         {
-            dynamicRepository.Query(Arg.Any<Func<MatchEntity, bool>>()).Returns(new List<MatchEntity> { StubMatch.StubLiveMatchEntity() });
+            dynamicRepository.Query(Arg.Any<Func<MatchEntity, bool>>()).Returns(new List<MatchEntity> { StubMatch.StubMatchEntityWithLiveResult() });
 
             var matches = await matchDataAccess.GetMatches(
                1,
@@ -311,6 +312,67 @@
             await dynamicRepository.Received(1).Delete<MatchTimelineEntity>(Arg.Any<object[]>());
             await dynamicRepository.Received(1).InsertRange(Arg.Any<IEnumerable<MatchTimelineEntity>>());
         }
+
+        #endregion
+
+        #region GetMatch
+
+        [Fact]
+        public async Task GetMatch_NotExist_ReturnNull()
+        {
+            var match = await matchDataAccess.GetMatch(1, "sr:match:1", "en-US");
+
+            Assert.Null(match);
+        }
+
+        [Fact]
+        public async Task GetMatch_HasValue_ReturnAssigned()
+        {
+            dynamicRepository.GetById<MatchEntity>("sr:match:17809194", "en-US").Returns(StubMatch.StubMatchEntity());
+
+            var match = await matchDataAccess.GetMatch(1, "sr:match:17809194", "en-US");
+
+            Assert.NotNull(match);
+            Assert.Equal("sr:tournament:28424", match.League.Id);
+        }
+
+        #endregion
+
+        #region GetLiveMatches
+
+        [Fact]
+        public async Task GetLiveMatches_Always_ReturnTeams()
+        {
+            var matches = await matchDataAccess.GetLiveMatches(
+                1,
+                "en-US");
+
+            var match = matches.First();
+            var home = match.Teams.ElementAt(0);
+            var away = match.Teams.ElementAt(1);
+
+            Assert.Equal(2, match.Teams.Count());
+
+            Assert.Equal("sr:competitor:559146", home.Id);
+            Assert.Equal("Denton Diablos FC", home.Name);
+            Assert.Equal("USA", home.Country);
+            Assert.Equal("USA", home.CountryCode);
+            Assert.Equal("DEN", home.Abbreviation);
+            Assert.True(home.IsHome);
+
+            Assert.Equal("sr:competitor:559156", away.Id);
+            Assert.Equal("Dallas City FC", away.Name);
+            Assert.Equal("USA", away.Country);
+            Assert.Equal("USA", away.CountryCode);
+            Assert.Equal("DAL", away.Abbreviation);
+            Assert.False(away.IsHome);
+        }
+
+        #endregion
+
+        #region DeleteMatch
+
+
 
         #endregion
     }

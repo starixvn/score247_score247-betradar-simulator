@@ -56,6 +56,7 @@
                 match.TimeLines = pushEvent.TimeLines;
                 match.LatestTimeline = pushEvent.TimeLines.OrderBy(x => x.Time).Last();
                 match.EventDate = match.EventDate.ToUniversalTime();
+
                 matchEntity.Value = JsonConvert.SerializeObject(match);
 
                 if (isLive)
@@ -177,18 +178,18 @@
 
         public async Task<bool> UpdateLiveMatches(IEnumerable<IMatch> matches, string language)
         {
-            var matchEntities = new List<LiveMatchEntity>();
+            var liveMatchEntities = new List<LiveMatchEntity>();
 
             foreach (var match in matches)
             {
-                var matchEntity = await dynamicRepository.GetById<LiveMatchEntity>(match.Id, language);
-                matchEntity.Value = JsonConvert.SerializeObject(match);
-                matchEntity.EventDate = match.EventDate.ToUniversalTime();
-                matchEntity.ModifiedTime = DateTime.UtcNow;
-                matchEntities.Add(matchEntity);
+                var liveMatchEntity = await dynamicRepository.GetById<LiveMatchEntity>(match.Id, language);                
+                liveMatchEntity.Value = JsonConvert.SerializeObject(match);
+                liveMatchEntity.EventDate = match.EventDate.ToUniversalTime();
+                liveMatchEntity.ModifiedTime = DateTime.UtcNow;
+                liveMatchEntities.Add(liveMatchEntity);
             }
 
-            await dynamicRepository.UpdateRange(matchEntities);
+            await dynamicRepository.UpdateRange(liveMatchEntities);
 
             return true;
         }

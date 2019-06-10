@@ -99,9 +99,22 @@ namespace LiveScore.Soccers.UnitTests.Shared
                 }";
         }
 
-        public static MatchEntity StubLiveMatchEntity()
+        public static MatchEntity StubMatchEntityWithLiveResult()
         {
             return new MatchEntity
+            {
+                Id = "sr:match:17809194",
+                Value = StubMatchWithLiveResultJson(),
+                LeagueId = "sr:tournament:28424",
+                Language = "en-US",
+                SportId = 1,
+                EventDate = DateTime.Parse("2019-05-22 00:00:00+00")
+            };
+        }
+
+        public static LiveMatchEntity StubLiveMatchEntity()
+        {
+            return new LiveMatchEntity
             {
                 Id = "sr:match:17809194",
                 Value = StubMatchWithLiveResultJson(),
