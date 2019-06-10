@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Caching.Memory;
-using Fanex.Caching;
-namespace LiveScore.UnitTests.Features.Matches
+﻿namespace LiveScore.UnitTests.Features.Matches
 {
     using System;
     using System.Collections.Generic;
@@ -11,6 +9,7 @@ namespace LiveScore.UnitTests.Features.Matches
     using LiveScore.Shared;
     using NSubstitute;
     using Xunit;
+    using Fanex.Caching;
 
     public class MatchServiceTests
     {
@@ -34,6 +33,8 @@ namespace LiveScore.UnitTests.Features.Matches
 
             matchServiceImpl = new MatchService(instanceFactory, cacheService);
         }
+
+        #region GetMatches
 
         [Theory]
         [InlineData(0)]
@@ -133,6 +134,10 @@ namespace LiveScore.UnitTests.Features.Matches
             Assert.Equal(3, actualMatches.First(x => x.Id.Equals("1")).MatchResult.MatchTime);
         }
 
+        #endregion
+
+        #region GetMatch
+
         [Theory]
         [InlineData(0, null)]
         [InlineData(0, "sr:match:1")]
@@ -199,6 +204,10 @@ namespace LiveScore.UnitTests.Features.Matches
             Assert.Equal(EventTypes.MatchStarted.Value, actualMatch.TimeLines.First().Type);
         }
 
+        #endregion
+        
+        #region AddFullTimelines
+
         [Fact]
         public async Task AddFullTimelines_Always_GetTimelinesFromSportRadar()
         {
@@ -213,7 +222,7 @@ namespace LiveScore.UnitTests.Features.Matches
 
         [Fact]
         public async Task AddFullTimelines_NoTimelines_ShouldNotAddCommentaries()
-        {           
+        {
             await matchServiceImpl.AddFullTimelines(
                 1,
                 "sr:match:1",
@@ -268,5 +277,7 @@ namespace LiveScore.UnitTests.Features.Matches
 
             await matchDataAccess.Received(1).AddTimelines("sr:match:1", Arg.Any<IEnumerable<ITimeline>>(), isDeleteExisting: true);
         }
+
+        #endregion
     }
 }

@@ -94,24 +94,6 @@
             return matches;
         }
 
-        public async Task<DailyResultDto> FetchDailyResult(DateTime date, string language, IEnumerable<Region> regions, EndPointSetting endPoint)
-        {
-            var finalDailyResults = new DailyResultDto { generated_at = DateTime.Now.ToUniversalTime(), results = new List<Result>() };
-
-            foreach (var region in regions)
-            {
-                var formattedEndpoint = string.Format(endPoint.Path, region.Name, language, date.ToString(SportRadarDateFormat), region.Key);
-                var dailyResult = await restClient.ExecuteGetAsync<DailyResultDto>(formattedEndpoint);
-
-                if (dailyResult.results != null && dailyResult.results.Any())
-                {
-                    finalDailyResults.results = finalDailyResults.results.Concat(dailyResult.results);
-                }
-            }
-
-            return finalDailyResults;
-        }
-
         //TODO combine live match and daily results
         public async Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
         {
