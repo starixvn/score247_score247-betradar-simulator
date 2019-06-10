@@ -64,8 +64,6 @@
                 else
                 {
                     dynamicRepository.Update(matchEntity);
-
-                    //TODO delete live match???
                 }
 
                 await dynamicRepository.Save();
@@ -116,7 +114,7 @@
             {
                 if (isLive)
                 {
-                    return await dynamicRepository.Delete<LiveMatchEntity>(matchId, language) > 0;
+                   return await dynamicRepository.Delete<LiveMatchEntity>(matchId, language) > 0;
                 }
 
                 return await dynamicRepository.Delete<MatchEntity>(matchId, language) > 0;
