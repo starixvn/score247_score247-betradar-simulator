@@ -40,21 +40,14 @@
                 {
                     var matchTime = match.MatchResult.MatchTime;
                     var matchEvent = match.TimeLines?.LastOrDefault();
-                    var injuryTime = matchEvent?.Type == EventTypes.InjuryTimeShown.Value ? matchEvent?.InjuryTimeAnnounced : 0;
+                    var injuryTime = matchEvent?.InjuryTimeAnnounced ?? 0;
 
                     if (matchTime == (MaxMatchTime + injuryTime))
                     {
                         continue;
                     }
 
-                    if (!string.IsNullOrEmpty(matchEvent?.StoppageTime))
-                    {
-                        matchTime += int.Parse(matchEvent.StoppageTime);
-                    }
-                    else
-                    {
-                        matchTime++;
-                    }
+                    matchTime++;
 
                     match.MatchResult.MatchTime = matchTime;
 

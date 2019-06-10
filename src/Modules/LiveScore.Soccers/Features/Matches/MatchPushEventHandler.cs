@@ -147,6 +147,11 @@
                     matchTime = PeriodStartTimes[matchStatus];
                 }
 
+                if (!string.IsNullOrEmpty(timeline.StoppageTime))
+                {
+                    matchTime += int.Parse(timeline.StoppageTime);
+                }
+
                 pushEvent.MatchResult.MatchTime = matchTime;
             }
         }
