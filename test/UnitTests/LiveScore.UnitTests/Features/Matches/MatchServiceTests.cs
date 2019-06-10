@@ -144,7 +144,8 @@ namespace LiveScore.UnitTests.Features.Matches
             var exception = await Assert.ThrowsAsync<ArgumentException>(() => (matchServiceImpl.GetMatch(
                 sportId,
                 matchId,
-                "en-US")));
+                "en-US",
+                TimeZoneInfo.Local.GetUtcOffset(DateTime.Today))));
 
             Assert.Equal("Missing sportId or matchId argument", exception.Message);
         }
@@ -161,7 +162,8 @@ namespace LiveScore.UnitTests.Features.Matches
             var actualMatch = await matchServiceImpl.GetMatch(
                 1,
                 "sr:match:1",
-                "en-US");
+                "en-US",
+                TimeZoneInfo.Local.GetUtcOffset(DateTime.Today));
 
             Assert.NotNull(actualMatch);
             Assert.Equal(match.Id, actualMatch.Id);
@@ -189,7 +191,8 @@ namespace LiveScore.UnitTests.Features.Matches
             var actualMatch = await matchServiceImpl.GetMatch(
                 1,
                 "sr:match:1",
-                "en-US");
+                "en-US",
+                TimeZoneInfo.Local.GetUtcOffset(DateTime.Today));
 
             Assert.NotEmpty(actualMatch.TimeLines);
             Assert.Equal(2, actualMatch.TimeLines.Count());

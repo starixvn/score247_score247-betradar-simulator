@@ -211,9 +211,11 @@ namespace LiveScore.Features.Matches
             if (match != null && !match.MatchResult.EventStatus.IsNotStartOrDelay())
             {
                 match.TimeLines = await matchDataAccess.GetTimelines(sportId, match.Region, matchId, language);
+
+                match.ChangeEventDateByTimeZone(clientTimeZone);
             }
 
-            return match.ChangeEventDateByTimeZone(clientTimeZone);
+            return match;
         }
 
         public async Task AddFullTimelines(int sportId, string matchId, string language, string region)
