@@ -10,6 +10,7 @@
     using LiveScore.Shared.Database;
     using LiveScore.Shared.Database.Entities;
     using LiveScore.Soccers.Features.Matches.DataAccesses;
+    using LiveScore.Soccers.UnitTests.Shared;
     using NSubstitute;
     using Xunit;
 
@@ -21,7 +22,7 @@
         public MatchDataAccessTests()
         {
             dynamicRepository = Substitute.For<IDynamicRepository>();
-            dynamicRepository.Query(Arg.Any<Func<MatchEntity, bool>>()).Returns(new List<MatchEntity> { StubMatchEntity() });
+            dynamicRepository.Query(Arg.Any<Func<MatchEntity, bool>>()).Returns(new List<MatchEntity> { StubMatch.StubMatchEntity() });
 
             var logger = Substitute.For<ILogger>();
 
@@ -117,7 +118,7 @@
         [Fact]
         public async Task GetMatches_Live_ReturnMatchResult()
         {
-            dynamicRepository.Query(Arg.Any<Func<MatchEntity, bool>>()).Returns(new List<MatchEntity> { StubLiveMatchEntity() });
+            dynamicRepository.Query(Arg.Any<Func<MatchEntity, bool>>()).Returns(new List<MatchEntity> { StubMatch.StubLiveMatchEntity() });
 
             var matches = await matchDataAccess.GetMatches(
                1,
@@ -138,7 +139,7 @@
         [Fact]
         public async Task GetMatches_Live_ReturnMatchTimeline()
         {
-            dynamicRepository.Query(Arg.Any<Func<MatchEntity, bool>>()).Returns(new List<MatchEntity> { StubLiveMatchEntity() });
+            dynamicRepository.Query(Arg.Any<Func<MatchEntity, bool>>()).Returns(new List<MatchEntity> { StubMatch.StubLiveMatchEntity() });
 
             var matches = await matchDataAccess.GetMatches(
                1,
@@ -193,211 +194,87 @@
 
         #endregion
 
-        private MatchEntity StubMatchEntity()
+        #region GetTimelines
+
+        [Fact]
+        public async Task GetTimelines_Empty_ReturnEmpty()
         {
-            return new MatchEntity
+            dynamicRepository.Query(Arg.Any<Func<MatchTimelineEntity, bool>>()).Returns(new List<MatchTimelineEntity> { });
+
+            var timelines = await matchDataAccess.GetTimelines(
+                1,
+                "eu",
+                "sr:match:1",
+                "en-US");
+
+            Assert.Empty(timelines);
+        }
+
+        [Fact]
+        public async Task GetTimelines_HasScoreChange_ReturnGoalScorer()
+        {
+            dynamicRepository.Query(Arg.Any<Func<MatchTimelineEntity, bool>>()).Returns(new List<MatchTimelineEntity>
             {
-                Id = "sr:match:17809194",
-                Value = StubMatchJson(),
-                LeagueId = "sr:tournament:28424",
-                Language = "en-US",
-                SportId = 1,
-                EventDate = DateTime.Parse("2019-05-22 00:00:00+00")
-            };
+                StubTimeline.StubScoreChangeTimelineEntity("sr:match:1")
+            });
+
+            var timelines = await matchDataAccess.GetTimelines(
+                1,
+                "eu",
+                "sr:match:1",
+                "en-US");
+
+            Assert.NotEmpty(timelines);
+
+            var timeline = timelines.First();
+            Assert.Equal(EventTypes.ScoreChange.Value, timeline.Type);
+            Assert.NotNull(timeline.GoalScorer);
         }
 
-        private static string StubMatchJson()
+        [Fact]
+        public async Task GetTimelines_PenaltyScoreChange_ReturnMethod()
         {
-            return @"{
-                    'Id': 'sr:match:17809194',
-                    'Name': null,
-                    'Teams': [
-                        {
-                            'Id': 'sr:competitor:559146',
-                            'Flag': null,
-                            'Name': 'Denton Diablos FC',
-                            'Coach': null,
-                            'IsHome': true,
-                            'Country': 'USA',
-                            'Players': null,
-                            'Formation': null,
-                            'Statistic': null,
-                            'CountryCode': 'USA',
-                            'Abbreviation': 'DEN',
-                            'Substitutions': null
-                        },
-                        {
-                            'Id': 'sr:competitor:559156',
-                            'Flag': null,
-                            'Name': 'Dallas City FC',
-                            'Coach': null,
-                            'IsHome': false,
-                            'Country': 'USA',
-                            'Players': null,
-                            'Formation': null,
-                            'Statistic': null,
-                            'CountryCode': 'USA',
-                            'Abbreviation': 'DAL',
-                            'Substitutions': null
-                        }
-                    ],
-                    'Venue': null,
-                    'League': {
-                        'Id': 'sr:tournament:28424',
-                        'Flag': null,
-                        'Name': 'National Premier Soccer League',
-                        'Order': 0,
-                        'Category': {
-                            'Id': 'sr:category:26',
-                            'Name': 'USA',
-                            'CountryCode': 'USA'
-                        }
-                    },
-                    'Referee': null,
-                    'EventDate': '2019-05-22T00:00:00Z',
-                    'TimeLines': null,
-                    'Attendance': 0,
-                    'LeagueRound': {
-                        'Name': null,
-                        'Type': {
-                            'Value': 'group',
-                            'DisplayName': 'Group'
-                        },
-                        'Group': null,
-                        'Phase': 'regular season',
-                        'Number': 1
-                    },
-                    'MatchResult': {
-                        'Period': 0,
-                        'WinnerId': null,
-                        'AwayScore': 0,
-                        'HomeScore': 0,
-                        'MatchTime': 0,
-                        'EventStatus': {
-                            'Value': 'not_started',
-                            'DisplayName': 'NotStarted'
-                        },
-                        'MatchStatus': {
-                            'Value': 'not_started',
-                            'DisplayName': 'NotStarted'
-                        },
-                        'MatchPeriods': null
-                    }
-                }";
-        }
-
-        private MatchEntity StubLiveMatchEntity()
-        {
-            return new MatchEntity
+            dynamicRepository.Query(Arg.Any<Func<MatchTimelineEntity, bool>>()).Returns(new List<MatchTimelineEntity>
             {
-                Id = "sr:match:17809194",
-                Value = StubMatchWithLiveResultJson(),
-                LeagueId = "sr:tournament:28424",
-                Language = "en-US",
-                SportId = 1,
-                EventDate = DateTime.Parse("2019-05-22 00:00:00+00")
-            };
+                StubTimeline.StubScoreChangePenaltyEntity("sr:match:1")
+            });
+
+            var timelines = await matchDataAccess.GetTimelines(
+                1,
+                "eu",
+                "sr:match:1",
+                "en-US");
+
+            Assert.NotEmpty(timelines);
+
+            var timeline = timelines.First();
+            Assert.Equal(EventTypes.ScoreChange.Value, timeline.Type);
+            Assert.NotNull(timeline.GoalScorer);
+            Assert.Equal("penalty", timeline.GoalScorer.Method);
         }
 
-        private static string StubMatchWithLiveResultJson()
+        [Fact]
+        public async Task GetTimelines_HasValues_ReturnOnlyBasicEvents()
         {
-            return @"{
-                    'Id': 'sr:match:17809194',
-                    'Name': null,
-                    'Teams': [
-                        {
-                            'Id': 'sr:competitor:559146',
-                            'Flag': null,
-                            'Name': 'Denton Diablos FC',
-                            'Coach': null,
-                            'IsHome': true,
-                            'Country': 'USA',
-                            'Players': null,
-                            'Formation': null,
-                            'Statistic': null,
-                            'CountryCode': 'USA',
-                            'Abbreviation': 'DEN',
-                            'Substitutions': null
-                        },
-                        {
-                            'Id': 'sr:competitor:559156',
-                            'Flag': null,
-                            'Name': 'Dallas City FC',
-                            'Coach': null,
-                            'IsHome': false,
-                            'Country': 'USA',
-                            'Players': null,
-                            'Formation': null,
-                            'Statistic': null,
-                            'CountryCode': 'USA',
-                            'Abbreviation': 'DAL',
-                            'Substitutions': null
-                        }
-                    ],
-                    'Venue': null,
-                    'League': {
-                        'Id': 'sr:tournament:28424',
-                        'Flag': null,
-                        'Name': 'National Premier Soccer League',
-                        'Order': 0,
-                        'Category': {
-                            'Id': 'sr:category:26',
-                            'Name': 'USA',
-                            'CountryCode': 'USA'
-                        }
-                    },
-                    'Referee': null,
-                    'EventDate': '2019-05-22T00:00:00Z',
-                    'TimeLines': null,
-                    'Attendance': 0,
-                    'LeagueRound': {
-                        'Name': null,
-                        'Type': {
-                            'Value': 'group',
-                            'DisplayName': 'Group'
-                        },
-                        'Group': null,
-                        'Phase': 'regular season',
-                        'Number': 1
-                    },
-                    'MatchResult': {
-                        'Period': 0,
-                        'WinnerId': null,
-                        'AwayScore': 0,
-                        'HomeScore': 1,
-                        'MatchTime': 22,
-                        'EventStatus': {
-                            'Value': 'live',
-                            'DisplayName': 'Live'
-                        },
-                        'MatchStatus': {
-                            'Value': '1st_half',
-                            'DisplayName': 'Halftime'
-                        },
-                        'MatchPeriods': null
-                    },
-                    'Timelines':[{
-                        'Id': 555147301,
-                        'Name': null,
-                        'Team': null,
-                        'Time': '2019-05-09T02:47:17',
-                        'Type': 'injury_time_shown',
-                        'Assist': null,
-                        'Period': 1,
-                        'Outcome': null,
-                        'PlayerIn': null,
-                        'AwayScore': 0,
-                        'HomeScore': 0,
-                        'MatchTime': 45,
-                        'PlayerOut': null,
-                        'GoalScorer': null,
-                        'MatchClock': '45:00',
-                        'PeriodType': null,
-                        'Description': null,
-                        'Commentaries': null,
-                        'InjuryTimeAnnounced': 2
-                    }]
-                }";
+            dynamicRepository.Query(Arg.Any<Func<MatchTimelineEntity, bool>>()).Returns(new List<MatchTimelineEntity>
+            {
+                StubTimeline.StubScoreChangePenaltyEntity("sr:match:1"),
+                StubTimeline.StubSubstitutionEntity("sr:match:1")
+            });
+
+            var timelines = await matchDataAccess.GetTimelines(
+                1,
+                "eu",
+                "sr:match:1",
+                "en-US");
+
+            Assert.NotEmpty(timelines);
+            Assert.Single(timelines);
+
+            var timeline = timelines.First();
+            Assert.Equal(EventTypes.ScoreChange.Value, timeline.Type);
         }
+
+        #endregion
     }
 }
