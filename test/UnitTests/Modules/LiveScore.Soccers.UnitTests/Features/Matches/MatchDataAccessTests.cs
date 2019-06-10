@@ -370,9 +370,19 @@
 
         #endregion
 
-        #region DeleteMatch
+        #region AddResult
 
+        [Fact]
+        public async Task AddResult_Always_InsertMatchResultEntity()
+        {
+            var matchResult = new MatchResult { EventStatus = MatchStatus.Closed, MatchStatus = MatchStatus.Ended };
+            dynamicRepository.Save().Returns(1);
 
+            var result = await matchDataAccess.AddResult("sr:match:1", matchResult);
+
+            await dynamicRepository.Received(1).Insert(Arg.Any<MatchResultEntity>());
+            Assert.True(result);            
+        }
 
         #endregion
     }

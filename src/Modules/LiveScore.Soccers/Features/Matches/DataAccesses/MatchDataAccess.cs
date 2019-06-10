@@ -164,7 +164,7 @@
         }
 
         public async Task<bool> AddResult(string matchId, IMatchResult matchResult)
-        {
+        {            
             await dynamicRepository.Insert(
                 new MatchResultEntity
                 {
