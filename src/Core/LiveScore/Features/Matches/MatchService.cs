@@ -208,9 +208,12 @@ namespace LiveScore.Features.Matches
                   ? liveMatches.FirstOrDefault(m => m.Id == matchId)
                   : await matchDataAccess.GetMatch(sportId, matchId, language);
 
-            if (match != null && !match.MatchResult.EventStatus.IsNotStartOrDelay())
+            if (match != null)
             {
-                match.TimeLines = await matchDataAccess.GetTimelines(sportId, match.Region, matchId, language);
+                if (!match.MatchResult.EventStatus.IsNotStartOrDelay())
+                {
+                    match.TimeLines = await matchDataAccess.GetTimelines(sportId, match.Region, matchId, language);
+                }
 
                 match.ChangeEventDateByTimeZone(clientTimeZone);
             }
