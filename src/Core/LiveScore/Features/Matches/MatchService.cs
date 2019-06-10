@@ -133,7 +133,7 @@ namespace LiveScore.Features.Matches
         public async Task<bool> AddOrUpdateMatch(int sportId, string language, string matchId, MatchPushEvent pushEvent, bool isLive = false)
         {
             var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
-            var match = await matchDataAccess.AddOrUpdateMatch(matchId, language, pushEvent, isLive: true);
+            var match = await matchDataAccess.AddOrUpdateMatch(matchId, language, pushEvent, isLive);
 
             if (match == null)
             {

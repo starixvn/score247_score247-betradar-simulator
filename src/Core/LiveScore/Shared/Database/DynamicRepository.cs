@@ -119,19 +119,19 @@ namespace LiveScore.Shared.Database
             return this;
         }
 
-        public Task<int> Delete<T>(params object[] ids) where T : DatabaseEntity
+        public async Task<int> Delete<T>(params object[] ids) where T : DatabaseEntity
         {
             var table = context.Set<T>();
-            T existing = table.Find(ids);
+            T existing = await table.FindAsync(ids);
 
             if (existing != null)
-            {
-                table.Attach(existing);
+            {                
                 table.Remove(existing);
+
+                return await context.SaveChangesAsync();
             }
 
-            return context.SaveChangesAsync();
-
+            return 0;
         }
 
         public Task<int> Save()
