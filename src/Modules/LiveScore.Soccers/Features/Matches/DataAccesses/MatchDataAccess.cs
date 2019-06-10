@@ -57,15 +57,13 @@
                     throw new KeyNotFoundException($"NotFound match {matchId} language {language}");
                 }
 
-                matchEntity.EventDate = matchEntity.EventDate.ToUniversalTime();
-
                 var match = JsonConvert.DeserializeObject<Match>(matchEntity.Value);
                 match.MatchResult = pushEvent.MatchResult;
                 match.TimeLines = pushEvent.TimeLines;
-                match.LatestTimeline = pushEvent.TimeLines.OrderBy(x => x.Time).Last();
-                match.EventDate = match.EventDate.ToUniversalTime();
+                match.LatestTimeline = pushEvent.TimeLines.OrderBy(x => x.Time).Last();                
 
                 matchEntity.Value = JsonConvert.SerializeObject(match);
+                matchEntity.EventDate = match.EventDate;
 
                 if (isLive)
                 {
@@ -93,12 +91,11 @@
             var liveMatchEntity = await dynamicRepository.GetById<LiveMatchEntity>(matchId, language);
 
             if (liveMatchEntity != null)
-            {
-                match.EventDate = match.EventDate.ToUniversalTime();
+            {   
                 liveMatchEntity.Value = JsonConvert.SerializeObject(match);
                 liveMatchEntity.CreatedTime = DateTime.UtcNow;
                 liveMatchEntity.ModifiedTime = DateTime.UtcNow;
-                liveMatchEntity.EventDate = liveMatchEntity.EventDate.ToUniversalTime();
+                
 
                 dynamicRepository.Update(liveMatchEntity);
             }
