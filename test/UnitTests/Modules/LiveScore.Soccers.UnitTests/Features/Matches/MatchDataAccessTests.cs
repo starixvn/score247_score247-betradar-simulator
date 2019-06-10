@@ -6,6 +6,7 @@
     using System.Linq.Expressions;
     using System.Threading.Tasks;
     using Fanex.Logging;
+    using LiveScore.Features.Matches.Models;
     using LiveScore.Shared.Database;
     using LiveScore.Shared.Database.Entities;
     using LiveScore.Soccers.Features.Matches.DataAccesses;
@@ -26,6 +27,8 @@
 
             matchDataAccess = new MatchDataAccess(dynamicRepository, logger);
         }
+
+        #region GetMatches
 
         [Fact]
         public async Task GetMatches_Always_ReturnTeams()
@@ -153,6 +156,42 @@
             Assert.Equal(45, timeline.MatchTime);
             Assert.Equal("45:00", timeline.MatchClock);
         }
+
+        #endregion
+
+        #region AddCommentaries
+
+        [Fact]
+        public async Task AddCommentaries_Empty_ShouldNotInsertRange()
+        {
+            var timelines = new List<Timeline> { new Timeline { Type = EventTypes.MatchStarted.Value } };
+
+            var result = await matchDataAccess.AddCommentaries("sr:match:1", timelines, "en-US");
+
+            await dynamicRepository.DidNotReceive().InsertRange(Arg.Any<IEnumerable<CommentaryEntity>>());
+            Assert.False(result);
+        }
+
+        [Fact]
+        public async Task AddCommentaries_HasCommentary_ShouldInsertRangeAssignedValue()
+        {
+            var timelines = new List<Timeline>
+            {
+                new Timeline { Type = EventTypes.MatchStarted.Value, Commentaries = new List<Commentary> { new Commentary { Text = "match started" } } }
+            };
+
+            dynamicRepository.Save().Returns(1);
+
+            var result = await matchDataAccess.AddCommentaries("sr:match:1", timelines, "en-US");
+
+            await dynamicRepository
+                .Received(1)
+                .InsertRange(Arg.Is<IEnumerable<CommentaryEntity>>(x => x.First().MatchId.Equals("sr:match:1")));
+
+            Assert.True(result);
+        }
+
+        #endregion
 
         private MatchEntity StubMatchEntity()
         {
@@ -359,41 +398,6 @@
                         'InjuryTimeAnnounced': 2
                     }]
                 }";
-        }
-
-        private MatchTimelineEntity StubMatchTimelineEntity()
-        {
-            return new MatchTimelineEntity
-            {
-                Id = "1",
-                MatchId = "sr:match:17809194",
-                Value = StubTimelineJson()
-            };
-        }
-
-        private static string StubTimelineJson()
-        {
-            return @"{
-                'Id': 555147301,
-                'Name': null,
-                'Team': null,
-                'Time': '2019-05-09T02:47:17',
-                'Type': 'injury_time_shown',
-                'Assist': null,
-                'Period': 1,
-                'Outcome': null,
-                'PlayerIn': null,
-                'AwayScore': 0,
-                'HomeScore': 0,
-                'MatchTime': 45,
-                'PlayerOut': null,
-                'GoalScorer': null,
-                'MatchClock': '45:00',
-                'PeriodType': null,
-                'Description': null,
-                'Commentaries': null,
-                'InjuryTimeAnnounced': 2
-            }";
         }
     }
 }

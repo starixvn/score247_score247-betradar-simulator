@@ -114,7 +114,7 @@
             {
                 if (isLive)
                 {
-                   return await dynamicRepository.Delete<LiveMatchEntity>(matchId, language) > 0;
+                    return await dynamicRepository.Delete<LiveMatchEntity>(matchId, language) > 0;
                 }
 
                 return await dynamicRepository.Delete<MatchEntity>(matchId, language) > 0;
@@ -214,6 +214,8 @@
 
         public async Task<bool> AddCommentaries(string matchId, IEnumerable<ITimeline> timelines, string language)
         {
+            var result = false;
+
             var commentaries = timelines
                 .Where(x => x.Commentaries != null && x.Commentaries.Any())
                 .Select(x => new CommentaryEntity
@@ -225,9 +227,14 @@
                     CreatedTime = DateTime.UtcNow
                 }).ToList();
 
-            await dynamicRepository.InsertRange(commentaries);
+            if (commentaries.Any())
+            {
+                await dynamicRepository.InsertRange(commentaries);
 
-            return (await dynamicRepository.Save()) > 0;
+                result = (await dynamicRepository.Save()) > 0;
+            }
+
+            return result;
         }
     }
 }
