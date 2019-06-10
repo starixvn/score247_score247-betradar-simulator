@@ -198,5 +198,75 @@ namespace LiveScore.UnitTests.Features.Matches
             Assert.Equal(2, actualMatch.TimeLines.Count());
             Assert.Equal(EventTypes.MatchStarted.Value, actualMatch.TimeLines.First().Type);
         }
+
+        [Fact]
+        public async Task AddFullTimelines_Always_GetTimelinesFromSportRadar()
+        {
+            await matchServiceImpl.AddFullTimelines(
+                1,
+                "sr:match:1",
+                "en-US",
+                "eu");
+
+            await sportRadarDataAccess.Received(1).GetTimelines(1, "eu", "sr:match:1", "en");
+        }
+
+        [Fact]
+        public async Task AddFullTimelines_NoTimelines_ShouldNotAddCommentaries()
+        {           
+            await matchServiceImpl.AddFullTimelines(
+                1,
+                "sr:match:1",
+                "en-US",
+                "eu");
+
+            await matchDataAccess.DidNotReceive().AddCommentaries(Arg.Any<string>(), Arg.Any<List<Timeline>>(), Arg.Any<string>());
+        }
+
+        [Fact]
+        public async Task AddFullTimelines_NoTimelines_ShouldNotAddTimelines()
+        {
+            await matchServiceImpl.AddFullTimelines(
+                1,
+                "sr:match:1",
+                "en-US",
+                "eu");
+
+            await matchDataAccess.DidNotReceive().AddTimelines(Arg.Any<string>(), Arg.Any<IEnumerable<ITimeline>>(), Arg.Any<bool>());
+        }
+
+        [Fact]
+        public async Task AddFullTimelines_HasTimelines_AddCommentaries()
+        {
+            sportRadarDataAccess.GetTimelines(1, "eu", "sr:match:1", "en").Returns(new List<Timeline>
+            {
+                new Timeline{ Type = EventTypes.MatchStarted.Value, Commentaries=new List<Commentary>{ new Commentary { Text="Match has started" } } }
+            });
+
+            await matchServiceImpl.AddFullTimelines(
+                1,
+                "sr:match:1",
+                "en-US",
+                "eu");
+
+            await matchDataAccess.Received(1).AddCommentaries("sr:match:1", Arg.Any<List<Timeline>>(), "en-US");
+        }
+
+        [Fact]
+        public async Task AddFullTimelines_HasTimelines_AddTimelinesExcludeCommetaries()
+        {
+            sportRadarDataAccess.GetTimelines(1, "eu", "sr:match:1", "en").Returns(new List<Timeline>
+            {
+                new Timeline{ Type = EventTypes.MatchStarted.Value, Commentaries=new List<Commentary>{ new Commentary { Text="Match has started" } } }
+            });
+
+            await matchServiceImpl.AddFullTimelines(
+                1,
+                "sr:match:1",
+                "en-US",
+                "eu");
+
+            await matchDataAccess.Received(1).AddTimelines("sr:match:1", Arg.Any<IEnumerable<ITimeline>>(), isDeleteExisting: true);
+        }
     }
 }

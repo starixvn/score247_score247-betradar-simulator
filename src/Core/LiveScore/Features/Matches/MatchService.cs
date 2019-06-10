@@ -201,6 +201,7 @@ namespace LiveScore.Features.Matches
             {
                 throw new ArgumentException("Missing sportId or matchId argument");
             }
+
             var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
 
             var liveMatches = await GetLiveMatches(sportId, language);
@@ -226,11 +227,14 @@ namespace LiveScore.Features.Matches
             var dataAccess = instanceFactory.CreateMatchDataAccess(sportId, DataProvider.ThirdPartyApi);
             var timelines = await dataAccess.GetTimelines(sportId, region, matchId, Enumeration.FromValue<Language>(language).DisplayName.ToLowerInvariant());
 
-            var dbDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
-            await dbDataAccess.AddCommentaries(matchId, timelines, language);
+            if (timelines != null && timelines.Any())
+            {
+                var dbDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
+                await dbDataAccess.AddCommentaries(matchId, timelines, language);
 
-            var timelinesExcludeComment = timelines.Select(x => RemoveCommentary(x)).ToList();
-            await dbDataAccess.AddTimelines(matchId, timelinesExcludeComment, isDeleteExisting: true);
+                var timelinesExcludeComment = timelines.Select(x => RemoveCommentary(x)).ToList();
+                await dbDataAccess.AddTimelines(matchId, timelinesExcludeComment, isDeleteExisting: true);
+            }
         }
 
         private static ITimeline RemoveCommentary(ITimeline timeline)
