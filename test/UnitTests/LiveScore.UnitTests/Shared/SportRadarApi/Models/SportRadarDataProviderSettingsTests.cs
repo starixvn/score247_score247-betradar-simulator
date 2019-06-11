@@ -16,6 +16,8 @@
         [Fact]
         public void GetSportSetting_Empty_ThrowsException()
         {
+            sportSettings.Sports = new List<SportSetting>();
+
             var exception = Assert.Throws<InvalidOperationException>(() => sportSettings.GetSportSetting(3));
 
             Assert.Equal("Missing Setting for sportId 3", exception.Message);

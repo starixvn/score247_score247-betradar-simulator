@@ -94,7 +94,7 @@
 
                     if (liveMatchEntity != null)
                     {
-                        repository.Delete<LiveMatchEntity>(match.Id, language);
+                        await repository.Delete<LiveMatchEntity>(match.Id, language);
                     }
                 }
             }

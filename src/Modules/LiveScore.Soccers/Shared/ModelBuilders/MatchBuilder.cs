@@ -1,5 +1,5 @@
 ﻿namespace LiveScore.Soccers.Shared.ModelBuilders
-{   
+{
     using System.Collections.Generic;
     using System.Linq;
     using LiveScore.Features.Matches.Models;
@@ -96,11 +96,11 @@
                 timeline.StoppageTime = timelineDto.stoppage_time;
                 timeline.Commentaries = timelineDto.commentaries?.Select(x => new Commentary { Text = x.text });
 
-                timeline.GoalScorer = timelineDto.goal_scorer == null 
-                    ? null 
-                    : new GoalScorer { Name = timelineDto.goal_scorer.name, Id = timelineDto.goal_scorer.id, Method = timelineDto.goal_scorer.method  };
+                timeline.GoalScorer = timelineDto.goal_scorer == null
+                    ? null
+                    : new GoalScorer { Name = timelineDto.goal_scorer.name, Id = timelineDto.goal_scorer.id, Method = timelineDto.goal_scorer.method };
 
-                timeline.Assist = timelineDto.assist == null 
+                timeline.Assist = timelineDto.assist == null
                     ? null
                     : new Player { Name = timelineDto.assist.name, Id = timelineDto.assist.id };
 
@@ -128,13 +128,19 @@
         }
 
         public static Venue BuildVenue(VenueDto venueDto)
-            => new Venue
+        {
+            var venue = new Venue();
+
+            if (venueDto != null)
             {
-                Name = venueDto.name,
-                Capacity = venueDto.capacity,
-                CityName = venueDto.city_name,
-                CountryName = venueDto.country_name,
-                CountryCode = venueDto.country_code
-            };
+                venue.Name = venueDto.name;
+                venue.Capacity = venueDto.capacity;
+                venue.CityName = venueDto.city_name;
+                venue.CountryName = venueDto.country_name;
+                venue.CountryCode = venueDto.country_code;
+            }
+
+            return venue;
+        }
     }
 }

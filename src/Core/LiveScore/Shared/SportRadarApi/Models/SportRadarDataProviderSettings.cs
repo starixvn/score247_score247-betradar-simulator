@@ -6,12 +6,7 @@
     using LiveScore.Shared.Configurations;
 
     public class SportRadarDataProviderSettings : IDataProviderSettings
-    {
-        public SportRadarDataProviderSettings()
-        {
-            Sports = new List<SportSetting>();
-        }
-
+    {        
 #pragma warning disable S3996 // URI properties should not be strings
         public string ApiUrl { get; set; }
 #pragma warning restore S3996 // URI properties should not be strings
