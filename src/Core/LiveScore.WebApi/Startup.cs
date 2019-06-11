@@ -65,6 +65,7 @@ namespace LiveScore.WebApi
                 RegisterServices(services);
                 RegisterJobs(services);
                 services.RegisterDataAccessFactory();
+                services.RegisterPushEventListenerFactory();
             }
             catch (Exception ex)
             {

@@ -17,7 +17,7 @@
 
     public interface IMatchPushEventHandler
     {
-        Task OnReceive(string eventData);
+        Task OnReceive(string eventData, IHubContext<MatchHub> hubContext);
 
         Task Handle(Dictionary<string, MatchPushEvent> pushEvents);
     }
@@ -33,8 +33,8 @@
         };
 
         private readonly IMatchService matchService;
-        private readonly IHubContext<MatchHub> hubContext;
         private readonly ILogger logger;
+        private IHubContext<MatchHub> hubContext;
 
         public MatchPushEventHandler(
             IMatchService matchService,
@@ -46,10 +46,11 @@
             this.logger = logger;
         }
 
-        public async Task OnReceive(string eventData)
+        public async Task OnReceive(string eventData, IHubContext<MatchHub> hubContext)
         {
             try
             {
+                this.hubContext = hubContext;
                 var pushEventDto = JsonConvert.DeserializeObject<MatchPushEventDto>(eventData);
 
                 if (pushEventDto.payload != null)

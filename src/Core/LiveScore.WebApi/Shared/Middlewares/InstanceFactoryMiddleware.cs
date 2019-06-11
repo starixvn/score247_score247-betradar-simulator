@@ -18,7 +18,6 @@
             services.AddSingleton((DataAccessFactory)new DataAccessFactoryImpl(matchDataAccessContainer));
         }
 
-
         private static Dictionary<int, IDictionary<DataProvider, IMatchDataAccess>> BuildMatchDataAccessContainer(IServiceCollection services)
         {
             var matchDataAccessContainer = new Dictionary<int, IDictionary<DataProvider, IMatchDataAccess>>

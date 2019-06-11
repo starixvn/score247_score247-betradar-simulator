@@ -1,4 +1,6 @@
-﻿namespace LiveScore.WebApi.Shared.Middlewares
+﻿using Microsoft.AspNetCore.SignalR;
+using LiveScore.Shared.Hubs;
+namespace LiveScore.WebApi.Shared.Middlewares
 {
     using Hangfire;
     using LiveScore.Jobs;
@@ -34,10 +36,7 @@
             RecurringJob.AddOrUpdate<IDailyScheduleFetchJob>("FetchResult", job => job.FetchResult(SportConstants.SoccerId, resultDateSpan), Cron.Daily);
             RecurringJob.AddOrUpdate<ILiveMatchFetchJob>("FetchLive", job => job.Fetch(SportConstants.SoccerId), Cron.Daily);
 
-            var pushHandler = app.ApplicationServices.GetService<IMatchPushEventHandler>();
-            var soccerMatchPushEventListener = new MatchPushEventListener(pushHandler, appSettings);
-
-            BackgroundJob.Enqueue<IMatchPushEventListenerJob>(job => job.StartListeningPushEvent(SportConstants.SoccerId, soccerMatchPushEventListener));
+            BackgroundJob.Enqueue<IMatchPushEventListenerJob>(job => job.StartListeningPushEvent(SportConstants.SoccerId));
 
         }
     }

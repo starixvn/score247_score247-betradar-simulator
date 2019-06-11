@@ -1,4 +1,6 @@
-﻿namespace LiveScore.Soccers.Features.Matches
+﻿using Microsoft.AspNetCore.SignalR;
+using LiveScore.Shared.Hubs;
+namespace LiveScore.Soccers.Features.Matches
 {
     using System;
     using System.Collections.Generic;
@@ -18,7 +20,7 @@
 
         private readonly IMatchPushEventHandler pushHandler;
         private readonly IAppSettings appSettings;
-                
+
         private readonly Dictionary<string, HttpWebRequest> httpRequests;
 
         public MatchPushEventListener(
@@ -31,7 +33,7 @@
             httpRequests = new Dictionary<string, HttpWebRequest>();
         }
 
-        public async Task<bool> Start(byte sportId)
+        public async Task<bool> Start(byte sportId, IHubContext<MatchHub> hubContext)
         {
             var sportSetting = appSettings.DataProviderSettings.GetSportSetting(sportId);
             var endpoint = sportSetting.GetEndPointSetting(FeatureKey).First();
@@ -41,7 +43,7 @@
 
             //TODO loop for regions            
             var region = regions.First();
-           
+
             var req = await CreateSubscribeRequest(endpoint, region);
             var reply = (HttpWebResponse)req.GetResponse();
 
@@ -52,7 +54,7 @@
             do
             {
                 pushEvent = reader.ReadLine();
-                await pushHandler.OnReceive(pushEvent);
+                await pushHandler.OnReceive(pushEvent, hubContext);
                 await Task.Delay(MillisecondsTimeout);
 
             } while (pushEvent.Length > 0);
