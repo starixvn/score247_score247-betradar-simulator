@@ -205,7 +205,7 @@
         }
 
         #endregion
-        
+
         #region AddFullTimelines
 
         [Fact]
@@ -276,6 +276,65 @@
                 "eu");
 
             await matchDataAccess.Received(1).AddTimelines("sr:match:1", Arg.Any<IEnumerable<ITimeline>>(), isDeleteExisting: true);
+        }
+
+        #endregion
+
+        #region AddTimelines
+
+        [Fact]
+        public async Task AddTimelines_Null_ShouldNotAdd()
+        {           
+            await matchServiceImpl.AddTimelines(
+                1,
+                "sr:match:1",
+                null);
+
+            await matchDataAccess.DidNotReceive().AddTimelines("sr:match:1", Arg.Any<IEnumerable<ITimeline>>());
+        }
+
+        [Fact]
+        public async Task AddTimelines_HasTimelines_AddTimelines()
+        {
+            var timelines = new List<Timeline>
+            {
+                new Timeline{ Type = EventTypes.MatchStarted.Value, Commentaries=new List<Commentary>{ new Commentary { Text="Match has started" } } }
+            };
+
+            await matchServiceImpl.AddTimelines(
+                1,
+                "sr:match:1",
+                timelines);
+
+            await matchDataAccess.Received(1).AddTimelines("sr:match:1", Arg.Any<IEnumerable<ITimeline>>());
+        }
+
+        #endregion
+
+        #region AddTimelines
+
+        [Fact]
+        public async Task AddResult_Null_ShouldNotAddResult()
+        {
+            await matchServiceImpl.AddResult(
+                1,
+                "sr:match:1",
+                null);
+
+            await matchDataAccess.DidNotReceive().AddResult("sr:match:1", Arg.Any<MatchResult>());
+        }
+
+        [Fact]
+        public async Task AddResult_HasTimelines_AddResult()
+        {
+            var result = new MatchResult();
+
+            await matchServiceImpl.AddResult(
+                1,
+                "sr:match:1",
+                result);
+
+            await matchDataAccess.Received(1).AddResult("sr:match:1", Arg.Any<MatchResult>());
         }
 
         #endregion

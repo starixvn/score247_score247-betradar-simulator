@@ -177,16 +177,30 @@ namespace LiveScore.Features.Matches
 
         public async Task<bool> AddTimelines(int sportId, string matchId, IEnumerable<ITimeline> timelines)
         {
-            var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
+            var result = false;
 
-            return await matchDataAccess.AddTimelines(matchId, timelines);
+            if (timelines != null && timelines.Any())
+            {
+                var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
+
+                result = await matchDataAccess.AddTimelines(matchId, timelines);
+            }
+
+            return result;
         }
 
         public async Task<bool> AddResult(int sportId, string matchId, IMatchResult matchResult)
         {
-            var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
+            var result = false;
 
-            return await matchDataAccess.AddResult(matchId, matchResult);
+            if (matchResult != null)
+            {
+                var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
+
+                result = await matchDataAccess.AddResult(matchId, matchResult);
+            }
+
+            return result;
         }
 
         private static string GetLiveMatchCacheKey(int sportId, string language) => $"LiveMatch_{sportId}_{language}";
