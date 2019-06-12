@@ -1,6 +1,7 @@
 ﻿namespace LiveScore.WebApi.Shared.Middlewares
 {
     using System.Collections.Generic;
+    using Fanex.Logging;
     using LiveScore.Features.Matches;
     using LiveScore.Shared;
     using LiveScore.Shared.Configurations;
@@ -21,10 +22,11 @@
             var serviceProvider = services.BuildServiceProvider();
             var pushHandler = serviceProvider.GetService<IMatchPushEventHandler>();
             var appSettings = serviceProvider.GetService<IAppSettings>();
+            var logger = serviceProvider.GetService<ILogger>();
 
             var pushEventListenerContainer = new Dictionary<int, IMatchPushEventListener>
                 {
-                    { SportConstants.SoccerId, new MatchPushEventListener(pushHandler, appSettings) },
+                    { SportConstants.SoccerId, new MatchPushEventListener(pushHandler, appSettings, logger) },
                 };
 
             return pushEventListenerContainer;

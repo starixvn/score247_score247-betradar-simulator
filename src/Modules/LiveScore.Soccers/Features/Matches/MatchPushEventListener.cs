@@ -48,11 +48,11 @@ namespace LiveScore.Soccers.Features.Matches
             //TODO loop for regions            
             var region = regions.First();
 
-            return await StartListening(sportId, endpoint, region);
+            return await StartListening(sportId, endpoint, region, hubContext);
 
         }
 
-        private async Task<bool> StartListening(byte sportId, EndPointSetting endpoint, Region region)
+        private async Task<bool> StartListening(byte sportId, EndPointSetting endpoint, Region region, IHubContext<MatchHub> hubContext)
         {
             var req = await CreateSubscribeRequest(endpoint, region);
 
@@ -66,14 +66,14 @@ namespace LiveScore.Soccers.Features.Matches
                 do
                 {
                     pushEvent = reader.ReadLine();
-                await pushHandler.OnReceive(pushEvent, hubContext);
+                    await pushHandler.OnReceive(pushEvent, hubContext);
                     await Task.Delay(MillisecondsTimeout);
 
                 } while (pushEvent.Length > 0);
             }
             catch (Exception ex)
             {
-                await logger.ErrorAsync($"Error while listening feed for sportId {sportId} - region {region.Name}", ex);                
+                await logger.ErrorAsync($"Error while listening feed for sportId {sportId} - region {region.Name}", ex);
             }
 
             return true;

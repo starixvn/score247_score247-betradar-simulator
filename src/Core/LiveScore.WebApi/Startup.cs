@@ -149,6 +149,7 @@ namespace LiveScore.WebApi
             services.AddSingleton<IMatchService, MatchService>();
             services.AddSingleton<ICacheService, CacheService>();
             services.AddSingleton<IMatchPushEventHandler, MatchPushEventHandler>();
+            services.AddSingleton<IMatchPushEventListener, MatchPushEventListener>();
         }
 
         private void RegisterDatabase(IServiceCollection services)
