@@ -112,9 +112,7 @@
         }
 
         private async Task PushToClients(Dictionary<string, MatchPushEvent> pushEvents)
-        {
-            await hubContext.Clients.All.SendAsync("PushMatchEvent", SportConstants.SoccerId.ToString(), pushEvents);
-        }
+            => await hubContext.Clients.All.SendAsync("PushMatchEvent", SportConstants.SoccerId.ToString(), pushEvents);
 
         private async Task UpdateMatch(string matchId, MatchPushEvent pushEvent)
         {

@@ -42,6 +42,10 @@
         public IDictionary<int, string> TimeZoneSettings => new Dictionary<int, string>();
 
         public bool EnabledJobs => true;
+
+        public bool EnabledDatabaseMigration => true;
+
+        public string AppPath => throw new NotImplementedException();
     }
 
     public class StubDataProviderSettings : IDataProviderSettings

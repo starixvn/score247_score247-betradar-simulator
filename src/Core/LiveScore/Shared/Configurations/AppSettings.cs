@@ -9,5 +9,9 @@
         IDictionary<int, string> TimeZoneSettings { get; }
 
         bool EnabledJobs { get; }
+
+        bool EnabledDatabaseMigration { get; }
+
+        string AppPath { get; }
     }
 }

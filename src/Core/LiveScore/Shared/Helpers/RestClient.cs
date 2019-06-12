@@ -2,7 +2,10 @@
 namespace LiveScore.Shared.Helpers
 {
     using System;
+    using System.IO;
     using System.Threading.Tasks;
+    using LiveScore.Shared.Configurations;
+    using Newtonsoft.Json;
     using RestSharp;
 
     public interface IRestClient

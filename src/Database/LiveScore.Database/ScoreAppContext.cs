@@ -3,6 +3,7 @@ namespace LiveScore.Shared.Database
 {
     using LiveScore.Shared.Database.Entities;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Design;
 
     public class ScoreAppContext : DbContext
     {
@@ -31,6 +32,24 @@ namespace LiveScore.Shared.Database
 
             modelBuilder.Entity<CommentaryEntity>()
                 .HasKey(c => new { c.Id, c.Language });
+        }
+    }
+
+    /// <summary>
+    /// Auto generated code, please ignore
+    /// </summary>
+    public class ScoreAppContextFactory : IDesignTimeDbContextFactory<ScoreAppContext>
+    {
+        public ScoreAppContext CreateDbContext(string[] args)
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<ScoreAppContext>();
+
+            optionsBuilder.UseNpgsql("Host=127.0.0.1;Port=5432;Username=postgres;Password=1234aa;Database=Score247Local1;Pooling=true;Minimum Pool Size=0;Maximum Pool Size=1000;Timeout=60;Connection Idle Lifetime=5")
+                            .EnableSensitiveDataLogging(true)
+                            .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+ 
+
+            return new ScoreAppContext(optionsBuilder.Options);
         }
     }
 }

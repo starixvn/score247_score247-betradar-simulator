@@ -6,6 +6,7 @@ namespace LiveScore.WebApi.Features.Matches
     using System.Threading.Tasks;
     using LiveScore.Features.Matches;
     using LiveScore.Features.Matches.Models;
+    using LiveScore.Jobs;
     using Microsoft.AspNetCore.Mvc;
 
     [Route("api/[controller]")]
@@ -13,10 +14,14 @@ namespace LiveScore.WebApi.Features.Matches
     public class MatchController : ControllerBase
     {
         private readonly IMatchService matchService;
+        private readonly IDailyScheduleFetchJob dailyScheduleFetchJob;
 
-        public MatchController(IMatchService matchService)
+        public MatchController(
+            IMatchService matchService,
+            IDailyScheduleFetchJob dailyScheduleFetchJob)
         {
             this.matchService = matchService;
+            this.dailyScheduleFetchJob = dailyScheduleFetchJob;
         }
 
         [HttpGet(nameof(GetMatches))]

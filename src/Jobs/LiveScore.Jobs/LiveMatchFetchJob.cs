@@ -69,7 +69,7 @@
             foreach (var match in matches)
             {
                 var liveMatchEntity = await repository.GetById<LiveMatchEntity>(match.Id, language);
-               
+
                 if (liveMatchEntity != null)
                 {
                     liveMatchEntities.Add(liveMatchEntity);

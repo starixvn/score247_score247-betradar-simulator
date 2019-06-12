@@ -33,7 +33,7 @@
             hubContext = Substitute.For<IHubContext<MatchHub>>();
             logger = Substitute.For<ILogger>();
 
-            var testJsonData = File.ReadAllText(@"..\netcoreapp2.1\TestData\payloads.json");
+            var testJsonData = File.ReadAllText(@"..\netcoreapp2.2\TestData\payloads.json");
             payloads = JsonConvert.DeserializeObject<PayloadStreams>(testJsonData);
 
             eventHandler = new MatchPushEventHandler(matchService, hubContext, logger);

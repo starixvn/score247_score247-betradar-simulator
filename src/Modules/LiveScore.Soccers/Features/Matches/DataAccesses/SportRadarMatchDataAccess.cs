@@ -60,7 +60,9 @@
                     var formattedEndpoint = string.Format(endPoint.Path, region.Name, language, date.ToString(SportRadarDateFormat), region.Key);
                     var dailyResult = await restClient.ExecuteGetAsync<DailyResultDto>(formattedEndpoint);
 
-                    if (dailyResult.results != null && dailyResult.results.Any())
+                    if (dailyResult != null 
+                        && dailyResult.results != null 
+                        && dailyResult.results.Any())
                     {
                         dailyResult.results.ToList().ForEach(x => matches.Add(MatchBuilder.BuildMatch(x.sport_event, x.sport_event_status, region.Name)));
                     }
@@ -83,7 +85,9 @@
                     var formattedEndpoint = string.Format(endPoint.Path, region.Name, language, date.ToString(SportRadarDateFormat), region.Key);
                     var dailySchedule = await restClient.ExecuteGetAsync<DailyScheduleDto>(formattedEndpoint);
 
-                    if (dailySchedule.sport_events != null && dailySchedule.sport_events.Any())
+                    if (dailySchedule != null
+                        && dailySchedule.sport_events != null 
+                        && dailySchedule.sport_events.Any())
                     {
                         dailySchedule.sport_events.ToList().ForEach(x => matches.Add(MatchBuilder.BuildMatch(x, null, region.Name)));
                     }
@@ -101,10 +105,7 @@
 
             var sportSetting = appSettings.DataProviderSettings.GetSportSetting(sportId);
             var endpointSettings = sportSetting.GetEndPointSetting(LiveMatchFeatureKey);
-
             var regions = sportSetting.Regions;
-
-            var liveResults = new DailyResultDto { generated_at = DateTime.Now.ToUniversalTime(), results = new List<Result>() };
 
             foreach (var endpoint in endpointSettings)
             {
@@ -113,11 +114,12 @@
                     var formattedEndpoint = string.Format(endpoint.Path, region.Name, language, region.Key);
                     var dailyResult = await restClient.ExecuteGetAsync<DailyResultDto>(formattedEndpoint);
 
-                    if (dailyResult.results != null && dailyResult.results.Any())
+                    if (dailyResult != null 
+                        && dailyResult.results != null 
+                        && dailyResult.results.Any())
                     {
-                        liveResults.results = liveResults.results.Concat(dailyResult.results);
-
-                        liveResults.results.ToList().ForEach(x => matches.Add(MatchBuilder.BuildMatch(x.sport_event, x.sport_event_status, region.Name)));
+                        dailyResult.results.ToList()
+                            .ForEach(x => matches.Add(MatchBuilder.BuildMatch(x.sport_event, x.sport_event_status, region.Name)));
                     }
                 }
             }

@@ -87,6 +87,8 @@ namespace LiveScore.WebApi
 
             UseHangfire(app);
 
+            InitializeDatabase(app);
+
             app.ConfigureExceptionHandler();
             app.UseSwagger().UseSwaggerUI(c =>
                 {
@@ -98,6 +100,7 @@ namespace LiveScore.WebApi
                         name: "default",
                         template: "{controller=Home}/{action=Index}");
                 });
+
         }
 
         private void UseHangfire(IApplicationBuilder app)
@@ -109,6 +112,8 @@ namespace LiveScore.WebApi
             {
                 WorkerCount = 2
             }).StartHangfireJobs(Configuration);
+
+
         }
 #pragma warning restore S2325 // Methods and properties that don't access instance data should be static
 
@@ -122,7 +127,7 @@ namespace LiveScore.WebApi
             var timeZoneSettings = new Dictionary<int, string>();
             Configuration.GetSection(TimeZoneSettingsPath).Bind(timeZoneSettings);
 
-            var appSettings = new AppSettings(Configuration, sportRadarDataProviderSettings, timeZoneSettings);
+            var appSettings = new AppSettings(Configuration, sportRadarDataProviderSettings, timeZoneSettings, hostingEnvironment.ContentRootPath);
 
             services.AddSingleton<IAppSettings>(appSettings);
             services.AddSingleton(CreateRestSharpClient(sportRadarDataProviderSettings));
@@ -167,6 +172,19 @@ namespace LiveScore.WebApi
                    .BuildServiceProvider();
 
             services.AddScoped<IDynamicRepository, DynamicRepository>();
+        }
+
+        private void InitializeDatabase(IApplicationBuilder app)
+        {
+            var appSettings = app.ApplicationServices.GetService<IAppSettings>();
+
+            if (appSettings.EnabledDatabaseMigration)
+            {
+                using (var scope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+                {
+                    scope.ServiceProvider.GetRequiredService<ScoreAppContext>().Database.Migrate();
+                }
+            }
         }
 
         private static void RegisterJobs(IServiceCollection services)

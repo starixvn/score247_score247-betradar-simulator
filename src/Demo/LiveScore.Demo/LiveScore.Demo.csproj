@@ -18,8 +18,4 @@
     <SonarQubeExclude>true</SonarQubeExclude>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\core\LiveScore\LiveScore.csproj" />
-  </ItemGroup>
-
 </Project>

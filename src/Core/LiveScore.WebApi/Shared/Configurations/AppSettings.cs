@@ -13,12 +13,15 @@
         public AppSettings(            
             IConfiguration configuration,
             IDataProviderSettings dataProviderSettings,
-            IDictionary<int, string> timeZoneSettings)
+            IDictionary<int, string> timeZoneSettings,
+            string appPath)
         {           
             this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));                     
             DataProviderSettings = dataProviderSettings;
             TimeZoneSettings = timeZoneSettings;
             EnabledJobs = GetValue<bool>($"LiveScores:{nameof(EnabledJobs)}");
+            EnabledDatabaseMigration = GetValue<bool>($"LiveScores:{nameof(EnabledDatabaseMigration)}");
+            AppPath = appPath;
         }
 
         public IDataProviderSettings DataProviderSettings { get; }
@@ -26,6 +29,10 @@
         public IDictionary<int, string> TimeZoneSettings { get; }
 
         public bool EnabledJobs { get; }
+
+        public bool EnabledDatabaseMigration { get; }
+
+        public string AppPath { get; }
 
         public T GetValue<T>(string key)
         {

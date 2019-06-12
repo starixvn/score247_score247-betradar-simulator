@@ -3,11 +3,12 @@
     using Hangfire;
     using LiveScore.Jobs;
     using LiveScore.Shared;
+    using LiveScore.Shared.Configurations;
+    using LiveScore.Soccers.Features.Matches;
+    using LiveScore.Soccers.Jobs;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
-    using LiveScore.Shared.Configurations;
     using Microsoft.Extensions.DependencyInjection;
-    using LiveScore.Soccers.Jobs;
 
     public static class HangfireJobManager
     {
@@ -34,7 +35,6 @@
             RecurringJob.AddOrUpdate<ILiveMatchFetchJob>("FetchLive", job => job.Fetch(SportConstants.SoccerId), Cron.Daily);
 
             RecurringJob.AddOrUpdate<IMatchPushEventListenerJob>("ListenPushFeed", job => job.StartListeningPushEvent(SportConstants.SoccerId), Cron.Daily);
-
         }
     }
 }

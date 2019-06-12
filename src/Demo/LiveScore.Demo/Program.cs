@@ -14,14 +14,14 @@ namespace LiveScore.Demo
 
         static void Main()
         {
-            ReadPushEvent().GetAwaiter().GetResult();
+            ReadPushEvent();
 
             Console.ReadLine();
         }
 
-        public async static Task ReadPushEvent()
+        public static void ReadPushEvent()
         {
-            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("https://api.sportradar.com/soccer-xt3/other/stream/events/subscribe?api_key=npc9md73nrwhykuepets3nqf&format=json");
+            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://api.sportradar.com/soccer-xt3/other/stream/events/subscribe?api_key=npc9md73nrwhykuepets3nqf&format=json");
             req.AllowAutoRedirect = false;
             string line = "";
 
@@ -36,20 +36,22 @@ namespace LiveScore.Demo
             {
 
                 reply = e.Response;
-                req = (HttpWebRequest)HttpWebRequest.Create(reply.Headers["Location"]);
+                var redirectUrl = reply.Headers["Location"];
+                Console.WriteLine(redirectUrl);
+                req = (HttpWebRequest)HttpWebRequest.Create(redirectUrl);
                 req.KeepAlive = true;
                 reply = (HttpWebResponse)req.GetResponse();
             }
 
             Stream stream = reply.GetResponseStream();
 
-            System.Diagnostics.Debug.WriteLine(reply.ContentType);
+            Console.WriteLine(reply.ContentType);
 
             StreamReader reader = new StreamReader(stream);
             do
             {
                 line = reader.ReadLine();
-                Console.WriteLine(line);
+                Console.WriteLine($"Data return {line}");
 
                 var path = @"responses.txt";
                 using (StreamWriter sw = File.AppendText(path))

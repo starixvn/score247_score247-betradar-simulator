@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -42,6 +42,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\core\LiveScore\LiveScore.csproj" />
+    <ProjectReference Include="..\..\Database\LiveScore.Database\LiveScore.Database.csproj" />
   </ItemGroup>
 
 </Project>
