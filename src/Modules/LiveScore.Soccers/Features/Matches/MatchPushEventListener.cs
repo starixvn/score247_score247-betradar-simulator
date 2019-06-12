@@ -9,6 +9,7 @@ namespace LiveScore.Soccers.Features.Matches
     using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
+    using Fanex.Logging;
     using LiveScore.Features.Matches;
     using LiveScore.Shared.Configurations;
     using LiveScore.Shared.SportRadarApi.Models;
@@ -20,15 +21,18 @@ namespace LiveScore.Soccers.Features.Matches
 
         private readonly IMatchPushEventHandler pushHandler;
         private readonly IAppSettings appSettings;
+        private readonly ILogger logger;
 
         private readonly Dictionary<string, HttpWebRequest> httpRequests;
 
         public MatchPushEventListener(
             IMatchPushEventHandler pushHandler,
-            IAppSettings appSettings)
+            IAppSettings appSettings,
+            ILogger logger)
         {
             this.pushHandler = pushHandler;
             this.appSettings = appSettings;
+            this.logger = logger;
 
             httpRequests = new Dictionary<string, HttpWebRequest>();
         }
@@ -39,31 +43,43 @@ namespace LiveScore.Soccers.Features.Matches
             var endpoint = sportSetting.GetEndPointSetting(FeatureKey).First();
 
             var regions = sportSetting.Regions
-                .Where(x => x.Name.Equals("other")); // TODO: remove specific other region
+                .Where(x => x.Name.Equals("eu")); // TODO: remove specific other region
 
             //TODO loop for regions            
             var region = regions.First();
 
+            return await StartListening(sportId, endpoint, region);
+
+        }
+
+        private async Task<bool> StartListening(byte sportId, EndPointSetting endpoint, Region region)
+        {
             var req = await CreateSubscribeRequest(endpoint, region);
-            var reply = (HttpWebResponse)req.GetResponse();
 
-            var stream = reply.GetResponseStream();
-            var reader = new StreamReader(stream);
-            var pushEvent = string.Empty;
-
-            do
+            try
             {
-                pushEvent = reader.ReadLine();
+                var reply = (HttpWebResponse)req.GetResponse();
+                var stream = reply.GetResponseStream();
+                var reader = new StreamReader(stream);
+                var pushEvent = string.Empty;
+
+                do
+                {
+                    pushEvent = reader.ReadLine();
                 await pushHandler.OnReceive(pushEvent, hubContext);
-                await Task.Delay(MillisecondsTimeout);
+                    await Task.Delay(MillisecondsTimeout);
 
-            } while (pushEvent.Length > 0);
-
+                } while (pushEvent.Length > 0);
+            }
+            catch (Exception ex)
+            {
+                await logger.ErrorAsync($"Error while listening feed for sportId {sportId} - region {region.Name}", ex);                
+            }
 
             return true;
         }
 
-        public async Task<HttpWebRequest> CreateSubscribeRequest(EndPointSetting endpoint, Region region)
+        private async Task<HttpWebRequest> CreateSubscribeRequest(EndPointSetting endpoint, Region region)
         {
             if (!httpRequests.ContainsKey(region.Name))
             {
@@ -81,7 +97,6 @@ namespace LiveScore.Soccers.Features.Matches
                     req.KeepAlive = true;
 
                     httpRequests.Add(region.Name, req);
-
                 }
                 else
                 {
