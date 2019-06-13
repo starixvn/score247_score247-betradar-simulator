@@ -22,4 +22,10 @@
     <Folder Include="Features\Leagues\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Data\payloads.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

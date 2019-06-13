@@ -1,0 +1,316 @@
+{
+  "break_start": {
+    "payload": {
+      "sport_event_status": {
+        "status": "live",
+        "match_status": "halftime",
+        "home_score": 1,
+        "away_score": 1,
+        "period_scores": [
+          {
+            "home_score": 1,
+            "away_score": 1,
+            "type": "regular_period",
+            "number": 1
+          },
+          {
+            "home_score": 0,
+            "away_score": 0,
+            "type": "regular_period",
+            "number": 2
+          }
+        ]
+      },
+      "event": {
+        "id": 554170341,
+        "type": "break_start",
+        "time": "2019-05-06T10:49:43+00:00",
+        "sport_event_id": "sr:match:17442441",
+        "update_time": "2019-05-06T10:49:43+00:00",
+        "period_name": "Pause"
+      }
+    },
+    "metadata": {
+      "format": "json",
+      "tournament_id": "sr:tournament:626",
+      "sport_event_id": "sr:match:17442441",
+      "event_id": "break_start",
+      "channel": "soccer-other-dfc",
+      "sport_id": "sr:sport:1",
+      "season_id": "sr:season:63539"
+    }
+  },
+  "period_score": {
+    "payload": {
+      "sport_event_status": {
+        "status": "live",
+        "match_status": "halftime",
+        "home_score": 1,
+        "away_score": 1,
+        "period_scores": [
+          {
+            "home_score": 1,
+            "away_score": 1,
+            "type": "regular_period",
+            "number": 1
+          },
+          {
+            "home_score": 0,
+            "away_score": 0,
+            "type": "regular_period",
+            "number": 2
+          }
+        ]
+      },
+      "event": {
+        "id": 554170337,
+        "type": "period_score",
+        "time": "2019-05-06T10:49:43+00:00",
+        "period": "1",
+        "sport_event_id": "sr:match:17442441",
+        "update_time": "2019-05-06T10:49:43+00:00",
+        "home_score": 1,
+        "away_score": 1
+      }
+    },
+    "metadata": {
+      "format": "json",
+      "tournament_id": "sr:tournament:626",
+      "sport_event_id": "sr:match:17442441",
+      "event_id": "period_score",
+      "channel": "soccer-other-dfc",
+      "sport_id": "sr:sport:1",
+      "season_id": "sr:season:63539"
+    }
+  },
+  "injury_time_shown": {
+    "payload": {
+      "sport_event_status": {
+        "status": "live",
+        "match_status": "1st_half",
+        "home_score": 1,
+        "away_score": 1,
+        "period": 1,
+        "period_scores": [
+          {
+            "home_score": 1,
+            "away_score": 1,
+            "type": "regular_period",
+            "number": 1
+          }
+        ]
+      },
+      "event": {
+        "id": 554170211,
+        "type": "injury_time_shown",
+        "time": "2019-05-06T10:48:40+00:00",
+        "match_time": 45,
+        "match_clock": "45:00",
+        "stoppage_time": "1",
+        "period": 1,
+        "period_type": "regular_period",
+        "sport_event_id": "sr:match:17442441",
+        "update_time": "2019-05-06T10:48:40+00:00",
+        "injury_time_announced": 1
+      }
+    },
+    "metadata": {
+      "format": "json",
+      "tournament_id": "sr:tournament:626",
+      "sport_event_id": "sr:match:17442441",
+      "event_id": "injury_time_shown",
+      "channel": "soccer-other-dfc",
+      "sport_id": "sr:sport:1",
+      "season_id": "sr:season:63539"
+    }
+  },
+  "yellow_card": {
+    "payload": {
+      "sport_event_status": {
+        "status": "live",
+        "match_status": "1st_half",
+        "home_score": 1,
+        "away_score": 1,
+        "period": 1,
+        "period_scores": [
+          {
+            "home_score": 1,
+            "away_score": 1,
+            "type": "regular_period",
+            "number": 1
+          }
+        ]
+      },
+      "event": {
+        "id": 554169175,
+        "type": "yellow_card",
+        "time": "2019-05-06T10:42:42+00:00",
+        "match_time": 40,
+        "match_clock": "39:00",
+        "player": {
+          "id": "sr:player:877270",
+          "name": "Nguyen, Tan Tai"
+        },
+        "team": "home",
+        "period": 1,
+        "period_type": "regular_period",
+        "sport_event_id": "sr:match:17442441",
+        "update_time": "2019-05-06T10:42:54+00:00"
+      }
+    },
+    "metadata": {
+      "format": "json",
+      "tournament_id": "sr:tournament:626",
+      "sport_event_id": "sr:match:17442441",
+      "event_id": "yellow_card",
+      "channel": "soccer-other-dfc",
+      "sport_id": "sr:sport:1",
+      "season_id": "sr:season:63539"
+    }
+  },
+  "score_change": {
+    "payload": {
+      "sport_event_status": {
+        "status": "live",
+        "match_status": "1st_half",
+        "home_score": 1,
+        "away_score": 0,
+        "period": 1,
+        "period_scores": [
+          {
+            "home_score": 1,
+            "away_score": 0,
+            "type": "regular_period",
+            "number": 1
+          }
+        ]
+      },
+      "event": {
+        "id": 554164429,
+        "type": "score_change",
+        "time": "2019-05-06T10:19:34+00:00",
+        "match_time": 20,
+        "match_clock": "19:11",
+        "team": "home",
+        "x": 89,
+        "y": 30,
+        "period": 1,
+        "period_type": "regular_period",
+        "sport_event_id": "sr:match:17442439",
+        "update_time": "2019-05-06T10:19:56+00:00",
+        "home_score": 1,
+        "away_score": 0
+      }
+    },
+    "metadata": {
+      "format": "json",
+      "tournament_id": "sr:tournament:626",
+      "sport_event_id": "sr:match:17442439",
+      "event_id": "score_change",
+      "channel": "soccer-other-dfc",
+      "sport_id": "sr:sport:1",
+      "season_id": "sr:season:63539"
+    }
+  },
+  "yellow_red_card": {
+    "payload": {
+      "sport_event_status": {
+        "status": "closed",
+        "match_status": "ended",
+        "home_score": 3,
+        "away_score": 3,
+        "period_scores": [
+          {
+            "home_score": 2,
+            "away_score": 0,
+            "type": "regular_period",
+            "number": 1
+          },
+          {
+            "home_score": 1,
+            "away_score": 3,
+            "type": "regular_period",
+            "number": 2
+          }
+        ]
+      },
+      "event": {
+        "id": 553870645,
+        "type": "yellow_red_card",
+        "time": "2019-05-05T14:57:00+00:00",
+        "match_time": 90,
+        "match_clock": "89:00",
+        "stoppage_time": "1",
+        "player": {
+          "id": "sr:player:176727",
+          "name": "Buonocunto, Ivan"
+        },
+        "team": "away",
+        "period": 2,
+        "period_type": "regular_period",
+        "sport_event_id": "sr:match:15648462",
+        "disabled": true,
+        "update_time": "2019-05-06T10:53:41+00:00"
+      }
+    },
+    "metadata": {
+      "format": "json",
+      "tournament_id": "sr:tournament:26556",
+      "sport_event_id": "sr:match:15648462",
+      "event_id": "yellow_red_card",
+      "channel": "soccer-other-dfc",
+      "sport_id": "sr:sport:1",
+      "season_id": "sr:season:57984"
+    }
+  },
+  "red_card": {
+    "payload": {
+      "sport_event_status": {
+        "status": "closed",
+        "match_status": "ended",
+        "home_score": 3,
+        "away_score": 3,
+        "period_scores": [
+          {
+            "home_score": 2,
+            "away_score": 0,
+            "type": "regular_period",
+            "number": 1
+          },
+          {
+            "home_score": 1,
+            "away_score": 3,
+            "type": "regular_period",
+            "number": 2
+          }
+        ]
+      },
+      "event": {
+        "id": 554171039,
+        "type": "red_card",
+        "time": "2019-05-06T10:53:41+00:00",
+        "match_time": 90,
+        "match_clock": "89:00",
+        "stoppage_time": "1",
+        "player": {
+          "id": "sr:player:176727",
+          "name": "Buonocunto, Ivan"
+        },
+        "team": "away",
+        "period": 2,
+        "period_type": "regular_period",
+        "sport_event_id": "sr:match:15648462",
+        "update_time": "2019-05-06T10:53:41+00:00"
+      }
+    },
+    "metadata": {
+      "format": "json",
+      "tournament_id": "sr:tournament:26556",
+      "sport_event_id": "sr:match:15648462",
+      "event_id": "red_card",
+      "channel": "soccer-other-dfc",
+      "sport_id": "sr:sport:1",
+      "season_id": "sr:season:57984"
+    }
+  }
+} 
