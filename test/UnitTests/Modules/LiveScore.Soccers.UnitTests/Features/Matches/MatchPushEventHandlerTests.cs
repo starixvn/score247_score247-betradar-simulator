@@ -69,7 +69,7 @@
         public async Task OnReceive_BreakStart()
         {
             var eventStream = JsonConvert.SerializeObject(payloads.break_start);
-            var matchId = payloads.injury_time_shown.metadata.sport_event_id;
+            var matchId = payloads.break_start.metadata.sport_event_id;
 
             await eventHandler.OnReceive(eventStream, hubContext);
 
@@ -87,7 +87,7 @@
         public async Task OnReceive_YellowCard()
         {
             var eventStream = JsonConvert.SerializeObject(payloads.yellow_card);
-            var matchId = payloads.injury_time_shown.metadata.sport_event_id;
+            var matchId = payloads.yellow_card.metadata.sport_event_id;
 
             await eventHandler.OnReceive(eventStream, hubContext);
 
@@ -96,8 +96,44 @@
                 Arg.Any<string>(),
                 matchId,
                 Arg.Is<MatchPushEvent>(x =>
-                    x.TimeLines.First(t => t.Type.Equals(EventTypes.YellowCard.Value)) != null &&
-                    x.MatchResult.MatchTime == 40),
+                    x.TimeLines.First(t => t.Type.Equals(EventTypes.YellowCard.Value) && !string.IsNullOrWhiteSpace(t.Player.Name)) != null &&
+                    x.MatchResult.MatchTime == 40 ),
+                true);
+        }
+
+        [Fact]
+        public async Task OnReceive_YellowRedCard()
+        {
+            var eventStream = JsonConvert.SerializeObject(payloads.yellow_red_card);
+            var matchId = payloads.yellow_red_card.metadata.sport_event_id;
+
+            await eventHandler.OnReceive(eventStream, hubContext);
+
+            // MatchTime == 0 ?!?
+            await matchService.Received(1).AddOrUpdateMatch(
+                Arg.Any<int>(),
+                Arg.Any<string>(),
+                matchId,
+                Arg.Is<MatchPushEvent>(x =>
+                    x.TimeLines.First(t => t.Type.Equals(EventTypes.YellowRedCard.Value) && !string.IsNullOrWhiteSpace(t.Player.Name)) != null),
+                true);
+        }
+
+        [Fact]
+        public async Task OnReceive_RedCard()
+        {
+            var eventStream = JsonConvert.SerializeObject(payloads.red_card);
+            var matchId = payloads.red_card.metadata.sport_event_id;
+
+            await eventHandler.OnReceive(eventStream, hubContext);
+
+            // MatchTime == 0 ?!?
+            await matchService.Received(1).AddOrUpdateMatch(
+                Arg.Any<int>(),
+                Arg.Any<string>(),
+                matchId,
+                Arg.Is<MatchPushEvent>(x =>
+                    x.TimeLines.First(t => t.Type.Equals(EventTypes.RedCard.Value) && !string.IsNullOrWhiteSpace(t.Player.Name)) != null),
                 true);
         }
 
