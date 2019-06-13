@@ -43,13 +43,12 @@ namespace LiveScore.Soccers.Features.Matches
             var endpoint = sportSetting.GetEndPointSetting(FeatureKey).First();
 
             var regions = sportSetting.Regions
-                .Where(x => x.Name.Equals("eu")); // TODO: remove specific other region
+                .Where(x => x.Name.Equals("other")); // TODO: remove specific other region
 
             //TODO loop for regions            
             var region = regions.First();
 
             return await StartListening(sportId, endpoint, region, hubContext);
-
         }
 
         private async Task<bool> StartListening(byte sportId, EndPointSetting endpoint, Region region, IHubContext<MatchHub> hubContext)

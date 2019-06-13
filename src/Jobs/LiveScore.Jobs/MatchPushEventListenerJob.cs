@@ -1,6 +1,6 @@
-﻿using LiveScore.Shared;
-namespace LiveScore.Jobs
+﻿namespace LiveScore.Jobs
 {
+    using LiveScore.Shared;
     using System.Threading.Tasks;
     using Hangfire;
     using LiveScore.Features.Matches;
@@ -13,14 +13,13 @@ namespace LiveScore.Jobs
     }
 
     public class MatchPushEventListenerJob : IMatchPushEventListenerJob
-    {
-        private readonly IBackgroundJobClient backgroundJob;
+    {        
         private readonly PushEventListenerFactory pushEventListenerFactory;
         private readonly IHubContext<MatchHub> hubContext;
 
-        public MatchPushEventListenerJob(IBackgroundJobClient backgroundJob, PushEventListenerFactory pushEventListenerFactory, IHubContext<MatchHub> hubContext)
+        public MatchPushEventListenerJob(PushEventListenerFactory pushEventListenerFactory, IHubContext<MatchHub> hubContext)
         {
-            this.backgroundJob = backgroundJob;
+            
             this.pushEventListenerFactory = pushEventListenerFactory;
             this.hubContext = hubContext;
         }
@@ -28,13 +27,9 @@ namespace LiveScore.Jobs
         public async Task StartListeningPushEvent(byte sportId)
         {
             var pushEventListener = pushEventListenerFactory.CreatePushEventListener(sportId);
-            var isFail = await ListenPushEvent(sportId, pushEventListener);
 
-            if (isFail)
-            {
-                //TODO call fetch live match results job after retry failure job
-                backgroundJob.Enqueue(() => StartListeningPushEvent(sportId));
-            }
+            //TODO call fetch live match results job after retry failure job when ListenPushEvent was force stop
+            await ListenPushEvent(sportId, pushEventListener);            
         }
 
         private async Task<bool> ListenPushEvent(byte sportId, IMatchPushEventListener pushEventListener)
