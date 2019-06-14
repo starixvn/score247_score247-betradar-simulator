@@ -1,6 +1,8 @@
 ﻿namespace LiveScore.Jobs
 {
-    using System;    
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using LiveScore.Features.Matches.Models;
     using LiveScore.Shared;
@@ -52,14 +54,17 @@
         }
 
         private async Task FetchDailySchedule(int sportId, DateTime from, DateTime to, string language)
-        {            
+        {
             var dataAccess = instanceFactory.CreateMatchDataAccess(sportId, DataProvider.ThirdPartyApi);
 
             var matches = await dataAccess.GetMatches(
-                sportId, 
-                from.ToUniversalTime(), 
-                to.ToUniversalTime(), 
+                sportId,
+                from.ToUniversalTime(),
+                to.ToUniversalTime(),
                 Enumeration.FromValue<Language>(language).DisplayName.ToLowerInvariant());
+
+            var newMatchEntities = new List<MatchEntity>();
+            var existingMatchEntities = new List<MatchEntity>();
 
             foreach (var match in matches)
             {
@@ -67,41 +72,47 @@
 
                 if (matchEntity == null)
                 {
-                    var newMatchEntity = new MatchEntity
-                    {
-                        Id = match.Id,
-                        EventDate = match.EventDate.ToUniversalTime(),
-                        LeagueId = match.League.Id,
-                        Language = language,
-                        SportId = sportId,
-                        Region = match.Region,
-                        Value = JsonConvert.SerializeObject(match)
-                    };
-
-                    await repository.Insert(newMatchEntity);
+                    var newMatchEntity = CreateMatchEntity(sportId, language, match);
+                    newMatchEntities.Add(newMatchEntity);
                 }
                 else
                 {
                     matchEntity.EventDate = match.EventDate;
                     matchEntity.Value = JsonConvert.SerializeObject(match);
 
-                    repository.Update(matchEntity); 
+                    existingMatchEntities.Add(matchEntity);
                 }
 
                 if (match.MatchResult.EventStatus == MatchStatus.Closed)
-                {                    
-                    var liveMatchEntity = await repository.GetById<LiveMatchEntity>(match.Id, language);
-
-                    if (liveMatchEntity != null)
-                    {
-                        await repository.Delete<LiveMatchEntity>(match.Id, language);
-                    }
+                {
+                    await repository.Delete<LiveMatchEntity>(match.Id, language);
                 }
             }
 
-            await repository.Save();
+            if (newMatchEntities.Any())
+            {
+                await repository.InsertRange(newMatchEntities);
+            }
+
+            if (existingMatchEntities.Any())
+            {
+                await repository.UpdateRange(existingMatchEntities);
+            }
 
             //TODO update cache for schedule and results --> liveMatchIds
         }
+
+        private static MatchEntity CreateMatchEntity(int sportId, string language, IMatch match)
+        => new MatchEntity
+        {
+            Id = match.Id,
+            EventDate = match.EventDate.ToUniversalTime(),
+            LeagueId = match.League.Id,
+            Language = language,
+            SportId = sportId,
+            Region = match.Region,
+            Value = JsonConvert.SerializeObject(match)
+        };
+
     }
 }
