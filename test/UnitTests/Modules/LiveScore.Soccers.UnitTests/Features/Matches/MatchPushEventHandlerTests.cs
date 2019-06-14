@@ -198,10 +198,74 @@
                 Arg.Any<string>(),
                 matchId,
                 Arg.Is<MatchPushEvent>(x =>
-                    x.TimeLines.First(t => t.Type.Equals(EventTypes.MatchEnded.Value)) != null && 
+                    x.TimeLines.First(t => t.Type.Equals(EventTypes.MatchEnded.Value)) != null &&
                     x.MatchResult.EventStatus == MatchStatus.Ended &&
                     x.MatchResult.MatchStatus == MatchStatus.Ended),
                 false);
+        }
+
+        [Fact]
+        public async Task OnReceive_MatchStarted()
+        {
+            var eventType = payloads.match_started;
+            var eventStream = JsonConvert.SerializeObject(eventType);
+            var matchId = eventType.metadata.sport_event_id;
+
+            await eventHandler.OnReceive(eventStream, hubContext);
+
+            await matchService.Received(1).AddOrUpdateMatch(
+               Arg.Any<int>(),
+               Arg.Any<string>(),
+               matchId,
+               Arg.Is<MatchPushEvent>(x =>
+                   x.TimeLines.First(t => t.Type.Equals(EventTypes.MatchStarted.Value)) != null &&
+                   x.MatchResult.EventStatus == MatchStatus.Live &&
+                   x.MatchResult.MatchStatus == MatchStatus.FirstHaft),
+               true);
+        }
+
+        [Fact]
+        public async Task OnReceive_FirstPeriodStart()
+        {
+            var eventType = payloads.first_period_start;
+            var eventStream = JsonConvert.SerializeObject(eventType);
+            var matchId = eventType.metadata.sport_event_id;
+
+            await eventHandler.OnReceive(eventStream, hubContext);
+
+            await matchService.Received(1).AddOrUpdateMatch(
+               Arg.Any<int>(),
+               Arg.Any<string>(),
+               matchId,
+               Arg.Is<MatchPushEvent>(x =>
+                   x.TimeLines.First(t => t.Type.Equals(EventTypes.PeriodStart.Value)) != null &&
+                   x.MatchResult.Period == 1 &&
+                   x.MatchResult.EventStatus == MatchStatus.Live &&
+                   x.MatchResult.MatchStatus == MatchStatus.FirstHaft &&
+                   x.MatchResult.MatchTime == 1),
+               true);
+        }
+
+        [Fact]
+        public async Task OnReceive_SecondPeriodStart()
+        {
+            var eventType = payloads.second_period_start;
+            var eventStream = JsonConvert.SerializeObject(eventType);
+            var matchId = eventType.metadata.sport_event_id;
+
+            await eventHandler.OnReceive(eventStream, hubContext);
+
+            await matchService.Received(1).AddOrUpdateMatch(
+               Arg.Any<int>(),
+               Arg.Any<string>(),
+               matchId,
+               Arg.Is<MatchPushEvent>(x =>
+                   x.TimeLines.First(t => t.Type.Equals(EventTypes.PeriodStart.Value)) != null &&
+                   x.MatchResult.Period == 2 &&
+                   x.MatchResult.EventStatus == MatchStatus.Live &&
+                   x.MatchResult.MatchStatus == MatchStatus.SecondHaft &&
+                   x.MatchResult.MatchTime == 46),
+               true);
         }
 
         [Fact]
@@ -230,5 +294,11 @@
         public MatchPushEventDto score_change_assist { get; set; }
 
         public MatchPushEventDto match_ended { get; set; }
+
+        public MatchPushEventDto match_started { get; set; }
+
+        public MatchPushEventDto first_period_start { get; set; }
+
+        public MatchPushEventDto second_period_start { get; set; }
     }
 }
