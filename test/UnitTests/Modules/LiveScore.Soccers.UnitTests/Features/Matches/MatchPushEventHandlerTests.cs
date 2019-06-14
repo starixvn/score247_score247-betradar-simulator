@@ -9,6 +9,9 @@
     using Microsoft.AspNetCore.SignalR;
     using Newtonsoft.Json;
     using NSubstitute;
+    using NSubstitute.ExceptionExtensions;
+    using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -272,6 +275,24 @@
         public async Task Handle_PushEventNull()
         {
             await eventHandler.Handle(null);
+        }
+
+        [Fact]
+        public async Task OnReceive_ThrowsException_ShouldLogError()
+        {
+            var eventType = payloads.second_period_start;
+            var eventStream = JsonConvert.SerializeObject(eventType);
+
+            matchService.AddOrUpdateMatch(
+               Arg.Any<int>(),
+               Arg.Any<string>(),
+               Arg.Any<string>(),
+               Arg.Any<MatchPushEvent>(),
+               true).Throws(new ArgumentNullException());
+
+            await eventHandler.OnReceive(eventStream, hubContext);
+
+            await logger.Received(1).ErrorAsync(Arg.Any<string>(), Arg.Any<ArgumentNullException>());
         }
     }
 
