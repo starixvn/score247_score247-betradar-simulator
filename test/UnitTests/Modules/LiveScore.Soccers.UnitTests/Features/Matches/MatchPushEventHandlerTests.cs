@@ -30,7 +30,7 @@
             hubContext = Substitute.For<IHubContext<MatchHub>>();
             logger = Substitute.For<ILogger>();
 
-            var testJsonData = File.ReadAllText(@"..\netcoreapp2.1\Data\payloads.json");
+            var testJsonData = File.ReadAllText(@"..\netcoreapp2.1\TestData\payloads.json");
             payloads = JsonConvert.DeserializeObject<PayloadStreams>(testJsonData);
 
             eventHandler = new MatchPushEventHandler(matchService, hubContext, logger);
@@ -97,7 +97,7 @@
                 matchId,
                 Arg.Is<MatchPushEvent>(x =>
                     x.TimeLines.First(t => t.Type.Equals(EventTypes.YellowCard.Value) && !string.IsNullOrWhiteSpace(t.Player.Name)) != null &&
-                    x.MatchResult.MatchTime == 40 ),
+                    x.MatchResult.MatchTime == 40),
                 true);
         }
 
@@ -138,6 +138,73 @@
         }
 
         [Fact]
+        public async Task OnReceive_ScoreChange()
+        {
+            var eventType = payloads.score_change;
+            var eventStream = JsonConvert.SerializeObject(eventType);
+            var matchId = eventType.metadata.sport_event_id;
+
+            await eventHandler.OnReceive(eventStream, hubContext);
+
+            // MatchTime == 0 ?!?
+            await matchService.Received(1).AddOrUpdateMatch(
+                Arg.Any<int>(),
+                Arg.Any<string>(),
+                matchId,
+                Arg.Is<MatchPushEvent>(x =>
+                    x.TimeLines.First(t => t.Type.Equals(EventTypes.ScoreChange.Value) && !string.IsNullOrWhiteSpace(t.GoalScorer.Name)) != null),
+                true);
+        }
+
+        [Fact]
+        public async Task OnReceive_ScoreChangeWithAssist()
+        {
+            var eventType = payloads.score_change_assist;
+            var eventStream = JsonConvert.SerializeObject(eventType);
+            var matchId = eventType.metadata.sport_event_id;
+
+            await eventHandler.OnReceive(eventStream, hubContext);
+
+            // MatchTime == 0 ?!?
+            await matchService.Received(1).AddOrUpdateMatch(
+                Arg.Any<int>(),
+                Arg.Any<string>(),
+                matchId,
+                Arg.Is<MatchPushEvent>(x =>
+                    x.TimeLines.First(t =>
+                        t.Type.Equals(EventTypes.ScoreChange.Value) &&
+                        !string.IsNullOrWhiteSpace(t.GoalScorer.Name) &&
+                        !string.IsNullOrWhiteSpace(t.Assist.Name)) != null),
+                true);
+        }
+
+        [Fact]
+        public async Task OnReceive_MatchEnded()
+        {
+            var eventType = payloads.match_ended;
+            var eventStream = JsonConvert.SerializeObject(eventType);
+            var matchId = eventType.metadata.sport_event_id;
+
+            await eventHandler.OnReceive(eventStream, hubContext);
+
+            // MatchTime == 0 ?!?
+            await matchService.Received(1).DeleteLiveMatch(
+               Arg.Any<int>(),
+               Arg.Any<string>(),
+               matchId);
+
+            await matchService.Received(1).AddOrUpdateMatch(
+                Arg.Any<int>(),
+                Arg.Any<string>(),
+                matchId,
+                Arg.Is<MatchPushEvent>(x =>
+                    x.TimeLines.First(t => t.Type.Equals(EventTypes.MatchEnded.Value)) != null && 
+                    x.MatchResult.EventStatus == MatchStatus.Ended &&
+                    x.MatchResult.MatchStatus == MatchStatus.Ended),
+                false);
+        }
+
+        [Fact]
         public async Task Handle_PushEventNull()
         {
             await eventHandler.Handle(null);
@@ -159,5 +226,9 @@
         public MatchPushEventDto yellow_red_card { get; set; }
 
         public MatchPushEventDto red_card { get; set; }
+
+        public MatchPushEventDto score_change_assist { get; set; }
+
+        public MatchPushEventDto match_ended { get; set; }
     }
 }

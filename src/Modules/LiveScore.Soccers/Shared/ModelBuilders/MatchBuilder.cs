@@ -69,7 +69,7 @@
 
                     matchResult.MatchTime = sportEventStatusDto.clock == null
                         ? 0
-                        : int.Parse(sportEventStatusDto.clock.match_time.Split(':')[0]);
+                        : ParseMatchClock(sportEventStatusDto.clock.match_time);
                 }
 
             }
@@ -85,7 +85,6 @@
             {
                 timeline.Id = timelineDto.id;
                 timeline.Type = timelineDto.type;
-                timeline.MatchTime = timelineDto.match_time;
                 timeline.Team = timelineDto.team;
                 timeline.InjuryTimeAnnounced = timelineDto.injury_time_announced;
                 timeline.PeriodType = timelineDto.period_type;
@@ -95,6 +94,10 @@
                 timeline.AwayScore = timelineDto.away_score;
                 timeline.StoppageTime = timelineDto.stoppage_time;
                 timeline.Commentaries = timelineDto.commentaries?.Select(x => new Commentary { Text = x.text });
+
+                timeline.MatchTime = timelineDto.match_time == 0
+                    ? ParseMatchClock(timelineDto.match_clock)
+                    : timelineDto.match_time;
 
                 timeline.GoalScorer = timelineDto.goal_scorer == null
                     ? null
@@ -142,5 +145,11 @@
 
             return venue;
         }
+
+        public static int ParseMatchClock(string matchClock)
+        => string.IsNullOrWhiteSpace(matchClock)
+                        ? 0
+                        : int.Parse(matchClock.Split(':')[0]);
+
     }
 }
