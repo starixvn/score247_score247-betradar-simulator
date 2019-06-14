@@ -23,19 +23,17 @@ namespace LiveScore.Shared.Database
 
         Task<T> Last<T>(Expression<Func<T, bool>> predicate) where T : DatabaseEntity;
 
-        Task Insert<T>(T obj) where T : DatabaseEntity;
+        Task<int> Insert<T>(T obj) where T : DatabaseEntity;
 
-        Task InsertRange<T>(IEnumerable<T> objects) where T : DatabaseEntity;
+        Task<bool> InsertRange<T>(IEnumerable<T> objects) where T : DatabaseEntity;
 
-        IDynamicRepository Update<T>(T obj) where T : DatabaseEntity;
+        Task<int> Update<T>(T obj) where T : DatabaseEntity;
 
         Task<int> UpdateRange<T>(IEnumerable<T> objects) where T : DatabaseEntity;
 
         Task<int> Delete<T>(params object[] ids) where T : DatabaseEntity;
 
         Task<int> DeleteRange<T>(IEnumerable<T> objects) where T : DatabaseEntity;
-
-        Task<int> Save();
     }
 
     public class DynamicRepository : IDynamicRepository
@@ -86,16 +84,7 @@ namespace LiveScore.Shared.Database
         public Task<T> GetById<T>(params object[] ids) where T : DatabaseEntity
             => context.Set<T>().FindAsync(ids);
 
-        public Task Insert<T>(T obj) where T : DatabaseEntity
-        {
-            obj.CreatedTime = DateTime.UtcNow;
-            obj.ModifiedTime = DateTime.UtcNow;
-
-            return context.Set<T>().AddAsync(obj);
-        }
-
-
-        public Task InsertRange<T>(IEnumerable<T> objects) where T : DatabaseEntity
+        public async Task<bool> InsertRange<T>(IEnumerable<T> objects) where T : DatabaseEntity
         {
             foreach (var obj in objects)
             {
@@ -103,22 +92,16 @@ namespace LiveScore.Shared.Database
                 obj.ModifiedTime = DateTime.UtcNow;
             }
 
-            return context.Set<T>().AddRangeAsync(objects);
+            await context.Set<T>().AddRangeAsync(objects);
+
+            return (await context.SaveChangesAsync()) > 0;
         }
 
         public Task<int> UpdateRange<T>(IEnumerable<T> objects) where T : DatabaseEntity
         {
             context.Set<T>().UpdateRange(objects);
 
-            return Save();
-        }
-
-        public IDynamicRepository Update<T>(T obj) where T : DatabaseEntity
-        {
-            obj.ModifiedTime = DateTime.UtcNow;
-            context.Set<T>().Update(obj);
-
-            return this;
+            return context.SaveChangesAsync();
         }
 
         public async Task<int> Delete<T>(params object[] ids) where T : DatabaseEntity
@@ -136,14 +119,29 @@ namespace LiveScore.Shared.Database
             return 0;
         }
 
-        public async Task<int> DeleteRange<T>(IEnumerable<T> objects) where T : DatabaseEntity
+        public Task<int> DeleteRange<T>(IEnumerable<T> objects) where T : DatabaseEntity
         {
             context.Set<T>().RemoveRange(objects);
+
+            return context.SaveChangesAsync();
+        }
+
+        public async Task<int> Insert<T>(T obj) where T : DatabaseEntity
+        {
+            obj.CreatedTime = DateTime.UtcNow;
+            obj.ModifiedTime = DateTime.UtcNow;
+
+            await context.Set<T>().AddAsync(obj);
 
             return await context.SaveChangesAsync();
         }
 
-        public Task<int> Save()
-            => context.SaveChangesAsync();
+        public Task<int> Update<T>(T obj) where T : DatabaseEntity
+        {
+            obj.ModifiedTime = DateTime.UtcNow;
+            context.Set<T>().Update(obj);
+
+            return context.SaveChangesAsync();
+        }
     }
 }

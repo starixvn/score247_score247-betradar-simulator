@@ -170,10 +170,9 @@
         {
             var timelines = new List<Timeline> { new Timeline { Type = EventTypes.MatchStarted.Value } };
 
-            var result = await matchDataAccess.AddCommentaries("sr:match:1", timelines, "en-US");
+            await matchDataAccess.AddCommentaries("sr:match:1", timelines, "en-US");
 
             await dynamicRepository.DidNotReceive().InsertRange(Arg.Any<IEnumerable<CommentaryEntity>>());
-            Assert.False(result);
         }
 
         [Fact]
@@ -184,15 +183,11 @@
                 new Timeline { Type = EventTypes.MatchStarted.Value, Commentaries = new List<Commentary> { new Commentary { Text = "match started" } } }
             };
 
-            dynamicRepository.Save().Returns(1);
-
-            var result = await matchDataAccess.AddCommentaries("sr:match:1", timelines, "en-US");
+            await matchDataAccess.AddCommentaries("sr:match:1", timelines, "en-US");
 
             await dynamicRepository
                 .Received(1)
                 .InsertRange(Arg.Is<IEnumerable<CommentaryEntity>>(x => x.First().MatchId.Equals("sr:match:1")));
-
-            Assert.True(result);
         }
 
         #endregion
@@ -292,7 +287,7 @@
 
             await matchDataAccess.AddTimelines("sr:match:1", timelines, isDeleteExisting: false);
 
-            await dynamicRepository.DidNotReceive().Delete<MatchTimelineEntity>(Arg.Any<object[]>());
+            await dynamicRepository.DidNotReceive().DeleteRange(Arg.Any<IEnumerable<MatchTimelineEntity>>());
             await dynamicRepository.Received(1).InsertRange(Arg.Any<IEnumerable<MatchTimelineEntity>>());
         }
 
@@ -311,7 +306,7 @@
 
             await matchDataAccess.AddTimelines("sr:match:1", timelines, isDeleteExisting: true);
 
-            await dynamicRepository.Received(1).Delete<MatchTimelineEntity>(Arg.Any<object[]>());
+            await dynamicRepository.Received(1).DeleteRange(Arg.Any<IEnumerable<MatchTimelineEntity>>());
             await dynamicRepository.Received(1).InsertRange(Arg.Any<IEnumerable<MatchTimelineEntity>>());
         }
 
@@ -377,13 +372,11 @@
         [Fact]
         public async Task AddResult_Always_InsertMatchResultEntity()
         {
-            var matchResult = new MatchResult { EventStatus = MatchStatus.Closed, MatchStatus = MatchStatus.Ended };
-            dynamicRepository.Save().Returns(1);
+            var matchResult = new MatchResult { EventStatus = MatchStatus.Closed, MatchStatus = MatchStatus.Ended };            
 
-            var result = await matchDataAccess.AddResult("sr:match:1", matchResult);
+            await matchDataAccess.AddResult("sr:match:1", matchResult);
 
             await dynamicRepository.Received(1).Insert(Arg.Any<MatchResultEntity>());
-            Assert.True(result);
         }
 
         #endregion
@@ -439,7 +432,7 @@
             var match = await matchDataAccess.AddOrUpdateMatch("sr:match:1", "en-US", pushEvent);
 
             Assert.NotNull(match);
-            dynamicRepository.Received(1).Update(Arg.Any<MatchEntity>());
+            await dynamicRepository.Received(1).Update(Arg.Any<MatchEntity>());
         }
 
         [Fact]
@@ -455,7 +448,7 @@
             var match = await matchDataAccess.AddOrUpdateMatch("sr:match:1", "en-US", pushEvent, isLive: true);
 
             Assert.NotNull(match);
-            dynamicRepository.DidNotReceive().Update(Arg.Any<MatchEntity>());
+            await dynamicRepository.DidNotReceive().Update(Arg.Any<MatchEntity>());
             await dynamicRepository.Received(1).Insert(Arg.Any<LiveMatchEntity>());
         }
 
@@ -473,8 +466,8 @@
             var match = await matchDataAccess.AddOrUpdateMatch("sr:match:1", "en-US", pushEvent, isLive: true);
 
             Assert.NotNull(match);
-            dynamicRepository.DidNotReceive().Update(Arg.Any<MatchEntity>());
-            dynamicRepository.Received(1).Update(Arg.Any<LiveMatchEntity>());
+            await dynamicRepository.DidNotReceive().Update(Arg.Any<MatchEntity>());
+            await dynamicRepository.Received(1).Update(Arg.Any<LiveMatchEntity>());
         }
 
         #endregion
@@ -485,11 +478,10 @@
         public async Task UpdateLiveMatches_Always_UpdateLiveMatchEntity()
         {
             dynamicRepository.GetById<LiveMatchEntity>("sr:match:1", "en-US").Returns(StubMatch.StubLiveMatchEntity());
-            var matches = new List<Match> { new Match { EventDate = DateTime.Now, Id = "sr:match:1"  } };
+            var matches = new List<Match> { new Match { EventDate = DateTime.Now, Id = "sr:match:1" } };
 
-            var result = await matchDataAccess.UpdateLiveMatches(matches, "en-US");
-
-            Assert.True(result);
+            await matchDataAccess.UpdateLiveMatches(matches, "en-US");
+           
             await dynamicRepository.Received(1).UpdateRange(Arg.Any<IEnumerable<LiveMatchEntity>>());
         }
 

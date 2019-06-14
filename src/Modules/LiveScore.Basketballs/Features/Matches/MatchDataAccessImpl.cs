@@ -12,7 +12,7 @@ namespace LiveScore.Basketballs.Features.Matches
 
     public class MatchDataAccessImpl : IMatchDataAccess
     {
-        public Task<bool> AddCommentaries(string matchId, IEnumerable<ITimeline> timelines, string language)
+        public Task AddCommentaries(string matchId, IEnumerable<ITimeline> timelines, string language)
         {
             throw new NotImplementedException();
         }

@@ -25,6 +25,6 @@
 
         Task<IEnumerable<ITimeline>> GetTimelines(int sportId, string region, string matchId, string language);
 
-        Task<bool> AddCommentaries(string matchId, IEnumerable<ITimeline> timelines, string language);
+        Task AddCommentaries(string matchId, IEnumerable<ITimeline> timelines, string language);
     }
 }

@@ -179,7 +179,7 @@
             return timelines;
         }
 
-        public Task<bool> AddCommentaries(string matchId, IEnumerable<ITimeline> timelines, string language)
+        public Task AddCommentaries(string matchId, IEnumerable<ITimeline> timelines, string language)
         {
             throw new NotImplementedException();
         }
