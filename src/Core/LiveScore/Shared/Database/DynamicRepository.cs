@@ -33,6 +33,8 @@ namespace LiveScore.Shared.Database
 
         Task<int> Delete<T>(params object[] ids) where T : DatabaseEntity;
 
+        Task<int> DeleteRange<T>(IEnumerable<T> objects) where T : DatabaseEntity;
+
         Task<int> Save();
     }
 
@@ -125,13 +127,20 @@ namespace LiveScore.Shared.Database
             T existing = await table.FindAsync(ids);
 
             if (existing != null)
-            {                
+            {
                 table.Remove(existing);
 
                 return await context.SaveChangesAsync();
             }
 
             return 0;
+        }
+
+        public async Task<int> DeleteRange<T>(IEnumerable<T> objects) where T : DatabaseEntity
+        {
+            context.Set<T>().RemoveRange(objects);
+
+            return await context.SaveChangesAsync();
         }
 
         public Task<int> Save()

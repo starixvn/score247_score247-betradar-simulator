@@ -43,6 +43,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sports", "Sports", "{AC1B8C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Soccers.IntegrationTests", "test\IntegrationTests\LiveScore.Soccers.IntegrationTests\LiveScore.Soccers.IntegrationTests.csproj", "{11B20005-9F1D-4BEC-9196-41040459A33C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Jobs", "Jobs", "{547A3C59-0419-4E86-A476-85B3C0F59432}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore.Jobs.Tests", "test\UnitTests\Jobs\LiveScore.Jobs.Tests\LiveScore.Jobs.Tests.csproj", "{F944FFD1-BA79-4FDD-BBED-AA7F120EA046}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +97,10 @@ Global
 		{11B20005-9F1D-4BEC-9196-41040459A33C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11B20005-9F1D-4BEC-9196-41040459A33C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11B20005-9F1D-4BEC-9196-41040459A33C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F944FFD1-BA79-4FDD-BBED-AA7F120EA046}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F944FFD1-BA79-4FDD-BBED-AA7F120EA046}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F944FFD1-BA79-4FDD-BBED-AA7F120EA046}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F944FFD1-BA79-4FDD-BBED-AA7F120EA046}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -116,6 +124,8 @@ Global
 		{297D8C9A-A368-4FC1-AB0A-F9D96A0CC957} = {646CD871-8FA1-4CF5-9A03-00A3D4CB8B2D}
 		{AC1B8CAB-3009-409E-A943-A41BD5F1FD7B} = {281B1F04-4203-4F55-8239-2E8E4A83F0BF}
 		{11B20005-9F1D-4BEC-9196-41040459A33C} = {AC1B8CAB-3009-409E-A943-A41BD5F1FD7B}
+		{547A3C59-0419-4E86-A476-85B3C0F59432} = {72C20749-C34B-4DFC-B557-1D7132149F1A}
+		{F944FFD1-BA79-4FDD-BBED-AA7F120EA046} = {547A3C59-0419-4E86-A476-85B3C0F59432}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {246B9D83-0780-47F5-B7E4-DD8514F7293A}

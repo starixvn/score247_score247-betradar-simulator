@@ -19,7 +19,7 @@
     public class LiveMatchFetchJob : ILiveMatchFetchJob
     {
         private readonly IDynamicRepository repository;
-        private readonly DataAccessFactory instanceFactory;        
+        private readonly DataAccessFactory instanceFactory;
 
         public LiveMatchFetchJob(
             IDynamicRepository repository,
@@ -35,7 +35,7 @@
             var closedMatches = new List<IMatch>();
 
             var dataAccess = instanceFactory.CreateMatchDataAccess(sportId, DataProvider.ThirdPartyApi);
-                        
+
             foreach (var lang in Enumeration.GetAll<Language>())
             {
                 var language = Enumeration.FromValue<Language>(lang.Value).DisplayName.ToLowerInvariant();
@@ -45,12 +45,12 @@
                 closedMatches.AddRange(matches.Where(x => x.MatchResult.EventStatus == MatchStatus.Closed).ToList());
 
                 if (closedMatches.Any())
-                {                    
+                {
                     await DeleteLiveMatches(closedMatches, language);
                 }
 
                 if (liveMatches.Any())
-                {                    
+                {
                     await InsertLiveMatches(liveMatches, language);
                 }
 
@@ -62,28 +62,39 @@
 
         private async Task DeleteLiveMatches(List<IMatch> matches, string language)
         {
+            var liveMatchEntities = new List<LiveMatchEntity>();
+            var matchEntities = new List<MatchEntity>();
+
             // status == closed && exist in live table -> delete in live table ->  update cache
             foreach (var match in matches)
-            {                
+            {
                 var liveMatchEntity = await repository.GetById<LiveMatchEntity>(match.Id, language);
-
+               
                 if (liveMatchEntity != null)
                 {
-                    repository.Delete<LiveMatchEntity>(match.Id, language);
-                   
+                    liveMatchEntities.Add(liveMatchEntity);
+
                     var matchEntity = await repository.GetById<MatchEntity>(match.Id, language);
                     matchEntity.Value = JsonConvert.SerializeObject(match);
-                    matchEntity.ModifiedTime = DateTime.Now.ToUniversalTime();
-
-                    repository.Update(matchEntity);
+                    matchEntities.Add(matchEntity);
                 }
             }
 
-            await repository.Save();
+            if (liveMatchEntities.Any())
+            {
+                await repository.DeleteRange(liveMatchEntities);
+            }
+
+            if (matchEntities.Any())
+            {
+                await repository.UpdateRange(matchEntities);
+            }
+
         }
 
         private async Task InsertLiveMatches(List<IMatch> matches, string language)
         {
+            var liveMatchEntities = new List<LiveMatchEntity>();
             // status == live && not exist in live table -> insert to live table -> update cache
             foreach (var match in matches)
             {
@@ -93,23 +104,31 @@
                 {
                     var matchEntity = await repository.GetById<MatchEntity>(match.Id, language);
 
-                    liveMatchEntity = new LiveMatchEntity
+                    if (matchEntity != null)
                     {
-                        Id = matchEntity.Id,
-                        SportId = matchEntity.SportId,
-                        Language = matchEntity.Language,
-                        Value = matchEntity.Value,
-                        LeagueId = matchEntity.LeagueId,
-                        EventDate = matchEntity.EventDate.ToUniversalTime(),
-                        CreatedTime = matchEntity.CreatedTime.ToUniversalTime(),
-                        ModifiedTime = matchEntity.ModifiedTime.ToUniversalTime()
-                    };
-
-                    await repository.Insert(liveMatchEntity);
+                        liveMatchEntities.Add(CreateLiveMatchEntity(matchEntity));
+                    }
                 }
             }
 
-            await repository.Save();
+            if (liveMatchEntities.Any())
+            {
+                await repository.InsertRange(liveMatchEntities);
+            }
         }
+
+        private static LiveMatchEntity CreateLiveMatchEntity(MatchEntity matchEntity)
+        => new LiveMatchEntity
+        {
+            Id = matchEntity.Id,
+            SportId = matchEntity.SportId,
+            Language = matchEntity.Language,
+            Value = matchEntity.Value,
+            LeagueId = matchEntity.LeagueId,
+            EventDate = matchEntity.EventDate.ToUniversalTime(),
+            CreatedTime = matchEntity.CreatedTime.ToUniversalTime(),
+            ModifiedTime = matchEntity.ModifiedTime.ToUniversalTime()
+        };
+
     }
 }
