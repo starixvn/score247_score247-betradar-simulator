@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Timers;
 
 namespace BetRadarSimulator.Controllers
@@ -34,6 +35,14 @@ namespace BetRadarSimulator.Controllers
             return new PushStreamResult(OnStreamAvailabe, HttpContext.RequestAborted);
         }
 
+        [HttpPost(nameof(Push))]
+        public async Task<IActionResult> Push(string eventStr)
+        {
+            await SendEvent(eventStr);
+
+            return Ok();
+        }
+
         private void OnStreamAvailabe(Stream stream, CancellationToken requestAborted)
         {
             var wait = requestAborted.WaitHandle;
@@ -52,7 +61,7 @@ namespace BetRadarSimulator.Controllers
             {
                 try
                 {
-                    var data = $"heartbeat: {DefaultInterval} \n";
+                    var data = $"heartbeat: {DefaultInterval}\n";
                     await client.WriteAsync(data);
                     await client.FlushAsync();
                 }
@@ -61,6 +70,16 @@ namespace BetRadarSimulator.Controllers
                     StreamWriter ignore;
                     notificationService.Clients.TryTake(out ignore);
                 }
+            }
+        }
+
+        private async Task SendEvent(string eventstr)
+        {
+            foreach (var client in notificationService.Clients)
+            {
+                var data = $"receive: {eventstr}\n";
+                await client.WriteAsync(data);
+                await client.FlushAsync();
             }
         }
     }

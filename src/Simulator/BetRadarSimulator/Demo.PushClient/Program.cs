@@ -13,7 +13,7 @@ namespace Demo.PushClient
 
             //ReadPushEvent().GetAwaiter().GetResult();
 
-            var api = "https://localhost:44318/api/events/Subscribe";
+            var api = "http://localhost:61092/api/events/Subscribe";
             Subscribe(api).GetAwaiter().GetResult();
 
             Console.ReadLine();
