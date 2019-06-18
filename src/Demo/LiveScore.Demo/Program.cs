@@ -14,14 +14,38 @@ namespace LiveScore.Demo
 
         static void Main()
         {
-            ReadPushEvent();
+            Task.Factory.StartNew(() => { ListenSportRadarStream("am","f5zwq9btg3wwg66upm84ntua"); });
+            Task.Factory.StartNew(() => { ListenSportRadarStream("eu", "f26un3ncev38wk86fmabpzad"); });
+            Task.Factory.StartNew(() => { ListenSportRadarStream("as", "x3zffh29jgzbgz74nf6apvvy"); });
+            Task.Factory.StartNew(() => { ListenSportRadarStream("intl", "5zn9j3p4qd3wzrujvfx7mngn"); });
+            Task.Factory.StartNew(() => { ListenSportRadarStream("other", "npc9md73nrwhykuepets3nqf"); });
+            //Task.Factory.StartNew(() => { ListenSportRadarStream("global", "f5zwq9btg3wwg66upm84ntua"); });
 
             Console.ReadLine();
         }
 
-        public static void ReadPushEvent()
+        private static void ListenSportRadarStream(string region, string key)
         {
-            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://api.sportradar.com/soccer-xt3/other/stream/events/subscribe?api_key=npc9md73nrwhykuepets3nqf&format=json");
+            Console.WriteLine(region);
+
+            while (true)
+            {
+                try
+                {
+                    ReadPushEvent(region, key);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+
+                System.Threading.Thread.Sleep(30 * 1000);
+            }
+        }
+
+        public static void ReadPushEvent(string region, string key)
+        {
+            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create($"http://api.sportradar.com/soccer-xt3/{region}/stream/events/subscribe?api_key={key}&format=json");
             req.AllowAutoRedirect = false;
             string line = "";
 
@@ -46,17 +70,19 @@ namespace LiveScore.Demo
             Stream stream = reply.GetResponseStream();
 
             Console.WriteLine(reply.ContentType);
-
+            var path = $"{region}_responses.txt";
             StreamReader reader = new StreamReader(stream);
             do
             {
                 line = reader.ReadLine();
-                Console.WriteLine($"Data return {line}");
+                Console.WriteLine($"Data return: {line}");
 
-                var path = @"responses.txt";
-                using (StreamWriter sw = File.AppendText(path))
+                if (!string.IsNullOrWhiteSpace(line) && !line.Contains("heartbeat"))
                 {
-                    sw.WriteLine(line);
+                    using (StreamWriter sw = File.AppendText(path))
+                    {
+                        sw.WriteLine(line);
+                    }
                 }
 
                 System.Threading.Thread.Sleep(30 * 1000);
