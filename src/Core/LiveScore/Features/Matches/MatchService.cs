@@ -243,10 +243,10 @@ namespace LiveScore.Features.Matches
             if (timelines != null && timelines.Any())
             {
                 var dbDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
-                await dbDataAccess.AddCommentaries("sr:match:16854027", timelines, language);
+                await dbDataAccess.AddCommentaries(matchId, timelines, language);
 
                 var timelinesExcludeComment = timelines.Select(x => RemoveCommentary(x)).ToList();
-                await dbDataAccess.AddTimelines("sr:match:16854027", timelinesExcludeComment, isDeleteExisting: true);
+                await dbDataAccess.AddTimelines(matchId, timelinesExcludeComment, isDeleteExisting: true);
             }
         }
 
