@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetRadarSimulator.Api", "BetRadarSimulator\BetRadarSimulator.Api.csproj", "{E933DC66-4BC7-480A-A586-D6F7A0347823}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Simulator.Api", "BetRadarSimulator\LiveScore.Simulator.Api.csproj", "{E933DC66-4BC7-480A-A586-D6F7A0347823}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{12F24BD1-1AE6-45DD-BF3A-76AD61E576F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.PushClient", "Demo.PushClient\Demo.PushClient.csproj", "{5DE58CF1-F793-4CE5-830B-6A12EFF9DFAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.PushClient", "Demo.PushClient\Demo.PushClient.csproj", "{5DE58CF1-F793-4CE5-830B-6A12EFF9DFAC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

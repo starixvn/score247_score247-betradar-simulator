@@ -4,7 +4,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BetRadarSimulator.Results
+namespace LiveScore.BetRadarSimulator.Results
 {
     public class PushStreamResult : IActionResult
     {

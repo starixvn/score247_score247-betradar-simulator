@@ -1,21 +1,25 @@
-﻿using BetRadarSimulator.Results;
-using BetRadarSimulator.Services;
+﻿using LiveScore.BetRadarSimulator.Api.Services;
+using LiveScore.BetRadarSimulator.Results;
+using LiveScore.BetRadarSimulator.Services;
+using LiveScore.Soccers.Shared.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 
-namespace BetRadarSimulator.Controllers
+namespace LiveScore.BetRadarSimulator.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class EventsController : ControllerBase
     {
         private const int DefaultInterval = 5 * 1000;
-        private static System.Timers.Timer timer;
+        private const string heartbeat = "{\"heartbeat\":{\"interval\":5000}} \n";
 
+        private static System.Timers.Timer timer;
         private INotificationService notificationService;
 
         public EventsController(INotificationService notificationService)
@@ -43,43 +47,49 @@ namespace BetRadarSimulator.Controllers
             return Ok();
         }
 
+        [HttpPost(nameof(PushEvent))]
+        public async Task<IActionResult> PushEvent([FromBody] MatchPushEventDto pushEvent)
+        {
+            var eventStr = JsonConvert.SerializeObject(pushEvent) + Environment.NewLine;
+
+            await SendEvent(eventStr);
+
+            return Ok();
+        }
+
         private void OnStreamAvailabe(Stream stream, CancellationToken requestAborted)
         {
             var wait = requestAborted.WaitHandle;
-            var client = new StreamWriter(stream);
-            notificationService.Clients.Add(client);
+            var client = new ServerSentEventsClient(stream);
+            notificationService.AddClient(client);
 
             wait.WaitOne();
 
-            StreamWriter ignore;
-            notificationService.Clients.TryTake(out ignore);
+            notificationService.RemoveClient(client);
         }
 
         private async void TimerElapsed(object sender, ElapsedEventArgs e)
         {
-            foreach (var client in notificationService.Clients)
+            foreach (var client in notificationService.GetClients())
             {
                 try
                 {
-                    var data = $"heartbeat: {DefaultInterval}\n";
-                    await client.WriteAsync(data);
-                    await client.FlushAsync();
+                    await client.SendEventAsync(heartbeat);
                 }
                 catch (Exception)
                 {
-                    StreamWriter ignore;
-                    notificationService.Clients.TryTake(out ignore);
+                    notificationService.RemoveClient(client);
                 }
             }
         }
 
         private async Task SendEvent(string eventstr)
         {
-            foreach (var client in notificationService.Clients)
+            foreach (var client in notificationService.GetClients())
             {
-                var data = $"receive: {eventstr}\n";
-                await client.WriteAsync(data);
-                await client.FlushAsync();
+                var data = $"{eventstr} {Environment.NewLine}";
+
+                await client.SendEventAsync(data);
             }
         }
     }
