@@ -201,7 +201,10 @@
                     matchTime += int.Parse(timeline.StoppageTime);
                 }
 
-                pushEvent.MatchResult.MatchTime = matchTime;
+                if (matchTime > 0)
+                {
+                    pushEvent.MatchResult.MatchTime = matchTime;
+                }
             }
         }
     }
