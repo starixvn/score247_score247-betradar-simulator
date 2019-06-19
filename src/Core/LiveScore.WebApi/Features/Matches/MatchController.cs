@@ -49,5 +49,13 @@ namespace LiveScore.WebApi.Features.Matches
 
             return match;
         }
+
+        [HttpGet(nameof(AddFullTimeline))]
+        public async Task<string> AddFullTimeline(int sportId, string matchId, string language = "en", string region = "eu")
+        {
+            await matchService.AddFullTimelines(sportId, matchId, language, region);
+
+            return "Done";
+        }
     }
 }

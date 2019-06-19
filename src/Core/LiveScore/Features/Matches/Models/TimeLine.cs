@@ -54,6 +54,22 @@
         IEnumerable<Commentary> Commentaries { get; set; }
 
         string StoppageTime { get; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        Player HomeShootoutPlayer { get; }
+
+        bool IsHomeShootoutScored { get; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        Player AwayShootoutPlayer { get; }
+
+        bool IsAwayShootoutScored { get; }
+
+        int ShootoutHomeScore { get; }
+
+        int ShootoutAwayScore { get; }
+
+        bool IsHome { get; }
     }
 
     public class Timeline : Entity<long, string>, ITimeline
@@ -95,6 +111,20 @@
         public string Outcome { get; set; }
 
         public string StoppageTime { get; set; }
+
+        public int ShootoutHomeScore { get; set; }
+
+        public int ShootoutAwayScore { get; set; }
+
+        public Player HomeShootoutPlayer { get; set; }
+
+        public bool IsHomeShootoutScored { get; set; }
+
+        public Player AwayShootoutPlayer { get; set; }
+
+        public bool IsAwayShootoutScored { get; set; }
+
+        public bool IsHome => Team?.ToLowerInvariant() == "home";
     }
 
     public class Commentary

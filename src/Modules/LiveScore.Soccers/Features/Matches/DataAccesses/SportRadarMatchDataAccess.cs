@@ -19,13 +19,16 @@
         private const string LiveMatchFeatureKey = "LiveMatch";
         private readonly IAppSettings appSettings;
         private readonly IRestClient restClient;
+        private readonly IPenaltyEventHandler penaltyEventHandler;
 
         public SportRadarMatchDataAccess(
             IAppSettings appSettings,
-            IRestClient restClient)
+            IRestClient restClient,
+            IPenaltyEventHandler penaltyEventHandler)
         {
             this.appSettings = appSettings;
             this.restClient = restClient;
+            this.penaltyEventHandler = penaltyEventHandler;
         }
 
         public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime utcFrom, DateTime utcTo, string language)
@@ -174,7 +177,27 @@
 
                 if (matchTimeline != null && matchTimeline.timeline != null && matchTimeline.timeline.Any())
                 {
-                    matchTimeline.timeline.ToList().ForEach(x => timelines.Add(MatchBuilder.BuildTimeLine(x)));
+                    foreach (var x in matchTimeline.timeline)
+                    {
+                        var timeline = MatchBuilder.BuildTimeLine(x);
+
+                        if (timeline.PeriodType == PeriodType.Penalties.Value)
+                        {
+                            if (timeline.Type == EventTypes.PenaltyShootout.Value)
+                            {
+                                timeline = await penaltyEventHandler.Handle(matchId, timeline);
+                            }
+                            else if(timeline.Type == EventTypes.ScoreChange.Value)
+                            {
+                                timeline = default(Timeline);
+                            }
+                        }
+
+                        if (timeline != default(Timeline))
+                        {
+                            timelines.Add(timeline);
+                        }
+                    }
                 }
             }
 

@@ -43,6 +43,10 @@ public class TimelineDto
     public string stoppage_time { get; set; }
     public int injury_time_announced { get; set; }
     public string description { get; set; }
+    public int? shootout_home_score { get; set; }
+    public int? shootout_away_score { get; set; }
+
+    public string status { get; set; }
 }
 
 public class Goal_Scorer

@@ -22,21 +22,22 @@
         private readonly MatchPushEventHandler eventHandler;
 
         private readonly PayloadStreams payloads;
-
-        private readonly IMatchService matchService;
         private readonly IHubContext<MatchHub> hubContext;
+        private readonly IMatchService matchService;
         private readonly ILogger logger;
+        private readonly IPenaltyEventHandler penaltyEventHandler;
 
         public MatchPushEventHandlerTests()
         {
-            matchService = Substitute.For<IMatchService>();
             hubContext = Substitute.For<IHubContext<MatchHub>>();
+            matchService = Substitute.For<IMatchService>();
             logger = Substitute.For<ILogger>();
+            penaltyEventHandler = Substitute.For<IPenaltyEventHandler>();
 
             var testJsonData = File.ReadAllText(@"..\netcoreapp2.2\TestData\payloads.json");
             payloads = JsonConvert.DeserializeObject<PayloadStreams>(testJsonData);
 
-            eventHandler = new MatchPushEventHandler(matchService, hubContext, logger);
+            eventHandler = new MatchPushEventHandler(matchService, hubContext, logger, penaltyEventHandler);
         }
 
         [Fact]
@@ -44,7 +45,7 @@
         {
             var eventStr = "{'heartbeat':{'interval':5000}}";
 
-            await eventHandler.OnReceive(eventStr, hubContext);
+            await eventHandler.OnReceive(eventStr);
 
             await matchService.DidNotReceive().DeleteLiveMatch(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<string>());
             await matchService.DidNotReceive().AddOrUpdateMatch(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<string>(), Arg.Any<MatchPushEvent>(), Arg.Any<bool>());
@@ -56,7 +57,7 @@
             var eventStream = JsonConvert.SerializeObject(payloads.injury_time_shown);
             var matchId = payloads.injury_time_shown.metadata.sport_event_id;
 
-            await eventHandler.OnReceive(eventStream, hubContext);
+            await eventHandler.OnReceive(eventStream);
 
             await matchService.Received(1).AddOrUpdateMatch(
                 Arg.Any<int>(),
@@ -74,7 +75,7 @@
             var eventStream = JsonConvert.SerializeObject(payloads.break_start);
             var matchId = payloads.break_start.metadata.sport_event_id;
 
-            await eventHandler.OnReceive(eventStream, hubContext);
+            await eventHandler.OnReceive(eventStream);
 
             // MatchTime == 0 ?!?
             await matchService.Received(1).AddOrUpdateMatch(
@@ -92,7 +93,7 @@
             var eventStream = JsonConvert.SerializeObject(payloads.yellow_card);
             var matchId = payloads.yellow_card.metadata.sport_event_id;
 
-            await eventHandler.OnReceive(eventStream, hubContext);
+            await eventHandler.OnReceive(eventStream);
 
             await matchService.Received(1).AddOrUpdateMatch(
                 Arg.Any<int>(),
@@ -110,7 +111,7 @@
             var eventStream = JsonConvert.SerializeObject(payloads.yellow_red_card);
             var matchId = payloads.yellow_red_card.metadata.sport_event_id;
 
-            await eventHandler.OnReceive(eventStream, hubContext);
+            await eventHandler.OnReceive(eventStream);
 
             // MatchTime == 0 ?!?
             await matchService.Received(1).AddOrUpdateMatch(
@@ -128,7 +129,7 @@
             var eventStream = JsonConvert.SerializeObject(payloads.red_card);
             var matchId = payloads.red_card.metadata.sport_event_id;
 
-            await eventHandler.OnReceive(eventStream, hubContext);
+            await eventHandler.OnReceive(eventStream);
 
             // MatchTime == 0 ?!?
             await matchService.Received(1).AddOrUpdateMatch(
@@ -147,7 +148,7 @@
             var eventStream = JsonConvert.SerializeObject(eventType);
             var matchId = eventType.metadata.sport_event_id;
 
-            await eventHandler.OnReceive(eventStream, hubContext);
+            await eventHandler.OnReceive(eventStream);
 
             // MatchTime == 0 ?!?
             await matchService.Received(1).AddOrUpdateMatch(
@@ -166,7 +167,7 @@
             var eventStream = JsonConvert.SerializeObject(eventType);
             var matchId = eventType.metadata.sport_event_id;
 
-            await eventHandler.OnReceive(eventStream, hubContext);
+            await eventHandler.OnReceive(eventStream);
 
             // MatchTime == 0 ?!?
             await matchService.Received(1).AddOrUpdateMatch(
@@ -188,7 +189,7 @@
             var eventStream = JsonConvert.SerializeObject(eventType);
             var matchId = eventType.metadata.sport_event_id;
 
-            await eventHandler.OnReceive(eventStream, hubContext);
+            await eventHandler.OnReceive(eventStream);
 
             // MatchTime == 0 ?!?
             await matchService.Received(1).DeleteLiveMatch(
@@ -214,7 +215,7 @@
             var eventStream = JsonConvert.SerializeObject(eventType);
             var matchId = eventType.metadata.sport_event_id;
 
-            await eventHandler.OnReceive(eventStream, hubContext);
+            await eventHandler.OnReceive(eventStream);
 
             await matchService.Received(1).AddOrUpdateMatch(
                Arg.Any<int>(),
@@ -234,7 +235,7 @@
             var eventStream = JsonConvert.SerializeObject(eventType);
             var matchId = eventType.metadata.sport_event_id;
 
-            await eventHandler.OnReceive(eventStream, hubContext);
+            await eventHandler.OnReceive(eventStream);
 
             await matchService.Received(1).AddOrUpdateMatch(
                Arg.Any<int>(),
@@ -256,7 +257,7 @@
             var eventStream = JsonConvert.SerializeObject(eventType);
             var matchId = eventType.metadata.sport_event_id;
 
-            await eventHandler.OnReceive(eventStream, hubContext);
+            await eventHandler.OnReceive(eventStream);
 
             await matchService.Received(1).AddOrUpdateMatch(
                Arg.Any<int>(),
@@ -290,7 +291,7 @@
                Arg.Any<MatchPushEvent>(),
                true).Throws(new ArgumentNullException());
 
-            await eventHandler.OnReceive(eventStream, hubContext);
+            await eventHandler.OnReceive(eventStream);
 
             await logger.Received(1).ErrorAsync(Arg.Any<string>(), Arg.Any<ArgumentNullException>());
         }

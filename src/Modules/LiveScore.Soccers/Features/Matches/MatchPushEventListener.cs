@@ -37,7 +37,7 @@ namespace LiveScore.Soccers.Features.Matches
             httpRequests = new Dictionary<string, HttpWebRequest>();
         }
 
-        public async Task<bool> Start(byte sportId, IHubContext<MatchHub> hubContext)
+        public async Task<bool> Start(byte sportId)
         {
             var sportSetting = appSettings.DataProviderSettings.GetSportSetting(sportId);
             var endpoint = sportSetting.GetEndPointSetting(FeatureKey).First();
@@ -48,10 +48,10 @@ namespace LiveScore.Soccers.Features.Matches
             //TODO loop for regions            
             var region = regions.First();
 
-            return await StartListening(sportId, endpoint, region, hubContext);
+            return await StartListening(sportId, endpoint, region);
         }
 
-        private async Task<bool> StartListening(byte sportId, EndPointSetting endpoint, Region region, IHubContext<MatchHub> hubContext)
+        private async Task<bool> StartListening(byte sportId, EndPointSetting endpoint, Region region)
         {
             var req = await CreateSubscribeRequest(endpoint, region);
 
@@ -65,7 +65,7 @@ namespace LiveScore.Soccers.Features.Matches
                 do
                 {
                     pushEvent = reader.ReadLine();
-                    await pushHandler.OnReceive(pushEvent, hubContext);
+                    await pushHandler.OnReceive(pushEvent);
                     await Task.Delay(MillisecondsTimeout);
 
                 } while (pushEvent.Length > 0);

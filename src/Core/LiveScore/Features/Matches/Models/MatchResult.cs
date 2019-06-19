@@ -19,6 +19,12 @@
         IEnumerable<MatchPeriod> MatchPeriods { get; }
 
         string WinnerId { get; }
+
+        int AggregateHomeScore { get; }
+
+        int AggregateAwayScore { get; }
+
+        string AggregateWinnerId { get; }
     }
 
     public class MatchResult : IMatchResult
@@ -38,5 +44,11 @@
         public int HomeScore { get; set; }
 
         public int AwayScore { get; set; }
+
+        public int AggregateHomeScore { get; set; }
+
+        public int AggregateAwayScore { get; set; }
+
+        public string AggregateWinnerId { get; set; }
     }
 }

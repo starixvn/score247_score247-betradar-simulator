@@ -30,6 +30,8 @@ namespace LiveScore.Features.Matches
         Task<bool> AddResult(int sportId, string matchId, IMatchResult matchResult);
 
         Task<IMatch> GetMatch(int sportId, string matchId, string language, TimeSpan clientTimeZone);
+
+        Task AddFullTimelines(int sportId, string matchId, string language, string region);
     }
 
     public class MatchService : IMatchService
@@ -241,10 +243,10 @@ namespace LiveScore.Features.Matches
             if (timelines != null && timelines.Any())
             {
                 var dbDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
-                await dbDataAccess.AddCommentaries(matchId, timelines, language);
+                await dbDataAccess.AddCommentaries("sr:match:16854027", timelines, language);
 
                 var timelinesExcludeComment = timelines.Select(x => RemoveCommentary(x)).ToList();
-                await dbDataAccess.AddTimelines(matchId, timelinesExcludeComment, isDeleteExisting: true);
+                await dbDataAccess.AddTimelines("sr:match:16854027", timelinesExcludeComment, isDeleteExisting: true);
             }
         }
 

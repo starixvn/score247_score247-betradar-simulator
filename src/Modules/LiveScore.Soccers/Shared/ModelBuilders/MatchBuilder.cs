@@ -44,8 +44,16 @@
                 {
                     EventStatus = Enumeration.FromValue<MatchStatus>(sportEventStatusDto.status),
                     HomeScore = sportEventStatusDto.home_score,
-                    AwayScore = sportEventStatusDto.away_score
+                    AwayScore = sportEventStatusDto.away_score,
+                    WinnerId = sportEventStatusDto.winner_id
                 };
+
+                if(!string.IsNullOrWhiteSpace(sportEventStatusDto.aggregate_winner_id))
+                {
+                    matchResult.AggregateWinnerId = sportEventStatusDto.aggregate_winner_id;
+                    matchResult.AggregateHomeScore = sportEventStatusDto.aggregate_home_score;
+                    matchResult.AggregateAwayScore = sportEventStatusDto.aggregate_away_score;
+                }
 
                 if (!string.IsNullOrWhiteSpace(sportEventStatusDto.match_status))
                 {
@@ -88,6 +96,11 @@
                 timeline.Team = timelineDto.team;
                 timeline.InjuryTimeAnnounced = timelineDto.injury_time_announced;
                 timeline.PeriodType = timelineDto.period_type;
+                if(string.IsNullOrWhiteSpace(timeline.PeriodType)
+                    && !string.IsNullOrWhiteSpace(timelineDto.period_name))
+                {
+                    timeline.PeriodType = timelineDto.period_name.ToLower().Replace(" ", "_").Trim();
+                }
                 timeline.Period = timelineDto.period;
                 timeline.Time = timelineDto.time;
                 timeline.HomeScore = timelineDto.home_score;
@@ -110,14 +123,36 @@
                 timeline.Player = timelineDto.player == null
                     ? null
                     : new Player { Name = timelineDto.player.name, Id = timelineDto.player.id };
+
+                SetPenaltyInfo(timelineDto, timeline);
             }
 
             return timeline;
         }
 
+        private static void SetPenaltyInfo(TimelineDto timelineDto, Timeline timeline)
+        {
+            if (timelineDto.period_type == PeriodType.Penalties.Value)
+            {
+                var isScored = timelineDto.status == "scored";
+                var player = timelineDto.player == null
+                    ? null
+                    : new Player { Name = timelineDto.player.name, Id = timelineDto.player.id };
+                if (timelineDto.team == "home")
+                {
+                    timeline.IsHomeShootoutScored = isScored;
+                    timeline.HomeShootoutPlayer = player;
+                }
+                else
+                {
+                    timeline.IsAwayShootoutScored = isScored;
+                    timeline.AwayShootoutPlayer = player;
+                }
+            }
+        }
+
         public static Dictionary<string, MatchPushEvent> BuildPushEvents(MatchPushEventDto pushEventDto)
         {
-            var pushEvents = new Dictionary<string, MatchPushEvent>();
             var matchId = pushEventDto.metadata.sport_event_id;
             var pushEvent = new MatchPushEvent
             {
@@ -125,9 +160,10 @@
                 TimeLines = new List<Timeline> { BuildTimeLine(pushEventDto.payload.timeline) }
             };
 
-            pushEvents.Add(matchId, pushEvent);
-
-            return pushEvents;
+            return new Dictionary<string, MatchPushEvent>
+            {
+                { matchId, pushEvent }
+            };
         }
 
         public static Venue BuildVenue(VenueDto venueDto)

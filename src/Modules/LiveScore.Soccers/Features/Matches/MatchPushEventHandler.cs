@@ -17,9 +17,9 @@
 
     public interface IMatchPushEventHandler
     {
-        Task OnReceive(string eventData, IHubContext<MatchHub> hubContext);
+        Task OnReceive(string eventData);
 
-        Task Handle(Dictionary<string, MatchPushEvent> pushEvents);
+        Task OnReceive(MatchPushEventDto matchPushEventDto);
     }
 
     public class MatchPushEventHandler : IMatchPushEventHandler
@@ -34,35 +34,42 @@
 
         private readonly IMatchService matchService;
         private readonly ILogger logger;
-        private IHubContext<MatchHub> hubContext;
+        private readonly IHubContext<MatchHub> hubContext;
+        private readonly IPenaltyEventHandler penaltyEventHandler;
 
         public MatchPushEventHandler(
             IMatchService matchService,
             IHubContext<MatchHub> hubContext,
-            ILogger logger)
+            ILogger logger,
+            IPenaltyEventHandler penaltyEventHandler)
         {
             this.matchService = matchService;
             this.hubContext = hubContext;
             this.logger = logger;
+            this.penaltyEventHandler = penaltyEventHandler;
         }
 
-        public async Task OnReceive(string eventData, IHubContext<MatchHub> hubContext)
+        public async Task OnReceive(string eventData)
         {
             try
             {
-                this.hubContext = hubContext;
                 var pushEventDto = JsonConvert.DeserializeObject<MatchPushEventDto>(eventData);
 
-                if (pushEventDto.payload != null)
-                {
-                    var pushEvents = MatchBuilder.BuildPushEvents(pushEventDto);
-
-                    await Handle(pushEvents);
-                }
+                await OnReceive(pushEventDto);
             }
             catch (Exception ex)
             {
                 await logger.ErrorAsync($"Error occurs OnReceive {eventData}", ex);
+            }
+        }
+
+        public async Task OnReceive(MatchPushEventDto matchPushEventDto)
+        {
+            if (matchPushEventDto.payload != null)
+            {
+                var pushEvents = MatchBuilder.BuildPushEvents(matchPushEventDto);
+
+                await Handle(pushEvents);
             }
         }
 
@@ -78,7 +85,13 @@
                 GenerateMatchTimeForLiveMatch(pushEvents[matchId]);
             }
 
-            var basicPushEvents = GetBasicPushEvents(pushEvents);
+            var basicPushEvents = await GetBasicPushEvents(pushEvents);
+
+            if(!basicPushEvents.Keys.Any())
+            {
+                return;
+            }
+
             await PushToClients(basicPushEvents);
 
             foreach (var matchId in basicPushEvents.Keys)
@@ -95,16 +108,39 @@
             }
         }
 
-        private static Dictionary<string, MatchPushEvent> GetBasicPushEvents(Dictionary<string, MatchPushEvent> pushEvents)
+        private async Task<Dictionary<string, MatchPushEvent>> GetBasicPushEvents(Dictionary<string, MatchPushEvent> pushEvents)
         {
             var basicPushEvents = new Dictionary<string, MatchPushEvent>();
 
             foreach (var matchId in pushEvents.Keys)
             {
                 var pushEvent = pushEvents[matchId];
-                if (pushEvent.TimeLines.Any(x => EventTypes.BasicSoccerEventTypes.Contains(x.Type)))
+                var timelines = pushEvent.TimeLines.ToList();
+                var timeline = timelines.FirstOrDefault(x => EventTypes.BasicSoccerEventTypes.Contains(x.Type)) as Timeline;
+
+                if (timeline != null)
                 {
-                    basicPushEvents[matchId] = pushEvent;
+                    var shootoutEvent = pushEvent.TimeLines.FirstOrDefault(
+                        tl => timeline.PeriodType == PeriodType.Penalties.Value 
+                            && timeline.Type == EventTypes.PenaltyShootout.Value) as Timeline;
+
+                    var penaltyScoreChangeEvent = pushEvent.TimeLines.FirstOrDefault(
+                        tl => timeline.PeriodType == PeriodType.Penalties.Value
+                            && timeline.Type == EventTypes.ScoreChange.Value) as Timeline;
+
+                    if (shootoutEvent != null)
+                    {
+                        var penaltyEvent = await penaltyEventHandler.Handle(matchId, shootoutEvent);
+                        if (penaltyEvent != default(Timeline))
+                        {
+                            pushEvent.TimeLines = new List<Timeline> { penaltyEvent };
+                            basicPushEvents[matchId] = pushEvent;
+                        }
+                    }
+                    else if(penaltyScoreChangeEvent == default(Timeline))
+                    {
+                        basicPushEvents[matchId] = pushEvent;
+                    }
                 }
             }
 

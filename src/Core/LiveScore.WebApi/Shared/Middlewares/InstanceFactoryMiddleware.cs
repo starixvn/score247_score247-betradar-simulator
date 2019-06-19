@@ -7,6 +7,7 @@
     using LiveScore.Shared.Configurations;
     using LiveScore.Shared.Database;
     using LiveScore.Shared.Helpers;
+    using LiveScore.Soccers.Features.Matches;
     using Microsoft.Extensions.DependencyInjection;
 
     public static class InstanceFactoryMiddleware
@@ -35,11 +36,12 @@
             var appSettings = serviceProvider.GetService<IAppSettings>();
             var restClient = serviceProvider.GetService<IRestClient>();
             var logger = serviceProvider.GetService<ILogger>();
+            var penaltyEventHandler = serviceProvider.GetService<IPenaltyEventHandler>();
 
             return new Dictionary<DataProvider, IMatchDataAccess>
             {
                 { DataProvider.Database, new Soccers.Features.Matches.DataAccesses.MatchDataAccess(repository, logger) },
-                { DataProvider.ThirdPartyApi, new Soccers.Features.Matches.DataAccesses.SportRadarMatchDataAccess(appSettings, restClient) },
+                { DataProvider.ThirdPartyApi, new Soccers.Features.Matches.DataAccesses.SportRadarMatchDataAccess(appSettings, restClient, penaltyEventHandler) },
             };
         }
     }

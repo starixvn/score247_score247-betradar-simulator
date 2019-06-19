@@ -1,0 +1,348 @@
+{
+    "generated_at": "2019-06-13T04:03:05+00:00",
+    "schema": "http://schemas.sportradar.com/bsa/soccer/v1/json/endpoints/soccer/match_timeline.json",
+    "sport_event": {
+        "id": "sr:match:18330543",
+        "scheduled": "2019-06-13T01:00:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+            "type": "cup",
+            "number": 4,
+            "name": "cupround",
+            "cup_round_match_number": 1,
+            "cup_round_matches": 1
+        },
+        "season": {
+            "id": "sr:season:65537",
+            "name": "US Open Cup 2019",
+            "start_date": "2019-05-07",
+            "end_date": "2019-09-30",
+            "year": "2019",
+            "tournament_id": "sr:tournament:495"
+        },
+        "tournament": {
+            "id": "sr:tournament:495",
+            "name": "US Open Cup",
+            "sport": {
+                "id": "sr:sport:1",
+                "name": "Soccer"
+            },
+            "category": {
+                "id": "sr:category:26",
+                "name": "USA",
+                "country_code": "USA"
+            }
+        },
+        "competitors": [
+            {
+                "id": "sr:competitor:2510",
+                "name": "Colorado Rapids",
+                "country": "USA",
+                "country_code": "USA",
+                "abbreviation": "COL",
+                "qualifier": "home"
+            },
+            {
+                "id": "sr:competitor:545601",
+                "name": "New Mexico United",
+                "country": "USA",
+                "country_code": "USA",
+                "abbreviation": "NEW",
+                "qualifier": "away"
+            }
+        ],
+        "venue": {
+            "id": "sr:venue:2302",
+            "name": "Dick's Sporting Goods Park",
+            "capacity": 19680,
+            "city_name": "Commerce City",
+            "country_name": "USA",
+            "map_coordinates": "39.805676,-104.891800",
+            "country_code": "USA"
+        }
+    },
+    "sport_event_conditions": {
+        "venue": {
+            "id": "sr:venue:2302",
+            "name": "Dick's Sporting Goods Park",
+            "capacity": 19680,
+            "city_name": "Commerce City",
+            "country_name": "USA",
+            "map_coordinates": "39.805676,-104.891800",
+            "country_code": "USA"
+        }
+    },
+    "sport_event_status": {
+        "status": "closed",
+        "match_status": "ap",
+        "home_score": 2,
+        "away_score": 2,
+        "winner_id": "sr:competitor:545601",
+        "period_scores": [
+            {
+                "home_score": 1,
+                "away_score": 1,
+                "type": "regular_period",
+                "number": 1
+            },
+            {
+                "home_score": 1,
+                "away_score": 1,
+                "type": "regular_period",
+                "number": 2
+            },
+            {
+                "home_score": 0,
+                "away_score": 0,
+                "type": "overtime"
+            },
+            {
+                "home_score": 2,
+                "away_score": 4,
+                "type": "penalties"
+            }
+        ]
+    },
+    "coverage_info": {
+        "level": "silver",
+        "live_coverage": true,
+        "coverage": {
+            "basic_score": true,
+            "key_events": true
+        }
+    },
+    "timeline": [
+        {
+            "id": 567072936,
+            "type": "match_started",
+            "time": "2019-06-13T01:08:04+00:00"
+        },
+        {
+            "id": 567072934,
+            "type": "period_start",
+            "time": "2019-06-13T01:08:04+00:00",
+            "period": 1,
+            "period_type": "regular_period",
+            "period_name": "1st half"
+        },
+        {
+            "id": 567073032,
+            "type": "score_change",
+            "time": "2019-06-13T01:09:35+00:00",
+            "match_time": 3,
+            "team": "away",
+            "period": 1,
+            "period_type": "regular_period",
+            "home_score": 0,
+            "away_score": 1
+        },
+        {
+            "id": 567076608,
+            "type": "score_change",
+            "time": "2019-06-13T01:39:56+00:00",
+            "match_time": 35,
+            "team": "home",
+            "period": 1,
+            "period_type": "regular_period",
+            "home_score": 1,
+            "away_score": 1
+        },
+        {
+            "id": 567078260,
+            "type": "break_start",
+            "time": "2019-06-13T01:54:15+00:00",
+            "period_name": "Pause"
+        },
+        {
+            "id": 567080226,
+            "type": "period_start",
+            "time": "2019-06-13T02:10:08+00:00",
+            "period": 2,
+            "period_type": "regular_period",
+            "period_name": "2nd half"
+        },
+        {
+            "id": 567080620,
+            "type": "score_change",
+            "time": "2019-06-13T02:13:09+00:00",
+            "match_time": 46,
+            "team": "home",
+            "period": 2,
+            "period_type": "regular_period",
+            "home_score": 2,
+            "away_score": 1
+        },
+        {
+            "id": 567086522,
+            "type": "score_change",
+            "time": "2019-06-13T02:58:55+00:00",
+            "match_time": 90,
+            "stoppage_time": "4",
+            "team": "away",
+            "period": 2,
+            "period_type": "regular_period",
+            "home_score": 2,
+            "away_score": 2
+        },
+        {
+            "id": 567087636,
+            "type": "break_start",
+            "time": "2019-06-13T03:06:42+00:00",
+            "period_name": "Awaiting extra"
+        },
+        {
+            "id": 567087716,
+            "type": "period_start",
+            "time": "2019-06-13T03:06:55+00:00",
+            "period_name": "Overtime"
+        },
+        {
+            "id": 567092020,
+            "type": "break_start",
+            "time": "2019-06-13T03:41:58+00:00",
+            "period_name": "Awaiting penalties"
+        },
+        {
+            "id": 567092052,
+            "type": "period_start",
+            "time": "2019-06-13T03:42:19+00:00",
+            "period_type": "penalties",
+            "period_name": "Penalties"
+        },
+        {
+            "id": 567092148,
+            "type": "penalty_shootout",
+            "time": "2019-06-13T03:43:21+00:00",
+            "team": "home",
+            "period_type": "penalties",
+            "status": "scored"
+        },
+        {
+            "id": 567092150,
+            "type": "score_change",
+            "time": "2019-06-13T03:43:22+00:00",
+            "team": "home",
+            "period_type": "penalties",
+            "home_score": 2,
+            "away_score": 2,
+            "shootout_home_score": 1,
+            "shootout_away_score": 0
+        },
+        {
+            "id": 567092252,
+            "type": "penalty_shootout",
+            "time": "2019-06-13T03:44:13+00:00",
+            "team": "away",
+            "period_type": "penalties",
+            "status": "scored"
+        },
+        {
+            "id": 567092254,
+            "type": "score_change",
+            "time": "2019-06-13T03:44:14+00:00",
+            "team": "away",
+            "period_type": "penalties",
+            "home_score": 2,
+            "away_score": 2,
+            "shootout_home_score": 1,
+            "shootout_away_score": 1
+        },
+        {
+            "id": 567092318,
+            "type": "penalty_shootout",
+            "time": "2019-06-13T03:44:48+00:00",
+            "team": "home",
+            "period_type": "penalties",
+            "status": "missed"
+        },
+        {
+            "id": 567092498,
+            "type": "penalty_shootout",
+            "time": "2019-06-13T03:45:28+00:00",
+            "team": "away",
+            "period_type": "penalties",
+            "status": "scored"
+        },
+        {
+            "id": 567092500,
+            "type": "score_change",
+            "time": "2019-06-13T03:45:29+00:00",
+            "team": "away",
+            "period_type": "penalties",
+            "home_score": 2,
+            "away_score": 2,
+            "shootout_home_score": 1,
+            "shootout_away_score": 2
+        },
+        {
+            "id": 567092552,
+            "type": "penalty_shootout",
+            "time": "2019-06-13T03:46:05+00:00",
+            "team": "home",
+            "period_type": "penalties",
+            "status": "scored"
+        },
+        {
+            "id": 567092554,
+            "type": "score_change",
+            "time": "2019-06-13T03:46:06+00:00",
+            "team": "home",
+            "period_type": "penalties",
+            "home_score": 2,
+            "away_score": 2,
+            "shootout_home_score": 2,
+            "shootout_away_score": 2
+        },
+        {
+            "id": 567092606,
+            "type": "penalty_shootout",
+            "time": "2019-06-13T03:46:40+00:00",
+            "team": "away",
+            "period_type": "penalties",
+            "status": "scored"
+        },
+        {
+            "id": 567092608,
+            "type": "score_change",
+            "time": "2019-06-13T03:46:41+00:00",
+            "team": "away",
+            "period_type": "penalties",
+            "home_score": 2,
+            "away_score": 2,
+            "shootout_home_score": 2,
+            "shootout_away_score": 3
+        },
+        {
+            "id": 567092680,
+            "type": "penalty_shootout",
+            "time": "2019-06-13T03:47:08+00:00",
+            "team": "home",
+            "period_type": "penalties",
+            "status": "missed"
+        },
+        {
+            "id": 567092810,
+            "type": "penalty_shootout",
+            "time": "2019-06-13T03:47:58+00:00",
+            "team": "away",
+            "period_type": "penalties",
+            "status": "scored"
+        },
+        {
+            "id": 567092812,
+            "type": "score_change",
+            "time": "2019-06-13T03:47:59+00:00",
+            "team": "away",
+            "period_type": "penalties",
+            "home_score": 2,
+            "away_score": 2,
+            "shootout_home_score": 2,
+            "shootout_away_score": 4
+        },
+        {
+            "id": 567092898,
+            "type": "match_ended",
+            "time": "2019-06-13T03:48:38+00:00"
+        }
+    ]
+}
