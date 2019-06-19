@@ -11,6 +11,7 @@ namespace LiveScore.WebApi.Features.Notifications
     using Microsoft.AspNetCore.SignalR;
     using LiveScore.Shared.Hubs;
     using System;
+    using LiveScore.Features.Matches;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -18,21 +19,40 @@ namespace LiveScore.WebApi.Features.Notifications
     {
         private IMatchPushEventHandler soccerPushEventHandler;
         private readonly IHubContext<MatchHub> hubContext;
+        private readonly IMatchService matchService;
 
 
-        public MockController(IMatchPushEventHandler soccerPushEventHandler, IHubContext<MatchHub> hubContext)
+        public MockController(
+            IMatchPushEventHandler soccerPushEventHandler, 
+            IHubContext<MatchHub> hubContext,
+            IMatchService matchService)
         {
             this.soccerPushEventHandler = soccerPushEventHandler;
             this.hubContext = hubContext;
+            this.matchService = matchService;
         }
 
         [HttpPost(nameof(PushMatchEvent))]
         public async Task PushMatchEvent(
             [FromBody]MatchPushEventDto matchPushEventDto)
         {
-            await hubContext.Clients.All.SendAsync("TestEvent", DateTime.Now.ToString());
-
             await soccerPushEventHandler.OnReceive(matchPushEventDto);
+        }
+
+        [HttpGet(nameof(AddFullTimeline))]
+        public async Task<string> AddFullTimeline(int sportId, string matchId, string language = "en", string region = "eu")
+        {
+            await matchService.AddFullTimelines(sportId, matchId, language, region);
+
+            return "Done";
+        }
+
+        [HttpPost(nameof(AddResult))]
+        public async Task<string> AddResult(int sportId, string matchId, [FromBody]MatchResult matchResult)
+        {
+            await matchService.AddResult(sportId, matchId, matchResult);
+
+            return "Done";
         }
     }
 }

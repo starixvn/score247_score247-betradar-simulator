@@ -14,14 +14,11 @@ namespace LiveScore.WebApi.Features.Matches
     public class MatchController : ControllerBase
     {
         private readonly IMatchService matchService;
-        private readonly IDailyScheduleFetchJob dailyScheduleFetchJob;
 
         public MatchController(
-            IMatchService matchService,
-            IDailyScheduleFetchJob dailyScheduleFetchJob)
+            IMatchService matchService)
         {
             this.matchService = matchService;
-            this.dailyScheduleFetchJob = dailyScheduleFetchJob;
         }
 
         [HttpGet(nameof(GetMatches))]
@@ -48,14 +45,6 @@ namespace LiveScore.WebApi.Features.Matches
             }
 
             return match;
-        }
-
-        [HttpGet(nameof(AddFullTimeline))]
-        public async Task<string> AddFullTimeline(int sportId, string matchId, string language = "en", string region = "eu")
-        {
-            await matchService.AddFullTimelines(sportId, matchId, language, region);
-
-            return "Done";
         }
     }
 }

@@ -4,6 +4,7 @@
     using LiveScore.Shared.Helpers;
     using LiveScore.Shared.Models.Dtos;
     using LiveScore.Shared.SportRadarApi.Models;
+    using LiveScore.Soccers.Features.Matches;
     using LiveScore.Soccers.Features.Matches.DataAccesses;
     using LiveScore.Soccers.UnitTests.Shared;
     using NSubstitute;
@@ -18,13 +19,15 @@
         private readonly SportRadarMatchDataAccess matchDataAccess;
         private readonly IAppSettings appSettings;
         private readonly IRestClient restClient;
+        private readonly IPenaltyEventHandler penaltyEventHandler;
 
         public SportRadarMatchDataAccessTests()
         {
             appSettings = Substitute.For<IAppSettings>();
             restClient = Substitute.For<IRestClient>();
+            penaltyEventHandler = Substitute.For<IPenaltyEventHandler>();
 
-            matchDataAccess = new SportRadarMatchDataAccess(appSettings, restClient);
+            matchDataAccess = new SportRadarMatchDataAccess(appSettings, restClient, penaltyEventHandler);
         }
 
         [Fact]

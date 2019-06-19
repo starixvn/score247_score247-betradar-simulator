@@ -15,7 +15,7 @@
     {
         private readonly PushEventListenerFactory pushEventListenerFactory;
 
-        public MatchPushEventListenerJob(PushEventListenerFactory pushEventListenerFactory, IHubContext<MatchHub> hubContext)
+        public MatchPushEventListenerJob(PushEventListenerFactory pushEventListenerFactory)
         {
             this.pushEventListenerFactory = pushEventListenerFactory;
         }

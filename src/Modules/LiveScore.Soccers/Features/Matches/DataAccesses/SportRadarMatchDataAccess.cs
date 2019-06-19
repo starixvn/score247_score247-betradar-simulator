@@ -177,31 +177,44 @@
 
                 if (matchTimeline != null && matchTimeline.timeline != null && matchTimeline.timeline.Any())
                 {
-                    foreach (var x in matchTimeline.timeline)
-                    {
-                        var timeline = MatchBuilder.BuildTimeLine(x);
-
-                        if (timeline.PeriodType == PeriodType.Penalties.Value)
-                        {
-                            if (timeline.Type == EventTypes.PenaltyShootout.Value)
-                            {
-                                timeline = await penaltyEventHandler.Handle(matchId, timeline);
-                            }
-                            else if(timeline.Type == EventTypes.ScoreChange.Value)
-                            {
-                                timeline = default(Timeline);
-                            }
-                        }
-
-                        if (timeline != default(Timeline))
-                        {
-                            timelines.Add(timeline);
-                        }
-                    }
+                    await TransformTimelines(matchId, timelines, matchTimeline);
                 }
             }
 
             return timelines;
+        }
+
+        private async Task TransformTimelines(string matchId, List<Timeline> timelines, MatchTimelineDto matchTimeline)
+        {
+            foreach (var rawTimeline in matchTimeline.timeline)
+            {
+                var timeline = MatchBuilder.BuildTimeLine(rawTimeline);
+
+                timeline = await BuildPenaltyEvent(matchId, timeline);
+
+                if (timeline != default(Timeline))
+                {
+                    timelines.Add(timeline);
+                }
+            }
+        }
+
+        private async Task<Timeline> BuildPenaltyEvent(string matchId, Timeline timeline)
+        {
+            if (timeline.PeriodType == PeriodType.Penalties.Value)
+            {
+                if (timeline.Type == EventTypes.PenaltyShootout.Value)
+                {
+                    return await penaltyEventHandler.Handle(matchId, timeline);
+                }
+
+                if (timeline.Type == EventTypes.ScoreChange.Value)
+                {
+                    return default(Timeline);
+                }
+            }
+
+            return timeline;
         }
 
         public Task AddCommentaries(string matchId, IEnumerable<ITimeline> timelines, string language)

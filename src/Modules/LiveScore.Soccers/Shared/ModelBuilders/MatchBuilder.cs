@@ -99,7 +99,7 @@
                 if(string.IsNullOrWhiteSpace(timeline.PeriodType)
                     && !string.IsNullOrWhiteSpace(timelineDto.period_name))
                 {
-                    timeline.PeriodType = timelineDto.period_name.ToLower().Replace(" ", "_").Trim();
+                    timeline.PeriodType = timelineDto.period_name.ToLowerInvariant().Replace(" ", "_").Trim();
                 }
                 timeline.Period = timelineDto.period;
                 timeline.Time = timelineDto.time;

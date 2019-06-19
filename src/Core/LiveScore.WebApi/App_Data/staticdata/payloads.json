@@ -786,47 +786,5 @@
       "sport_id": "sr:sport:1",
       "season_id": "sr:season:63857"
     }
-  },
-
-  "break_start": {
-    "payload": {
-      "sport_event_status": {
-        "status": "live",
-        "match_status": "halftime",
-        "home_score": 1,
-        "away_score": 1,
-        "period_scores": [
-          {
-            "home_score": 1,
-            "away_score": 1,
-            "type": "regular_period",
-            "number": 1
-          },
-          {
-            "home_score": 0,
-            "away_score": 0,
-            "type": "regular_period",
-            "number": 2
-          }
-        ]
-      },
-      "event": {
-        "id": 554170341,
-        "type": "break_start",
-        "time": "2019-05-06T10:49:43+00:00",
-        "sport_event_id": "sr:match:17442441",
-        "update_time": "2019-05-06T10:49:43+00:00",
-        "period_name": "Pause"
-      }
-    },
-    "metadata": {
-      "format": "json",
-      "tournament_id": "sr:tournament:626",
-      "sport_event_id": "sr:match:17442441",
-      "event_id": "break_start",
-      "channel": "soccer-other-dfc",
-      "sport_id": "sr:sport:1",
-      "season_id": "sr:season:63539"
-    }
   }
 }

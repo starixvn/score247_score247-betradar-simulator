@@ -66,7 +66,7 @@
                     shootoutEvent.AwayShootoutPlayer = latestPenalty.AwayShootoutPlayer;
                     shootoutEvent.IsAwayShootoutScored = latestPenalty.IsAwayShootoutScored;
                 }
-                else if (!shootoutEvent.IsHome && latestPenalty.IsHome)
+                else
                 {
                     shootoutEvent.HomeShootoutPlayer = latestPenalty.AwayShootoutPlayer;
                     shootoutEvent.IsHomeShootoutScored = latestPenalty.IsAwayShootoutScored;

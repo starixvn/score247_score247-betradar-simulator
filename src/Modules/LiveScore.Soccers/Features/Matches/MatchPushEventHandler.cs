@@ -116,35 +116,49 @@
             {
                 var pushEvent = pushEvents[matchId];
                 var timelines = pushEvent.TimeLines.ToList();
-                var timeline = timelines.FirstOrDefault(x => EventTypes.BasicSoccerEventTypes.Contains(x.Type)) as Timeline;
+                var timeline = timelines.FirstOrDefault(x => EventTypes.BasicSoccerEventTypes.Contains(x.Type));
 
                 if (timeline != null)
                 {
-                    var shootoutEvent = pushEvent.TimeLines.FirstOrDefault(
-                        tl => timeline.PeriodType == PeriodType.Penalties.Value 
-                            && timeline.Type == EventTypes.PenaltyShootout.Value) as Timeline;
-
-                    var penaltyScoreChangeEvent = pushEvent.TimeLines.FirstOrDefault(
-                        tl => timeline.PeriodType == PeriodType.Penalties.Value
-                            && timeline.Type == EventTypes.ScoreChange.Value) as Timeline;
-
-                    if (shootoutEvent != null)
-                    {
-                        var penaltyEvent = await penaltyEventHandler.Handle(matchId, shootoutEvent);
-                        if (penaltyEvent != default(Timeline))
-                        {
-                            pushEvent.TimeLines = new List<Timeline> { penaltyEvent };
-                            basicPushEvents[matchId] = pushEvent;
-                        }
-                    }
-                    else if(penaltyScoreChangeEvent == default(Timeline))
-                    {
-                        basicPushEvents[matchId] = pushEvent;
-                    }
+                    await BuildPusEvent(basicPushEvents, matchId, pushEvent, timeline);
                 }
             }
 
             return basicPushEvents;
+        }
+
+        private async Task BuildPusEvent(
+            Dictionary<string, MatchPushEvent> basicPushEvents, 
+            string matchId, 
+            MatchPushEvent pushEvent, 
+            ITimeline timeline)
+        {
+            var shootoutEvent = pushEvent.TimeLines.FirstOrDefault(
+                                    tl => timeline.PeriodType == PeriodType.Penalties.Value
+                                        && timeline.Type == EventTypes.PenaltyShootout.Value) as Timeline;
+
+            var penaltyScoreChangeEvent = pushEvent.TimeLines.FirstOrDefault(
+                tl => timeline.PeriodType == PeriodType.Penalties.Value
+                    && timeline.Type == EventTypes.ScoreChange.Value);
+
+            if (penaltyScoreChangeEvent != default(ITimeline))
+            {
+                return;
+            }
+
+            if (shootoutEvent != null)
+            {
+                var penaltyEvent = await penaltyEventHandler.Handle(matchId, shootoutEvent);
+                if (penaltyEvent != default(Timeline))
+                {
+                    pushEvent.TimeLines = new List<Timeline> { penaltyEvent };
+                    basicPushEvents[matchId] = pushEvent;
+                }
+            }
+            else
+            {
+                basicPushEvents[matchId] = pushEvent;
+            }
         }
 
         private async Task PushToClients(Dictionary<string, MatchPushEvent> pushEvents)
