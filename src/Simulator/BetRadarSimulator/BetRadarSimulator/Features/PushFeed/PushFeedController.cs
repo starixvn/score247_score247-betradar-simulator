@@ -9,6 +9,7 @@ namespace LiveScore.BetRadarSimulator.Controllers
     using LiveScore.BetRadarSimulator.Services;
     using LiveScore.Soccers.Shared.Dtos;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Configuration;
     using Newtonsoft.Json;
     using System;
     using System.IO;
@@ -21,20 +22,25 @@ namespace LiveScore.BetRadarSimulator.Controllers
     public class PushFeedController : ControllerBase
     {
         private const int DefaultInterval = 5 * 1000;
-        private const string heartbeat = "{\"heartbeat\":{\"interval\":5000}} \n";
+        private const string HeartBeat = "{\"heartbeat\":{\"interval\":5000}} \n";
+        private const string AppSettingPath = "BetRadarSimulator:ApiUrl";
 
         private static System.Timers.Timer timer;
         private INotificationService notificationService;
+        private readonly IConfiguration configuration;
 
-        public PushFeedController(INotificationService notificationService)
+        public PushFeedController(INotificationService notificationService, IConfiguration configuration)
         {
             this.notificationService = notificationService;
+            this.configuration = configuration;
         }
 
         [HttpGet(nameof(Subscribe))]
         public IActionResult Subscribe()
         {
-            return RedirectToAction((nameof(Stat)));
+            var host = configuration.GetSection(AppSettingPath);
+
+            return Redirect($"{host.Value}PushFeed/Stat");
         }
 
         [HttpGet(nameof(Stat))]
@@ -84,7 +90,7 @@ namespace LiveScore.BetRadarSimulator.Controllers
             {
                 try
                 {
-                    await client.SendEventAsync(heartbeat);
+                    await client.SendEventAsync(HeartBeat);
                 }
                 catch (Exception)
                 {
