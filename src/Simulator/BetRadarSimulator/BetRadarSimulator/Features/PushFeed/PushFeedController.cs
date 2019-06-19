@@ -18,7 +18,7 @@ namespace LiveScore.BetRadarSimulator.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class EventsController : ControllerBase
+    public class PushFeedController : ControllerBase
     {
         private const int DefaultInterval = 5 * 1000;
         private const string heartbeat = "{\"heartbeat\":{\"interval\":5000}} \n";
@@ -26,13 +26,19 @@ namespace LiveScore.BetRadarSimulator.Controllers
         private static System.Timers.Timer timer;
         private INotificationService notificationService;
 
-        public EventsController(INotificationService notificationService)
+        public PushFeedController(INotificationService notificationService)
         {
             this.notificationService = notificationService;
         }
 
         [HttpGet(nameof(Subscribe))]
         public IActionResult Subscribe()
+        {
+            return RedirectToAction((nameof(Stat)));
+        }
+
+        [HttpGet(nameof(Stat))]
+        public IActionResult Stat()
         {
             timer = new System.Timers.Timer();
             timer.Interval = DefaultInterval;
