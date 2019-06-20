@@ -15,7 +15,7 @@ public class MatchTimelineDto
 
     public IEnumerable<TimelineDto> timeline { get; set; }
 
-    public IEnumerable<Statistics> statistics { get; set; }
+    public Statistics statistics { get; set; }
 }
 
 public class TimelineDto

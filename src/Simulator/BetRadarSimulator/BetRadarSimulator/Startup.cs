@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using LiveScore.BetRadarSimulator.Api.Features.Matches;
 using LiveScore.BetRadarSimulator.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -22,6 +23,7 @@ namespace LiveScoreSimulator
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<INotificationService, NotificationService>();
+            services.AddSingleton<IMatchService, MatchService>();
 
             services.AddResponseCompression(options =>
             {

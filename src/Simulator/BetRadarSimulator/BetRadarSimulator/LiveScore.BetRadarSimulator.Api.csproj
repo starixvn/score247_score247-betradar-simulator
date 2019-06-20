@@ -15,4 +15,10 @@
     <ProjectReference Include="..\..\..\Modules\LiveScore.Soccers\LiveScore.Soccers.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="App_Data\staticdata\match-timelines.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

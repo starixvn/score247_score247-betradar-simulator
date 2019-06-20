@@ -1,0 +1,3616 @@
+{
+  "generated_at": "2019-06-18T09:24:03+00:00",
+  "schema": "http:\/\/schemas.sportradar.com\/bsa\/soccer\/v1\/json\/endpoints\/soccer\/match_timeline.json",
+  "sport_event": {
+    "id": "sr:match:18008091",
+    "scheduled": "2019-05-09T19:00:00+00:00",
+    "start_time_tbd": false,
+    "tournament_round": {
+      "type": "cup",
+      "name": "semifinal",
+      "cup_round_match_number": 2,
+      "cup_round_matches": 2,
+      "other_match_id": "sr:match:18008089",
+      "phase": "final_phase"
+    },
+    "season": {
+      "id": "sr:season:54531",
+      "name": "UEFA Europa League 18\/19",
+      "start_date": "2018-06-26",
+      "end_date": "2019-05-30",
+      "year": "18\/19",
+      "tournament_id": "sr:tournament:679"
+    },
+    "tournament": {
+      "id": "sr:tournament:679",
+      "name": "UEFA Europa League",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:393",
+        "name": "International Clubs"
+      }
+    },
+    "competitors": [
+      {
+        "id": "sr:competitor:38",
+        "name": "Chelsea FC",
+        "country": "England",
+        "country_code": "ENG",
+        "abbreviation": "CHE",
+        "qualifier": "home"
+      },
+      {
+        "id": "sr:competitor:2674",
+        "name": "Eintracht Frankfurt",
+        "country": "Germany",
+        "country_code": "DEU",
+        "abbreviation": "SGE",
+        "qualifier": "away"
+      }
+    ],
+    "venue": {
+      "id": "sr:venue:799",
+      "name": "Stamford Bridge",
+      "capacity": 41798,
+      "city_name": "London",
+      "country_name": "England",
+      "map_coordinates": "51.481579,-0.191094",
+      "country_code": "ENG"
+    }
+  },
+  "sport_event_conditions": {
+    "referee": {
+      "id": "sr:referee:69252",
+      "name": "Hategan, Ovidiu",
+      "nationality": "Romania",
+      "country_code": "ROU"
+    },
+    "venue": {
+      "id": "sr:venue:799",
+      "name": "Stamford Bridge",
+      "capacity": 41798,
+      "city_name": "London",
+      "country_name": "England",
+      "map_coordinates": "51.481579,-0.191094",
+      "country_code": "ENG"
+    },
+    "attendance": 36070,
+    "weather_info": {
+      "pitch": "good",
+      "weather_conditions": "medium"
+    }
+  },
+  "sport_event_status": {
+    "status": "closed",
+    "match_status": "ap",
+    "home_score": 1,
+    "away_score": 1,
+    "winner_id": "sr:competitor:38",
+    "aggregate_home_score": 2,
+    "aggregate_away_score": 2,
+    "aggregate_winner_id": "sr:competitor:38",
+    "period_scores": [
+      {
+        "home_score": 1,
+        "away_score": 0,
+        "type": "regular_period",
+        "number": 1
+      },
+      {
+        "home_score": 0,
+        "away_score": 1,
+        "type": "regular_period",
+        "number": 2
+      },
+      {
+        "home_score": 0,
+        "away_score": 0,
+        "type": "overtime"
+      },
+      {
+        "home_score": 4,
+        "away_score": 3,
+        "type": "penalties"
+      }
+    ],
+    "ball_locations": [
+      {
+        "x": "81",
+        "y": "59",
+        "team": "home"
+      },
+      {
+        "x": "73",
+        "y": "49",
+        "team": "home"
+      },
+      {
+        "x": "66",
+        "y": "34",
+        "team": "home"
+      },
+      {
+        "x": "69",
+        "y": "17",
+        "team": "home"
+      }
+    ]
+  },
+  "coverage_info": {
+    "level": "gold",
+    "live_coverage": true,
+    "coverage": {
+      "basic_score": true,
+      "key_events": true,
+      "detailed_events": true,
+      "lineups": true,
+      "commentary": true
+    }
+  },
+  "timeline": [
+    {
+      "id": 555495103,
+      "type": "match_started",
+      "time": "2019-05-09T19:01:33+00:00"
+    },
+    {
+      "id": 555495101,
+      "type": "period_start",
+      "time": "2019-05-09T19:01:33+00:00",
+      "period": 1,
+      "period_type": "regular_period",
+      "period_name": "1st half"
+    },
+    {
+      "id": 555495281,
+      "type": "throw_in",
+      "time": "2019-05-09T19:02:04+00:00",
+      "match_time": 1,
+      "match_clock": "0:31",
+      "team": "away",
+      "x": 80,
+      "y": 3,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555495463,
+      "type": "throw_in",
+      "time": "2019-05-09T19:02:34+00:00",
+      "match_time": 2,
+      "match_clock": "1:01",
+      "team": "home",
+      "x": 39,
+      "y": 4,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555495551,
+      "type": "throw_in",
+      "time": "2019-05-09T19:02:47+00:00",
+      "match_time": 2,
+      "match_clock": "1:13",
+      "team": "away",
+      "x": 42,
+      "y": 5,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555495737,
+      "type": "free_kick",
+      "time": "2019-05-09T19:03:20+00:00",
+      "match_time": 2,
+      "match_clock": "1:47",
+      "team": "away",
+      "x": 81,
+      "y": 18,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555496183,
+      "type": "corner_kick",
+      "time": "2019-05-09T19:04:37+00:00",
+      "match_time": 4,
+      "match_clock": "3:04",
+      "player": {
+        "id": "sr:player:35194",
+        "name": "Rode, Sebastian"
+      },
+      "team": "away",
+      "x": 5,
+      "y": 5,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555496261,
+      "type": "shot_on_target",
+      "time": "2019-05-09T19:04:45+00:00",
+      "match_time": 4,
+      "match_clock": "3:12",
+      "player": {
+        "id": "sr:player:319129",
+        "name": "Jovic, Luka"
+      },
+      "team": "away",
+      "x": 14,
+      "y": 54,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555496265,
+      "type": "shot_saved",
+      "time": "2019-05-09T19:04:45+00:00",
+      "match_time": 4,
+      "match_clock": "3:12",
+      "team": "home",
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555496461,
+      "type": "throw_in",
+      "time": "2019-05-09T19:05:18+00:00",
+      "match_time": 4,
+      "match_clock": "3:45",
+      "team": "home",
+      "x": 25,
+      "y": 4,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555496653,
+      "type": "throw_in",
+      "time": "2019-05-09T19:05:52+00:00",
+      "match_time": 5,
+      "match_clock": "4:19",
+      "team": "away",
+      "x": 34,
+      "y": 4,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555496795,
+      "type": "throw_in",
+      "time": "2019-05-09T19:06:15+00:00",
+      "match_time": 5,
+      "match_clock": "4:42",
+      "team": "home",
+      "x": 46,
+      "y": 4,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555497143,
+      "type": "throw_in",
+      "time": "2019-05-09T19:07:14+00:00",
+      "match_time": 6,
+      "match_clock": "5:41",
+      "team": "home",
+      "x": 27,
+      "y": 96,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555497305,
+      "type": "goal_kick",
+      "time": "2019-05-09T19:07:36+00:00",
+      "match_time": 7,
+      "match_clock": "6:03",
+      "team": "away",
+      "x": 95,
+      "y": 50,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555499031,
+      "type": "offside",
+      "time": "2019-05-09T19:11:13+00:00",
+      "match_time": 10,
+      "match_clock": "9:39",
+      "player": {
+        "id": "sr:player:152769",
+        "name": "Rebic, Ante"
+      },
+      "team": "away",
+      "x": 22,
+      "y": 67,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555499611,
+      "type": "corner_kick",
+      "time": "2019-05-09T19:12:31+00:00",
+      "match_time": 12,
+      "match_clock": "11:00",
+      "player": {
+        "id": "sr:player:31417",
+        "name": "Willian"
+      },
+      "team": "home",
+      "x": 95,
+      "y": 5,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555499831,
+      "type": "corner_kick",
+      "time": "2019-05-09T19:12:59+00:00",
+      "match_time": 12,
+      "match_clock": "11:26",
+      "player": {
+        "id": "sr:player:31417",
+        "name": "Willian"
+      },
+      "team": "home",
+      "x": 95,
+      "y": 5,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555499905,
+      "type": "free_kick",
+      "time": "2019-05-09T19:13:08+00:00",
+      "match_time": 12,
+      "match_clock": "11:35",
+      "team": "away",
+      "x": 81,
+      "y": 51,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555500171,
+      "type": "free_kick",
+      "time": "2019-05-09T19:13:43+00:00",
+      "match_time": 13,
+      "match_clock": "12:11",
+      "team": "away",
+      "x": 20,
+      "y": 36,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555500659,
+      "type": "throw_in",
+      "time": "2019-05-09T19:14:54+00:00",
+      "match_time": 14,
+      "match_clock": "13:21",
+      "team": "away",
+      "x": 34,
+      "y": 5,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555500963,
+      "type": "shot_on_target",
+      "time": "2019-05-09T19:15:31+00:00",
+      "match_time": 14,
+      "match_clock": "13:58",
+      "player": {
+        "id": "sr:player:97926",
+        "name": "da Costa, Danny"
+      },
+      "team": "away",
+      "x": 11,
+      "y": 43,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555500967,
+      "type": "shot_saved",
+      "time": "2019-05-09T19:15:31+00:00",
+      "match_time": 14,
+      "match_clock": "13:58",
+      "team": "home",
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555501057,
+      "type": "corner_kick",
+      "time": "2019-05-09T19:15:47+00:00",
+      "match_time": 15,
+      "match_clock": "14:14",
+      "player": {
+        "id": "sr:player:126588",
+        "name": "Kostic, Filip"
+      },
+      "team": "away",
+      "x": 5,
+      "y": 5,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555501267,
+      "type": "throw_in",
+      "time": "2019-05-09T19:16:19+00:00",
+      "match_time": 15,
+      "match_clock": "14:46",
+      "team": "home",
+      "x": 35,
+      "y": 96,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555501519,
+      "type": "throw_in",
+      "time": "2019-05-09T19:16:50+00:00",
+      "match_time": 16,
+      "match_clock": "15:17",
+      "team": "home",
+      "x": 47,
+      "y": 96,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555501751,
+      "type": "throw_in",
+      "time": "2019-05-09T19:17:18+00:00",
+      "match_time": 16,
+      "match_clock": "15:45",
+      "team": "home",
+      "x": 77,
+      "y": 96,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555502013,
+      "type": "corner_kick",
+      "time": "2019-05-09T19:17:55+00:00",
+      "match_time": 17,
+      "match_clock": "16:21",
+      "player": {
+        "id": "sr:player:31417",
+        "name": "Willian"
+      },
+      "team": "home",
+      "x": 95,
+      "y": 90,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555502161,
+      "type": "free_kick",
+      "time": "2019-05-09T19:18:08+00:00",
+      "match_time": 17,
+      "match_clock": "16:35",
+      "team": "home",
+      "x": 71,
+      "y": 54,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555502505,
+      "type": "throw_in",
+      "time": "2019-05-09T19:19:04+00:00",
+      "match_time": 18,
+      "match_clock": "17:30",
+      "team": "away",
+      "x": 44,
+      "y": 4,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555502867,
+      "type": "throw_in",
+      "time": "2019-05-09T19:19:59+00:00",
+      "match_time": 19,
+      "match_clock": "18:25",
+      "team": "away",
+      "x": 37,
+      "y": 96,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555502937,
+      "type": "throw_in",
+      "time": "2019-05-09T19:20:07+00:00",
+      "match_time": 19,
+      "match_clock": "18:33",
+      "team": "away",
+      "x": 30,
+      "y": 96,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555503151,
+      "type": "throw_in",
+      "time": "2019-05-09T19:20:33+00:00",
+      "match_time": 19,
+      "match_clock": "18:59",
+      "team": "away",
+      "x": 61,
+      "y": 96,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555503573,
+      "type": "throw_in",
+      "time": "2019-05-09T19:21:30+00:00",
+      "match_time": 20,
+      "match_clock": "19:56",
+      "team": "home",
+      "x": 46,
+      "y": 4,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555503757,
+      "type": "free_kick",
+      "time": "2019-05-09T19:22:01+00:00",
+      "match_time": 21,
+      "match_clock": "20:27",
+      "team": "home",
+      "x": 36,
+      "y": 49,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555503891,
+      "type": "throw_in",
+      "time": "2019-05-09T19:22:26+00:00",
+      "match_time": 21,
+      "match_clock": "20:52",
+      "team": "home",
+      "x": 88,
+      "y": 4,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555504081,
+      "type": "throw_in",
+      "time": "2019-05-09T19:23:07+00:00",
+      "match_time": 22,
+      "match_clock": "21:33",
+      "team": "home",
+      "x": 64,
+      "y": 4,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555504423,
+      "type": "shot_on_target",
+      "time": "2019-05-09T19:23:53+00:00",
+      "match_time": 23,
+      "match_clock": "22:20",
+      "player": {
+        "id": "sr:player:39070",
+        "name": "Giroud, Olivier"
+      },
+      "team": "home",
+      "x": 92,
+      "y": 50,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555504427,
+      "type": "shot_saved",
+      "time": "2019-05-09T19:23:53+00:00",
+      "match_time": 23,
+      "match_clock": "22:20",
+      "team": "away",
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555504449,
+      "type": "throw_in",
+      "time": "2019-05-09T19:23:57+00:00",
+      "match_time": 23,
+      "match_clock": "22:23",
+      "team": "home",
+      "x": 85,
+      "y": 3,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555504553,
+      "type": "throw_in",
+      "time": "2019-05-09T19:24:13+00:00",
+      "match_time": 23,
+      "match_clock": "22:39",
+      "team": "home",
+      "x": 80,
+      "y": 5,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555504609,
+      "type": "throw_in",
+      "time": "2019-05-09T19:24:17+00:00",
+      "match_time": 23,
+      "match_clock": "22:44",
+      "team": "home",
+      "x": 80,
+      "y": 4,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555504685,
+      "type": "free_kick",
+      "time": "2019-05-09T19:24:33+00:00",
+      "match_time": 24,
+      "match_clock": "23:00",
+      "team": "home",
+      "x": 94,
+      "y": 15,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555505085,
+      "type": "shot_on_target",
+      "time": "2019-05-09T19:25:33+00:00",
+      "match_time": 25,
+      "match_clock": "24:00",
+      "player": {
+        "id": "sr:player:21300",
+        "name": "Luiz, David"
+      },
+      "team": "home",
+      "x": 87,
+      "y": 44,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555505089,
+      "type": "shot_saved",
+      "time": "2019-05-09T19:25:33+00:00",
+      "match_time": 25,
+      "match_clock": "24:00",
+      "team": "away",
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555505131,
+      "type": "throw_in",
+      "time": "2019-05-09T19:25:38+00:00",
+      "match_time": 25,
+      "match_clock": "24:04",
+      "team": "home",
+      "x": 74,
+      "y": 4,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555505371,
+      "type": "throw_in",
+      "time": "2019-05-09T19:26:19+00:00",
+      "match_time": 25,
+      "match_clock": "24:45",
+      "team": "home",
+      "x": 75,
+      "y": 97,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555505809,
+      "type": "throw_in",
+      "time": "2019-05-09T19:27:23+00:00",
+      "match_time": 26,
+      "match_clock": "25:50",
+      "team": "away",
+      "x": 47,
+      "y": 4,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555505917,
+      "type": "free_kick",
+      "time": "2019-05-09T19:27:47+00:00",
+      "match_time": 27,
+      "match_clock": "26:14",
+      "team": "home",
+      "x": 37,
+      "y": 41,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555506471,
+      "type": "score_change",
+      "time": "2019-05-09T19:29:22+00:00",
+      "match_time": 28,
+      "match_clock": "27:00",
+      "team": "home",
+      "x": 91,
+      "y": 39,
+      "period": 1,
+      "period_type": "regular_period",
+      "home_score": 1,
+      "away_score": 0,
+      "goal_scorer": {
+        "id": "sr:player:284441",
+        "name": "Loftus-Cheek, Ruben"
+      },
+      "assist": {
+        "id": "sr:player:27583",
+        "type": "primary",
+        "name": "Hazard, Eden"
+      }
+    },
+    {
+      "id": 555506745,
+      "type": "goal_kick",
+      "time": "2019-05-09T19:30:14+00:00",
+      "match_time": 29,
+      "match_clock": "28:40",
+      "team": "home",
+      "x": 5,
+      "y": 50,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555518363,
+      "type": "offside",
+      "time": "2019-05-09T19:55:37+00:00",
+      "match_time": 30,
+      "match_clock": "29:00",
+      "player": {
+        "id": "sr:player:39070",
+        "name": "Giroud, Olivier"
+      },
+      "team": "home",
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555507087,
+      "type": "free_kick",
+      "time": "2019-05-09T19:31:13+00:00",
+      "match_time": 30,
+      "match_clock": "29:40",
+      "team": "away",
+      "x": 58,
+      "y": 62,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555507435,
+      "type": "corner_kick",
+      "time": "2019-05-09T19:31:55+00:00",
+      "match_time": 31,
+      "match_clock": "30:22",
+      "player": {
+        "id": "sr:player:126588",
+        "name": "Kostic, Filip"
+      },
+      "team": "away",
+      "x": 5,
+      "y": 90,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555507605,
+      "type": "goal_kick",
+      "time": "2019-05-09T19:32:21+00:00",
+      "match_time": 31,
+      "match_clock": "30:48",
+      "team": "home",
+      "x": 5,
+      "y": 50,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555507867,
+      "type": "free_kick",
+      "time": "2019-05-09T19:32:51+00:00",
+      "match_time": 32,
+      "match_clock": "31:17",
+      "team": "home",
+      "x": 70,
+      "y": 46,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555508965,
+      "type": "goal_kick",
+      "time": "2019-05-09T19:35:09+00:00",
+      "match_time": 34,
+      "match_clock": "33:36",
+      "team": "away",
+      "x": 95,
+      "y": 50,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555509197,
+      "type": "throw_in",
+      "time": "2019-05-09T19:35:35+00:00",
+      "match_time": 35,
+      "match_clock": "34:01",
+      "team": "home",
+      "x": 52,
+      "y": 4,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555509401,
+      "type": "free_kick",
+      "time": "2019-05-09T19:36:03+00:00",
+      "match_time": 35,
+      "match_clock": "34:30",
+      "team": "home",
+      "x": 14,
+      "y": 65,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555509837,
+      "type": "offside",
+      "time": "2019-05-09T19:36:55+00:00",
+      "match_time": 36,
+      "match_clock": "35:21",
+      "player": {
+        "id": "sr:player:39070",
+        "name": "Giroud, Olivier"
+      },
+      "team": "home",
+      "x": 63,
+      "y": 79,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555509955,
+      "type": "goal_kick",
+      "time": "2019-05-09T19:37:13+00:00",
+      "match_time": 36,
+      "match_clock": "35:40",
+      "team": "home",
+      "x": 5,
+      "y": 50,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555510661,
+      "type": "free_kick",
+      "time": "2019-05-09T19:38:30+00:00",
+      "match_time": 37,
+      "match_clock": "36:57",
+      "team": "home",
+      "x": 9,
+      "y": 81,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555510983,
+      "type": "free_kick",
+      "time": "2019-05-09T19:39:07+00:00",
+      "match_time": 38,
+      "match_clock": "37:34",
+      "team": "home",
+      "x": 59,
+      "y": 73,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555511075,
+      "type": "yellow_card",
+      "time": "2019-05-09T19:39:17+00:00",
+      "match_time": 38,
+      "match_clock": "37:43",
+      "player": {
+        "id": "sr:player:201918",
+        "name": "Falette, Simon"
+      },
+      "team": "away",
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555511953,
+      "type": "corner_kick",
+      "time": "2019-05-09T19:41:15+00:00",
+      "match_time": 40,
+      "match_clock": "39:42",
+      "player": {
+        "id": "sr:player:27583",
+        "name": "Hazard, Eden"
+      },
+      "team": "home",
+      "x": 95,
+      "y": 5,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555512005,
+      "type": "yellow_card",
+      "time": "2019-05-09T19:41:21+00:00",
+      "match_time": 40,
+      "match_clock": "39:47",
+      "player": {
+        "id": "sr:player:35194",
+        "name": "Rode, Sebastian"
+      },
+      "team": "away",
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555512081,
+      "type": "throw_in",
+      "time": "2019-05-09T19:41:28+00:00",
+      "match_time": 40,
+      "match_clock": "39:55",
+      "team": "home",
+      "x": 77,
+      "y": 3,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555512245,
+      "type": "free_kick",
+      "time": "2019-05-09T19:41:50+00:00",
+      "match_time": 41,
+      "match_clock": "40:17",
+      "team": "away",
+      "x": 76,
+      "y": 30,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555512605,
+      "type": "throw_in",
+      "time": "2019-05-09T19:42:31+00:00",
+      "match_time": 41,
+      "match_clock": "40:58",
+      "team": "home",
+      "x": 41,
+      "y": 96,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555512949,
+      "type": "free_kick",
+      "time": "2019-05-09T19:43:05+00:00",
+      "match_time": 42,
+      "match_clock": "41:32",
+      "team": "home",
+      "x": 55,
+      "y": 16,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555513249,
+      "type": "throw_in",
+      "time": "2019-05-09T19:43:40+00:00",
+      "match_time": 43,
+      "match_clock": "42:07",
+      "team": "away",
+      "x": 43,
+      "y": 96,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555513379,
+      "type": "free_kick",
+      "time": "2019-05-09T19:43:55+00:00",
+      "match_time": 43,
+      "match_clock": "42:22",
+      "team": "home",
+      "x": 40,
+      "y": 73,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555513905,
+      "type": "throw_in",
+      "time": "2019-05-09T19:45:10+00:00",
+      "match_time": 44,
+      "match_clock": "43:37",
+      "team": "home",
+      "x": 19,
+      "y": 4,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555514061,
+      "type": "free_kick",
+      "time": "2019-05-09T19:45:30+00:00",
+      "match_time": 44,
+      "match_clock": "43:57",
+      "team": "away",
+      "x": 38,
+      "y": 23,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555514341,
+      "type": "free_kick",
+      "time": "2019-05-09T19:46:11+00:00",
+      "match_time": 45,
+      "match_clock": "44:38",
+      "team": "away",
+      "x": 41,
+      "y": 82,
+      "period": 1,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555514617,
+      "type": "break_start",
+      "time": "2019-05-09T19:46:49+00:00",
+      "period_name": "Pause"
+    },
+    {
+      "id": 555521067,
+      "type": "period_start",
+      "time": "2019-05-09T20:02:16+00:00",
+      "period": 2,
+      "period_type": "regular_period",
+      "period_name": "2nd half"
+    },
+    {
+      "id": 555521263,
+      "type": "throw_in",
+      "time": "2019-05-09T20:02:46+00:00",
+      "match_time": 46,
+      "match_clock": "45:29",
+      "team": "away",
+      "x": 19,
+      "y": 96,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555521383,
+      "type": "throw_in",
+      "time": "2019-05-09T20:03:06+00:00",
+      "match_time": 46,
+      "match_clock": "45:49",
+      "team": "away",
+      "x": 59,
+      "y": 95,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555521735,
+      "type": "throw_in",
+      "time": "2019-05-09T20:03:49+00:00",
+      "match_time": 47,
+      "match_clock": "46:32",
+      "team": "away",
+      "x": 34,
+      "y": 5,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555521949,
+      "type": "free_kick",
+      "time": "2019-05-09T20:04:16+00:00",
+      "match_time": 48,
+      "match_clock": "47:00",
+      "team": "home",
+      "x": 45,
+      "y": 10,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555522271,
+      "type": "throw_in",
+      "time": "2019-05-09T20:04:56+00:00",
+      "match_time": 48,
+      "match_clock": "47:39",
+      "team": "away",
+      "x": 53,
+      "y": 5,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555522889,
+      "type": "score_change",
+      "time": "2019-05-09T20:06:14+00:00",
+      "match_time": 49,
+      "match_clock": "48:00",
+      "team": "away",
+      "x": 11,
+      "y": 53,
+      "period": 2,
+      "period_type": "regular_period",
+      "home_score": 1,
+      "away_score": 1,
+      "goal_scorer": {
+        "id": "sr:player:319129",
+        "name": "Jovic, Luka"
+      },
+      "assist": {
+        "id": "sr:player:190917",
+        "type": "primary",
+        "name": "Gacinovic, Mijat"
+      }
+    },
+    {
+      "id": 555523565,
+      "type": "shot_off_target",
+      "time": "2019-05-09T20:07:34+00:00",
+      "match_time": 51,
+      "match_clock": "50:18",
+      "player": {
+        "id": "sr:player:39070",
+        "name": "Giroud, Olivier"
+      },
+      "team": "home",
+      "x": 85,
+      "y": 54,
+      "period": 2,
+      "period_type": "regular_period",
+      "outcome": "miss"
+    },
+    {
+      "id": 555523583,
+      "type": "goal_kick",
+      "time": "2019-05-09T20:07:35+00:00",
+      "match_time": 51,
+      "match_clock": "50:18",
+      "team": "away",
+      "x": 95,
+      "y": 50,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555524151,
+      "type": "free_kick",
+      "time": "2019-05-09T20:08:53+00:00",
+      "match_time": 52,
+      "match_clock": "51:36",
+      "team": "away",
+      "x": 57,
+      "y": 76,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555524189,
+      "type": "yellow_card",
+      "time": "2019-05-09T20:09:01+00:00",
+      "match_time": 52,
+      "match_clock": "51:42",
+      "player": {
+        "id": "sr:player:136710",
+        "name": "Kovacic, Mateo"
+      },
+      "team": "home",
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555524441,
+      "type": "injury",
+      "time": "2019-05-09T20:09:34+00:00",
+      "match_time": 53,
+      "match_clock": "52:18",
+      "player": {
+        "id": "sr:player:201918",
+        "name": "Falette, Simon"
+      },
+      "team": "away",
+      "x": 57,
+      "y": 76,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555524855,
+      "type": "throw_in",
+      "time": "2019-05-09T20:10:30+00:00",
+      "match_time": 54,
+      "match_clock": "53:14",
+      "team": "home",
+      "x": 21,
+      "y": 4,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555525027,
+      "type": "free_kick",
+      "time": "2019-05-09T20:10:51+00:00",
+      "match_time": 54,
+      "match_clock": "53:34",
+      "team": "home",
+      "x": 37,
+      "y": 17,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555525173,
+      "type": "injury_return",
+      "time": "2019-05-09T20:11:15+00:00",
+      "match_time": 54,
+      "match_clock": "53:58",
+      "player": {
+        "id": "sr:player:201918",
+        "name": "Falette, Simon"
+      },
+      "team": "away",
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555525317,
+      "type": "throw_in",
+      "time": "2019-05-09T20:11:38+00:00",
+      "match_time": 55,
+      "match_clock": "54:22",
+      "team": "away",
+      "x": 73,
+      "y": 4,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555525911,
+      "type": "throw_in",
+      "time": "2019-05-09T20:13:01+00:00",
+      "match_time": 56,
+      "match_clock": "55:45",
+      "team": "home",
+      "x": 42,
+      "y": 4,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555526397,
+      "type": "free_kick",
+      "time": "2019-05-09T20:14:16+00:00",
+      "match_time": 58,
+      "match_clock": "57:00",
+      "team": "away",
+      "x": 53,
+      "y": 14,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555526677,
+      "type": "free_kick",
+      "time": "2019-05-09T20:14:56+00:00",
+      "match_time": 58,
+      "match_clock": "57:40",
+      "team": "home",
+      "x": 27,
+      "y": 32,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555527023,
+      "type": "throw_in",
+      "time": "2019-05-09T20:15:48+00:00",
+      "match_time": 59,
+      "match_clock": "58:32",
+      "team": "away",
+      "x": 8,
+      "y": 96,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555527115,
+      "type": "corner_kick",
+      "time": "2019-05-09T20:16:06+00:00",
+      "match_time": 59,
+      "match_clock": "58:50",
+      "player": {
+        "id": "sr:player:126588",
+        "name": "Kostic, Filip"
+      },
+      "team": "away",
+      "x": 5,
+      "y": 90,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555527171,
+      "type": "shot_on_target",
+      "time": "2019-05-09T20:16:17+00:00",
+      "match_time": 60,
+      "match_clock": "59:01",
+      "player": {
+        "id": "sr:player:190917",
+        "name": "Gacinovic, Mijat"
+      },
+      "team": "away",
+      "x": 16,
+      "y": 46,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555527173,
+      "type": "shot_saved",
+      "time": "2019-05-09T20:16:17+00:00",
+      "match_time": 60,
+      "match_clock": "59:01",
+      "team": "home",
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555527241,
+      "type": "goal_kick",
+      "time": "2019-05-09T20:16:26+00:00",
+      "match_time": 60,
+      "match_clock": "59:10",
+      "team": "home",
+      "x": 5,
+      "y": 50,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555527363,
+      "type": "shot_off_target",
+      "time": "2019-05-09T20:16:40+00:00",
+      "match_time": 60,
+      "match_clock": "59:24",
+      "player": {
+        "id": "sr:player:126588",
+        "name": "Kostic, Filip"
+      },
+      "team": "away",
+      "x": 21,
+      "y": 72,
+      "period": 2,
+      "period_type": "regular_period",
+      "outcome": "miss"
+    },
+    {
+      "id": 555527457,
+      "type": "throw_in",
+      "time": "2019-05-09T20:16:52+00:00",
+      "match_time": 60,
+      "match_clock": "59:36",
+      "team": "home",
+      "x": 39,
+      "y": 4,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555527635,
+      "type": "throw_in",
+      "time": "2019-05-09T20:17:26+00:00",
+      "match_time": 61,
+      "match_clock": "60:10",
+      "team": "home",
+      "x": 37,
+      "y": 5,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555527959,
+      "type": "shot_off_target",
+      "time": "2019-05-09T20:18:28+00:00",
+      "match_time": 62,
+      "match_clock": "61:12",
+      "player": {
+        "id": "sr:player:152769",
+        "name": "Rebic, Ante"
+      },
+      "team": "away",
+      "x": 16,
+      "y": 56,
+      "period": 2,
+      "period_type": "regular_period",
+      "outcome": "miss"
+    },
+    {
+      "id": 555527963,
+      "type": "goal_kick",
+      "time": "2019-05-09T20:18:29+00:00",
+      "match_time": 62,
+      "match_clock": "61:12",
+      "team": "home",
+      "x": 5,
+      "y": 50,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555528157,
+      "type": "substitution",
+      "time": "2019-05-09T20:18:57+00:00",
+      "match_time": 62,
+      "match_clock": "61:41",
+      "team": "home",
+      "period": 2,
+      "period_type": "regular_period",
+      "player_out": {
+        "id": "sr:player:31417",
+        "name": "Willian"
+      },
+      "player_in": {
+        "id": "sr:player:35428",
+        "name": "Pedro"
+      }
+    },
+    {
+      "id": 555528527,
+      "type": "corner_kick",
+      "time": "2019-05-09T20:19:53+00:00",
+      "match_time": 63,
+      "match_clock": "62:36",
+      "player": {
+        "id": "sr:player:126588",
+        "name": "Kostic, Filip"
+      },
+      "team": "away",
+      "x": 5,
+      "y": 90,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555528881,
+      "type": "free_kick",
+      "time": "2019-05-09T20:21:06+00:00",
+      "match_time": 64,
+      "match_clock": "63:50",
+      "team": "home",
+      "x": 30,
+      "y": 28,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555529081,
+      "type": "throw_in",
+      "time": "2019-05-09T20:21:40+00:00",
+      "match_time": 65,
+      "match_clock": "64:23",
+      "team": "away",
+      "x": 10,
+      "y": 4,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555529417,
+      "type": "free_kick",
+      "time": "2019-05-09T20:22:45+00:00",
+      "match_time": 66,
+      "match_clock": "65:28",
+      "team": "home",
+      "x": 27,
+      "y": 44,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555529937,
+      "type": "goal_kick",
+      "time": "2019-05-09T20:24:27+00:00",
+      "match_time": 68,
+      "match_clock": "67:10",
+      "team": "away",
+      "x": 95,
+      "y": 50,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555530101,
+      "type": "throw_in",
+      "time": "2019-05-09T20:25:00+00:00",
+      "match_time": 68,
+      "match_clock": "67:43",
+      "team": "home",
+      "x": 75,
+      "y": 96,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555530139,
+      "type": "injury",
+      "time": "2019-05-09T20:25:12+00:00",
+      "match_time": 68,
+      "match_clock": "67:55",
+      "player": {
+        "id": "sr:player:35194",
+        "name": "Rode, Sebastian"
+      },
+      "team": "away",
+      "x": 75,
+      "y": 96,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555530593,
+      "type": "substitution",
+      "time": "2019-05-09T20:26:59+00:00",
+      "match_time": 70,
+      "match_clock": "69:36",
+      "team": "away",
+      "period": 2,
+      "period_type": "regular_period",
+      "player_out": {
+        "id": "sr:player:35194",
+        "name": "Rode, Sebastian"
+      },
+      "player_in": {
+        "id": "sr:player:13028",
+        "name": "de Guzman, Jonathan"
+      }
+    },
+    {
+      "id": 555530623,
+      "type": "corner_kick",
+      "time": "2019-05-09T20:27:04+00:00",
+      "match_time": 70,
+      "match_clock": "69:48",
+      "player": {
+        "id": "sr:player:27583",
+        "name": "Hazard, Eden"
+      },
+      "team": "home",
+      "x": 95,
+      "y": 5,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555530663,
+      "type": "free_kick",
+      "time": "2019-05-09T20:27:12+00:00",
+      "match_time": 70,
+      "match_clock": "69:55",
+      "team": "home",
+      "x": 42,
+      "y": 21,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555530781,
+      "type": "shot_off_target",
+      "time": "2019-05-09T20:27:37+00:00",
+      "match_time": 71,
+      "match_clock": "70:21",
+      "player": {
+        "id": "sr:player:21300",
+        "name": "Luiz, David"
+      },
+      "team": "home",
+      "x": 71,
+      "y": 59,
+      "period": 2,
+      "period_type": "regular_period",
+      "outcome": "miss"
+    },
+    {
+      "id": 555530783,
+      "type": "goal_kick",
+      "time": "2019-05-09T20:27:37+00:00",
+      "match_time": 71,
+      "match_clock": "70:21",
+      "team": "away",
+      "x": 95,
+      "y": 50,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555531149,
+      "type": "throw_in",
+      "time": "2019-05-09T20:28:42+00:00",
+      "match_time": 72,
+      "match_clock": "71:25",
+      "team": "away",
+      "x": 78,
+      "y": 97,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555531261,
+      "type": "injury",
+      "time": "2019-05-09T20:29:06+00:00",
+      "match_time": 72,
+      "match_clock": "71:49",
+      "player": {
+        "id": "sr:player:186795",
+        "name": "Christensen, Andreas"
+      },
+      "team": "home",
+      "x": 78,
+      "y": 97,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555531561,
+      "type": "goal_kick",
+      "time": "2019-05-09T20:30:06+00:00",
+      "match_time": 73,
+      "match_clock": "72:50",
+      "team": "home",
+      "x": 5,
+      "y": 50,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555531677,
+      "type": "substitution",
+      "time": "2019-05-09T20:30:26+00:00",
+      "match_time": 74,
+      "match_clock": "73:07",
+      "team": "home",
+      "period": 2,
+      "period_type": "regular_period",
+      "player_out": {
+        "id": "sr:player:186795",
+        "name": "Christensen, Andreas"
+      },
+      "player_in": {
+        "id": "sr:player:132318",
+        "name": "Zappacosta, Davide"
+      }
+    },
+    {
+      "id": 555531945,
+      "type": "offside",
+      "time": "2019-05-09T20:31:10+00:00",
+      "match_time": 74,
+      "match_clock": "73:54",
+      "player": {
+        "id": "sr:player:190917",
+        "name": "Gacinovic, Mijat"
+      },
+      "team": "away",
+      "x": 10,
+      "y": 40,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555532107,
+      "type": "free_kick",
+      "time": "2019-05-09T20:31:37+00:00",
+      "match_time": 75,
+      "match_clock": "74:21",
+      "team": "home",
+      "x": 70,
+      "y": 29,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555532309,
+      "type": "shot_off_target",
+      "time": "2019-05-09T20:32:24+00:00",
+      "match_time": 76,
+      "match_clock": "75:07",
+      "player": {
+        "id": "sr:player:39070",
+        "name": "Giroud, Olivier"
+      },
+      "team": "home",
+      "x": 88,
+      "y": 59,
+      "period": 2,
+      "period_type": "regular_period",
+      "outcome": "miss"
+    },
+    {
+      "id": 555532311,
+      "type": "goal_kick",
+      "time": "2019-05-09T20:32:24+00:00",
+      "match_time": 76,
+      "match_clock": "75:07",
+      "team": "away",
+      "x": 95,
+      "y": 50,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555532453,
+      "type": "free_kick",
+      "time": "2019-05-09T20:32:51+00:00",
+      "match_time": 76,
+      "match_clock": "75:35",
+      "team": "away",
+      "x": 45,
+      "y": 81,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555532561,
+      "type": "throw_in",
+      "time": "2019-05-09T20:33:09+00:00",
+      "match_time": 76,
+      "match_clock": "75:53",
+      "team": "home",
+      "x": 34,
+      "y": 96,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555532897,
+      "type": "shot_on_target",
+      "time": "2019-05-09T20:34:24+00:00",
+      "match_time": 78,
+      "match_clock": "77:08",
+      "player": {
+        "id": "sr:player:132318",
+        "name": "Zappacosta, Davide"
+      },
+      "team": "home",
+      "x": 90,
+      "y": 59,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555532899,
+      "type": "shot_saved",
+      "time": "2019-05-09T20:34:24+00:00",
+      "match_time": 78,
+      "match_clock": "77:08",
+      "team": "away",
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555533459,
+      "type": "throw_in",
+      "time": "2019-05-09T20:36:06+00:00",
+      "match_time": 79,
+      "match_clock": "78:50",
+      "team": "home",
+      "x": 27,
+      "y": 96,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555533595,
+      "type": "throw_in",
+      "time": "2019-05-09T20:36:33+00:00",
+      "match_time": 80,
+      "match_clock": "79:17",
+      "team": "away",
+      "x": 10,
+      "y": 95,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555533981,
+      "type": "free_kick",
+      "time": "2019-05-09T20:37:42+00:00",
+      "match_time": 81,
+      "match_clock": "80:25",
+      "team": "home",
+      "x": 59,
+      "y": 34,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555534427,
+      "type": "free_kick",
+      "time": "2019-05-09T20:38:58+00:00",
+      "match_time": 82,
+      "match_clock": "81:42",
+      "team": "away",
+      "x": 46,
+      "y": 84,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555534407,
+      "type": "yellow_card",
+      "time": "2019-05-09T20:38:54+00:00",
+      "match_time": 83,
+      "player": {
+        "id": "sr:player:21555",
+        "name": "Azpilicueta, Cesar"
+      },
+      "team": "home",
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555534547,
+      "type": "injury",
+      "time": "2019-05-09T20:39:27+00:00",
+      "match_time": 83,
+      "match_clock": "82:11",
+      "player": {
+        "id": "sr:player:126588",
+        "name": "Kostic, Filip"
+      },
+      "team": "away",
+      "x": 46,
+      "y": 84,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555534771,
+      "type": "injury_return",
+      "time": "2019-05-09T20:40:13+00:00",
+      "match_time": 83,
+      "match_clock": "82:57",
+      "player": {
+        "id": "sr:player:126588",
+        "name": "Kostic, Filip"
+      },
+      "team": "away",
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555534825,
+      "type": "free_kick",
+      "time": "2019-05-09T20:40:22+00:00",
+      "match_time": 84,
+      "match_clock": "83:06",
+      "team": "away",
+      "x": 18,
+      "y": 57,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555535305,
+      "type": "free_kick",
+      "time": "2019-05-09T20:41:59+00:00",
+      "match_time": 85,
+      "match_clock": "84:43",
+      "team": "home",
+      "x": 37,
+      "y": 15,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555535501,
+      "type": "substitution",
+      "time": "2019-05-09T20:42:38+00:00",
+      "match_time": 86,
+      "match_clock": "85:17",
+      "team": "home",
+      "period": 2,
+      "period_type": "regular_period",
+      "player_out": {
+        "id": "sr:player:284441",
+        "name": "Loftus-Cheek, Ruben"
+      },
+      "player_in": {
+        "id": "sr:player:98435",
+        "name": "Barkley, Ross"
+      }
+    },
+    {
+      "id": 555535953,
+      "type": "shot_on_target",
+      "time": "2019-05-09T20:44:19+00:00",
+      "match_time": 88,
+      "match_clock": "87:03",
+      "player": {
+        "id": "sr:player:39070",
+        "name": "Giroud, Olivier"
+      },
+      "team": "home",
+      "x": 88,
+      "y": 38,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555535955,
+      "type": "shot_saved",
+      "time": "2019-05-09T20:44:19+00:00",
+      "match_time": 88,
+      "match_clock": "87:03",
+      "team": "away",
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555536087,
+      "type": "throw_in",
+      "time": "2019-05-09T20:44:45+00:00",
+      "match_time": 88,
+      "match_clock": "87:29",
+      "team": "home",
+      "x": 24,
+      "y": 96,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555536663,
+      "type": "offside",
+      "time": "2019-05-09T20:46:28+00:00",
+      "match_time": 90,
+      "match_clock": "89:00",
+      "player": {
+        "id": "sr:player:152769",
+        "name": "Rebic, Ante"
+      },
+      "team": "away",
+      "x": 33,
+      "y": 64,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555536825,
+      "type": "free_kick",
+      "time": "2019-05-09T20:47:08+00:00",
+      "match_time": 90,
+      "match_clock": "89:52",
+      "team": "home",
+      "x": 64,
+      "y": 28,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555536895,
+      "type": "yellow_card",
+      "time": "2019-05-09T20:47:32+00:00",
+      "match_time": 90,
+      "match_clock": "90:00",
+      "stoppage_time": "1",
+      "player": {
+        "id": "sr:player:37446",
+        "name": "Abraham, David"
+      },
+      "team": "away",
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555536913,
+      "type": "injury_time_shown",
+      "time": "2019-05-09T20:47:37+00:00",
+      "match_time": 90,
+      "match_clock": "90:00",
+      "stoppage_time": "1",
+      "period": 2,
+      "period_type": "regular_period",
+      "injury_time_announced": 5
+    },
+    {
+      "id": 555536935,
+      "type": "free_kick",
+      "time": "2019-05-09T20:47:39+00:00",
+      "match_time": 90,
+      "match_clock": "90:00",
+      "stoppage_time": "1",
+      "team": "home",
+      "x": 65,
+      "y": 18,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555536959,
+      "type": "yellow_card",
+      "time": "2019-05-09T20:47:43+00:00",
+      "match_time": 90,
+      "match_clock": "90:00",
+      "stoppage_time": "1",
+      "player": {
+        "id": "sr:player:13028",
+        "name": "de Guzman, Jonathan"
+      },
+      "team": "away",
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555537223,
+      "type": "throw_in",
+      "time": "2019-05-09T20:48:57+00:00",
+      "match_time": 90,
+      "match_clock": "90:00",
+      "stoppage_time": "2",
+      "team": "home",
+      "x": 78,
+      "y": 96,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555537327,
+      "type": "substitution",
+      "time": "2019-05-09T20:49:22+00:00",
+      "match_time": 90,
+      "match_clock": "90:00",
+      "stoppage_time": "3",
+      "team": "away",
+      "period": 2,
+      "period_type": "regular_period",
+      "player_out": {
+        "id": "sr:player:152769",
+        "name": "Rebic, Ante"
+      },
+      "player_in": {
+        "id": "sr:player:149731",
+        "name": "Haller, Sebastian"
+      }
+    },
+    {
+      "id": 555537383,
+      "type": "free_kick",
+      "time": "2019-05-09T20:49:38+00:00",
+      "match_time": 90,
+      "match_clock": "90:00",
+      "stoppage_time": "3",
+      "team": "home",
+      "x": 81,
+      "y": 88,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555537585,
+      "type": "corner_kick",
+      "time": "2019-05-09T20:50:22+00:00",
+      "match_time": 90,
+      "match_clock": "90:00",
+      "stoppage_time": "4",
+      "player": {
+        "id": "sr:player:27583",
+        "name": "Hazard, Eden"
+      },
+      "team": "home",
+      "x": 95,
+      "y": 5,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555537645,
+      "type": "throw_in",
+      "time": "2019-05-09T20:50:40+00:00",
+      "match_time": 90,
+      "match_clock": "90:00",
+      "stoppage_time": "4",
+      "team": "home",
+      "x": 20,
+      "y": 4,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555537741,
+      "type": "throw_in",
+      "time": "2019-05-09T20:51:03+00:00",
+      "match_time": 90,
+      "match_clock": "90:00",
+      "stoppage_time": "4",
+      "team": "home",
+      "x": 42,
+      "y": 3,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555537899,
+      "type": "free_kick",
+      "time": "2019-05-09T20:51:51+00:00",
+      "match_time": 90,
+      "match_clock": "90:00",
+      "stoppage_time": "5",
+      "team": "away",
+      "x": 37,
+      "y": 70,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555538109,
+      "type": "corner_kick",
+      "time": "2019-05-09T20:52:52+00:00",
+      "match_time": 90,
+      "match_clock": "90:00",
+      "stoppage_time": "6",
+      "player": {
+        "id": "sr:player:13028",
+        "name": "de Guzman, Jonathan"
+      },
+      "team": "away",
+      "x": 5,
+      "y": 5,
+      "period": 2,
+      "period_type": "regular_period"
+    },
+    {
+      "id": 555538115,
+      "type": "shot_off_target",
+      "time": "2019-05-09T20:52:58+00:00",
+      "match_time": 90,
+      "match_clock": "90:00",
+      "stoppage_time": "6",
+      "player": {
+        "id": "sr:player:319129",
+        "name": "Jovic, Luka"
+      },
+      "team": "away",
+      "x": 11,
+      "y": 51,
+      "period": 2,
+      "period_type": "regular_period",
+      "outcome": "miss"
+    },
+    {
+      "id": 555538139,
+      "type": "break_start",
+      "time": "2019-05-09T20:53:03+00:00",
+      "period_name": "Awaiting extra"
+    },
+    {
+      "id": 555539269,
+      "type": "period_start",
+      "time": "2019-05-09T20:59:05+00:00",
+      "period": 1,
+      "period_type": "overtime",
+      "period_name": "1st extra"
+    },
+    {
+      "id": 555539339,
+      "type": "free_kick",
+      "time": "2019-05-09T20:59:25+00:00",
+      "match_time": 91,
+      "match_clock": "90:20",
+      "team": "away",
+      "x": 57,
+      "y": 35,
+      "period": 1,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555539419,
+      "type": "throw_in",
+      "time": "2019-05-09T20:59:49+00:00",
+      "match_time": 91,
+      "match_clock": "90:44",
+      "team": "away",
+      "x": 37,
+      "y": 96,
+      "period": 1,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555539601,
+      "type": "corner_kick",
+      "time": "2019-05-09T21:00:59+00:00",
+      "match_time": 92,
+      "match_clock": "91:54",
+      "player": {
+        "id": "sr:player:13028",
+        "name": "de Guzman, Jonathan"
+      },
+      "team": "away",
+      "x": 5,
+      "y": 90,
+      "period": 1,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555539635,
+      "type": "goal_kick",
+      "time": "2019-05-09T21:01:11+00:00",
+      "match_time": 93,
+      "match_clock": "92:06",
+      "team": "home",
+      "x": 5,
+      "y": 50,
+      "period": 1,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555539693,
+      "type": "throw_in",
+      "time": "2019-05-09T21:01:44+00:00",
+      "match_time": 93,
+      "match_clock": "92:39",
+      "team": "home",
+      "x": 85,
+      "y": 4,
+      "period": 1,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555539733,
+      "type": "shot_off_target",
+      "time": "2019-05-09T21:01:55+00:00",
+      "match_time": 93,
+      "match_clock": "92:51",
+      "player": {
+        "id": "sr:player:98435",
+        "name": "Barkley, Ross"
+      },
+      "team": "home",
+      "x": 81,
+      "y": 27,
+      "period": 1,
+      "period_type": "overtime",
+      "outcome": "miss"
+    },
+    {
+      "id": 555539735,
+      "type": "goal_kick",
+      "time": "2019-05-09T21:01:55+00:00",
+      "match_time": 93,
+      "match_clock": "92:51",
+      "team": "away",
+      "x": 95,
+      "y": 50,
+      "period": 1,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555539867,
+      "type": "throw_in",
+      "time": "2019-05-09T21:02:37+00:00",
+      "match_time": 94,
+      "match_clock": "93:32",
+      "team": "away",
+      "x": 50,
+      "y": 97,
+      "period": 1,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555539919,
+      "type": "throw_in",
+      "time": "2019-05-09T21:02:57+00:00",
+      "match_time": 94,
+      "match_clock": "93:52",
+      "team": "home",
+      "x": 77,
+      "y": 96,
+      "period": 1,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555540045,
+      "type": "corner_kick",
+      "time": "2019-05-09T21:03:46+00:00",
+      "match_time": 95,
+      "match_clock": "94:41",
+      "player": {
+        "id": "sr:player:27583",
+        "name": "Hazard, Eden"
+      },
+      "team": "home",
+      "x": 95,
+      "y": 90,
+      "period": 1,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555540075,
+      "type": "shot_off_target",
+      "time": "2019-05-09T21:03:53+00:00",
+      "match_time": 95,
+      "match_clock": "94:48",
+      "player": {
+        "id": "sr:player:21555",
+        "name": "Azpilicueta, Cesar"
+      },
+      "team": "home",
+      "x": 89,
+      "y": 45,
+      "period": 1,
+      "period_type": "overtime",
+      "outcome": "miss"
+    },
+    {
+      "id": 555540077,
+      "type": "goal_kick",
+      "time": "2019-05-09T21:03:53+00:00",
+      "match_time": 95,
+      "match_clock": "94:49",
+      "team": "away",
+      "x": 95,
+      "y": 50,
+      "period": 1,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555540149,
+      "type": "substitution",
+      "time": "2019-05-09T21:04:22+00:00",
+      "match_time": 96,
+      "match_clock": "95:14",
+      "team": "home",
+      "period": 1,
+      "period_type": "overtime",
+      "player_out": {
+        "id": "sr:player:39070",
+        "name": "Giroud, Olivier"
+      },
+      "player_in": {
+        "id": "sr:player:19438",
+        "name": "Higuain, Gonzalo"
+      }
+    },
+    {
+      "id": 555540217,
+      "type": "throw_in",
+      "time": "2019-05-09T21:04:43+00:00",
+      "match_time": 96,
+      "match_clock": "95:39",
+      "team": "away",
+      "x": 21,
+      "y": 96,
+      "period": 1,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555540355,
+      "type": "corner_kick",
+      "time": "2019-05-09T21:05:30+00:00",
+      "match_time": 97,
+      "match_clock": "96:26",
+      "player": {
+        "id": "sr:player:13028",
+        "name": "de Guzman, Jonathan"
+      },
+      "team": "away",
+      "x": 5,
+      "y": 90,
+      "period": 1,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555540459,
+      "type": "throw_in",
+      "time": "2019-05-09T21:05:57+00:00",
+      "match_time": 97,
+      "match_clock": "96:52",
+      "team": "away",
+      "x": 65,
+      "y": 96,
+      "period": 1,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555540551,
+      "type": "goal_kick",
+      "time": "2019-05-09T21:06:27+00:00",
+      "match_time": 98,
+      "match_clock": "97:23",
+      "team": "home",
+      "x": 5,
+      "y": 50,
+      "period": 1,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555540861,
+      "type": "free_kick",
+      "time": "2019-05-09T21:07:44+00:00",
+      "match_time": 99,
+      "match_clock": "98:40",
+      "team": "away",
+      "x": 64,
+      "y": 24,
+      "period": 1,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555541137,
+      "type": "free_kick",
+      "time": "2019-05-09T21:09:07+00:00",
+      "match_time": 101,
+      "match_clock": "100:03",
+      "team": "home",
+      "x": 22,
+      "y": 18,
+      "period": 1,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555541229,
+      "type": "throw_in",
+      "time": "2019-05-09T21:09:33+00:00",
+      "match_time": 101,
+      "match_clock": "100:28",
+      "team": "home",
+      "x": 42,
+      "y": 97,
+      "period": 1,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555541247,
+      "type": "throw_in",
+      "time": "2019-05-09T21:09:38+00:00",
+      "match_time": 101,
+      "match_clock": "100:34",
+      "team": "away",
+      "x": 41,
+      "y": 96,
+      "period": 1,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555541305,
+      "type": "throw_in",
+      "time": "2019-05-09T21:09:57+00:00",
+      "match_time": 101,
+      "match_clock": "100:53",
+      "team": "home",
+      "x": 32,
+      "y": 96,
+      "period": 1,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555541403,
+      "type": "free_kick",
+      "time": "2019-05-09T21:10:24+00:00",
+      "match_time": 102,
+      "match_clock": "101:20",
+      "team": "away",
+      "x": 82,
+      "y": 54,
+      "period": 1,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555541579,
+      "type": "shot_off_target",
+      "time": "2019-05-09T21:11:16+00:00",
+      "match_time": 103,
+      "match_clock": "102:11",
+      "player": {
+        "id": "sr:player:98435",
+        "name": "Barkley, Ross"
+      },
+      "team": "home",
+      "x": 83,
+      "y": 38,
+      "period": 1,
+      "period_type": "overtime",
+      "outcome": "miss"
+    },
+    {
+      "id": 555541581,
+      "type": "goal_kick",
+      "time": "2019-05-09T21:11:16+00:00",
+      "match_time": 103,
+      "match_clock": "102:11",
+      "team": "away",
+      "x": 95,
+      "y": 50,
+      "period": 1,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555541793,
+      "type": "free_kick",
+      "time": "2019-05-09T21:12:33+00:00",
+      "match_time": 104,
+      "match_clock": "103:28",
+      "team": "home",
+      "x": 75,
+      "y": 16,
+      "period": 1,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555541967,
+      "type": "throw_in",
+      "time": "2019-05-09T21:13:20+00:00",
+      "match_time": 105,
+      "match_clock": "104:15",
+      "team": "home",
+      "x": 64,
+      "y": 95,
+      "period": 1,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555542137,
+      "type": "injury_time_shown",
+      "time": "2019-05-09T21:14:13+00:00",
+      "match_time": 105,
+      "match_clock": "105:00",
+      "stoppage_time": "1",
+      "period": 1,
+      "period_type": "overtime",
+      "injury_time_announced": 1
+    },
+    {
+      "id": 555542501,
+      "type": "corner_kick",
+      "time": "2019-05-09T21:15:32+00:00",
+      "match_time": 105,
+      "match_clock": "105:00",
+      "stoppage_time": "2",
+      "player": {
+        "id": "sr:player:13028",
+        "name": "de Guzman, Jonathan"
+      },
+      "team": "away",
+      "x": 5,
+      "y": 5,
+      "period": 1,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555542581,
+      "type": "break_start",
+      "time": "2019-05-09T21:15:49+00:00",
+      "period_name": "Extra time halftime"
+    },
+    {
+      "id": 555543027,
+      "type": "period_start",
+      "time": "2019-05-09T21:17:49+00:00",
+      "period": 2,
+      "period_type": "overtime",
+      "period_name": "2nd extra"
+    },
+    {
+      "id": 555543089,
+      "type": "free_kick",
+      "time": "2019-05-09T21:18:08+00:00",
+      "match_time": 106,
+      "match_clock": "105:19",
+      "team": "away",
+      "x": 90,
+      "y": 34,
+      "period": 2,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555543189,
+      "type": "free_kick",
+      "time": "2019-05-09T21:18:34+00:00",
+      "match_time": 106,
+      "match_clock": "105:45",
+      "team": "home",
+      "x": 44,
+      "y": 30,
+      "period": 2,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555543435,
+      "type": "throw_in",
+      "time": "2019-05-09T21:19:52+00:00",
+      "match_time": 108,
+      "match_clock": "107:02",
+      "team": "away",
+      "x": 16,
+      "y": 2,
+      "period": 2,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555543679,
+      "type": "throw_in",
+      "time": "2019-05-09T21:21:06+00:00",
+      "match_time": 109,
+      "match_clock": "108:16",
+      "team": "away",
+      "x": 42,
+      "y": 4,
+      "period": 2,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555543851,
+      "type": "throw_in",
+      "time": "2019-05-09T21:21:35+00:00",
+      "match_time": 109,
+      "match_clock": "108:45",
+      "team": "home",
+      "x": 5,
+      "y": 4,
+      "period": 2,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555544053,
+      "type": "corner_kick",
+      "time": "2019-05-09T21:22:38+00:00",
+      "match_time": 110,
+      "match_clock": "109:48",
+      "player": {
+        "id": "sr:player:27583",
+        "name": "Hazard, Eden"
+      },
+      "team": "home",
+      "x": 95,
+      "y": 90,
+      "period": 2,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555544217,
+      "type": "shot_on_target",
+      "time": "2019-05-09T21:23:33+00:00",
+      "match_time": 111,
+      "match_clock": "110:43",
+      "player": {
+        "id": "sr:player:155997",
+        "name": "Emerson"
+      },
+      "team": "home",
+      "x": 90,
+      "y": 46,
+      "period": 2,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555544219,
+      "type": "shot_saved",
+      "time": "2019-05-09T21:23:33+00:00",
+      "match_time": 111,
+      "match_clock": "110:43",
+      "team": "away",
+      "period": 2,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555544357,
+      "type": "injury",
+      "time": "2019-05-09T21:24:21+00:00",
+      "match_time": 112,
+      "match_clock": "111:31",
+      "player": {
+        "id": "sr:player:114777",
+        "name": "Hinteregger, Martin"
+      },
+      "team": "away",
+      "x": 9,
+      "y": 47,
+      "period": 2,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555544371,
+      "type": "injury",
+      "time": "2019-05-09T21:24:26+00:00",
+      "match_time": 112,
+      "match_clock": "111:37",
+      "player": {
+        "id": "sr:player:155997",
+        "name": "Emerson"
+      },
+      "team": "home",
+      "x": 9,
+      "y": 47,
+      "period": 2,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555544551,
+      "type": "injury_return",
+      "time": "2019-05-09T21:25:24+00:00",
+      "match_time": 113,
+      "match_clock": "112:34",
+      "player": {
+        "id": "sr:player:114777",
+        "name": "Hinteregger, Martin"
+      },
+      "team": "away",
+      "period": 2,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555544563,
+      "type": "injury_return",
+      "time": "2019-05-09T21:25:27+00:00",
+      "match_time": 113,
+      "match_clock": "112:37",
+      "player": {
+        "id": "sr:player:155997",
+        "name": "Emerson"
+      },
+      "team": "home",
+      "period": 2,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555544687,
+      "type": "corner_kick",
+      "time": "2019-05-09T21:26:16+00:00",
+      "match_time": 114,
+      "match_clock": "113:26",
+      "player": {
+        "id": "sr:player:27583",
+        "name": "Hazard, Eden"
+      },
+      "team": "home",
+      "x": 95,
+      "y": 90,
+      "period": 2,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555544851,
+      "type": "shot_on_target",
+      "time": "2019-05-09T21:27:15+00:00",
+      "match_time": 115,
+      "match_clock": "114:25",
+      "player": {
+        "id": "sr:player:132318",
+        "name": "Zappacosta, Davide"
+      },
+      "team": "home",
+      "x": 88,
+      "y": 60,
+      "period": 2,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555544853,
+      "type": "shot_saved",
+      "time": "2019-05-09T21:27:15+00:00",
+      "match_time": 115,
+      "match_clock": "114:25",
+      "team": "away",
+      "period": 2,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555544951,
+      "type": "corner_kick",
+      "time": "2019-05-09T21:27:46+00:00",
+      "match_time": 115,
+      "match_clock": "114:56",
+      "player": {
+        "id": "sr:player:27583",
+        "name": "Hazard, Eden"
+      },
+      "team": "home",
+      "x": 95,
+      "y": 5,
+      "period": 2,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555545069,
+      "type": "free_kick",
+      "time": "2019-05-09T21:28:34+00:00",
+      "match_time": 116,
+      "match_clock": "115:44",
+      "team": "away",
+      "x": 91,
+      "y": 45,
+      "period": 2,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555545107,
+      "type": "throw_in",
+      "time": "2019-05-09T21:28:58+00:00",
+      "match_time": 117,
+      "match_clock": "116:08",
+      "team": "away",
+      "x": 76,
+      "y": 5,
+      "period": 2,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555545295,
+      "type": "throw_in",
+      "time": "2019-05-09T21:29:48+00:00",
+      "match_time": 117,
+      "match_clock": "116:59",
+      "team": "home",
+      "x": 74,
+      "y": 4,
+      "period": 2,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555545335,
+      "type": "throw_in",
+      "time": "2019-05-09T21:30:11+00:00",
+      "match_time": 118,
+      "match_clock": "117:21",
+      "team": "away",
+      "x": 59,
+      "y": 3,
+      "period": 2,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555545457,
+      "type": "substitution",
+      "time": "2019-05-09T21:30:47+00:00",
+      "match_time": 118,
+      "match_clock": "117:57",
+      "team": "away",
+      "period": 2,
+      "period_type": "overtime",
+      "player_out": {
+        "id": "sr:player:190917",
+        "name": "Gacinovic, Mijat"
+      },
+      "player_in": {
+        "id": "sr:player:138890",
+        "name": "Paciencia, Goncalo"
+      }
+    },
+    {
+      "id": 555545497,
+      "type": "throw_in",
+      "time": "2019-05-09T21:31:04+00:00",
+      "match_time": 119,
+      "match_clock": "118:14",
+      "team": "away",
+      "x": 43,
+      "y": 5,
+      "period": 2,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555545863,
+      "type": "free_kick",
+      "time": "2019-05-09T21:32:55+00:00",
+      "match_time": 120,
+      "match_clock": "120:00",
+      "stoppage_time": "1",
+      "team": "away",
+      "x": 30,
+      "y": 17,
+      "period": 2,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555545867,
+      "type": "injury_time_shown",
+      "time": "2019-05-09T21:32:57+00:00",
+      "match_time": 120,
+      "match_clock": "120:00",
+      "stoppage_time": "1",
+      "period": 2,
+      "period_type": "overtime",
+      "injury_time_announced": 2
+    },
+    {
+      "id": 555545913,
+      "type": "yellow_card",
+      "time": "2019-05-09T21:33:29+00:00",
+      "match_time": 120,
+      "match_clock": "120:00",
+      "stoppage_time": "1",
+      "player": {
+        "id": "sr:player:132318",
+        "name": "Zappacosta, Davide"
+      },
+      "team": "home",
+      "period": 2,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555545995,
+      "type": "offside",
+      "time": "2019-05-09T21:34:16+00:00",
+      "match_time": 120,
+      "match_clock": "120:00",
+      "stoppage_time": "2",
+      "player": {
+        "id": "sr:player:149731",
+        "name": "Haller, Sebastian"
+      },
+      "team": "away",
+      "x": 22,
+      "y": 40,
+      "period": 2,
+      "period_type": "overtime"
+    },
+    {
+      "id": 555546165,
+      "type": "break_start",
+      "time": "2019-05-09T21:34:58+00:00",
+      "period_name": "Awaiting penalties"
+    },
+    {
+      "id": 555546817,
+      "type": "period_start",
+      "time": "2019-05-09T21:38:58+00:00",
+      "period_type": "penalties",
+      "period_name": "Penalties"
+    },
+    {
+      "id": 555546905,
+      "type": "penalty_shootout",
+      "time": "2019-05-09T21:40:00+00:00",
+      "player": {
+        "id": "sr:player:149731",
+        "name": "Haller, Sebastian"
+      },
+      "team": "away",
+      "period_type": "penalties",
+      "status": "scored"
+    },
+    {
+      "id": 555546975,
+      "type": "score_change",
+      "time": "2019-05-09T21:40:24+00:00",
+      "team": "away",
+      "x": 10,
+      "y": 48,
+      "period_type": "penalties",
+      "home_score": 1,
+      "away_score": 1,
+      "shootout_home_score": 0,
+      "shootout_away_score": 1
+    },
+    {
+      "id": 555547055,
+      "type": "penalty_shootout",
+      "time": "2019-05-09T21:40:57+00:00",
+      "player": {
+        "id": "sr:player:98435",
+        "name": "Barkley, Ross"
+      },
+      "team": "home",
+      "period_type": "penalties",
+      "status": "scored"
+    },
+    {
+      "id": 555547065,
+      "type": "score_change",
+      "time": "2019-05-09T21:41:12+00:00",
+      "team": "home",
+      "x": 88,
+      "y": 48,
+      "period_type": "penalties",
+      "home_score": 1,
+      "away_score": 1,
+      "shootout_home_score": 1,
+      "shootout_away_score": 1
+    },
+    {
+      "id": 555547167,
+      "type": "penalty_shootout",
+      "time": "2019-05-09T21:41:47+00:00",
+      "player": {
+        "id": "sr:player:319129",
+        "name": "Jovic, Luka"
+      },
+      "team": "away",
+      "period_type": "penalties",
+      "status": "scored"
+    },
+    {
+      "id": 555547181,
+      "type": "score_change",
+      "time": "2019-05-09T21:41:54+00:00",
+      "team": "away",
+      "x": 10,
+      "y": 48,
+      "period_type": "penalties",
+      "home_score": 1,
+      "away_score": 1,
+      "shootout_home_score": 1,
+      "shootout_away_score": 2
+    },
+    {
+      "id": 555547219,
+      "type": "penalty_shootout",
+      "time": "2019-05-09T21:42:22+00:00",
+      "player": {
+        "id": "sr:player:21555",
+        "name": "Azpilicueta, Cesar"
+      },
+      "team": "home",
+      "period_type": "penalties",
+      "status": "missed"
+    },
+    {
+      "id": 555547305,
+      "type": "penalty_shootout",
+      "time": "2019-05-09T21:42:59+00:00",
+      "player": {
+        "id": "sr:player:13028",
+        "name": "de Guzman, Jonathan"
+      },
+      "team": "away",
+      "period_type": "penalties",
+      "status": "scored"
+    },
+    {
+      "id": 555547353,
+      "type": "score_change",
+      "time": "2019-05-09T21:43:17+00:00",
+      "team": "away",
+      "x": 10,
+      "y": 48,
+      "period_type": "penalties",
+      "home_score": 1,
+      "away_score": 1,
+      "shootout_home_score": 1,
+      "shootout_away_score": 3
+    },
+    {
+      "id": 555547421,
+      "type": "penalty_shootout",
+      "time": "2019-05-09T21:43:42+00:00",
+      "player": {
+        "id": "sr:player:132874",
+        "name": "Jorginho"
+      },
+      "team": "home",
+      "period_type": "penalties",
+      "status": "scored"
+    },
+    {
+      "id": 555547471,
+      "type": "score_change",
+      "time": "2019-05-09T21:44:01+00:00",
+      "team": "home",
+      "x": 88,
+      "y": 48,
+      "period_type": "penalties",
+      "home_score": 1,
+      "away_score": 1,
+      "shootout_home_score": 2,
+      "shootout_away_score": 3
+    },
+    {
+      "id": 555547513,
+      "type": "penalty_shootout",
+      "time": "2019-05-09T21:44:33+00:00",
+      "player": {
+        "id": "sr:player:114777",
+        "name": "Hinteregger, Martin"
+      },
+      "team": "away",
+      "period_type": "penalties",
+      "status": "missed"
+    },
+    {
+      "id": 555547641,
+      "type": "penalty_shootout",
+      "time": "2019-05-09T21:45:22+00:00",
+      "player": {
+        "id": "sr:player:21300",
+        "name": "Luiz, David"
+      },
+      "team": "home",
+      "period_type": "penalties",
+      "status": "scored"
+    },
+    {
+      "id": 555547659,
+      "type": "score_change",
+      "time": "2019-05-09T21:45:27+00:00",
+      "team": "home",
+      "x": 88,
+      "y": 48,
+      "period_type": "penalties",
+      "home_score": 1,
+      "away_score": 1,
+      "shootout_home_score": 3,
+      "shootout_away_score": 3
+    },
+    {
+      "id": 555547729,
+      "type": "penalty_shootout",
+      "time": "2019-05-09T21:46:03+00:00",
+      "player": {
+        "id": "sr:player:138890",
+        "name": "Paciencia, Goncalo"
+      },
+      "team": "away",
+      "period_type": "penalties",
+      "status": "missed"
+    },
+    {
+      "id": 555547865,
+      "type": "penalty_shootout",
+      "time": "2019-05-09T21:46:48+00:00",
+      "player": {
+        "id": "sr:player:27583",
+        "name": "Hazard, Eden"
+      },
+      "team": "home",
+      "period_type": "penalties",
+      "status": "scored"
+    },
+    {
+      "id": 555547887,
+      "type": "score_change",
+      "time": "2019-05-09T21:47:01+00:00",
+      "team": "home",
+      "x": 88,
+      "y": 48,
+      "period_type": "penalties",
+      "home_score": 1,
+      "away_score": 1,
+      "shootout_home_score": 4,
+      "shootout_away_score": 3
+    },
+    {
+      "id": 555547901,
+      "type": "match_ended",
+      "time": "2019-05-09T21:47:08+00:00"
+    }
+  ],
+  "statistics": {
+    "teams": [
+      {
+        "id": "sr:competitor:38",
+        "name": "Chelsea FC",
+        "abbreviation": "CHE",
+        "qualifier": "home",
+        "statistics": {
+          "ball_possession": 56,
+          "throw_ins": 37,
+          "fouls": 19,
+          "shots_saved": 3,
+          "free_kicks": 29,
+          "shots_blocked": 4,
+          "corner_kicks": 10,
+          "shots_on_target": 7,
+          "goal_kicks": 8,
+          "offsides": 2,
+          "shots_off_target": 6,
+          "yellow_cards": 3,
+          "injuries": 2
+        },
+        "players": [
+          {
+            "id": "sr:player:232422",
+            "name": "Arrizabalaga, Kepa",
+            "substituted_in": 0,
+            "substituted_out": 0,
+            "goals_scored": 0,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 0,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:21555",
+            "name": "Azpilicueta, Cesar",
+            "substituted_in": 0,
+            "substituted_out": 0,
+            "goals_scored": 0,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 1,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:186795",
+            "name": "Christensen, Andreas",
+            "substituted_in": 0,
+            "substituted_out": 1,
+            "goals_scored": 0,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 0,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:21300",
+            "name": "Luiz, David",
+            "substituted_in": 0,
+            "substituted_out": 0,
+            "goals_scored": 0,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 0,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:155997",
+            "name": "Emerson",
+            "substituted_in": 0,
+            "substituted_out": 0,
+            "goals_scored": 0,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 0,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:136710",
+            "name": "Kovacic, Mateo",
+            "substituted_in": 0,
+            "substituted_out": 0,
+            "goals_scored": 0,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 1,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:284441",
+            "name": "Loftus-Cheek, Ruben",
+            "substituted_in": 0,
+            "substituted_out": 1,
+            "goals_scored": 1,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 0,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:132874",
+            "name": "Jorginho",
+            "substituted_in": 0,
+            "substituted_out": 0,
+            "goals_scored": 0,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 0,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:39070",
+            "name": "Giroud, Olivier",
+            "substituted_in": 0,
+            "substituted_out": 1,
+            "goals_scored": 0,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 0,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:31417",
+            "name": "Willian",
+            "substituted_in": 0,
+            "substituted_out": 1,
+            "goals_scored": 0,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 0,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:27583",
+            "name": "Hazard, Eden",
+            "substituted_in": 0,
+            "substituted_out": 0,
+            "goals_scored": 0,
+            "assists": 1,
+            "own_goals": 0,
+            "yellow_cards": 0,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:35428",
+            "name": "Pedro",
+            "substituted_in": 1,
+            "substituted_out": 0,
+            "goals_scored": 0,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 0,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:132318",
+            "name": "Zappacosta, Davide",
+            "substituted_in": 1,
+            "substituted_out": 0,
+            "goals_scored": 0,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 1,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:98435",
+            "name": "Barkley, Ross",
+            "substituted_in": 1,
+            "substituted_out": 0,
+            "goals_scored": 0,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 0,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:19438",
+            "name": "Higuain, Gonzalo",
+            "substituted_in": 1,
+            "substituted_out": 0,
+            "goals_scored": 0,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 0,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          }
+        ]
+      },
+      {
+        "id": "sr:competitor:2674",
+        "name": "Eintracht Frankfurt",
+        "abbreviation": "SGE",
+        "qualifier": "away",
+        "statistics": {
+          "ball_possession": 44,
+          "throw_ins": 29,
+          "free_kicks": 21,
+          "corner_kicks": 9,
+          "shots_on_target": 4,
+          "goal_kicks": 9,
+          "offsides": 4,
+          "shots_blocked": 7,
+          "fouls": 25,
+          "shots_saved": 6,
+          "shots_off_target": 3,
+          "yellow_cards": 4,
+          "injuries": 4
+        },
+        "players": [
+          {
+            "id": "sr:player:38440",
+            "name": "Trapp, Kevin",
+            "substituted_in": 0,
+            "substituted_out": 0,
+            "goals_scored": 0,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 0,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:97926",
+            "name": "da Costa, Danny",
+            "substituted_in": 0,
+            "substituted_out": 0,
+            "goals_scored": 0,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 0,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:114777",
+            "name": "Hinteregger, Martin",
+            "substituted_in": 0,
+            "substituted_out": 0,
+            "goals_scored": 0,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 0,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:37446",
+            "name": "Abraham, David",
+            "substituted_in": 0,
+            "substituted_out": 0,
+            "goals_scored": 0,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 1,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:201918",
+            "name": "Falette, Simon",
+            "substituted_in": 0,
+            "substituted_out": 0,
+            "goals_scored": 0,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 1,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:152769",
+            "name": "Rebic, Ante",
+            "substituted_in": 0,
+            "substituted_out": 1,
+            "goals_scored": 0,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 0,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:190917",
+            "name": "Gacinovic, Mijat",
+            "substituted_in": 0,
+            "substituted_out": 1,
+            "goals_scored": 0,
+            "assists": 1,
+            "own_goals": 0,
+            "yellow_cards": 0,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:35194",
+            "name": "Rode, Sebastian",
+            "substituted_in": 0,
+            "substituted_out": 1,
+            "goals_scored": 0,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 1,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:24397",
+            "name": "Hasebe, Makoto",
+            "substituted_in": 0,
+            "substituted_out": 0,
+            "goals_scored": 0,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 0,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:126588",
+            "name": "Kostic, Filip",
+            "substituted_in": 0,
+            "substituted_out": 0,
+            "goals_scored": 0,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 0,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:319129",
+            "name": "Jovic, Luka",
+            "substituted_in": 0,
+            "substituted_out": 0,
+            "goals_scored": 1,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 0,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:13028",
+            "name": "de Guzman, Jonathan",
+            "substituted_in": 1,
+            "substituted_out": 0,
+            "goals_scored": 0,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 1,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:149731",
+            "name": "Haller, Sebastian",
+            "substituted_in": 1,
+            "substituted_out": 0,
+            "goals_scored": 0,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 0,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          },
+          {
+            "id": "sr:player:138890",
+            "name": "Paciencia, Goncalo",
+            "substituted_in": 1,
+            "substituted_out": 0,
+            "goals_scored": 0,
+            "assists": 0,
+            "own_goals": 0,
+            "yellow_cards": 0,
+            "yellow_red_cards": 0,
+            "red_cards": 0
+          }
+        ]
+      }
+    ]
+  }
+}
