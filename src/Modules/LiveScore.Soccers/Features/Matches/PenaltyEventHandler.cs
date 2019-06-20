@@ -14,6 +14,8 @@
 
     public class PenaltyEventHandler : IPenaltyEventHandler
     {
+        const int minNumOfSettlePenalties = 6;
+
         private static readonly CacheItemOptions MatchPenaltyCacheOptions = new CacheItemOptions
         {
             SlidingExpiration = TimeSpan.FromMinutes(10),
@@ -41,12 +43,14 @@
 
             if (shootoutEvent != null)
             {
-                if (latestPenalty != null)
+                cachedPenaltyEvents.Add(shootoutEvent);
+
+                if (latestPenalty != null || cachedPenaltyEvents.Count > minNumOfSettlePenalties)
                 {
                     return await HandleLatestPenaltyEvent(matchEventsCacheKey, latestEventCacheKey, cachedPenaltyEvents, shootoutEvent, latestPenalty);
                 }
 
-                await CachePenaltyEvents(shootoutEvent, matchEventsCacheKey, cachedPenaltyEvents);
+                await CachePenaltyEvents(matchEventsCacheKey, cachedPenaltyEvents);
             }
 
             return await Task.FromResult(default(Timeline));
@@ -59,22 +63,29 @@
             Timeline shootoutEvent, 
             Timeline latestPenalty)
         {
+            SetScore(cachedPenaltyEvents, shootoutEvent);
+
+            if (IsPenaltyCompleted(cachedPenaltyEvents.Count, shootoutEvent.ShootoutHomeScore, shootoutEvent.ShootoutAwayScore))
+            {
+                return await Task.FromResult(shootoutEvent);
+            }
+
             if (latestPenalty != null)
             {
                 if (shootoutEvent.IsHome && !latestPenalty.IsHome)
                 {
                     shootoutEvent.AwayShootoutPlayer = latestPenalty.AwayShootoutPlayer;
                     shootoutEvent.IsAwayShootoutScored = latestPenalty.IsAwayShootoutScored;
+                    shootoutEvent.HomeShootoutPlayer = shootoutEvent.Player;
                 }
                 else
                 {
                     shootoutEvent.HomeShootoutPlayer = latestPenalty.AwayShootoutPlayer;
                     shootoutEvent.IsHomeShootoutScored = latestPenalty.IsAwayShootoutScored;
+                    shootoutEvent.AwayShootoutPlayer = shootoutEvent.Player;
                 }
 
-                await CachePenaltyEvents(shootoutEvent, cacheKey, cachedPenaltyEvents);
-
-                SetScore(cachedPenaltyEvents, shootoutEvent);
+                await CachePenaltyEvents(cacheKey, cachedPenaltyEvents);
 
                 await cacheService.RemoveAsync(latestEventCacheKey);
 
@@ -84,13 +95,12 @@
             return await Task.FromResult(default(Timeline));
         }
 
-        private async Task CachePenaltyEvents(Timeline shootoutEvent, string cacheKey, IList<Timeline> cachedPenaltyEvents)
+        private async Task CachePenaltyEvents(string cacheKey, IList<Timeline> cachedPenaltyEvents)
         {
-            cachedPenaltyEvents.Add(shootoutEvent);
             await cacheService.SetAsync(cacheKey, cachedPenaltyEvents, MatchPenaltyCacheOptions);
         }
 
-        private static void SetScore(IList<Timeline> shootoutEvents, Timeline shoutoutTimeline)
+        private static void SetScore(IList<Timeline> shootoutEvents, Timeline shootoutTimeline)
         {
             var homeScore = 0;
             var awayScore = 0;
@@ -104,8 +114,40 @@
                 }
             }
 
-            shoutoutTimeline.ShootoutHomeScore = homeScore;
-            shoutoutTimeline.ShootoutAwayScore = awayScore;
+            shootoutTimeline.ShootoutHomeScore = homeScore;
+            shootoutTimeline.ShootoutAwayScore = awayScore;
+        }
+
+        private static bool IsPenaltyCompleted(
+            int totalShootout,
+            int shootoutHomeScore,
+            int shootoutAwayScore)
+        {
+            if (totalShootout > minNumOfSettlePenalties)
+            {
+                var differenceScore = Math.Abs(shootoutHomeScore - shootoutAwayScore);
+                const int threeGapScore = 3;
+                if (differenceScore >= threeGapScore)
+                {
+                    return true;
+                }
+
+                const int twoGapScore = 2;
+                const int eightShoots = 8;
+                if (totalShootout >= eightShoots && differenceScore >= twoGapScore)
+                {
+                    return true;
+                }
+
+                const int oneGapScore = 1;
+                const int tenShoots = 10;
+                if (totalShootout >= tenShoots && totalShootout % twoGapScore == 0 && differenceScore >= oneGapScore)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

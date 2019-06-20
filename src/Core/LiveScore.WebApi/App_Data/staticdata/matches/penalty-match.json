@@ -553,6 +553,56 @@
       "season_id": "sr:season:62817"
     }
   },
+  "penalty_start": {
+    "payload": {
+      "sport_event_status": {
+        "status": "live",
+        "match_status": "penalties",
+        "home_score": 2,
+        "away_score": 2,
+        "period_scores": [
+          {
+            "home_score": 0,
+            "away_score": 0,
+            "type": "regular_period",
+            "number": 1
+          },
+          {
+            "home_score": 1,
+            "away_score": 1,
+            "type": "regular_period",
+            "number": 2
+          },
+          {
+            "home_score": 1,
+            "away_score": 1,
+            "type": "overtime"
+          },
+          {
+            "home_score": 0,
+            "away_score": 0,
+            "type": "penalties"
+          }
+        ]
+      },
+      "event": {
+        "id": 555546817,
+        "type": "period_start",
+        "time": "2019-06-17T12:23:59+00:00",
+        "period_type": "penalties",
+        "period_name": "Penalties"
+      }
+    },
+    "metadata": {
+      "format": "json",
+      "tournament_id": "sr:tournament:27821",
+      "sport_event_id": "sr:match:17281427",
+      "event_id": "score_change",
+      "channel": "soccer-other-dfc",
+      "sport_id": "sr:sport:1",
+      "season_id": "sr:season:62817"
+    }
+  },
   "penalty_shootout_home_1": {
     "payload": {
       "sport_event_status": {
@@ -648,7 +698,7 @@
           "id": "sr:player:21555",
           "name": "Azpilicueta, Cesar"
         },
-        "team": "home",
+        "team": "away",
         "period_type": "penalties",
         "status": "scored"
       }

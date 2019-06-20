@@ -85,9 +85,9 @@ namespace LiveScore.WebApi
                 routes.MapHub<MatchHub>("/hubs/MatchHub");
             });
 
-            UseHangfire(app);
-
             InitializeDatabase(app);
+
+            UseHangfire(app);
 
             app.ConfigureExceptionHandler();
             app.UseSwagger().UseSwaggerUI(c =>
@@ -112,7 +112,6 @@ namespace LiveScore.WebApi
             {
                 WorkerCount = 2
             }).StartHangfireJobs(Configuration);
-
 
         }
 #pragma warning restore S2325 // Methods and properties that don't access instance data should be static

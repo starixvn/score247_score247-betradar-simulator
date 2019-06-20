@@ -23,10 +23,9 @@ namespace LiveScore.HubClientSample
                 await connection.StartAsync();
             };
 
-            connection.On<string, string>("PushMatchEvent1", (sportId, data) =>
+            connection.On<string, Dictionary<string, MatchPushEvent>>("PushMatchEvent", (sportId, data) =>
             {
-                var pushEvents = JsonConvert.DeserializeObject<Dictionary<string, MatchPushEvent>>(data);
-                Console.WriteLine($"{sportId}: {data}");
+                Console.WriteLine($"{sportId}: {JsonConvert.SerializeObject(data, Formatting.Indented)}");
             });
 
             connection.On<string>("TestEvent", (text) =>
