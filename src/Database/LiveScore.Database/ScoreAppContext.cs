@@ -35,21 +35,21 @@ namespace LiveScore.Shared.Database
         }
     }
 
-    /// <summary>
-    /// Auto generated code, please ignore
-    /// </summary>
-    public class ScoreAppContextFactory : IDesignTimeDbContextFactory<ScoreAppContext>
-    {
-        public ScoreAppContext CreateDbContext(string[] args)
-        {
-            var optionsBuilder = new DbContextOptionsBuilder<ScoreAppContext>();
+    /////// <summary>
+    /////// Auto generated code, please ignore
+    /////// </summary>
+    ////public class ScoreAppContextFactory : IDesignTimeDbContextFactory<ScoreAppContext>
+    ////{
+    ////    public ScoreAppContext CreateDbContext(string[] args)
+    ////    {
+    ////        var optionsBuilder = new DbContextOptionsBuilder<ScoreAppContext>();
 
-            optionsBuilder.UseNpgsql("Host=127.0.0.1;Port=5432;Username=postgres;Password=1234aa;Database=Score247Local1;Pooling=true;Minimum Pool Size=0;Maximum Pool Size=1000;Timeout=60;Connection Idle Lifetime=5")
-                            .EnableSensitiveDataLogging(true)
-                            .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+    ////        optionsBuilder.UseNpgsql("Host=127.0.0.1;Port=5432;Username=postgres;Password=1234aa;Database=Score247Local1;Pooling=true;Minimum Pool Size=0;Maximum Pool Size=1000;Timeout=60;Connection Idle Lifetime=5")
+    ////                        .EnableSensitiveDataLogging(true)
+    ////                        .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
  
 
-            return new ScoreAppContext(optionsBuilder.Options);
-        }
-    }
+    ////        return new ScoreAppContext(optionsBuilder.Options);
+    ////    }
+    ////}
 }

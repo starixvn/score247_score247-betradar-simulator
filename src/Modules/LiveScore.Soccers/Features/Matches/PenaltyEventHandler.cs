@@ -80,8 +80,8 @@
                 }
                 else
                 {
-                    shootoutEvent.HomeShootoutPlayer = latestPenalty.AwayShootoutPlayer;
-                    shootoutEvent.IsHomeShootoutScored = latestPenalty.IsAwayShootoutScored;
+                    shootoutEvent.HomeShootoutPlayer = latestPenalty.HomeShootoutPlayer;
+                    shootoutEvent.IsHomeShootoutScored = latestPenalty.IsHomeShootoutScored;
                     shootoutEvent.AwayShootoutPlayer = shootoutEvent.Player;
                 }
 
