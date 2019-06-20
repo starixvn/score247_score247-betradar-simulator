@@ -37,8 +37,10 @@ namespace LiveScoreSimulator
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+#pragma warning disable S2325 // Methods and properties that don't access instance data should be static
+#pragma warning disable RECS0154 // Parameter is never used
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+#pragma warning restore RECS0154 // Parameter is never used
         {
             if (env.IsDevelopment())
             {
@@ -49,8 +51,7 @@ namespace LiveScoreSimulator
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
-            //app.UseHttpsRedirection();
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
