@@ -21,6 +21,7 @@
             var appSettings = app.ApplicationServices.GetService<IAppSettings>();
 
             RecurringJob.AddOrUpdate<IAutoUpdateMatchTimeJob>(nameof(IAutoUpdateMatchTimeJob), job => job.UpdateMatchTime(), Cron.Minutely);
+            BackgroundJob.Enqueue<IMatchPushEventListenerJob>(job => job.StartListeningPushEvent(SportConstants.SoccerId));
 
             if (!appSettings.EnabledJobs)
             {
@@ -33,8 +34,6 @@
             RecurringJob.AddOrUpdate<IDailyScheduleFetchJob>("FetchSchedule", job => job.FetchSchedule(SportConstants.SoccerId, scheduleDateSpan), ScheduleIntervalCron);
             RecurringJob.AddOrUpdate<IDailyScheduleFetchJob>("FetchResult", job => job.FetchResult(SportConstants.SoccerId, resultDateSpan), Cron.Daily);
             RecurringJob.AddOrUpdate<ILiveMatchFetchJob>("FetchLive", job => job.Fetch(SportConstants.SoccerId), Cron.Daily);
-
-            BackgroundJob.Enqueue<IMatchPushEventListenerJob>(job => job.StartListeningPushEvent(SportConstants.SoccerId));
         }
     }
 }

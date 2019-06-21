@@ -1,6 +1,8 @@
 ﻿namespace LiveScore.Jobs
 {
+    using System;
     using System.Threading.Tasks;
+    using Hangfire;
     using LiveScore.Features.Matches;
     using LiveScore.Shared;
     using LiveScore.Shared.Hubs;
@@ -11,6 +13,7 @@
         Task StartListeningPushEvent(byte sportId);
     }
 
+    [AutomaticRetry(OnAttemptsExceeded = AttemptsExceededAction.Delete, Attempts = 1)]
     public class MatchPushEventListenerJob : IMatchPushEventListenerJob
     {
         private readonly PushEventListenerFactory pushEventListenerFactory;
@@ -24,8 +27,16 @@
         {
             var pushEventListener = pushEventListenerFactory.CreatePushEventListener(sportId);
 
-            //TODO call fetch live match results job after retry failure job when ListenPushEvent was force stop
-            await ListenPushEvent(sportId, pushEventListener);
+            
+            var isFail = await ListenPushEvent(sportId, pushEventListener);
+
+            if (isFail)
+            {
+                //TODO call fetch live match results job after retry failure job when ListenPushEvent was force stop
+                BackgroundJob.Schedule<IMatchPushEventListenerJob>(job => job.StartListeningPushEvent(SportConstants.SoccerId), TimeSpan.FromSeconds(5));
+
+                throw new InvalidOperationException("Push feed was force closed!");                
+            }
         }
 
         private async Task<bool> ListenPushEvent(byte sportId, IMatchPushEventListener pushEventListener)
