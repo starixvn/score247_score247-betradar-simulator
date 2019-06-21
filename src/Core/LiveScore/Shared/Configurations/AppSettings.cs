@@ -10,6 +10,8 @@
 
         bool EnabledJobs { get; }
 
+        bool EnabledListenPush { get; }
+
         bool EnabledDatabaseMigration { get; }
 
         string AppPath { get; }

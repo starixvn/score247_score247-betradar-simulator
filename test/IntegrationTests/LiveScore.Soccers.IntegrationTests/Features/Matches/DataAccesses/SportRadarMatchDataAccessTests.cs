@@ -35,6 +35,8 @@
 
         public bool EnabledJobs => true;
 
+        public bool EnabledListenPush => true;
+
         public bool EnabledDatabaseMigration => true;
 
         public string AppPath => throw new NotImplementedException();

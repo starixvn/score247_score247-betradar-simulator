@@ -21,7 +21,12 @@
             var appSettings = app.ApplicationServices.GetService<IAppSettings>();
 
             RecurringJob.AddOrUpdate<IAutoUpdateMatchTimeJob>(nameof(IAutoUpdateMatchTimeJob), job => job.UpdateMatchTime(), Cron.Minutely);
-            BackgroundJob.Enqueue<IMatchPushEventListenerJob>(job => job.StartListeningPushEvent(SportConstants.SoccerId));
+
+            if (!appSettings.EnabledListenPush)
+            {
+                BackgroundJob.Enqueue<IMatchPushEventListenerJob>(job => job.StartListeningPushEvent(SportConstants.SoccerId));
+            }
+                
 
             if (!appSettings.EnabledJobs)
             {
