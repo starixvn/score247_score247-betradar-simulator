@@ -22,11 +22,10 @@
 
             RecurringJob.AddOrUpdate<IAutoUpdateMatchTimeJob>(nameof(IAutoUpdateMatchTimeJob), job => job.UpdateMatchTime(), Cron.Minutely);
 
-            if (!appSettings.EnabledListenPush)
+            if (appSettings.EnabledListenPush)
             {
                 BackgroundJob.Enqueue<IMatchPushEventListenerJob>(job => job.StartListeningPushEvent(SportConstants.SoccerId));
-            }
-                
+            }   
 
             if (!appSettings.EnabledJobs)
             {
