@@ -58,7 +58,7 @@
 
         private async Task<bool> StartListening(byte sportId, EndPointSetting endpoint, Region region)
         {
-            var req = CreateSubscribeRequest(endpoint, region);
+            var req = await CreateSubscribeRequest(endpoint, region);
 
             try
             {
@@ -81,11 +81,16 @@
             return true;
         }
 
-        private HttpWebRequest CreateSubscribeRequest(EndPointSetting endpoint, Region region)
+        private async Task<HttpWebRequest> CreateSubscribeRequest(EndPointSetting endpoint, Region region)
         {
             if (!httpRequests.ContainsKey(region.Name))
             {                
                 var formattedEndpoint = $"{appSettings.DataProviderSettings.ApiUrl}{string.Format(endpoint.Path, region.Name, region.PushKey)}";
+
+                if (appSettings.EnabledListenLogging)
+                {
+                    await logger.InfoAsync($"listen {formattedEndpoint}");
+                }
 
                 var req = (HttpWebRequest)HttpWebRequest.Create(new Uri(formattedEndpoint));
                 req.AllowAutoRedirect = false;
@@ -119,6 +124,11 @@
             while (!reader.EndOfStream)
             {
                 var line = reader.ReadLine();
+
+                if (appSettings.EnabledListenLogging)
+                {
+                    await logger.InfoAsync($"{DateTime.Now} Receiving: {line}");
+                }
 
                 if (!string.IsNullOrWhiteSpace(line) && !line.Contains("heartbeat"))
                 {

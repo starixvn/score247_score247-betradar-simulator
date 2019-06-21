@@ -40,6 +40,8 @@
         public bool EnabledDatabaseMigration => true;
 
         public string AppPath => throw new NotImplementedException();
+
+        public bool EnabledListenLogging => throw new NotImplementedException();
     }
 
     public class StubDataProviderSettings : IDataProviderSettings

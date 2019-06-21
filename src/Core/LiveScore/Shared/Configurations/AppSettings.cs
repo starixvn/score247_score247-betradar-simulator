@@ -15,5 +15,7 @@
         bool EnabledDatabaseMigration { get; }
 
         string AppPath { get; }
+
+        bool EnabledListenLogging { get; }
     }
 }

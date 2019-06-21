@@ -22,6 +22,7 @@
             EnabledJobs = GetValue<bool>($"LiveScores:{nameof(EnabledJobs)}");
             EnabledListenPush = GetValue<bool>($"LiveScores:{nameof(EnabledListenPush)}");
             EnabledDatabaseMigration = GetValue<bool>($"LiveScores:{nameof(EnabledDatabaseMigration)}");
+            EnabledListenLogging = GetValue<bool>($"LiveScores:{nameof(EnabledListenLogging)}");
             AppPath = appPath;
         }
 
@@ -32,6 +33,8 @@
         public bool EnabledJobs { get; }
 
         public bool EnabledListenPush { get; }
+
+        public bool EnabledListenLogging { get; }
 
         public bool EnabledDatabaseMigration { get; }
 
