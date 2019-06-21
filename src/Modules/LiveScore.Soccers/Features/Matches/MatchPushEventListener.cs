@@ -62,13 +62,16 @@
 
             try
             {
+                var path = $"{region}_responses.txt";
+
                 var reply = (HttpWebResponse)req.GetResponse();
                 var stream = reply.GetResponseStream();
                 var reader = new StreamReader(stream);
 
                 while (true)
                 {
-                    await ProcessPayloads(reader);
+
+                    await ProcessPayloads(reader, path);
 
                     await Task.Delay(MillisecondsTimeout);
                 }
@@ -84,7 +87,7 @@
         private HttpWebRequest CreateSubscribeRequest(EndPointSetting endpoint, Region region)
         {
             if (!httpRequests.ContainsKey(region.Name))
-            {
+            {                
                 var formattedEndpoint = $"{appSettings.DataProviderSettings.ApiUrl}{string.Format(endpoint.Path, region.Name, region.PushKey)}";
 
                 var req = (HttpWebRequest)HttpWebRequest.Create(new Uri(formattedEndpoint));
@@ -112,13 +115,18 @@
             return httpRequests[region.Name];
         }
 
-        private async Task ProcessPayloads(StreamReader reader)
+        private async Task ProcessPayloads(StreamReader reader, string filePath)
         {
             var lines = new List<string>();
 
             while (!reader.EndOfStream)
             {
                 var line = reader.ReadLine();
+
+                using (StreamWriter sw = File.AppendText(filePath))
+                {
+                    sw.WriteLine(line);
+                }
 
                 if (!string.IsNullOrWhiteSpace(line) && !line.Contains("heartbeat"))
                 {
