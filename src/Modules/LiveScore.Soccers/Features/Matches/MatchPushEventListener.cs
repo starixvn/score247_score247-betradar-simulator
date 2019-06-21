@@ -44,7 +44,7 @@
             var regions = sportSetting.Regions
                 .Where(x => x.Name.Equals("other")); // TODO: remove specific other region
 
-            if(!regions.Any())
+            if (!regions.Any())
             {
                 await logger.InfoAsync("Cannot find any specific region to listen");
                 return false;
@@ -84,7 +84,7 @@
         private async Task<HttpWebRequest> CreateSubscribeRequest(EndPointSetting endpoint, Region region)
         {
             if (!httpRequests.ContainsKey(region.Name))
-            {                
+            {
                 var formattedEndpoint = $"{appSettings.DataProviderSettings.ApiUrl}{string.Format(endpoint.Path, region.Name, region.PushKey)}";
 
                 if (appSettings.EnabledListenLogging)
@@ -120,10 +120,11 @@
         private async Task ProcessPayloads(StreamReader reader)
         {
             var lines = new List<string>();
+            var line = string.Empty;
 
-            while (!reader.EndOfStream)
-            {
-                var line = reader.ReadLine();
+            do
+            {               
+                line = reader.ReadLine();
 
                 if (appSettings.EnabledListenLogging)
                 {
@@ -134,11 +135,11 @@
                 {
                     lines.Add(line);
                 }
-            }
+            } while (!string.IsNullOrWhiteSpace(line));
 
-            foreach (var line in lines)
+            foreach (var pushEvent in lines)
             {
-                await pushHandler.OnReceive(line);
+                await pushHandler.OnReceive(pushEvent);
             }
         }
     }
