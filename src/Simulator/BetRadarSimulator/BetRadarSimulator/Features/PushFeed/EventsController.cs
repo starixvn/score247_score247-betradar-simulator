@@ -66,7 +66,7 @@ namespace LiveScore.BetRadarSimulator.Controllers
         [HttpPost(nameof(PushEvent))]
         public async Task<IActionResult> PushEvent([FromBody] MatchPushEventDto pushEvent)
         {
-            var eventStr = JsonConvert.SerializeObject(pushEvent) + Environment.NewLine;
+            var eventStr = JsonConvert.SerializeObject(pushEvent);
 
             await SendEvent(eventStr);
 
