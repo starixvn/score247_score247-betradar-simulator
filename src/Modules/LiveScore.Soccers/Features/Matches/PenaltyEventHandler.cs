@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
     using Fanex.Caching;
     using LiveScore.Features.Matches.Models;
@@ -14,7 +13,7 @@
 
     public class PenaltyEventHandler : IPenaltyEventHandler
     {
-        const int minNumOfSettlePenalties = 6;
+        private const int minNumOfSettlePenalties = 6;
 
         private static readonly CacheItemOptions MatchPenaltyCacheOptions = new CacheItemOptions
         {
@@ -33,7 +32,7 @@
             var matchEventsCacheKey = $"Penalty_Match_{matchId}";
             var latestEventCacheKey = $"Penalty_Match_{matchId}_Latest_Event";
             var cachedPenaltyEvents = (await cacheService.GetAsync<IList<Timeline>>(matchEventsCacheKey)) ?? new List<Timeline>();
-            
+
             var latestPenalty = (await cacheService.GetAsync<Timeline>(latestEventCacheKey));
 
             if (latestPenalty == null)
@@ -57,10 +56,10 @@
         }
 
         private async Task<Timeline> HandleLatestPenaltyEvent(
-            string cacheKey, 
-            string latestEventCacheKey, 
-            IList<Timeline> cachedPenaltyEvents, 
-            Timeline shootoutEvent, 
+            string cacheKey,
+            string latestEventCacheKey,
+            IList<Timeline> cachedPenaltyEvents,
+            Timeline shootoutEvent,
             Timeline latestPenalty)
         {
             SetScore(cachedPenaltyEvents, shootoutEvent);

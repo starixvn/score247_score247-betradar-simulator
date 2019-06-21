@@ -25,14 +25,6 @@
 
             //dataAccess = new SportRadarMatchDataAccess(new StubAppSettings(), restClient);
         }
-
-        [Fact]
-        public async Task GetTimelines_ShouldNotEmpty()
-        {
-            //var timelines = await dataAccess.GetTimelines(SportConstants.SoccerId, "eu", "sr:match:18297893", "en");
-
-            //Assert.NotEmpty(timelines);
-        }
     }
 
     public class StubAppSettings : IAppSettings
