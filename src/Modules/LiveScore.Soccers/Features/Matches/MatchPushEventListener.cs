@@ -5,7 +5,6 @@
     using System.IO;
     using System.Linq;
     using System.Net;
-    using System.Net.Http;
     using System.Threading.Tasks;
     using Fanex.Logging;
     using LiveScore.Features.Matches;
@@ -59,22 +58,20 @@
 
         private async Task<bool> StartListening(byte sportId, EndPointSetting endpoint, Region region)
         {
-            var req = await CreateSubscribeRequest(endpoint, region);
+            var req = CreateSubscribeRequest(endpoint, region);
 
             try
             {
                 var reply = (HttpWebResponse)req.GetResponse();
                 var stream = reply.GetResponseStream();
                 var reader = new StreamReader(stream);
-                var pushEvent = string.Empty;
 
-                do
+                while (true)
                 {
-                    pushEvent = reader.ReadLine();
-                    await pushHandler.OnReceive(pushEvent);
-                    await Task.Delay(MillisecondsTimeout);
+                    await ProcessPayloads(reader);
 
-                } while (pushEvent.Length > 0);
+                    await Task.Delay(MillisecondsTimeout);
+                }
             }
             catch (Exception ex)
             {
@@ -84,32 +81,55 @@
             return true;
         }
 
-        private async Task<HttpWebRequest> CreateSubscribeRequest(EndPointSetting endpoint, Region region)
+        private HttpWebRequest CreateSubscribeRequest(EndPointSetting endpoint, Region region)
         {
             if (!httpRequests.ContainsKey(region.Name))
             {
                 var formattedEndpoint = $"{appSettings.DataProviderSettings.ApiUrl}{string.Format(endpoint.Path, region.Name, region.PushKey)}";
 
-                HttpClientHandler handler = new HttpClientHandler();
-                handler.AllowAutoRedirect = true;
-                var httpClient = new HttpClient(handler);
+                var req = (HttpWebRequest)HttpWebRequest.Create(new Uri(formattedEndpoint));
+                req.AllowAutoRedirect = false;
 
-                HttpResponseMessage clientResponse = await httpClient.GetAsync(new Uri(formattedEndpoint));
+                WebResponse reply;
 
-                if (clientResponse.StatusCode == HttpStatusCode.Found)
+                try
                 {
-                    var req = (HttpWebRequest)WebRequest.Create(clientResponse.Headers.Location);
+                    req.GetResponse();
+
+                }
+                catch (WebException e)
+                {
+
+                    reply = e.Response;
+                    var redirectUrl = reply.Headers["Location"];
+                    req = (HttpWebRequest)HttpWebRequest.Create(new Uri(redirectUrl));
                     req.KeepAlive = true;
 
                     httpRequests.Add(region.Name, req);
                 }
-                else
-                {
-                    throw new InvalidOperationException($"Cannot subscribe {formattedEndpoint}. Status Code: {clientResponse.StatusCode}");
-                }
             }
 
             return httpRequests[region.Name];
+        }
+
+        private async Task ProcessPayloads(StreamReader reader)
+        {
+            var lines = new List<string>();
+
+            while (!reader.EndOfStream)
+            {
+                var line = reader.ReadLine();
+
+                if (!string.IsNullOrWhiteSpace(line) && !line.Contains("heartbeat"))
+                {
+                    lines.Add(line);
+                }
+            }
+
+            foreach (var line in lines)
+            {
+                await pushHandler.OnReceive(line);
+            }
         }
     }
 }
