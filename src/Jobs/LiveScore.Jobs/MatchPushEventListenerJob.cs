@@ -33,7 +33,9 @@
             if (isFail)
             {
                 //TODO call fetch live match results job after retry failure job when ListenPushEvent was force stop
-                BackgroundJob.Schedule<IMatchPushEventListenerJob>(job => job.StartListeningPushEvent(SportConstants.SoccerId), TimeSpan.FromSeconds(5));
+
+                //TODO reschedule job
+                //BackgroundJob.Schedule<IMatchPushEventListenerJob>(job => job.StartListeningPushEvent(SportConstants.SoccerId), TimeSpan.FromSeconds(5));
 
                 throw new InvalidOperationException("Push feed was force closed!");                
             }

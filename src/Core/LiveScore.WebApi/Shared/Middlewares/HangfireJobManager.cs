@@ -24,7 +24,7 @@
 
             if (appSettings.EnabledListenPush)
             {
-                BackgroundJob.Enqueue<IMatchPushEventListenerJob>(job => job.StartListeningPushEvent(SportConstants.SoccerId));
+                RecurringJob.AddOrUpdate<IMatchPushEventListenerJob>("ListenPushFeed", job => job.StartListeningPushEvent(SportConstants.SoccerId), Cron.Daily);
             }   
 
             if (!appSettings.EnabledJobs)
