@@ -64,6 +64,9 @@
         ////abandoned – The match has been abandoned
         public static readonly MatchStatus Abandoned = new MatchStatus("abandoned", nameof(Abandoned));
 
+        ////abandoned – The match has been abandoned
+        public static readonly MatchStatus ExtraTimeHaftTime = new MatchStatus("extra_time_halftime", nameof(ExtraTimeHaftTime));
+
         ////ended – The match is over
         public static readonly MatchStatus Ended = new MatchStatus("ended", nameof(Ended));
 
