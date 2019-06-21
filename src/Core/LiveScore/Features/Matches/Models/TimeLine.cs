@@ -70,6 +70,8 @@
         int ShootoutAwayScore { get; }
 
         bool IsHome { get; }
+
+        bool IsFirstShoot { get; }
     }
 
     public class Timeline : Entity<long, string>, ITimeline
@@ -125,6 +127,8 @@
         public bool IsAwayShootoutScored { get; set; }
 
         public bool IsHome => Team?.ToLowerInvariant() == "home";
+
+        public bool IsFirstShoot { get; set; }
     }
 
     public class Commentary

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using LiveScore.Features.Matches.Models;
 using Microsoft.AspNetCore.SignalR.Client;
@@ -25,7 +26,10 @@ namespace LiveScore.HubClientSample
 
             connection.On<string, Dictionary<string, MatchPushEvent>>("PushMatchEvent", (sportId, data) =>
             {
-                Console.WriteLine($"{sportId}: {JsonConvert.SerializeObject(data, Formatting.Indented)}");
+                using (StreamWriter sw = File.AppendText("data_receive.txt"))
+                {
+                    sw.WriteLine(JsonConvert.SerializeObject(data, Formatting.Indented));
+                }
             });
 
             connection.On<string>("TestEvent", (text) =>

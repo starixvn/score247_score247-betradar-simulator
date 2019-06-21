@@ -32,27 +32,55 @@
             var matchEventsCacheKey = $"Penalty_Match_{matchId}";
             var latestEventCacheKey = $"Penalty_Match_{matchId}_Latest_Event";
             var cachedPenaltyEvents = (await cacheService.GetAsync<IList<Timeline>>(matchEventsCacheKey)) ?? new List<Timeline>();
+            var latestShootout = await GetLatestShoot(shootoutEvent, latestEventCacheKey);
 
-            var latestPenalty = (await cacheService.GetAsync<Timeline>(latestEventCacheKey));
+            if (shootoutEvent != null)
+            {
+                if (latestShootout == null)
+                {
+                    SetFirstShoot(shootoutEvent);
+                }
 
-            if (latestPenalty == null)
+                cachedPenaltyEvents.Add(shootoutEvent);
+
+                SetScore(cachedPenaltyEvents, shootoutEvent);
+
+                if (latestShootout != null || cachedPenaltyEvents.Count > minNumOfSettlePenalties)
+                {
+                    return await HandleLatestPenaltyEvent(matchEventsCacheKey, latestEventCacheKey, cachedPenaltyEvents, shootoutEvent, latestShootout);
+                }
+
+                await CachePenaltyEvents(matchEventsCacheKey, cachedPenaltyEvents);
+
+                return await Task.FromResult(shootoutEvent);
+            }
+
+            return await Task.FromResult(default(Timeline));
+        }
+
+        private static void SetFirstShoot(Timeline shootoutEvent)
+        {
+            shootoutEvent.IsFirstShoot = true;
+
+            if (shootoutEvent.IsHome)
+            {
+                shootoutEvent.HomeShootoutPlayer = shootoutEvent.Player;
+            }
+            else
+            {
+                shootoutEvent.AwayShootoutPlayer = shootoutEvent.Player;
+            }
+        }
+
+        private async Task<Timeline> GetLatestShoot(Timeline shootoutEvent, string latestEventCacheKey)
+        {
+            var latestShootout = (await cacheService.GetAsync<Timeline>(latestEventCacheKey));
+            if (latestShootout == null)
             {
                 await cacheService.SetAsync(latestEventCacheKey, shootoutEvent, MatchPenaltyCacheOptions);
             }
 
-            if (shootoutEvent != null)
-            {
-                cachedPenaltyEvents.Add(shootoutEvent);
-
-                if (latestPenalty != null || cachedPenaltyEvents.Count > minNumOfSettlePenalties)
-                {
-                    return await HandleLatestPenaltyEvent(matchEventsCacheKey, latestEventCacheKey, cachedPenaltyEvents, shootoutEvent, latestPenalty);
-                }
-
-                await CachePenaltyEvents(matchEventsCacheKey, cachedPenaltyEvents);
-            }
-
-            return await Task.FromResult(default(Timeline));
+            return latestShootout;
         }
 
         private async Task<Timeline> HandleLatestPenaltyEvent(
@@ -62,8 +90,6 @@
             Timeline shootoutEvent,
             Timeline latestPenalty)
         {
-            SetScore(cachedPenaltyEvents, shootoutEvent);
-
             if (IsPenaltyCompleted(cachedPenaltyEvents.Count, shootoutEvent.ShootoutHomeScore, shootoutEvent.ShootoutAwayScore))
             {
                 return await Task.FromResult(shootoutEvent);
@@ -85,13 +111,10 @@
                 }
 
                 await CachePenaltyEvents(cacheKey, cachedPenaltyEvents);
-
                 await cacheService.RemoveAsync(latestEventCacheKey);
-
-                return await Task.FromResult(shootoutEvent);
             }
 
-            return await Task.FromResult(default(Timeline));
+            return await Task.FromResult(shootoutEvent);
         }
 
         private async Task CachePenaltyEvents(string cacheKey, IList<Timeline> cachedPenaltyEvents)
