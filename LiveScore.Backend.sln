@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.645
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{DAF1D274-483D-4AAA-B945-D6E1E9488FC6}"
 EndProject
@@ -55,7 +55,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{AE217F87-5
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Demo", "src\Demo\LiveScore.Demo\LiveScore.Demo.csproj", "{9D501621-8089-4F98-9520-BAB31A51A3AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore.HubClientSample", "src\Demo\LiveScore.HubClientSample\LiveScore.HubClientSample.csproj", "{E7048A7D-FFDB-4AE0-8BE8-22FFAF15C618}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.HubClientSample", "src\Demo\LiveScore.HubClientSample\LiveScore.HubClientSample.csproj", "{E7048A7D-FFDB-4AE0-8BE8-22FFAF15C618}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "simulator", "simulator", "{4B5847C7-37C4-40FA-BA7A-7C0E82FC051C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.BetRadarSimulator.Api", "src\Simulator\BetRadarSimulator\BetRadarSimulator\LiveScore.BetRadarSimulator.Api.csproj", "{DF9F006E-FD7D-406F-ADB2-4ADB76940DDD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Simulators", "Simulators", "{913E3DE1-255D-4E65-8D01-E364F8D32F4A}"
 EndProject
@@ -127,10 +131,10 @@ Global
 		{E7048A7D-FFDB-4AE0-8BE8-22FFAF15C618}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7048A7D-FFDB-4AE0-8BE8-22FFAF15C618}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7048A7D-FFDB-4AE0-8BE8-22FFAF15C618}.Release|Any CPU.Build.0 = Release|Any CPU
-		{51DF41D4-35B0-4673-A4BC-EC1560F8C5BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{51DF41D4-35B0-4673-A4BC-EC1560F8C5BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{51DF41D4-35B0-4673-A4BC-EC1560F8C5BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{51DF41D4-35B0-4673-A4BC-EC1560F8C5BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF9F006E-FD7D-406F-ADB2-4ADB76940DDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF9F006E-FD7D-406F-ADB2-4ADB76940DDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF9F006E-FD7D-406F-ADB2-4ADB76940DDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF9F006E-FD7D-406F-ADB2-4ADB76940DDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -160,7 +164,7 @@ Global
 		{479F8356-D264-4327-913F-A9B045BBFA67} = {FA8EC44A-FCFE-46ED-B59F-AC8C88C860C3}
 		{9D501621-8089-4F98-9520-BAB31A51A3AF} = {AE217F87-52B4-42D8-8D56-D908E4E0B7E2}
 		{E7048A7D-FFDB-4AE0-8BE8-22FFAF15C618} = {AE217F87-52B4-42D8-8D56-D908E4E0B7E2}
-		{913E3DE1-255D-4E65-8D01-E364F8D32F4A} = {DAF1D274-483D-4AAA-B945-D6E1E9488FC6}
+		{DF9F006E-FD7D-406F-ADB2-4ADB76940DDD} = {4B5847C7-37C4-40FA-BA7A-7C0E82FC051C}
 		{51DF41D4-35B0-4673-A4BC-EC1560F8C5BC} = {913E3DE1-255D-4E65-8D01-E364F8D32F4A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
