@@ -14,11 +14,11 @@ namespace LiveScore.Demo
 
         static void Main()
         {
-            Task.Factory.StartNew(() => { ListenSportRadarStream("am", "f5zwq9btg3wwg66upm84ntua"); });
-            Task.Factory.StartNew(() => { ListenSportRadarStream("eu", "f26un3ncev38wk86fmabpzad"); });
-            Task.Factory.StartNew(() => { ListenSportRadarStream("as", "x3zffh29jgzbgz74nf6apvvy"); });
-            Task.Factory.StartNew(() => { ListenSportRadarStream("intl", "5zn9j3p4qd3wzrujvfx7mngn"); });
-            //Task.Factory.StartNew(() => { ListenSportRadarStream("other", "npc9md73nrwhykuepets3nqf"); });
+            //Task.Factory.StartNew(() => { ListenSportRadarStream("am", "f5zwq9btg3wwg66upm84ntua"); });
+            //Task.Factory.StartNew(() => { ListenSportRadarStream("eu", "f26un3ncev38wk86fmabpzad"); });
+            //Task.Factory.StartNew(() => { ListenSportRadarStream("as", "x3zffh29jgzbgz74nf6apvvy"); });
+            //Task.Factory.StartNew(() => { ListenSportRadarStream("intl", "5zn9j3p4qd3wzrujvfx7mngn"); });
+            Task.Factory.StartNew(() => { ListenSportRadarStream("other", "npc9md73nrwhykuepets3nqf"); });
             //Task.Factory.StartNew(() => { ListenSportRadarStream("global", "f5zwq9btg3wwg66upm84ntua"); });
 
             Console.ReadLine();
@@ -45,8 +45,9 @@ namespace LiveScore.Demo
 
         public static void ReadPushEvent(string region, string key)
         {
-            var apiUrl = "http://api.sportradar.com/";            
+            //var apiUrl = "http://api.sportradar.com/";            
             //var apiUrl = "http://ha.nexdev.net:7206/V1/api/";
+            var apiUrl = "http://localhost:61092/api/";
             var pushApiPath = $"soccer-xt3/{region}/stream/events/subscribe?api_key={key}&format=json";
             HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create($"{apiUrl}{pushApiPath}");
             req.AllowAutoRedirect = false;
