@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.SignalR;
-using LiveScore.Shared.Hubs;
-namespace LiveScore.Soccers.Features.Matches
+﻿namespace LiveScore.Soccers.Features.Matches
 {
     using System;
     using System.Collections.Generic;
@@ -13,6 +11,8 @@ namespace LiveScore.Soccers.Features.Matches
     using LiveScore.Features.Matches;
     using LiveScore.Shared.Configurations;
     using LiveScore.Shared.SportRadarApi.Models;
+    using Microsoft.AspNetCore.SignalR;
+    using LiveScore.Shared.Hubs;
 
     public class MatchPushEventListener : IMatchPushEventListener
     {
@@ -44,6 +44,12 @@ namespace LiveScore.Soccers.Features.Matches
 
             var regions = sportSetting.Regions
                 .Where(x => x.Name.Equals("other")); // TODO: remove specific other region
+
+            if(!regions.Any())
+            {
+                await logger.InfoAsync("Cannot find any specific region to listen");
+                return false;
+            }
 
             //TODO loop for regions            
             var region = regions.First();
