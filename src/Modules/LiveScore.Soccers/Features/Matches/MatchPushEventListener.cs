@@ -119,11 +119,10 @@
 
         private async Task ProcessPayloads(StreamReader reader)
         {
-            var lines = new List<string>();
-            var line = string.Empty;
+            string line;
 
             do
-            {               
+            {
                 line = reader.ReadLine();
 
                 if (appSettings.EnabledListenLogging)
@@ -133,14 +132,9 @@
 
                 if (!string.IsNullOrWhiteSpace(line) && !line.Contains("heartbeat"))
                 {
-                    lines.Add(line);
+                    await pushHandler.OnReceive(line);
                 }
             } while (!string.IsNullOrWhiteSpace(line));
-
-            foreach (var pushEvent in lines)
-            {
-                await pushHandler.OnReceive(pushEvent);
-            }
         }
     }
 }
