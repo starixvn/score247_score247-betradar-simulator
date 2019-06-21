@@ -20,6 +20,7 @@
             DataProviderSettings = dataProviderSettings;
             TimeZoneSettings = timeZoneSettings;
             EnabledJobs = GetValue<bool>($"LiveScores:{nameof(EnabledJobs)}");
+            EnabledListenPush = GetValue<bool>($"LiveScores:{nameof(EnabledListenPush)}");
             EnabledDatabaseMigration = GetValue<bool>($"LiveScores:{nameof(EnabledDatabaseMigration)}");
             AppPath = appPath;
         }
@@ -29,6 +30,8 @@
         public IDictionary<int, string> TimeZoneSettings { get; }
 
         public bool EnabledJobs { get; }
+
+        public bool EnabledListenPush { get; }
 
         public bool EnabledDatabaseMigration { get; }
 
