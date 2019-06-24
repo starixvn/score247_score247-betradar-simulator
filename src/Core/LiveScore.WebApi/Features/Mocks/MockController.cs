@@ -34,6 +34,13 @@ namespace LiveScore.WebApi.Features.Notifications
 
         [HttpPost(nameof(PushMatchEvent))]
         public async Task PushMatchEvent(
+            [FromBody]MatchPushEventDto matchPushEventDto)
+        {
+            await soccerPushEventHandler.OnReceive(matchPushEventDto);
+        }
+
+        [HttpPost(nameof(PushMatchEvent))]
+        public async Task PushMatchEvents(
             [FromBody]IEnumerable<MatchPushEventDto> matchPushEventDtos)
         {
             foreach (var matchPushEventDto in matchPushEventDtos)
