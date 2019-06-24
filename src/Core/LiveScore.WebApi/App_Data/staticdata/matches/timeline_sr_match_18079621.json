@@ -1,0 +1,4549 @@
+{
+    "generated_at": "2019-06-24T04:12:24+00:00",
+    "schema": "http://schemas.sportradar.com/bsa/soccer/v1/json/endpoints/soccer/match_timeline.json",
+    "sport_event": {
+        "id": "sr:match:18079621",
+        "scheduled": "2019-06-22T19:00:00+00:00",
+        "start_time_tbd": false,
+        "tournament_round": {
+            "type": "cup",
+            "name": "round_of_16",
+            "cup_round_match_number": 1,
+            "cup_round_matches": 1,
+            "phase": "playoffs",
+            "tournament_match_number": 37
+        },
+        "season": {
+            "id": "sr:season:55975",
+            "name": "World Cup, Women 2019",
+            "start_date": "2019-06-07",
+            "end_date": "2019-07-08",
+            "year": "2019",
+            "tournament_id": "sr:tournament:290"
+        },
+        "tournament": {
+            "id": "sr:tournament:290",
+            "name": "World Cup, Women",
+            "sport": {
+                "id": "sr:sport:1",
+                "name": "Soccer"
+            },
+            "category": {
+                "id": "sr:category:4",
+                "name": "International"
+            }
+        },
+        "competitors": [
+            {
+                "id": "sr:competitor:7422",
+                "name": "Norway",
+                "country": "Norway",
+                "country_code": "NOR",
+                "abbreviation": "NOR",
+                "qualifier": "home"
+            },
+            {
+                "id": "sr:competitor:7410",
+                "name": "Australia",
+                "country": "Australia",
+                "country_code": "AUS",
+                "abbreviation": "AUS",
+                "qualifier": "away"
+            }
+        ],
+        "venue": {
+            "id": "sr:venue:13184",
+            "name": "Stade de Nice",
+            "capacity": 36178,
+            "city_name": "Nice",
+            "country_name": "France",
+            "map_coordinates": "43.705139, 7.192583",
+            "country_code": "FRA"
+        }
+    },
+    "sport_event_conditions": {
+        "referee": {
+            "id": "sr:referee:91473",
+            "name": "Hussein, Riem",
+            "nationality": "Germany",
+            "country_code": "DEU"
+        },
+        "neutral_venue": true,
+        "referee_assistants": [
+            {
+                "type": "first_assistant_referee",
+                "id": "sr:referee:1350342",
+                "name": "Cockburn, Kylie",
+                "nationality": "Scotland",
+                "country_code": "SCO"
+            },
+            {
+                "type": "second_assistant_referee",
+                "id": "sr:referee:81145",
+                "name": "Tepusa, Elena Mihaela",
+                "nationality": "Romania",
+                "country_code": "ROU"
+            },
+            {
+                "type": "fourth_official",
+                "id": "sr:referee:70004",
+                "name": "Adamkova, Jana",
+                "nationality": "Czech Republic",
+                "country_code": "CZE"
+            },
+            {
+                "type": "video_assistant_referee",
+                "id": "sr:referee:52417",
+                "name": "Zwayer, Felix",
+                "nationality": "Germany",
+                "country_code": "DEU"
+            }
+        ],
+        "venue": {
+            "id": "sr:venue:13184",
+            "name": "Stade de Nice",
+            "capacity": 36178,
+            "city_name": "Nice",
+            "country_name": "France",
+            "map_coordinates": "43.705139, 7.192583",
+            "country_code": "FRA"
+        },
+        "attendance": 12229,
+        "weather_info": {
+            "pitch": "good",
+            "weather_conditions": "medium"
+        }
+    },
+    "sport_event_status": {
+        "status": "closed",
+        "match_status": "ap",
+        "home_score": 1,
+        "away_score": 1,
+        "winner_id": "sr:competitor:7422",
+        "period_scores": [
+            {
+                "home_score": 1,
+                "away_score": 0,
+                "type": "regular_period",
+                "number": 1
+            },
+            {
+                "home_score": 0,
+                "away_score": 1,
+                "type": "regular_period",
+                "number": 2
+            },
+            {
+                "home_score": 0,
+                "away_score": 0,
+                "type": "overtime"
+            },
+            {
+                "home_score": 4,
+                "away_score": 1,
+                "type": "penalties"
+            }
+        ],
+        "ball_locations": [
+            {
+                "x": "84",
+                "y": "42",
+                "team": "away"
+            },
+            {
+                "x": "84",
+                "y": "42",
+                "team": "home"
+            },
+            {
+                "x": "77",
+                "y": "74",
+                "team": "home"
+            },
+            {
+                "x": "84",
+                "y": "56",
+                "team": "home"
+            }
+        ]
+    },
+    "coverage_info": {
+        "level": "gold",
+        "live_coverage": true,
+        "coverage": {
+            "basic_score": true,
+            "key_events": true,
+            "detailed_events": true,
+            "lineups": true,
+            "commentary": true
+        }
+    },
+    "timeline": [
+        {
+            "id": 570000126,
+            "type": "match_started",
+            "time": "2019-06-22T19:00:07+00:00",
+            "commentaries": [
+                {
+                    "text": "The first-half is now underway."
+                }
+            ]
+        },
+        {
+            "id": 570000128,
+            "type": "period_start",
+            "time": "2019-06-22T19:00:07+00:00",
+            "period": 1,
+            "period_type": "regular_period",
+            "period_name": "1st half"
+        },
+        {
+            "id": 570000292,
+            "type": "shot_off_target",
+            "time": "2019-06-22T19:00:39+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia's Sam Kerr misses with an attempt on goal."
+                }
+            ],
+            "match_time": 1,
+            "match_clock": "0:30",
+            "player": {
+                "id": "sr:player:154933",
+                "name": "Kerr, Sam"
+            },
+            "team": "away",
+            "x": 16,
+            "y": 58,
+            "period": 1,
+            "period_type": "regular_period",
+            "outcome": "miss"
+        },
+        {
+            "id": 570000298,
+            "type": "goal_kick",
+            "time": "2019-06-22T19:00:39+00:00",
+            "commentaries": [
+                {
+                    "text": "Goal kick for Norway at Stade de Nice."
+                }
+            ],
+            "match_time": 1,
+            "match_clock": "0:30",
+            "team": "home",
+            "x": 5,
+            "y": 50,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570000416,
+            "type": "throw_in",
+            "time": "2019-06-22T19:01:12+00:00",
+            "commentaries": [
+                {
+                    "text": "Throw-in for Norway at Stade de Nice."
+                }
+            ],
+            "match_time": 2,
+            "match_clock": "1:04",
+            "team": "home",
+            "x": 38,
+            "y": 96,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570000556,
+            "type": "throw_in",
+            "time": "2019-06-22T19:01:47+00:00",
+            "commentaries": [
+                {
+                    "text": "Can Norway get the ball into an attacking position from this throw-in in Australia's half?"
+                }
+            ],
+            "match_time": 2,
+            "match_clock": "1:39",
+            "team": "home",
+            "x": 65,
+            "y": 1,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570000842,
+            "type": "shot_off_target",
+            "time": "2019-06-22T19:02:57+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway's Vilde Boe Risa breaks free at Stade de Nice. But the strike goes wide of the post."
+                }
+            ],
+            "match_time": 3,
+            "match_clock": "2:49",
+            "player": {
+                "id": "sr:player:184937",
+                "name": "Risa, Vilde Boe"
+            },
+            "team": "home",
+            "x": 82,
+            "y": 58,
+            "period": 1,
+            "period_type": "regular_period",
+            "outcome": "miss"
+        },
+        {
+            "id": 570000846,
+            "type": "goal_kick",
+            "time": "2019-06-22T19:02:57+00:00",
+            "commentaries": [
+                {
+                    "text": "Ball goes out of play for a Australia goal kick."
+                }
+            ],
+            "match_time": 3,
+            "match_clock": "2:49",
+            "team": "away",
+            "x": 95,
+            "y": 50,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570000920,
+            "type": "throw_in",
+            "time": "2019-06-22T19:03:23+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway to take a throw-in in Australia territory."
+                }
+            ],
+            "match_time": 4,
+            "match_clock": "3:15",
+            "team": "home",
+            "x": 54,
+            "y": 3,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570001088,
+            "type": "goal_kick",
+            "time": "2019-06-22T19:04:14+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein awards Australia a goal kick."
+                }
+            ],
+            "match_time": 5,
+            "match_clock": "4:06",
+            "team": "away",
+            "x": 95,
+            "y": 50,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570001350,
+            "type": "shot_on_target",
+            "time": "2019-06-22T19:05:32+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia's Hayley Raso is on target but unsuccessful."
+                }
+            ],
+            "match_time": 6,
+            "match_clock": "5:24",
+            "player": {
+                "id": "sr:player:558626",
+                "name": "Raso, Hayley"
+            },
+            "team": "away",
+            "x": 10,
+            "y": 50,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570001354,
+            "type": "shot_saved",
+            "time": "2019-06-22T19:05:32+00:00",
+            "match_time": 6,
+            "match_clock": "5:24",
+            "team": "home",
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570001714,
+            "type": "throw_in",
+            "time": "2019-06-22T19:07:10+00:00",
+            "commentaries": [
+                {
+                    "text": "Throw-in Australia."
+                }
+            ],
+            "match_time": 8,
+            "match_clock": "7:02",
+            "team": "away",
+            "x": 80,
+            "y": 96,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570002100,
+            "type": "free_kick",
+            "time": "2019-06-22T19:08:35+00:00",
+            "commentaries": [
+                {
+                    "text": "Free kick Australia."
+                }
+            ],
+            "match_time": 9,
+            "match_clock": "8:27",
+            "team": "away",
+            "x": 42,
+            "y": 61,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570002130,
+            "type": "throw_in",
+            "time": "2019-06-22T19:08:44+00:00",
+            "commentaries": [
+                {
+                    "text": "Can Australia capitalize from this throw-in deep inside Norway's half?"
+                }
+            ],
+            "match_time": 9,
+            "match_clock": "8:35",
+            "team": "away",
+            "x": 19,
+            "y": 96,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570002272,
+            "type": "throw_in",
+            "time": "2019-06-22T19:09:18+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway awarded a throw-in in their own half."
+                }
+            ],
+            "match_time": 10,
+            "match_clock": "9:09",
+            "team": "home",
+            "x": 32,
+            "y": 3,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570002500,
+            "type": "throw_in",
+            "time": "2019-06-22T19:10:12+00:00",
+            "commentaries": [
+                {
+                    "text": "Throw-in for Australia in their own half."
+                }
+            ],
+            "match_time": 11,
+            "match_clock": "10:04",
+            "team": "away",
+            "x": 67,
+            "y": 97,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570002738,
+            "type": "shot_off_target",
+            "time": "2019-06-22T19:11:04+00:00",
+            "commentaries": [
+                {
+                    "text": "Sam Kerr for Australia gets in a strike but fails to hit the target."
+                }
+            ],
+            "match_time": 11,
+            "match_clock": "10:56",
+            "player": {
+                "id": "sr:player:154933",
+                "name": "Kerr, Sam"
+            },
+            "team": "away",
+            "x": 7,
+            "y": 48,
+            "period": 1,
+            "period_type": "regular_period",
+            "outcome": "miss"
+        },
+        {
+            "id": 570002742,
+            "type": "goal_kick",
+            "time": "2019-06-22T19:11:04+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway have a goal kick."
+                }
+            ],
+            "match_time": 11,
+            "match_clock": "10:56",
+            "team": "home",
+            "x": 5,
+            "y": 50,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570002880,
+            "type": "free_kick",
+            "time": "2019-06-22T19:11:39+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway awarded a free kick in their own half."
+                }
+            ],
+            "match_time": 12,
+            "match_clock": "11:31",
+            "team": "home",
+            "x": 37,
+            "y": 25,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570003032,
+            "type": "throw_in",
+            "time": "2019-06-22T19:12:10+00:00",
+            "commentaries": [
+                {
+                    "text": "Ball safe as Australia is awarded a throw-in in their half."
+                }
+            ],
+            "match_time": 13,
+            "match_clock": "12:01",
+            "team": "away",
+            "x": 61,
+            "y": 2,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570003334,
+            "type": "throw_in",
+            "time": "2019-06-22T19:13:17+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway have a dangerous throw-in."
+                }
+            ],
+            "match_time": 14,
+            "match_clock": "13:09",
+            "team": "home",
+            "x": 83,
+            "y": 95,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570003476,
+            "type": "throw_in",
+            "time": "2019-06-22T19:14:03+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein signals a Australia throw-in in Norway's half."
+                }
+            ],
+            "match_time": 14,
+            "match_clock": "13:55",
+            "team": "away",
+            "x": 25,
+            "y": 98,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570003668,
+            "type": "corner_kick",
+            "time": "2019-06-22T19:14:56+00:00",
+            "commentaries": [
+                {
+                    "text": "Corner awarded to Australia."
+                }
+            ],
+            "match_time": 15,
+            "match_clock": "14:48",
+            "player": {
+                "id": "sr:player:154930",
+                "name": "Van Egmond, Emily"
+            },
+            "team": "away",
+            "x": 5,
+            "y": 90,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570003850,
+            "type": "offside",
+            "time": "2019-06-22T19:15:57+00:00",
+            "commentaries": [
+                {
+                    "text": "At Stade de Nice, Norway are penalized for being offside."
+                }
+            ],
+            "match_time": 16,
+            "match_clock": "15:00",
+            "player": {
+                "id": "sr:player:26240",
+                "name": "Herlovsen, Isabell"
+            },
+            "team": "home",
+            "x": 74,
+            "y": 53,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570003934,
+            "type": "goal_kick",
+            "time": "2019-06-22T19:16:27+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway have a goal kick."
+                }
+            ],
+            "match_time": 17,
+            "match_clock": "16:19",
+            "team": "home",
+            "x": 5,
+            "y": 50,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570004152,
+            "type": "free_kick",
+            "time": "2019-06-22T19:17:01+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein signals a free kick to Norway in their own half."
+                }
+            ],
+            "match_time": 17,
+            "match_clock": "16:53",
+            "team": "home",
+            "x": 27,
+            "y": 78,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570004214,
+            "type": "throw_in",
+            "time": "2019-06-22T19:17:24+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia needs to be cautious. Norway have an attacking throw-in."
+                }
+            ],
+            "match_time": 18,
+            "match_clock": "17:16",
+            "team": "home",
+            "x": 80,
+            "y": 98,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570004250,
+            "type": "goal_kick",
+            "time": "2019-06-22T19:17:37+00:00",
+            "commentaries": [
+                {
+                    "text": "Ball goes out of play for a Australia goal kick."
+                }
+            ],
+            "match_time": 18,
+            "match_clock": "17:29",
+            "team": "away",
+            "x": 95,
+            "y": 50,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570004364,
+            "type": "shot_on_target",
+            "time": "2019-06-22T19:18:15+00:00",
+            "commentaries": [
+                {
+                    "text": "Caroline Graham Hansen for Norway drives towards goal at Stade de Nice. But the finish is unsuccessful."
+                }
+            ],
+            "match_time": 19,
+            "match_clock": "18:07",
+            "player": {
+                "id": "sr:player:114541",
+                "name": "Hansen, Caroline Graham"
+            },
+            "team": "home",
+            "x": 91,
+            "y": 69,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570004368,
+            "type": "shot_saved",
+            "time": "2019-06-22T19:18:15+00:00",
+            "match_time": 19,
+            "match_clock": "18:07",
+            "team": "away",
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570004402,
+            "type": "throw_in",
+            "time": "2019-06-22T19:18:22+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein signals a throw-in for Norway, close to Australia's area."
+                }
+            ],
+            "match_time": 19,
+            "match_clock": "18:14",
+            "team": "home",
+            "x": 80,
+            "y": 3,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570004428,
+            "type": "throw_in",
+            "time": "2019-06-22T19:18:31+00:00",
+            "commentaries": [
+                {
+                    "text": "Throw-in Australia."
+                }
+            ],
+            "match_time": 19,
+            "match_clock": "18:23",
+            "team": "away",
+            "x": 76,
+            "y": 4,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570004488,
+            "type": "throw_in",
+            "time": "2019-06-22T19:18:50+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein signals a Norway throw-in in Australia's half."
+                }
+            ],
+            "match_time": 19,
+            "match_clock": "18:42",
+            "team": "home",
+            "x": 67,
+            "y": 3,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570004608,
+            "type": "throw_in",
+            "time": "2019-06-22T19:19:37+00:00",
+            "commentaries": [
+                {
+                    "text": "Can Norway get the ball into an attacking position from this throw-in in Australia's half?"
+                }
+            ],
+            "match_time": 20,
+            "match_clock": "19:29",
+            "team": "home",
+            "x": 62,
+            "y": 3,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570004740,
+            "type": "throw_in",
+            "time": "2019-06-22T19:20:16+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway to take a throw-in in Australia territory."
+                }
+            ],
+            "match_time": 21,
+            "match_clock": "20:09",
+            "team": "home",
+            "x": 67,
+            "y": 98,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570005174,
+            "type": "throw_in",
+            "time": "2019-06-22T19:22:58+00:00",
+            "commentaries": [
+                {
+                    "text": "Can Norway get the ball into an attacking position from this throw-in in Australia's half?"
+                }
+            ],
+            "match_time": 23,
+            "match_clock": "22:50",
+            "team": "home",
+            "x": 53,
+            "y": 96,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570005252,
+            "type": "free_kick",
+            "time": "2019-06-22T19:23:29+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia awarded a free kick in their own half."
+                }
+            ],
+            "match_time": 24,
+            "match_clock": "23:21",
+            "team": "away",
+            "x": 66,
+            "y": 83,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570005306,
+            "type": "throw_in",
+            "time": "2019-06-22T19:23:45+00:00",
+            "commentaries": [
+                {
+                    "text": "Throw-in for Norway in their own half."
+                }
+            ],
+            "match_time": 24,
+            "match_clock": "23:37",
+            "team": "home",
+            "x": 38,
+            "y": 2,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570005454,
+            "type": "shot_off_target",
+            "time": "2019-06-22T19:24:22+00:00",
+            "commentaries": [
+                {
+                    "text": "In Nice Norway attack through Caroline Graham Hansen. The finish is off target, however."
+                }
+            ],
+            "match_time": 25,
+            "match_clock": "24:15",
+            "player": {
+                "id": "sr:player:114541",
+                "name": "Hansen, Caroline Graham"
+            },
+            "team": "home",
+            "x": 81,
+            "y": 75,
+            "period": 1,
+            "period_type": "regular_period",
+            "outcome": "miss"
+        },
+        {
+            "id": 570005456,
+            "type": "goal_kick",
+            "time": "2019-06-22T19:24:22+00:00",
+            "commentaries": [
+                {
+                    "text": "Goal kick for Australia at Stade de Nice."
+                }
+            ],
+            "match_time": 25,
+            "match_clock": "24:15",
+            "team": "away",
+            "x": 95,
+            "y": 50,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570005642,
+            "type": "free_kick",
+            "time": "2019-06-22T19:25:36+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein signals a free kick to Australia in their own half."
+                }
+            ],
+            "match_time": 26,
+            "match_clock": "25:28",
+            "team": "away",
+            "x": 55,
+            "y": 58,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570005776,
+            "type": "throw_in",
+            "time": "2019-06-22T19:26:33+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein signals a Australia throw-in in Norway's half."
+                }
+            ],
+            "match_time": 27,
+            "match_clock": "26:25",
+            "team": "away",
+            "x": 44,
+            "y": 1,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570005868,
+            "type": "throw_in",
+            "time": "2019-06-22T19:27:11+00:00",
+            "commentaries": [
+                {
+                    "text": "Throw-in for Norway close to the penalty box."
+                }
+            ],
+            "match_time": 28,
+            "match_clock": "27:03",
+            "team": "home",
+            "x": 80,
+            "y": 2,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570005924,
+            "type": "free_kick",
+            "time": "2019-06-22T19:27:36+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia awarded a free kick in their own half."
+                }
+            ],
+            "match_time": 28,
+            "match_clock": "27:29",
+            "team": "away",
+            "x": 83,
+            "y": 65,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570006050,
+            "type": "throw_in",
+            "time": "2019-06-22T19:28:22+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway awarded a throw-in in their own half."
+                }
+            ],
+            "match_time": 29,
+            "match_clock": "28:14",
+            "team": "home",
+            "x": 45,
+            "y": 4,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570006184,
+            "type": "throw_in",
+            "time": "2019-06-22T19:29:03+00:00",
+            "commentaries": [
+                {
+                    "text": "Can Australia capitalize from this throw-in deep inside Norway's half?"
+                }
+            ],
+            "match_time": 29,
+            "match_clock": "28:55",
+            "team": "away",
+            "x": 20,
+            "y": 4,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570006784,
+            "type": "score_change",
+            "time": "2019-06-22T19:32:16+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway take a 1-0 lead thanks to Isabell Herlovsen."
+                },
+                {
+                    "text": "Great play from Karina Saevik to set up the goal."
+                }
+            ],
+            "match_time": 31,
+            "match_clock": "30:52",
+            "team": "home",
+            "x": 89,
+            "y": 58,
+            "period": 1,
+            "period_type": "regular_period",
+            "home_score": 1,
+            "away_score": 0,
+            "goal_scorer": {
+                "id": "sr:player:26240",
+                "name": "Herlovsen, Isabell"
+            },
+            "assist": {
+                "id": "sr:player:184923",
+                "type": "primary",
+                "name": "Saevik, Karina"
+            }
+        },
+        {
+            "id": 570006862,
+            "type": "throw_in",
+            "time": "2019-06-22T19:32:51+00:00",
+            "commentaries": [
+                {
+                    "text": "Throw-in for Norway at Stade de Nice."
+                }
+            ],
+            "match_time": 33,
+            "match_clock": "32:43",
+            "team": "home",
+            "x": 35,
+            "y": 98,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570007506,
+            "type": "corner_kick",
+            "time": "2019-06-22T19:36:51+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway have been awarded a corner by Riem Hussein."
+                }
+            ],
+            "match_time": 37,
+            "match_clock": "36:42",
+            "player": {
+                "id": "sr:player:114541",
+                "name": "Hansen, Caroline Graham"
+            },
+            "team": "home",
+            "x": 95,
+            "y": 90,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570007928,
+            "type": "corner_kick",
+            "time": "2019-06-22T19:39:07+00:00",
+            "commentaries": [
+                {
+                    "text": "Corner awarded to Norway."
+                }
+            ],
+            "match_time": 39,
+            "match_clock": "38:00",
+            "player": {
+                "id": "sr:player:96004",
+                "name": "Reiten, Guro"
+            },
+            "team": "home",
+            "x": 95,
+            "y": 90,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570007764,
+            "type": "corner_kick",
+            "time": "2019-06-22T19:38:17+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway have been awarded a corner by Riem Hussein."
+                }
+            ],
+            "match_time": 39,
+            "match_clock": "38:09",
+            "player": {
+                "id": "sr:player:114541",
+                "name": "Hansen, Caroline Graham"
+            },
+            "team": "home",
+            "x": 95,
+            "y": 5,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570007900,
+            "type": "shot_on_target",
+            "time": "2019-06-22T19:39:03+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway's Ingrid Moe Wold gets in a shot on goal at Stade de Nice. But the effort is unsuccessful."
+                }
+            ],
+            "match_time": 39,
+            "match_clock": "38:54",
+            "player": {
+                "id": "sr:player:68138",
+                "name": "Wold, Ingrid Moe"
+            },
+            "team": "home",
+            "x": 97,
+            "y": 95,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570007902,
+            "type": "shot_saved",
+            "time": "2019-06-22T19:39:03+00:00",
+            "match_time": 39,
+            "match_clock": "38:55",
+            "team": "away",
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570007982,
+            "type": "corner_kick",
+            "time": "2019-06-22T19:39:29+00:00",
+            "commentaries": [
+                {
+                    "text": "Corner awarded to Norway."
+                }
+            ],
+            "match_time": 40,
+            "match_clock": "39:20",
+            "player": {
+                "id": "sr:player:96004",
+                "name": "Reiten, Guro"
+            },
+            "team": "home",
+            "x": 95,
+            "y": 90,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570008090,
+            "type": "corner_kick",
+            "time": "2019-06-22T19:40:16+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway have been awarded a corner by Riem Hussein."
+                }
+            ],
+            "match_time": 41,
+            "match_clock": "40:08",
+            "player": {
+                "id": "sr:player:114541",
+                "name": "Hansen, Caroline Graham"
+            },
+            "team": "home",
+            "x": 95,
+            "y": 5,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570008356,
+            "type": "possible_video_assistant_referee",
+            "time": "2019-06-22T19:41:56+00:00",
+            "match_time": 42,
+            "match_clock": "41:48",
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570008372,
+            "type": "video_assistant_referee",
+            "time": "2019-06-22T19:42:00+00:00",
+            "match_time": 42,
+            "match_clock": "41:51",
+            "period": 1,
+            "period_type": "regular_period",
+            "description": "penalty"
+        },
+        {
+            "id": 570008808,
+            "type": "video_assistant_referee_over",
+            "time": "2019-06-22T19:44:49+00:00",
+            "match_time": 45,
+            "match_clock": "44:41",
+            "period": 1,
+            "period_type": "regular_period",
+            "description": "call_overturned"
+        },
+        {
+            "id": 570008908,
+            "type": "injury_time_shown",
+            "time": "2019-06-22T19:45:20+00:00",
+            "match_time": 45,
+            "match_clock": "45:00",
+            "stoppage_time": "1",
+            "period": 1,
+            "period_type": "regular_period",
+            "injury_time_announced": 4
+        },
+        {
+            "id": 570008976,
+            "type": "throw_in",
+            "time": "2019-06-22T19:45:38+00:00",
+            "commentaries": [
+                {
+                    "text": "Ball safe as Norway is awarded a throw-in in their half."
+                }
+            ],
+            "match_time": 45,
+            "match_clock": "45:00",
+            "stoppage_time": "1",
+            "team": "home",
+            "x": 14,
+            "y": 99,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570009062,
+            "type": "throw_in",
+            "time": "2019-06-22T19:46:02+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia to take a throw-in in Norway territory."
+                }
+            ],
+            "match_time": 45,
+            "match_clock": "45:00",
+            "stoppage_time": "1",
+            "team": "away",
+            "x": 33,
+            "y": 96,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570009102,
+            "type": "free_kick",
+            "time": "2019-06-22T19:46:16+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein signals a free kick to Australia."
+                }
+            ],
+            "match_time": 45,
+            "match_clock": "45:00",
+            "stoppage_time": "2",
+            "team": "away",
+            "x": 23,
+            "y": 19,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570009146,
+            "type": "goal_kick",
+            "time": "2019-06-22T19:46:27+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein awards Norway a goal kick."
+                }
+            ],
+            "match_time": 45,
+            "match_clock": "45:00",
+            "stoppage_time": "2",
+            "team": "home",
+            "x": 5,
+            "y": 50,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570009266,
+            "type": "throw_in",
+            "time": "2019-06-22T19:47:17+00:00",
+            "commentaries": [
+                {
+                    "text": "Can Australia get the ball into an attacking position from this throw-in in Norway's half?"
+                }
+            ],
+            "match_time": 45,
+            "match_clock": "45:00",
+            "stoppage_time": "3",
+            "team": "away",
+            "x": 40,
+            "y": 4,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570009340,
+            "type": "throw_in",
+            "time": "2019-06-22T19:47:58+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia to take a throw-in in Norway territory."
+                }
+            ],
+            "match_time": 45,
+            "match_clock": "45:00",
+            "stoppage_time": "3",
+            "team": "away",
+            "x": 31,
+            "y": 95,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570009374,
+            "type": "throw_in",
+            "time": "2019-06-22T19:48:10+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway needs to be cautious. Australia have an attacking throw-in."
+                }
+            ],
+            "match_time": 45,
+            "match_clock": "45:00",
+            "stoppage_time": "4",
+            "team": "away",
+            "x": 12,
+            "y": 98,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570009424,
+            "type": "throw_in",
+            "time": "2019-06-22T19:48:30+00:00",
+            "commentaries": [
+                {
+                    "text": "Throw-in for Australia close to the penalty box."
+                }
+            ],
+            "match_time": 45,
+            "match_clock": "45:00",
+            "stoppage_time": "4",
+            "team": "away",
+            "x": 20,
+            "y": 97,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570009480,
+            "type": "goal_kick",
+            "time": "2019-06-22T19:48:50+00:00",
+            "commentaries": [
+                {
+                    "text": "Ball goes out of play for a Norway goal kick."
+                }
+            ],
+            "match_time": 45,
+            "match_clock": "45:00",
+            "stoppage_time": "4",
+            "team": "home",
+            "x": 5,
+            "y": 50,
+            "period": 1,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570009556,
+            "type": "break_start",
+            "time": "2019-06-22T19:49:12+00:00",
+            "period_name": "Pause"
+        },
+        {
+            "id": 570011598,
+            "type": "period_start",
+            "time": "2019-06-22T20:04:10+00:00",
+            "period": 2,
+            "period_type": "regular_period",
+            "period_name": "2nd half"
+        },
+        {
+            "id": 570011660,
+            "type": "throw_in",
+            "time": "2019-06-22T20:04:33+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein signals a Australia throw-in in Norway's half."
+                }
+            ],
+            "match_time": 46,
+            "match_clock": "45:23",
+            "team": "away",
+            "x": 22,
+            "y": 98,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570011690,
+            "type": "throw_in",
+            "time": "2019-06-22T20:04:50+00:00",
+            "commentaries": [
+                {
+                    "text": "Throw-in Norway."
+                }
+            ],
+            "match_time": 46,
+            "match_clock": "45:39",
+            "team": "home",
+            "x": 44,
+            "y": 96,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570011772,
+            "type": "goal_kick",
+            "time": "2019-06-22T20:05:28+00:00",
+            "commentaries": [
+                {
+                    "text": "Goal kick for Norway at Stade de Nice."
+                }
+            ],
+            "match_time": 47,
+            "match_clock": "46:18",
+            "team": "home",
+            "x": 5,
+            "y": 50,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570011878,
+            "type": "free_kick",
+            "time": "2019-06-22T20:06:15+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein signals a free kick to Norway."
+                }
+            ],
+            "match_time": 48,
+            "match_clock": "47:04",
+            "team": "home",
+            "x": 69,
+            "y": 76,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570011996,
+            "type": "goal_kick",
+            "time": "2019-06-22T20:07:01+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein awards Australia a goal kick."
+                }
+            ],
+            "match_time": 48,
+            "match_clock": "47:50",
+            "team": "away",
+            "x": 95,
+            "y": 50,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570012020,
+            "type": "free_kick",
+            "time": "2019-06-22T20:07:21+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein signals a free kick to Australia in their own half."
+                }
+            ],
+            "match_time": 49,
+            "match_clock": "48:11",
+            "team": "away",
+            "x": 74,
+            "y": 62,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570012276,
+            "type": "shot_off_target",
+            "time": "2019-06-22T20:09:13+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia are coming forward and Hayley Raso gets in a strike, it misses the target, however."
+                }
+            ],
+            "match_time": 51,
+            "match_clock": "50:01",
+            "player": {
+                "id": "sr:player:558626",
+                "name": "Raso, Hayley"
+            },
+            "team": "away",
+            "x": 14,
+            "y": 54,
+            "period": 2,
+            "period_type": "regular_period",
+            "outcome": "miss"
+        },
+        {
+            "id": 570012278,
+            "type": "goal_kick",
+            "time": "2019-06-22T20:09:13+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway have a goal kick."
+                }
+            ],
+            "match_time": 51,
+            "match_clock": "50:01",
+            "team": "home",
+            "x": 5,
+            "y": 50,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570012312,
+            "type": "throw_in",
+            "time": "2019-06-22T20:09:43+00:00",
+            "commentaries": [
+                {
+                    "text": "Can Norway get the ball into an attacking position from this throw-in in Australia's half?"
+                }
+            ],
+            "match_time": 51,
+            "match_clock": "50:32",
+            "team": "home",
+            "x": 70,
+            "y": 3,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570012402,
+            "type": "throw_in",
+            "time": "2019-06-22T20:10:19+00:00",
+            "commentaries": [
+                {
+                    "text": "Ball safe as Australia is awarded a throw-in in their half."
+                }
+            ],
+            "match_time": 52,
+            "match_clock": "51:08",
+            "team": "away",
+            "x": 56,
+            "y": 3,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570012470,
+            "type": "shot_off_target",
+            "time": "2019-06-22T20:10:39+00:00",
+            "commentaries": [
+                {
+                    "text": "Caitlin Foord for Australia gets in a strike but fails to hit the target."
+                }
+            ],
+            "match_time": 52,
+            "match_clock": "51:27",
+            "player": {
+                "id": "sr:player:154932",
+                "name": "Foord, Caitlin"
+            },
+            "team": "away",
+            "x": 19,
+            "y": 64,
+            "period": 2,
+            "period_type": "regular_period",
+            "outcome": "miss"
+        },
+        {
+            "id": 570012472,
+            "type": "goal_kick",
+            "time": "2019-06-22T20:10:39+00:00",
+            "commentaries": [
+                {
+                    "text": "Goal kick for Norway at Stade de Nice."
+                }
+            ],
+            "match_time": 52,
+            "match_clock": "51:28",
+            "team": "home",
+            "x": 5,
+            "y": 50,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570012614,
+            "type": "throw_in",
+            "time": "2019-06-22T20:11:14+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia to take a throw-in in Norway territory."
+                }
+            ],
+            "match_time": 53,
+            "match_clock": "52:02",
+            "team": "away",
+            "x": 42,
+            "y": 3,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570012664,
+            "type": "throw_in",
+            "time": "2019-06-22T20:11:36+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia awarded a throw-in in their own half."
+                }
+            ],
+            "match_time": 53,
+            "match_clock": "52:25",
+            "team": "away",
+            "x": 82,
+            "y": 4,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570012690,
+            "type": "free_kick",
+            "time": "2019-06-22T20:11:53+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein signals a free kick to Australia just outside Norway's area."
+                }
+            ],
+            "match_time": 53,
+            "match_clock": "52:41",
+            "team": "away",
+            "x": 19,
+            "y": 43,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570012700,
+            "type": "yellow_card",
+            "time": "2019-06-22T20:11:58+00:00",
+            "commentaries": [
+                {
+                    "text": "Kristine Minde (Norway) gets a yellow card."
+                }
+            ],
+            "match_time": 53,
+            "match_clock": "52:45",
+            "player": {
+                "id": "sr:player:36106",
+                "name": "Minde, Kristine"
+            },
+            "team": "home",
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570012832,
+            "type": "throw_in",
+            "time": "2019-06-22T20:13:30+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein signals a Australia throw-in in Norway's half."
+                }
+            ],
+            "match_time": 55,
+            "match_clock": "54:19",
+            "team": "away",
+            "x": 28,
+            "y": 96,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570012950,
+            "type": "shot_on_target",
+            "time": "2019-06-22T20:14:36+00:00",
+            "commentaries": [
+                {
+                    "text": "Caroline Graham Hansen of Norway smashes in a shot on target. The keeper saves, though."
+                }
+            ],
+            "match_time": 56,
+            "match_clock": "55:00",
+            "player": {
+                "id": "sr:player:114541",
+                "name": "Hansen, Caroline Graham"
+            },
+            "team": "home",
+            "x": 92,
+            "y": 55,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570012954,
+            "type": "shot_saved",
+            "time": "2019-06-22T20:14:36+00:00",
+            "match_time": 56,
+            "match_clock": "55:25",
+            "team": "away",
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570012970,
+            "type": "shot_off_target",
+            "time": "2019-06-22T20:14:48+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway are pushing forward but Ingrid Syrstad Engen's finish is wide of the goal."
+                }
+            ],
+            "match_time": 56,
+            "match_clock": "55:37",
+            "player": {
+                "id": "sr:player:759968",
+                "name": "Engen, Ingrid Syrstad"
+            },
+            "team": "home",
+            "x": 82,
+            "y": 52,
+            "period": 2,
+            "period_type": "regular_period",
+            "outcome": "miss"
+        },
+        {
+            "id": 570012974,
+            "type": "goal_kick",
+            "time": "2019-06-22T20:14:48+00:00",
+            "commentaries": [
+                {
+                    "text": "Ball goes out of play for a Australia goal kick."
+                }
+            ],
+            "match_time": 56,
+            "match_clock": "55:37",
+            "team": "away",
+            "x": 95,
+            "y": 50,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570013048,
+            "type": "free_kick",
+            "time": "2019-06-22T20:15:28+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway awarded a free kick in their own half."
+                }
+            ],
+            "match_time": 57,
+            "match_clock": "56:17",
+            "team": "home",
+            "x": 18,
+            "y": 49,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570013252,
+            "type": "corner_kick",
+            "time": "2019-06-22T20:17:16+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia have been awarded a corner by Riem Hussein."
+                }
+            ],
+            "match_time": 59,
+            "match_clock": "58:00",
+            "player": {
+                "id": "sr:player:154930",
+                "name": "Van Egmond, Emily"
+            },
+            "team": "away",
+            "x": 5,
+            "y": 90,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570013268,
+            "type": "shot_on_target",
+            "time": "2019-06-22T20:17:26+00:00",
+            "commentaries": [
+                {
+                    "text": "Sam Kerr (Australia) goes close with a header but the ball is scrambled away by Norway defenders."
+                }
+            ],
+            "match_time": 59,
+            "match_clock": "58:15",
+            "player": {
+                "id": "sr:player:154933",
+                "name": "Kerr, Sam"
+            },
+            "team": "away",
+            "x": 13,
+            "y": 38,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570013270,
+            "type": "shot_saved",
+            "time": "2019-06-22T20:17:26+00:00",
+            "match_time": 59,
+            "match_clock": "58:15",
+            "team": "home",
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570013380,
+            "type": "offside",
+            "time": "2019-06-22T20:18:56+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia are too eager and fall into an offside trap."
+                }
+            ],
+            "match_time": 60,
+            "match_clock": "59:45",
+            "player": {
+                "id": "sr:player:154933",
+                "name": "Kerr, Sam"
+            },
+            "team": "away",
+            "x": 10,
+            "y": 51,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570013424,
+            "type": "throw_in",
+            "time": "2019-06-22T20:19:38+00:00",
+            "commentaries": [
+                {
+                    "text": "Can Norway get the ball into an attacking position from this throw-in in Australia's half?"
+                }
+            ],
+            "match_time": 61,
+            "match_clock": "60:27",
+            "team": "home",
+            "x": 62,
+            "y": 98,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570013516,
+            "type": "shot_off_target",
+            "time": "2019-06-22T20:20:48+00:00",
+            "commentaries": [
+                {
+                    "text": "Tameka Yallop of Australia gets in a strike, but is off target."
+                }
+            ],
+            "match_time": 62,
+            "match_clock": "61:00",
+            "player": {
+                "id": "sr:player:154929",
+                "name": "Yallop, Tameka"
+            },
+            "team": "away",
+            "x": 12,
+            "y": 46,
+            "period": 2,
+            "period_type": "regular_period",
+            "outcome": "miss"
+        },
+        {
+            "id": 570013518,
+            "type": "goal_kick",
+            "time": "2019-06-22T20:20:48+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein awards Norway a goal kick."
+                }
+            ],
+            "match_time": 62,
+            "match_clock": "61:37",
+            "team": "home",
+            "x": 5,
+            "y": 50,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570013596,
+            "type": "goal_kick",
+            "time": "2019-06-22T20:21:37+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway have a goal kick."
+                }
+            ],
+            "match_time": 63,
+            "match_clock": "62:26",
+            "team": "home",
+            "x": 5,
+            "y": 50,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570013642,
+            "type": "shot_on_target",
+            "time": "2019-06-22T20:22:28+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway's Caroline Graham Hansen gets in a shot on goal at Stade de Nice. But the effort is unsuccessful."
+                }
+            ],
+            "match_time": 64,
+            "match_clock": "63:17",
+            "player": {
+                "id": "sr:player:114541",
+                "name": "Hansen, Caroline Graham"
+            },
+            "team": "home",
+            "x": 85,
+            "y": 64,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570013644,
+            "type": "shot_saved",
+            "time": "2019-06-22T20:22:28+00:00",
+            "match_time": 64,
+            "match_clock": "63:17",
+            "team": "away",
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570013744,
+            "type": "corner_kick",
+            "time": "2019-06-22T20:23:38+00:00",
+            "commentaries": [
+                {
+                    "text": "Corner awarded to Australia."
+                }
+            ],
+            "match_time": 65,
+            "match_clock": "64:28",
+            "player": {
+                "id": "sr:player:154925",
+                "name": "Kellond-Knight"
+            },
+            "team": "away",
+            "x": 5,
+            "y": 5,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570013756,
+            "type": "free_kick",
+            "time": "2019-06-22T20:23:46+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein signals a free kick to Norway in their own half."
+                }
+            ],
+            "match_time": 65,
+            "match_clock": "64:36",
+            "team": "home",
+            "x": 18,
+            "y": 61,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570013822,
+            "type": "throw_in",
+            "time": "2019-06-22T20:24:38+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway to take a throw-in in Australia territory."
+                }
+            ],
+            "match_time": 66,
+            "match_clock": "65:27",
+            "team": "home",
+            "x": 66,
+            "y": 97,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570013890,
+            "type": "goal_kick",
+            "time": "2019-06-22T20:25:34+00:00",
+            "commentaries": [
+                {
+                    "text": "Ball goes out of play for a Australia goal kick."
+                }
+            ],
+            "match_time": 67,
+            "match_clock": "66:23",
+            "team": "away",
+            "x": 95,
+            "y": 50,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570014024,
+            "type": "shot_off_target",
+            "time": "2019-06-22T20:27:20+00:00",
+            "commentaries": [
+                {
+                    "text": "In Nice Australia attack through Alanna Kennedy. The finish is off target, however."
+                }
+            ],
+            "match_time": 69,
+            "match_clock": "68:00",
+            "player": {
+                "id": "sr:player:346188",
+                "name": "Kennedy, Alanna"
+            },
+            "team": "away",
+            "x": 19,
+            "y": 47,
+            "period": 2,
+            "period_type": "regular_period",
+            "outcome": "miss"
+        },
+        {
+            "id": 570014030,
+            "type": "goal_kick",
+            "time": "2019-06-22T20:27:20+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein awards Norway a goal kick."
+                }
+            ],
+            "match_time": 69,
+            "match_clock": "68:09",
+            "team": "home",
+            "x": 5,
+            "y": 50,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570014270,
+            "type": "goal_kick",
+            "time": "2019-06-22T20:30:15+00:00",
+            "commentaries": [
+                {
+                    "text": "Goal kick for Norway at Stade de Nice."
+                }
+            ],
+            "match_time": 72,
+            "match_clock": "71:04",
+            "team": "home",
+            "x": 5,
+            "y": 50,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570014300,
+            "type": "substitution",
+            "time": "2019-06-22T20:30:46+00:00",
+            "commentaries": [
+                {
+                    "text": "Martin Sjogren is making the team's first substitution at Stade de Nice with Frida Maanum replacing Karina Saevik."
+                }
+            ],
+            "match_time": 72,
+            "match_clock": "71:35",
+            "team": "home",
+            "period": 2,
+            "period_type": "regular_period",
+            "player_out": {
+                "id": "sr:player:184923",
+                "name": "Saevik, Karina"
+            },
+            "player_in": {
+                "id": "sr:player:759924",
+                "name": "Maanum, Frida"
+            }
+        },
+        {
+            "id": 570014412,
+            "type": "offside",
+            "time": "2019-06-22T20:32:10+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia are caught offside."
+                }
+            ],
+            "match_time": 73,
+            "match_clock": "72:00",
+            "player": {
+                "id": "sr:player:558626",
+                "name": "Raso, Hayley"
+            },
+            "team": "away",
+            "x": 15,
+            "y": 21,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570014356,
+            "type": "throw_in",
+            "time": "2019-06-22T20:31:18+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein signals a Norway throw-in in Australia's half."
+                }
+            ],
+            "match_time": 73,
+            "match_clock": "72:08",
+            "team": "home",
+            "x": 61,
+            "y": 3,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570014478,
+            "type": "throw_in",
+            "time": "2019-06-22T20:32:58+00:00",
+            "commentaries": [
+                {
+                    "text": "Throw-in for Australia at Stade de Nice."
+                }
+            ],
+            "match_time": 74,
+            "match_clock": "73:48",
+            "team": "away",
+            "x": 74,
+            "y": 2,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570014510,
+            "type": "substitution",
+            "time": "2019-06-22T20:33:10+00:00",
+            "commentaries": [
+                {
+                    "text": "Gielnik is replacing Hayley Raso for Australia at Stade de Nice."
+                }
+            ],
+            "match_time": 74,
+            "match_clock": "73:51",
+            "team": "away",
+            "period": 2,
+            "period_type": "regular_period",
+            "player_out": {
+                "id": "sr:player:558626",
+                "name": "Raso, Hayley"
+            },
+            "player_in": {
+                "id": "sr:player:1132717",
+                "name": "Gielnik"
+            }
+        },
+        {
+            "id": 570014658,
+            "type": "shot_off_target",
+            "time": "2019-06-22T20:34:37+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia's Tameka Yallop breaks free at Stade de Nice. But the strike goes wide of the post."
+                }
+            ],
+            "match_time": 76,
+            "match_clock": "75:26",
+            "player": {
+                "id": "sr:player:154929",
+                "name": "Yallop, Tameka"
+            },
+            "team": "away",
+            "x": 20,
+            "y": 38,
+            "period": 2,
+            "period_type": "regular_period",
+            "outcome": "miss"
+        },
+        {
+            "id": 570014660,
+            "type": "goal_kick",
+            "time": "2019-06-22T20:34:37+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway have a goal kick."
+                }
+            ],
+            "match_time": 76,
+            "match_clock": "75:26",
+            "team": "home",
+            "x": 5,
+            "y": 50,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570014684,
+            "type": "substitution",
+            "time": "2019-06-22T20:35:02+00:00",
+            "commentaries": [
+                {
+                    "text": "Martin Sjogren (Norway) is making a second substitution, with Lisa-Marie Utland replacing Isabell Herlovsen."
+                }
+            ],
+            "match_time": 77,
+            "match_clock": "76:00",
+            "team": "home",
+            "period": 2,
+            "period_type": "regular_period",
+            "player_out": {
+                "id": "sr:player:26240",
+                "name": "Herlovsen, Isabell"
+            },
+            "player_in": {
+                "id": "sr:player:91139",
+                "name": "Utland, Lisa-Marie"
+            }
+        },
+        {
+            "id": 570014842,
+            "type": "throw_in",
+            "time": "2019-06-22T20:36:46+00:00",
+            "commentaries": [
+                {
+                    "text": "Can Australia get the ball into an attacking position from this throw-in in Norway's half?"
+                }
+            ],
+            "match_time": 78,
+            "match_clock": "77:35",
+            "team": "away",
+            "x": 41,
+            "y": 4,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570014968,
+            "type": "free_kick",
+            "time": "2019-06-22T20:37:47+00:00",
+            "commentaries": [
+                {
+                    "text": "Free kick Australia."
+                }
+            ],
+            "match_time": 79,
+            "match_clock": "78:36",
+            "team": "away",
+            "x": 43,
+            "y": 59,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570015094,
+            "type": "goal_kick",
+            "time": "2019-06-22T20:39:03+00:00",
+            "commentaries": [
+                {
+                    "text": "Ball goes out of play for a Norway goal kick."
+                }
+            ],
+            "match_time": 80,
+            "match_clock": "79:53",
+            "team": "home",
+            "x": 5,
+            "y": 50,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570015156,
+            "type": "throw_in",
+            "time": "2019-06-22T20:39:59+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia have a dangerous throw-in."
+                }
+            ],
+            "match_time": 81,
+            "match_clock": "80:49",
+            "team": "away",
+            "x": 20,
+            "y": 2,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570015196,
+            "type": "throw_in",
+            "time": "2019-06-22T20:40:24+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia to take a throw-in in Norway territory."
+                }
+            ],
+            "match_time": 82,
+            "match_clock": "81:14",
+            "team": "away",
+            "x": 40,
+            "y": 3,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570015356,
+            "type": "score_change",
+            "time": "2019-06-22T20:42:58+00:00",
+            "commentaries": [
+                {
+                    "text": "Kellond-Knight grabs a goal to bring things level at 1-1 at Stade de Nice."
+                }
+            ],
+            "match_time": 83,
+            "match_clock": "82:00",
+            "team": "away",
+            "x": 7,
+            "y": 44,
+            "period": 2,
+            "period_type": "regular_period",
+            "home_score": 1,
+            "away_score": 1,
+            "goal_scorer": {
+                "id": "sr:player:154925",
+                "name": "Kellond-Knight"
+            }
+        },
+        {
+            "id": 570015262,
+            "type": "throw_in",
+            "time": "2019-06-22T20:41:20+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein signals a Australia throw-in in Norway's half."
+                }
+            ],
+            "match_time": 83,
+            "match_clock": "82:08",
+            "team": "away",
+            "x": 22,
+            "y": 2,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570015314,
+            "type": "corner_kick",
+            "time": "2019-06-22T20:42:01+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia have been awarded a corner by Riem Hussein."
+                }
+            ],
+            "match_time": 83,
+            "match_clock": "82:50",
+            "player": {
+                "id": "sr:player:154925",
+                "name": "Kellond-Knight"
+            },
+            "team": "away",
+            "x": 5,
+            "y": 5,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570015406,
+            "type": "throw_in",
+            "time": "2019-06-22T20:43:35+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein signals a Norway throw-in in Australia's half."
+                }
+            ],
+            "match_time": 85,
+            "match_clock": "84:24",
+            "team": "home",
+            "x": 53,
+            "y": 98,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570015456,
+            "type": "corner_kick",
+            "time": "2019-06-22T20:44:21+00:00",
+            "commentaries": [
+                {
+                    "text": "Corner awarded to Norway."
+                }
+            ],
+            "match_time": 86,
+            "match_clock": "85:10",
+            "player": {
+                "id": "sr:player:96004",
+                "name": "Reiten, Guro"
+            },
+            "team": "home",
+            "x": 95,
+            "y": 90,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570015478,
+            "type": "goal_kick",
+            "time": "2019-06-22T20:44:36+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia have a goal kick."
+                }
+            ],
+            "match_time": 86,
+            "match_clock": "85:25",
+            "team": "away",
+            "x": 95,
+            "y": 50,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570015580,
+            "type": "free_kick",
+            "time": "2019-06-22T20:45:21+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway awarded a free kick in their own half."
+                }
+            ],
+            "match_time": 87,
+            "match_clock": "86:10",
+            "team": "home",
+            "x": 33,
+            "y": 74,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570015692,
+            "type": "shot_off_target",
+            "time": "2019-06-22T20:46:52+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia are pushing forward but Logarzo's finish is wide of the goal."
+                }
+            ],
+            "match_time": 88,
+            "match_clock": "87:00",
+            "player": {
+                "id": "sr:player:1012237",
+                "name": "Logarzo"
+            },
+            "team": "away",
+            "x": 20,
+            "y": 48,
+            "period": 2,
+            "period_type": "regular_period",
+            "outcome": "miss"
+        },
+        {
+            "id": 570015688,
+            "type": "corner_kick",
+            "time": "2019-06-22T20:46:44+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia have been awarded a corner by Riem Hussein."
+                }
+            ],
+            "match_time": 88,
+            "match_clock": "87:33",
+            "player": {
+                "id": "sr:player:154925",
+                "name": "Kellond-Knight"
+            },
+            "team": "away",
+            "x": 5,
+            "y": 5,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570015694,
+            "type": "goal_kick",
+            "time": "2019-06-22T20:46:52+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein awards Norway a goal kick."
+                }
+            ],
+            "match_time": 88,
+            "match_clock": "87:41",
+            "team": "home",
+            "x": 5,
+            "y": 50,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570015742,
+            "type": "free_kick",
+            "time": "2019-06-22T20:47:29+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein signals a free kick to Australia."
+                }
+            ],
+            "match_time": 89,
+            "match_clock": "88:18",
+            "team": "away",
+            "x": 45,
+            "y": 27,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570015794,
+            "type": "possible_video_assistant_referee",
+            "time": "2019-06-22T20:48:09+00:00",
+            "match_time": 89,
+            "match_clock": "88:58",
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570015800,
+            "type": "video_assistant_referee",
+            "time": "2019-06-22T20:48:13+00:00",
+            "match_time": 90,
+            "match_clock": "89:02",
+            "period": 2,
+            "period_type": "regular_period",
+            "description": "penalty"
+        },
+        {
+            "id": 570015838,
+            "type": "video_assistant_referee_over",
+            "time": "2019-06-22T20:48:51+00:00",
+            "match_time": 90,
+            "match_clock": "89:40",
+            "period": 2,
+            "period_type": "regular_period",
+            "description": "call_stands"
+        },
+        {
+            "id": 570015844,
+            "type": "corner_kick",
+            "time": "2019-06-22T20:48:57+00:00",
+            "commentaries": [
+                {
+                    "text": "Corner awarded to Australia."
+                }
+            ],
+            "match_time": 90,
+            "match_clock": "89:46",
+            "player": {
+                "id": "sr:player:154925",
+                "name": "Kellond-Knight"
+            },
+            "team": "away",
+            "x": 5,
+            "y": 5,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570015864,
+            "type": "throw_in",
+            "time": "2019-06-22T20:49:28+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein signals a throw-in for Australia, close to Norway's area."
+                }
+            ],
+            "match_time": 90,
+            "match_clock": "90:00",
+            "stoppage_time": "1",
+            "team": "away",
+            "x": 11,
+            "y": 4,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570015912,
+            "type": "injury_time_shown",
+            "time": "2019-06-22T20:50:03+00:00",
+            "match_time": 90,
+            "match_clock": "90:00",
+            "stoppage_time": "1",
+            "period": 2,
+            "period_type": "regular_period",
+            "injury_time_announced": 4
+        },
+        {
+            "id": 570015914,
+            "type": "throw_in",
+            "time": "2019-06-22T20:50:08+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia have a dangerous throw-in."
+                }
+            ],
+            "match_time": 90,
+            "match_clock": "90:00",
+            "stoppage_time": "1",
+            "team": "away",
+            "x": 20,
+            "y": 2,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570015980,
+            "type": "corner_kick",
+            "time": "2019-06-22T20:51:10+00:00",
+            "commentaries": [
+                {
+                    "text": "Corner awarded to Norway."
+                }
+            ],
+            "match_time": 90,
+            "match_clock": "90:00",
+            "stoppage_time": "2",
+            "player": {
+                "id": "sr:player:114541",
+                "name": "Hansen, Caroline Graham"
+            },
+            "team": "home",
+            "x": 95,
+            "y": 5,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570015990,
+            "type": "throw_in",
+            "time": "2019-06-22T20:51:16+00:00",
+            "commentaries": [
+                {
+                    "text": "Throw-in for Norway close to the penalty box."
+                }
+            ],
+            "match_time": 90,
+            "match_clock": "90:00",
+            "stoppage_time": "3",
+            "team": "home",
+            "x": 86,
+            "y": 2,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570016012,
+            "type": "shot_off_target",
+            "time": "2019-06-22T20:51:40+00:00",
+            "commentaries": [
+                {
+                    "text": "Caroline Graham Hansen (Norway) fires in a shot – and hits the post!"
+                }
+            ],
+            "match_time": 90,
+            "match_clock": "90:00",
+            "stoppage_time": "3",
+            "player": {
+                "id": "sr:player:114541",
+                "name": "Hansen, Caroline Graham"
+            },
+            "team": "home",
+            "x": 86,
+            "y": 27,
+            "period": 2,
+            "period_type": "regular_period",
+            "outcome": "post"
+        },
+        {
+            "id": 570016026,
+            "type": "free_kick",
+            "time": "2019-06-22T20:51:56+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein signals a free kick to Australia in their own half."
+                }
+            ],
+            "match_time": 90,
+            "match_clock": "90:00",
+            "stoppage_time": "3",
+            "team": "away",
+            "x": 85,
+            "y": 48,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570016100,
+            "type": "throw_in",
+            "time": "2019-06-22T20:53:18+00:00",
+            "commentaries": [
+                {
+                    "text": "Throw-in for Australia in their own half."
+                }
+            ],
+            "match_time": 90,
+            "match_clock": "90:00",
+            "stoppage_time": "5",
+            "team": "away",
+            "x": 64,
+            "y": 3,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570016110,
+            "type": "throw_in",
+            "time": "2019-06-22T20:53:56+00:00",
+            "commentaries": [
+                {
+                    "text": "Can Australia get the ball into an attacking position from this throw-in in Norway's half?"
+                }
+            ],
+            "match_time": 90,
+            "match_clock": "90:00",
+            "stoppage_time": "5",
+            "team": "away",
+            "x": 35,
+            "y": 4,
+            "period": 2,
+            "period_type": "regular_period"
+        },
+        {
+            "id": 570016146,
+            "type": "break_start",
+            "time": "2019-06-22T20:54:33+00:00",
+            "period_name": "Awaiting extra"
+        },
+        {
+            "id": 570016268,
+            "type": "period_start",
+            "time": "2019-06-22T20:59:12+00:00",
+            "period": 1,
+            "period_type": "overtime",
+            "period_name": "1st extra"
+        },
+        {
+            "id": 570016506,
+            "type": "substitution",
+            "time": "2019-06-22T21:02:57+00:00",
+            "commentaries": [
+                {
+                    "text": "Clare Polkinghorne is replacing Kellond-Knight for Australia at Stade de Nice."
+                }
+            ],
+            "match_time": 94,
+            "match_clock": "93:45",
+            "team": "away",
+            "period": 1,
+            "period_type": "overtime",
+            "player_out": {
+                "id": "sr:player:154925",
+                "name": "Kellond-Knight"
+            },
+            "player_in": {
+                "id": "sr:player:28598",
+                "name": "Polkinghorne, Clare"
+            }
+        },
+        {
+            "id": 570016512,
+            "type": "corner_kick",
+            "time": "2019-06-22T21:03:00+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway have been awarded a corner by Riem Hussein."
+                }
+            ],
+            "match_time": 94,
+            "match_clock": "93:48",
+            "player": {
+                "id": "sr:player:114541",
+                "name": "Hansen, Caroline Graham"
+            },
+            "team": "home",
+            "x": 95,
+            "y": 5,
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570016524,
+            "type": "throw_in",
+            "time": "2019-06-22T21:03:11+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway to take a throw-in in Australia territory."
+                }
+            ],
+            "match_time": 94,
+            "match_clock": "93:59",
+            "team": "home",
+            "x": 60,
+            "y": 3,
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570016544,
+            "type": "throw_in",
+            "time": "2019-06-22T21:03:33+00:00",
+            "commentaries": [
+                {
+                    "text": "Can Norway get the ball into an attacking position from this throw-in in Australia's half?"
+                }
+            ],
+            "match_time": 95,
+            "match_clock": "94:21",
+            "team": "home",
+            "x": 79,
+            "y": 3,
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570016568,
+            "type": "shot_on_target",
+            "time": "2019-06-22T21:04:08+00:00",
+            "commentaries": [
+                {
+                    "text": "Vilde Boe Risa for Norway drives towards goal at Stade de Nice. But the finish is unsuccessful."
+                }
+            ],
+            "match_time": 95,
+            "match_clock": "94:56",
+            "player": {
+                "id": "sr:player:184937",
+                "name": "Risa, Vilde Boe"
+            },
+            "team": "home",
+            "x": 97,
+            "y": 7,
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570016570,
+            "type": "shot_saved",
+            "time": "2019-06-22T21:04:08+00:00",
+            "match_time": 95,
+            "match_clock": "94:56",
+            "team": "away",
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570016592,
+            "type": "corner_kick",
+            "time": "2019-06-22T21:04:26+00:00",
+            "commentaries": [
+                {
+                    "text": "Corner awarded to Norway."
+                }
+            ],
+            "match_time": 96,
+            "match_clock": "95:13",
+            "team": "home",
+            "x": 95,
+            "y": 5,
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570016606,
+            "type": "free_kick",
+            "time": "2019-06-22T21:04:34+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia awarded a free kick in their own half."
+                }
+            ],
+            "match_time": 96,
+            "match_clock": "95:21",
+            "team": "away",
+            "x": 88,
+            "y": 57,
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570016672,
+            "type": "yellow_card",
+            "time": "2019-06-22T21:05:32+00:00",
+            "commentaries": [
+                {
+                    "text": "Lisa-Marie Utland for Norway has been booked by Riem Hussein and receives a first yellow card."
+                }
+            ],
+            "match_time": 96,
+            "player": {
+                "id": "sr:player:91139",
+                "name": "Utland, Lisa-Marie"
+            },
+            "team": "home",
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570016758,
+            "type": "throw_in",
+            "time": "2019-06-22T21:06:23+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia awarded a throw-in in their own half."
+                }
+            ],
+            "match_time": 98,
+            "match_clock": "97:11",
+            "team": "away",
+            "x": 52,
+            "y": 5,
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570016786,
+            "type": "throw_in",
+            "time": "2019-06-22T21:06:45+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein signals a Australia throw-in in Norway's half."
+                }
+            ],
+            "match_time": 98,
+            "match_clock": "97:32",
+            "team": "away",
+            "x": 47,
+            "y": 1,
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570016890,
+            "type": "shot_on_target",
+            "time": "2019-06-22T21:08:13+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway's Caroline Graham Hansen gets in a shot on goal at Stade de Nice. But the effort is unsuccessful."
+                }
+            ],
+            "match_time": 100,
+            "match_clock": "99:01",
+            "player": {
+                "id": "sr:player:114541",
+                "name": "Hansen, Caroline Graham"
+            },
+            "team": "home",
+            "x": 90,
+            "y": 69,
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570016892,
+            "type": "shot_saved",
+            "time": "2019-06-22T21:08:13+00:00",
+            "match_time": 100,
+            "match_clock": "99:01",
+            "team": "away",
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570016914,
+            "type": "corner_kick",
+            "time": "2019-06-22T21:08:40+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway have been awarded a corner by Riem Hussein."
+                }
+            ],
+            "match_time": 100,
+            "match_clock": "99:28",
+            "player": {
+                "id": "sr:player:114541",
+                "name": "Hansen, Caroline Graham"
+            },
+            "team": "home",
+            "x": 95,
+            "y": 5,
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570017040,
+            "type": "throw_in",
+            "time": "2019-06-22T21:09:53+00:00",
+            "commentaries": [
+                {
+                    "text": "Throw-in Australia."
+                }
+            ],
+            "match_time": 101,
+            "match_clock": "100:41",
+            "team": "away",
+            "x": 70,
+            "y": 95,
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570017064,
+            "type": "throw_in",
+            "time": "2019-06-22T21:10:12+00:00",
+            "commentaries": [
+                {
+                    "text": "Throw-in for Australia in their own half."
+                }
+            ],
+            "match_time": 102,
+            "match_clock": "101:00",
+            "team": "away",
+            "x": 51,
+            "y": 98,
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570017094,
+            "type": "substitution",
+            "time": "2019-06-22T21:10:39+00:00",
+            "commentaries": [
+                {
+                    "text": "Synne Skinnes Hansen is on a sub for Ingrid Moe Wold for Norway."
+                }
+            ],
+            "match_time": 102,
+            "match_clock": "101:23",
+            "team": "home",
+            "period": 1,
+            "period_type": "overtime",
+            "player_out": {
+                "id": "sr:player:68138",
+                "name": "Wold, Ingrid Moe"
+            },
+            "player_in": {
+                "id": "sr:player:279733",
+                "name": "Hansen, Synne Skinnes"
+            }
+        },
+        {
+            "id": 570017118,
+            "type": "free_kick",
+            "time": "2019-06-22T21:11:04+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein signals a free kick to Norway in their own half."
+                }
+            ],
+            "match_time": 102,
+            "match_clock": "101:52",
+            "team": "home",
+            "x": 43,
+            "y": 66,
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570017168,
+            "type": "shot_off_target",
+            "time": "2019-06-22T21:11:57+00:00",
+            "match_time": 103,
+            "match_clock": "102:44",
+            "team": "away",
+            "x": 25,
+            "y": 52,
+            "period": 1,
+            "period_type": "overtime",
+            "outcome": "miss"
+        },
+        {
+            "id": 570017172,
+            "type": "goal_kick",
+            "time": "2019-06-22T21:11:57+00:00",
+            "commentaries": [
+                {
+                    "text": "Goal kick for Norway at Stade de Nice."
+                }
+            ],
+            "match_time": 103,
+            "match_clock": "102:44",
+            "team": "home",
+            "x": 5,
+            "y": 50,
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570017226,
+            "type": "free_kick",
+            "time": "2019-06-22T21:12:41+00:00",
+            "commentaries": [
+                {
+                    "text": "Free kick Norway."
+                }
+            ],
+            "match_time": 104,
+            "match_clock": "103:29",
+            "team": "home",
+            "x": 78,
+            "y": 45,
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570017244,
+            "type": "red_card",
+            "time": "2019-06-22T21:12:57+00:00",
+            "commentaries": [
+                {
+                    "text": "At Stade de Nice, Alanna Kennedy is shown a red card and sent off."
+                }
+            ],
+            "match_time": 104,
+            "match_clock": "103:36",
+            "player": {
+                "id": "sr:player:346188",
+                "name": "Kennedy, Alanna"
+            },
+            "team": "away",
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570017344,
+            "type": "possible_video_assistant_referee",
+            "time": "2019-06-22T21:14:18+00:00",
+            "match_time": 105,
+            "match_clock": "105:00",
+            "stoppage_time": "1",
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570017346,
+            "type": "video_assistant_referee",
+            "time": "2019-06-22T21:14:20+00:00",
+            "match_time": 105,
+            "match_clock": "105:00",
+            "stoppage_time": "1",
+            "period": 1,
+            "period_type": "overtime",
+            "description": "red_card"
+        },
+        {
+            "id": 570017390,
+            "type": "video_assistant_referee_over",
+            "time": "2019-06-22T21:14:45+00:00",
+            "match_time": 105,
+            "match_clock": "105:00",
+            "stoppage_time": "1",
+            "period": 1,
+            "period_type": "overtime",
+            "description": "call_stands"
+        },
+        {
+            "id": 570017428,
+            "type": "shot_on_target",
+            "time": "2019-06-22T21:15:29+00:00",
+            "commentaries": [
+                {
+                    "text": "Maren Mjelde for Norway drives towards goal at Stade de Nice. But the finish is unsuccessful."
+                }
+            ],
+            "match_time": 105,
+            "match_clock": "105:00",
+            "stoppage_time": "2",
+            "player": {
+                "id": "sr:player:25728",
+                "name": "Mjelde, Maren"
+            },
+            "team": "home",
+            "x": 78,
+            "y": 45,
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570017430,
+            "type": "shot_saved",
+            "time": "2019-06-22T21:15:29+00:00",
+            "match_time": 105,
+            "match_clock": "105:00",
+            "stoppage_time": "2",
+            "team": "away",
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570017456,
+            "type": "injury_time_shown",
+            "time": "2019-06-22T21:15:54+00:00",
+            "match_time": 105,
+            "match_clock": "105:00",
+            "stoppage_time": "2",
+            "period": 1,
+            "period_type": "overtime",
+            "injury_time_announced": 3
+        },
+        {
+            "id": 570017472,
+            "type": "free_kick",
+            "time": "2019-06-22T21:16:07+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia awarded a free kick in their own half."
+                }
+            ],
+            "match_time": 105,
+            "match_clock": "105:00",
+            "stoppage_time": "2",
+            "team": "away",
+            "x": 65,
+            "y": 63,
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570017480,
+            "type": "yellow_card",
+            "time": "2019-06-22T21:16:12+00:00",
+            "commentaries": [
+                {
+                    "text": "Vilde Boe Risa (Norway) has been booked and must now be careful not to get a second yellow card."
+                }
+            ],
+            "match_time": 105,
+            "match_clock": "105:00",
+            "stoppage_time": "2",
+            "player": {
+                "id": "sr:player:184937",
+                "name": "Risa, Vilde Boe"
+            },
+            "team": "home",
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570017536,
+            "type": "free_kick",
+            "time": "2019-06-22T21:17:06+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein signals a free kick to Australia in their own half."
+                }
+            ],
+            "match_time": 105,
+            "match_clock": "105:00",
+            "stoppage_time": "3",
+            "team": "away",
+            "x": 60,
+            "y": 79,
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570017640,
+            "type": "shot_off_target",
+            "time": "2019-06-22T21:18:09+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway's Vilde Boe Risa breaks free at Stade de Nice. But the strike goes wide of the post."
+                }
+            ],
+            "match_time": 105,
+            "match_clock": "105:00",
+            "stoppage_time": "4",
+            "player": {
+                "id": "sr:player:184937",
+                "name": "Risa, Vilde Boe"
+            },
+            "team": "home",
+            "x": 76,
+            "y": 60,
+            "period": 1,
+            "period_type": "overtime",
+            "outcome": "bar"
+        },
+        {
+            "id": 570017642,
+            "type": "goal_kick",
+            "time": "2019-06-22T21:18:09+00:00",
+            "commentaries": [
+                {
+                    "text": "Ball goes out of play for a Australia goal kick."
+                }
+            ],
+            "match_time": 105,
+            "match_clock": "105:00",
+            "stoppage_time": "4",
+            "team": "away",
+            "x": 95,
+            "y": 50,
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570017680,
+            "type": "throw_in",
+            "time": "2019-06-22T21:18:46+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway to take a throw-in in Australia territory."
+                }
+            ],
+            "match_time": 105,
+            "match_clock": "105:00",
+            "stoppage_time": "5",
+            "team": "home",
+            "x": 78,
+            "y": 5,
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570017720,
+            "type": "free_kick",
+            "time": "2019-06-22T21:19:07+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia awarded a free kick in their own half."
+                }
+            ],
+            "match_time": 105,
+            "match_clock": "105:00",
+            "stoppage_time": "5",
+            "team": "away",
+            "x": 90,
+            "y": 55,
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570017730,
+            "type": "offside",
+            "time": "2019-06-22T21:19:17+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway are whistled for offside."
+                }
+            ],
+            "match_time": 105,
+            "match_clock": "105:00",
+            "stoppage_time": "6",
+            "team": "home",
+            "x": 90,
+            "y": 55,
+            "period": 1,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570017734,
+            "type": "break_start",
+            "time": "2019-06-22T21:19:20+00:00",
+            "period_name": "Extra time halftime"
+        },
+        {
+            "id": 570017856,
+            "type": "period_start",
+            "time": "2019-06-22T21:21:06+00:00",
+            "period": 2,
+            "period_type": "overtime",
+            "period_name": "2nd extra"
+        },
+        {
+            "id": 570017932,
+            "type": "shot_off_target",
+            "time": "2019-06-22T21:22:06+00:00",
+            "commentaries": [
+                {
+                    "text": "Frida Maanum for Norway gets in a strike but fails to hit the target."
+                }
+            ],
+            "match_time": 106,
+            "match_clock": "105:59",
+            "player": {
+                "id": "sr:player:759924",
+                "name": "Maanum, Frida"
+            },
+            "team": "home",
+            "x": 89,
+            "y": 65,
+            "period": 2,
+            "period_type": "overtime",
+            "outcome": "miss"
+        },
+        {
+            "id": 570017934,
+            "type": "goal_kick",
+            "time": "2019-06-22T21:22:06+00:00",
+            "commentaries": [
+                {
+                    "text": "Goal kick for Australia at Stade de Nice."
+                }
+            ],
+            "match_time": 106,
+            "match_clock": "105:59",
+            "team": "away",
+            "x": 95,
+            "y": 50,
+            "period": 2,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570017986,
+            "type": "throw_in",
+            "time": "2019-06-22T21:22:45+00:00",
+            "commentaries": [
+                {
+                    "text": "Can Norway get the ball into an attacking position from this throw-in in Australia's half?"
+                }
+            ],
+            "match_time": 107,
+            "match_clock": "106:39",
+            "team": "home",
+            "x": 70,
+            "y": 98,
+            "period": 2,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570018030,
+            "type": "throw_in",
+            "time": "2019-06-22T21:23:22+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway needs to be cautious. Australia have an attacking throw-in."
+                }
+            ],
+            "match_time": 108,
+            "match_clock": "107:15",
+            "team": "away",
+            "x": 18,
+            "y": 3,
+            "period": 2,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570018052,
+            "type": "throw_in",
+            "time": "2019-06-22T21:23:48+00:00",
+            "commentaries": [
+                {
+                    "text": "Can Australia capitalize from this throw-in deep inside Norway's half?"
+                }
+            ],
+            "match_time": 108,
+            "match_clock": "107:41",
+            "team": "away",
+            "x": 17,
+            "y": 5,
+            "period": 2,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570018074,
+            "type": "throw_in",
+            "time": "2019-06-22T21:24:11+00:00",
+            "commentaries": [
+                {
+                    "text": "Ball safe as Norway is awarded a throw-in in their half."
+                }
+            ],
+            "match_time": 109,
+            "match_clock": "108:05",
+            "team": "home",
+            "x": 21,
+            "y": 4,
+            "period": 2,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570018086,
+            "type": "free_kick",
+            "time": "2019-06-22T21:24:17+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein signals a free kick to Norway in their own half."
+                }
+            ],
+            "match_time": 109,
+            "match_clock": "108:11",
+            "team": "home",
+            "x": 31,
+            "y": 26,
+            "period": 2,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570018192,
+            "type": "shot_off_target",
+            "time": "2019-06-22T21:26:13+00:00",
+            "commentaries": [
+                {
+                    "text": "In Nice Norway attack through Caroline Graham Hansen. The finish is off target, however."
+                }
+            ],
+            "match_time": 111,
+            "match_clock": "110:07",
+            "player": {
+                "id": "sr:player:114541",
+                "name": "Hansen, Caroline Graham"
+            },
+            "team": "home",
+            "x": 87,
+            "y": 76,
+            "period": 2,
+            "period_type": "overtime",
+            "outcome": "miss"
+        },
+        {
+            "id": 570018194,
+            "type": "goal_kick",
+            "time": "2019-06-22T21:26:13+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia have a goal kick."
+                }
+            ],
+            "match_time": 111,
+            "match_clock": "110:07",
+            "team": "away",
+            "x": 95,
+            "y": 50,
+            "period": 2,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570018330,
+            "type": "throw_in",
+            "time": "2019-06-22T21:28:06+00:00",
+            "commentaries": [
+                {
+                    "text": "Throw-in for Australia at Stade de Nice."
+                }
+            ],
+            "match_time": 113,
+            "match_clock": "112:00",
+            "team": "away",
+            "x": 80,
+            "y": 98,
+            "period": 2,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570018348,
+            "type": "throw_in",
+            "time": "2019-06-22T21:28:20+00:00",
+            "commentaries": [
+                {
+                    "text": "Throw-in for Australia at Stade de Nice."
+                }
+            ],
+            "match_time": 113,
+            "match_clock": "112:14",
+            "team": "away",
+            "x": 66,
+            "y": 98,
+            "period": 2,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570018380,
+            "type": "throw_in",
+            "time": "2019-06-22T21:28:47+00:00",
+            "commentaries": [
+                {
+                    "text": "Throw-in for Australia in their own half."
+                }
+            ],
+            "match_time": 113,
+            "match_clock": "112:40",
+            "team": "away",
+            "x": 52,
+            "y": 99,
+            "period": 2,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570018456,
+            "type": "corner_kick",
+            "time": "2019-06-22T21:29:51+00:00",
+            "commentaries": [
+                {
+                    "text": "Corner awarded to Norway."
+                }
+            ],
+            "match_time": 114,
+            "match_clock": "113:45",
+            "player": {
+                "id": "sr:player:114541",
+                "name": "Hansen, Caroline Graham"
+            },
+            "team": "home",
+            "x": 95,
+            "y": 5,
+            "period": 2,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570018500,
+            "type": "offside",
+            "time": "2019-06-22T21:30:15+00:00",
+            "commentaries": [
+                {
+                    "text": "In Nice, Norway push forward quickly but are pulled up for offside."
+                }
+            ],
+            "match_time": 115,
+            "match_clock": "114:09",
+            "player": {
+                "id": "sr:player:25728",
+                "name": "Mjelde, Maren"
+            },
+            "team": "home",
+            "x": 88,
+            "y": 45,
+            "period": 2,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570018574,
+            "type": "injury",
+            "time": "2019-06-22T21:31:24+00:00",
+            "commentaries": [
+                {
+                    "text": "Emily Van Egmond is writhing in pain and play has been suspended for a few moments."
+                }
+            ],
+            "match_time": 116,
+            "match_clock": "115:18",
+            "player": {
+                "id": "sr:player:154930",
+                "name": "Van Egmond, Emily"
+            },
+            "team": "away",
+            "x": 88,
+            "y": 45,
+            "period": 2,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570018626,
+            "type": "substitution",
+            "time": "2019-06-22T21:32:05+00:00",
+            "commentaries": [
+                {
+                    "text": "Emily Van Egmond, who was grimacing earlier, has been substituted. Karly Roestbakken is the substitute for Australia."
+                }
+            ],
+            "match_time": 116,
+            "match_clock": "115:51",
+            "team": "away",
+            "period": 2,
+            "period_type": "overtime",
+            "player_out": {
+                "id": "sr:player:154930",
+                "name": "Van Egmond, Emily"
+            },
+            "player_in": {
+                "id": "sr:player:1630686",
+                "name": "Roestbakken, Karly"
+            }
+        },
+        {
+            "id": 570018638,
+            "type": "throw_in",
+            "time": "2019-06-22T21:32:10+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway to take a throw-in in Australia territory."
+                }
+            ],
+            "match_time": 117,
+            "match_clock": "116:04",
+            "team": "home",
+            "x": 60,
+            "y": 5,
+            "period": 2,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570018692,
+            "type": "throw_in",
+            "time": "2019-06-22T21:32:46+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein signals a Norway throw-in in Australia's half."
+                }
+            ],
+            "match_time": 117,
+            "match_clock": "116:40",
+            "team": "home",
+            "x": 68,
+            "y": 3,
+            "period": 2,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570018726,
+            "type": "throw_in",
+            "time": "2019-06-22T21:33:18+00:00",
+            "commentaries": [
+                {
+                    "text": "Can Norway get the ball into an attacking position from this throw-in in Australia's half?"
+                }
+            ],
+            "match_time": 118,
+            "match_clock": "117:12",
+            "team": "home",
+            "x": 71,
+            "y": 98,
+            "period": 2,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570018766,
+            "type": "throw_in",
+            "time": "2019-06-22T21:33:44+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway to take a throw-in in Australia territory."
+                }
+            ],
+            "match_time": 118,
+            "match_clock": "117:38",
+            "team": "home",
+            "x": 62,
+            "y": 3,
+            "period": 2,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570018828,
+            "type": "corner_kick",
+            "time": "2019-06-22T21:34:27+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway have been awarded a corner by Riem Hussein."
+                }
+            ],
+            "match_time": 119,
+            "match_clock": "118:22",
+            "player": {
+                "id": "sr:player:96004",
+                "name": "Reiten, Guro"
+            },
+            "team": "home",
+            "x": 95,
+            "y": 5,
+            "period": 2,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570018840,
+            "type": "goal_kick",
+            "time": "2019-06-22T21:34:34+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein awards Australia a goal kick."
+                }
+            ],
+            "match_time": 119,
+            "match_clock": "118:28",
+            "team": "away",
+            "x": 95,
+            "y": 50,
+            "period": 2,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570018906,
+            "type": "shot_on_target",
+            "time": "2019-06-22T21:35:44+00:00",
+            "commentaries": [
+                {
+                    "text": "Norway push forward through Caroline Graham Hansen, whose finish on goal is saved."
+                }
+            ],
+            "match_time": 120,
+            "match_clock": "119:38",
+            "player": {
+                "id": "sr:player:114541",
+                "name": "Hansen, Caroline Graham"
+            },
+            "team": "home",
+            "x": 81,
+            "y": 70,
+            "period": 2,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570018908,
+            "type": "shot_saved",
+            "time": "2019-06-22T21:35:44+00:00",
+            "match_time": 120,
+            "match_clock": "119:39",
+            "team": "away",
+            "period": 2,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570018948,
+            "type": "shot_on_target",
+            "time": "2019-06-22T21:36:13+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia's Tameka Yallop gets in a shot on goal at Stade de Nice. But the effort is unsuccessful."
+                }
+            ],
+            "match_time": 120,
+            "match_clock": "120:00",
+            "stoppage_time": "1",
+            "player": {
+                "id": "sr:player:154929",
+                "name": "Yallop, Tameka"
+            },
+            "team": "away",
+            "x": 18,
+            "y": 39,
+            "period": 2,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570018952,
+            "type": "shot_saved",
+            "time": "2019-06-22T21:36:13+00:00",
+            "match_time": 120,
+            "match_clock": "120:00",
+            "stoppage_time": "1",
+            "team": "home",
+            "period": 2,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570018986,
+            "type": "injury_time_shown",
+            "time": "2019-06-22T21:36:35+00:00",
+            "match_time": 120,
+            "match_clock": "120:00",
+            "stoppage_time": "1",
+            "period": 2,
+            "period_type": "overtime",
+            "injury_time_announced": 2
+        },
+        {
+            "id": 570019024,
+            "type": "shot_off_target",
+            "time": "2019-06-22T21:37:00+00:00",
+            "match_time": 120,
+            "match_clock": "120:00",
+            "stoppage_time": "1",
+            "team": "home",
+            "x": 85,
+            "y": 39,
+            "period": 2,
+            "period_type": "overtime",
+            "outcome": "miss"
+        },
+        {
+            "id": 570019026,
+            "type": "goal_kick",
+            "time": "2019-06-22T21:37:00+00:00",
+            "commentaries": [
+                {
+                    "text": "Riem Hussein awards Australia a goal kick."
+                }
+            ],
+            "match_time": 120,
+            "match_clock": "120:00",
+            "stoppage_time": "1",
+            "team": "away",
+            "x": 95,
+            "y": 50,
+            "period": 2,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570019068,
+            "type": "substitution",
+            "time": "2019-06-22T21:37:42+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia make their fourth substitution with Amy Harrison replacing Ellie Carpenter."
+                }
+            ],
+            "match_time": 120,
+            "match_clock": "120:00",
+            "stoppage_time": "2",
+            "team": "away",
+            "period": 2,
+            "period_type": "overtime",
+            "player_out": {
+                "id": "sr:player:882102",
+                "name": "Carpenter, Ellie"
+            },
+            "player_in": {
+                "id": "sr:player:882108",
+                "name": "Harrison, Amy"
+            }
+        },
+        {
+            "id": 570019108,
+            "type": "free_kick",
+            "time": "2019-06-22T21:38:21+00:00",
+            "commentaries": [
+                {
+                    "text": "Australia awarded a free kick in their own half."
+                }
+            ],
+            "match_time": 120,
+            "match_clock": "120:00",
+            "stoppage_time": "3",
+            "team": "away",
+            "x": 84,
+            "y": 42,
+            "period": 2,
+            "period_type": "overtime"
+        },
+        {
+            "id": 570019134,
+            "type": "break_start",
+            "time": "2019-06-22T21:38:42+00:00",
+            "period_name": "Awaiting penalties"
+        },
+        {
+            "id": 570019614,
+            "type": "period_start",
+            "time": "2019-06-22T21:45:00+00:00",
+            "period_type": "penalties",
+            "period_name": "Penalties"
+        },
+        {
+            "id": 570019664,
+            "type": "penalty_shootout",
+            "time": "2019-06-22T21:45:31+00:00",
+            "commentaries": [
+                {
+                    "text": "Caroline Graham Hansen (Norway) scores from the penalty spot."
+                }
+            ],
+            "player": {
+                "id": "sr:player:114541",
+                "name": "Hansen, Caroline Graham"
+            },
+            "team": "home",
+            "period_type": "penalties",
+            "status": "scored"
+        },
+        {
+            "id": 570019740,
+            "type": "score_change",
+            "time": "2019-06-22T21:46:10+00:00",
+            "team": "home",
+            "x": 88,
+            "y": 48,
+            "period_type": "penalties",
+            "home_score": 1,
+            "away_score": 1,
+            "shootout_home_score": 1,
+            "shootout_away_score": 0
+        },
+        {
+            "id": 570019776,
+            "type": "penalty_shootout",
+            "time": "2019-06-22T21:46:40+00:00",
+            "commentaries": [
+                {
+                    "text": "Sam Kerr (Australia) misses!"
+                }
+            ],
+            "player": {
+                "id": "sr:player:154933",
+                "name": "Kerr, Sam"
+            },
+            "team": "away",
+            "period_type": "penalties",
+            "status": "missed"
+        },
+        {
+            "id": 570019852,
+            "type": "penalty_shootout",
+            "time": "2019-06-22T21:47:32+00:00",
+            "commentaries": [
+                {
+                    "text": "Guro Reiten (Norway) succeeds from the penalty spot."
+                }
+            ],
+            "player": {
+                "id": "sr:player:96004",
+                "name": "Reiten, Guro"
+            },
+            "team": "home",
+            "period_type": "penalties",
+            "status": "scored"
+        },
+        {
+            "id": 570019868,
+            "type": "score_change",
+            "time": "2019-06-22T21:47:43+00:00",
+            "team": "home",
+            "x": 88,
+            "y": 48,
+            "period_type": "penalties",
+            "home_score": 1,
+            "away_score": 1,
+            "shootout_home_score": 2,
+            "shootout_away_score": 0
+        },
+        {
+            "id": 570019904,
+            "type": "penalty_shootout",
+            "time": "2019-06-22T21:48:15+00:00",
+            "commentaries": [
+                {
+                    "text": "Gielnik (Australia) misses!"
+                }
+            ],
+            "player": {
+                "id": "sr:player:1132717",
+                "name": "Gielnik"
+            },
+            "team": "away",
+            "period_type": "penalties",
+            "status": "missed"
+        },
+        {
+            "id": 570019930,
+            "type": "penalty_shootout",
+            "time": "2019-06-22T21:49:03+00:00",
+            "commentaries": [
+                {
+                    "text": "Maren Mjelde (Norway) scores!"
+                }
+            ],
+            "player": {
+                "id": "sr:player:25728",
+                "name": "Mjelde, Maren"
+            },
+            "team": "home",
+            "period_type": "penalties",
+            "status": "scored"
+        },
+        {
+            "id": 570019938,
+            "type": "score_change",
+            "time": "2019-06-22T21:49:18+00:00",
+            "team": "home",
+            "x": 88,
+            "y": 48,
+            "period_type": "penalties",
+            "home_score": 1,
+            "away_score": 1,
+            "shootout_home_score": 3,
+            "shootout_away_score": 0
+        },
+        {
+            "id": 570019962,
+            "type": "penalty_shootout",
+            "time": "2019-06-22T21:49:52+00:00",
+            "commentaries": [
+                {
+                    "text": "Steph Catley (Australia) succeeds from the penalty spot."
+                }
+            ],
+            "player": {
+                "id": "sr:player:346190",
+                "name": "Catley, Steph"
+            },
+            "team": "away",
+            "period_type": "penalties",
+            "status": "scored"
+        },
+        {
+            "id": 570019968,
+            "type": "score_change",
+            "time": "2019-06-22T21:49:59+00:00",
+            "team": "away",
+            "x": 10,
+            "y": 48,
+            "period_type": "penalties",
+            "home_score": 1,
+            "away_score": 1,
+            "shootout_home_score": 3,
+            "shootout_away_score": 1
+        },
+        {
+            "id": 570019994,
+            "type": "penalty_shootout",
+            "time": "2019-06-22T21:50:28+00:00",
+            "commentaries": [
+                {
+                    "text": "Ingrid Syrstad Engen (Norway) scores from the penalty spot."
+                }
+            ],
+            "player": {
+                "id": "sr:player:759968",
+                "name": "Engen, Ingrid Syrstad"
+            },
+            "team": "home",
+            "period_type": "penalties",
+            "status": "scored"
+        },
+        {
+            "id": 570020016,
+            "type": "score_change",
+            "time": "2019-06-22T21:50:44+00:00",
+            "team": "home",
+            "x": 88,
+            "y": 48,
+            "period_type": "penalties",
+            "home_score": 1,
+            "away_score": 1,
+            "shootout_home_score": 4,
+            "shootout_away_score": 1
+        },
+        {
+            "id": 570020020,
+            "type": "match_ended",
+            "time": "2019-06-22T21:50:49+00:00"
+        }
+    ],
+    "statistics": {
+        "teams": [
+            {
+                "id": "sr:competitor:7422",
+                "name": "Norway",
+                "abbreviation": "NOR",
+                "qualifier": "home",
+                "statistics": {
+                    "ball_possession": 45,
+                    "goal_kicks": 16,
+                    "throw_ins": 32,
+                    "shots_off_target": 8,
+                    "shots_saved": 3,
+                    "fouls": 14,
+                    "free_kicks": 10,
+                    "offsides": 3,
+                    "shots_on_target": 9,
+                    "corner_kicks": 12,
+                    "shots_blocked": 8,
+                    "yellow_cards": 3
+                },
+                "players": [
+                    {
+                        "id": "sr:player:25703",
+                        "name": "Hjelmseth, Ingrid",
+                        "substituted_in": 0,
+                        "substituted_out": 0,
+                        "goals_scored": 0,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 0,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    },
+                    {
+                        "id": "sr:player:68138",
+                        "name": "Wold, Ingrid Moe",
+                        "substituted_in": 0,
+                        "substituted_out": 1,
+                        "goals_scored": 0,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 0,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    },
+                    {
+                        "id": "sr:player:96014",
+                        "name": "Thorisdottir, Maria",
+                        "substituted_in": 0,
+                        "substituted_out": 0,
+                        "goals_scored": 0,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 0,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    },
+                    {
+                        "id": "sr:player:25728",
+                        "name": "Mjelde, Maren",
+                        "substituted_in": 0,
+                        "substituted_out": 0,
+                        "goals_scored": 0,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 0,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    },
+                    {
+                        "id": "sr:player:36106",
+                        "name": "Minde, Kristine",
+                        "substituted_in": 0,
+                        "substituted_out": 0,
+                        "goals_scored": 0,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 1,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    },
+                    {
+                        "id": "sr:player:184923",
+                        "name": "Saevik, Karina",
+                        "substituted_in": 0,
+                        "substituted_out": 1,
+                        "goals_scored": 0,
+                        "assists": 1,
+                        "own_goals": 0,
+                        "yellow_cards": 0,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    },
+                    {
+                        "id": "sr:player:759968",
+                        "name": "Engen, Ingrid Syrstad",
+                        "substituted_in": 0,
+                        "substituted_out": 0,
+                        "goals_scored": 0,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 0,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    },
+                    {
+                        "id": "sr:player:184937",
+                        "name": "Risa, Vilde Boe",
+                        "substituted_in": 0,
+                        "substituted_out": 0,
+                        "goals_scored": 0,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 1,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    },
+                    {
+                        "id": "sr:player:96004",
+                        "name": "Reiten, Guro",
+                        "substituted_in": 0,
+                        "substituted_out": 0,
+                        "goals_scored": 0,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 0,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    },
+                    {
+                        "id": "sr:player:26240",
+                        "name": "Herlovsen, Isabell",
+                        "substituted_in": 0,
+                        "substituted_out": 1,
+                        "goals_scored": 1,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 0,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    },
+                    {
+                        "id": "sr:player:114541",
+                        "name": "Hansen, Caroline Graham",
+                        "substituted_in": 0,
+                        "substituted_out": 0,
+                        "goals_scored": 0,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 0,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    },
+                    {
+                        "id": "sr:player:759924",
+                        "name": "Maanum, Frida",
+                        "substituted_in": 1,
+                        "substituted_out": 0,
+                        "goals_scored": 0,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 0,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    },
+                    {
+                        "id": "sr:player:91139",
+                        "name": "Utland, Lisa-Marie",
+                        "substituted_in": 1,
+                        "substituted_out": 0,
+                        "goals_scored": 0,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 1,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    },
+                    {
+                        "id": "sr:player:279733",
+                        "name": "Hansen, Synne Skinnes",
+                        "substituted_in": 1,
+                        "substituted_out": 0,
+                        "goals_scored": 0,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 0,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    }
+                ]
+            },
+            {
+                "id": "sr:competitor:7410",
+                "name": "Australia",
+                "abbreviation": "AUS",
+                "qualifier": "away",
+                "statistics": {
+                    "ball_possession": 55,
+                    "shots_off_target": 9,
+                    "goal_kicks": 13,
+                    "shots_on_target": 4,
+                    "throw_ins": 36,
+                    "free_kicks": 17,
+                    "fouls": 8,
+                    "corner_kicks": 6,
+                    "shots_saved": 8,
+                    "shots_blocked": 2,
+                    "offsides": 2,
+                    "red_cards": 1,
+                    "injuries": 1
+                },
+                "players": [
+                    {
+                        "id": "sr:player:28597",
+                        "name": "Williams, Lydia",
+                        "substituted_in": 0,
+                        "substituted_out": 0,
+                        "goals_scored": 0,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 0,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    },
+                    {
+                        "id": "sr:player:882102",
+                        "name": "Carpenter, Ellie",
+                        "substituted_in": 0,
+                        "substituted_out": 1,
+                        "goals_scored": 0,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 0,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    },
+                    {
+                        "id": "sr:player:346190",
+                        "name": "Catley, Steph",
+                        "substituted_in": 0,
+                        "substituted_out": 0,
+                        "goals_scored": 0,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 0,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    },
+                    {
+                        "id": "sr:player:346188",
+                        "name": "Kennedy, Alanna",
+                        "substituted_in": 0,
+                        "substituted_out": 0,
+                        "goals_scored": 0,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 0,
+                        "yellow_red_cards": 0,
+                        "red_cards": 1
+                    },
+                    {
+                        "id": "sr:player:154925",
+                        "name": "Kellond-Knight",
+                        "substituted_in": 0,
+                        "substituted_out": 1,
+                        "goals_scored": 1,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 0,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    },
+                    {
+                        "id": "sr:player:154929",
+                        "name": "Yallop, Tameka",
+                        "substituted_in": 0,
+                        "substituted_out": 0,
+                        "goals_scored": 0,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 0,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    },
+                    {
+                        "id": "sr:player:1012237",
+                        "name": "Logarzo",
+                        "substituted_in": 0,
+                        "substituted_out": 0,
+                        "goals_scored": 0,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 0,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    },
+                    {
+                        "id": "sr:player:154930",
+                        "name": "Van Egmond, Emily",
+                        "substituted_in": 0,
+                        "substituted_out": 1,
+                        "goals_scored": 0,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 0,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    },
+                    {
+                        "id": "sr:player:154932",
+                        "name": "Foord, Caitlin",
+                        "substituted_in": 0,
+                        "substituted_out": 0,
+                        "goals_scored": 0,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 0,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    },
+                    {
+                        "id": "sr:player:154933",
+                        "name": "Kerr, Sam",
+                        "substituted_in": 0,
+                        "substituted_out": 0,
+                        "goals_scored": 0,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 0,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    },
+                    {
+                        "id": "sr:player:558626",
+                        "name": "Raso, Hayley",
+                        "substituted_in": 0,
+                        "substituted_out": 1,
+                        "goals_scored": 0,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 0,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    },
+                    {
+                        "id": "sr:player:1132717",
+                        "name": "Gielnik",
+                        "substituted_in": 1,
+                        "substituted_out": 0,
+                        "goals_scored": 0,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 0,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    },
+                    {
+                        "id": "sr:player:28598",
+                        "name": "Polkinghorne, Clare",
+                        "substituted_in": 1,
+                        "substituted_out": 0,
+                        "goals_scored": 0,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 0,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    },
+                    {
+                        "id": "sr:player:1630686",
+                        "name": "Roestbakken, Karly",
+                        "substituted_in": 1,
+                        "substituted_out": 0,
+                        "goals_scored": 0,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 0,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    },
+                    {
+                        "id": "sr:player:882108",
+                        "name": "Harrison, Amy",
+                        "substituted_in": 1,
+                        "substituted_out": 0,
+                        "goals_scored": 0,
+                        "assists": 0,
+                        "own_goals": 0,
+                        "yellow_cards": 0,
+                        "yellow_red_cards": 0,
+                        "red_cards": 0
+                    }
+                ]
+            }
+        ]
+    }
+}
