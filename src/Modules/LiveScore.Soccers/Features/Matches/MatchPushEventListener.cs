@@ -36,7 +36,7 @@
             httpRequests = new Dictionary<string, HttpWebRequest>();
         }
 
-        public async Task<bool> Start(byte sportId)
+        public async Task<bool> Start(byte sportId, IHubContext<MatchHub> hubContext)
         {
             var sportSetting = appSettings.DataProviderSettings.GetSportSetting(sportId);
             var endpoint = sportSetting.GetEndPointSetting(FeatureKey).First();
@@ -53,10 +53,10 @@
             //TODO loop for regions            
             var region = regions.First();
 
-            return await StartListening(sportId, endpoint, region);
+            return await StartListening(sportId, endpoint, region, hubContext);
         }
 
-        private async Task<bool> StartListening(byte sportId, EndPointSetting endpoint, Region region)
+        private async Task<bool> StartListening(byte sportId, EndPointSetting endpoint, Region region, IHubContext<MatchHub> hubContext)
         {
             var req = await CreateSubscribeRequest(endpoint, region);
 
@@ -68,7 +68,7 @@
 
                 while (true)
                 {
-                    await ProcessPayloads(reader);
+                    await ProcessPayloads(reader, hubContext);
 
                     await Task.Delay(MillisecondsTimeout);
                 }
@@ -117,7 +117,7 @@
             return httpRequests[region.Name];
         }
 
-        private async Task ProcessPayloads(StreamReader reader)
+        private async Task ProcessPayloads(StreamReader reader, IHubContext<MatchHub> hubContext)
         {
             string line;
 
@@ -132,7 +132,7 @@
 
                 if (!string.IsNullOrWhiteSpace(line) && !line.Contains("heartbeat"))
                 {
-                    await pushHandler.OnReceive(line);
+                    await pushHandler.OnReceive(line, hubContext);
                 }
             } while (!string.IsNullOrWhiteSpace(line));
         }

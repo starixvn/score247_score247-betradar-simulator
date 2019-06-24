@@ -17,10 +17,14 @@
     public class MatchPushEventListenerJob : IMatchPushEventListenerJob
     {
         private readonly PushEventListenerFactory pushEventListenerFactory;
+        private readonly IHubContext<MatchHub> hubContext;
 
-        public MatchPushEventListenerJob(PushEventListenerFactory pushEventListenerFactory)
+        public MatchPushEventListenerJob(
+            PushEventListenerFactory pushEventListenerFactory, 
+            IHubContext<MatchHub> hubContext)
         {
             this.pushEventListenerFactory = pushEventListenerFactory;
+            this.hubContext = hubContext;
         }
 
         public async Task StartListeningPushEvent(byte sportId)
@@ -42,6 +46,6 @@
         }
 
         private async Task<bool> ListenPushEvent(byte sportId, IMatchPushEventListener pushEventListener)
-            => await pushEventListener.Start(sportId);
+            => await pushEventListener.Start(sportId, hubContext);
     }
 }

@@ -17,9 +17,9 @@
 
     public interface IMatchPushEventHandler
     {
-        Task OnReceive(string eventData);
+        Task OnReceive(string eventData, IHubContext<MatchHub> hubContext);
 
-        Task OnReceive(MatchPushEventDto matchPushEventDto);
+        Task OnReceive(MatchPushEventDto matchPushEventDto, IHubContext<MatchHub> hubContext);
     }
 
     public class MatchPushEventHandler : IMatchPushEventHandler
@@ -34,28 +34,26 @@
 
         private readonly IMatchService matchService;
         private readonly ILogger logger;
-        private readonly IHubContext<MatchHub> hubContext;
         private readonly IPenaltyEventHandler penaltyEventHandler;
 
         public MatchPushEventHandler(
             IMatchService matchService,
-            IHubContext<MatchHub> hubContext,
             ILogger logger,
             IPenaltyEventHandler penaltyEventHandler)
+
         {
             this.matchService = matchService;
-            this.hubContext = hubContext;
             this.logger = logger;
             this.penaltyEventHandler = penaltyEventHandler;
         }
 
-        public async Task OnReceive(string eventData)
+        public async Task OnReceive(string eventData, IHubContext<MatchHub> hubContext)
         {
             try
             {
                 var pushEventDto = JsonConvert.DeserializeObject<MatchPushEventDto>(eventData);
 
-                await OnReceive(pushEventDto);
+                await OnReceive(pushEventDto, hubContext);
             }
             catch (Exception ex)
             {
@@ -63,17 +61,17 @@
             }
         }
 
-        public async Task OnReceive(MatchPushEventDto matchPushEventDto)
+        public async Task OnReceive(MatchPushEventDto matchPushEventDto, IHubContext<MatchHub> hubContext)
         {
             if (matchPushEventDto.payload != null)
             {
                 var pushEvents = MatchBuilder.BuildPushEvents(matchPushEventDto);
 
-                await Handle(pushEvents);
+                await Handle(pushEvents, hubContext);
             }
         }
 
-        public async Task Handle(Dictionary<string, MatchPushEvent> pushEvents)
+        public async Task Handle(Dictionary<string, MatchPushEvent> pushEvents, IHubContext<MatchHub> hubContext)
         {
             if (pushEvents == null)
             {
@@ -92,7 +90,7 @@
                 return;
             }
 
-            await PushToClients(basicPushEvents);
+            await PushToClients(basicPushEvents, hubContext);
 
             foreach (var matchId in basicPushEvents.Keys)
             {
@@ -120,14 +118,14 @@
 
                 if (timeline != null)
                 {
-                    await BuildPusEvent(basicPushEvents, matchId, pushEvent, timeline);
+                    await BuildPushEvent(basicPushEvents, matchId, pushEvent, timeline);
                 }
             }
 
             return basicPushEvents;
         }
 
-        private async Task BuildPusEvent(
+        private async Task BuildPushEvent(
             Dictionary<string, MatchPushEvent> basicPushEvents, 
             string matchId, 
             MatchPushEvent pushEvent, 
@@ -161,7 +159,7 @@
             }
         }
 
-        private async Task PushToClients(Dictionary<string, MatchPushEvent> pushEvents)
+        private static async Task PushToClients(Dictionary<string, MatchPushEvent> pushEvents, IHubContext<MatchHub> hubContext)
             => await hubContext.Clients.All.SendAsync("PushMatchEvent", SportConstants.SoccerId.ToString(), pushEvents);
 
         private async Task UpdateMatch(string matchId, MatchPushEvent pushEvent)

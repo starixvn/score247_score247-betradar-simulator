@@ -36,7 +36,7 @@ namespace LiveScore.WebApi.Features.Notifications
         public async Task PushMatchEvent(
             [FromBody]MatchPushEventDto matchPushEventDto)
         {
-            await soccerPushEventHandler.OnReceive(matchPushEventDto);
+            await soccerPushEventHandler.OnReceive(matchPushEventDto, hubContext);
         }
 
         [HttpPost(nameof(PushMatchEvents))]
@@ -45,7 +45,7 @@ namespace LiveScore.WebApi.Features.Notifications
         {
             foreach (var matchPushEventDto in matchPushEventDtos)
             {
-                await soccerPushEventHandler.OnReceive(matchPushEventDto);
+                await soccerPushEventHandler.OnReceive(matchPushEventDto, hubContext);
             }
         }
 
