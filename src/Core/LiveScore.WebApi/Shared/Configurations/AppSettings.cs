@@ -9,6 +9,7 @@
     public class AppSettings : IAppSettings
     {
         private readonly IConfiguration configuration;
+        private const string LiveScore = "LiveScores:";
 
         public AppSettings(            
             IConfiguration configuration,
@@ -19,10 +20,16 @@
             this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));                     
             DataProviderSettings = dataProviderSettings;
             TimeZoneSettings = timeZoneSettings;
-            EnabledJobs = GetValue<bool>($"LiveScores:{nameof(EnabledJobs)}");
-            EnabledListenPush = GetValue<bool>($"LiveScores:{nameof(EnabledListenPush)}");
-            EnabledDatabaseMigration = GetValue<bool>($"LiveScores:{nameof(EnabledDatabaseMigration)}");
-            EnabledListenLogging = GetValue<bool>($"LiveScores:{nameof(EnabledListenLogging)}");
+            EnabledJobs = GetValue<bool>($"{LiveScore}{nameof(EnabledJobs)}");
+            EnabledListenPush = GetValue<bool>($"{LiveScore}{nameof(EnabledListenPush)}");
+            EnabledDatabaseMigration = GetValue<bool>($"{LiveScore}{nameof(EnabledDatabaseMigration)}");
+            EnabledListenLogging = GetValue<bool>($"{LiveScore}{nameof(EnabledListenLogging)}");
+            NumberOfTopMatches = GetValue<int>($"{LiveScore}{nameof(NumberOfTopMatches)}");
+            if(NumberOfTopMatches <= 0)
+            {
+                NumberOfTopMatches = int.MaxValue;
+            }
+
             AppPath = appPath;
         }
 
@@ -39,6 +46,8 @@
         public bool EnabledDatabaseMigration { get; }
 
         public string AppPath { get; }
+
+        public int NumberOfTopMatches { get; }
 
         public T GetValue<T>(string key)
         {

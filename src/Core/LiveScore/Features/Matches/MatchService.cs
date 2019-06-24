@@ -10,6 +10,7 @@ namespace LiveScore.Features.Matches
     using LiveScore.Shared.Helpers;
     using Fanex.Caching;
     using LiveScore.Shared.Models;
+    using LiveScore.Shared.Configurations;
 
     public interface IMatchService
     {
@@ -46,11 +47,16 @@ namespace LiveScore.Features.Matches
         };
         private readonly DataAccessFactory instanceFactory;
         private readonly ICacheService cacheService;
+        private readonly IAppSettings appSettings;
 
-        public MatchService(DataAccessFactory instanceFactory, ICacheService cacheService)
+        public MatchService(
+            DataAccessFactory instanceFactory, 
+            ICacheService cacheService,
+            IAppSettings appSettings)
         {
             this.instanceFactory = instanceFactory;
             this.cacheService = cacheService;
+            this.appSettings = appSettings;
         }
 
         public async Task<IEnumerable<IMatch>> GetMatches(
@@ -77,7 +83,10 @@ namespace LiveScore.Features.Matches
                       ? liveMatches.Union(nonLiveMatches, new MatchComparer())
                       : nonLiveMatches;
 
-            return matches.Select(m => m.ChangeEventDateByTimeZone(clientTimeZone));
+            return matches
+                    .Select(m => m.ChangeEventDateByTimeZone(clientTimeZone))
+                    .OrderBy(m => m.EventDate)
+                    .Take(appSettings.NumberOfTopMatches);
         }
 
         private async Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language, DateTime utcFrom, DateTime utcTo)

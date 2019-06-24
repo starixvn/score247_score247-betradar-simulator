@@ -17,5 +17,7 @@
         string AppPath { get; }
 
         bool EnabledListenLogging { get; }
+
+        int NumberOfTopMatches { get; }
     }
 }
