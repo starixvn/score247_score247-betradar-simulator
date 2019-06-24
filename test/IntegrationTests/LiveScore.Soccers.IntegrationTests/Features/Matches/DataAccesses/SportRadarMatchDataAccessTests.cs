@@ -42,6 +42,8 @@
         public string AppPath => throw new NotImplementedException();
 
         public bool EnabledListenLogging => throw new NotImplementedException();
+
+        public int NumberOfTopMatches => int.MaxValue;
     }
 
     public class StubDataProviderSettings : IDataProviderSettings

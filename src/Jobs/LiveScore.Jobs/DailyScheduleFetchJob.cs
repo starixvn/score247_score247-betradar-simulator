@@ -77,7 +77,7 @@
                 }
                 else
                 {
-                    matchEntity.EventDate = match.EventDate;
+                    matchEntity.EventDate = match.EventDate.ToUniversalTime();
                     matchEntity.Value = JsonConvert.SerializeObject(match);
 
                     existingMatchEntities.Add(matchEntity);

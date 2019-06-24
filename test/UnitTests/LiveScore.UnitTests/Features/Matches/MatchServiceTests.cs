@@ -10,6 +10,7 @@
     using NSubstitute;
     using Xunit;
     using Fanex.Caching;
+    using LiveScore.Shared.Configurations;
 
     public class MatchServiceTests
     {
@@ -19,6 +20,7 @@
         private readonly IMatchDataAccess matchDataAccess;
         private readonly IMatchDataAccess sportRadarDataAccess;
         private readonly ICacheService cacheService;
+        private readonly IAppSettings appSettings;
 
         public MatchServiceTests()
         {
@@ -28,10 +30,13 @@
             sportRadarDataAccess = Substitute.For<IMatchDataAccess>();
             instanceFactory = Substitute.For<DataAccessFactory>();
             cacheService = Substitute.For<ICacheService>();
+            appSettings = Substitute.For<IAppSettings>();
             instanceFactory.CreateMatchDataAccess(SoccerSportId).Returns(matchDataAccess);
             instanceFactory.CreateMatchDataAccess(SoccerSportId, DataProvider.ThirdPartyApi).Returns(sportRadarDataAccess);
 
-            matchServiceImpl = new MatchService(instanceFactory, cacheService);
+            appSettings.NumberOfTopMatches.Returns(int.MaxValue);
+
+            matchServiceImpl = new MatchService(instanceFactory, cacheService, appSettings);
         }
 
         #region GetMatches
@@ -106,8 +111,8 @@
             var matches = new List<Match>
             {
                 new Match { Id ="1", Name = "A", EventDate = DateTime.Parse("2018-11-11T03:04:05+00:00"), MatchResult = new MatchResult {  EventStatus = MatchStatus.Closed }},
-                new Match { Id ="2", Name = "B", EventDate = DateTime.Parse("2018-11-11T03:04:05+00:00"), MatchResult = new MatchResult {  EventStatus = MatchStatus.Closed } },
-                new Match { Id ="3", Name = "C", EventDate = DateTime.Parse("2018-11-11T03:04:05+00:00"), MatchResult = new MatchResult {  EventStatus = MatchStatus.Closed } }
+                new Match { Id ="2", Name = "B", EventDate = DateTime.Parse("2018-11-11T03:04:06+00:00"), MatchResult = new MatchResult {  EventStatus = MatchStatus.Closed } },
+                new Match { Id ="3", Name = "C", EventDate = DateTime.Parse("2018-11-11T03:04:07+00:00"), MatchResult = new MatchResult {  EventStatus = MatchStatus.Closed } }
             };
 
             var liveMatches = new Dictionary<string, IMatch>
