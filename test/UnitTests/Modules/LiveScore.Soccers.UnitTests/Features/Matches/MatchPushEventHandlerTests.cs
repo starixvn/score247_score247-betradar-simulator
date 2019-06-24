@@ -295,6 +295,22 @@
 
             await logger.Received(1).ErrorAsync(Arg.Any<string>(), Arg.Any<ArgumentNullException>());
         }
+
+        [Fact]
+        public async Task OnReceive_EventIsPenalty_CallPenaltyEventHandler()
+        {
+            var eventType = payloads.penalty;
+            var eventStream = JsonConvert.SerializeObject(eventType);
+
+            await eventHandler.OnReceive(eventStream);
+
+            await penaltyEventHandler.Received(1).Handle(
+                eventType.metadata.sport_event_id, 
+                Arg.Is<Timeline>(timeline => 
+                    timeline.IsHome 
+                    && !timeline.IsHomeShootoutScored 
+                    && timeline.Player.Name == "Azpilicueta, Cesar, h1"));
+        }
     }
 
     public class PayloadStreams
@@ -322,5 +338,7 @@
         public MatchPushEventDto first_period_start { get; set; }
 
         public MatchPushEventDto second_period_start { get; set; }
+
+        public MatchPushEventDto penalty { get; set; }
     }
 }

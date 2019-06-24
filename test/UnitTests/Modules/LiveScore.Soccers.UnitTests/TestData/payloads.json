@@ -537,5 +537,60 @@
       "sport_id": "sr:sport:1",
       "season_id": "sr:season:63857"
     }
+  },
+  "penalty": {
+    "payload": {
+      "sport_event_status": {
+        "status": "live",
+        "match_status": "penalties",
+        "home_score": 2,
+        "away_score": 2,
+        "period_scores": [
+          {
+            "home_score": 0,
+            "away_score": 0,
+            "type": "regular_period",
+            "number": 1
+          },
+          {
+            "home_score": 1,
+            "away_score": 1,
+            "type": "regular_period",
+            "number": 2
+          },
+          {
+            "home_score": 1,
+            "away_score": 1,
+            "type": "overtime"
+          },
+          {
+            "home_score": 0,
+            "away_score": 0,
+            "type": "penalties"
+          }
+        ]
+      },
+      "event": {
+        "id": 555547219,
+        "type": "penalty_shootout",
+        "time": "2019-06-17T12:24:58+00:00",
+        "player": {
+          "id": "sr:player:21555",
+          "name": "Azpilicueta, Cesar, h1"
+        },
+        "team": "home",
+        "period_type": "penalties",
+        "status": "missed"
+      }
+    },
+    "metadata": {
+      "format": "json",
+      "tournament_id": "sr:tournament:27821",
+      "sport_event_id": "sr:match:18452780",
+      "event_id": "score_change",
+      "channel": "soccer-other-dfc",
+      "sport_id": "sr:sport:1",
+      "season_id": "sr:season:62817"
+    }
   }
 }
