@@ -16,13 +16,13 @@
     public class MatchPushEventListener : IMatchPushEventListener
     {
         private const string FeatureKey = "Push";
-        private const int MillisecondsTimeout = 5 * 1000;
+        private const int MillisecondsTimeout = 10 * 1000;
 
         private readonly IMatchPushEventHandler pushHandler;
         private readonly IAppSettings appSettings;
         private readonly ILogger logger;
 
-        private readonly Dictionary<string, HttpWebRequest> httpRequests;
+        private readonly Dictionary<string, StreamReader> readers;
 
         public MatchPushEventListener(
             IMatchPushEventHandler pushHandler,
@@ -33,7 +33,7 @@
             this.appSettings = appSettings;
             this.logger = logger;
 
-            httpRequests = new Dictionary<string, HttpWebRequest>();
+            readers = new Dictionary<string, StreamReader>();
         }
 
         public async Task<bool> Start(byte sportId, IHubContext<MatchHub> hubContext)
@@ -41,8 +41,7 @@
             var sportSetting = appSettings.DataProviderSettings.GetSportSetting(sportId);
             var endpoint = sportSetting.GetEndPointSetting(FeatureKey).First();
 
-            var regions = sportSetting.Regions
-                .Where(x => x.Name.Equals("other")); // TODO: remove specific other region
+            var regions = sportSetting.Regions;
 
             if (!regions.Any())
             {
@@ -50,71 +49,86 @@
                 return false;
             }
 
-            //TODO loop for regions            
-            var region = regions.First();
-
-            return await StartListening(sportId, endpoint, region, hubContext);
+            return await StartListening(sportId, hubContext, sportSetting, endpoint, regions);
         }
 
-        private async Task<bool> StartListening(byte sportId, EndPointSetting endpoint, Region region, IHubContext<MatchHub> hubContext)
+        private async Task<bool> StartListening(byte sportId, IHubContext<MatchHub> hubContext, SportSetting sportSetting, EndPointSetting endpoint, IEnumerable<Region> regions)
         {
-            var req = await CreateSubscribeRequest(endpoint, region);
-
-            try
+            foreach (var regionSetting in sportSetting.Regions)
             {
-                var reply = (HttpWebResponse)req.GetResponse();
-                var stream = reply.GetResponseStream();
-                var reader = new StreamReader(stream);
-
-                while (true)
+                if (!readers.ContainsKey(regionSetting.Name))
                 {
-                    await ProcessPayloads(reader, hubContext);
+                    var req = await CreateSubscribeRequest(endpoint, regionSetting);
 
-                    await Task.Delay(MillisecondsTimeout);
+                    StreamReader reader = CreateStreamReader(req);
+                    readers.Add(regionSetting.Key, reader);
                 }
             }
-            catch (Exception ex)
+
+            var isFailed = false;
+
+            while (!isFailed)
             {
-                await logger.ErrorAsync($"Error while listening feed for sportId {sportId} - region {region.Name}", ex);
+                foreach (var reader in readers)
+                {
+                    try
+                    {
+                        await ProcessPayloads(reader.Value, hubContext);
+                    }
+                    catch (Exception ex)
+                    {
+                        await logger.ErrorAsync($"Error while listening feed for sportId {sportId} - region {reader.Key}", ex);
+                        isFailed = true;
+                    }
+                }
+
+                await Task.Delay(MillisecondsTimeout);
             }
 
-            return true;
+            return isFailed;
+        }
+
+        private static StreamReader CreateStreamReader(HttpWebRequest req)
+        {
+            var reply = (HttpWebResponse)req.GetResponse();
+            var stream = reply.GetResponseStream();
+            var reader = new StreamReader(stream);
+
+            return reader;
         }
 
         private async Task<HttpWebRequest> CreateSubscribeRequest(EndPointSetting endpoint, Region region)
         {
-            if (!httpRequests.ContainsKey(region.Name))
+
+            var formattedEndpoint = $"{appSettings.DataProviderSettings.ApiUrl}{string.Format(endpoint.Path, region.Name, region.PushKey)}";
+
+            if (appSettings.EnabledListenLogging)
             {
-                var formattedEndpoint = $"{appSettings.DataProviderSettings.ApiUrl}{string.Format(endpoint.Path, region.Name, region.PushKey)}";
-
-                if (appSettings.EnabledListenLogging)
-                {
-                    await logger.InfoAsync($"listen {formattedEndpoint}");
-                }
-
-                var req = (HttpWebRequest)HttpWebRequest.Create(new Uri(formattedEndpoint));
-                req.AllowAutoRedirect = false;
-
-                WebResponse reply;
-
-                try
-                {
-                    req.GetResponse();
-
-                }
-                catch (WebException e)
-                {
-
-                    reply = e.Response;
-                    var redirectUrl = reply.Headers["Location"];
-                    req = (HttpWebRequest)HttpWebRequest.Create(new Uri(redirectUrl));
-                    req.KeepAlive = true;
-
-                    httpRequests.Add(region.Name, req);
-                }
+                await logger.InfoAsync($"listen {formattedEndpoint}");
             }
 
-            return httpRequests[region.Name];
+            var req = (HttpWebRequest)HttpWebRequest.Create(new Uri(formattedEndpoint));
+            req.AllowAutoRedirect = false;
+
+            WebResponse reply;
+
+            try
+            {
+                req.GetResponse();
+
+            }
+            catch (WebException e)
+            {
+
+                reply = e.Response;
+                var redirectUrl = reply.Headers["Location"];
+                req = (HttpWebRequest)HttpWebRequest.Create(new Uri(redirectUrl));
+                req.KeepAlive = true;
+
+
+            }
+
+            return req;
         }
 
         private async Task ProcessPayloads(StreamReader reader, IHubContext<MatchHub> hubContext)
