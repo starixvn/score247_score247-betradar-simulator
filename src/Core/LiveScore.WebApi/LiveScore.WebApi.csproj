@@ -50,6 +50,7 @@
 
   <ItemGroup>
     <Content Remove="App_Data\staticdata\daily-schedule.json" />
+    <Content Remove="App_Data\staticdata\matches\timeline_sr_match_18079621.json" />
     <Content Remove="App_Data\staticdata\Otherlivedata.json" />
     <Content Remove="App_Data\staticdata\daily-schedule - Copy.json" />
     <Content Remove="App_Data\staticdata\live-result-1.json" />
@@ -78,6 +79,7 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="App_Data\staticdata\matches\timeline_sr_match_18079621.json" />
     <None Include="App_Data\staticdata\Otherlivedata.json">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>

@@ -14,6 +14,7 @@
     public class PenaltyEventHandler : IPenaltyEventHandler
     {
         private const int minNumOfSettlePenalties = 6;
+        private const string NotTakenYetStatus = "not_taken_yet";
 
         private static readonly CacheItemOptions MatchPenaltyCacheOptions = new CacheItemOptions
         {
@@ -29,33 +30,34 @@
 
         public async Task<Timeline> Handle(string matchId, Timeline shootoutEvent)
         {
+            if (shootoutEvent == null 
+                || shootoutEvent.PenaltyStatus.ToLowerInvariant() == NotTakenYetStatus)
+            {
+                return default(Timeline);
+            }
+
             var matchEventsCacheKey = $"Penalty_Match_{matchId}";
             var latestEventCacheKey = $"Penalty_Match_{matchId}_Latest_Event";
             var cachedPenaltyEvents = (await cacheService.GetAsync<IList<Timeline>>(matchEventsCacheKey)) ?? new List<Timeline>();
             var latestShootout = await GetLatestShoot(shootoutEvent, latestEventCacheKey);
 
-            if (shootoutEvent != null)
+            if (latestShootout == null)
             {
-                if (latestShootout == null)
-                {
-                    SetFirstShoot(shootoutEvent);
-                }
-
-                cachedPenaltyEvents.Add(shootoutEvent);
-
-                SetScore(cachedPenaltyEvents, shootoutEvent);
-
-                if (latestShootout != null || cachedPenaltyEvents.Count > minNumOfSettlePenalties)
-                {
-                    return await HandleLatestPenaltyEvent(matchEventsCacheKey, latestEventCacheKey, cachedPenaltyEvents, shootoutEvent, latestShootout);
-                }
-
-                await CachePenaltyEvents(matchEventsCacheKey, cachedPenaltyEvents);
-
-                return await Task.FromResult(shootoutEvent);
+                SetFirstShoot(shootoutEvent);
             }
 
-            return await Task.FromResult(default(Timeline));
+            cachedPenaltyEvents.Add(shootoutEvent);
+
+            SetScore(cachedPenaltyEvents, shootoutEvent);
+
+            if (latestShootout != null || cachedPenaltyEvents.Count > minNumOfSettlePenalties)
+            {
+                return await HandleLatestPenaltyEvent(matchEventsCacheKey, latestEventCacheKey, cachedPenaltyEvents, shootoutEvent, latestShootout);
+            }
+
+            await CachePenaltyEvents(matchEventsCacheKey, cachedPenaltyEvents);
+
+            return await Task.FromResult(shootoutEvent);
         }
 
         private static void SetFirstShoot(Timeline shootoutEvent)

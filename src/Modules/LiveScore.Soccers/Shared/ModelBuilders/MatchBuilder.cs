@@ -148,6 +148,7 @@
                     timeline.IsAwayShootoutScored = isScored;
                     timeline.AwayShootoutPlayer = player;
                 }
+                timeline.PenaltyStatus = timelineDto.status;
             }
         }
 

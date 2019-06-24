@@ -72,6 +72,8 @@
         bool IsHome { get; }
 
         bool IsFirstShoot { get; }
+
+        string PenaltyStatus { get; }
     }
 
     public class Timeline : Entity<long, string>, ITimeline
@@ -129,6 +131,8 @@
         public bool IsHome => Team?.ToLowerInvariant() == "home";
 
         public bool IsFirstShoot { get; set; }
+
+        public string PenaltyStatus { get; set; }
     }
 
     public class Commentary
