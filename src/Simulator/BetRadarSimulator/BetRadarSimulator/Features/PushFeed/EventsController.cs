@@ -17,7 +17,7 @@ namespace LiveScore.BetRadarSimulator.Controllers
     using System.Threading.Tasks;
     using System.Timers;
 
-    [Route("api/soccer-xt3/other/stream/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class EventsController : ControllerBase
     {
@@ -35,16 +35,18 @@ namespace LiveScore.BetRadarSimulator.Controllers
             this.configuration = configuration;
         }
 
-        [HttpGet(nameof(Subscribe))]
-        public IActionResult Subscribe()
+        [Route("~/api/{sportType}-{accessLevel}/{region}/stream/events/subscribe/")]
+        [HttpGet]
+        public IActionResult Subscribe(string sportType, string accessLevel, string region)
         {
             var host = configuration.GetSection(AppSettingPath);
 
             return Redirect($"{host.Value}events/Stat");
         }
 
-        [HttpGet(nameof(Stat))]
-        public IActionResult Stat()
+        [Route("~/api/{sportType}-{accessLevel}/{region}/stream/events/stat/")]
+        [HttpGet()]
+        public IActionResult Stat(string sportType, string accessLevel, string region)
         {
             timer = new System.Timers.Timer();
             timer.Interval = DefaultInterval;
@@ -63,8 +65,13 @@ namespace LiveScore.BetRadarSimulator.Controllers
             return Ok();
         }
 
-        [HttpPost(nameof(PushEvent))]
-        public async Task<IActionResult> PushEvent([FromBody] MatchPushEventDto pushEvent)
+        [Route("~/api/{sportType}-{accessLevel}/{region}/stream/events/pushevent/")]
+        [HttpPost()]
+        public async Task<IActionResult> PushEvent(
+            string sportType, 
+            string accessLevel, 
+            string region, 
+            [FromBody] MatchPushEventDto pushEvent)
         {
             var eventStr = JsonConvert.SerializeObject(pushEvent);
 

@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
 
-    [Route("api/soccer-t3/other/en/[controller]")]
+   
     [ApiController]
     public class MatchesController : ControllerBase
     {
@@ -14,8 +14,9 @@
             this.matchService = matchService;
         }
 
+        [Route("~/api/{sportType}-{accessLevel}/{region}/{lang}/matches/{matchId}/timeline/")]
         [HttpGet(nameof(Timeline))]
-        public Task<MatchTimelineDto> Timeline(string matchId)
+        public Task<MatchTimelineDto> Timeline(string sportType, string accessLevel, string region, string lang, string matchId)
         {
             return matchService.GetTimeline(matchId);
         }
