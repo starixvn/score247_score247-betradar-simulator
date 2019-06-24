@@ -26,9 +26,11 @@ namespace LiveScore.HubClientSample
 
             connection.On<string, Dictionary<string, MatchPushEvent>>("PushMatchEvent", (sportId, data) =>
             {
+                var returnResult = JsonConvert.SerializeObject(data, Formatting.Indented);
+                Console.WriteLine(returnResult);
                 using (StreamWriter sw = File.AppendText("data_receive.txt"))
                 {
-                    sw.WriteLine(JsonConvert.SerializeObject(data, Formatting.Indented));
+                    sw.WriteLine(returnResult);
                 }
             });
 

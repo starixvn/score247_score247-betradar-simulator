@@ -34,9 +34,12 @@ namespace LiveScore.WebApi.Features.Notifications
 
         [HttpPost(nameof(PushMatchEvent))]
         public async Task PushMatchEvent(
-            [FromBody]MatchPushEventDto matchPushEventDto)
+            [FromBody]IEnumerable<MatchPushEventDto> matchPushEventDtos)
         {
-            await soccerPushEventHandler.OnReceive(matchPushEventDto);
+            foreach (var matchPushEventDto in matchPushEventDtos)
+            {
+                await soccerPushEventHandler.OnReceive(matchPushEventDto);
+            }
         }
 
         [HttpGet(nameof(AddFullTimeline))]
@@ -47,12 +50,12 @@ namespace LiveScore.WebApi.Features.Notifications
             return "Done";
         }
 
-        [HttpPost(nameof(AddResult))]
-        public async Task<string> AddResult(int sportId, string matchId, [FromBody]MatchResult matchResult)
-        {
-            await matchService.AddResult(sportId, matchId, matchResult);
+        ////[HttpPost(nameof(AddResult))]
+        ////public async Task<string> AddResult(int sportId, string matchId, [FromBody]MatchResult matchResult)
+        ////{
+        ////    await matchService.AddResult(sportId, matchId, matchResult);
 
-            return "Done";
-        }
+        ////    return "Done";
+        ////}
     }
 }
