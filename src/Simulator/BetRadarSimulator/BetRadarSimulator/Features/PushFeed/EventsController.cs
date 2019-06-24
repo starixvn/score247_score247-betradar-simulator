@@ -12,6 +12,7 @@ namespace LiveScore.BetRadarSimulator.Controllers
     using Microsoft.Extensions.Configuration;
     using Newtonsoft.Json;
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
@@ -68,14 +69,32 @@ namespace LiveScore.BetRadarSimulator.Controllers
         [Route("~/api/{sportType}-{accessLevel}/{region}/stream/events/pushevent/")]
         [HttpPost()]
         public async Task<IActionResult> PushEvent(
-            string sportType, 
-            string accessLevel, 
-            string region, 
+            string sportType,
+            string accessLevel,
+            string region,
             [FromBody] MatchPushEventDto pushEvent)
         {
             var eventStr = JsonConvert.SerializeObject(pushEvent);
 
             await SendEvent(eventStr);
+
+            return Ok();
+        }
+
+        [Route("~/api/{sportType}-{accessLevel}/{region}/stream/events/pushevents/")]
+        [HttpPost()]
+        public async Task<IActionResult> PushEvents(
+            string sportType,
+            string accessLevel,
+            string region,
+            [FromBody] IList<MatchPushEventDto> pushEvents)
+        {
+
+            foreach (var pushEvent in pushEvents)
+            {
+                var eventStr = JsonConvert.SerializeObject(pushEvent);
+                await SendEvent(eventStr);
+            }
 
             return Ok();
         }
