@@ -51,7 +51,7 @@
                 while (attempts < MaxAttempts)
                 {
                     attempts += 1;
-                    await logger.InfoAsync($"Start Listening Attempts: {attempts}");
+                    await logger.InfoAsync($"Start Listening Attempts: {attempts} at {DateTime.Now}");
 
                     //TODO call fetch live match results job after retry failure job when ListenPushEvent was force stop
 

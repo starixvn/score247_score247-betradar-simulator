@@ -1,16 +1,16 @@
-﻿using Newtonsoft.Json;
-namespace LiveScore.Features.Matches
+﻿namespace LiveScore.Features.Matches
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Fanex.Caching;
     using LiveScore.Features.Matches.Models;
     using LiveScore.Shared;
-    using LiveScore.Shared.Helpers;
-    using Fanex.Caching;
-    using LiveScore.Shared.Models;
     using LiveScore.Shared.Configurations;
+    using LiveScore.Shared.Helpers;
+    using LiveScore.Shared.Models;
+    using Newtonsoft.Json;
 
     public interface IMatchService
     {
@@ -41,16 +41,18 @@ namespace LiveScore.Features.Matches
         {
             SlidingExpiration = TimeSpan.FromMinutes(10),
         };
+
         private static readonly CacheItemOptions NormalMatchCacheOptions = new CacheItemOptions
         {
             SlidingExpiration = TimeSpan.FromMinutes(120),
         };
+
         private readonly DataAccessFactory instanceFactory;
         private readonly ICacheService cacheService;
         private readonly IAppSettings appSettings;
 
         public MatchService(
-            DataAccessFactory instanceFactory, 
+            DataAccessFactory instanceFactory,
             ICacheService cacheService,
             IAppSettings appSettings)
         {
@@ -239,7 +241,7 @@ namespace LiveScore.Features.Matches
                     match.TimeLines = await matchDataAccess.GetTimelines(sportId, match.Region, matchId, language);
                 }
 
-                match.MatchFunctions = await matchDataAccess.GetMatchFunctions(sportId, matchId, language);
+                match.Functions = await matchDataAccess.GetMatchFunctions(sportId, matchId, language);
 
                 match.ChangeEventDateByTimeZone(clientTimeZone);
             }

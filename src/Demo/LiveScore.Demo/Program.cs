@@ -32,7 +32,7 @@ namespace LiveScore.Demo
         private static void StartHubClient()
         {
             connection = new HubConnectionBuilder()
-                .WithUrl("http://localhost:64296/hubs/matchhub")
+                .WithUrl("https://api.nexdev.net/V2/hubs/matchhub")
                 .Build();
 
             connection.Closed += async (error) =>
@@ -81,8 +81,8 @@ namespace LiveScore.Demo
         public static void ReadPushEvent(string region, string key)
         {
             //var apiUrl = "http://api.sportradar.com/";            
-            //var apiUrl = "http://ha.nexdev.net:7206/V1/api/";
-            var apiUrl = "http://localhost:61092/api/";
+            var apiUrl = "http://ha.nexdev.net:7206/V1/api/";
+            //var apiUrl = "http://localhost:61092/api/";
             var pushApiPath = $"soccer-xt3/{region}/stream/events/subscribe?api_key={key}&format=json";
             HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create($"{apiUrl}{pushApiPath}");
             req.AllowAutoRedirect = false;
@@ -118,10 +118,10 @@ namespace LiveScore.Demo
                 while (!reader.EndOfStream)
                 {
                     line = reader.ReadLine();
-                    Console.WriteLine($"Data return: {line}");
-
                     if (!string.IsNullOrWhiteSpace(line) && !line.Contains("heartbeat"))
                     {
+                        Console.WriteLine($"Data return: {line}");
+
                         using (StreamWriter sw = File.AppendText(path))
                         {
                             sw.WriteLine(line);
