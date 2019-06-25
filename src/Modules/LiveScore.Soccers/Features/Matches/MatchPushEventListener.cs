@@ -49,10 +49,10 @@
                 return false;
             }
 
-            return await StartListening(sportId, hubContext, sportSetting, endpoint, regions);
+            return await StartListening(sportId, hubContext, sportSetting, endpoint);
         }
 
-        private async Task<bool> StartListening(byte sportId, IHubContext<MatchHub> hubContext, SportSetting sportSetting, EndPointSetting endpoint, IEnumerable<Region> regions)
+        private async Task<bool> StartListening(byte sportId, IHubContext<MatchHub> hubContext, SportSetting sportSetting, EndPointSetting endpoint)
         {
             foreach (var regionSetting in sportSetting.Regions)
             {
@@ -61,7 +61,8 @@
                     var req = await CreateSubscribeRequest(endpoint, regionSetting);
 
                     StreamReader reader = CreateStreamReader(req);
-                    readers.Add(regionSetting.Key, reader);
+
+                    readers.Add(regionSetting.Name, reader);
                 }
             }
 
@@ -124,8 +125,6 @@
                 var redirectUrl = reply.Headers["Location"];
                 req = (HttpWebRequest)HttpWebRequest.Create(new Uri(redirectUrl));
                 req.KeepAlive = true;
-
-
             }
 
             return req;
