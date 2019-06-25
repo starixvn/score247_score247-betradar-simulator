@@ -16,13 +16,15 @@
     public class MatchPushEventListener : IMatchPushEventListener
     {
         private const string FeatureKey = "Push";
+        private const int MaxAttempts = 10;
         private const int MillisecondsTimeout = 10 * 1000;
 
         private readonly IMatchPushEventHandler pushHandler;
         private readonly IAppSettings appSettings;
         private readonly ILogger logger;
 
-        private readonly Dictionary<string, StreamReader> readers;
+        private Dictionary<string, StreamReader> readers;
+        private int attempts;
 
         public MatchPushEventListener(
             IMatchPushEventHandler pushHandler,
@@ -34,22 +36,36 @@
             this.logger = logger;
 
             readers = new Dictionary<string, StreamReader>();
+            attempts = 0;
         }
 
-        public async Task<bool> Start(byte sportId, IHubContext<MatchHub> hubContext)
+        public async Task Start(byte sportId, IHubContext<MatchHub> hubContext)
         {
             var sportSetting = appSettings.DataProviderSettings.GetSportSetting(sportId);
             var endpoint = sportSetting.GetEndPointSetting(FeatureKey).First();
 
             var regions = sportSetting.Regions;
 
-            if (!regions.Any())
+            if (regions.Any())
+            {
+                while (attempts < MaxAttempts)
+                {
+                    attempts += 1;
+                    await logger.InfoAsync($"Start Listening Attempts: {attempts}");
+
+                    //TODO call fetch live match results job after retry failure job when ListenPushEvent was force stop
+
+                    await StartListening(sportId, hubContext, sportSetting, endpoint);
+
+                    readers = new Dictionary<string, StreamReader>();
+
+                    await Task.Delay(MillisecondsTimeout);
+                }
+            }
+            else
             {
                 await logger.InfoAsync("Cannot find any specific region to listen");
-                return false;
             }
-
-            return await StartListening(sportId, hubContext, sportSetting, endpoint);
         }
 
         private async Task<bool> StartListening(byte sportId, IHubContext<MatchHub> hubContext, SportSetting sportSetting, EndPointSetting endpoint)

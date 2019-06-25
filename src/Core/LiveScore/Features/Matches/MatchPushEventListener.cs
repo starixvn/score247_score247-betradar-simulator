@@ -6,6 +6,6 @@
 
     public interface IMatchPushEventListener
     {
-        Task<bool> Start(byte sportId, IHubContext<MatchHub> hubContext);
+        Task Start(byte sportId, IHubContext<MatchHub> hubContext);
     }
 }

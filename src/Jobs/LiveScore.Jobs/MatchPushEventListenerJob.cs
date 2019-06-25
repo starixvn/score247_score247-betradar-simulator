@@ -13,7 +13,7 @@
         Task StartListeningPushEvent(byte sportId);
     }
 
-    [AutomaticRetry(OnAttemptsExceeded = AttemptsExceededAction.Delete, Attempts = 1)]
+    [AutomaticRetry(OnAttemptsExceeded = AttemptsExceededAction.Delete)]
     public class MatchPushEventListenerJob : IMatchPushEventListenerJob
     {
         private readonly PushEventListenerFactory pushEventListenerFactory;
@@ -32,20 +32,10 @@
             var pushEventListener = pushEventListenerFactory.CreatePushEventListener(sportId);
 
             
-            var isFail = await ListenPushEvent(sportId, pushEventListener);
-
-            if (isFail)
-            {
-                //TODO call fetch live match results job after retry failure job when ListenPushEvent was force stop
-
-                //TODO reschedule job
-                //BackgroundJob.Schedule<IMatchPushEventListenerJob>(job => job.StartListeningPushEvent(SportConstants.SoccerId), TimeSpan.FromSeconds(5));
-
-                throw new InvalidOperationException("Push feed was force closed!");                
-            }
+            await ListenPushEvent(sportId, pushEventListener);
         }
 
-        private async Task<bool> ListenPushEvent(byte sportId, IMatchPushEventListener pushEventListener)
-            => await pushEventListener.Start(sportId, hubContext);
+        private Task ListenPushEvent(byte sportId, IMatchPushEventListener pushEventListener)
+            => pushEventListener.Start(sportId, hubContext);
     }
 }
