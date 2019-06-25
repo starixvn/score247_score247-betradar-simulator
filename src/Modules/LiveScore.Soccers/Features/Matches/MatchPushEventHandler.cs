@@ -164,7 +164,7 @@
         private async Task PushToClients(Dictionary<string, MatchPushEvent> pushEvents, IHubContext<MatchHub> hubContext)
         {
             var firstEvent = pushEvents.First().Value.TimeLines.First();
-            await logger.InfoAsync($"{ DateTime.Now.ToString("mm/dd HH:mm:ss") } Pushing {pushEvents.First().Key} - {firstEvent.Type}");
+            await logger.InfoAsync($"{ DateTime.Now.ToString("MMMM dd HH:mm:ss") } Pushing {pushEvents.First().Key} - {firstEvent.Type}");
 
             await hubContext.Clients.All.SendAsync("PushMatchEvent", SportConstants.SoccerId.ToString(), pushEvents);
         }
