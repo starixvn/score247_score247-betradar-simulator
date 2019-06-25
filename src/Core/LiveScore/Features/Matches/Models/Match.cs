@@ -33,6 +33,8 @@
         IMatch ChangeEventDateByTimeZone(TimeSpan timeZone);
 
         string Region { get; }
+
+        IEnumerable<IMatchFunction> MatchFunctions { get; set; }
     }
 
     public class Match : Entity<string, string>, IMatch
@@ -64,6 +66,8 @@
 
         [JsonConverter(typeof(JsonConcreteTypeConverter<Timeline>))]
         public ITimeline LatestTimeline { get; set; }
+
+        public IEnumerable<IMatchFunction> MatchFunctions { get; set; }
 
         public IMatch ChangeEventDateByTimeZone(TimeSpan timeZone)
         {

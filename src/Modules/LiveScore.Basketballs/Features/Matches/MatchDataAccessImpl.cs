@@ -154,5 +154,10 @@ namespace LiveScore.Basketballs.Features.Matches
         {
             throw new NotImplementedException();
         }
+
+        public Task<IEnumerable<IMatchFunction>> GetMatchFunctions(int sportId, string matchId, string language)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

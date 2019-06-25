@@ -131,9 +131,11 @@
             MatchPushEvent pushEvent,
             ITimeline timeline)
         {
+#pragma warning disable S3215 // "interface" instances should not be cast to concrete types
             var shootoutEvent = pushEvent.TimeLines.FirstOrDefault(
                                     tl => timeline.PeriodType == PeriodType.Penalties.Value
                                         && timeline.Type == EventTypes.PenaltyShootout.Value) as Timeline;
+#pragma warning restore S3215 // "interface" instances should not be cast to concrete types
 
             var penaltyScoreChangeEvent = pushEvent.TimeLines.FirstOrDefault(
                 tl => timeline.PeriodType == PeriodType.Penalties.Value

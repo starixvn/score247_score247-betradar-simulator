@@ -235,8 +235,11 @@ namespace LiveScore.Features.Matches
             {
                 if (!match.MatchResult.EventStatus.IsNotStartOrDelay())
                 {
+                    //TODO: Need review immutable here
                     match.TimeLines = await matchDataAccess.GetTimelines(sportId, match.Region, matchId, language);
                 }
+
+                match.MatchFunctions = await matchDataAccess.GetMatchFunctions(sportId, matchId, language);
 
                 match.ChangeEventDateByTimeZone(clientTimeZone);
             }
