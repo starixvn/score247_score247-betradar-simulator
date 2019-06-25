@@ -85,7 +85,7 @@
 
             var basicPushEvents = await GetBasicPushEvents(pushEvents);
 
-            if(!basicPushEvents.Keys.Any())
+            if (!basicPushEvents.Keys.Any())
             {
                 return;
             }
@@ -126,9 +126,9 @@
         }
 
         private async Task BuildPushEvent(
-            Dictionary<string, MatchPushEvent> basicPushEvents, 
-            string matchId, 
-            MatchPushEvent pushEvent, 
+            Dictionary<string, MatchPushEvent> basicPushEvents,
+            string matchId,
+            MatchPushEvent pushEvent,
             ITimeline timeline)
         {
             var shootoutEvent = pushEvent.TimeLines.FirstOrDefault(
@@ -159,8 +159,14 @@
             }
         }
 
-        private static async Task PushToClients(Dictionary<string, MatchPushEvent> pushEvents, IHubContext<MatchHub> hubContext)
-            => await hubContext.Clients.All.SendAsync("PushMatchEvent", SportConstants.SoccerId.ToString(), pushEvents);
+        private async Task PushToClients(Dictionary<string, MatchPushEvent> pushEvents, IHubContext<MatchHub> hubContext)
+        {
+            var firstEvent = pushEvents.First().Value.TimeLines.First();
+            await logger.InfoAsync($"{ DateTime.Now.ToString("mm/dd HH:mm:ss") } Pushing {pushEvents.First().Key} - {firstEvent.Type}");
+
+            await hubContext.Clients.All.SendAsync("PushMatchEvent", SportConstants.SoccerId.ToString(), pushEvents);
+        }
+
 
         private async Task UpdateMatch(string matchId, MatchPushEvent pushEvent)
         {
