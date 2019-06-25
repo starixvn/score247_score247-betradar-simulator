@@ -59,7 +59,13 @@ namespace LiveScore.WebApi
                 RegisterSwagger(services);
                 services.AddSignalR();
                 services.AddLogging(b => b.AddConsole());
-                services.AddHangfire(x => x.UsePostgreSqlStorage(Configuration.GetConnectionString("hangfireConnection")));
+                services.AddHangfire(x => x.UsePostgreSqlStorage(Configuration.GetConnectionString("hangfireConnection"),
+                   new PostgreSqlStorageOptions()
+                   {
+                       //change this
+                       InvisibilityTimeout = TimeSpan.FromDays(365)
+                   }));
+
                 services.AddMemoryCache(Configuration.GetSection("fanex.caching"));
 
                 RegisterServices(services);
