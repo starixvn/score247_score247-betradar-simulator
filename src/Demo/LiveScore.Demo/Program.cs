@@ -2,15 +2,19 @@
 namespace LiveScore.Demo
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Net;
     using System.Net.Http;
     using System.Net.Sockets;
     using System.Threading.Tasks;
+    using LiveScore.Features.Matches.Models;
+    using Microsoft.AspNetCore.SignalR.Client;
+    using Newtonsoft.Json;
 
     public class Program
     {
-        
+        static HubConnection connection;
 
         static void Main()
         {
@@ -20,8 +24,39 @@ namespace LiveScore.Demo
             //Task.Factory.StartNew(() => { ListenSportRadarStream("intl", "5zn9j3p4qd3wzrujvfx7mngn"); });
             Task.Factory.StartNew(() => { ListenSportRadarStream("other", "npc9md73nrwhykuepets3nqf"); });
             //Task.Factory.StartNew(() => { ListenSportRadarStream("global", "f5zwq9btg3wwg66upm84ntua"); });
+            StartHubClient();
 
             Console.ReadLine();
+        }
+
+        private static void StartHubClient()
+        {
+            connection = new HubConnectionBuilder()
+                .WithUrl("http://localhost:64296/hubs/matchhub")
+                .Build();
+
+            connection.Closed += async (error) =>
+            {
+                await Task.Delay(new Random().Next(0, 5) * 1000);
+                await connection.StartAsync();
+            };
+
+            connection.On<string, Dictionary<string, MatchPushEvent>>("PushMatchEvent", (sportId, data) =>
+            {
+                var returnResult = JsonConvert.SerializeObject(data, Formatting.Indented);
+                Console.WriteLine($"Hub Event: \n{returnResult}");
+                using (StreamWriter sw = File.AppendText("data_receive.txt"))
+                {
+                    sw.WriteLine(returnResult);
+                }
+            });
+
+            connection.On<string>("TestEvent", (text) =>
+            {
+                Console.WriteLine(text);
+            });
+
+            connection.StartAsync().GetAwaiter().GetResult();
         }
 
         private static void ListenSportRadarStream(string region, string key)
