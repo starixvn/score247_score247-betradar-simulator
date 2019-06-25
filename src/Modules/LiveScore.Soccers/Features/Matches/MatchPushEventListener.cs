@@ -83,7 +83,10 @@
                     }
                 }
 
-                await Task.Delay(MillisecondsTimeout);
+                if (!isFailed)
+                {
+                    await Task.Delay(MillisecondsTimeout);
+                }
             }
 
             return isFailed;
