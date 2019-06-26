@@ -80,9 +80,16 @@ namespace LiveScore.BetRadarSimulator.Controllers
             string region,
             [FromBody] MatchPushEventDto pushEvent)
         {
-            var eventStr = JsonConvert.SerializeObject(pushEvent);
+            try
+            {
+                var eventStr = JsonConvert.SerializeObject(pushEvent);
 
-            await SendEvent(eventStr);
+                await SendEvent(eventStr);
+            }
+            catch (Exception ex)
+            {
+                await logger.ErrorAsync($"{DateTime.Now} SendEvent Error ", ex);
+            }
 
             return Ok();
         }
