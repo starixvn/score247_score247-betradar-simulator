@@ -23,13 +23,15 @@ namespace LiveScore.BetRadarSimulator.Api.Services
     public class ServerSentEventsClient : IServerSentEventsClient
     {
         private readonly StreamWriter streamWiter;
+        private readonly Guid id;
 
         public ServerSentEventsClient(Stream stream)
         {
             streamWiter = new StreamWriter(stream);
+            id = Guid.NewGuid();
         }
 
-        public Guid Id => throw new NotImplementedException();
+        public Guid Id => id;
 
         public bool IsConnected => throw new NotImplementedException();
 

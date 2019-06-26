@@ -4,6 +4,7 @@
 
 namespace LiveScore.BetRadarSimulator.Controllers
 {
+    using Fanex.Logging;
     using LiveScore.BetRadarSimulator.Api.Services;
     using LiveScore.BetRadarSimulator.Results;
     using LiveScore.BetRadarSimulator.Services;
@@ -29,11 +30,13 @@ namespace LiveScore.BetRadarSimulator.Controllers
         private static System.Timers.Timer timer;
         private INotificationService notificationService;
         private readonly IConfiguration configuration;
+        private readonly ILogger logger;
 
-        public EventsController(INotificationService notificationService, IConfiguration configuration)
+        public EventsController(INotificationService notificationService, IConfiguration configuration, ILogger logger)
         {
             this.notificationService = notificationService;
             this.configuration = configuration;
+            this.logger = logger;
         }
 
         [Route("~/api/{sportType}-{accessLevel}/{region}/stream/events/subscribe/")]
@@ -49,11 +52,14 @@ namespace LiveScore.BetRadarSimulator.Controllers
         [HttpGet()]
         public IActionResult Stat(string sportType, string accessLevel, string region)
         {
-            timer = new System.Timers.Timer();
-            timer.Interval = DefaultInterval;
-            timer.AutoReset = true;
-            timer.Elapsed += TimerElapsed;
-            timer.Start();
+            if (timer == null)
+            {
+                timer = new System.Timers.Timer();
+                timer.Interval = DefaultInterval;
+                timer.AutoReset = true;
+                timer.Elapsed += TimerElapsed;
+                timer.Start();
+            }
 
             return new PushStreamResult(OnStreamAvailabe, HttpContext.RequestAborted);
         }
@@ -99,11 +105,15 @@ namespace LiveScore.BetRadarSimulator.Controllers
             return Ok();
         }
 
+        [HttpGet(nameof(GetTotalOfClients))]
+        public int GetTotalOfClients() => notificationService.GetClients().Count;
+
         private void OnStreamAvailabe(Stream stream, CancellationToken requestAborted)
         {
             var wait = requestAborted.WaitHandle;
             var client = new ServerSentEventsClient(stream);
             notificationService.AddClient(client);
+            logger.Info($"{DateTime.Now} Add new client {client.Id} ");
 
             wait.WaitOne();
 
@@ -118,8 +128,10 @@ namespace LiveScore.BetRadarSimulator.Controllers
                 {
                     await client.SendEventAsync(HeartBeat);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    await logger.ErrorAsync($"{DateTime.Now} SendEvent Error ", ex);
+
                     notificationService.RemoveClient(client);
                 }
             }

@@ -1,5 +1,8 @@
 ﻿using System.Linq;
+using Fanex.Logging;
+using Fanex.Logging.Sentry;
 using LiveScore.BetRadarSimulator.Api.Features.Matches;
+using LiveScore.BetRadarSimulator.Api.Midlewares;
 using LiveScore.BetRadarSimulator.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Sentry;
 
 namespace LiveScoreSimulator
 {
@@ -22,6 +26,7 @@ namespace LiveScoreSimulator
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            InitLogging(services);
             services.AddSingleton<INotificationService, NotificationService>();
             services.AddSingleton<IMatchService, MatchService>();
 
@@ -38,6 +43,8 @@ namespace LiveScoreSimulator
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 #pragma warning restore RECS0154 // Parameter is never used
         {
+            app.ConfigureExceptionHandler();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -54,6 +61,18 @@ namespace LiveScoreSimulator
                     name: "default",
                     template: "{controller=Home}/{action=Index}");
             });
+        }
+
+        private void InitLogging(IServiceCollection services)
+        {
+            LogManager
+                    .SetDefaultLogCategory(Configuration["Fanex.Logging:DefaultCategory"])
+                    .Use(new SentryLogging(new SentryEngineOptions
+                    {
+                        Dsn = new Dsn(Configuration["Fanex.Logging:SentryUrl"])
+                    }));
+
+            services.AddSingleton(Logger.Log);
         }
     }
 }
