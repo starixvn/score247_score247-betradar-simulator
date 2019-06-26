@@ -94,7 +94,7 @@
                     }
                     catch (Exception ex)
                     {
-                        await logger.ErrorAsync($"Error while listening feed for sportId {sportId} - region {reader.Key}", ex);
+                        await logger.ErrorAsync($"{ DateTime.Now } Error while listening feed for sportId {sportId} - region {reader.Key}", ex);
                         isFailed = true;
                     }
                 }
