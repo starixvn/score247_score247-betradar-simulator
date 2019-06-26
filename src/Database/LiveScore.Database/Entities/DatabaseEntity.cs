@@ -8,8 +8,8 @@
         [Key]
         public string Id { get; set; }
 
-        public DateTime CreatedTime { get; set; }
+        public DateTimeOffset CreatedTime { get; set; }
 
-        public DateTime ModifiedTime { get; set; }
+        public DateTimeOffset ModifiedTime { get; set; }
     }
 }
