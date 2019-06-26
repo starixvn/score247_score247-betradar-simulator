@@ -20,13 +20,12 @@ namespace LiveScore.BetRadarSimulator.Api.Midlewares
                     var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
                     var exception = exceptionHandlerPathFeature?.Error;
                     var customInfo = new Dictionary<string, object>();
-
                    
                     await ExceptionHandler.HandleAsync(exception, context, customInfo);
 
                     context.Response.StatusCode = 500;
                     context.Response.ContentType = "application/json";
-                    await context.Response.WriteAsync(exception.Message);
+                    await context.Response.WriteAsync(exception?.Message);
                 });
             });
         }
