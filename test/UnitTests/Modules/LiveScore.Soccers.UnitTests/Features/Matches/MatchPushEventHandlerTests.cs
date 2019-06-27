@@ -1,5 +1,9 @@
 ﻿namespace LiveScore.Soccers.UnitTests.Features.Matches
 {
+    using System;
+    using System.IO;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Fanex.Logging;
     using LiveScore.Features.Matches;
     using LiveScore.Features.Matches.Models;
@@ -10,11 +14,6 @@
     using Newtonsoft.Json;
     using NSubstitute;
     using NSubstitute.ExceptionExtensions;
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Xunit;
 
     public class MatchPushEventHandlerTests
@@ -37,7 +36,7 @@
             var testJsonData = File.ReadAllText(@"..\netcoreapp2.2\TestData\payloads.json");
             payloads = JsonConvert.DeserializeObject<PayloadStreams>(testJsonData);
 
-            eventHandler = new MatchPushEventHandler(matchService, logger, penaltyEventHandler);
+            eventHandler = new MatchPushEventHandler(matchService, logger, penaltyEventHandler, hubContext);
         }
 
         [Fact]
@@ -45,7 +44,7 @@
         {
             var eventStr = "{'heartbeat':{'interval':5000}}";
 
-            await eventHandler.OnReceive(eventStr, hubContext);
+            await eventHandler.OnReceive(eventStr);
 
             await matchService.DidNotReceive().DeleteLiveMatch(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<string>());
             await matchService.DidNotReceive().AddOrUpdateMatch(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<string>(), Arg.Any<MatchPushEvent>(), Arg.Any<bool>());
@@ -57,7 +56,7 @@
             var eventStream = JsonConvert.SerializeObject(payloads.injury_time_shown);
             var matchId = payloads.injury_time_shown.metadata.sport_event_id;
 
-            await eventHandler.OnReceive(eventStream, hubContext);
+            await eventHandler.OnReceive(eventStream);
 
             await matchService.Received(1).AddOrUpdateMatch(
                 Arg.Any<int>(),
@@ -75,7 +74,7 @@
             var eventStream = JsonConvert.SerializeObject(payloads.break_start);
             var matchId = payloads.break_start.metadata.sport_event_id;
 
-            await eventHandler.OnReceive(eventStream, hubContext);
+            await eventHandler.OnReceive(eventStream);
 
             // MatchTime == 0 ?!?
             await matchService.Received(1).AddOrUpdateMatch(
@@ -93,7 +92,7 @@
             var eventStream = JsonConvert.SerializeObject(payloads.yellow_card);
             var matchId = payloads.yellow_card.metadata.sport_event_id;
 
-            await eventHandler.OnReceive(eventStream, hubContext);
+            await eventHandler.OnReceive(eventStream);
 
             await matchService.Received(1).AddOrUpdateMatch(
                 Arg.Any<int>(),
@@ -111,7 +110,7 @@
             var eventStream = JsonConvert.SerializeObject(payloads.yellow_red_card);
             var matchId = payloads.yellow_red_card.metadata.sport_event_id;
 
-            await eventHandler.OnReceive(eventStream, hubContext);
+            await eventHandler.OnReceive(eventStream);
 
             // MatchTime == 0 ?!?
             await matchService.Received(1).AddOrUpdateMatch(
@@ -129,7 +128,7 @@
             var eventStream = JsonConvert.SerializeObject(payloads.red_card);
             var matchId = payloads.red_card.metadata.sport_event_id;
 
-            await eventHandler.OnReceive(eventStream, hubContext);
+            await eventHandler.OnReceive(eventStream);
 
             // MatchTime == 0 ?!?
             await matchService.Received(1).AddOrUpdateMatch(
@@ -148,7 +147,7 @@
             var eventStream = JsonConvert.SerializeObject(eventType);
             var matchId = eventType.metadata.sport_event_id;
 
-            await eventHandler.OnReceive(eventStream, hubContext);
+            await eventHandler.OnReceive(eventStream);
 
             // MatchTime == 0 ?!?
             await matchService.Received(1).AddOrUpdateMatch(
@@ -167,7 +166,7 @@
             var eventStream = JsonConvert.SerializeObject(eventType);
             var matchId = eventType.metadata.sport_event_id;
 
-            await eventHandler.OnReceive(eventStream, hubContext);
+            await eventHandler.OnReceive(eventStream);
 
             // MatchTime == 0 ?!?
             await matchService.Received(1).AddOrUpdateMatch(
@@ -189,7 +188,7 @@
             var eventStream = JsonConvert.SerializeObject(eventType);
             var matchId = eventType.metadata.sport_event_id;
 
-            await eventHandler.OnReceive(eventStream, hubContext);
+            await eventHandler.OnReceive(eventStream);
 
             // MatchTime == 0 ?!?
             await matchService.Received(1).DeleteLiveMatch(
@@ -215,7 +214,7 @@
             var eventStream = JsonConvert.SerializeObject(eventType);
             var matchId = eventType.metadata.sport_event_id;
 
-            await eventHandler.OnReceive(eventStream, hubContext);
+            await eventHandler.OnReceive(eventStream);
 
             await matchService.Received(1).AddOrUpdateMatch(
                Arg.Any<int>(),
@@ -235,7 +234,7 @@
             var eventStream = JsonConvert.SerializeObject(eventType);
             var matchId = eventType.metadata.sport_event_id;
 
-            await eventHandler.OnReceive(eventStream, hubContext);
+            await eventHandler.OnReceive(eventStream);
 
             await matchService.Received(1).AddOrUpdateMatch(
                Arg.Any<int>(),
@@ -257,7 +256,7 @@
             var eventStream = JsonConvert.SerializeObject(eventType);
             var matchId = eventType.metadata.sport_event_id;
 
-            await eventHandler.OnReceive(eventStream, hubContext);
+            await eventHandler.OnReceive(eventStream);
 
             await matchService.Received(1).AddOrUpdateMatch(
                Arg.Any<int>(),
@@ -275,7 +274,7 @@
         [Fact]
         public async Task Handle_PushEventNull()
         {
-            await eventHandler.Handle(null, null);
+            await eventHandler.Handle(null);
         }
 
         [Fact]
@@ -291,7 +290,7 @@
                Arg.Any<MatchPushEvent>(),
                true).Throws(new ArgumentNullException());
 
-            await eventHandler.OnReceive(eventStream, hubContext);
+            await eventHandler.OnReceive(eventStream);
 
             await logger.Received(1).ErrorAsync(Arg.Any<string>(), Arg.Any<ArgumentNullException>());
         }
@@ -302,13 +301,13 @@
             var eventType = payloads.penalty;
             var eventStream = JsonConvert.SerializeObject(eventType);
 
-            await eventHandler.OnReceive(eventStream, hubContext);
+            await eventHandler.OnReceive(eventStream);
 
             await penaltyEventHandler.Received(1).Handle(
-                eventType.metadata.sport_event_id, 
-                Arg.Is<Timeline>(timeline => 
-                    timeline.IsHome 
-                    && !timeline.IsHomeShootoutScored 
+                eventType.metadata.sport_event_id,
+                Arg.Is<Timeline>(timeline =>
+                    timeline.IsHome
+                    && !timeline.IsHomeShootoutScored
                     && timeline.Player.Name == "Azpilicueta, Cesar, h1"));
         }
     }

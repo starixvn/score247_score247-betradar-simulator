@@ -39,7 +39,7 @@
             attempts = 0;
         }
 
-        public async Task Start(byte sportId, IHubContext<MatchHub> hubContext)
+        public async Task Start(byte sportId)
         {
             var sportSetting = appSettings.DataProviderSettings.GetSportSetting(sportId);
             var endpoint = sportSetting.GetEndPointSetting(FeatureKey).First();
@@ -55,7 +55,7 @@
 
                     //TODO call fetch live match results job after retry failure job when ListenPushEvent was force stop
 
-                    await StartListening(sportId, hubContext, sportSetting, endpoint);
+                    await StartListening(sportId, sportSetting, endpoint);
 
                     readers = new Dictionary<string, StreamReader>();
 
@@ -68,7 +68,7 @@
             }
         }
 
-        private async Task<bool> StartListening(byte sportId, IHubContext<MatchHub> hubContext, SportSetting sportSetting, EndPointSetting endpoint)
+        private async Task<bool> StartListening(byte sportId, SportSetting sportSetting, EndPointSetting endpoint)
         {
             foreach (var regionSetting in sportSetting.Regions)
             {
@@ -90,7 +90,7 @@
                 {
                     try
                     {
-                        await ProcessPayloads(reader.Value, hubContext);
+                        await ProcessPayloads(reader.Value);
                     }
                     catch (Exception ex)
                     {
@@ -119,7 +119,6 @@
 
         private async Task<HttpWebRequest> CreateSubscribeRequest(EndPointSetting endpoint, Region region)
         {
-
             var formattedEndpoint = $"{appSettings.DataProviderSettings.ApiUrl}{string.Format(endpoint.Path, region.Name, region.PushKey)}";
 
             if (appSettings.EnabledListenLogging)
@@ -135,11 +134,9 @@
             try
             {
                 req.GetResponse();
-
             }
             catch (WebException e)
             {
-
                 reply = e.Response;
                 var redirectUrl = reply.Headers["Location"];
                 req = (HttpWebRequest)HttpWebRequest.Create(new Uri(redirectUrl));
@@ -149,7 +146,7 @@
             return req;
         }
 
-        private async Task ProcessPayloads(StreamReader reader, IHubContext<MatchHub> hubContext)
+        private async Task ProcessPayloads(StreamReader reader)
         {
             string line;
 
@@ -164,7 +161,7 @@
 
                 if (!string.IsNullOrWhiteSpace(line) && !line.Contains("heartbeat"))
                 {
-                    await pushHandler.OnReceive(line, hubContext);
+                    await pushHandler.OnReceive(line);
                 }
             } while (!string.IsNullOrWhiteSpace(line));
         }

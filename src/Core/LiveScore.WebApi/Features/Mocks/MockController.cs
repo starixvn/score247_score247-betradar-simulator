@@ -18,17 +18,14 @@ namespace LiveScore.WebApi.Features.Notifications
     public class MockController : ControllerBase
     {
         private IMatchPushEventHandler soccerPushEventHandler;
-        private readonly IHubContext<MatchHub> hubContext;
         private readonly IMatchService matchService;
 
 
         public MockController(
             IMatchPushEventHandler soccerPushEventHandler, 
-            IHubContext<MatchHub> hubContext,
             IMatchService matchService)
         {
             this.soccerPushEventHandler = soccerPushEventHandler;
-            this.hubContext = hubContext;
             this.matchService = matchService;
         }
 
@@ -36,7 +33,7 @@ namespace LiveScore.WebApi.Features.Notifications
         public async Task PushMatchEvent(
             [FromBody]MatchPushEventDto matchPushEventDto)
         {
-            await soccerPushEventHandler.OnReceive(matchPushEventDto, hubContext);
+            await soccerPushEventHandler.OnReceive(matchPushEventDto);
         }
 
         [HttpPost(nameof(PushMatchEvents))]
@@ -45,7 +42,7 @@ namespace LiveScore.WebApi.Features.Notifications
         {
             foreach (var matchPushEventDto in matchPushEventDtos)
             {
-                await soccerPushEventHandler.OnReceive(matchPushEventDto, hubContext);
+                await soccerPushEventHandler.OnReceive(matchPushEventDto);
             }
         }
 

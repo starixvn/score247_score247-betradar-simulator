@@ -4,9 +4,6 @@
     using System.Threading.Tasks;
     using Hangfire;
     using LiveScore.Features.Matches;
-    using LiveScore.Shared;
-    using LiveScore.Shared.Hubs;
-    using Microsoft.AspNetCore.SignalR;
 
     public interface IMatchPushEventListenerJob
     {
@@ -16,26 +13,21 @@
     [AutomaticRetry(OnAttemptsExceeded = AttemptsExceededAction.Delete)]
     public class MatchPushEventListenerJob : IMatchPushEventListenerJob
     {
-        private readonly PushEventListenerFactory pushEventListenerFactory;
-        private readonly IHubContext<MatchHub> hubContext;
+        private readonly Func<int, IMatchPushEventListener> pushEventListenerFactory;
 
-        public MatchPushEventListenerJob(
-            PushEventListenerFactory pushEventListenerFactory, 
-            IHubContext<MatchHub> hubContext)
+        public MatchPushEventListenerJob(Func<int, IMatchPushEventListener> pushEventListenerFactory)
         {
             this.pushEventListenerFactory = pushEventListenerFactory;
-            this.hubContext = hubContext;
         }
 
         public async Task StartListeningPushEvent(byte sportId)
         {
-            var pushEventListener = pushEventListenerFactory.CreatePushEventListener(sportId);
+            var pushEventListener = pushEventListenerFactory(sportId);
 
-            
             await ListenPushEvent(sportId, pushEventListener);
         }
 
         private Task ListenPushEvent(byte sportId, IMatchPushEventListener pushEventListener)
-            => pushEventListener.Start(sportId, hubContext);
+            => pushEventListener.Start(sportId);
     }
 }

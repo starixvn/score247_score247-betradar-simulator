@@ -40,7 +40,7 @@ namespace LiveScore.WebApi.Shared.Middlewares
                         return serviceProvider.GetService<SportRadarMatchDataAccess>();
 
                     default:
-                        throw new KeyNotFoundException();
+                        throw new KeyNotFoundException("Not found implementation for " + sportId);
                 }
             });
         }

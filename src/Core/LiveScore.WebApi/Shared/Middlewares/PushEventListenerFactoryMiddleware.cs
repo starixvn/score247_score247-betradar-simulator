@@ -1,10 +1,9 @@
 ﻿namespace LiveScore.WebApi.Shared.Middlewares
 {
+    using System;
     using System.Collections.Generic;
-    using Fanex.Logging;
     using LiveScore.Features.Matches;
     using LiveScore.Shared;
-    using LiveScore.Shared.Configurations;
     using LiveScore.Soccers.Features.Matches;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -12,24 +11,21 @@
     {
         public static void RegisterPushEventListenerFactory(this IServiceCollection services)
         {
-            var matchDataAccessContainer = BuildPushEventListenerContainer(services);
-
-            services.AddSingleton((PushEventListenerFactory)new PushEventListenerFactoryImpl(matchDataAccessContainer));
-        }
-
-        private static Dictionary<int, IMatchPushEventListener> BuildPushEventListenerContainer(IServiceCollection services)
-        {
-            var serviceProvider = services.BuildServiceProvider();
-            var pushHandler = serviceProvider.GetService<IMatchPushEventHandler>();
-            var appSettings = serviceProvider.GetService<IAppSettings>();
-            var logger = serviceProvider.GetService<ILogger>();
-
-            var pushEventListenerContainer = new Dictionary<int, IMatchPushEventListener>
+            services.AddScoped<MatchPushEventListener>();
+            services.AddScoped<Func<int, IMatchPushEventListener>>(serviceProvider => (sportId) =>
+            {
+                switch (sportId)
                 {
-                    { SportConstants.SoccerId, new MatchPushEventListener(pushHandler, appSettings, logger) },
-                };
+                    case SportConstants.SoccerId:
+                        return serviceProvider.GetService<MatchPushEventListener>();
 
-            return pushEventListenerContainer;
+                    case SportConstants.BasketballId:
+                        throw new NotImplementedException("Not implement PushEventListener for Basketball");
+
+                    default:
+                        throw new KeyNotFoundException("Not found implementation of " + sportId);
+                }
+            });
         }
     }
 }
