@@ -4,37 +4,29 @@
     using System.Collections.Generic;
     using LiveScore.Features.Matches;
 
-    public enum DataProvider
+    public interface PushEventListenerFactory
     {
-        Database,
-        ThirdPartyApi
+        IMatchPushEventListener CreatePushEventListener(int sportId);
     }
 
-    public interface DataAccessFactory
+    public class PushEventListenerFactoryImpl : PushEventListenerFactory
     {
-        IMatchDataAccess CreateMatchDataAccess(int sportId, DataProvider dataProvider = DataProvider.Database);
-    }
+        private readonly IDictionary<int, IMatchPushEventListener> pushEventListenerContainer;
 
-    public class DataAccessFactoryImpl : DataAccessFactory
-    {
-        private readonly IDictionary<int, IDictionary<DataProvider, IMatchDataAccess>> matchDataAccessContainer;
-
-        public DataAccessFactoryImpl(
-            IDictionary<int, IDictionary<DataProvider, IMatchDataAccess>> matchDataAccessContainer)
+        public PushEventListenerFactoryImpl(
+            IDictionary<int, IMatchPushEventListener> pushEventListenerContainer)
         {
-            this.matchDataAccessContainer = matchDataAccessContainer;
+            this.pushEventListenerContainer = pushEventListenerContainer;
         }
 
-
-        public IMatchDataAccess CreateMatchDataAccess(int sportId, DataProvider dataProvider = DataProvider.Database)
+        public IMatchPushEventListener CreatePushEventListener(int sportId)
         {
-            if (matchDataAccessContainer == null
-                || !matchDataAccessContainer.ContainsKey(sportId))
+            if (pushEventListenerContainer == null || !pushEventListenerContainer.ContainsKey(sportId))
             {
-                throw new InvalidOperationException($"Cannot found implementation of Match Data Access for sport {sportId}");
+                throw new InvalidOperationException($"Cannot found implementation of PushEventListener for sport {sportId}");
             }
 
-            return matchDataAccessContainer[sportId][dataProvider];
+            return pushEventListenerContainer[sportId];
         }
     }
 }

@@ -1,15 +1,17 @@
 ﻿namespace LiveScore.Jobs
 {
-    using LiveScore.Features.Matches.Models;
-    using LiveScore.Shared;
-    using LiveScore.Shared.Database;
-    using LiveScore.Shared.Database.Entities;
-    using LiveScore.Shared.Models;
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using LiveScore.Features.Matches;
+    using LiveScore.Features.Matches.Models;
+    using LiveScore.Shared;
+    using LiveScore.Shared.Database;
+    using LiveScore.Shared.Database.Entities;
+    using LiveScore.Shared.Enumerations;
+    using LiveScore.Shared.Models;
+    using Newtonsoft.Json;
 
     public interface ILiveMatchFetchJob
     {
@@ -19,14 +21,14 @@
     public class LiveMatchFetchJob : ILiveMatchFetchJob
     {
         private readonly IDynamicRepository repository;
-        private readonly DataAccessFactory instanceFactory;
+        private readonly Func<int, DataProvider, IMatchDataAccess> matchDataAccessFactory;
 
         public LiveMatchFetchJob(
             IDynamicRepository repository,
-            DataAccessFactory instanceFactory)
+            Func<int, DataProvider, IMatchDataAccess> matchDataAccessFactory)
         {
             this.repository = repository;
-            this.instanceFactory = instanceFactory;
+            this.matchDataAccessFactory = matchDataAccessFactory;
         }
 
         public async Task Fetch(int sportId)
@@ -34,7 +36,7 @@
             var liveMatches = new List<IMatch>();
             var closedMatches = new List<IMatch>();
 
-            var dataAccess = instanceFactory.CreateMatchDataAccess(sportId, DataProvider.ThirdPartyApi);
+            var dataAccess = matchDataAccessFactory(sportId, DataProvider.ThirdPartyApi);
 
             foreach (var lang in Enumeration.GetAll<Language>())
             {
@@ -89,7 +91,6 @@
             {
                 await repository.UpdateRange(matchEntities);
             }
-
         }
 
         private async Task InsertLiveMatches(List<IMatch> matches, string language)
@@ -129,6 +130,5 @@
             CreatedTime = matchEntity.CreatedTime.ToUniversalTime(),
             ModifiedTime = matchEntity.ModifiedTime.ToUniversalTime()
         };
-
     }
 }

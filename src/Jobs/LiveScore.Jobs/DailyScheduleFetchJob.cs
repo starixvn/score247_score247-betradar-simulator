@@ -4,10 +4,12 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using LiveScore.Features.Matches;
     using LiveScore.Features.Matches.Models;
     using LiveScore.Shared;
     using LiveScore.Shared.Database;
     using LiveScore.Shared.Database.Entities;
+    using LiveScore.Shared.Enumerations;
     using LiveScore.Shared.Models;
     using Newtonsoft.Json;
 
@@ -21,13 +23,13 @@
     public class DailyScheduleFetchJob : IDailyScheduleFetchJob
     {
         private readonly IDynamicRepository repository;
-        private readonly DataAccessFactory instanceFactory;
+        private readonly Func<int, DataProvider, IMatchDataAccess> matchDataAccessFactory;
 
         public DailyScheduleFetchJob(
             IDynamicRepository repository,
-            DataAccessFactory instanceFactory)
+            Func<int, DataProvider, IMatchDataAccess> matchDataAccessFactory)
         {
-            this.instanceFactory = instanceFactory;
+            this.matchDataAccessFactory = matchDataAccessFactory;
             this.repository = repository;
         }
 
@@ -55,7 +57,7 @@
 
         private async Task FetchDailySchedule(int sportId, DateTime from, DateTime to, string language)
         {
-            var dataAccess = instanceFactory.CreateMatchDataAccess(sportId, DataProvider.ThirdPartyApi);
+            var dataAccess = matchDataAccessFactory(sportId, DataProvider.ThirdPartyApi);
 
             var matches = await dataAccess.GetMatches(
                 sportId,
@@ -113,6 +115,5 @@
             Region = match.Region,
             Value = JsonConvert.SerializeObject(match)
         };
-
     }
 }

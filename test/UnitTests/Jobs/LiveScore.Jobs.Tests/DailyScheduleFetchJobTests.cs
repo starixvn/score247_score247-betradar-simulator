@@ -6,6 +6,7 @@
     using LiveScore.Shared;
     using LiveScore.Shared.Database;
     using LiveScore.Shared.Database.Entities;
+    using LiveScore.Shared.Enumerations;
     using NSubstitute;
     using System;
     using System.Collections.Generic;
@@ -16,19 +17,16 @@
     public class DailyScheduleFetchJobTests
     {
         private readonly IDynamicRepository repository;
-        private readonly DataAccessFactory instanceFactory;
         private readonly IMatchDataAccess dataAccess;
-
+        private readonly Func<int, DataProvider, IMatchDataAccess> matchDataAccessFactory;
         private readonly DailyScheduleFetchJob job;
 
         public DailyScheduleFetchJobTests()
         {
             repository = Substitute.For<IDynamicRepository>();
             dataAccess = Substitute.For<IMatchDataAccess>();
-            instanceFactory = Substitute.For<DataAccessFactory>();
-            instanceFactory.CreateMatchDataAccess(SportConstants.SoccerId, DataProvider.ThirdPartyApi).Returns(dataAccess);
-
-            job = new DailyScheduleFetchJob(repository, instanceFactory);
+            matchDataAccessFactory = (_, __) => dataAccess;
+            job = new DailyScheduleFetchJob(repository, matchDataAccessFactory);
         }
 
         [Fact]
@@ -107,6 +105,5 @@
 
             await repository.Received(1).Delete<LiveMatchEntity>("sr:match:1", Arg.Any<string>());
         }
-
     }
 }

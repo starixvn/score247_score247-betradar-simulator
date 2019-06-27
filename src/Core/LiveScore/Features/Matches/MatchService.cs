@@ -8,6 +8,7 @@
     using LiveScore.Features.Matches.Models;
     using LiveScore.Shared;
     using LiveScore.Shared.Configurations;
+    using LiveScore.Shared.Enumerations;
     using LiveScore.Shared.Helpers;
     using LiveScore.Shared.Models;
     using Newtonsoft.Json;
@@ -47,18 +48,18 @@
             SlidingExpiration = TimeSpan.FromMinutes(120),
         };
 
-        private readonly DataAccessFactory instanceFactory;
         private readonly ICacheService cacheService;
         private readonly IAppSettings appSettings;
+        private readonly Func<int, DataProvider, IMatchDataAccess> matchDataAccessFactory;
 
         public MatchService(
-            DataAccessFactory instanceFactory,
             ICacheService cacheService,
-            IAppSettings appSettings)
+            IAppSettings appSettings,
+            Func<int, DataProvider, IMatchDataAccess> matchDataAccessFactory)
         {
-            this.instanceFactory = instanceFactory;
             this.cacheService = cacheService;
             this.appSettings = appSettings;
+            this.matchDataAccessFactory = matchDataAccessFactory;
         }
 
         public async Task<IEnumerable<IMatch>> GetMatches(
@@ -104,7 +105,7 @@
 
         public async Task<IEnumerable<IMatch>> GetNonLiveMatches(int sportId, string language, DateTime utcFrom, DateTime utcTo)
         {
-            var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
+            var matchDataAccess = matchDataAccessFactory(sportId, DataProvider.Database);
 
             var normalMatchCacheKey = $"Match_{sportId}_{language}_{utcFrom}_{utcTo}";
             var normalMatches = await cacheService.GetAsync<IEnumerable<IMatch>>(normalMatchCacheKey);
@@ -120,7 +121,7 @@
 
         public async Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
         {
-            var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
+            var matchDataAccess = matchDataAccessFactory(sportId, DataProvider.Database);
             var liveMatchCacheKey = GetLiveMatchCacheKey(sportId, language);
             var liveMatches = await cacheService.GetAsync<IDictionary<string, IMatch>>(liveMatchCacheKey);
 
@@ -135,7 +136,7 @@
 
         public async Task UpdateLiveMatches(int sportId, string language, IEnumerable<IMatch> matches)
         {
-            var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
+            var matchDataAccess = matchDataAccessFactory(sportId, DataProvider.Database);
             var liveMatchCacheKey = GetLiveMatchCacheKey(sportId, language);
 
             cacheService.Set(liveMatchCacheKey, JsonConvert.SerializeObject(matches.ToDictionary(m => m.Id)), LiveMatchCacheOptions);
@@ -145,7 +146,7 @@
 
         public async Task<bool> AddOrUpdateMatch(int sportId, string language, string matchId, MatchPushEvent pushEvent, bool isLive = false)
         {
-            var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
+            var matchDataAccess = matchDataAccessFactory(sportId, DataProvider.Database);
             var match = await matchDataAccess.AddOrUpdateMatch(matchId, language, pushEvent, isLive);
 
             if (match == null)
@@ -174,7 +175,7 @@
 
         public async Task<bool> DeleteLiveMatch(int sportId, string language, string matchId)
         {
-            var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
+            var matchDataAccess = matchDataAccessFactory(sportId, DataProvider.Database);
 
             var liveMatchCacheKey = GetLiveMatchCacheKey(sportId, language);
             var liveMatches = cacheService.Get<IDictionary<string, IMatch>>(liveMatchCacheKey);
@@ -194,7 +195,7 @@
 
             if (timelines != null && timelines.Any())
             {
-                var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
+                var matchDataAccess = matchDataAccessFactory(sportId, DataProvider.Database);
 
                 result = await matchDataAccess.AddTimelines(matchId, timelines);
             }
@@ -208,7 +209,7 @@
 
             if (matchResult != null)
             {
-                var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
+                var matchDataAccess = matchDataAccessFactory(sportId, DataProvider.Database);
 
                 result = await matchDataAccess.AddResult(matchId, matchResult);
             }
@@ -226,7 +227,7 @@
                 throw new ArgumentException("Missing sportId or matchId argument");
             }
 
-            var matchDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
+            var matchDataAccess = matchDataAccessFactory(sportId, DataProvider.Database);
 
             var liveMatches = await GetLiveMatches(sportId, language);
             var match = liveMatches.Any(m => m.Id == matchId)
@@ -251,12 +252,12 @@
 
         public async Task AddFullTimelines(int sportId, string matchId, string language, string region)
         {
-            var dataAccess = instanceFactory.CreateMatchDataAccess(sportId, DataProvider.ThirdPartyApi);
+            var dataAccess = matchDataAccessFactory(sportId, DataProvider.ThirdPartyApi);
             var timelines = await dataAccess.GetTimelines(sportId, region, matchId, Enumeration.FromValue<Language>(language).DisplayName.ToLowerInvariant());
 
-            if (timelines != null && timelines.Any())
+            if (timelines?.Any() == true)
             {
-                var dbDataAccess = instanceFactory.CreateMatchDataAccess(sportId);
+                var dbDataAccess = matchDataAccessFactory(sportId, DataProvider.Database);
                 await dbDataAccess.AddCommentaries(matchId, timelines, language);
 
                 var timelinesExcludeComment = timelines.Select(x => RemoveCommentary(x)).ToList();

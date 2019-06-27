@@ -26,7 +26,7 @@
 
         public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime utcFrom, DateTime utcTo, string language)
         {
-            var matchEntities = await dynamicRepository.Query<MatchEntity>
+            var matchEntities = dynamicRepository.Query<MatchEntity>
             (
                 x => x.SportId == sportId &&
                 x.Language.Equals(language, StringComparison.OrdinalIgnoreCase) &&
@@ -39,7 +39,7 @@
 
         public async Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
         {
-            var matchEntities = await dynamicRepository.Query<LiveMatchEntity>(m =>
+            var matchEntities = dynamicRepository.Query<LiveMatchEntity>(m =>
                     m.SportId == sportId &&
                     m.Language.Equals(language, StringComparison.OrdinalIgnoreCase));
 
@@ -145,7 +145,7 @@
 
         private async Task DeleteAllTimelines(string matchId)
         {
-            var eixstingTimelines = (await dynamicRepository.Query<MatchTimelineEntity>(x => x.MatchId.Equals(matchId, StringComparison.OrdinalIgnoreCase)));
+            var eixstingTimelines = (dynamicRepository.Query<MatchTimelineEntity>(x => x.MatchId.Equals(matchId, StringComparison.OrdinalIgnoreCase)));
 
             if (eixstingTimelines != null && eixstingTimelines.Any())
             {
@@ -191,7 +191,7 @@
 
         public async Task<IEnumerable<ITimeline>> GetTimelines(int sportId, string region, string matchId, string language)
         {
-            var timelines = (await dynamicRepository
+            var timelines = (dynamicRepository
                 .Query<MatchTimelineEntity>(x => x.MatchId.Equals(matchId, StringComparison.OrdinalIgnoreCase)))
                 .Select(x => JsonConvert.DeserializeObject<Timeline>(x.Value))
                 .Where(x => EventTypes.BasicSoccerEventTypes.Contains(x.Type))
@@ -220,8 +220,8 @@
         }
 
         public Task<IEnumerable<IMatchFunction>> GetMatchFunctions(
-            int sportId, 
-            string matchId, 
+            int sportId,
+            string matchId,
             string language)
         {
             // TODO: Hardcode first
@@ -238,7 +238,8 @@
                     new MatchFunction { Abbreviation = "TV", Name = "TV Schedule" }
             };
 
-            return Task.FromResult(functions.Select(function => {
+            return Task.FromResult(functions.Select(function =>
+            {
                 function.Id = function.Abbreviation.Replace(" ", "_");
                 return function;
             }) as IEnumerable<IMatchFunction>);

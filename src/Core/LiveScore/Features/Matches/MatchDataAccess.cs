@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using LiveScore.Features.Matches.Models;
+    using LiveScore.Shared.Database;
 
     public interface IMatchDataAccess
     {

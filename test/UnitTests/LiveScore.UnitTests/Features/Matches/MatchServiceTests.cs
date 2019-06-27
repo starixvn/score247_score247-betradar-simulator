@@ -11,16 +11,17 @@
     using Xunit;
     using Fanex.Caching;
     using LiveScore.Shared.Configurations;
+    using LiveScore.Shared.Enumerations;
 
     public class MatchServiceTests
     {
         private const int SoccerSportId = 1;
         private readonly MatchService matchServiceImpl;
-        private readonly DataAccessFactory instanceFactory;
         private readonly IMatchDataAccess matchDataAccess;
         private readonly IMatchDataAccess sportRadarDataAccess;
         private readonly ICacheService cacheService;
         private readonly IAppSettings appSettings;
+        private readonly Func<int, DataProvider, IMatchDataAccess> matchDataAccessFactory;
 
         public MatchServiceTests()
         {
@@ -28,15 +29,22 @@
 
             matchDataAccess = Substitute.For<IMatchDataAccess>();
             sportRadarDataAccess = Substitute.For<IMatchDataAccess>();
-            instanceFactory = Substitute.For<DataAccessFactory>();
             cacheService = Substitute.For<ICacheService>();
             appSettings = Substitute.For<IAppSettings>();
-            instanceFactory.CreateMatchDataAccess(SoccerSportId).Returns(matchDataAccess);
-            instanceFactory.CreateMatchDataAccess(SoccerSportId, DataProvider.ThirdPartyApi).Returns(sportRadarDataAccess);
+            matchDataAccessFactory = (sportId, provider) =>
+            {
+                switch (sportId)
+                {
+                    case SoccerSportId when provider == DataProvider.Database:
+                        return matchDataAccess;
+
+                    default:
+                        return sportRadarDataAccess;
+                }
+            };
 
             appSettings.NumberOfTopMatches.Returns(int.MaxValue);
-
-            matchServiceImpl = new MatchService(instanceFactory, cacheService, appSettings);
+            matchServiceImpl = new MatchService(cacheService, appSettings, matchDataAccessFactory);
         }
 
         #region GetMatches
@@ -139,7 +147,7 @@
             Assert.Equal(3, actualMatches.First(x => x.Id.Equals("1")).MatchResult.MatchTime);
         }
 
-        #endregion
+        #endregion GetMatches
 
         #region GetMatch
 
@@ -150,7 +158,6 @@
         [InlineData(1, "   ")]
         public async Task GetMatch_InvalidSportOrMatchId_ShouldThrowsException(int sportId, string matchId)
         {
-
             var exception = await Assert.ThrowsAsync<ArgumentException>(() => (matchServiceImpl.GetMatch(
                 sportId,
                 matchId,
@@ -209,7 +216,7 @@
             Assert.Equal(EventTypes.MatchStarted.Value, actualMatch.TimeLines.First().Type);
         }
 
-        #endregion
+        #endregion GetMatch
 
         #region AddFullTimelines
 
@@ -283,13 +290,13 @@
             await matchDataAccess.Received(1).AddTimelines("sr:match:1", Arg.Any<IEnumerable<ITimeline>>(), isDeleteExisting: true);
         }
 
-        #endregion
+        #endregion AddFullTimelines
 
         #region AddTimelines
 
         [Fact]
         public async Task AddTimelines_Null_ShouldNotAdd()
-        {           
+        {
             await matchServiceImpl.AddTimelines(
                 1,
                 "sr:match:1",
@@ -314,7 +321,7 @@
             await matchDataAccess.Received(1).AddTimelines("sr:match:1", Arg.Any<IEnumerable<ITimeline>>());
         }
 
-        #endregion
+        #endregion AddTimelines
 
         #region AddTimelines
 
@@ -342,6 +349,6 @@
             await matchDataAccess.Received(1).AddResult("sr:match:1", Arg.Any<MatchResult>());
         }
 
-        #endregion
+        #endregion AddTimelines
     }
 }

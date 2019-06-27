@@ -17,7 +17,7 @@ namespace LiveScore.Shared.Database
 
         Task<List<T>> Query<T>(string value, params string[] jsonHierachy) where T : DatabaseEntity;
 
-        Task<List<T>> Query<T>(Func<T, bool> predicate) where T : DatabaseEntity;
+        List<T> Query<T>(Func<T, bool> predicate) where T : DatabaseEntity;
 
         Task<T> First<T>(Expression<Func<T, bool>> predicate) where T : DatabaseEntity;
 
@@ -69,8 +69,8 @@ namespace LiveScore.Shared.Database
             return await context.Set<T>().AsNoTracking().FromSql(queryCommand).ToListAsync();
         }
 
-        public async Task<List<T>> Query<T>(Func<T, bool> predicate) where T : DatabaseEntity
-            => await Task.FromResult(context.Set<T>().AsNoTracking().Where(predicate).ToList());
+        public List<T> Query<T>(Func<T, bool> predicate) where T : DatabaseEntity
+            => context.Set<T>().AsNoTracking().Where(predicate).ToList();
 
         public Task<T> First<T>(Expression<Func<T, bool>> predicate) where T : DatabaseEntity
             => context.Set<T>().AsNoTracking().FirstOrDefaultAsync(predicate);

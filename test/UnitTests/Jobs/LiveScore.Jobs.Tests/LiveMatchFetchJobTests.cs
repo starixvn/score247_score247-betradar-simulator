@@ -5,6 +5,7 @@
     using LiveScore.Shared;
     using LiveScore.Shared.Database;
     using LiveScore.Shared.Database.Entities;
+    using LiveScore.Shared.Enumerations;
     using NSubstitute;
     using System;
     using System.Collections.Generic;
@@ -14,19 +15,17 @@
     public class LiveMatchFetchJobTests
     {
         private readonly IDynamicRepository repository;
-        private readonly DataAccessFactory instanceFactory;
         private readonly IMatchDataAccess dataAccess;
-
         private readonly LiveMatchFetchJob job;
+        private readonly Func<int, DataProvider, IMatchDataAccess> matchDataAccessFactory;
 
         public LiveMatchFetchJobTests()
         {
             repository = Substitute.For<IDynamicRepository>();
             dataAccess = Substitute.For<IMatchDataAccess>();
-            instanceFactory = Substitute.For<DataAccessFactory>();
-            instanceFactory.CreateMatchDataAccess(SportConstants.SoccerId, DataProvider.ThirdPartyApi).Returns(dataAccess);
+            matchDataAccessFactory = (_, __) => dataAccess;
 
-            job = new LiveMatchFetchJob(repository, instanceFactory);
+            job = new LiveMatchFetchJob(repository, matchDataAccessFactory);
         }
 
         [Fact]

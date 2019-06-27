@@ -27,7 +27,8 @@
     <ItemGroup>
         <Folder Include="Shared\Hubs\">
         </Folder>
-        <Folder Include="Shared\Factories\">
-        </Folder>
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\Database\LiveScore.Database\LiveScore.Database.csproj" />
     </ItemGroup>
 </Project>
