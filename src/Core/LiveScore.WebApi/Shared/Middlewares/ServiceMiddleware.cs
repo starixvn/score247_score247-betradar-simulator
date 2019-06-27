@@ -16,9 +16,7 @@ namespace LiveScore.WebApi.Shared.Middlewares
         public static void AddServices(this IServiceCollection services)
         {
             services.AddSingleton<ICacheService, CacheService>();
-            services.AddSingleton<IMatchPushEventHandler, MatchPushEventHandler>();
-            services.AddSingleton<IMatchPushEventListener, MatchPushEventListener>();
-            services.AddSingleton<IPenaltyEventHandler, PenaltyEventHandler>();
+
 
             RegisterMatchService(services);
         }
