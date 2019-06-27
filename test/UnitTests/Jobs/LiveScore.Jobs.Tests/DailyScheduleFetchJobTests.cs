@@ -1,5 +1,9 @@
 ﻿namespace LiveScore.Jobs.Tests
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using LiveScore.Features.Leagues.Models;
     using LiveScore.Features.Matches;
     using LiveScore.Features.Matches.Models;
@@ -8,10 +12,6 @@
     using LiveScore.Shared.Database.Entities;
     using LiveScore.Shared.Enumerations;
     using NSubstitute;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Xunit;
 
     public class DailyScheduleFetchJobTests

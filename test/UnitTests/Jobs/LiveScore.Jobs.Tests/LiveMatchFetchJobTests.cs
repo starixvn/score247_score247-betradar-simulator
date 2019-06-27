@@ -1,5 +1,8 @@
 ﻿namespace LiveScore.Jobs.Tests
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using LiveScore.Features.Matches;
     using LiveScore.Features.Matches.Models;
     using LiveScore.Shared;
@@ -7,9 +10,6 @@
     using LiveScore.Shared.Database.Entities;
     using LiveScore.Shared.Enumerations;
     using NSubstitute;
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
     using Xunit;
 
     public class LiveMatchFetchJobTests

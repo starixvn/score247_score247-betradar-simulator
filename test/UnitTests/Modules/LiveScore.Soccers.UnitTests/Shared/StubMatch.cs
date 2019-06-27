@@ -1,5 +1,5 @@
-﻿using LiveScore.Shared.Database.Entities;
-using System;
+﻿using System;
+using LiveScore.Shared.Database.Entities;
 
 namespace LiveScore.Soccers.UnitTests.Shared
 {

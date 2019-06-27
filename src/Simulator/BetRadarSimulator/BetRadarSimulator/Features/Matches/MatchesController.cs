@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
 
-   
+
     [ApiController]
     public class MatchesController : ControllerBase
     {

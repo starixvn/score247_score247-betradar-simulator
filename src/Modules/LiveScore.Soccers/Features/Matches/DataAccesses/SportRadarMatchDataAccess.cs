@@ -63,8 +63,8 @@
                     var formattedEndpoint = string.Format(endPoint.Path, region.Name, language, date.ToString(SportRadarDateFormat), region.Key);
                     var dailyResult = await restClient.ExecuteGetAsync<DailyResultDto>(formattedEndpoint);
 
-                    if (dailyResult != null 
-                        && dailyResult.results != null 
+                    if (dailyResult != null
+                        && dailyResult.results != null
                         && dailyResult.results.Any())
                     {
                         dailyResult.results.ToList().ForEach(x => matches.Add(MatchBuilder.BuildMatch(x.sport_event, x.sport_event_status, region.Name)));
@@ -89,7 +89,7 @@
                     var dailySchedule = await restClient.ExecuteGetAsync<DailyScheduleDto>(formattedEndpoint);
 
                     if (dailySchedule != null
-                        && dailySchedule.sport_events != null 
+                        && dailySchedule.sport_events != null
                         && dailySchedule.sport_events.Any())
                     {
                         dailySchedule.sport_events.ToList().ForEach(x => matches.Add(MatchBuilder.BuildMatch(x, null, region.Name)));
@@ -117,8 +117,8 @@
                     var formattedEndpoint = string.Format(endpoint.Path, region.Name, language, region.Key);
                     var dailyResult = await restClient.ExecuteGetAsync<DailyResultDto>(formattedEndpoint);
 
-                    if (dailyResult != null 
-                        && dailyResult.results != null 
+                    if (dailyResult != null
+                        && dailyResult.results != null
                         && dailyResult.results.Any())
                     {
                         dailyResult.results.ToList()
@@ -147,7 +147,7 @@
 
         public Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines, bool isDeleteExisting = false)
         {
-            throw new NotImplementedException();            
+            throw new NotImplementedException();
         }
 
         public Task<bool> AddResult(string matchId, IMatchResult matchResult)

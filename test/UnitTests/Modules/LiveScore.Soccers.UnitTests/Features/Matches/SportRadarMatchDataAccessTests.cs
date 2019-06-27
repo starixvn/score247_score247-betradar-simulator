@@ -1,5 +1,9 @@
 ﻿namespace LiveScore.Soccers.UnitTests.Features.Matches
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using LiveScore.Shared.Configurations;
     using LiveScore.Shared.Helpers;
     using LiveScore.Shared.Models.Dtos;
@@ -8,10 +12,6 @@
     using LiveScore.Soccers.Features.Matches.DataAccesses;
     using LiveScore.Soccers.UnitTests.Shared;
     using NSubstitute;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Xunit;
 
     public class SportRadarMatchDataAccessTests

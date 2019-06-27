@@ -11,13 +11,13 @@
         private readonly IConfiguration configuration;
         private const string LiveScore = "LiveScores:";
 
-        public AppSettings(            
+        public AppSettings(
             IConfiguration configuration,
             IDataProviderSettings dataProviderSettings,
             IDictionary<int, string> timeZoneSettings,
             string appPath)
-        {           
-            this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));                     
+        {
+            this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             DataProviderSettings = dataProviderSettings;
             TimeZoneSettings = timeZoneSettings;
             EnabledJobs = GetValue<bool>($"{LiveScore}{nameof(EnabledJobs)}");
@@ -25,7 +25,7 @@
             EnabledDatabaseMigration = GetValue<bool>($"{LiveScore}{nameof(EnabledDatabaseMigration)}");
             EnabledListenLogging = GetValue<bool>($"{LiveScore}{nameof(EnabledListenLogging)}");
             NumberOfTopMatches = GetValue<int>($"{LiveScore}{nameof(NumberOfTopMatches)}");
-            if(NumberOfTopMatches <= 0)
+            if (NumberOfTopMatches <= 0)
             {
                 NumberOfTopMatches = int.MaxValue;
             }

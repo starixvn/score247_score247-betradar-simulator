@@ -4,7 +4,6 @@
     using System.Threading.Tasks;
     using Hangfire;
     using LiveScore.Features.Matches;
-    using LiveScore.Features.Matches.Models;
     using LiveScore.Shared;
     using LiveScore.Shared.Hubs;
     using LiveScore.Shared.Models;

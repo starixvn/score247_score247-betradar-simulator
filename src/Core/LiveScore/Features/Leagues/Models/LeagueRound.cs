@@ -1,8 +1,5 @@
 ﻿namespace LiveScore.Features.Leagues.Models
 {
-    using System.Collections.Generic;
-    using LiveScore.Features.Matches.Models;
-
     public class LeagueRound
     {
         public LeagueRoundTypes Type { get; set; }

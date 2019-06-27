@@ -1,10 +1,10 @@
 ﻿namespace LiveScore.Soccers.UnitTests.Shared
 {
+    using System.Collections.Generic;
     using LiveScore.Features.Matches.Models;
     using LiveScore.Features.Teams.Models;
     using LiveScore.Shared.Database.Entities;
     using Newtonsoft.Json;
-    using System.Collections.Generic;
 
     public static class StubTimeline
     {

@@ -3,15 +3,10 @@ namespace LiveScore.WebApi.Features.Notifications
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using LiveScore.Features.Matches.Models;
-    using LiveScore.Soccers.Features.Matches;
-    using Microsoft.AspNetCore.Mvc;
-    using LiveScore.Shared;
-    using LiveScore.Soccers.Shared.Dtos;
-    using Microsoft.AspNetCore.SignalR;
-    using LiveScore.Shared.Hubs;
-    using System;
     using LiveScore.Features.Matches;
+    using LiveScore.Soccers.Features.Matches;
+    using LiveScore.Soccers.Shared.Dtos;
+    using Microsoft.AspNetCore.Mvc;
 
     [Route("api/[controller]")]
     [ApiController]

@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Linq.Expressions;
     using System.Threading.Tasks;
     using Fanex.Logging;
     using LiveScore.Features.Matches.Models;
@@ -372,7 +371,7 @@
         [Fact]
         public async Task AddResult_Always_InsertMatchResultEntity()
         {
-            var matchResult = new MatchResult { EventStatus = MatchStatus.Closed, MatchStatus = MatchStatus.Ended };            
+            var matchResult = new MatchResult { EventStatus = MatchStatus.Closed, MatchStatus = MatchStatus.Ended };
 
             await matchDataAccess.AddResult("sr:match:1", matchResult);
 
@@ -481,7 +480,7 @@
             var matches = new List<Match> { new Match { EventDate = DateTime.Now, Id = "sr:match:1" } };
 
             await matchDataAccess.UpdateLiveMatches(matches, "en-US");
-           
+
             await dynamicRepository.Received(1).UpdateRange(Arg.Any<IEnumerable<LiveMatchEntity>>());
         }
 

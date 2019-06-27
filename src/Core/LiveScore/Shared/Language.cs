@@ -1,12 +1,11 @@
 ﻿namespace LiveScore.Shared
 {
-    using System.Collections.Generic;
     using LiveScore.Shared.Models;
 
     public class Language : Enumeration
     {
-        
-        public static readonly Language En = new Language("en-US", nameof(En));        
+
+        public static readonly Language En = new Language("en-US", nameof(En));
 
         public Language()
         {

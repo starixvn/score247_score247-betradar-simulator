@@ -28,7 +28,7 @@ namespace LiveScore.Soccers.UnitTests.Shared
             {
                 id = 539289582,
                 type = "score_change",
-                period = 1,                
+                period = 1,
                 period_type = "regular_period",
                 match_time = 5,
                 home_score = 0,
@@ -51,13 +51,13 @@ namespace LiveScore.Soccers.UnitTests.Shared
             {
                 id = 539289582,
                 type = "score_change",
-                period = 2,                
+                period = 2,
                 period_type = "regular_period",
                 match_time = 90,
                 home_score = 0,
                 away_score = 1,
                 team = "away",
-                stoppage_time = "4",                
+                stoppage_time = "4",
                 goal_scorer = new Goal_Scorer { id = "sr:player:331209", name = "Silva, Bernardo", method = "penalty" },
                 commentaries = new List<CommentaryDto>
                 {

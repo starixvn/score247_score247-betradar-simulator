@@ -1,8 +1,8 @@
 ﻿namespace LiveScore.UnitTests.Shared.SportRadarApi.Models
 {
-    using LiveScore.Shared.SportRadarApi.Models;
     using System;
     using System.Collections.Generic;
+    using LiveScore.Shared.SportRadarApi.Models;
     using Xunit;
 
     public class SportRadarDataProviderSettingsTests

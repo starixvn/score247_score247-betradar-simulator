@@ -1,16 +1,12 @@
 ﻿namespace LiveScore.Soccers.IntegrationTests.Features.Matches.DataAccesses
 {
-    using LiveScore.Shared;
-    using LiveScore.Shared.Configurations;
-    using LiveScore.Shared.Database;
-    using LiveScore.Shared.Helpers;
-    using LiveScore.Shared.SportRadarApi.Models;
-    using LiveScore.Soccers.Features.Matches.DataAccesses;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
-    using Xunit;
+    using LiveScore.Shared.Configurations;
+    using LiveScore.Shared.Helpers;
+    using LiveScore.Shared.SportRadarApi.Models;
+    using LiveScore.Soccers.Features.Matches.DataAccesses;
 
     public class SportRadarMatchDataAccessTests
     {
@@ -56,7 +52,7 @@
                     Id = 1,
                     Name ="Soccer",
                     EndPoints = new List<EndPoint>
-                    {                        
+                    {
                         new EndPoint {
                             Name = "Timeline",
                             EndPointSettings = new List<EndPointSetting>

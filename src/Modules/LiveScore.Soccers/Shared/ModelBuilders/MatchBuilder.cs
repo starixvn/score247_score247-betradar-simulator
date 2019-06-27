@@ -48,7 +48,7 @@
                     WinnerId = sportEventStatusDto.winner_id
                 };
 
-                if(!string.IsNullOrWhiteSpace(sportEventStatusDto.aggregate_winner_id))
+                if (!string.IsNullOrWhiteSpace(sportEventStatusDto.aggregate_winner_id))
                 {
                     matchResult.AggregateWinnerId = sportEventStatusDto.aggregate_winner_id;
                     matchResult.AggregateHomeScore = sportEventStatusDto.aggregate_home_score;
@@ -96,7 +96,7 @@
                 timeline.Team = timelineDto.team;
                 timeline.InjuryTimeAnnounced = timelineDto.injury_time_announced;
                 timeline.PeriodType = timelineDto.period_type;
-                if(string.IsNullOrWhiteSpace(timeline.PeriodType)
+                if (string.IsNullOrWhiteSpace(timeline.PeriodType)
                     && !string.IsNullOrWhiteSpace(timelineDto.period_name))
                 {
                     timeline.PeriodType = timelineDto.period_name.ToLowerInvariant().Replace(" ", "_").Trim();

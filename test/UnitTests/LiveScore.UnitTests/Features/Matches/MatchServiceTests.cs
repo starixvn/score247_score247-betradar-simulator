@@ -4,14 +4,13 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Fanex.Caching;
     using LiveScore.Features.Matches;
     using LiveScore.Features.Matches.Models;
-    using LiveScore.Shared;
-    using NSubstitute;
-    using Xunit;
-    using Fanex.Caching;
     using LiveScore.Shared.Configurations;
     using LiveScore.Shared.Enumerations;
+    using NSubstitute;
+    using Xunit;
 
     public class MatchServiceTests
     {
