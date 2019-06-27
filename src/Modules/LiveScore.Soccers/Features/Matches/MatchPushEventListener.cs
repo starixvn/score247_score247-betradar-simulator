@@ -86,6 +86,11 @@
             {
                 foreach (var reader in readers)
                 {
+                    if (isFailed)
+                    {
+                        continue;
+                    }
+
                     try
                     {
                         await ProcessPayloads(reader.Value);
@@ -93,7 +98,7 @@
                     catch (Exception ex)
                     {
                         await logger.ErrorAsync($"{ DateTime.Now } Error while listening feed for sportId {sportId} - region {reader.Key}", ex);
-                        isFailed = true;
+                        isFailed = true;                        
                     }
                 }
 
