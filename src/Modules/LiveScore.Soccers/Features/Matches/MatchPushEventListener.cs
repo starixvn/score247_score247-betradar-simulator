@@ -98,7 +98,7 @@
                     catch (Exception ex)
                     {
                         await logger.ErrorAsync($"{ DateTime.Now } Error while listening feed for sportId {sportId} - region {reader.Key}", ex);
-                        isFailed = true;                        
+                        isFailed = true;
                     }
                 }
 
@@ -162,10 +162,8 @@
                     await logger.InfoAsync($"{DateTime.Now} Receiving: {line}");
                 }
 
-                if (!string.IsNullOrWhiteSpace(line) && !line.Contains("heartbeat"))
-                {
-                    await pushHandler.OnReceive(line);
-                }
+                await pushHandler.OnReceive(line);
+
             } while (!string.IsNullOrWhiteSpace(line));
         }
     }
