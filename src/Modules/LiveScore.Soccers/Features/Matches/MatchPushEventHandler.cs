@@ -86,21 +86,33 @@
                 GenerateMatchTimeForLiveMatch(pushEvents[matchId]);
             }
 
+            var tasks = new List<Task>
+            {
+                InsertToDatabase(pushEvents),
+                PushBasicEvents(pushEvents)
+            };
+
+            await Task.WhenAll(tasks);
+        }
+
+        private async Task PushBasicEvents(Dictionary<string, MatchPushEvent> pushEvents)
+        {
             var basicPushEvents = await GetBasicPushEvents(pushEvents);
 
-            if (!basicPushEvents.Keys.Any())
+            if (basicPushEvents.Keys.Count > 0)
             {
-                return;
+                await PushToClients(basicPushEvents);
+
+                foreach (var matchId in basicPushEvents.Keys)
+                {
+                    var pushEvent = basicPushEvents[matchId];
+                    await UpdateMatch(matchId, pushEvent);
+                }
             }
+        }
 
-            await PushToClients(basicPushEvents);
-
-            foreach (var matchId in basicPushEvents.Keys)
-            {
-                var pushEvent = basicPushEvents[matchId];
-                await UpdateMatch(matchId, pushEvent);
-            }
-
+        private async Task InsertToDatabase(Dictionary<string, MatchPushEvent> pushEvents)
+        {
             foreach (var matchId in pushEvents.Keys)
             {
                 var pushEvent = pushEvents[matchId];
@@ -128,20 +140,16 @@
             return basicPushEvents;
         }
 
+#pragma warning disable S3215 // "interface" instances should not be cast to concrete types
+
         private async Task BuildPushEvent(
             Dictionary<string, MatchPushEvent> basicPushEvents,
             string matchId,
             MatchPushEvent pushEvent,
             ITimeline timeline)
         {
-#pragma warning disable S3215 // "interface" instances should not be cast to concrete types
-            var shootoutEvent = pushEvent.TimeLines.FirstOrDefault(
-                                    tl => timeline.PeriodType == PeriodType.Penalties.Value
-                                        && timeline.Type == EventTypes.PenaltyShootout.Value) as Timeline;
-#pragma warning restore S3215 // "interface" instances should not be cast to concrete types
-
             var penaltyScoreChangeEvent = pushEvent.TimeLines.FirstOrDefault(
-                tl => timeline.PeriodType == PeriodType.Penalties.Value
+                _ => timeline.PeriodType == PeriodType.Penalties.Value
                     && timeline.Type == EventTypes.ScoreChange.Value);
 
             if (penaltyScoreChangeEvent != default(ITimeline))
@@ -149,9 +157,12 @@
                 return;
             }
 
-            if (shootoutEvent != null)
+            if (pushEvent.TimeLines.FirstOrDefault(
+                _ => timeline.PeriodType == PeriodType.Penalties.Value
+                    && timeline.Type == EventTypes.PenaltyShootout.Value) is Timeline shootoutEvent)
             {
                 var penaltyEvent = await penaltyEventHandler.Handle(matchId, shootoutEvent);
+
                 if (penaltyEvent != default(Timeline))
                 {
                     pushEvent.TimeLines = new List<Timeline> { penaltyEvent };
@@ -164,11 +175,12 @@
             }
         }
 
+#pragma warning restore S3215 // "interface" instances should not be cast to concrete types
+
         private async Task PushToClients(Dictionary<string, MatchPushEvent> pushEvents)
         {
             var firstEvent = pushEvents.First().Value.TimeLines.First();
             await logger.InfoAsync($"{ DateTime.Now.ToString("MMMM dd HH:mm:ss") } Pushing {pushEvents.First().Key} - {firstEvent.Type}");
-
             await hubContext.Clients.All.SendAsync("PushMatchEvent", SportConstants.SoccerId.ToString(), pushEvents);
         }
 
