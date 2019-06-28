@@ -93,7 +93,7 @@
 
                     try
                     {
-                        await ProcessPayloads(reader.Value);
+                        await ProcessPayloads(reader.Value, reader.Key);
                     }
                     catch (Exception ex)
                     {
@@ -149,7 +149,7 @@
             return req;
         }
 
-        private async Task ProcessPayloads(StreamReader reader)
+        private async Task ProcessPayloads(StreamReader reader, string region)
         {
             string line;
 
@@ -159,7 +159,7 @@
 
                 if (appSettings.EnabledListenLogging)
                 {
-                    await logger.InfoAsync($"{DateTime.Now} Receiving: {line}");
+                    await logger.InfoAsync($"{DateTime.Now} - region {region} Receiving: {line}");
                 }
 
                 await pushHandler.OnReceive(line);
