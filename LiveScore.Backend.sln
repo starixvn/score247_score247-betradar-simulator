@@ -61,6 +61,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "simulator", "simulator", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.BetRadarSimulator.Api", "src\Simulator\BetRadarSimulator\BetRadarSimulator\LiveScore.BetRadarSimulator.Api.csproj", "{8BBF3380-AE0E-44C6-80C1-7145219CC0D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore.PushEventListener.Demo", "src\Demo\LiveScore.PushEventListener.Demo\LiveScore.PushEventListener.Demo.csproj", "{1172B0D2-8A60-4A97-BB07-C8B6A10D6311}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -131,6 +133,10 @@ Global
 		{8BBF3380-AE0E-44C6-80C1-7145219CC0D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BBF3380-AE0E-44C6-80C1-7145219CC0D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BBF3380-AE0E-44C6-80C1-7145219CC0D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1172B0D2-8A60-4A97-BB07-C8B6A10D6311}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1172B0D2-8A60-4A97-BB07-C8B6A10D6311}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1172B0D2-8A60-4A97-BB07-C8B6A10D6311}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1172B0D2-8A60-4A97-BB07-C8B6A10D6311}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -161,6 +167,7 @@ Global
 		{9D501621-8089-4F98-9520-BAB31A51A3AF} = {AE217F87-52B4-42D8-8D56-D908E4E0B7E2}
 		{E7048A7D-FFDB-4AE0-8BE8-22FFAF15C618} = {AE217F87-52B4-42D8-8D56-D908E4E0B7E2}
 		{8BBF3380-AE0E-44C6-80C1-7145219CC0D2} = {78C4E901-C3DE-458D-AF04-F814A8392757}
+		{1172B0D2-8A60-4A97-BB07-C8B6A10D6311} = {AE217F87-52B4-42D8-8D56-D908E4E0B7E2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {246B9D83-0780-47F5-B7E4-DD8514F7293A}

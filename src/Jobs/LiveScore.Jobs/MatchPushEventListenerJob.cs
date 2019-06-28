@@ -27,7 +27,7 @@
             await ListenPushEvent(sportId, pushEventListener);
         }
 
-        private Task ListenPushEvent(byte sportId, IMatchPushEventListener pushEventListener)
+        private static Task ListenPushEvent(byte sportId, IMatchPushEventListener pushEventListener)
             => pushEventListener.Start(sportId);
     }
 }
