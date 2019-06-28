@@ -84,22 +84,21 @@
 
             while (!isFailed)
             {
-                foreach (var reader in readers)
+
+                var tasks = readers.Select(x => Task.Factory.StartNew(async () => { await ProcessPayloads(x.Value, x.Key); }));
+
+                try
                 {
-                    if (isFailed)
+                    await Task.WhenAll(tasks);
+                }
+                catch (AggregateException ae)
+                {
+                    foreach (var e in ae.InnerExceptions)
                     {
-                        continue;
+                        await logger.ErrorAsync($"{ DateTime.Now } Error while listening feed for sportId {sportId}", ae);
                     }
 
-                    try
-                    {
-                        await ProcessPayloads(reader.Value, reader.Key);
-                    }
-                    catch (Exception ex)
-                    {
-                        await logger.ErrorAsync($"{ DateTime.Now } Error while listening feed for sportId {sportId} - region {reader.Key}", ex);
-                        isFailed = true;
-                    }
+                    isFailed = true;
                 }
 
                 if (!isFailed)
