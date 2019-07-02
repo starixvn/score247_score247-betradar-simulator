@@ -7,8 +7,8 @@
     using Fanex.Caching;
     using LiveScore.Features.Matches;
     using LiveScore.Features.Matches.Models;
-    using LiveScore.Shared.Configurations;
-    using LiveScore.Shared.Enumerations;
+    using LiveScore.Soccer.Shared.Configurations;
+    using LiveScore.Soccer.Shared.Enumerations;
     using NSubstitute;
     using Xunit;
 

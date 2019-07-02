@@ -1,12 +1,12 @@
 ﻿namespace LiveScore.Soccers.IntegrationTests.Features.Matches.DataAccesses
 {
+    using LiveScore.Soccer.Shared.Configurations;
+    using LiveScore.Soccer.Shared.Helpers;
+    using LiveScore.Soccer.Shared.SportRadarApi.Models;
+    using LiveScore.Soccers.Features.Matches.DataAccesses;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using LiveScore.Shared.Configurations;
-    using LiveScore.Shared.Helpers;
-    using LiveScore.Shared.SportRadarApi.Models;
-    using LiveScore.Soccers.Features.Matches.DataAccesses;
+    using System.Linq;   
 
     public class SportRadarMatchDataAccessTests
     {

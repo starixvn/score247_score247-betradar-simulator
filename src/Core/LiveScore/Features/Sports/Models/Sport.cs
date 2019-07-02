@@ -3,7 +3,7 @@ namespace LiveScore.Features.Sports.Models
 {
     using System.Collections.Generic;
     using LiveScore.Features.Leagues.Models;
-    using LiveScore.Shared.Models;
+    using LiveScore.Soccer.Shared.Models;
 
     public interface ISport : IEntity<string, string>
     {

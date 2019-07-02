@@ -4,8 +4,8 @@
     using System.Collections.Generic;
     using LiveScore.Features.Leagues.Models;
     using LiveScore.Features.Teams.Models;
-    using LiveScore.Shared.Helpers;
-    using LiveScore.Shared.Models;
+    using LiveScore.Soccer.Shared.Helpers;
+    using LiveScore.Soccer.Shared.Models;
     using Newtonsoft.Json;
 
     public interface IMatch : IEntity<string, string>

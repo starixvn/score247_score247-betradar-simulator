@@ -7,8 +7,8 @@ namespace LiveScore.WebApi.Shared.Middlewares
     using Hangfire.Dashboard;
     using Hangfire.PostgreSql;
     using LiveScore.Soccer.Jobs;
-    using LiveScore.Shared;
-    using LiveScore.Shared.Configurations;
+    using LiveScore.Soccer.Shared;
+    using LiveScore.Soccer.Shared.Configurations;
     using LiveScore.Soccers.Jobs;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;

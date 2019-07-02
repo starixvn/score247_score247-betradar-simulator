@@ -1,6 +1,6 @@
 ﻿namespace LiveScore.Features.Leagues.Models
 {
-    using LiveScore.Shared.Models;
+    using LiveScore.Soccer.Shared.Models;
 
     public class LeagueRoundTypes : Enumeration
     {

@@ -1,7 +1,7 @@
 ﻿namespace LiveScore.UnitTests.Shared
 {
     using System;
-    using LiveScore.Shared.Helpers;
+    using LiveScore.Soccer.Shared.Helpers;
     using Xunit;
 
     public class DateTimeExtensionTests

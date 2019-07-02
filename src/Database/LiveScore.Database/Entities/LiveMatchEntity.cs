@@ -1,4 +1,4 @@
-﻿namespace LiveScore.Shared.Database.Entities
+﻿namespace LiveScore.Soccer.Shared.Database.Entities
 {
     using System;
     using System.ComponentModel.DataAnnotations;

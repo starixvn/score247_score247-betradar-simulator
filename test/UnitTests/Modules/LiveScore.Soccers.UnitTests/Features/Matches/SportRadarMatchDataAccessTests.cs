@@ -4,15 +4,15 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using LiveScore.Shared.Configurations;
-    using LiveScore.Shared.Helpers;
-    using LiveScore.Shared.SportRadarApi.Models;
-    using LiveScore.Soccer.SignalRHub.Match.EventHandling;
+    using LiveScore.Soccer.Shared.Configurations;
+    using LiveScore.Soccer.Shared.Helpers;
+    using LiveScore.Soccer.Shared.SportRadarApi.Models;
     using LiveScore.Soccers.Features.Matches.DataAccesses;
     using LiveScore.Soccers.UnitTests.Shared;
     using LiveScore.Soccer.Dtos;
     using NSubstitute;
     using Xunit;
+    using LiveScore.Features.Matches;
 
     public class SportRadarMatchDataAccessTests
     {

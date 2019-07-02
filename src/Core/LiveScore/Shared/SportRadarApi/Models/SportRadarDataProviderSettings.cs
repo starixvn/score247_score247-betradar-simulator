@@ -1,9 +1,9 @@
-﻿namespace LiveScore.Shared.SportRadarApi.Models
+﻿namespace LiveScore.Soccer.Shared.SportRadarApi.Models
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using LiveScore.Shared.Configurations;
+    using LiveScore.Soccer.Shared.Configurations;
 
     public class SportRadarDataProviderSettings : IDataProviderSettings
     {

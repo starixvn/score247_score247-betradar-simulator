@@ -3,9 +3,9 @@
     using System;
     using System.Collections.Generic;
     using LiveScore.Features.Matches;
-    using LiveScore.Shared;
+    using LiveScore.Soccer.Jobs;
+    using LiveScore.Soccer.Shared;
     using LiveScore.Soccer.SignalRHub.Match.EventHandling;
-    using LiveScore.Soccers.Features.Matches;
     using Microsoft.Extensions.DependencyInjection;
 
     public static class PushEventListenerFactoryMiddleware

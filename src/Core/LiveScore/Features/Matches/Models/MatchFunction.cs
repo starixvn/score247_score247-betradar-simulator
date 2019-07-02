@@ -1,6 +1,6 @@
 ﻿namespace LiveScore.Features.Matches.Models
 {
-    using LiveScore.Shared.Models;
+    using LiveScore.Soccer.Shared.Models;
 
     public interface IMatchFunction : IEntity<string, string>
     {

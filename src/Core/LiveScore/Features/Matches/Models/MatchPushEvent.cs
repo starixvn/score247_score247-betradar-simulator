@@ -1,7 +1,7 @@
 ﻿namespace LiveScore.Features.Matches.Models
 {
     using System.Collections.Generic;
-    using LiveScore.Shared.Helpers;
+    using LiveScore.Soccer.Shared.Helpers;
     using Newtonsoft.Json;
 
     public class MatchPushEvent

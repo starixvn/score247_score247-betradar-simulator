@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Modules\LiveScore.Soccers\LiveScore.Soccers.csproj" />
+    <ProjectReference Include="..\..\..\src\core\LiveScore\LiveScore.Soccer.csproj" />
   </ItemGroup>
 
 </Project>

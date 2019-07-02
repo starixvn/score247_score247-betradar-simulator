@@ -6,11 +6,11 @@
     using System.Threading.Tasks;
     using Fanex.Caching;
     using LiveScore.Features.Matches.Models;
-    using LiveScore.Shared;
-    using LiveScore.Shared.Configurations;
-    using LiveScore.Shared.Enumerations;
-    using LiveScore.Shared.Helpers;
-    using LiveScore.Shared.Models;
+    using LiveScore.Soccer.Shared;
+    using LiveScore.Soccer.Shared.Configurations;
+    using LiveScore.Soccer.Shared.Enumerations;
+    using LiveScore.Soccer.Shared.Helpers;
+    using LiveScore.Soccer.Shared.Models;
     using Newtonsoft.Json;
 
     public interface IMatchService

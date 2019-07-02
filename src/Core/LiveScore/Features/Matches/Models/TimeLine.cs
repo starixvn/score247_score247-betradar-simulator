@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using LiveScore.Features.Teams.Models;
-    using LiveScore.Shared.Models;
+    using LiveScore.Soccer.Shared.Models;
     using Newtonsoft.Json;
 
     public interface ITimeline : IEntity<long, string>

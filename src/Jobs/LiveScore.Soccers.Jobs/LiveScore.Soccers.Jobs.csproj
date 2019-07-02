@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\core\LiveScore\LiveScore.csproj" />
-    <ProjectReference Include="..\..\Modules\LiveScore.Soccers\LiveScore.Soccers.csproj" />
+    <PackageReference Include="Hangfire.AspNetCore" Version="1.7.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Hangfire.AspNetCore" Version="1.7.2" />
+    <ProjectReference Include="..\..\Core\LiveScore.Soccer.SignalRHub\LiveScore.Soccer.SignalRHub.csproj" />
+    <ProjectReference Include="..\..\core\LiveScore\LiveScore.Soccer.csproj" />
   </ItemGroup>
 </Project>

@@ -1,4 +1,4 @@
-﻿namespace LiveScore.Shared.Helpers
+﻿namespace LiveScore.Soccer.Shared.Helpers
 {
     using System;
 

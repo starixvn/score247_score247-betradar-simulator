@@ -3,9 +3,9 @@ namespace LiveScore.WebApi.Shared.Middlewares
 {
     using System;
     using System.Collections.Generic;
-    using LiveScore.Shared.Configurations;
-    using LiveScore.Shared.Helpers;
-    using LiveScore.Shared.SportRadarApi.Models;
+    using LiveScore.Soccer.Shared.Configurations;
+    using LiveScore.Soccer.Shared.Helpers;
+    using LiveScore.Soccer.Shared.SportRadarApi.Models;
     using LiveScore.WebApi.Shared.Configurations;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;

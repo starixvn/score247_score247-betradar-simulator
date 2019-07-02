@@ -14,12 +14,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\src\core\LiveScore\LiveScore.csproj" />
-    <ProjectReference Include="..\..\..\..\src\Modules\LiveScore.Soccers\LiveScore.Soccers.csproj" />
+    <Folder Include="Features\Leagues\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Leagues\" />
+    <ProjectReference Include="..\..\..\..\src\Core\LiveScore.Soccer.SignalRHub\LiveScore.Soccer.SignalRHub.csproj" />
+    <ProjectReference Include="..\..\..\..\src\core\LiveScore\LiveScore.Soccer.csproj" />
   </ItemGroup>
 
   <ItemGroup>

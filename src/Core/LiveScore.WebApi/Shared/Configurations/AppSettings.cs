@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-    using LiveScore.Shared.Configurations;
+    using LiveScore.Soccer.Shared.Configurations;
     using Microsoft.Extensions.Configuration;
 
     public class AppSettings : IAppSettings

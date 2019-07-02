@@ -3,7 +3,6 @@
     using System;
     using System.Threading.Tasks;
     using Hangfire;
-    using LiveScore.Features.Matches;
 
     public interface IMatchPushEventListenerJob
     {

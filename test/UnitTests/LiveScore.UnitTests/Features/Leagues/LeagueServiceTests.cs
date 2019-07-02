@@ -2,7 +2,7 @@
 //{
 //    using LiveScore.Features.Leagues;
 //    using LiveScore.Features.Leagues.Models;
-//    using LiveScore.Shared;
+//    using LiveScore.Soccer.Shared;
 //    using NSubstitute;
 //    using System.Collections.Generic;
 //    using System.Linq;

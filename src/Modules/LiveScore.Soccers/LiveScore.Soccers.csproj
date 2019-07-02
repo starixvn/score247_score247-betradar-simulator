@@ -28,7 +28,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\LiveScore.Soccer.SignalRHub\LiveScore.Soccer.SignalRHub.csproj" />
-    <ProjectReference Include="..\..\core\LiveScore\LiveScore.csproj" />
+    <ProjectReference Include="..\..\core\LiveScore\LiveScoreSoccer.csproj" />
   </ItemGroup>
 
 </Project>

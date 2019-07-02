@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using LiveScore.Features.Matches.Models;
     using LiveScore.Features.Teams.Models;
-    using LiveScore.Shared.Database.Entities;
+    using LiveScore.Soccer.Shared.Database.Entities;
     using Newtonsoft.Json;
 
     public static class StubTimeline

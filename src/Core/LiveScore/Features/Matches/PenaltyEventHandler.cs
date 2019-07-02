@@ -1,4 +1,4 @@
-﻿namespace LiveScore.Soccer.SignalRHub.Match.EventHandling
+﻿namespace LiveScore.Features.Matches
 {
     using System;
     using System.Collections.Generic;

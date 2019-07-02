@@ -1,4 +1,4 @@
-﻿namespace LiveScore.Shared.Configurations
+﻿namespace LiveScore.Soccer.Shared.Configurations
 {
     using System.Collections.Generic;
 

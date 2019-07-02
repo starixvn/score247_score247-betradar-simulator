@@ -1,7 +1,7 @@
-﻿namespace LiveScore.Shared.ModelBuilders
+﻿namespace LiveScore.Soccer.Shared.ModelBuilders
 {
     using LiveScore.Features.Leagues.Models;
-    using LiveScore.Shared.Models;
+    using LiveScore.Soccer.Shared.Models;
     using LiveScore.Soccer.Dtos;
 
     public static class LeagueBuilder

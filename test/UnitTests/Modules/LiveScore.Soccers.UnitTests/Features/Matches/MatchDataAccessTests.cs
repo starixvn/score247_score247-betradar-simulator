@@ -6,8 +6,8 @@
     using System.Threading.Tasks;
     using Fanex.Logging;
     using LiveScore.Features.Matches.Models;
-    using LiveScore.Shared.Database;
-    using LiveScore.Shared.Database.Entities;
+    using LiveScore.Soccer.Shared.Database;
+    using LiveScore.Soccer.Shared.Database.Entities;
     using LiveScore.Soccers.Features.Matches.DataAccesses;
     using LiveScore.Soccers.UnitTests.Shared;
     using NSubstitute;

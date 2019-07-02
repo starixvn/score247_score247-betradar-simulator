@@ -4,8 +4,8 @@
     using System.Threading.Tasks;
     using Hangfire;
     using LiveScore.Features.Matches;
-    using LiveScore.Shared;
-    using LiveScore.Shared.Models;
+    using LiveScore.Soccer.Shared;
+    using LiveScore.Soccer.Shared.Models;
     using LiveScore.Soccer.SignalRHub.Match;
     using Microsoft.AspNetCore.SignalR;
 

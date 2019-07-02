@@ -1,4 +1,4 @@
-﻿namespace LiveScore.Shared
+﻿namespace LiveScore.Soccer.Shared
 {
     public static class SportConstants
     {

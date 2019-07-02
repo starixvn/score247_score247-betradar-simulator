@@ -36,10 +36,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Database\LiveScore.Database\LiveScore.Database.csproj" />
-    <ProjectReference Include="..\..\Modules\LiveScore.Basketballs\LiveScore.Basketballs.csproj" />
-    <ProjectReference Include="..\..\Modules\LiveScore.Soccers\LiveScore.Soccers.csproj" />
-    <ProjectReference Include="..\LiveScore\LiveScore.csproj" />
     <ProjectReference Include="..\..\Jobs\LiveScore.Soccers.Jobs\LiveScore.Soccers.Jobs.csproj" />
+    <ProjectReference Include="..\LiveScore.Soccer.SignalRHub\LiveScore.Soccer.SignalRHub.csproj" />
+    <ProjectReference Include="..\LiveScore\LiveScore.Soccer.csproj" />
   </ItemGroup>
 
   <ItemGroup>

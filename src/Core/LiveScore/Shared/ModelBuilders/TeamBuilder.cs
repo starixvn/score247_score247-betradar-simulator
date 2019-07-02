@@ -1,4 +1,4 @@
-﻿namespace LiveScore.Shared.ModelBuilders
+﻿namespace LiveScore.Soccer.Shared.ModelBuilders
 {
     using LiveScore.Soccer.Dtos;
     using System.Collections.Generic;
