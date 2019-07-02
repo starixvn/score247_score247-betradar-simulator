@@ -10,9 +10,7 @@
     using LiveScore.Soccer.Shared;
     using LiveScore.Soccer.Shared.ModelBuilders;
     using LiveScore.Soccer.Shared.Models;
-    using LiveScore.Soccer.SignalRHub.Match;
     using LiveScore.Soccer.Dtos;
-    using Microsoft.AspNetCore.SignalR;
     using Newtonsoft.Json;
 
     public interface IMatchPushEventHandler
@@ -35,19 +33,19 @@
         private readonly IMatchService matchService;
         private readonly ILogger logger;
         private readonly IPenaltyEventHandler penaltyEventHandler;
-        private readonly IHubContext<MatchHub> hubContext;
+        private readonly IPushEventHandler pushHandler;
 
         public MatchPushEventHandler(
             IMatchService matchService,
             ILogger logger,
             IPenaltyEventHandler penaltyEventHandler,
-            IHubContext<MatchHub> hubContext)
+            IPushEventHandler pushHandler)
 
         {
             this.matchService = matchService;
             this.logger = logger;
             this.penaltyEventHandler = penaltyEventHandler;
-            this.hubContext = hubContext;
+            this.pushHandler = pushHandler;
         }
 
         public async Task OnReceive(string eventData)
@@ -101,7 +99,7 @@
 
             if (basicPushEvents.Keys.Count > 0)
             {
-                await PushToClients(basicPushEvents);
+                await pushHandler.Handle(basicPushEvents);
 
                 foreach (var matchId in basicPushEvents.Keys)
                 {
@@ -176,13 +174,6 @@
         }
 
 #pragma warning restore S3215 // "interface" instances should not be cast to concrete types
-
-        private async Task PushToClients(Dictionary<string, MatchPushEvent> pushEvents)
-        {
-            var firstEvent = pushEvents.First().Value.TimeLines.First();
-            await logger.InfoAsync($"{ DateTime.Now.ToString("MMMM dd HH:mm:ss") } Pushing {pushEvents.First().Key} - {firstEvent.Type}");
-            await hubContext.Clients.All.SendAsync("PushMatchEvent", SportConstants.SoccerId.ToString(), pushEvents);
-        }
 
         private async Task UpdateMatch(string matchId, MatchPushEvent pushEvent)
         {

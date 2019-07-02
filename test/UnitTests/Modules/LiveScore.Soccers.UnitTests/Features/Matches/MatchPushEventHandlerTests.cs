@@ -21,14 +21,14 @@
         private readonly MatchPushEventHandler eventHandler;
 
         private readonly PayloadStreams payloads;
-        private readonly IHubContext<MatchHub> hubContext;
+        private readonly IPushEventHandler pushEventHandler;
         private readonly IMatchService matchService;
         private readonly ILogger logger;
         private readonly IPenaltyEventHandler penaltyEventHandler;
 
         public MatchPushEventHandlerTests()
         {
-            hubContext = Substitute.For<IHubContext<MatchHub>>();
+            pushEventHandler = Substitute.For<IPushEventHandler>();
             matchService = Substitute.For<IMatchService>();
             logger = Substitute.For<ILogger>();
             penaltyEventHandler = Substitute.For<IPenaltyEventHandler>();
@@ -36,7 +36,7 @@
             var testJsonData = File.ReadAllText(@"..\netcoreapp2.2\TestData\payloads.json");
             payloads = JsonConvert.DeserializeObject<PayloadStreams>(testJsonData);
 
-            eventHandler = new MatchPushEventHandler(matchService, logger, penaltyEventHandler, hubContext);
+            eventHandler = new MatchPushEventHandler(matchService, logger, penaltyEventHandler, pushEventHandler);
         }
 
         [Fact]
