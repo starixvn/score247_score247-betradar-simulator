@@ -11,6 +11,7 @@
     using LiveScore.Shared.Database;
     using LiveScore.Shared.Database.Entities;
     using LiveScore.Shared.Enumerations;
+    using LiveScore.Soccer.Jobs;
     using NSubstitute;
     using Xunit;
 

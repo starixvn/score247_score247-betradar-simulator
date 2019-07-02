@@ -14,7 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\src\Jobs\LiveScore.Jobs\LiveScore.Jobs.csproj" />
+    <ProjectReference Include="..\..\..\..\src\core\LiveScore\LiveScore.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Database\LiveScore.Database\LiveScore.Database.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Jobs\LiveScore.Soccers.Jobs\LiveScore.Soccers.Jobs.csproj" />
   </ItemGroup>
 
 </Project>
