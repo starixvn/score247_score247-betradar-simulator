@@ -11,7 +11,7 @@
     using LiveScore.Shared.ModelBuilders;
     using LiveScore.Shared.SportRadarApi.Models;
     using LiveScore.Soccer.SignalRHub.Match.EventHandling;
-    using LiveScore.SportRadar.Dtos;
+    using LiveScore.Soccer.Dtos;
 
     public class SportRadarMatchDataAccess : IMatchDataAccess
     {

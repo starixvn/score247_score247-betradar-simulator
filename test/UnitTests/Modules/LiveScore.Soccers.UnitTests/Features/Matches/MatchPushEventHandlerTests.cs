@@ -9,7 +9,7 @@
     using LiveScore.Features.Matches.Models;
     using LiveScore.Soccer.SignalRHub.Match;
     using LiveScore.Soccer.SignalRHub.Match.EventHandling;
-    using LiveScore.SportRadar.Dtos;
+    using LiveScore.Soccer.Dtos;
     using Microsoft.AspNetCore.SignalR;
     using Newtonsoft.Json;
     using NSubstitute;

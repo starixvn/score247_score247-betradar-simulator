@@ -63,7 +63,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.PushEventListener
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Soccer.SignalRHub", "src\Core\LiveScore.Soccer.SignalRHub\LiveScore.Soccer.SignalRHub.csproj", "{99940BCE-863C-4875-8D68-241F9AE8E072}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.SportRadar.Dtos", "src\Core\LiveScore.Soccer.Dtos\LiveScore.SportRadar.Dtos.csproj", "{5FE9064A-8462-42CF-A6CB-C147C24A9B90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Soccer.Dtos", "src\Core\LiveScore.Soccer.Dtos\LiveScore.Soccer.Dtos.csproj", "{5FE9064A-8462-42CF-A6CB-C147C24A9B90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

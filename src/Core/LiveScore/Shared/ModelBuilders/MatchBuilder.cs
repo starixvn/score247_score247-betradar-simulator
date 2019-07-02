@@ -5,7 +5,7 @@
     using LiveScore.Features.Matches.Models;
     using LiveScore.Features.Teams.Models;
     using LiveScore.Shared.Models;
-    using LiveScore.SportRadar.Dtos;
+    using LiveScore.Soccer.Dtos;
 
     public static class MatchBuilder
     {

@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LiveScore.Soccer.Dtos\LiveScore.SportRadar.Dtos.csproj" />
+    <ProjectReference Include="..\LiveScore.Soccer.Dtos\LiveScore.Soccer.Dtos.csproj" />
     <ProjectReference Include="..\LiveScore\LiveScore.csproj" />
   </ItemGroup>
 

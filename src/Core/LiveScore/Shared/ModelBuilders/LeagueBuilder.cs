@@ -2,7 +2,7 @@
 {
     using LiveScore.Features.Leagues.Models;
     using LiveScore.Shared.Models;
-    using LiveScore.SportRadar.Dtos;
+    using LiveScore.Soccer.Dtos;
 
     public static class LeagueBuilder
     {

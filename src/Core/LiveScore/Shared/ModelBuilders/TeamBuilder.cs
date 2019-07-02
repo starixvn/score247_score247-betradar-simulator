@@ -1,6 +1,6 @@
 ﻿namespace LiveScore.Shared.ModelBuilders
 {
-    using LiveScore.SportRadar.Dtos;
+    using LiveScore.Soccer.Dtos;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;

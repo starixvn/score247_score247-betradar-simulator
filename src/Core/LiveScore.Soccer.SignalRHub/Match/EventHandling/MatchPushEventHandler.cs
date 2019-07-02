@@ -11,7 +11,7 @@
     using LiveScore.Shared.ModelBuilders;
     using LiveScore.Shared.Models;
     using LiveScore.Soccer.SignalRHub.Match;
-    using LiveScore.SportRadar.Dtos;
+    using LiveScore.Soccer.Dtos;
     using Microsoft.AspNetCore.SignalR;
     using Newtonsoft.Json;
 

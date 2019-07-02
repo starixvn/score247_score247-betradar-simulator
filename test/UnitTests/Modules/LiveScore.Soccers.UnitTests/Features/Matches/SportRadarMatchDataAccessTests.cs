@@ -10,7 +10,7 @@
     using LiveScore.Soccer.SignalRHub.Match.EventHandling;
     using LiveScore.Soccers.Features.Matches.DataAccesses;
     using LiveScore.Soccers.UnitTests.Shared;
-    using LiveScore.SportRadar.Dtos;
+    using LiveScore.Soccer.Dtos;
     using NSubstitute;
     using Xunit;
 

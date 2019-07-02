@@ -5,7 +5,7 @@ namespace LiveScore.Soccer.Api.Notifications
     using System.Threading.Tasks;
     using LiveScore.Features.Matches;
     using LiveScore.Soccer.SignalRHub.Match.EventHandling;
-    using LiveScore.SportRadar.Dtos;
+    using LiveScore.Soccer.Dtos;
     using Microsoft.AspNetCore.Mvc;
 
     [Route("api/[controller]")]
