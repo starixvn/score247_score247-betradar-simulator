@@ -10,6 +10,7 @@
     using LiveScore.Features.Matches;
     using LiveScore.Shared.Configurations;
     using LiveScore.Shared.SportRadarApi.Models;
+    using LiveScore.Soccer.SignalRHub.Match.EventHandling;
 
     public class MatchPushEventListener : IMatchPushEventListener
     {

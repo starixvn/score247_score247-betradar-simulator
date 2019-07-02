@@ -7,9 +7,9 @@
     using Fanex.Logging;
     using LiveScore.Features.Matches;
     using LiveScore.Features.Matches.Models;
-    using LiveScore.Shared.Hubs;
-    using LiveScore.Soccers.Features.Matches;
-    using LiveScore.Soccers.Shared.Dtos;
+    using LiveScore.Soccer.SignalRHub.Match;
+    using LiveScore.Soccer.SignalRHub.Match.EventHandling;
+    using LiveScore.SportRadar.Dtos;
     using Microsoft.AspNetCore.SignalR;
     using Newtonsoft.Json;
     using NSubstitute;

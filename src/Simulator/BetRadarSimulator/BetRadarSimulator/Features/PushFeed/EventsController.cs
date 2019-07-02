@@ -8,7 +8,7 @@ namespace LiveScore.BetRadarSimulator.Controllers
     using LiveScore.BetRadarSimulator.Api.Services;
     using LiveScore.BetRadarSimulator.Results;
     using LiveScore.BetRadarSimulator.Services;
-    using LiveScore.Soccers.Shared.Dtos;
+    using LiveScore.SportRadar.Dtos;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using Newtonsoft.Json;

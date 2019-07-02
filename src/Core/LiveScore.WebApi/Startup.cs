@@ -4,7 +4,7 @@ namespace LiveScore.WebApi
     using System;
     using Fanex.Caching.Memory;
     using Fanex.Logging;
-    using LiveScore.Shared.Hubs;
+    using LiveScore.Soccer.SignalRHub.Match;
     using LiveScore.WebApi.Shared.Middlewares;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;

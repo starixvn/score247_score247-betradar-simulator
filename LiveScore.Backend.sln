@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{DAF1D274-483
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore", "src\core\LiveScore\LiveScore.csproj", "{AE165E8B-0020-470F-A4F2-4C0FB1C83B61}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.WebApi", "src\core\LiveScore.WebApi\LiveScore.WebApi.csproj", "{2D529A50-4FE8-4656-AA2C-340F4B421DDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Soccer.Api", "src\core\LiveScore.WebApi\LiveScore.Soccer.Api.csproj", "{2D529A50-4FE8-4656-AA2C-340F4B421DDA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{78DC0A6C-9232-429D-9088-912159345FA7}"
 EndProject
@@ -61,7 +61,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "simulator", "simulator", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.BetRadarSimulator.Api", "src\Simulator\BetRadarSimulator\BetRadarSimulator\LiveScore.BetRadarSimulator.Api.csproj", "{8BBF3380-AE0E-44C6-80C1-7145219CC0D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore.PushEventListener.Demo", "src\Demo\LiveScore.PushEventListener.Demo\LiveScore.PushEventListener.Demo.csproj", "{1172B0D2-8A60-4A97-BB07-C8B6A10D6311}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.PushEventListener.Demo", "src\Demo\LiveScore.PushEventListener.Demo\LiveScore.PushEventListener.Demo.csproj", "{1172B0D2-8A60-4A97-BB07-C8B6A10D6311}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore.Soccer.SignalRHub", "src\Core\LiveScore.Soccer.SignalRHub\LiveScore.Soccer.SignalRHub.csproj", "{99940BCE-863C-4875-8D68-241F9AE8E072}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore.SportRadar.Dtos", "src\Core\LiveScore.Soccer.Dtos\LiveScore.SportRadar.Dtos.csproj", "{5FE9064A-8462-42CF-A6CB-C147C24A9B90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -137,6 +141,14 @@ Global
 		{1172B0D2-8A60-4A97-BB07-C8B6A10D6311}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1172B0D2-8A60-4A97-BB07-C8B6A10D6311}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1172B0D2-8A60-4A97-BB07-C8B6A10D6311}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99940BCE-863C-4875-8D68-241F9AE8E072}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99940BCE-863C-4875-8D68-241F9AE8E072}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99940BCE-863C-4875-8D68-241F9AE8E072}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99940BCE-863C-4875-8D68-241F9AE8E072}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FE9064A-8462-42CF-A6CB-C147C24A9B90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FE9064A-8462-42CF-A6CB-C147C24A9B90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FE9064A-8462-42CF-A6CB-C147C24A9B90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FE9064A-8462-42CF-A6CB-C147C24A9B90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -168,6 +180,8 @@ Global
 		{E7048A7D-FFDB-4AE0-8BE8-22FFAF15C618} = {AE217F87-52B4-42D8-8D56-D908E4E0B7E2}
 		{8BBF3380-AE0E-44C6-80C1-7145219CC0D2} = {78C4E901-C3DE-458D-AF04-F814A8392757}
 		{1172B0D2-8A60-4A97-BB07-C8B6A10D6311} = {AE217F87-52B4-42D8-8D56-D908E4E0B7E2}
+		{99940BCE-863C-4875-8D68-241F9AE8E072} = {DAF1D274-483D-4AAA-B945-D6E1E9488FC6}
+		{5FE9064A-8462-42CF-A6CB-C147C24A9B90} = {DAF1D274-483D-4AAA-B945-D6E1E9488FC6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {246B9D83-0780-47F5-B7E4-DD8514F7293A}

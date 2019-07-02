@@ -26,8 +26,6 @@
   <ItemGroup>
     <Folder Include="Features\Leagues\" />
     <Folder Include="Features\Teams\" />
-    <Folder Include="Shared\ModelBuilders\">
-    </Folder>
   </ItemGroup>
 
   <ItemGroup>
@@ -41,8 +39,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\LiveScore.Soccer.SignalRHub\LiveScore.Soccer.SignalRHub.csproj" />
     <ProjectReference Include="..\..\core\LiveScore\LiveScore.csproj" />
-    <ProjectReference Include="..\..\Database\LiveScore.Database\LiveScore.Database.csproj" />
   </ItemGroup>
 
 </Project>

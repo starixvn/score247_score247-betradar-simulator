@@ -1,6 +1,7 @@
 ﻿namespace LiveScore.BetRadarSimulator.Api.Features.Matches
 {
     using System.Threading.Tasks;
+    using LiveScore.SportRadar.Dtos;
     using Microsoft.AspNetCore.Mvc;
 
 

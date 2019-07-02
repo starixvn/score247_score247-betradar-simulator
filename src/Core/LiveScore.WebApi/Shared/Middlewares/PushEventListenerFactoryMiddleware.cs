@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using LiveScore.Features.Matches;
     using LiveScore.Shared;
+    using LiveScore.Soccer.SignalRHub.Match.EventHandling;
     using LiveScore.Soccers.Features.Matches;
     using Microsoft.Extensions.DependencyInjection;
 

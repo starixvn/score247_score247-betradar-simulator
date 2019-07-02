@@ -6,7 +6,7 @@
     using Fanex.Caching;
     using LiveScore.Features.Matches.Models;
     using LiveScore.Features.Teams.Models;
-    using LiveScore.Soccers.Features.Matches;
+    using LiveScore.Soccer.SignalRHub.Match.EventHandling;
     using NSubstitute;
     using Xunit;
 

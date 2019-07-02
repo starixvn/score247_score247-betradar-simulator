@@ -8,9 +8,10 @@
     using LiveScore.Features.Matches.Models;
     using LiveScore.Shared.Configurations;
     using LiveScore.Shared.Helpers;
-    using LiveScore.Shared.Models.Dtos;
+    using LiveScore.Shared.ModelBuilders;
     using LiveScore.Shared.SportRadarApi.Models;
-    using LiveScore.Soccers.Shared.ModelBuilders;
+    using LiveScore.Soccer.SignalRHub.Match.EventHandling;
+    using LiveScore.SportRadar.Dtos;
 
     public class SportRadarMatchDataAccess : IMatchDataAccess
     {

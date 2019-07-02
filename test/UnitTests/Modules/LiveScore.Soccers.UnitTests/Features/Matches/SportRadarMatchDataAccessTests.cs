@@ -6,11 +6,11 @@
     using System.Threading.Tasks;
     using LiveScore.Shared.Configurations;
     using LiveScore.Shared.Helpers;
-    using LiveScore.Shared.Models.Dtos;
     using LiveScore.Shared.SportRadarApi.Models;
-    using LiveScore.Soccers.Features.Matches;
+    using LiveScore.Soccer.SignalRHub.Match.EventHandling;
     using LiveScore.Soccers.Features.Matches.DataAccesses;
     using LiveScore.Soccers.UnitTests.Shared;
+    using LiveScore.SportRadar.Dtos;
     using NSubstitute;
     using Xunit;
 

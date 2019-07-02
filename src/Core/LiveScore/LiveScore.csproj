@@ -25,10 +25,7 @@
         <PackageReference Include="Microsoft.AspNetCore.SignalR.Core" Version="1.1.0" />
     </ItemGroup>
     <ItemGroup>
-        <Folder Include="Shared\Hubs\">
-        </Folder>
-    </ItemGroup>
-    <ItemGroup>
       <ProjectReference Include="..\..\Database\LiveScore.Database\LiveScore.Database.csproj" />
+      <ProjectReference Include="..\LiveScore.Soccer.Dtos\LiveScore.SportRadar.Dtos.csproj" />
     </ItemGroup>
 </Project>
