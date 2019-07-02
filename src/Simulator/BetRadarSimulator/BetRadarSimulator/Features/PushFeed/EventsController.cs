@@ -146,7 +146,11 @@ namespace LiveScore.BetRadarSimulator.Controllers
 
         private async Task SendEvent(string eventstr)
         {
-            foreach (var client in notificationService.GetClients())
+            var clients = notificationService.GetClients();
+
+            await logger.InfoAsync($"{DateTime.Now} SendEvent {eventstr} to {clients.Count} clients");
+
+            foreach (var client in clients)
             {
                 var data = $"{eventstr} {Environment.NewLine}";
 
