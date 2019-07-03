@@ -7,7 +7,6 @@ namespace LiveScore.WebApi.Shared.Middlewares
     using LiveScore.Features.Matches;
     using LiveScore.Soccer.Shared;
     using LiveScore.Soccer.Shared.Enumerations;
-    using LiveScore.Soccers.Features.Matches;
     using LiveScore.Soccers.Features.Matches.DataAccesses;
     using Microsoft.Extensions.DependencyInjection;
 

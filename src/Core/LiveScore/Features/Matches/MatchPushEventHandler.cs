@@ -1,17 +1,17 @@
-﻿namespace LiveScore.Soccer.SignalRHub.Match.EventHandling
+﻿namespace LiveScore.Features.Matches
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Fanex.Logging;
-    using LiveScore.Features.Matches;
     using LiveScore.Features.Matches.Models;
     using LiveScore.Soccer.Shared;
     using LiveScore.Soccer.Shared.ModelBuilders;
     using LiveScore.Soccer.Shared.Models;
     using LiveScore.Soccer.Dtos;
     using Newtonsoft.Json;
+    using LiveScore.Soccer.SignalRHub.Match.EventHandling;
 
     public interface IMatchPushEventHandler
     {
@@ -98,7 +98,7 @@
             var basicPushEvents = await GetBasicPushEvents(pushEvents);
 
             if (basicPushEvents.Keys.Count > 0)
-            {
+            {                
                 await pushHandler.Handle(basicPushEvents);
 
                 foreach (var matchId in basicPushEvents.Keys)

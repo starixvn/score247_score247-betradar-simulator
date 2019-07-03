@@ -15,6 +15,7 @@
             services.AddScoped<IMatchPushEventHandler, MatchPushEventHandler>();
             services.AddScoped<IMatchPushEventListener, MatchPushEventListener>();
             services.AddSingleton<IPenaltyEventHandler, PenaltyEventHandler>();
+            services.AddScoped<IPushEventHandler, PushEventHandler>();
             services.AddScoped<MatchPushEventListener>();
             services.AddScoped<Func<int, IMatchPushEventListener>>(serviceProvider => (sportId) =>
             {

@@ -4,7 +4,6 @@ namespace LiveScore.Soccer.Api.Notifications
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using LiveScore.Features.Matches;
-    using LiveScore.Soccer.SignalRHub.Match.EventHandling;
     using LiveScore.Soccer.Dtos;
     using Microsoft.AspNetCore.Mvc;
 

@@ -7,9 +7,9 @@
     using System.Net;
     using System.Threading.Tasks;
     using Fanex.Logging;
+    using LiveScore.Features.Matches;
     using LiveScore.Soccer.Shared.Configurations;
     using LiveScore.Soccer.Shared.SportRadarApi.Models;
-    using LiveScore.Soccer.SignalRHub.Match.EventHandling;
 
     public interface IMatchPushEventListener
     {

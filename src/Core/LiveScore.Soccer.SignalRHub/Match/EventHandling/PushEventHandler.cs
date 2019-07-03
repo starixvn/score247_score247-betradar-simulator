@@ -2,7 +2,6 @@
 {
     using Fanex.Logging;
     using LiveScore.Features.Matches.Models;
-    using LiveScore.Soccer.Shared;
     using Microsoft.AspNetCore.SignalR;
     using System;
     using System.Collections.Generic;
@@ -15,6 +14,7 @@
     }
     public class PushEventHandler: IPushEventHandler
     {
+        private const int SoccerId = 1;
         private readonly ILogger logger;
         private readonly IHubContext<MatchHub> hubContext;
 
@@ -30,7 +30,7 @@
         {
             var firstEvent = pushEvents.First().Value.TimeLines.First();
             await logger.InfoAsync($"{ DateTime.Now.ToString("MMMM dd HH:mm:ss") } Pushing {pushEvents.First().Key} - {firstEvent.Type}");
-            await hubContext.Clients.All.SendAsync("PushMatchEvent", SportConstants.SoccerId.ToString(), pushEvents);
+            await hubContext.Clients.All.SendAsync("PushMatchEvent", SoccerId, pushEvents);
         }
     }
 }
