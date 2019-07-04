@@ -1,6 +1,5 @@
 ﻿namespace LiveScore.Database.Entities
 {
-    using System;
     using System.ComponentModel.DataAnnotations.Schema;
     using LiveScore.Soccer.Database.Entities;
 

@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{DAF1D274-483
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Soccer", "src\core\LiveScore\LiveScore.Soccer.csproj", "{AE165E8B-0020-470F-A4F2-4C0FB1C83B61}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Soccer.Api", "src\core\LiveScore.WebApi\LiveScore.Soccer.Api.csproj", "{2D529A50-4FE8-4656-AA2C-340F4B421DDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.WebApi", "src\core\LiveScore.WebApi\LiveScore.WebApi.csproj", "{2D529A50-4FE8-4656-AA2C-340F4B421DDA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{78DC0A6C-9232-429D-9088-912159345FA7}"
 EndProject
@@ -53,15 +53,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.PushEventListener
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Features", "Features", "{1EBDDDD2-9484-409C-8226-5A98E645266D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore.Soccer.Matches", "src\Features\LiveScore.Soccer.Matches\LiveScore.Soccer.Matches.csproj", "{F984EFC4-2B10-46B6-AC79-1BA7803CF8BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Soccer.Matches", "src\Features\LiveScore.Soccer.Matches\LiveScore.Soccer.Matches.csproj", "{F984EFC4-2B10-46B6-AC79-1BA7803CF8BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore.Soccer.Odds", "src\Features\LiveScore.Soccer.Odds\LiveScore.Soccer.Odds.csproj", "{5C20F9A8-3F1F-4C5F-8096-05F83C209114}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Soccer.Odds", "src\Features\LiveScore.Soccer.Odds\LiveScore.Soccer.Odds.csproj", "{5C20F9A8-3F1F-4C5F-8096-05F83C209114}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore.Soccer.Leagues", "src\Features\LiveScore.Soccer.Leagues\LiveScore.Soccer.Leagues.csproj", "{FFF92909-B770-4844-9BBB-36B7549611CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Soccer.Leagues", "src\Features\LiveScore.Soccer.Leagues\LiveScore.Soccer.Leagues.csproj", "{FFF92909-B770-4844-9BBB-36B7549611CC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataProviders", "DataProviders", "{ED99EC60-1785-409D-AEA2-0F224AB65B9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore.Providers.SportRadar", "src\DataProviders\LiveScore.Providers.SportRadar\LiveScore.Providers.SportRadar.csproj", "{9E9CD0EB-E5B0-413A-BBE9-802C922F009F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Providers.SportRadar", "src\DataProviders\LiveScore.Providers.SportRadar\LiveScore.Providers.SportRadar.csproj", "{9E9CD0EB-E5B0-413A-BBE9-802C922F009F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
