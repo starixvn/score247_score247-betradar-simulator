@@ -5,7 +5,7 @@
     using LiveScore.Features.Odds.Models;
     using Microsoft.AspNetCore.Mvc;
 
-    [Route("api/[controller]")]
+    [Route("api/soccer/[controller]")]
     [ApiController]
     public class OddsController : ControllerBase
     {

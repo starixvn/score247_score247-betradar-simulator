@@ -9,4 +9,8 @@
     <ProjectReference Include="..\..\DataProviders\LiveScore.Providers.SportRadar\LiveScore.Providers.SportRadar.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="AppResources\" />
+  </ItemGroup>
+
 </Project>
