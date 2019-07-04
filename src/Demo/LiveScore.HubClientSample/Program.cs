@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using LiveScore.Features.Matches.Models;
+using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
 namespace LiveScore.HubClientSample
@@ -16,7 +18,18 @@ namespace LiveScore.HubClientSample
         static void Main(string[] args)
         {
             connection = new HubConnectionBuilder()
-                .WithUrl("http://localhost:64296/hubs/matchhub")
+                //.WithUrl("http://localhost:64296/hubs/matchhub")
+                //.WithUrl("http://10.18.200.123:7205/V4/hubs/matchhub")
+                //.WithUrl("http://ha.nexdev.net:7205/V4/hubs/matchhub")
+                //.WithUrl("https://10.18.200.225:7205/V4/hubs/matchhub")
+                .WithUrl("https://api.nexdev.net/V4/hubs/matchhub")
+                .ConfigureLogging(logging => {
+                    // Log to the Output Window
+                    // This will set ALL logging to Debug level
+                    logging.AddConsole();
+                    logging.SetMinimumLevel(LogLevel.Debug);
+                    logging.AddFilter("Microsoft.AspNetCore.SignalR", LogLevel.Debug);
+                })
                 .Build();
 
             connection.Closed += async (error) =>

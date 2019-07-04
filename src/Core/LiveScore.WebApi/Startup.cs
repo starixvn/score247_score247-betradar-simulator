@@ -30,6 +30,14 @@ namespace LiveScore.WebApi
         {
             try
             {
+                services.AddCors(options =>
+                {
+                    options.AddPolicy("CorsPolicy",
+                        builder => builder.AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .AllowCredentials());
+                });
                 services.AddLogging(Configuration);
                 services.AddSettings(Configuration, hostingEnvironment);
                 services.AddOptions();
