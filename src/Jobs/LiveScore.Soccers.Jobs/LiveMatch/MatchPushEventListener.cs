@@ -21,7 +21,7 @@
         private const int MaxAttempts = 10;
         private const int MillisecondsTimeout = 10 * 1000;
 
-        private readonly MatchPushEventHandler pushHandler;
+        private readonly IMatchPushEventHandler pushHandler;
         private readonly IAppSettings appSettings;
         private readonly ILogger logger;
 
@@ -29,7 +29,7 @@
         private int attempts;
 
         public MatchPushEventListener(
-            MatchPushEventHandler pushHandler,
+            IMatchPushEventHandler pushHandler,
             IAppSettings appSettings,
             ILogger logger)
         {

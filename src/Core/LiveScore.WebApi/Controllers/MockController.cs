@@ -56,7 +56,7 @@
         public async Task InsertOdds(
             [FromBody]OddsScheduleDto oddsSchedule)
         {
-            var matchOddsList = OddsBuilder.BuildMatchOddsList(oddsSchedule);
+            var matchOddsList = SportRadarOddsBuilder.BuildMatchOddsList(oddsSchedule);
 
             foreach (var matchOdds in matchOddsList)
             {

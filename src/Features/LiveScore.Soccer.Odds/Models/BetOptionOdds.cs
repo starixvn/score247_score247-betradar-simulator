@@ -13,11 +13,15 @@
 
         public string OptionValue { get; set; }
 
-        public OddsTrend OddsTrend { get; set; }
-    }
+        public OddsTrend OddsTrend
+            => OpeningOdds == LiveOdds
+                ? OddsTrend.Neutral
+#pragma warning disable S3358 // Ternary operators should not be nested
+                : OpeningOdds > LiveOdds
+                    ? OddsTrend.Down
+                    : OddsTrend.Up;
+#pragma warning restore S3358 // Ternary operators should not be nested
 
-    public class LiveBetOptionOdds : BetOptionOdds
-    {
         public DateTime LastUpdatedTime { get; set; }
 
         public string MatchTime { get; set; }

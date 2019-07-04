@@ -4,10 +4,11 @@
     using System.Linq;
     using LiveScore.Features.Odds.Models;
     using LiveScore.Providers.SportRadar.Dtos;
-    using LiveScore.Soccer.Models;
+    using LiveScore.Soccer.Odds.AppResources;
 
-    public static class OddsBuilder
+    public static class SportRadarOddsBuilder
     {
+        private const string UnSupportedBetTypeName = "Un-supported Bet Type";
         private const int OneXTwoBetTypeId = 1; //2, 3way
         private const string OneXTwoSportRadarBetTypeName = "3way";
         private const int OverUnderBeTypeId = 2; //3, total
@@ -15,6 +16,12 @@
         private const int AsianHandicapBetTypeId = 3;// 5, asian_handicap
         private const string AsianHandicapSportRadarBetTypeName = "asian_handicap";
         private const int UnknownBetTypeId = 1000;
+        private const string home = "home";
+        private const string away = "away";
+        private const string one = "1";
+        private const string two = "2";
+        private const string x = "x";
+        private const string over = "over";
 
         public static IEnumerable<MatchOdds> BuildMatchOddsList(OddsScheduleDto oddsScheduleDto)
         {
@@ -30,14 +37,14 @@
                 matchOddsList.Add(new MatchOdds
                 {
                     MatchId = sportEvent.id,
-                    BetTypeOddsList = BuildBetTypeOdds(sportEvent)
+                    BetTypeOddsList = BuildBetTypeOddsList(sportEvent)
                 });
             }
 
             return matchOddsList;
         }
 
-        public static IEnumerable<BetTypeOdds> BuildBetTypeOdds(SportEvent sport_event)
+        public static IEnumerable<BetTypeOdds> BuildBetTypeOddsList(SportEvent sport_event)
         {
             var betTypeOddsList = new List<BetTypeOdds>();
             if (sport_event.markets.Any())
@@ -46,33 +53,14 @@
                 {
                     var betType = GetBetType(market);
 
-                    if(betType.Item1 == UnknownBetTypeId)
+                    if (betType.Item1 == UnknownBetTypeId)
                     {
                         continue;
                     }
 
                     foreach (var book in market.books)
                     {
-                        betTypeOddsList.Add(new BetTypeOdds
-                        {
-                            Id = betType.Item1,
-                            Name = betType.Item2,
-                            Bookmaker = new Bookmaker
-                            {
-                                Id = book.id,
-                                Name = book.name
-                            },
-                            BetOptions = book.outcomes.Select(oc => new BetOptionOdds
-                            {
-                                Id = oc.odds_field_id,
-                                LiveOdds = decimal.Parse(oc.odds ?? "0"),
-                                OpeningOdds = decimal.Parse(oc.opening_odds ?? oc.odds ?? "0"),
-                                Type = oc.type,
-                                OddsTrend = Enumeration.FromValue<OddsTrend>(oc.odds_trend),
-                                OptionValue = oc.handicap,
-                                Name = GetOptionName(betType.Item1, oc.type)
-                            })
-                        });
+                        betTypeOddsList.Add(BuildBetTypeOdds(betType, book));
                     }
                 }
             }
@@ -80,21 +68,44 @@
             return betTypeOddsList;
         }
 
+        private static BetTypeOdds BuildBetTypeOdds((int, string) betType, Book book)
+        {
+            return new BetTypeOdds
+            {
+                Id = betType.Item1,
+                Name = betType.Item2,
+                Bookmaker = new Bookmaker
+                {
+                    Id = book.id,
+                    Name = book.name
+                },
+                BetOptions = book.outcomes.Select(oc => new BetOptionOdds
+                {
+                    Id = oc.odds_field_id,
+                    LiveOdds = oc.odds == null ? 0 : decimal.Parse(oc.odds),
+                    OpeningOdds = oc.opening_odds == null ? 0 : decimal.Parse(oc.opening_odds),
+                    Type = oc.type,
+                    OptionValue = oc.handicap,
+                    Name = GetOptionName(betType.Item1, oc.type)
+                })
+            };
+        }
+
         private static (int, string) GetBetType(Market market)
         {
             switch (market.name)
             {
                 case OneXTwoSportRadarBetTypeName:
-                    return (OneXTwoBetTypeId, "1x2");
+                    return (OneXTwoBetTypeId, OddsLang.OneXTwo);
 
                 case OverUnderSportRadarBetTypeName:
-                    return (OverUnderBeTypeId, "OverUnder");
+                    return (OverUnderBeTypeId, OddsLang.OverUnder);
 
                 case AsianHandicapSportRadarBetTypeName:
-                    return (AsianHandicapBetTypeId, "Handicap");
+                    return (AsianHandicapBetTypeId, OddsLang.Handicap);
 
                 default:
-                    return (UnknownBetTypeId, "Un-supported Bet Type");
+                    return (UnknownBetTypeId, UnSupportedBetTypeName);
             }
         }
 
@@ -103,16 +114,18 @@
             switch (betTypeId)
             {
                 case OneXTwoBetTypeId:
-                    return type == "home"
-                        ? "1"
-                        : type == "away"
-                            ? "2"
-                            : "x";
+                    return type == home
+                        ? one
+#pragma warning disable S3358 // Ternary operators should not be nested
+                        : type == away
+                            ? two
+                            : x;
+#pragma warning restore S3358 // Ternary operators should not be nested
 
                 case OverUnderBeTypeId:
-                    return type == "over"
-                        ? "Over"
-                        : "Under";
+                    return type == over
+                        ? OddsLang.Over
+                        : OddsLang.Under;
 
                 default:
                     return type;

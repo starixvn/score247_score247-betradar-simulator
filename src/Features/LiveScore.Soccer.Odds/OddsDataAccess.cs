@@ -34,7 +34,9 @@
                         && o.BetTypeId == betTypeId
                 )
                 .OrderByDescending(o => o.ModifiedTime)
-                .Select(m => JsonConvert.DeserializeObject<BetTypeOdds>(m.Value));
+                .Select(m => JsonConvert.DeserializeObject<BetTypeOdds>(m.Value))
+                .OrderBy(bto => bto.Bookmaker.Name)
+                .AsEnumerable();
 
             return Task.FromResult(oddsEntities);
         }

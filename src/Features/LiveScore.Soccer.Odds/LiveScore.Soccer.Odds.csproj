@@ -10,7 +10,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="AppResources\" />
+    <Compile Update="AppResources\OddsLang.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>OddsLang.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="AppResources\OddsLang.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>OddsLang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
