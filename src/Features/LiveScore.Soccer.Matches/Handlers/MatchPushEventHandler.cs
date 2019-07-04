@@ -6,12 +6,12 @@
     using System.Threading.Tasks;
     using Fanex.Caching;
     using Fanex.Logging;
-    using LiveScore.Soccer.Dtos;
+    using LiveScore.Providers.SportRadar.Dtos;
     using LiveScore.Soccer.Matches.Hubs.EventHandling;
     using LiveScore.Soccer.Matches.Models;
-    using LiveScore.Soccer.Shared;
-    using LiveScore.Soccer.Shared.ModelBuilders;
-    using LiveScore.Soccer.Shared.Models;
+    using LiveScore.Soccer;
+    using LiveScore.Soccer.ModelBuilders;
+    using LiveScore.Soccer.Models;
     using Newtonsoft.Json;
 
     public interface IMatchPushEventHandler

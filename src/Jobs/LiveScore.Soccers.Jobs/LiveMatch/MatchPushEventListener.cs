@@ -8,7 +8,7 @@
     using System.Threading.Tasks;
     using Fanex.Logging;
     using LiveScore.Soccer.Matches.Handlers;
-    using LiveScore.Soccer.Shared.Configurations;
+    using LiveScore.Soccer.Configurations;
 
     public interface IMatchPushEventListener
     {

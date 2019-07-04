@@ -4,13 +4,13 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using LiveScore.Soccer.Dtos;
+    using LiveScore.Providers.SportRadar.Dtos;
     using LiveScore.Soccer.Matches.DataAccesses;
     using LiveScore.Soccer.Matches.Handlers;
     using LiveScore.Soccer.Matches.Models;
-    using LiveScore.Soccer.Shared.Configurations;
-    using LiveScore.Soccer.Shared.Helpers;
-    using LiveScore.Soccer.Shared.ModelBuilders;
+    using LiveScore.Soccer.Configurations;
+    using LiveScore.Soccer.Helpers;
+    using LiveScore.Soccer.ModelBuilders;
 
     public class SportRadarMatchDataAccess : IMatchDataAccess
     {

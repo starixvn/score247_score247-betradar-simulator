@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using LiveScore.Soccer.Shared.Configurations;
+    using LiveScore.Soccer.Configurations;
     using Xunit;
 
     public class SportRadarDataProviderSettingsTests

@@ -1,4 +1,4 @@
-﻿namespace LiveScore.Soccer.Dtos
+﻿namespace LiveScore.Providers.SportRadar.Dtos
 {    
     using Newtonsoft.Json;
 

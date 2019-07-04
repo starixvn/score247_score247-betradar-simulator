@@ -2,7 +2,7 @@
 namespace LiveScore.Features.Teams.Models
 {
     using System.Collections.Generic;
-    using LiveScore.Soccer.Shared.Models;
+    using LiveScore.Soccer.Models;
 
     public interface ITeam : IEntity<string, string>
     {

@@ -5,8 +5,8 @@
     using Hangfire;
     using LiveScore.Soccer.Matches;
     using LiveScore.Soccer.Matches.Hubs;
-    using LiveScore.Soccer.Shared;
-    using LiveScore.Soccer.Shared.Models;
+    using LiveScore.Soccer;
+    using LiveScore.Soccer.Models;
     using Microsoft.AspNetCore.SignalR;
 
     public interface IAutoUpdateMatchTimeJob

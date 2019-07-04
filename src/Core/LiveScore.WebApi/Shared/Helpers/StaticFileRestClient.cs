@@ -3,9 +3,9 @@
 ////    using System;
 ////    using System.IO;
 ////    using System.Threading.Tasks;
-////    using LiveScore.Soccer.Shared.Configurations;
-////    using LiveScore.Soccer.Shared.Helpers;
-////    using LiveScore.Soccer.Shared.Models.Dtos;
+////    using LiveScore.Soccer.Configurations;
+////    using LiveScore.Soccer.Helpers;
+////    using LiveScore.Soccer.Models.Dtos;
 ////    using Newtonsoft.Json;
 
 ////    public class StaticFileRestClient : IRestClient

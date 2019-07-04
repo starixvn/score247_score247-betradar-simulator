@@ -1,7 +1,7 @@
 ﻿namespace LiveScore.Soccers.IntegrationTests.Features.Matches.DataAccesses
 {
-    using LiveScore.Soccer.Shared.Configurations;
-    using LiveScore.Soccer.Shared.Helpers;
+    using LiveScore.Soccer.Configurations;
+    using LiveScore.Soccer.Helpers;
     using LiveScore.Soccers.Matches.DataAccesses;
     using System;
     using System.Collections.Generic;
@@ -24,7 +24,7 @@
 
     public class StubAppSettings : IAppSettings
     {
-        public DataProviderSettings DataProviderSettings => new StubDataProviderSettings();
+        public IDataProviderSettings DataProviderSettings => new StubDataProviderSettings();
 
         public IDictionary<int, string> TimeZoneSettings => new Dictionary<int, string>();
 

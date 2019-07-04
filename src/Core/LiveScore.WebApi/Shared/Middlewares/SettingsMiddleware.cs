@@ -2,8 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using LiveScore.Soccer.Shared.Configurations;
-    using LiveScore.Soccer.Shared.Helpers;
+    using LiveScore.Soccer.Configurations;
+    using LiveScore.Soccer.Helpers;
     using LiveScore.WebApi.Shared.Configurations;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;

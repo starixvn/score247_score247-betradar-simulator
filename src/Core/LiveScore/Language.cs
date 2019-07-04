@@ -1,6 +1,6 @@
-﻿namespace LiveScore.Soccer.Shared
+﻿namespace LiveScore.Soccer
 {
-    using LiveScore.Soccer.Shared.Models;
+    using LiveScore.Soccer.Models;
 
     public class Language : Enumeration
     {

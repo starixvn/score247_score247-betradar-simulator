@@ -5,7 +5,7 @@
     using LiveScore.Soccer.Jobs;
     using LiveScore.Soccer.Matches.Handlers;
     using LiveScore.Soccer.Matches.Hubs.EventHandling;
-    using LiveScore.Soccer.Shared;
+    using LiveScore.Soccer;
     using Microsoft.Extensions.DependencyInjection;
 
     public static class PushEventListenerFactoryMiddleware

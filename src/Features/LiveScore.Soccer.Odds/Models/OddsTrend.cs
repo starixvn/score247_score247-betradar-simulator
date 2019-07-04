@@ -1,6 +1,6 @@
 ﻿namespace LiveScore.Features.Odds.Models
 {
-    using LiveScore.Soccer.Shared.Models;
+    using LiveScore.Soccer.Models;
 
     public class OddsTrend : Enumeration
     {

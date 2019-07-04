@@ -1,0 +1,158 @@
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+namespace LiveScore.Database.Migrations
+{
+    public partial class ChangeDateTime : Migration
+    {
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.AlterColumn<DateTimeOffset>(
+                name: "ModifiedTime",
+                table: "Timeline",
+                nullable: false,
+                oldClrType: typeof(DateTime));
+
+            migrationBuilder.AlterColumn<DateTimeOffset>(
+                name: "CreatedTime",
+                table: "Timeline",
+                nullable: false,
+                oldClrType: typeof(DateTime));
+
+            migrationBuilder.AlterColumn<DateTimeOffset>(
+                name: "ModifiedTime",
+                table: "MatchResult",
+                nullable: false,
+                oldClrType: typeof(DateTime));
+
+            migrationBuilder.AlterColumn<DateTimeOffset>(
+                name: "CreatedTime",
+                table: "MatchResult",
+                nullable: false,
+                oldClrType: typeof(DateTime));
+
+            migrationBuilder.AlterColumn<DateTimeOffset>(
+                name: "ModifiedTime",
+                table: "Match",
+                nullable: false,
+                oldClrType: typeof(DateTime));
+
+            migrationBuilder.AlterColumn<DateTimeOffset>(
+                name: "EventDate",
+                table: "Match",
+                nullable: false,
+                oldClrType: typeof(DateTime));
+
+            migrationBuilder.AlterColumn<DateTimeOffset>(
+                name: "CreatedTime",
+                table: "Match",
+                nullable: false,
+                oldClrType: typeof(DateTime));
+
+            migrationBuilder.AlterColumn<DateTimeOffset>(
+                name: "ModifiedTime",
+                table: "LiveMatch",
+                nullable: false,
+                oldClrType: typeof(DateTime));
+
+            migrationBuilder.AlterColumn<DateTimeOffset>(
+                name: "EventDate",
+                table: "LiveMatch",
+                nullable: false,
+                oldClrType: typeof(DateTime));
+
+            migrationBuilder.AlterColumn<DateTimeOffset>(
+                name: "CreatedTime",
+                table: "LiveMatch",
+                nullable: false,
+                oldClrType: typeof(DateTime));
+
+            migrationBuilder.AlterColumn<DateTimeOffset>(
+                name: "ModifiedTime",
+                table: "Commentary",
+                nullable: false,
+                oldClrType: typeof(DateTime));
+
+            migrationBuilder.AlterColumn<DateTimeOffset>(
+                name: "CreatedTime",
+                table: "Commentary",
+                nullable: false,
+                oldClrType: typeof(DateTime));
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "ModifiedTime",
+                table: "Timeline",
+                nullable: false,
+                oldClrType: typeof(DateTimeOffset));
+
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "CreatedTime",
+                table: "Timeline",
+                nullable: false,
+                oldClrType: typeof(DateTimeOffset));
+
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "ModifiedTime",
+                table: "MatchResult",
+                nullable: false,
+                oldClrType: typeof(DateTimeOffset));
+
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "CreatedTime",
+                table: "MatchResult",
+                nullable: false,
+                oldClrType: typeof(DateTimeOffset));
+
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "ModifiedTime",
+                table: "Match",
+                nullable: false,
+                oldClrType: typeof(DateTimeOffset));
+
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "EventDate",
+                table: "Match",
+                nullable: false,
+                oldClrType: typeof(DateTimeOffset));
+
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "CreatedTime",
+                table: "Match",
+                nullable: false,
+                oldClrType: typeof(DateTimeOffset));
+
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "ModifiedTime",
+                table: "LiveMatch",
+                nullable: false,
+                oldClrType: typeof(DateTimeOffset));
+
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "EventDate",
+                table: "LiveMatch",
+                nullable: false,
+                oldClrType: typeof(DateTimeOffset));
+
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "CreatedTime",
+                table: "LiveMatch",
+                nullable: false,
+                oldClrType: typeof(DateTimeOffset));
+
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "ModifiedTime",
+                table: "Commentary",
+                nullable: false,
+                oldClrType: typeof(DateTimeOffset));
+
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "CreatedTime",
+                table: "Commentary",
+                nullable: false,
+                oldClrType: typeof(DateTimeOffset));
+        }
+    }
+}

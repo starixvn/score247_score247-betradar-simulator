@@ -1,4 +1,4 @@
-﻿namespace LiveScore.Soccer.Shared.Database
+﻿namespace LiveScore.Soccer.Database
 {
     using Microsoft.EntityFrameworkCore;
 

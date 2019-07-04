@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using Fanex.Caching;
     using Fanex.Logging;
-    using LiveScore.Soccer.Dtos;
+    using LiveScore.Providers.SportRadar.Dtos;
     using LiveScore.Soccer.Matches;
     using LiveScore.Soccer.Matches.Handlers;
     using LiveScore.Soccer.Matches.Hubs.EventHandling;

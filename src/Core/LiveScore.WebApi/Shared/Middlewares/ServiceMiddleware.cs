@@ -5,9 +5,9 @@ namespace LiveScore.WebApi.Shared.Middlewares
     using System.Collections.Generic;
     using Fanex.Caching;
     using LiveScore.Soccer.Matches;
-    using LiveScore.Soccer.Shared;
+    using LiveScore.Soccer;
     using LiveScore.Features.Odds;
-    using LiveScore.Soccer.Shared.Enumerations;
+    using LiveScore.Soccer.Enumerations;
     using LiveScore.Soccers.Matches.DataAccesses;
     using Microsoft.Extensions.DependencyInjection;
     using LiveScore.Soccer.Matches.DataAccesses;

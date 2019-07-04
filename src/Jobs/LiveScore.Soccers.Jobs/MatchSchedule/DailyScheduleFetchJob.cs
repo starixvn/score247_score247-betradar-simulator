@@ -6,11 +6,11 @@
     using System.Threading.Tasks;
     using LiveScore.Soccer.Matches.DataAccesses;
     using LiveScore.Soccer.Matches.Models;
-    using LiveScore.Soccer.Shared;
-    using LiveScore.Soccer.Shared.Database;
-    using LiveScore.Soccer.Shared.Database.Entities;
-    using LiveScore.Soccer.Shared.Enumerations;
-    using LiveScore.Soccer.Shared.Models;
+    using LiveScore.Soccer;
+    using LiveScore.Soccer.Database;
+    using LiveScore.Soccer.Database.Entities;
+    using LiveScore.Soccer.Enumerations;
+    using LiveScore.Soccer.Models;
     using Newtonsoft.Json;
 
     public interface IDailyScheduleFetchJob

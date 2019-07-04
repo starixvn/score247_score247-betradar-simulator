@@ -1,7 +1,7 @@
 ﻿namespace LiveScore.Features.Odds.Models
 {
     using System;
-    using LiveScore.Soccer.Shared.Models;
+    using LiveScore.Soccer.Models;
 
     public class BetOptionOdds : Entity<int, string>
     {

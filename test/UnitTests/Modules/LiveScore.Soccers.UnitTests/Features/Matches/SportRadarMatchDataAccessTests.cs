@@ -4,11 +4,11 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using LiveScore.Soccer.Shared.Configurations;
-    using LiveScore.Soccer.Shared.Helpers;
+    using LiveScore.Soccer.Configurations;
+    using LiveScore.Soccer.Helpers;
     using LiveScore.Soccers.Matches.DataAccesses;
     using LiveScore.Soccers.UnitTests.Shared;
-    using LiveScore.Soccer.Dtos;
+    using LiveScore.Providers.SportRadar.Dtos;
     using NSubstitute;
     using Xunit;
     using LiveScore.Soccer.Matches;

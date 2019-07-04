@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using LiveScore.Soccer.Dtos;
-
-namespace LiveScore.Shared.Models.Dtos
+﻿namespace LiveScore.Providers.SportRadar.Dtos
 {
+    using System;
+    using System.Collections.Generic;
+    using LiveScore.Providers.SportRadar.Dtos;
+
     public class TournamentRound
     {
         public string type { get; set; }

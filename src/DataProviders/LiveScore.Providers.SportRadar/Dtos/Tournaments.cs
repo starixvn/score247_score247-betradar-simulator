@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace LiveScore.Soccer.Dtos
+namespace LiveScore.Providers.SportRadar.Dtos
 {
 
 

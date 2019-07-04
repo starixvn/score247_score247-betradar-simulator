@@ -1,4 +1,4 @@
-﻿using LiveScore.Soccer.Shared.Models;
+﻿using LiveScore.Soccer.Models;
 
 namespace LiveScore.Soccer.Matches.Models
 {

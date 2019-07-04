@@ -1,4 +1,4 @@
-﻿using LiveScore.Soccer.Dtos;
+﻿using LiveScore.Providers.SportRadar.Dtos;
 using System.Collections.Generic;
 
 namespace LiveScore.Soccers.UnitTests.Shared

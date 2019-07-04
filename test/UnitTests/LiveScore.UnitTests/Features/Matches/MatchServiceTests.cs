@@ -8,8 +8,8 @@
     using LiveScore.Soccer.Matches;
     using LiveScore.Soccer.Matches.DataAccesses;
     using LiveScore.Soccer.Matches.Models;
-    using LiveScore.Soccer.Shared.Configurations;
-    using LiveScore.Soccer.Shared.Enumerations;
+    using LiveScore.Soccer.Configurations;
+    using LiveScore.Soccer.Enumerations;
     using NSubstitute;
     using Xunit;
 

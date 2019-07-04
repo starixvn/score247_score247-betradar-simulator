@@ -1,4 +1,4 @@
-﻿namespace LiveScore.Soccer.Shared.Database.Entities
+﻿namespace LiveScore.Soccer.Database.Entities
 {
     using System;
     using System.ComponentModel.DataAnnotations;
@@ -11,7 +11,7 @@
         [Column(TypeName = "jsonb")]
         public string Value { get; set; }
 
-        public DateTime EventDate { get; set; }
+        public DateTimeOffset EventDate { get; set; }
 
         public string LeagueId { get; set; }
 

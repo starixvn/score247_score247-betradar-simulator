@@ -3,7 +3,7 @@
     using System;
     using System.IO;
     using System.Threading.Tasks;
-    using LiveScore.Soccer.Dtos;
+    using LiveScore.Providers.SportRadar.Dtos;
     using Newtonsoft.Json;
 
 

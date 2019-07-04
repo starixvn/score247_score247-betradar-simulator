@@ -1,4 +1,4 @@
-﻿namespace LiveScore.Soccer.Shared.Enumerations
+﻿namespace LiveScore.Soccer.Enumerations
 {
     public enum DataProvider
     {

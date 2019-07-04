@@ -3,9 +3,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using LiveScore.Features.Odds.Models;
-    using LiveScore.Shared.Models;
-    using LiveScore.Shared.Models.Dtos;
-    using LiveScore.Soccer.Shared.Models;
+    using LiveScore.Providers.SportRadar.Dtos;
+    using LiveScore.Soccer.Models;
 
     public static class OddsBuilder
     {

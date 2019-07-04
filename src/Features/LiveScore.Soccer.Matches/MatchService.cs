@@ -7,11 +7,11 @@
     using Fanex.Caching;
     using LiveScore.Soccer.Matches.DataAccesses;
     using LiveScore.Soccer.Matches.Models;
-    using LiveScore.Soccer.Shared;
-    using LiveScore.Soccer.Shared.Configurations;
-    using LiveScore.Soccer.Shared.Enumerations;
-    using LiveScore.Soccer.Shared.Helpers;
-    using LiveScore.Soccer.Shared.Models;
+    using LiveScore.Soccer;
+    using LiveScore.Soccer.Configurations;
+    using LiveScore.Soccer.Enumerations;
+    using LiveScore.Soccer.Helpers;
+    using LiveScore.Soccer.Models;
     using Newtonsoft.Json;
 
     public interface IMatchService

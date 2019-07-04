@@ -1,11 +1,11 @@
-﻿namespace LiveScore.Soccer.Shared.ModelBuilders
+﻿namespace LiveScore.Soccer.ModelBuilders
 {
     using System.Collections.Generic;
     using System.Linq;
     using LiveScore.Soccer.Matches.Models;
     using LiveScore.Features.Teams.Models;
-    using LiveScore.Soccer.Shared.Models;
-    using LiveScore.Soccer.Dtos;
+    using LiveScore.Soccer.Models;
+    using LiveScore.Providers.SportRadar.Dtos;
 
     public static class MatchBuilder
     {

@@ -8,8 +8,8 @@
     using LiveScore.Soccer.Matches;
     using LiveScore.Soccer.Matches.DataAccesses;
     using LiveScore.Soccer.Matches.Models;
-    using LiveScore.Soccer.Shared.Database;
-    using LiveScore.Soccer.Shared.Database.Entities;
+    using LiveScore.Soccer.Database;
+    using LiveScore.Soccer.Database.Entities;
     using Newtonsoft.Json;
 
     public class MatchDataAccess : IMatchDataAccess

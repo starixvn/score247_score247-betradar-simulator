@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using LiveScore.Database.Entities;
     using LiveScore.Features.Odds.Models;
-    using LiveScore.Soccer.Shared.Database;
+    using LiveScore.Soccer.Database;
     using Newtonsoft.Json;
 
     public interface OddsDataAccess

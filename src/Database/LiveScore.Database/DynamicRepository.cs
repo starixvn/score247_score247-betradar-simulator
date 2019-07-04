@@ -1,11 +1,11 @@
-﻿namespace LiveScore.Soccer.Shared.Database
+﻿namespace LiveScore.Soccer.Database
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using LiveScore.Soccer.Shared.Database.Entities;
+    using LiveScore.Soccer.Database.Entities;
     using Microsoft.EntityFrameworkCore;
 
     public interface IDynamicRepository

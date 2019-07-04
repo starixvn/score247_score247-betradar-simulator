@@ -1,6 +1,6 @@
 ﻿namespace LiveScore.Soccer.Matches.Models
 {
-    using LiveScore.Soccer.Shared.Models;
+    using LiveScore.Soccer.Models;
 
     public class Venue : Entity<string, string>
     {

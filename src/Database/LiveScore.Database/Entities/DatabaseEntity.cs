@@ -1,4 +1,4 @@
-﻿namespace LiveScore.Soccer.Shared.Database.Entities
+﻿namespace LiveScore.Soccer.Database.Entities
 {
     using System;
     using System.ComponentModel.DataAnnotations;
@@ -8,8 +8,8 @@
         [Key]
         public string Id { get; set; }
 
-        public DateTime CreatedTime { get; set; }
+        public DateTimeOffset CreatedTime { get; set; }
 
-        public DateTime ModifiedTime { get; set; }
+        public DateTimeOffset ModifiedTime { get; set; }
     }
 }
