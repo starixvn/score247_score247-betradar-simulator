@@ -3,10 +3,10 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Hangfire;
-    using LiveScore.Features.Matches;
+    using LiveScore.Soccer.Matches;
+    using LiveScore.Soccer.Matches.Hubs;
     using LiveScore.Soccer.Shared;
     using LiveScore.Soccer.Shared.Models;
-    using LiveScore.Soccer.SignalRHub.Match;
     using Microsoft.AspNetCore.SignalR;
 
     public interface IAutoUpdateMatchTimeJob

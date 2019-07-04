@@ -2,6 +2,7 @@
 namespace LiveScore.Soccer.Shared.Database
 {
     using LiveScore.Soccer.Shared.Database.Entities;
+    using LiveScore.Database.Entities;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Design;
 
@@ -22,6 +23,8 @@ namespace LiveScore.Soccer.Shared.Database
 
         public DbSet<CommentaryEntity> Commentary { get; set; }
 
+        public DbSet<OddsEntity> Odds { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MatchEntity>()
@@ -32,24 +35,28 @@ namespace LiveScore.Soccer.Shared.Database
 
             modelBuilder.Entity<CommentaryEntity>()
                 .HasKey(c => new { c.Id, c.Language });
+
+            modelBuilder.Entity<OddsEntity>()
+                .HasKey(c => new { c.Id });
         }
     }
 
-    /////// <summary>
-    /////// Auto generated code, please ignore
-    /////// </summary>
-    ////public class ScoreAppContextFactory : IDesignTimeDbContextFactory<ScoreAppContext>
-    ////{
-    ////    public ScoreAppContext CreateDbContext(string[] args)
-    ////    {
-    ////        var optionsBuilder = new DbContextOptionsBuilder<ScoreAppContext>();
+    /// <summary>
+    /// Auto generated code, please ignore
+    /// </summary>
+    public class ScoreAppContextFactory : IDesignTimeDbContextFactory<ScoreAppContext>
+    {
+        public ScoreAppContext CreateDbContext(string[] args)
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<ScoreAppContext>();
 
-    ////        optionsBuilder.UseNpgsql("Host=127.0.0.1;Port=5432;Username=postgres;Password=1234aa;Database=Score247Local1;Pooling=true;Minimum Pool Size=0;Maximum Pool Size=1000;Timeout=60;Connection Idle Lifetime=5")
-    ////                        .EnableSensitiveDataLogging(true)
-    ////                        .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
- 
+            optionsBuilder.UseNpgsql("Host=127.0.0.1;Port=5432;Username=postgres;Password=1234aa;Database=Score247Local2;Pooling=true;Minimum Pool Size=0;Maximum Pool Size=1000;Timeout=60;Connection Idle Lifetime=5")
+                            .EnableSensitiveDataLogging(true)
+                            .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
+                            .EnableDetailedErrors();
 
-    ////        return new ScoreAppContext(optionsBuilder.Options);
-    ////    }
-    ////}
+
+            return new ScoreAppContext(optionsBuilder.Options);
+        }
+    }
 }

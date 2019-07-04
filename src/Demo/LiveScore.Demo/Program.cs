@@ -8,7 +8,7 @@ namespace LiveScore.Demo
     using System.Net.Http;
     using System.Net.Sockets;
     using System.Threading.Tasks;
-    using LiveScore.Features.Matches.Models;
+    using LiveScore.Soccer.Matches.Models;
     using Microsoft.AspNetCore.SignalR.Client;
     using Newtonsoft.Json;
 

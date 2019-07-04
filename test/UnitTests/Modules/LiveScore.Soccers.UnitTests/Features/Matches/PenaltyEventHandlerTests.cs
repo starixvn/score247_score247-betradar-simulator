@@ -4,11 +4,12 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Fanex.Caching;
-    using LiveScore.Features.Matches;
-    using LiveScore.Features.Matches.Models;
+    using LiveScore.Soccer.Matches;
+    using LiveScore.Soccer.Matches.Models;
     using LiveScore.Features.Teams.Models;
     using NSubstitute;
     using Xunit;
+    using LiveScore.Soccer.Matches.Handlers;
 
     [Trait("LiveScore.Soccer", "PenaltyEventHandler")]
     public class PenaltyEventHandlerTests

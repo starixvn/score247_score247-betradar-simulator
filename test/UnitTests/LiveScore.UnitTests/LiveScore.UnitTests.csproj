@@ -15,6 +15,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\core\LiveScore\LiveScore.Soccer.csproj" />
+    <ProjectReference Include="..\..\..\src\DataProviders\LiveScore.Providers.SportRadar\LiveScore.Providers.SportRadar.csproj" />
+    <ProjectReference Include="..\..\..\src\Features\LiveScore.Soccer.Matches\LiveScore.Soccer.Matches.csproj" />
   </ItemGroup>
 
 </Project>

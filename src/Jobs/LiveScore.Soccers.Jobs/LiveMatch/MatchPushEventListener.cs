@@ -7,7 +7,7 @@
     using System.Net;
     using System.Threading.Tasks;
     using Fanex.Logging;
-    using LiveScore.Features.Matches;
+    using LiveScore.Soccer.Matches.Handlers;
     using LiveScore.Soccer.Shared.Configurations;
     using LiveScore.Soccer.Shared.SportRadarApi.Models;
 
@@ -89,7 +89,6 @@
 
             while (!isFailed)
             {
-
                 var tasks = readers.Select(x => Task.Factory.StartNew(async () => { await ProcessPayloads(x.Value, x.Key); }));
 
                 try
@@ -167,7 +166,6 @@
                 }
 
                 await pushHandler.OnReceive(line);
-
             } while (!string.IsNullOrWhiteSpace(line));
         }
     }

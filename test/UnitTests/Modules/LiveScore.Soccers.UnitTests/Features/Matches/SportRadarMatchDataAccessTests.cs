@@ -7,12 +7,13 @@
     using LiveScore.Soccer.Shared.Configurations;
     using LiveScore.Soccer.Shared.Helpers;
     using LiveScore.Soccer.Shared.SportRadarApi.Models;
-    using LiveScore.Soccers.Features.Matches.DataAccesses;
+    using LiveScore.Soccers.Matches.DataAccesses;
     using LiveScore.Soccers.UnitTests.Shared;
     using LiveScore.Soccer.Dtos;
     using NSubstitute;
     using Xunit;
-    using LiveScore.Features.Matches;
+    using LiveScore.Soccer.Matches;
+    using LiveScore.Soccer.Matches.Handlers;
 
     public class SportRadarMatchDataAccessTests
     {

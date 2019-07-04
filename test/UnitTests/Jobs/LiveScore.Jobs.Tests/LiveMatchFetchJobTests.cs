@@ -3,8 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using LiveScore.Features.Matches;
-    using LiveScore.Features.Matches.Models;
+    using LiveScore.Soccer.Matches;
+    using LiveScore.Soccer.Matches.Models;
     using LiveScore.Soccer.Shared;
     using LiveScore.Soccer.Shared.Database;
     using LiveScore.Soccer.Shared.Database.Entities;
@@ -12,6 +12,7 @@
     using LiveScore.Soccer.Jobs;
     using NSubstitute;
     using Xunit;
+    using LiveScore.Soccer.Matches.DataAccesses;
 
     public class LiveMatchFetchJobTests
     {

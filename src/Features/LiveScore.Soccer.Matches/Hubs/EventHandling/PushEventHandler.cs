@@ -1,0 +1,36 @@
+﻿namespace LiveScore.Soccer.Matches.Hubs.EventHandling
+{
+    using Fanex.Logging;
+    using LiveScore.Soccer.Matches.Models;
+    using Microsoft.AspNetCore.SignalR;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    public interface IPushEventHandler
+    {
+        Task Handle(Dictionary<string, MatchPushEvent> pushEvents);
+    }
+    public class PushEventHandler: IPushEventHandler
+    {
+        private const int SoccerId = 1;
+        private readonly ILogger logger;
+        private readonly IHubContext<MatchHub> hubContext;
+
+        public PushEventHandler(
+            ILogger logger,            
+            IHubContext<MatchHub> hubContext)
+        {
+            this.logger = logger;
+            this.hubContext = hubContext;
+        }
+
+        public async Task Handle(Dictionary<string, MatchPushEvent> pushEvents)
+        {
+            var firstEvent = pushEvents.First().Value.TimeLines.First();
+            await logger.InfoAsync($"{ DateTime.Now.ToString("MMMM dd HH:mm:ss") } Pushing {pushEvents.First().Key} - {firstEvent.Type}");
+            await hubContext.Clients.All.SendAsync("PushMatchEvent", SoccerId, pushEvents);
+        }
+    }
+}

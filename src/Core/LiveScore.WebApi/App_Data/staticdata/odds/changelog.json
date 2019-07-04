@@ -1,0 +1,193 @@
+{
+  "generated_at": "2019-07-01T06:55:09+00:00",
+  "schema": "http://schemas.sportradar.com/bsa/oddscomparison/v1/json/endpoints/oddscomparison/sport_events_changelog.json",
+  "sport_events": [
+    {
+      "id": "sr:match:17196487",
+      "scheduled": "2019-07-01T19:15:00+00:00",
+      "start_time_tbd": false,
+      "status": "not_started",
+      "tournament_round": {
+        "type": "group",
+        "number": 11
+      },
+      "season": {
+        "id": "sr:season:63273",
+        "name": "Urvalsdeild 2019",
+        "start_date": "2019-04-26",
+        "end_date": "2019-09-29",
+        "year": "2019",
+        "tournament_id": "sr:tournament:188"
+      },
+      "tournament": {
+        "id": "sr:tournament:188",
+        "name": "Urvalsdeild",
+        "sport": {
+          "id": "sr:sport:1",
+          "name": "Soccer"
+        },
+        "category": {
+          "id": "sr:category:10",
+          "name": "Iceland",
+          "country_code": "ISL"
+        }
+      },
+      "competitors": [
+        {
+          "id": "sr:competitor:1897",
+          "name": "UMF Grindavik",
+          "country": "Iceland",
+          "country_code": "ISL",
+          "abbreviation": "GRI",
+          "qualifier": "home"
+        },
+        {
+          "id": "sr:competitor:1894",
+          "name": "FH Hafnarfjordur",
+          "country": "Iceland",
+          "country_code": "ISL",
+          "abbreviation": "HAF",
+          "qualifier": "away",
+          "uuids": "93b23b72-f87d-491a-b8fe-e56ba782b3a1"
+        }
+      ],
+      "venue": {
+        "id": "sr:venue:3982",
+        "name": "Grindavikurvöllur",
+        "capacity": 1750,
+        "city_name": "Grindavik",
+        "country_name": "Iceland",
+        "map_coordinates": "63.844636,-22.429628",
+        "country_code": "ISL"
+      },
+      "markets": [
+        {
+          "odds_type_id": 5,
+          "name": "asian_handicap",
+          "group_name": "regular",
+          "books": [
+            {
+              "id": "sr:book:988",
+              "name": "Bet188Com",
+              "outcomes": [
+                {
+                  "odds_field_id": 14,
+                  "type": "home",
+                  "odds": "2.040",
+                  "handicap": "0.5",
+                  "odds_trend": "up"
+                },
+                {
+                  "odds_field_id": 15,
+                  "type": "away",
+                  "odds": "1.880",
+                  "handicap": "-0.5",
+                  "odds_trend": "down"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "markets_last_updated": "2019-07-01T06:54:50+00:00",
+      "consensus": {
+        "lines": [
+          {
+            "name": "moneyline_current",
+            "outcomes": [
+              {
+                "type": "home",
+                "odds": "3.749"
+              },
+              {
+                "type": "away",
+                "odds": "1.840"
+              },
+              {
+                "type": "draw",
+                "odds": "3.569"
+              }
+            ]
+          },
+          {
+            "name": "moneyline_open",
+            "outcomes": [
+              {
+                "type": "home",
+                "odds": "3.651"
+              },
+              {
+                "type": "away",
+                "odds": "1.854"
+              },
+              {
+                "type": "draw",
+                "odds": "3.503"
+              }
+            ]
+          },
+          {
+            "name": "spread_current",
+            "spread": "0.5",
+            "outcomes": [
+              {
+                "type": "home",
+                "odds": "1.850"
+              },
+              {
+                "type": "away",
+                "odds": "1.850"
+              }
+            ]
+          },
+          {
+            "name": "spread_open",
+            "spread": "0.5",
+            "outcomes": [
+              {
+                "type": "home",
+                "odds": "1.850"
+              },
+              {
+                "type": "away",
+                "odds": "1.850"
+              }
+            ]
+          },
+          {
+            "name": "total_current",
+            "total": "2.5",
+            "outcomes": [
+              {
+                "type": "over",
+                "odds": "1.752",
+                "total": "2.5"
+              },
+              {
+                "type": "under",
+                "odds": "2.014",
+                "total": "2.5"
+              }
+            ]
+          },
+          {
+            "name": "total_open",
+            "total": "2.5",
+            "outcomes": [
+              {
+                "type": "over",
+                "odds": "1.705",
+                "total": "2.5"
+              },
+              {
+                "type": "under",
+                "odds": "2.045",
+                "total": "2.5"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

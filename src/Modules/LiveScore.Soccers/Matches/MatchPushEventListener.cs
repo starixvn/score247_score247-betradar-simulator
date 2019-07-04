@@ -88,6 +88,11 @@
 
                 var tasks = readers.Select(x => Task.Factory.StartNew(async () => { await ProcessPayloads(x.Value, x.Key); }));
 
+                    if (isFailed)
+                    {
+                        continue;
+                    }
+
                 try
                 {
                     await Task.WhenAll(tasks);

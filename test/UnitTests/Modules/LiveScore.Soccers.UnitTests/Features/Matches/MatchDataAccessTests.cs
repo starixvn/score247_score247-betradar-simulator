@@ -5,10 +5,10 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Fanex.Logging;
-    using LiveScore.Features.Matches.Models;
+    using LiveScore.Soccer.Matches.Models;
     using LiveScore.Soccer.Shared.Database;
     using LiveScore.Soccer.Shared.Database.Entities;
-    using LiveScore.Soccers.Features.Matches.DataAccesses;
+    using LiveScore.Soccers.Matches.DataAccesses;
     using LiveScore.Soccers.UnitTests.Shared;
     using NSubstitute;
     using NSubstitute.ExceptionExtensions;

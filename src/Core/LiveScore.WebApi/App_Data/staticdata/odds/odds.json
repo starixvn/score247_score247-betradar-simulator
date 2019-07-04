@@ -1,0 +1,768 @@
+{
+  "generated_at": "2019-07-03T03:51:39+00:00",
+  "schema": "http://schemas.sportradar.com/bsa/oddscomparison/v1/json/endpoints/oddscomparison/sport_schedule.json",
+  "sport": {
+    "id": "sr:sport:1",
+    "name": "Soccer"
+  },
+  "sport_events": [
+    {
+      "id": "sr:match:18575332",
+      "scheduled": "2019-07-02T09:00:00+00:00",
+      "start_time_tbd": false,
+      "status": "closed",
+      "tournament_round": {
+        "type": "group",
+        "number": 22
+      },
+      "season": {
+        "id": "sr:season:63271",
+        "name": "NPL, Queensland 2019",
+        "start_date": "2019-02-02",
+        "end_date": "2019-09-02",
+        "year": "2019",
+        "tournament_id": "sr:tournament:1268"
+      },
+      "tournament": {
+        "id": "sr:tournament:1268",
+        "name": "NPL, Queensland",
+        "sport": {
+          "id": "sr:sport:1",
+          "name": "Soccer"
+        },
+        "category": {
+          "id": "sr:category:34",
+          "name": "Australia",
+          "country_code": "AUS"
+        }
+      },
+      "competitors": [
+        {
+          "id": "sr:competitor:241774",
+          "name": "Gold Coast United FC",
+          "country": "Australia",
+          "country_code": "AUS",
+          "abbreviation": "GOC",
+          "qualifier": "home"
+        },
+        {
+          "id": "sr:competitor:391734",
+          "name": "Gold Coast Knights",
+          "country": "Australia",
+          "country_code": "AUS",
+          "abbreviation": "GCK",
+          "qualifier": "away"
+        }
+      ],
+      "venue": {
+        "id": "sr:venue:2154",
+        "name": "Cbus Super Stadium",
+        "capacity": 27400,
+        "city_name": "Gold Coast",
+        "country_name": "Australia",
+        "map_coordinates": "-28.066944,153.378889",
+        "country_code": "AUS",
+        "uuids": "f0456e28-354c-414c-ac6e-5fc5a722ccc8"
+      },
+      "markets": [
+        {
+          "odds_type_id": 2,
+          "name": "3way",
+          "group_name": "regular",
+          "books": [
+            {
+              "id": "sr:book:6",
+              "name": "Unibet",
+              "outcomes": [
+                {
+                  "odds_field_id": 3,
+                  "type": "home",
+                  "odds": "4.750",
+                  "opening_odds": "3.950",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9192052710",
+                  "odds_trend": "up"
+                },
+                {
+                  "odds_field_id": 5,
+                  "type": "away",
+                  "odds": "1.400",
+                  "opening_odds": "1.570",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9192052714",
+                  "odds_trend": "down"
+                },
+                {
+                  "odds_field_id": 4,
+                  "type": "draw",
+                  "odds": "4.900",
+                  "opening_odds": "4.250",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9192052712",
+                  "odds_trend": "up"
+                }
+              ]
+            },
+            {
+              "id": "sr:book:7",
+              "name": "WilliamHill",
+              "outcomes": [
+                {
+                  "odds_field_id": 3,
+                  "type": "home",
+                  "odds": "5.500",
+                  "opening_odds": "4.000",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9191589752",
+                  "odds_trend": "up"
+                },
+                {
+                  "odds_field_id": 5,
+                  "type": "away",
+                  "odds": "1.400",
+                  "opening_odds": "1.600",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9191589756",
+                  "odds_trend": "down"
+                },
+                {
+                  "odds_field_id": 4,
+                  "type": "draw",
+                  "odds": "5.250",
+                  "opening_odds": "4.500",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9191589754",
+                  "odds_trend": "up"
+                }
+              ]
+            },
+            {
+              "id": "sr:book:12",
+              "name": "BetAndWin",
+              "outcomes": [
+                {
+                  "odds_field_id": 3,
+                  "type": "home",
+                  "odds": "5.500",
+                  "opening_odds": "4.000",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9191491012",
+                  "odds_trend": "up"
+                },
+                {
+                  "odds_field_id": 5,
+                  "type": "away",
+                  "odds": "1.400",
+                  "opening_odds": "1.570",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9191491016",
+                  "odds_trend": "down"
+                },
+                {
+                  "odds_field_id": 4,
+                  "type": "draw",
+                  "odds": "4.750",
+                  "opening_odds": "4.500",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9191491014",
+                  "odds_trend": "up"
+                }
+              ]
+            },
+            {
+              "id": "sr:book:28",
+              "name": "BetAtHome",
+              "outcomes": [
+                {
+                  "odds_field_id": 3,
+                  "type": "home",
+                  "odds": "4.990",
+                  "opening_odds": "3.860",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9191495256",
+                  "odds_trend": "up"
+                },
+                {
+                  "odds_field_id": 5,
+                  "type": "away",
+                  "odds": "1.390",
+                  "opening_odds": "1.570",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9191495260",
+                  "odds_trend": "down"
+                },
+                {
+                  "odds_field_id": 4,
+                  "type": "draw",
+                  "odds": "4.780",
+                  "opening_odds": "4.240",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9191495258",
+                  "odds_trend": "up"
+                }
+              ]
+            },
+            {
+              "id": "sr:book:74",
+              "name": "Bet365",
+              "outcomes": [
+                {
+                  "odds_field_id": 3,
+                  "type": "home",
+                  "odds": "5.750",
+                  "opening_odds": "4.000",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9191448782",
+                  "odds_trend": "down"
+                },
+                {
+                  "odds_field_id": 5,
+                  "type": "away",
+                  "odds": "1.400",
+                  "opening_odds": "1.570",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9191448786",
+                  "odds_trend": "up"
+                },
+                {
+                  "odds_field_id": 4,
+                  "type": "draw",
+                  "odds": "4.750",
+                  "opening_odds": "4.500",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9191448784",
+                  "odds_trend": "neutral"
+                }
+              ]
+            },
+            {
+              "id": "sr:book:459",
+              "name": "Sbobet2",
+              "outcomes": [
+                {
+                  "odds_field_id": 3,
+                  "type": "home",
+                  "odds": "5.200",
+                  "opening_odds": "3.800",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9194459124",
+                  "odds_trend": "down"
+                },
+                {
+                  "odds_field_id": 5,
+                  "type": "away",
+                  "odds": "1.400",
+                  "opening_odds": "1.700",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9194459128",
+                  "odds_trend": "up"
+                },
+                {
+                  "odds_field_id": 4,
+                  "type": "draw",
+                  "odds": "4.700",
+                  "opening_odds": "3.750",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9194459126",
+                  "odds_trend": "down"
+                }
+              ]
+            },
+            {
+              "id": "sr:book:988",
+              "name": "Bet188Com",
+              "outcomes": [
+                {
+                  "odds_field_id": 3,
+                  "type": "home",
+                  "odds": "5.200",
+                  "opening_odds": "3.500",
+                  "odds_trend": "up"
+                },
+                {
+                  "odds_field_id": 5,
+                  "type": "away",
+                  "odds": "1.400",
+                  "opening_odds": "1.650",
+                  "odds_trend": "down"
+                },
+                {
+                  "odds_field_id": 4,
+                  "type": "draw",
+                  "odds": "5.100",
+                  "opening_odds": "4.400",
+                  "odds_trend": "neutral"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "odds_type_id": 3,
+          "name": "total",
+          "group_name": "regular",
+          "books": [
+            {
+              "id": "sr:book:6",
+              "name": "Unibet",
+              "outcomes": [
+                {
+                  "odds_field_id": 7,
+                  "type": "over",
+                  "odds": "1.180",
+                  "opening_odds": "1.250",
+                  "opening_total": 2.5,
+                  "total": "2.5",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9192052726",
+                  "odds_trend": "down"
+                },
+                {
+                  "odds_field_id": 8,
+                  "type": "under",
+                  "odds": "4.500",
+                  "opening_odds": "3.650",
+                  "opening_total": 2.5,
+                  "total": "2.5",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9192052728",
+                  "odds_trend": "up"
+                }
+              ]
+            },
+            {
+              "id": "sr:book:7",
+              "name": "WilliamHill",
+              "outcomes": [
+                {
+                  "odds_field_id": 7,
+                  "type": "over",
+                  "odds": "1.250",
+                  "opening_odds": "1.250",
+                  "opening_total": 2.5,
+                  "total": "2.5",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9194481706",
+                  "odds_trend": "down"
+                },
+                {
+                  "odds_field_id": 8,
+                  "type": "under",
+                  "odds": "3.750",
+                  "opening_odds": "3.750",
+                  "opening_total": 2.5,
+                  "total": "2.5",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9194481708",
+                  "odds_trend": "up"
+                }
+              ]
+            },
+            {
+              "id": "sr:book:12",
+              "name": "BetAndWin",
+              "outcomes": [
+                {
+                  "odds_field_id": 7,
+                  "type": "over",
+                  "odds": "1.220",
+                  "opening_odds": "1.260",
+                  "opening_total": 2.5,
+                  "total": "2.5",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9191491034",
+                  "odds_trend": "down"
+                },
+                {
+                  "odds_field_id": 8,
+                  "type": "under",
+                  "odds": "3.800",
+                  "opening_odds": "3.500",
+                  "opening_total": 2.5,
+                  "total": "2.5",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9191491036",
+                  "odds_trend": "up"
+                }
+              ]
+            },
+            {
+              "id": "sr:book:28",
+              "name": "BetAtHome",
+              "outcomes": [
+                {
+                  "odds_field_id": 7,
+                  "type": "over",
+                  "odds": "1.230",
+                  "opening_odds": "1.240",
+                  "opening_total": 2.5,
+                  "total": "2.5",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9191495264",
+                  "odds_trend": "down"
+                },
+                {
+                  "odds_field_id": 8,
+                  "type": "under",
+                  "odds": "3.500",
+                  "opening_odds": "3.390",
+                  "opening_total": 2.5,
+                  "total": "2.5",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9191495266",
+                  "odds_trend": "up"
+                }
+              ]
+            },
+            {
+              "id": "sr:book:74",
+              "name": "Bet365",
+              "outcomes": [
+                {
+                  "odds_field_id": 7,
+                  "type": "over",
+                  "odds": "1.220",
+                  "opening_odds": "1.270",
+                  "opening_total": 2.5,
+                  "total": "2.5",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9191448790",
+                  "odds_trend": "down"
+                },
+                {
+                  "odds_field_id": 8,
+                  "type": "under",
+                  "odds": "4.200",
+                  "opening_odds": "3.550",
+                  "opening_total": 2.5,
+                  "total": "2.5",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9191448792",
+                  "odds_trend": "up"
+                }
+              ]
+            },
+            {
+              "id": "sr:book:459",
+              "name": "Sbobet2",
+              "outcomes": [
+                {
+                  "odds_field_id": 7,
+                  "type": "over",
+                  "odds": "1.760",
+                  "opening_odds": "1.870",
+                  "opening_total": 3.75,
+                  "total": "3.75",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9194459114",
+                  "odds_trend": "down"
+                },
+                {
+                  "odds_field_id": 8,
+                  "type": "under",
+                  "odds": "2.060",
+                  "opening_odds": "1.950",
+                  "opening_total": 3.75,
+                  "total": "3.75",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9194459116",
+                  "odds_trend": "up"
+                }
+              ]
+            },
+            {
+              "id": "sr:book:988",
+              "name": "Bet188Com",
+              "outcomes": [
+                {
+                  "odds_field_id": 7,
+                  "type": "over",
+                  "odds": "1.690",
+                  "opening_odds": "1.800",
+                  "opening_total": 3.75,
+                  "total": "3.75",
+                  "odds_trend": "down"
+                },
+                {
+                  "odds_field_id": 8,
+                  "type": "under",
+                  "odds": "2.170",
+                  "opening_odds": "1.960",
+                  "opening_total": 3.75,
+                  "total": "3.75",
+                  "odds_trend": "up"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "odds_type_id": 4,
+          "name": "spread",
+          "group_name": "regular",
+          "books": [
+            {
+              "id": "sr:book:7",
+              "name": "WilliamHill",
+              "outcomes": [
+                {
+                  "odds_field_id": 10,
+                  "type": "home",
+                  "spread": "1.5",
+                  "odds": "1.730",
+                  "opening_odds": "2.200",
+                  "opening_spread": 0.5,
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9194481698",
+                  "odds_trend": "up"
+                },
+                {
+                  "odds_field_id": 12,
+                  "type": "away",
+                  "spread": "-1.5",
+                  "odds": "2.000",
+                  "opening_odds": "1.620",
+                  "opening_spread": -0.5,
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9194481702",
+                  "odds_trend": "down"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "odds_type_id": 5,
+          "name": "handicap",
+          "group_name": "regular",
+          "books": [
+            {
+              "id": "sr:book:6",
+              "name": "Unibet",
+              "outcomes": [
+                {
+                  "odds_field_id": 14,
+                  "type": "home",
+                  "odds": "2.500",
+                  "handicap": "1:0",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9192052718",
+                  "odds_trend": "neutral"
+                },
+                {
+                  "odds_field_id": 15,
+                  "type": "away",
+                  "odds": "1.920",
+                  "handicap": "1:0",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9192052720",
+                  "odds_trend": "down"
+                },
+                {
+                  "odds_field_id": 16,
+                  "type": "draw",
+                  "odds": "4.200",
+                  "handicap": "1:0",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9192052722",
+                  "odds_trend": "up"
+                }
+              ]
+            },
+            {
+              "id": "sr:book:12",
+              "name": "BetAndWin",
+              "outcomes": [
+                {
+                  "odds_field_id": 14,
+                  "type": "home",
+                  "odds": "2.750",
+                  "handicap": "1:0",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9191491020",
+                  "odds_trend": "up"
+                },
+                {
+                  "odds_field_id": 15,
+                  "type": "away",
+                  "odds": "1.950",
+                  "handicap": "1:0",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9191491022",
+                  "odds_trend": "down"
+                },
+                {
+                  "odds_field_id": 16,
+                  "type": "draw",
+                  "odds": "4.200",
+                  "handicap": "1:0",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9191491028",
+                  "odds_trend": "neutral"
+                }
+              ]
+            },
+            {
+              "id": "sr:book:74",
+              "name": "Bet365",
+              "outcomes": [
+                {
+                  "odds_field_id": 14,
+                  "type": "home",
+                  "odds": "2.750",
+                  "handicap": "1:0",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9191653510",
+                  "odds_trend": "down"
+                },
+                {
+                  "odds_field_id": 15,
+                  "type": "away",
+                  "odds": "2.000",
+                  "handicap": "1:0",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9191653512",
+                  "odds_trend": "up"
+                },
+                {
+                  "odds_field_id": 16,
+                  "type": "draw",
+                  "odds": "4.330",
+                  "handicap": "1:0",
+                  "deep_link": "http://stats.betradar.com/tb.php?type=iscreenFromId&id=9191653514",
+                  "odds_trend": "neutral"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "odds_type_id": 5,
+          "name": "asian_handicap",
+          "group_name": "regular",
+          "books": [
+            {
+              "id": "sr:book:74",
+              "name": "Bet365",
+              "outcomes": [
+                {
+                  "odds_field_id": 14,
+                  "type": "home",
+                  "odds": "2.200",
+                  "handicap": "1",
+                  "odds_trend": "down"
+                },
+                {
+                  "odds_field_id": 15,
+                  "type": "away",
+                  "odds": "1.649",
+                  "handicap": "-1",
+                  "odds_trend": "up"
+                }
+              ]
+            },
+            {
+              "id": "sr:book:459",
+              "name": "Sbobet2",
+              "outcomes": [
+                {
+                  "odds_field_id": 14,
+                  "type": "home",
+                  "odds": "2.280",
+                  "handicap": "1",
+                  "odds_trend": "down"
+                },
+                {
+                  "odds_field_id": 15,
+                  "type": "away",
+                  "odds": "1.620",
+                  "handicap": "-1",
+                  "odds_trend": "up"
+                }
+              ]
+            },
+            {
+              "id": "sr:book:988",
+              "name": "Bet188Com",
+              "outcomes": [
+                {
+                  "odds_field_id": 14,
+                  "type": "home",
+                  "odds": "2.090",
+                  "handicap": "1.25",
+                  "odds_trend": "down"
+                },
+                {
+                  "odds_field_id": 15,
+                  "type": "away",
+                  "odds": "1.770",
+                  "handicap": "-1.25",
+                  "odds_trend": "up"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "markets_last_updated": "2019-07-02T09:00:24+00:00",
+      "consensus": {
+        "lines": [
+          {
+            "name": "moneyline_current",
+            "outcomes": [
+              {
+                "type": "home",
+                "odds": "5.270"
+              },
+              {
+                "type": "away",
+                "odds": "1.399"
+              },
+              {
+                "type": "draw",
+                "odds": "4.890"
+              }
+            ]
+          },
+          {
+            "name": "moneyline_open",
+            "outcomes": [
+              {
+                "type": "home",
+                "odds": "3.873"
+              },
+              {
+                "type": "away",
+                "odds": "1.604"
+              },
+              {
+                "type": "draw",
+                "odds": "4.306"
+              }
+            ]
+          },
+          {
+            "name": "spread_current",
+            "spread": "1.5",
+            "outcomes": [
+              {
+                "type": "home",
+                "odds": "1.730"
+              },
+              {
+                "type": "away",
+                "odds": "2.000"
+              }
+            ]
+          },
+          {
+            "name": "spread_open",
+            "spread": "0.5",
+            "outcomes": [
+              {
+                "type": "home",
+                "odds": "2.200"
+              },
+              {
+                "type": "away",
+                "odds": "1.620"
+              }
+            ]
+          },
+          {
+            "name": "total_current",
+            "total": "2.5",
+            "outcomes": [
+              {
+                "type": "over",
+                "odds": "1.220",
+                "total": "2.5"
+              },
+              {
+                "type": "under",
+                "odds": "3.919",
+                "total": "2.5"
+              }
+            ]
+          },
+          {
+            "name": "total_open",
+            "total": "2.5",
+            "outcomes": [
+              {
+                "type": "over",
+                "odds": "1.254",
+                "total": "2.5"
+              },
+              {
+                "type": "under",
+                "odds": "3.564",
+                "total": "2.5"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

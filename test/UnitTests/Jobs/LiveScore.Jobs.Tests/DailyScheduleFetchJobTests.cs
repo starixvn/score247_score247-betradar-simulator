@@ -5,13 +5,13 @@
     using System.Linq;
     using System.Threading.Tasks;
     using LiveScore.Features.Leagues.Models;
-    using LiveScore.Features.Matches;
-    using LiveScore.Features.Matches.Models;
+    using LiveScore.Soccer.Jobs;
+    using LiveScore.Soccer.Matches.DataAccesses;
+    using LiveScore.Soccer.Matches.Models;
     using LiveScore.Soccer.Shared;
     using LiveScore.Soccer.Shared.Database;
     using LiveScore.Soccer.Shared.Database.Entities;
     using LiveScore.Soccer.Shared.Enumerations;
-    using LiveScore.Soccer.Jobs;
     using NSubstitute;
     using Xunit;
 

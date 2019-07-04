@@ -9,7 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\LiveScore.Soccer.SignalRHub\LiveScore.Soccer.SignalRHub.csproj" />
     <ProjectReference Include="..\..\core\LiveScore\LiveScore.Soccer.csproj" />
+    <ProjectReference Include="..\..\DataProviders\LiveScore.Providers.SportRadar\LiveScore.Providers.SportRadar.csproj" />
+    <ProjectReference Include="..\..\Features\LiveScore.Soccer.Matches\LiveScore.Soccer.Matches.csproj" />
   </ItemGroup>
 </Project>

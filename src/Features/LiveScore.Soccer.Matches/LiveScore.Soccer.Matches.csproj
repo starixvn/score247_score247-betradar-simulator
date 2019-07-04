@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <ApplicationIcon />
+    <StartupObject />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\core\LiveScore\LiveScore.Soccer.csproj" />
+    <ProjectReference Include="..\..\DataProviders\LiveScore.Providers.SportRadar\LiveScore.Providers.SportRadar.csproj" />
+    <ProjectReference Include="..\LiveScore.Soccer.Leagues\LiveScore.Soccer.Leagues.csproj" />
+  </ItemGroup>
+
+</Project>

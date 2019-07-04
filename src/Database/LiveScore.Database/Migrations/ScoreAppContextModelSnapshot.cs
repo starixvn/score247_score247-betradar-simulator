@@ -19,7 +19,32 @@ namespace LiveScore.Database.Migrations
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("LiveScore.Soccer.Shared.Database.Entities.CommentaryEntity", b =>
+           
+            modelBuilder.Entity("LiveScore.Database.Entities.OddsEntity", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("BetTypeId");
+
+                    b.Property<string>("BookmakerId");
+
+                    b.Property<DateTimeOffset>("CreatedTime");
+
+                    b.Property<string>("MatchId");
+
+                    b.Property<DateTimeOffset>("ModifiedTime");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("json");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Odds");
+                });
+
+ modelBuilder.Entity("LiveScore.Soccer.Shared.Database.Entities.CommentaryEntity", b =>
+
                 {
                     b.Property<string>("Id");
 

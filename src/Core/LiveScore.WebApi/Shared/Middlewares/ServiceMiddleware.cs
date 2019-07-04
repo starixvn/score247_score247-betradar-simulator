@@ -4,11 +4,13 @@ namespace LiveScore.WebApi.Shared.Middlewares
     using System;
     using System.Collections.Generic;
     using Fanex.Caching;
-    using LiveScore.Features.Matches;
+    using LiveScore.Soccer.Matches;
     using LiveScore.Soccer.Shared;
+    using LiveScore.Features.Odds;
     using LiveScore.Soccer.Shared.Enumerations;
-    using LiveScore.Soccers.Features.Matches.DataAccesses;
+    using LiveScore.Soccers.Matches.DataAccesses;
     using Microsoft.Extensions.DependencyInjection;
+    using LiveScore.Soccer.Matches.DataAccesses;
 
     public static class ServiceMiddleware
     {
@@ -18,6 +20,7 @@ namespace LiveScore.WebApi.Shared.Middlewares
 
 
             RegisterMatchService(services);
+            RegisterOddsService(services);
         }
 
         private static void RegisterMatchService(IServiceCollection services)
@@ -40,6 +43,12 @@ namespace LiveScore.WebApi.Shared.Middlewares
                         throw new KeyNotFoundException("Not found implementation for " + sportId);
                 }
             });
+        }
+
+        private static void RegisterOddsService(IServiceCollection services)
+        {
+            services.AddScoped<OddsService, OddsServiceImpl>();
+            services.AddScoped<OddsDataAccess, OddsDataAccessImpl>();
         }
     }
 }

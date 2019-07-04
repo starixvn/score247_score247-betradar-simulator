@@ -4,8 +4,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using LiveScore.Features.Matches;
-    using LiveScore.Features.Matches.Models;
+    using LiveScore.Soccer.Matches.DataAccesses;
+    using LiveScore.Soccer.Matches.Models;
     using LiveScore.Soccer.Shared;
     using LiveScore.Soccer.Shared.Database;
     using LiveScore.Soccer.Shared.Database.Entities;

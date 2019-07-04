@@ -4,13 +4,13 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
+    using Fanex.Caching;
     using Fanex.Logging;
-    using LiveScore.Features.Matches;
-    using LiveScore.Features.Matches.Models;
-    using LiveScore.Soccer.SignalRHub.Match;
-    using LiveScore.Soccer.SignalRHub.Match.EventHandling;
     using LiveScore.Soccer.Dtos;
-    using Microsoft.AspNetCore.SignalR;
+    using LiveScore.Soccer.Matches;
+    using LiveScore.Soccer.Matches.Handlers;
+    using LiveScore.Soccer.Matches.Hubs.EventHandling;
+    using LiveScore.Soccer.Matches.Models;
     using Newtonsoft.Json;
     using NSubstitute;
     using NSubstitute.ExceptionExtensions;
@@ -25,6 +25,7 @@
         private readonly IMatchService matchService;
         private readonly ILogger logger;
         private readonly IPenaltyEventHandler penaltyEventHandler;
+        private readonly ICacheService cacheService;
 
         public MatchPushEventHandlerTests()
         {
@@ -32,11 +33,12 @@
             matchService = Substitute.For<IMatchService>();
             logger = Substitute.For<ILogger>();
             penaltyEventHandler = Substitute.For<IPenaltyEventHandler>();
+            cacheService = Substitute.For<ICacheService>();
 
             var testJsonData = File.ReadAllText(@"..\netcoreapp2.2\TestData\payloads.json");
             payloads = JsonConvert.DeserializeObject<PayloadStreams>(testJsonData);
 
-            eventHandler = new MatchPushEventHandler(matchService, logger, penaltyEventHandler, pushEventHandler);
+            eventHandler = new MatchPushEventHandler(matchService, logger, penaltyEventHandler, pushEventHandler, cacheService);
         }
 
         [Fact]

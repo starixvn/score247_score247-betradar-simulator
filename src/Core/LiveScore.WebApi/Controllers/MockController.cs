@@ -3,24 +3,31 @@ namespace LiveScore.Soccer.Api.Notifications
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using LiveScore.Features.Matches;
+    using LiveScore.Soccer.Matches;
     using LiveScore.Soccer.Dtos;
+    using LiveScore.Features.Odds;
+    using LiveScore.Shared.Models.Dtos;
+    using LiveScore.Soccers.Shared.ModelBuilders;
     using Microsoft.AspNetCore.Mvc;
+    using LiveScore.Soccer.Matches.Handlers;
 
     [Route("api/[controller]")]
     [ApiController]
     public class MockController : ControllerBase
     {
-        private IMatchPushEventHandler soccerPushEventHandler;
+        private readonly IMatchPushEventHandler soccerPushEventHandler;
         private readonly IMatchService matchService;
+        private readonly OddsService oddsService;
 
 
         public MockController(
             IMatchPushEventHandler soccerPushEventHandler, 
-            IMatchService matchService)
+            IMatchService matchService,
+            OddsService oddsService)
         {
             this.soccerPushEventHandler = soccerPushEventHandler;
             this.matchService = matchService;
+            this.oddsService = oddsService;
         }
 
         [HttpPost(nameof(PushMatchEvent))]
@@ -46,6 +53,19 @@ namespace LiveScore.Soccer.Api.Notifications
             await matchService.AddFullTimelines(sportId, matchId, language, region);
 
             return "Done";
+        }
+
+        [HttpPost(nameof(InsertOdds))]
+        public async Task InsertOdds(
+            [FromBody]OddsScheduleDto oddsSchedule)
+        {
+            var matchOddsList = OddsBuilder.BuildMatchOddsList(oddsSchedule);
+
+            foreach (var matchOdds in matchOddsList)
+            {
+                await oddsService.InsertBetTypeOdds(matchOdds.MatchId, matchOdds.BetTypeOddsList);
+                //oddsService.InsertBetTypeOdds()
+            }
         }
 
         ////[HttpPost(nameof(AddResult))]

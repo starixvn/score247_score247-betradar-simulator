@@ -4,8 +4,8 @@ namespace LiveScore.Soccer.Api.Matches
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using LiveScore.Features.Matches;
-    using LiveScore.Features.Matches.Models;
+    using LiveScore.Soccer.Matches;
+    using LiveScore.Soccer.Matches.Models;
     using Microsoft.AspNetCore.Mvc;
 
     [Route("api/[controller]")]

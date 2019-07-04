@@ -2,10 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
-    using LiveScore.Features.Matches;
     using LiveScore.Soccer.Jobs;
+    using LiveScore.Soccer.Matches.Handlers;
+    using LiveScore.Soccer.Matches.Hubs.EventHandling;
     using LiveScore.Soccer.Shared;
-    using LiveScore.Soccer.SignalRHub.Match.EventHandling;
     using Microsoft.Extensions.DependencyInjection;
 
     public static class PushEventListenerFactoryMiddleware

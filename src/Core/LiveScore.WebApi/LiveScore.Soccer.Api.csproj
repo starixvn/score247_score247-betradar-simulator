@@ -24,6 +24,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Core" Version="1.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="7.12.0.8217">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
@@ -36,8 +37,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Database\LiveScore.Database\LiveScore.Database.csproj" />
+    <ProjectReference Include="..\..\Features\LiveScore.Soccer.Leagues\LiveScore.Soccer.Leagues.csproj" />
+    <ProjectReference Include="..\..\Features\LiveScore.Soccer.Matches\LiveScore.Soccer.Matches.csproj" />
+    <ProjectReference Include="..\..\Features\LiveScore.Soccer.Odds\LiveScore.Soccer.Odds.csproj" />
     <ProjectReference Include="..\..\Jobs\LiveScore.Soccers.Jobs\LiveScore.Soccers.Jobs.csproj" />
-    <ProjectReference Include="..\LiveScore.Soccer.SignalRHub\LiveScore.Soccer.SignalRHub.csproj" />
     <ProjectReference Include="..\LiveScore\LiveScore.Soccer.csproj" />
   </ItemGroup>
 

@@ -15,11 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LiveScore.Soccer.Dtos\LiveScore.Soccer.Dtos.csproj" />
-    <ProjectReference Include="..\LiveScore.Soccer.Models\LiveScore.Soccer.Models.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Match\Events\" />
   </ItemGroup>
 
