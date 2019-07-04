@@ -16,7 +16,7 @@
     public class MatchServiceTests
     {
         private const int SoccerSportId = 1;
-        private readonly MatchService matchServiceImpl;
+        private readonly IMatchService matchServiceImpl;
         private readonly IMatchDataAccess matchDataAccess;
         private readonly IMatchDataAccess sportRadarDataAccess;
         private readonly ICacheService cacheService;

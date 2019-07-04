@@ -11,10 +11,10 @@
     [ApiController]
     public class MatchController : ControllerBase
     {
-        private readonly MatchService matchService;
+        private readonly IMatchService matchService;
 
         public MatchController(
-            MatchService matchService)
+            IMatchService matchService)
         {
             this.matchService = matchService;
         }

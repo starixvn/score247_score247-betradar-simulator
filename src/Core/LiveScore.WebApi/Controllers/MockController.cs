@@ -13,13 +13,13 @@
     [ApiController]
     public class MockController : ControllerBase
     {
-        private readonly MatchPushEventHandler soccerPushEventHandler;
-        private readonly MatchService matchService;
+        private readonly IMatchPushEventHandler soccerPushEventHandler;
+        private readonly IMatchService matchService;
         private readonly OddsService oddsService;
 
         public MockController(
-            MatchPushEventHandler soccerPushEventHandler,
-            MatchService matchService,
+            IMatchPushEventHandler soccerPushEventHandler,
+            IMatchService matchService,
             OddsService oddsService)
         {
             this.soccerPushEventHandler = soccerPushEventHandler;
