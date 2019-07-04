@@ -34,8 +34,8 @@
 
         public async Task Fetch(int sportId)
         {
-            var liveMatches = new List<IMatch>();
-            var closedMatches = new List<IMatch>();
+            var liveMatches = new List<Match>();
+            var closedMatches = new List<Match>();
 
             var dataAccess = matchDataAccessFactory(sportId, DataProvider.ThirdPartyApi);
 
@@ -63,7 +63,7 @@
             //TODO update cache
         }
 
-        private async Task DeleteLiveMatches(List<IMatch> matches, string language)
+        private async Task DeleteLiveMatches(List<Match> matches, string language)
         {
             var liveMatchEntities = new List<LiveMatchEntity>();
             var matchEntities = new List<MatchEntity>();
@@ -94,7 +94,7 @@
             }
         }
 
-        private async Task InsertLiveMatches(List<IMatch> matches, string language)
+        private async Task InsertLiveMatches(List<Match> matches, string language)
         {
             var liveMatchEntities = new List<LiveMatchEntity>();
             // status == live && not exist in live table -> insert to live table -> update cache

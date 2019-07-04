@@ -104,7 +104,7 @@
             //TODO update cache for schedule and results --> liveMatchIds
         }
 
-        private static MatchEntity CreateMatchEntity(int sportId, string language, IMatch match)
+        private static MatchEntity CreateMatchEntity(int sportId, string language, Match match)
         => new MatchEntity
         {
             Id = match.Id,

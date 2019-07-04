@@ -25,7 +25,7 @@
             this.logger = logger;
         }
 
-        public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime utcFrom, DateTime utcTo, string language)
+        public async Task<IEnumerable<Match>> GetMatches(int sportId, DateTime utcFrom, DateTime utcTo, string language)
         {
             var matchEntities = dynamicRepository.Query<MatchEntity>
             (
@@ -38,7 +38,7 @@
             return matchEntities.Select(m => JsonConvert.DeserializeObject<Match>(m.Value));
         }
 
-        public async Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
+        public async Task<IEnumerable<Match>> GetLiveMatches(int sportId, string language)
         {
             var matchEntities = dynamicRepository.Query<LiveMatchEntity>(m =>
                     m.SportId == sportId &&
@@ -47,7 +47,7 @@
             return matchEntities.Select(m => JsonConvert.DeserializeObject<Match>(m.Value));
         }
 
-        public async Task<IMatch> AddOrUpdateMatch(string matchId, string language, MatchPushEvent pushEvent, bool isLive = false)
+        public async Task<Match> AddOrUpdateMatch(string matchId, string language, MatchPushEvent pushEvent, bool isLive = false)
         {
             try
             {
@@ -125,7 +125,7 @@
             }
         }
 
-        public async Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines, bool isDeleteExisting = false)
+        public async Task<bool> AddTimelines(string matchId, IEnumerable<Timeline> timelines, bool isDeleteExisting = false)
         {
             if (isDeleteExisting)
             {
@@ -154,7 +154,7 @@
             }
         }
 
-        public async Task<bool> AddResult(string matchId, IMatchResult matchResult)
+        public async Task<bool> AddResult(string matchId, MatchResult matchResult)
         {
             return await dynamicRepository.Insert(
                 new MatchResultEntity
@@ -165,7 +165,7 @@
                 }) > 0;
         }
 
-        public async Task<bool> UpdateLiveMatches(IEnumerable<IMatch> matches, string language)
+        public async Task<bool> UpdateLiveMatches(IEnumerable<Match> matches, string language)
         {
             var liveMatchEntities = new List<LiveMatchEntity>();
 
@@ -181,7 +181,7 @@
             return (await dynamicRepository.UpdateRange(liveMatchEntities)) > 0;
         }
 
-        public async Task<IMatch> GetMatch(int sportId, string matchId, string language)
+        public async Task<Match> GetMatch(int sportId, string matchId, string language)
         {
             var matchEntity = await dynamicRepository.GetById<MatchEntity>(matchId, language);
 
@@ -190,7 +190,7 @@
                     : JsonConvert.DeserializeObject<Match>(matchEntity.Value);
         }
 
-        public async Task<IEnumerable<ITimeline>> GetTimelines(int sportId, string region, string matchId, string language)
+        public async Task<IEnumerable<Timeline>> GetTimelines(int sportId, string region, string matchId, string language)
         {
             var timelines = (dynamicRepository
                 .Query<MatchTimelineEntity>(x => x.MatchId.Equals(matchId, StringComparison.OrdinalIgnoreCase)))
@@ -201,7 +201,7 @@
             return timelines;
         }
 
-        public async Task AddCommentaries(string matchId, IEnumerable<ITimeline> timelines, string language)
+        public async Task AddCommentaries(string matchId, IEnumerable<Timeline> timelines, string language)
         {
             var commentaries = timelines
                 .Where(x => x.Commentaries != null && x.Commentaries.Any())
@@ -220,7 +220,7 @@
             }
         }
 
-        public Task<IEnumerable<IMatchFunction>> GetMatchFunctions(
+        public Task<IEnumerable<MatchFunction>> GetMatchFunctions(
             int sportId,
             string matchId,
             string language)
@@ -243,7 +243,7 @@
             {
                 function.Id = function.Abbreviation.Replace(" ", "_");
                 return function;
-            }) as IEnumerable<IMatchFunction>);
+            }));
         }
     }
 }

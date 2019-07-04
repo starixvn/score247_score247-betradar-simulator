@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using LiveScore.Soccer.Shared.Configurations;
     using LiveScore.Soccer.Shared.Helpers;
-    using LiveScore.Soccer.Shared.SportRadarApi.Models;
     using LiveScore.Soccers.Matches.DataAccesses;
     using LiveScore.Soccers.UnitTests.Shared;
     using LiveScore.Soccer.Dtos;

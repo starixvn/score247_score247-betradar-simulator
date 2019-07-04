@@ -1,17 +1,8 @@
-﻿using LiveScore.Soccer.Shared.Models;
-
-namespace LiveScore.Soccer.Matches.Models
+﻿namespace LiveScore.Soccer.Matches.Models
 {
-    public interface IVenue : IEntity<string, string>
-    {
-        int Capacity { get; }
+    using LiveScore.Soccer.Shared.Models;
 
-        string CityName { get; }
-
-        string CountryName { get; }
-    }
-
-    public class Venue : Entity<string, string>, IVenue
+    public class Venue : Entity<string, string>
     {
         public int Capacity { get; set; }
 

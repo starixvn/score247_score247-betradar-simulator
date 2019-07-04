@@ -9,7 +9,6 @@
     using Fanex.Logging;
     using LiveScore.Soccer.Matches.Handlers;
     using LiveScore.Soccer.Shared.Configurations;
-    using LiveScore.Soccer.Shared.SportRadarApi.Models;
 
     public interface IMatchPushEventListener
     {
@@ -22,7 +21,7 @@
         private const int MaxAttempts = 10;
         private const int MillisecondsTimeout = 10 * 1000;
 
-        private readonly IMatchPushEventHandler pushHandler;
+        private readonly MatchPushEventHandler pushHandler;
         private readonly IAppSettings appSettings;
         private readonly ILogger logger;
 
@@ -30,7 +29,7 @@
         private int attempts;
 
         public MatchPushEventListener(
-            IMatchPushEventHandler pushHandler,
+            MatchPushEventHandler pushHandler,
             IAppSettings appSettings,
             ILogger logger)
         {

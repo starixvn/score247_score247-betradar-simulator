@@ -12,9 +12,9 @@
     [AutomaticRetry(OnAttemptsExceeded = AttemptsExceededAction.Delete)]
     public class MatchPushEventListenerJob : IMatchPushEventListenerJob
     {
-        private readonly Func<int, IMatchPushEventListener> pushEventListenerFactory;
+        private readonly Func<int, MatchPushEventListener> pushEventListenerFactory;
 
-        public MatchPushEventListenerJob(Func<int, IMatchPushEventListener> pushEventListenerFactory)
+        public MatchPushEventListenerJob(Func<int, MatchPushEventListener> pushEventListenerFactory)
         {
             this.pushEventListenerFactory = pushEventListenerFactory;
         }
@@ -26,7 +26,7 @@
             await ListenPushEvent(sportId, pushEventListener);
         }
 
-        private static Task ListenPushEvent(byte sportId, IMatchPushEventListener pushEventListener)
+        private static Task ListenPushEvent(byte sportId, MatchPushEventListener pushEventListener)
             => pushEventListener.Start(sportId);
     }
 }

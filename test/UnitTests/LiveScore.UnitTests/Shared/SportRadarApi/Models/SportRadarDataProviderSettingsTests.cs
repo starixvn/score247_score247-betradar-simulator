@@ -2,15 +2,15 @@
 {
     using System;
     using System.Collections.Generic;
-    using LiveScore.Soccer.Shared.SportRadarApi.Models;
+    using LiveScore.Soccer.Shared.Configurations;
     using Xunit;
 
     public class SportRadarDataProviderSettingsTests
     {
-        private readonly SportRadarDataProviderSettings sportSettings;
+        private readonly DataProviderSettings sportSettings;
         public SportRadarDataProviderSettingsTests()
         {
-            sportSettings = new SportRadarDataProviderSettings();
+            sportSettings = new DataProviderSettings();
         }
 
         [Fact]

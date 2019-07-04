@@ -16,27 +16,27 @@
 
     public interface IMatchService
     {
-        Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime from, DateTime to, TimeSpan clientTimeZone, string language);
+        Task<IEnumerable<Match>> GetMatches(int sportId, DateTime from, DateTime to, TimeSpan clientTimeZone, string language);
 
-        Task<IEnumerable<IMatch>> GetNonLiveMatches(int sportId, string language, DateTime utcFrom, DateTime utcTo);
+        Task<IEnumerable<Match>> GetNonLiveMatches(int sportId, string language, DateTime utcFrom, DateTime utcTo);
 
-        Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language);
+        Task<IEnumerable<Match>> GetLiveMatches(int sportId, string language);
 
         Task<bool> AddOrUpdateMatch(int sportId, string language, string matchId, MatchPushEvent pushEvent, bool isLive = false);
 
         Task<bool> DeleteLiveMatch(int sportId, string language, string matchId);
 
-        Task UpdateLiveMatches(int sportId, string language, IEnumerable<IMatch> matches);
+        Task UpdateLiveMatches(int sportId, string language, IEnumerable<Match> matches);
 
-        Task<bool> AddTimelines(int sportId, string matchId, IEnumerable<ITimeline> timelines);
+        Task<bool> AddTimelines(int sportId, string matchId, IEnumerable<Timeline> timelines);
 
-        Task<bool> AddResult(int sportId, string matchId, IMatchResult matchResult);
+        Task<bool> AddResult(int sportId, string matchId, MatchResult matchResult);
 
-        Task<IMatch> GetMatch(int sportId, string matchId, string language, TimeSpan clientTimeZone);
+        Task<Match> GetMatch(int sportId, string matchId, string language, TimeSpan clientTimeZone);
 
         Task AddFullTimelines(int sportId, string matchId, string language, string region);
 
-        Task<IEnumerable<ITimeline>> GetTimelines(int sportId, string region, string matchId, string language);
+        Task<IEnumerable<Timeline>> GetTimelines(int sportId, string region, string matchId, string language);
     }
 
     public class MatchService : IMatchService
@@ -65,7 +65,7 @@
             this.matchDataAccessFactory = matchDataAccessFactory;
         }
 
-        public async Task<IEnumerable<IMatch>> GetMatches(
+        public async Task<IEnumerable<Match>> GetMatches(
             int sportId,
             DateTime from,
             DateTime to,
@@ -77,7 +77,7 @@
                 || from == DateTime.MinValue
                 || to == DateTime.MinValue)
             {
-                return Enumerable.Empty<IMatch>();
+                return Enumerable.Empty<Match>();
             }
 
             var utcFrom = from.ConvertToUtc(clientTimeZone);
@@ -95,7 +95,7 @@
                     .Take(appSettings.NumberOfTopMatches);
         }
 
-        private async Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language, DateTime utcFrom, DateTime utcTo)
+        private async Task<IEnumerable<Match>> GetLiveMatches(int sportId, string language, DateTime utcFrom, DateTime utcTo)
         {
             if (utcFrom <= DateTime.Today.ToUniversalTime()
                 && utcTo >= DateTime.Today.ToUniversalTime())
@@ -103,15 +103,15 @@
                 return await GetLiveMatches(sportId, language);
             }
 
-            return Enumerable.Empty<IMatch>();
+            return Enumerable.Empty<Match>();
         }
 
-        public async Task<IEnumerable<IMatch>> GetNonLiveMatches(int sportId, string language, DateTime utcFrom, DateTime utcTo)
+        public async Task<IEnumerable<Match>> GetNonLiveMatches(int sportId, string language, DateTime utcFrom, DateTime utcTo)
         {
             var matchDataAccess = matchDataAccessFactory(sportId, DataProvider.Database);
 
             var normalMatchCacheKey = $"Match_{sportId}_{language}_{utcFrom}_{utcTo}";
-            var normalMatches = await cacheService.GetAsync<IEnumerable<IMatch>>(normalMatchCacheKey);
+            var normalMatches = await cacheService.GetAsync<IEnumerable<Match>>(normalMatchCacheKey);
 
             if (normalMatches == null)
             {
@@ -122,11 +122,11 @@
             return normalMatches.Where(m => !m.MatchResult.EventStatus.IsLive());
         }
 
-        public async Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
+        public async Task<IEnumerable<Match>> GetLiveMatches(int sportId, string language)
         {
             var matchDataAccess = matchDataAccessFactory(sportId, DataProvider.Database);
             var liveMatchCacheKey = GetLiveMatchCacheKey(sportId, language);
-            var liveMatches = await cacheService.GetAsync<IDictionary<string, IMatch>>(liveMatchCacheKey);
+            var liveMatches = await cacheService.GetAsync<IDictionary<string, Match>>(liveMatchCacheKey);
 
             if (liveMatches == null || liveMatches.Count == 0)
             {
@@ -137,7 +137,7 @@
             return liveMatches.Values;
         }
 
-        public async Task UpdateLiveMatches(int sportId, string language, IEnumerable<IMatch> matches)
+        public async Task UpdateLiveMatches(int sportId, string language, IEnumerable<Match> matches)
         {
             var matchDataAccess = matchDataAccessFactory(sportId, DataProvider.Database);
             var liveMatchCacheKey = GetLiveMatchCacheKey(sportId, language);
@@ -160,11 +160,11 @@
             if (isLive)
             {
                 var liveMatchCacheKey = GetLiveMatchCacheKey(sportId, language);
-                var liveMatches = await cacheService.GetAsync<IDictionary<string, IMatch>>(liveMatchCacheKey);
+                var liveMatches = await cacheService.GetAsync<IDictionary<string, Match>>(liveMatchCacheKey);
 
                 if (liveMatches == null)
                 {
-                    liveMatches = new Dictionary<string, IMatch>();
+                    liveMatches = new Dictionary<string, Match>();
                 }
 
                 liveMatches[matchId] = match;
@@ -181,7 +181,7 @@
             var matchDataAccess = matchDataAccessFactory(sportId, DataProvider.Database);
 
             var liveMatchCacheKey = GetLiveMatchCacheKey(sportId, language);
-            var liveMatches = cacheService.Get<IDictionary<string, IMatch>>(liveMatchCacheKey);
+            var liveMatches = cacheService.Get<IDictionary<string, Match>>(liveMatchCacheKey);
 
             if (liveMatches != null && liveMatches.ContainsKey(matchId))
             {
@@ -192,7 +192,7 @@
             return await matchDataAccess.DeleteLiveMatch(matchId, language);
         }
 
-        public async Task<bool> AddTimelines(int sportId, string matchId, IEnumerable<ITimeline> timelines)
+        public async Task<bool> AddTimelines(int sportId, string matchId, IEnumerable<Timeline> timelines)
         {
             var result = false;
 
@@ -206,7 +206,7 @@
             return result;
         }
 
-        public async Task<bool> AddResult(int sportId, string matchId, IMatchResult matchResult)
+        public async Task<bool> AddResult(int sportId, string matchId, MatchResult matchResult)
         {
             var result = false;
 
@@ -222,7 +222,7 @@
 
         private static string GetLiveMatchCacheKey(int sportId, string language) => $"LiveMatch_{sportId}_{language}";
 
-        public async Task<IMatch> GetMatch(int sportId, string matchId, string language, TimeSpan clientTimeZone)
+        public async Task<Match> GetMatch(int sportId, string matchId, string language, TimeSpan clientTimeZone)
         {
             if (sportId <= 0
                 || string.IsNullOrWhiteSpace(matchId))
@@ -268,14 +268,14 @@
             }
         }
 
-        private static ITimeline RemoveCommentary(ITimeline timeline)
+        private static Timeline RemoveCommentary(Timeline timeline)
         {
             timeline.Commentaries = null;
 
             return timeline;
         }
 
-        public async Task<IEnumerable<ITimeline>> GetTimelines(int sportId, string region, string matchId, string language)
+        public async Task<IEnumerable<Timeline>> GetTimelines(int sportId, string region, string matchId, string language)
         {
             var matchDataAccess = matchDataAccessFactory(sportId, DataProvider.Database);
 

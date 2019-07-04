@@ -91,7 +91,7 @@
             foreach (var pushEvent in pushEvents)
             {
                 var cacheKey = $"MatchPushEvent_Match_{pushEvent.Key}";
-                var cacheEvents = cacheService.Get<IEnumerable<ITimeline>>(cacheKey);
+                var cacheEvents = cacheService.Get<IEnumerable<Timeline>>(cacheKey);
 
                 if (cacheEvents == null)
                 {
@@ -182,13 +182,13 @@
             Dictionary<string, MatchPushEvent> basicPushEvents,
             string matchId,
             MatchPushEvent pushEvent,
-            ITimeline timeline)
+            Timeline timeline)
         {
             var penaltyScoreChangeEvent = pushEvent.TimeLines.FirstOrDefault(
                 _ => timeline.PeriodType == PeriodType.Penalties.Value
                     && timeline.Type == EventTypes.ScoreChange.Value);
 
-            if (penaltyScoreChangeEvent != default(ITimeline))
+            if (penaltyScoreChangeEvent != default(Timeline))
             {
                 return;
             }

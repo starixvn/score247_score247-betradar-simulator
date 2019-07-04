@@ -2,16 +2,7 @@
 {
     using LiveScore.Soccer.Shared.Models;
 
-    public interface ILeague : IEntity<string, string>
-    {
-        int Order { get; }
-
-        string Flag { get; }
-
-        LeagueCategory Category { get; }
-    }
-
-    public class League : Entity<string, string>, ILeague
+    public class League : Entity<string, string>
     {
         public int Order { get; set; }
 

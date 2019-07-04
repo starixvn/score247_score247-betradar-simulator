@@ -2,14 +2,14 @@
 {
     using System.Collections.Generic;
 
-    public class MatchComparer : IEqualityComparer<IMatch>
+    public class MatchComparer : IEqualityComparer<Match>
     {
-        public bool Equals(IMatch x, IMatch y)
+        public bool Equals(Match x, Match y)
         {
             return x.Id == y.Id;
         }
 
-        public int GetHashCode(IMatch obj)
+        public int GetHashCode(Match obj)
         {
             return obj == null ? 0 : obj.Id.GetHashCode();
         }

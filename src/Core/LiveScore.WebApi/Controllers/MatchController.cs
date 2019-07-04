@@ -12,16 +12,16 @@ namespace LiveScore.Soccer.Api.Matches
     [ApiController]
     public class MatchController : ControllerBase
     {
-        private readonly IMatchService matchService;
+        private readonly MatchService matchService;
 
         public MatchController(
-            IMatchService matchService)
+            MatchService matchService)
         {
             this.matchService = matchService;
         }
 
         [HttpGet(nameof(GetMatches))]
-        public async Task<IEnumerable<IMatch>> GetMatches(
+        public async Task<IEnumerable<Match>> GetMatches(
             int sportId,
             DateTime from,
             DateTime to,
@@ -30,7 +30,7 @@ namespace LiveScore.Soccer.Api.Matches
             => await matchService.GetMatches(sportId, from, to, timeZone, language);
 
         [HttpGet(nameof(GetMatch))]
-        public async Task<IMatch> GetMatch(
+        public async Task<Match> GetMatch(
             int sportId,
             string matchId,
             TimeSpan timeZone,

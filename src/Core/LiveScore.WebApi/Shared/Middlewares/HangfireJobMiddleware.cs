@@ -32,7 +32,7 @@ namespace LiveScore.WebApi.Shared.Middlewares
             services.AddScoped<IAutoUpdateMatchTimeJob, AutoUpdateMatchTimeJob>();
             services.AddScoped<IDailyScheduleFetchJob, DailyScheduleFetchJob>();
             services.AddScoped<ILiveMatchFetchJob, LiveMatchFetchJob>();
-            services.AddScoped<IMatchPushEventListenerJob, MatchPushEventListenerJob>();
+            services.AddScoped<MatchPushEventListenerJob, MatchPushEventListenerJob>();
         }
 
         public static void UseHangfire(this IApplicationBuilder app, IConfiguration configuration)
@@ -54,7 +54,7 @@ namespace LiveScore.WebApi.Shared.Middlewares
 
             if (appSettings.EnabledListenPush)
             {
-                BackgroundJob.Enqueue<IMatchPushEventListenerJob>(job => job.StartListeningPushEvent(SportConstants.SoccerId));
+                BackgroundJob.Enqueue<MatchPushEventListenerJob>(job => job.StartListeningPushEvent(SportConstants.SoccerId));
             }
 
             if (!appSettings.EnabledJobs)

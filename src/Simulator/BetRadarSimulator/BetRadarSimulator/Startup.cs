@@ -28,7 +28,7 @@ namespace LiveScoreSimulator
         {
             InitLogging(services);
             services.AddSingleton<INotificationService, NotificationService>();
-            services.AddSingleton<IMatchService, MatchService>();
+            services.AddSingleton<MatchService, MatchService>();
 
             services.AddResponseCompression(options =>
             {

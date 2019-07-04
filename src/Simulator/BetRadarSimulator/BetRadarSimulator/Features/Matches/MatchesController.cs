@@ -8,9 +8,9 @@
     [ApiController]
     public class MatchesController : ControllerBase
     {
-        private readonly IMatchService matchService;
+        private readonly MatchService matchService;
 
-        public MatchesController(IMatchService matchService)
+        public MatchesController(MatchService matchService)
         {
             this.matchService = matchService;
         }

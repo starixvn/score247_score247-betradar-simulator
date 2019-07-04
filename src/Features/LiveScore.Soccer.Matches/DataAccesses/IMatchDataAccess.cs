@@ -7,26 +7,26 @@
 
     public interface IMatchDataAccess
     {
-        Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime utcFrom, DateTime utcTo, string language);
+        Task<IEnumerable<Match>> GetMatches(int sportId, DateTime utcFrom, DateTime utcTo, string language);
 
-        Task<IMatch> AddOrUpdateMatch(string matchId, string language, MatchPushEvent pushEvent, bool isLive = false);
+        Task<Match> AddOrUpdateMatch(string matchId, string language, MatchPushEvent pushEvent, bool isLive = false);
 
         Task<bool> DeleteLiveMatch(string matchId, string language);
 
-        Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language);
+        Task<IEnumerable<Match>> GetLiveMatches(int sportId, string language);
 
-        Task<bool> UpdateLiveMatches(IEnumerable<IMatch> matches, string language);
+        Task<bool> UpdateLiveMatches(IEnumerable<Match> matches, string language);
 
-        Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines, bool isDeleteExisting = false);
+        Task<bool> AddTimelines(string matchId, IEnumerable<Timeline> timelines, bool isDeleteExisting = false);
 
-        Task<bool> AddResult(string matchId, IMatchResult matchResult);
+        Task<bool> AddResult(string matchId, MatchResult matchResult);
 
-        Task<IMatch> GetMatch(int sportId, string matchId, string language);
+        Task<Match> GetMatch(int sportId, string matchId, string language);
 
-        Task<IEnumerable<ITimeline>> GetTimelines(int sportId, string region, string matchId, string language);
+        Task<IEnumerable<Timeline>> GetTimelines(int sportId, string region, string matchId, string language);
 
-        Task AddCommentaries(string matchId, IEnumerable<ITimeline> timelines, string language);
+        Task AddCommentaries(string matchId, IEnumerable<Timeline> timelines, string language);
 
-        Task<IEnumerable<IMatchFunction>> GetMatchFunctions(int sportId, string matchId, string language);
+        Task<IEnumerable<MatchFunction>> GetMatchFunctions(int sportId, string matchId, string language);
     }
 }

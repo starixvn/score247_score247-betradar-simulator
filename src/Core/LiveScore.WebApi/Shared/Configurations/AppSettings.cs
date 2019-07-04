@@ -13,7 +13,7 @@
 
         public AppSettings(
             IConfiguration configuration,
-            IDataProviderSettings dataProviderSettings,
+            DataProviderSettings dataProviderSettings,
             IDictionary<int, string> timeZoneSettings,
             string appPath)
         {

@@ -96,11 +96,11 @@
                 }
             };
 
-            cacheService.GetAsync<IEnumerable<IMatch>>(Arg.Any<string>()).Returns(matches as IEnumerable<IMatch>);
+            cacheService.GetAsync<IEnumerable<Match>>(Arg.Any<string>()).Returns(matches as IEnumerable<Match>);
 
             matchDataAccess
                 .GetMatches(1, Arg.Any<DateTime>(), Arg.Any<DateTime>(), "en")
-                .Returns(Task.FromResult(matches as IEnumerable<IMatch>));
+                .Returns(Task.FromResult(matches as IEnumerable<Match>));
 
             var actualMatches = (await matchServiceImpl.GetMatches(
                 1,
@@ -123,17 +123,17 @@
                 new Match { Id ="3", Name = "C", EventDate = DateTime.Parse("2018-11-11T03:04:07+00:00"), MatchResult = new MatchResult {  EventStatus = MatchStatus.Closed } }
             };
 
-            var liveMatches = new Dictionary<string, IMatch>
+            var liveMatches = new Dictionary<string, Match>
             {
                 { "1", new Match { Id ="1", Name = "A", EventDate = DateTime.Parse("2018-11-11T03:04:05+00:00"), MatchResult = new MatchResult{ MatchTime = 3 } } }
             };
 
-            cacheService.GetAsync<IDictionary<string, IMatch>>("LiveMatch_1_en").Returns(liveMatches);
-            cacheService.GetAsync<IEnumerable<IMatch>>(Arg.Any<string>()).Returns(matches as IEnumerable<IMatch>);
+            cacheService.GetAsync<IDictionary<string, Match>>("LiveMatch_1_en").Returns(liveMatches);
+            cacheService.GetAsync<IEnumerable<Match>>(Arg.Any<string>()).Returns(matches as IEnumerable<Match>);
 
             matchDataAccess
                 .GetMatches(1, Arg.Any<DateTime>(), Arg.Any<DateTime>(), "en")
-                .Returns(Task.FromResult(matches as IEnumerable<IMatch>));
+                .Returns(Task.FromResult(matches as IEnumerable<Match>));
 
             var actualMatches = (await matchServiceImpl.GetMatches(
                 1,
@@ -253,7 +253,7 @@
                 "en-US",
                 "eu");
 
-            await matchDataAccess.DidNotReceive().AddTimelines(Arg.Any<string>(), Arg.Any<IEnumerable<ITimeline>>(), Arg.Any<bool>());
+            await matchDataAccess.DidNotReceive().AddTimelines(Arg.Any<string>(), Arg.Any<IEnumerable<Timeline>>(), Arg.Any<bool>());
         }
 
         [Fact]
@@ -287,7 +287,7 @@
                 "en-US",
                 "eu");
 
-            await matchDataAccess.Received(1).AddTimelines("sr:match:1", Arg.Any<IEnumerable<ITimeline>>(), isDeleteExisting: true);
+            await matchDataAccess.Received(1).AddTimelines("sr:match:1", Arg.Any<IEnumerable<Timeline>>(), isDeleteExisting: true);
         }
 
         #endregion AddFullTimelines
@@ -302,7 +302,7 @@
                 "sr:match:1",
                 null);
 
-            await matchDataAccess.DidNotReceive().AddTimelines("sr:match:1", Arg.Any<IEnumerable<ITimeline>>());
+            await matchDataAccess.DidNotReceive().AddTimelines("sr:match:1", Arg.Any<IEnumerable<Timeline>>());
         }
 
         [Fact]
@@ -318,7 +318,7 @@
                 "sr:match:1",
                 timelines);
 
-            await matchDataAccess.Received(1).AddTimelines("sr:match:1", Arg.Any<IEnumerable<ITimeline>>());
+            await matchDataAccess.Received(1).AddTimelines("sr:match:1", Arg.Any<IEnumerable<Timeline>>());
         }
 
         #endregion AddTimelines

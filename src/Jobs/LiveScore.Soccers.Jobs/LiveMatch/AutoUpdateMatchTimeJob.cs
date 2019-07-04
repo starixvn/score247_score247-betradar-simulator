@@ -18,11 +18,11 @@
     public class AutoUpdateMatchTimeJob : IAutoUpdateMatchTimeJob
     {
         private const int MaxMatchTime = 120;
-        private readonly IMatchService matchService;
+        private readonly MatchService matchService;
         private readonly IHubContext<MatchHub> matchHub;
 
         public AutoUpdateMatchTimeJob(
-             IMatchService matchService,
+             MatchService matchService,
              IHubContext<MatchHub> matchHub)
         {
             this.matchService = matchService;

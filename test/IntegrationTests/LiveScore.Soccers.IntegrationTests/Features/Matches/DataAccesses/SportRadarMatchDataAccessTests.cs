@@ -2,7 +2,6 @@
 {
     using LiveScore.Soccer.Shared.Configurations;
     using LiveScore.Soccer.Shared.Helpers;
-    using LiveScore.Soccer.Shared.SportRadarApi.Models;
     using LiveScore.Soccers.Matches.DataAccesses;
     using System;
     using System.Collections.Generic;
@@ -25,7 +24,7 @@
 
     public class StubAppSettings : IAppSettings
     {
-        public IDataProviderSettings DataProviderSettings => new StubDataProviderSettings();
+        public DataProviderSettings DataProviderSettings => new StubDataProviderSettings();
 
         public IDictionary<int, string> TimeZoneSettings => new Dictionary<int, string>();
 
@@ -42,7 +41,7 @@
         public int NumberOfTopMatches => int.MaxValue;
     }
 
-    public class StubDataProviderSettings : IDataProviderSettings
+    public class StubDataProviderSettings : DataProviderSettings
     {
         public string ApiUrl => "https://api.sportradar.us/";
 

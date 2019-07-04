@@ -11,7 +11,6 @@
     using LiveScore.Soccer.Shared.Configurations;
     using LiveScore.Soccer.Shared.Helpers;
     using LiveScore.Soccer.Shared.ModelBuilders;
-    using LiveScore.Soccer.Shared.SportRadarApi.Models;
 
     public class SportRadarMatchDataAccess : IMatchDataAccess
     {
@@ -32,7 +31,7 @@
             this.penaltyEventHandler = penaltyEventHandler;
         }
 
-        public async Task<IEnumerable<IMatch>> GetMatches(int sportId, DateTime utcFrom, DateTime utcTo, string language)
+        public async Task<IEnumerable<Match>> GetMatches(int sportId, DateTime utcFrom, DateTime utcTo, string language)
         {
             var sportSetting = appSettings.DataProviderSettings.GetSportSetting(sportId);
 
@@ -102,7 +101,7 @@
         }
 
         //TODO combine live match and daily results
-        public async Task<IEnumerable<IMatch>> GetLiveMatches(int sportId, string language)
+        public async Task<IEnumerable<Match>> GetLiveMatches(int sportId, string language)
         {
             var matches = new List<Match>();
 
@@ -130,7 +129,7 @@
             return matches;
         }
 
-        public Task<IMatch> AddOrUpdateMatch(string matchId, string language, MatchPushEvent pushEvent, bool isLive = false)
+        public Task<Match> AddOrUpdateMatch(string matchId, string language, MatchPushEvent pushEvent, bool isLive = false)
         {
             throw new NotImplementedException();
         }
@@ -140,27 +139,27 @@
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateLiveMatches(IEnumerable<IMatch> matches, string language)
+        public Task<bool> UpdateLiveMatches(IEnumerable<Match> matches, string language)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> AddTimelines(string matchId, IEnumerable<ITimeline> timelines, bool isDeleteExisting = false)
+        public Task<bool> AddTimelines(string matchId, IEnumerable<Timeline> timelines, bool isDeleteExisting = false)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> AddResult(string matchId, IMatchResult matchResult)
+        public Task<bool> AddResult(string matchId, MatchResult matchResult)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IMatch> GetMatch(int sportId, string matchId, string language)
+        public Task<Match> GetMatch(int sportId, string matchId, string language)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<ITimeline>> GetTimelines(int sportId, string region, string matchId, string language)
+        public async Task<IEnumerable<Timeline>> GetTimelines(int sportId, string region, string matchId, string language)
         {
             const string Feature = "Timeline";
 
@@ -217,12 +216,12 @@
             return timeline;
         }
 
-        public Task AddCommentaries(string matchId, IEnumerable<ITimeline> timelines, string language)
+        public Task AddCommentaries(string matchId, IEnumerable<Timeline> timelines, string language)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<IMatchFunction>> GetMatchFunctions(int sportId, string matchId, string language)
+        public Task<IEnumerable<MatchFunction>> GetMatchFunctions(int sportId, string matchId, string language)
         {
             throw new NotImplementedException();
         }

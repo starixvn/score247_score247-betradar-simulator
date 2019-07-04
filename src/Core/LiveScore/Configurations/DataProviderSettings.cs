@@ -1,11 +1,21 @@
-﻿namespace LiveScore.Soccer.Shared.SportRadarApi.Models
+﻿namespace LiveScore.Soccer.Shared.Configurations
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using LiveScore.Soccer.Shared.Configurations;
 
-    public class SportRadarDataProviderSettings : IDataProviderSettings
+    public interface IDataProviderSettings
+    {
+#pragma warning disable S3996 // URI properties should not be strings
+        string ApiUrl { get; }
+#pragma warning restore S3996 // URI properties should not be strings
+
+        IEnumerable<SportSetting> Sports { get; }
+
+        SportSetting GetSportSetting(int Id);
+    }
+
+    public class DataProviderSettings : IDataProviderSettings
     {
 #pragma warning disable S3996 // URI properties should not be strings
         public string ApiUrl { get; set; }

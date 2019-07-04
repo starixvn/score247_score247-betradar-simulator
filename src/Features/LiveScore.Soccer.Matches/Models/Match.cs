@@ -8,36 +8,7 @@
     using LiveScore.Soccer.Shared.Models;
     using Newtonsoft.Json;
 
-    public interface IMatch : IEntity<string, string>
-    {
-        DateTime EventDate { get; }
-
-        ILeague League { get; }
-
-        LeagueRound LeagueRound { get; }
-
-        IEnumerable<ITeam> Teams { get; }
-
-        IMatchResult MatchResult { get; }
-
-        IEnumerable<ITimeline> TimeLines { get; set; }
-
-        ITimeline LatestTimeline { get; }
-
-        int Attendance { get; }
-
-        IVenue Venue { get; }
-
-        string Referee { get; }
-
-        IMatch ChangeEventDateByTimeZone(TimeSpan timeZone);
-
-        string Region { get; }
-
-        IEnumerable<IMatchFunction> Functions { get; set; }
-    }
-
-    public class Match : Entity<string, string>, IMatch
+    public class Match : Entity<string, string>
     {
         public DateTime EventDate { get; set; }
 
@@ -45,31 +16,31 @@
         public IEnumerable<ITeam> Teams { get; set; }
 
         [JsonConverter(typeof(JsonConcreteTypeConverter<MatchResult>))]
-        public IMatchResult MatchResult { get; set; }
+        public MatchResult MatchResult { get; set; }
 
         [JsonConverter(typeof(JsonConcreteTypeConverter<League>))]
-        public ILeague League { get; set; }
+        public League League { get; set; }
 
         public LeagueRound LeagueRound { get; set; }
 
         [JsonConverter(typeof(JsonConcreteTypeConverter<IEnumerable<Timeline>>))]
-        public IEnumerable<ITimeline> TimeLines { get; set; }
+        public IEnumerable<Timeline> TimeLines { get; set; }
 
         public int Attendance { get; set; }
 
         [JsonConverter(typeof(JsonConcreteTypeConverter<Venue>))]
-        public IVenue Venue { get; set; }
+        public Venue Venue { get; set; }
 
         public string Referee { get; set; }
 
         public string Region { get; set; }
 
         [JsonConverter(typeof(JsonConcreteTypeConverter<Timeline>))]
-        public ITimeline LatestTimeline { get; set; }
+        public Timeline LatestTimeline { get; set; }
 
-        public IEnumerable<IMatchFunction> Functions { get; set; }
+        public IEnumerable<MatchFunction> Functions { get; set; }
 
-        public IMatch ChangeEventDateByTimeZone(TimeSpan timeZone)
+        public Match ChangeEventDateByTimeZone(TimeSpan timeZone)
         {
             EventDate = EventDate.ToUniversalTime() + timeZone;
 

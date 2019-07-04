@@ -15,14 +15,14 @@ namespace LiveScore.Soccer.Api.Notifications
     [ApiController]
     public class MockController : ControllerBase
     {
-        private readonly IMatchPushEventHandler soccerPushEventHandler;
-        private readonly IMatchService matchService;
+        private readonly MatchPushEventHandler soccerPushEventHandler;
+        private readonly MatchService matchService;
         private readonly OddsService oddsService;
 
 
         public MockController(
-            IMatchPushEventHandler soccerPushEventHandler, 
-            IMatchService matchService,
+            MatchPushEventHandler soccerPushEventHandler, 
+            MatchService matchService,
             OddsService oddsService)
         {
             this.soccerPushEventHandler = soccerPushEventHandler;

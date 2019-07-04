@@ -2,32 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public interface IMatchResult
-    {
-        MatchStatus MatchStatus { get; }
-
-        MatchStatus EventStatus { get; }
-
-        int HomeScore { get; }
-
-        int AwayScore { get; }
-
-        int Period { get; }
-
-        int MatchTime { get; set; }
-
-        IEnumerable<MatchPeriod> MatchPeriods { get; }
-
-        string WinnerId { get; }
-
-        int AggregateHomeScore { get; }
-
-        int AggregateAwayScore { get; }
-
-        string AggregateWinnerId { get; }
-    }
-
-    public class MatchResult : IMatchResult
+    public class MatchResult
     {
         public MatchStatus MatchStatus { get; set; }
 
