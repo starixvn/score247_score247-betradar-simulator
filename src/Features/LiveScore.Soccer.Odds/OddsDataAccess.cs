@@ -8,6 +8,7 @@
     using LiveScore.Features.Odds.Models;
     using LiveScore.Soccer.Database;
     using Newtonsoft.Json;
+    using LiveScore.Soccer.Extensions;
 
     public interface OddsDataAccess
     {
@@ -34,11 +35,15 @@
                         && o.BetTypeId == betTypeId
                 )
                 .OrderByDescending(o => o.ModifiedTime)
+                .GroupBy(o => new { o.MatchId, o.BookmakerId });
+
+            var betTypeOdssList = oddsEntities
+                .Select(group => group.First())
                 .Select(m => JsonConvert.DeserializeObject<BetTypeOdds>(m.Value))
                 .OrderBy(bto => bto.Bookmaker.Name)
                 .AsEnumerable();
 
-            return Task.FromResult(oddsEntities);
+            return Task.FromResult(betTypeOdssList);
         }
 
         public async Task<bool> InsertBetTypeOdds(string matchId, IEnumerable<BetTypeOdds> betTypeOddsList, DateTimeOffset? lastUpdateTime = null)
