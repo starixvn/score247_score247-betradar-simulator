@@ -275,7 +275,7 @@
             return timeline;
         }
 
-        public async Task<IEnumerable<Timeline>> GetTimelines(int sportId, string region, string matchId, string language)
+        public async Task<IEnumerable<Timeline>> GetTimelines(int sportId, string region, string matchId, string language = "")
         {
             var matchDataAccess = matchDataAccessFactory(sportId, DataProvider.Database);
 
