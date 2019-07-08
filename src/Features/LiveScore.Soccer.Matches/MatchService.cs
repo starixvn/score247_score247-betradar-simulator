@@ -36,7 +36,7 @@
 
         Task AddFullTimelines(int sportId, string matchId, string language, string region);
 
-        Task<IEnumerable<Timeline>> GetTimelines(int sportId, string region, string matchId, string language);
+        Task<IEnumerable<Timeline>> GetTimelines(int sportId, string region, string matchId, string language = "");
     }
 
     public class MatchService : IMatchService

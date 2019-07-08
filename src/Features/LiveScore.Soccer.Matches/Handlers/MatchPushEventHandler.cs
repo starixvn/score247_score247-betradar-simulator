@@ -95,7 +95,7 @@
 
                 if (cacheEvents == null)
                 {
-                    cacheEvents = await matchService.GetTimelines(SportConstants.SoccerId, string.Empty, pushEvent.Key, string.Empty);
+                    cacheEvents = await matchService.GetTimelines(SportConstants.SoccerId, string.Empty, pushEvent.Key);
                 }
 
                 if (cacheEvents.Any(e => pushEvent.Value.TimeLines.Any(tl => tl.Id == e.Id)))
@@ -176,26 +176,25 @@
             return basicPushEvents;
         }
 
-#pragma warning disable S3215 // "interface" instances should not be cast to concrete types
-
         private async Task BuildPushEvent(
             Dictionary<string, MatchPushEvent> basicPushEvents,
             string matchId,
             MatchPushEvent pushEvent,
             Timeline timeline)
         {
-            var penaltyScoreChangeEvent = pushEvent.TimeLines.FirstOrDefault(
-                _ => timeline.PeriodType == PeriodType.Penalties.Value
-                    && timeline.Type == EventTypes.ScoreChange.Value);
+            var isScoreChangeEventInPenalty = timeline.PeriodType == PeriodType.Penalties.Value
+                    && timeline.Type == EventTypes.ScoreChange.Value;
 
-            if (penaltyScoreChangeEvent != default(Timeline))
+            if (isScoreChangeEventInPenalty)
             {
                 return;
             }
 
-            if (pushEvent.TimeLines.FirstOrDefault(
-                _ => timeline.PeriodType == PeriodType.Penalties.Value
-                    && timeline.Type == EventTypes.PenaltyShootout.Value) is Timeline shootoutEvent)
+            var shootoutEvent = pushEvent.TimeLines.FirstOrDefault(
+                                    tl => timeline.PeriodType == PeriodType.Penalties.Value
+                                        && timeline.Type == EventTypes.PenaltyShootout.Value);
+
+            if (shootoutEvent != null)
             {
                 var penaltyEvent = await penaltyEventHandler.Handle(matchId, shootoutEvent);
 
@@ -210,8 +209,6 @@
                 basicPushEvents[matchId] = pushEvent;
             }
         }
-
-#pragma warning restore S3215 // "interface" instances should not be cast to concrete types
 
         private async Task UpdateMatch(string matchId, MatchPushEvent pushEvent)
         {

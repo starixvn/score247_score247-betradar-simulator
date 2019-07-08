@@ -19,11 +19,16 @@
 ////    {
 ////        private readonly IAppSettings appSettings;
 ////        private readonly IRestClient restClient;
+////        private readonly Func<DateTime> getCurrentTimeFunc;
 
-////        public OddsFetcher(IAppSettings appSettings, IRestClient restClient)
+////        public OddsFetcher(
+////            IAppSettings appSettings, 
+////            IRestClient restClient,
+////            Func<DateTime> getCurrentTimeFunc)
 ////        {
 ////            this.appSettings = appSettings;
 ////            this.restClient = restClient;
+////            this.getCurrentTimeFunc = getCurrentTimeFunc;
 ////        }
 
 ////        public Task<OddsChangeLogDto> FetchChangeLog()
@@ -33,6 +38,10 @@
 
 ////        public Task<OddsScheduleDto> FetchDaily()
 ////        {
+////            //var apiUrl = appSettings.DataProviderSettings.ApiUrl;
+////            //var numOfFetchOddsDay = appSettings.DataProviderSettings.Sports.
+
+
 ////            throw new NotImplementedException();
 ////        }
 ////    }

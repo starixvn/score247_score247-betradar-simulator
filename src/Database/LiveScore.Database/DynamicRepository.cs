@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
+    using System.Text;
     using System.Threading.Tasks;
     using LiveScore.Soccer.Database.Entities;
     using Microsoft.EntityFrameworkCore;
@@ -48,8 +49,8 @@
         public async Task<List<T>> Query<T>(string value, params string[] jsonHierachy) where T : DatabaseEntity
         {
             var tableName = context.GetTableName<T>();
-            var queryCondition = $"\"{jsonHierachy[0]}\" @> '";
-            var closeBrace = string.Empty;
+            var queryCondition = new StringBuilder($"\"{jsonHierachy[0]}\" @> '");
+            var closeBrace = new StringBuilder();
 
             for (int i = 1; i < jsonHierachy.Length; i++)
             {
@@ -57,12 +58,12 @@
 
                 if (!string.IsNullOrEmpty(jsonPropName))
                 {
-                    queryCondition += "{{\"" + jsonPropName + "\":";
-                    closeBrace += "}}";
+                    queryCondition.Append("{{\"" + jsonPropName + "\":");
+                    closeBrace.Append("}}");
                 }
             }
 
-            queryCondition += $"\"{value}\"{closeBrace}'";
+            queryCondition.Append($"\"{value}\"{closeBrace}'");
             var queryCommand = $"SELECT * FROM public.\"{tableName}\" WHERE {queryCondition};";
 
             return await context.Set<T>().AsNoTracking().FromSql(queryCommand).ToListAsync();

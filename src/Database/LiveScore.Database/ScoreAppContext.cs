@@ -44,21 +44,21 @@ namespace LiveScore.Soccer.Database
     /// <summary>
     /// Auto generated code, please ignore
     /// </summary>
-    public class ScoreAppContextFactory : IDesignTimeDbContextFactory<ScoreAppContext>
-    {
-        public ScoreAppContext CreateDbContext(string[] args)
-        {
-            var optionsBuilder = new DbContextOptionsBuilder<ScoreAppContext>();
+    ////public class ScoreAppContextFactory : IDesignTimeDbContextFactory<ScoreAppContext>
+    ////{
+    ////    public ScoreAppContext CreateDbContext(string[] args)
+    ////    {
+    ////        var optionsBuilder = new DbContextOptionsBuilder<ScoreAppContext>();
 
-            //var connectionString = "Host=127.0.0.1;Port=5432;Username=postgres;Password=1234aa;Database=Score247Local2;Pooling=true;Minimum Pool Size=0;Maximum Pool Size=1000;Timeout=60;Connection Idle Lifetime=5";
-            var connectionString = "Host=10.18.200.110;Port=5443;Username=postgres;Password=1234aa;Database=Score247.Dev;Pooling=true;Minimum Pool Size=0;Maximum Pool Size=1000;Timeout=60;Connection Idle Lifetime=5";
+    ////        //var connectionString = "Host=127.0.0.1;Port=5432;Username=postgres;Password=1234aa;Database=Score247Local2;Pooling=true;Minimum Pool Size=0;Maximum Pool Size=1000;Timeout=60;Connection Idle Lifetime=5";
+    ////        var connectionString = "Host=10.18.200.110;Port=5443;Username=postgres;Password=1234aa;Database=Score247.Dev;Pooling=true;Minimum Pool Size=0;Maximum Pool Size=1000;Timeout=60;Connection Idle Lifetime=5";
 
-            optionsBuilder.UseNpgsql(connectionString)
-                            .EnableSensitiveDataLogging(true)
-                            .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
-                            .EnableDetailedErrors();
+    ////        optionsBuilder.UseNpgsql(connectionString)
+    ////                        .EnableSensitiveDataLogging(true)
+    ////                        .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
+    ////                        .EnableDetailedErrors();
 
-            return new ScoreAppContext(optionsBuilder.Options);
-        }
-    }
+    ////        return new ScoreAppContext(optionsBuilder.Options);
+    ////    }
+    ////}
 }

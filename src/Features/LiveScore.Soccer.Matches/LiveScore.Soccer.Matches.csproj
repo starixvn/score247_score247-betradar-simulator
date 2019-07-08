@@ -7,6 +7,14 @@
     <StartupObject />
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet>LiveScore.Soccer.Matches.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>LiveScore.Soccer.Matches.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\core\LiveScore\LiveScore.Soccer.csproj" />
     <ProjectReference Include="..\..\DataProviders\LiveScore.Providers.SportRadar\LiveScore.Providers.SportRadar.csproj" />
