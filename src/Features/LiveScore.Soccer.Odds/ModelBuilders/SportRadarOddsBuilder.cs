@@ -1,5 +1,6 @@
 ﻿namespace LiveScore.Soccers.Shared.ModelBuilders
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using LiveScore.Features.Odds.Models;
@@ -22,6 +23,7 @@
         private const string two = "2";
         private const string x = "x";
         private const string over = "over";
+        private const int numOfRounding = 2;
 
         public static IEnumerable<MatchOdds> BuildMatchOddsList(OddsScheduleDto oddsScheduleDto)
         {
@@ -83,8 +85,12 @@
                 BetOptions = book.outcomes?.Select(oc => new BetOptionOdds
                 {
                     Id = oc.odds_field_id,
-                    LiveOdds = oc.odds == null ? 0 : decimal.Parse(oc.odds),
-                    OpeningOdds = oc.opening_odds == null ? 0 : decimal.Parse(oc.opening_odds),
+                    LiveOdds = oc.odds == null 
+                        ? 0 
+                        : Math.Round(decimal.Parse(oc.odds), numOfRounding),
+                    OpeningOdds = oc.opening_odds == null 
+                        ? 0 
+                        : Math.Round(decimal.Parse(oc.opening_odds), numOfRounding),
                     Type = oc.type,
                     OptionValue = oc.handicap,
                     Name = GetOptionName(betType.Item1, oc.type)
