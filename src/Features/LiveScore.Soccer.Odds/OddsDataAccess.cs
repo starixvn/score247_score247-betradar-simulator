@@ -8,13 +8,12 @@
     using LiveScore.Features.Odds.Models;
     using LiveScore.Soccer.Database;
     using Newtonsoft.Json;
-    using LiveScore.Soccer.Extensions;
 
     public interface OddsDataAccess
     {
         Task<IEnumerable<BetTypeOdds>> GetBetTypeOddsList(string matchId, int betTypeId);
 
-        Task<bool> InsertBetTypeOdds(string matchId, IEnumerable<BetTypeOdds> betTypeOddsList, DateTimeOffset? lastUpdateTime = null);
+        Task<bool> InsertOdds(MatchOdds matchOdds);
     }
 
     public class OddsDataAccessImpl : OddsDataAccess
@@ -29,12 +28,7 @@
 
         public Task<IEnumerable<BetTypeOdds>> GetBetTypeOddsList(string matchId, int betTypeId)
         {
-            var oddsEntities = dynamicRepository
-                .Query<OddsEntity>(
-                    o => o.MatchId == matchId
-                        && o.BetTypeId == betTypeId
-                )
-                .OrderByDescending(o => o.ModifiedTime)
+            var oddsEntities = GetOdds(matchId, betTypeId)
                 .GroupBy(o => new { o.MatchId, o.BookmakerId });
 
             var betTypeOdssList = oddsEntities
@@ -46,19 +40,49 @@
             return Task.FromResult(betTypeOdssList);
         }
 
-        public async Task<bool> InsertBetTypeOdds(string matchId, IEnumerable<BetTypeOdds> betTypeOddsList, DateTimeOffset? lastUpdateTime = null)
+        private IOrderedEnumerable<OddsEntity> GetOdds(string matchId, int betTypeId)
+            => dynamicRepository
+                            .Query<OddsEntity>(
+                                o => o.MatchId == matchId
+                                    && o.BetTypeId == betTypeId
+                            )
+                            .OrderByDescending(o => o.ModifiedTime);
+
+        public async Task<bool> InsertOdds(MatchOdds matchOdds)
         {
-            return await dynamicRepository.InsertRange(betTypeOddsList.Select(betTypeOdds
+            var insertOddsList = new List<BetTypeOdds>();
+
+            foreach (var betTypeOdds in matchOdds.BetTypeOddsList)
+            {
+                var currentOdds = GetOdds(matchOdds.MatchId, betTypeOdds.Id).FirstOrDefault();
+
+                if (currentOdds == null || currentOdds.ModifiedTime < matchOdds.LastUpdated)
+                {
+                    insertOddsList.Add(betTypeOdds);
+                }
+            }
+
+            if (insertOddsList.Any())
+            {
+                return await InsertOddsByBetType(matchOdds.MatchId, insertOddsList, matchOdds.LastUpdated);
+            }
+
+            return true;
+        }
+
+        private async Task<bool> InsertOddsByBetType(string matchId, IEnumerable<BetTypeOdds> BetTypeOddsList, DateTime? lastUpdate)
+            =>  await dynamicRepository.InsertRange(BetTypeOddsList.Select(betTypeOdds
                 => new OddsEntity
                 {
                     Id = Guid.NewGuid().ToString(),
                     BetTypeId = betTypeOdds.Id,
                     BookmakerId = betTypeOdds.Bookmaker.Id,
                     MatchId = matchId,
-                    ModifiedTime = lastUpdateTime.HasValue ? lastUpdateTime.Value : DateTimeOffset.Now,
+                    ModifiedTime = lastUpdate.HasValue
+                        ? lastUpdate.Value
+                        : DateTimeOffset.Now,
                     Value = JsonConvert.SerializeObject(betTypeOdds),
                     CreatedTime = DateTimeOffset.Now
-                }));
-        }
+        }));
     }
 }

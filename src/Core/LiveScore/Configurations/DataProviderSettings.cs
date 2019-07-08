@@ -46,6 +46,8 @@
 
         public IEnumerable<Region> Regions { get; set; }
 
+        public string OddsEndPoint { get; set; }
+
         public int MaxDaysStoredData { get; set; }
 
         public IEnumerable<EndPointSetting> GetEndPointSetting(string key)

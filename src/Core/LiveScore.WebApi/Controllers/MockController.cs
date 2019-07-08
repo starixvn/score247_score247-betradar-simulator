@@ -60,7 +60,7 @@
 
             foreach (var matchOdds in matchOddsList)
             {
-                await oddsService.InsertBetTypeOdds(matchOdds.MatchId, matchOdds.BetTypeOddsList);
+                await oddsService.InsertOdds(matchOdds);
                 //oddsService.InsertBetTypeOdds()
             }
         }

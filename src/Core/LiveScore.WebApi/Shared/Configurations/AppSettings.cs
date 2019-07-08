@@ -24,7 +24,13 @@
             EnabledListenPush = GetValue<bool>($"{LiveScore}{nameof(EnabledListenPush)}");
             EnabledDatabaseMigration = GetValue<bool>($"{LiveScore}{nameof(EnabledDatabaseMigration)}");
             EnabledListenLogging = GetValue<bool>($"{LiveScore}{nameof(EnabledListenLogging)}");
+            EnabledOddsJob = GetValue<bool>($"{LiveScore}{nameof(EnabledOddsJob)}");
             NumberOfTopMatches = GetValue<int>($"{LiveScore}{nameof(NumberOfTopMatches)}");
+            Jobs = new Jobs
+            {
+                FetchResultDateSpan = GetValue<int>($"{LiveScore}{nameof(Jobs)}:{nameof(Jobs.FetchResultDateSpan)}"),
+                FetchScheduleDateSpan = GetValue<int>($"{LiveScore}{nameof(Jobs)}:{nameof(Jobs.FetchScheduleDateSpan)}")
+            };
             if (NumberOfTopMatches <= 0)
             {
                 NumberOfTopMatches = int.MaxValue;
@@ -45,9 +51,13 @@
 
         public bool EnabledDatabaseMigration { get; }
 
+        public bool EnabledOddsJob { get; }
+
         public string AppPath { get; }
 
         public int NumberOfTopMatches { get; }
+
+        public Jobs Jobs { get; }
 
         public T GetValue<T>(string key)
         {

@@ -1,7 +1,5 @@
 ﻿namespace LiveScore.Features.Odds
 {
-    using System;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
     using LiveScore.Features.Odds.Models;
 
@@ -9,7 +7,7 @@
     {
         Task<MatchOdds> GetOdds(string matchId, int betTypeId);
 
-        Task<bool> InsertBetTypeOdds(string matchId, IEnumerable<BetTypeOdds> betTypeOddsList, DateTimeOffset? lastUpdateTime = null);
+        Task<bool> InsertOdds(MatchOdds matchOdds);
     }
 
     public class OddsServiceImpl : OddsService
@@ -28,7 +26,7 @@
                 BetTypeOddsList = await oddsDataAccess.GetBetTypeOddsList(matchId, betTypeId)
             };
 
-        public Task<bool> InsertBetTypeOdds(string matchId, IEnumerable<BetTypeOdds> betTypeOddsList, DateTimeOffset? lastUpdateTime = null)
-            => oddsDataAccess.InsertBetTypeOdds(matchId, betTypeOddsList, lastUpdateTime);
+        public Task<bool> InsertOdds(MatchOdds matchOdds)
+            => oddsDataAccess.InsertOdds(matchOdds);
     }
 }

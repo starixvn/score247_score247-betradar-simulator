@@ -37,7 +37,8 @@
                 matchOddsList.Add(new MatchOdds
                 {
                     MatchId = sportEvent.id,
-                    BetTypeOddsList = BuildBetTypeOddsList(sportEvent)
+                    BetTypeOddsList = BuildBetTypeOddsList(sportEvent),
+                    LastUpdated = sportEvent.markets_last_updated
                 });
             }
 
@@ -79,7 +80,7 @@
                     Id = book.id,
                     Name = book.name
                 },
-                BetOptions = book.outcomes.Select(oc => new BetOptionOdds
+                BetOptions = book.outcomes?.Select(oc => new BetOptionOdds
                 {
                     Id = oc.odds_field_id,
                     LiveOdds = oc.odds == null ? 0 : decimal.Parse(oc.odds),

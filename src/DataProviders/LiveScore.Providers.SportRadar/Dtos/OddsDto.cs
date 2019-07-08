@@ -84,7 +84,7 @@
         public Tournament tournament { get; set; }
         public List<Competitor> competitors { get; set; }
         public List<Market> markets { get; set; }
-        public DateTime markets_last_updated { get; set; }
+        public DateTime? markets_last_updated { get; set; }
         public Consensus consensus { get; set; }
         public VenueDto venue { get; set; }
         public string uuids { get; set; }

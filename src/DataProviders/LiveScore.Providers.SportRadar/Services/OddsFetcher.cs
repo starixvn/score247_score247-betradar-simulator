@@ -1,48 +1,47 @@
-﻿////namespace LiveScore.Providers.SportRadar.Services
-////{
-////    using System;
-////    using System.Collections.Generic;
-////    using System.Text;
-////    using System.Threading.Tasks;
-////    using LiveScore.Providers.SportRadar.Dtos;
-////    using LiveScore.Soccer.Configurations;
-////    using LiveScore.Soccer.Helpers;
+﻿namespace LiveScore.Providers.SportRadar.Services
+{
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using LiveScore.Providers.SportRadar.Dtos;
+    using LiveScore.Soccer;
+    using LiveScore.Soccer.Configurations;
+    using LiveScore.Soccer.Helpers;
 
-////    public interface IOddsFetcher
-////    {
-////        Task<OddsScheduleDto> FetchDaily();
+    public interface IOddsFetcher
+    {
+        Task<OddsScheduleDto> Fetch(DateTime date);
 
-////        Task<OddsChangeLogDto> FetchChangeLog();
-////    }
+        Task<OddsChangeLogDto> FetchChangeLog();
+    }
 
-////    public class OddsFetcher : IOddsFetcher
-////    {
-////        private readonly IAppSettings appSettings;
-////        private readonly IRestClient restClient;
-////        private readonly Func<DateTime> getCurrentTimeFunc;
+    public class OddsFetcher : IOddsFetcher
+    {
+        private readonly IAppSettings appSettings;
+        private readonly IRestClient restClient;
+        private const string SportRadarDateFormat = "yyyy-MM-dd";
 
-////        public OddsFetcher(
-////            IAppSettings appSettings, 
-////            IRestClient restClient,
-////            Func<DateTime> getCurrentTimeFunc)
-////        {
-////            this.appSettings = appSettings;
-////            this.restClient = restClient;
-////            this.getCurrentTimeFunc = getCurrentTimeFunc;
-////        }
+        public OddsFetcher(
+            IAppSettings appSettings,
+            IRestClient restClient)
+        {
+            this.appSettings = appSettings;
+            this.restClient = restClient;
+        }
 
-////        public Task<OddsChangeLogDto> FetchChangeLog()
-////        {
-////            throw new NotImplementedException();
-////        }
+        public Task<OddsChangeLogDto> FetchChangeLog()
+        {
+            throw new NotImplementedException();
+        }
 
-////        public Task<OddsScheduleDto> FetchDaily()
-////        {
-////            //var apiUrl = appSettings.DataProviderSettings.ApiUrl;
-////            //var numOfFetchOddsDay = appSettings.DataProviderSettings.Sports.
+        public async Task<OddsScheduleDto> Fetch(DateTime date)
+        {
+            var soccerSport = appSettings.DataProviderSettings.Sports.FirstOrDefault(sport => sport.Id == SportConstants.SoccerId);
+            // Ricky: Temporary uses full endpoint url here, because simulator have not implemented yet
+            var formattedEndpoint = string.Format(soccerSport.OddsEndPoint, date.ToString(SportRadarDateFormat));
+            var oddsSchedule = await restClient.ExecuteGetAsync<OddsScheduleDto>(formattedEndpoint);
 
-
-////            throw new NotImplementedException();
-////        }
-////    }
-////}
+            return oddsSchedule;
+        }
+    }
+}

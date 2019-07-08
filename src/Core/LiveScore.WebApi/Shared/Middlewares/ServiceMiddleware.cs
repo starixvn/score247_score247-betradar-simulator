@@ -11,6 +11,7 @@ namespace LiveScore.WebApi.Shared.Middlewares
     using LiveScore.Soccers.Matches.DataAccesses;
     using Microsoft.Extensions.DependencyInjection;
     using LiveScore.Soccer.Matches.DataAccesses;
+    using LiveScore.Providers.SportRadar.Services;
 
     public static class ServiceMiddleware
     {
@@ -49,6 +50,11 @@ namespace LiveScore.WebApi.Shared.Middlewares
         {
             services.AddScoped<OddsService, OddsServiceImpl>();
             services.AddScoped<OddsDataAccess, OddsDataAccessImpl>();
+            services.AddScoped<IOddsFetcher, OddsFetcher>();
+            services.AddSingleton<Func<DateTime>>(() =>
+            {
+                return DateTime.Now;
+            });
         }
     }
 }

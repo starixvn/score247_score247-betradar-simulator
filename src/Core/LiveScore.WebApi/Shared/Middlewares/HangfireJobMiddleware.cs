@@ -13,11 +13,10 @@ namespace LiveScore.WebApi.Shared.Middlewares
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using LiveScore.Soccer.Odds.Jobs;
 
     public static class HangfireJobManager
     {
-        private const string ResultDateSpanPath = "LiveScores:Jobs:FetchResultDateSpan";
-        private const string ScheduleDateSpanPath = "LiveScores:Jobs:FetchScheduleDateSpan";
         private const string ScheduleIntervalCron = " 0 0/6 * * *";
 
         public static void AddHangfireJobs(this IServiceCollection services, IConfiguration configuration)
@@ -32,6 +31,7 @@ namespace LiveScore.WebApi.Shared.Middlewares
             services.AddScoped<IAutoUpdateMatchTimeJob, AutoUpdateMatchTimeJob>();
             services.AddScoped<IDailyScheduleFetchJob, DailyScheduleFetchJob>();
             services.AddScoped<ILiveMatchFetchJob, LiveMatchFetchJob>();
+            services.AddScoped<ISportRadarOddsJob, SportRadarOddsJob>();
             services.AddScoped<MatchPushEventListenerJob, MatchPushEventListenerJob>();
         }
 
@@ -48,6 +48,7 @@ namespace LiveScore.WebApi.Shared.Middlewares
 
         private static void StartHangfireJobs(this IApplicationBuilder app, IConfiguration Configuration)
         {
+
             var appSettings = app.ApplicationServices.GetService<IAppSettings>();
 
             RecurringJob.AddOrUpdate<IAutoUpdateMatchTimeJob>(nameof(IAutoUpdateMatchTimeJob), job => job.UpdateMatchTime(), Cron.Minutely);
@@ -57,13 +58,18 @@ namespace LiveScore.WebApi.Shared.Middlewares
                 BackgroundJob.Enqueue<MatchPushEventListenerJob>(job => job.StartListeningPushEvent(SportConstants.SoccerId));
             }
 
+            if(appSettings.EnabledOddsJob)
+            {
+                RecurringJob.AddOrUpdate<ISportRadarOddsJob>("FetchOdds", job => job.FetchDaily(), ScheduleIntervalCron);
+            }
+
             if (!appSettings.EnabledJobs)
             {
                 return;
             }
 
-            var resultDateSpan = int.Parse(Configuration.GetSection(ResultDateSpanPath).Value);
-            var scheduleDateSpan = int.Parse(Configuration.GetSection(ScheduleDateSpanPath).Value);
+            var resultDateSpan = appSettings.Jobs.FetchResultDateSpan;
+            var scheduleDateSpan = appSettings.Jobs.FetchScheduleDateSpan;
 
             RecurringJob.AddOrUpdate<IDailyScheduleFetchJob>("FetchSchedule", job => job.FetchSchedule(SportConstants.SoccerId, scheduleDateSpan), ScheduleIntervalCron);
             RecurringJob.AddOrUpdate<IDailyScheduleFetchJob>("FetchResult", job => job.FetchResult(SportConstants.SoccerId, resultDateSpan), Cron.Daily);

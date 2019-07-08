@@ -39,6 +39,10 @@
         public bool EnabledListenLogging => throw new NotImplementedException();
 
         public int NumberOfTopMatches => int.MaxValue;
+
+        public Jobs Jobs => throw new NotImplementedException();
+
+        public bool EnabledOddsJob => throw new NotImplementedException();
     }
 
     public class StubDataProviderSettings : DataProviderSettings

@@ -25,7 +25,7 @@
             this.logger = logger;
         }
 
-        public async Task<IEnumerable<Match>> GetMatches(int sportId, DateTime utcFrom, DateTime utcTo, string language)
+        public Task<IEnumerable<Match>> GetMatches(int sportId, DateTime utcFrom, DateTime utcTo, string language)
         {
             var matchEntities = dynamicRepository.Query<MatchEntity>
             (
@@ -35,16 +35,16 @@
                 x.EventDate.ToUniversalTime() <= utcTo
             );
 
-            return matchEntities.Select(m => JsonConvert.DeserializeObject<Match>(m.Value));
+            return Task.FromResult(matchEntities.Select(m => JsonConvert.DeserializeObject<Match>(m.Value)));
         }
 
-        public async Task<IEnumerable<Match>> GetLiveMatches(int sportId, string language)
+        public Task<IEnumerable<Match>> GetLiveMatches(int sportId, string language)
         {
             var matchEntities = dynamicRepository.Query<LiveMatchEntity>(m =>
                     m.SportId == sportId &&
                     m.Language.Equals(language, StringComparison.OrdinalIgnoreCase));
 
-            return matchEntities.Select(m => JsonConvert.DeserializeObject<Match>(m.Value));
+            return Task.FromResult(matchEntities.Select(m => JsonConvert.DeserializeObject<Match>(m.Value)));
         }
 
         public async Task<Match> AddOrUpdateMatch(string matchId, string language, MatchPushEvent pushEvent, bool isLive = false)
@@ -190,7 +190,7 @@
                     : JsonConvert.DeserializeObject<Match>(matchEntity.Value);
         }
 
-        public async Task<IEnumerable<Timeline>> GetTimelines(int sportId, string region, string matchId, string language)
+        public Task<IEnumerable<Timeline>> GetTimelines(int sportId, string region, string matchId, string language)
         {
             var timelines = (dynamicRepository
                 .Query<MatchTimelineEntity>(x => x.MatchId.Equals(matchId, StringComparison.OrdinalIgnoreCase)))
@@ -198,7 +198,7 @@
                 .Where(x => EventTypes.BasicSoccerEventTypes.Contains(x.Type))
                 .ToList();
 
-            return timelines;
+            return Task.FromResult(timelines as IEnumerable<Timeline>);
         }
 
         public async Task AddCommentaries(string matchId, IEnumerable<Timeline> timelines, string language)
