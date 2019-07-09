@@ -63,14 +63,16 @@
             LogService.Info("LiveScore API has been started.");
         }
 
+#pragma warning disable S2325 // Methods and properties that don't access instance data should be static
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+#pragma warning restore S2325 // Methods and properties that don't access instance data should be static
         {
             app.UseSignalR(routes =>
             {
                 routes.MapHub<MatchHub>("/hubs/MatchHub");
             });
             app.UseDatabase();
-            app.UseHangfire(Configuration);
+            app.UseHangfire();
             app.ConfigureExceptionHandler();
             app.ConfigureSwagger();
         }

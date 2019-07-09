@@ -16,7 +16,7 @@
         }
 
         [Route("~/api/{sportType}-{accessLevel}/{region}/{lang}/matches/{matchId}/timeline/")]
-        [HttpGet(nameof(Timeline))]
+        [HttpGet]
         public Task<MatchTimelineDto> Timeline(string sportType, string accessLevel, string region, string lang, string matchId)
         {
             return matchService.GetTimeline(matchId);

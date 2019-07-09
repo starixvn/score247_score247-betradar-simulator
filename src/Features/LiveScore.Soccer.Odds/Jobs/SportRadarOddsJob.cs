@@ -46,11 +46,16 @@
             for (var date = from.Date; date.Date <= to.Date; date = date.AddDays(dayIncrementIndex))
             {
                 var oddSchedule = await oddsFetcher.Fetch(date);
-                var oddsMatches = SportRadarOddsBuilder.BuildMatchOddsList(oddSchedule);
 
-                foreach (var oddsMatch in oddsMatches)
+                if (oddSchedule.sport_events != null 
+                    && oddSchedule.sport_events.Any())
                 {
-                    await oddsDataAccess.InsertOdds(oddsMatch);
+                    var oddsMatches = SportRadarOddsBuilder.BuildMatchOddsList(oddSchedule);
+
+                    foreach (var oddsMatch in oddsMatches)
+                    {
+                        await oddsDataAccess.InsertOdds(oddsMatch);
+                    }
                 }
             }
         }

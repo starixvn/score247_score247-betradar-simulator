@@ -36,11 +36,11 @@
 
         public async Task<OddsScheduleDto> Fetch(DateTime date)
         {
-
             var soccerSport = appSettings.DataProviderSettings.Sports.FirstOrDefault(sport => sport.Id == SportConstants.SoccerId);
+            var apiUrl = appSettings.DataProviderSettings.ApiUrl;
             // Ricky: Temporary uses full endpoint url here, because simulator have not implemented yet
             var formattedEndpoint = string.Format(soccerSport.OddsEndPoint, date.ToString(SportRadarDateFormat));
-            var oddsSchedule = await restClient.ExecuteGetAsync<OddsScheduleDto>(formattedEndpoint);
+            var oddsSchedule = await restClient.ExecuteGetAsync<OddsScheduleDto>($"{apiUrl}{formattedEndpoint}");
 
             return oddsSchedule;
         }
