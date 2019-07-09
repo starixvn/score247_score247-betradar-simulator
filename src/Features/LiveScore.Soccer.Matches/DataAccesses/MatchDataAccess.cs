@@ -31,8 +31,8 @@
             (
                 x => x.SportId == sportId &&
                 x.Language.Equals(language, StringComparison.OrdinalIgnoreCase) &&
-                x.EventDate.ToUniversalTime() >= utcFrom &&
-                x.EventDate.ToUniversalTime() <= utcTo
+                x.EventDate >= utcFrom &&
+                x.EventDate <= utcTo
             );
 
             return Task.FromResult(matchEntities.Select(m => JsonConvert.DeserializeObject<Match>(m.Value)));

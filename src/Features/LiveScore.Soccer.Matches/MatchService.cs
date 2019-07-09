@@ -18,8 +18,6 @@
     {
         Task<IEnumerable<Match>> GetMatches(int sportId, DateTime from, DateTime to, TimeSpan clientTimeZone, string language);
 
-        Task<IEnumerable<Match>> GetNonLiveMatches(int sportId, string language, DateTime utcFrom, DateTime utcTo);
-
         Task<IEnumerable<Match>> GetLiveMatches(int sportId, string language);
 
         Task<bool> AddOrUpdateMatch(int sportId, string language, string matchId, MatchPushEvent pushEvent, bool isLive = false);
@@ -80,10 +78,8 @@
                 return Enumerable.Empty<Match>();
             }
 
-            var utcFrom = from.ConvertToUtc(clientTimeZone);
-            var utcTo = to.ConvertToUtc(clientTimeZone);
-            var nonLiveMatches = await GetNonLiveMatches(sportId, language, utcFrom, utcTo);
-            var liveMatches = await GetLiveMatches(sportId, language, utcFrom, utcTo);
+            var nonLiveMatches = await GetNonLiveMatches(sportId, language, from, to, clientTimeZone);
+            var liveMatches = await GetLiveMatches(sportId, language, from, to);
 
             var matches = liveMatches.Any()
                       ? liveMatches.Union(nonLiveMatches, new MatchComparer())
@@ -95,10 +91,10 @@
                     .Take(appSettings.NumberOfTopMatches);
         }
 
-        private async Task<IEnumerable<Match>> GetLiveMatches(int sportId, string language, DateTime utcFrom, DateTime utcTo)
+        private async Task<IEnumerable<Match>> GetLiveMatches(int sportId, string language, DateTime from, DateTime to)
         {
-            if (utcFrom <= DateTime.Today.ToUniversalTime()
-                && utcTo >= DateTime.Today.ToUniversalTime())
+            if (from <= DateTime.Today
+                && to >= DateTime.Today)
             {
                 return await GetLiveMatches(sportId, language);
             }
@@ -106,16 +102,16 @@
             return Enumerable.Empty<Match>();
         }
 
-        public async Task<IEnumerable<Match>> GetNonLiveMatches(int sportId, string language, DateTime utcFrom, DateTime utcTo)
+        public async Task<IEnumerable<Match>> GetNonLiveMatches(int sportId, string language, DateTime from, DateTime to, TimeSpan clientTimeZone)
         {
             var matchDataAccess = matchDataAccessFactory(sportId, DataProvider.Database);
 
-            var normalMatchCacheKey = $"Match_{sportId}_{language}_{utcFrom}_{utcTo}";
+            var normalMatchCacheKey = $"Match_{sportId}_{language}_{from}_{to}_{clientTimeZone}";
             var normalMatches = await cacheService.GetAsync<IEnumerable<Match>>(normalMatchCacheKey);
 
             if (normalMatches == null)
             {
-                normalMatches = await matchDataAccess.GetMatches(sportId, utcFrom, utcTo, language);
+                normalMatches = await matchDataAccess.GetMatches(sportId, from, to, language);
                 await cacheService.SetAsync(normalMatchCacheKey, JsonConvert.SerializeObject(normalMatches), NormalMatchCacheOptions);
             }
 
