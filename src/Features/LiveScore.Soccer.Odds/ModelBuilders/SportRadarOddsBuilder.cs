@@ -27,7 +27,9 @@
 
         public static IEnumerable<MatchOdds> BuildMatchOddsList(OddsScheduleDto oddsScheduleDto)
         {
-            if (oddsScheduleDto == null || !oddsScheduleDto.sport_events.Any())
+            if (oddsScheduleDto == null
+                || oddsScheduleDto.sport_events == null
+                || !oddsScheduleDto.sport_events.Any())
             {
                 return Enumerable.Empty<MatchOdds>();
             }
@@ -72,8 +74,7 @@
         }
 
         private static BetTypeOdds BuildBetTypeOdds((int, string) betType, Book book)
-        {
-            return new BetTypeOdds
+            => new BetTypeOdds
             {
                 Id = betType.Item1,
                 Name = betType.Item2,
@@ -82,21 +83,23 @@
                     Id = book.id,
                     Name = book.name
                 },
-                BetOptions = book.outcomes?.Select(oc => new BetOptionOdds
-                {
-                    Id = oc.odds_field_id,
-                    LiveOdds = oc.odds == null 
-                        ? 0 
-                        : Math.Round(decimal.Parse(oc.odds), numOfRounding),
-                    OpeningOdds = oc.opening_odds == null 
-                        ? 0 
-                        : Math.Round(decimal.Parse(oc.opening_odds), numOfRounding),
-                    Type = oc.type,
-                    OptionValue = oc.handicap,
-                    Name = GetOptionName(betType.Item1, oc.type)
-                })
+                BetOptions = book.outcomes?.Select(oc => BuildBetOption(betType, oc))
             };
-        }
+
+        private static BetOptionOdds BuildBetOption((int, string) betType, Outcome oc)
+            => new BetOptionOdds
+            {
+                Id = oc.odds_field_id,
+                LiveOdds = oc.odds == null
+                                    ? 0
+                                    : Math.Round(decimal.Parse(oc.odds), numOfRounding),
+                OpeningOdds = oc.opening_odds == null
+                                    ? 0
+                                    : Math.Round(decimal.Parse(oc.opening_odds), numOfRounding),
+                Type = oc.type,
+                OptionValue = oc.handicap,
+                Name = GetOptionName(betType.Item1, oc.type)
+            };
 
         private static (int, string) GetBetType(Market market)
         {

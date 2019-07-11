@@ -83,6 +83,6 @@
                         : DateTimeOffset.Now,
                     Value = JsonConvert.SerializeObject(betTypeOdds),
                     CreatedTime = DateTimeOffset.Now
-        }));
+                }));
     }
 }
