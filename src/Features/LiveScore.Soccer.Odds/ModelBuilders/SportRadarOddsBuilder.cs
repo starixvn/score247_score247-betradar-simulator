@@ -97,9 +97,24 @@
                                     ? 0
                                     : Math.Round(decimal.Parse(oc.opening_odds), numOfRounding),
                 Type = oc.type,
-                OptionValue = oc.handicap,
+                OptionValue = GetOptionValue(betType.Item1, oc),
                 Name = GetOptionName(betType.Item1, oc.type)
             };
+
+        private static string GetOptionValue(int betTypeId, Outcome oc)
+        {
+            switch (betTypeId)
+            {
+                case AsianHandicapBetTypeId:
+                    return oc.handicap;
+
+                case OverUnderBeTypeId:
+                    return oc.total;
+
+                default:
+                    return string.Empty;
+            }
+        }
 
         private static (int, string) GetBetType(Market market)
         {

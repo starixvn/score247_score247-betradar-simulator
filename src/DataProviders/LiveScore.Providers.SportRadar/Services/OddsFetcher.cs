@@ -34,9 +34,26 @@
             this.logger = logger;
         }
 
-        public Task<OddsChangeLogDto> FetchChangeLog()
+        public async Task<OddsChangeLogDto> FetchChangeLog()
         {
-            throw new NotImplementedException();
+            var soccerSport = appSettings.DataProviderSettings.Sports.FirstOrDefault(sport => sport.Id == SportConstants.SoccerId);
+            var formattedEndpoint = string.Format(soccerSport.OddsChangeLogEndPoint, DateTimeOffset.UtcNow.ToUnixTimeSeconds());
+            var apiUrl = $"{appSettings.DataProviderSettings.ApiUrl}{formattedEndpoint}";
+
+            try
+            {
+                return await restClient.ExecuteGetAsync<OddsChangeLogDto>(apiUrl);
+            }
+            catch (Exception ex)
+            {
+                await logger.ErrorAsync(
+                        string.Join("\r\n",
+                        apiUrl,
+                        $"Exception: {ex}"),
+                        ex);
+            }
+
+            return new OddsChangeLogDto();
         }
 
         public async Task<OddsScheduleDto> Fetch(DateTime date)
@@ -44,15 +61,21 @@
             var soccerSport = appSettings.DataProviderSettings.Sports.FirstOrDefault(sport => sport.Id == SportConstants.SoccerId);
             var formattedEndpoint = string.Format(soccerSport.OddsEndPoint, date.ToString(SportRadarDateFormat));
             var apiUrl = $"{appSettings.DataProviderSettings.ApiUrl}{formattedEndpoint}";
-            
-            var oddsSchedule = await restClient.ExecuteGetAsync<OddsScheduleDto>(apiUrl);
 
-            await logger.InfoAsync(
-                string.Join("\r\n",
-                apiUrl,
-                $"Return Data: {JsonConvert.SerializeObject(oddsSchedule)}"));
+            try
+            {
+                return await restClient.ExecuteGetAsync<OddsScheduleDto>(apiUrl);
+            }
+            catch(Exception ex)
+            {
+                await logger.ErrorAsync(
+                        string.Join("\r\n",
+                        apiUrl,
+                        $"Exception: {ex}"),
+                        ex);
+            }
 
-            return oddsSchedule;
+            return new OddsScheduleDto();
         }
     }
 }

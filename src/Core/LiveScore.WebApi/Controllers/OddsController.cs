@@ -5,7 +5,7 @@
     using LiveScore.Features.Odds.Models;
     using Microsoft.AspNetCore.Mvc;
 
-    [Route("api/soccer/[controller]")]
+    [Route("api/soccer/")]
     [ApiController]
     public class OddsController : ControllerBase
     {
@@ -17,8 +17,12 @@
             this.oddsService = oddsService;
         }
 
-        [HttpGet(nameof(Get))]
-        public async Task<MatchOdds> Get(string matchId, int betTypeId)
+        [HttpGet("{lang}/odds/{matchId}/{betTypeId}")]
+        public async Task<MatchOdds> Get(string matchId, int betTypeId, string lang = "en-US")
+            => await oddsService.GetOdds(matchId, betTypeId);
+
+        [HttpGet("{lang}/odds-movement/{matchId}/{betTypeId}")]
+        public async Task<MatchOdds> OddsMovement(string matchId, int betTypeId, string lang = "en-US")
             => await oddsService.GetOdds(matchId, betTypeId);
     }
 }

@@ -23,11 +23,5 @@
 #pragma warning restore S3358 // Ternary operators should not be nested
 
         public DateTime LastUpdatedTime { get; set; }
-
-        public string MatchTime { get; set; }
-
-        public int HomeScore { get; set; }
-
-        public int AwayScore { get; set; }
     }
 }

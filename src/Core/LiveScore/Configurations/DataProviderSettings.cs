@@ -48,6 +48,8 @@
 
         public string OddsEndPoint { get; set; }
 
+        public string OddsChangeLogEndPoint { get; set; }
+
         public int MaxDaysStoredData { get; set; }
 
         public IEnumerable<EndPointSetting> GetEndPointSetting(string key)
