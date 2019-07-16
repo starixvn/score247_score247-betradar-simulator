@@ -20,18 +20,18 @@
     public class SportRadarOddsJob : ISportRadarOddsJob
     {
         private readonly IOddsFetcher oddsFetcher;
-        private readonly OddsDataAccess oddsDataAccess;
+        private readonly OddsService oddsService;
         private readonly Func<DateTime> getCurrentTimeFunc;
         private readonly IAppSettings appSettings;
 
         public SportRadarOddsJob(
-            IOddsFetcher oddsFetcher, 
-            OddsDataAccess oddsDataAccess, 
+            IOddsFetcher oddsFetcher,
+            OddsService oddsService, 
             Func<DateTime> getCurrentTimeFunc,
             IAppSettings appSettings)
         {
             this.oddsFetcher = oddsFetcher;
-            this.oddsDataAccess = oddsDataAccess;
+            this.oddsService = oddsService;
             this.getCurrentTimeFunc = getCurrentTimeFunc;
             this.appSettings = appSettings;
         }
@@ -54,7 +54,7 @@
 
                     foreach (var oddsMatch in oddsMatches)
                     {
-                        await oddsDataAccess.InsertOdds(oddsMatch);
+                        await oddsService.InsertOdds(oddsMatch);
                     }
                 }
             }

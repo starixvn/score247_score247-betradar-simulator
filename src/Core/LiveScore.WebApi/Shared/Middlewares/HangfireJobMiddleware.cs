@@ -53,7 +53,7 @@
         {
             var appSettings = app.ApplicationServices.GetService<IAppSettings>();
 
-            RecurringJob.AddOrUpdate<IAutoUpdateMatchTimeJob>(nameof(IAutoUpdateMatchTimeJob), job => job.UpdateMatchTime(), Cron.Minutely);
+            //RecurringJob.AddOrUpdate<IAutoUpdateMatchTimeJob>(nameof(IAutoUpdateMatchTimeJob), job => job.UpdateMatchTime(), Cron.Minutely);
 
             if (appSettings.EnabledListenPush)
             {

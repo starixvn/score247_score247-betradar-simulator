@@ -49,7 +49,6 @@ namespace LiveScore.WebApi.Shared.Middlewares
         private static void RegisterOddsService(IServiceCollection services)
         {
             services.AddScoped<OddsService, OddsServiceImpl>();
-            services.AddScoped<OddsDataAccess, OddsDataAccessImpl>();
             services.AddScoped<IOddsFetcher, OddsFetcher>();
             services.AddSingleton<Func<DateTime>>(() =>
             {
