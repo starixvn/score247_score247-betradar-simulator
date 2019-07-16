@@ -17,8 +17,8 @@
             this.oddsService = oddsService;
         }
 
-        [HttpGet("{lang}/odds/{matchId}/{betTypeId}")]
-        public async Task<MatchOdds> Get(string matchId, int betTypeId, string lang = "en-US")
+        [HttpGet("{lang}/odds/{matchId}/{betTypeId}/{format}")]
+        public async Task<MatchOdds> Get(string matchId, int betTypeId, string lang = "en-US", string format = "dec")
             => await oddsService.GetOdds(matchId, betTypeId);
 
         [HttpGet("{lang}/odds-movement/{matchId}/{betTypeId}/{format}")]
