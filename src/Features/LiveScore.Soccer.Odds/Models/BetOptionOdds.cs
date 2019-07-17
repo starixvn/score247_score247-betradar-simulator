@@ -36,7 +36,9 @@
             OpeningOptionValue = string.IsNullOrWhiteSpace(openingBetOption.OpeningOptionValue) 
                 ? openingBetOption.OptionValue
                 : openingBetOption.OpeningOptionValue;
-            OpeningOdds = openingBetOption.OpeningOdds;
+            OpeningOdds = openingBetOption.OpeningOdds == 0 
+                    ? openingBetOption.LiveOdds
+                    : openingBetOption.OpeningOdds;
         }
 
         public override bool Equals(object obj)
