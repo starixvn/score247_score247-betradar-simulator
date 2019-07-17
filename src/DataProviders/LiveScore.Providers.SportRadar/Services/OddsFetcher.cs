@@ -8,13 +8,12 @@
     using LiveScore.Soccer;
     using LiveScore.Soccer.Configurations;
     using LiveScore.Soccer.Helpers;
-    using Newtonsoft.Json;
 
     public interface IOddsFetcher
     {
         Task<OddsScheduleDto> Fetch(DateTime date);
 
-        Task<OddsChangeLogDto> FetchChangeLog();
+        Task<OddsScheduleDto> FetchChangeLog();
     }
 
     public class OddsFetcher : IOddsFetcher
@@ -34,15 +33,17 @@
             this.logger = logger;
         }
 
-        public async Task<OddsChangeLogDto> FetchChangeLog()
+        public async Task<OddsScheduleDto> FetchChangeLog()
         {
             var soccerSport = appSettings.DataProviderSettings.Sports.FirstOrDefault(sport => sport.Id == SportConstants.SoccerId);
-            var formattedEndpoint = string.Format(soccerSport.OddsChangeLogEndPoint, DateTimeOffset.UtcNow.ToUnixTimeSeconds());
+            var formattedEndpoint = string.Format(
+                soccerSport.OddSetting.ChangeLogEndPoint, 
+                DateTimeOffset.UtcNow.AddSeconds(-soccerSport.OddSetting.GetOddsChangeInterval).ToUnixTimeSeconds());
             var apiUrl = $"{appSettings.DataProviderSettings.ApiUrl}{formattedEndpoint}";
 
             try
             {
-                return await restClient.ExecuteGetAsync<OddsChangeLogDto>(apiUrl);
+                return await restClient.ExecuteGetAsync<OddsScheduleDto>(apiUrl);
             }
             catch (Exception ex)
             {
@@ -53,20 +54,20 @@
                         ex);
             }
 
-            return new OddsChangeLogDto();
+            return new OddsScheduleDto();
         }
 
         public async Task<OddsScheduleDto> Fetch(DateTime date)
         {
             var soccerSport = appSettings.DataProviderSettings.Sports.FirstOrDefault(sport => sport.Id == SportConstants.SoccerId);
-            var formattedEndpoint = string.Format(soccerSport.OddsEndPoint, date.ToString(SportRadarDateFormat));
+            var formattedEndpoint = string.Format(soccerSport.OddSetting.EndPoint, date.ToString(SportRadarDateFormat));
             var apiUrl = $"{appSettings.DataProviderSettings.ApiUrl}{formattedEndpoint}";
 
             try
             {
                 return await restClient.ExecuteGetAsync<OddsScheduleDto>(apiUrl);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 await logger.ErrorAsync(
                         string.Join("\r\n",

@@ -46,9 +46,7 @@
 
         public IEnumerable<Region> Regions { get; set; }
 
-        public string OddsEndPoint { get; set; }
-
-        public string OddsChangeLogEndPoint { get; set; }
+        public OddSetting OddSetting { get; set; }
 
         public int MaxDaysStoredData { get; set; }
 
@@ -63,6 +61,19 @@
 
             return endpoint.EndPointSettings;
         }
+    }
+
+    public class OddSetting
+    {
+        public string EndPoint { get; set; }
+
+        public string ChangeLogEndPoint { get; set; }
+
+        public string GetOddsScheduleCron { get; set; }
+
+        public string GetOddsChangeScheduleCron { get; set; }
+
+        public int GetOddsChangeInterval { get; set; }
     }
 
     public class EndPoint

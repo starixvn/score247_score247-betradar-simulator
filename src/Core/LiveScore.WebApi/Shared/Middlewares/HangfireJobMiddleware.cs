@@ -53,7 +53,7 @@
         {
             var appSettings = app.ApplicationServices.GetService<IAppSettings>();
 
-            //RecurringJob.AddOrUpdate<IAutoUpdateMatchTimeJob>(nameof(IAutoUpdateMatchTimeJob), job => job.UpdateMatchTime(), Cron.Minutely);
+            RecurringJob.AddOrUpdate<IAutoUpdateMatchTimeJob>(nameof(IAutoUpdateMatchTimeJob), job => job.UpdateMatchTime(), Cron.Minutely);
 
             if (appSettings.EnabledListenPush)
             {
@@ -62,6 +62,7 @@
 
             if (appSettings.EnabledOddsJob)
             {
+                RecurringJob.AddOrUpdate<ISportRadarOddsJob>("FetchOdds", job => job.FetchDaily(), ScheduleIntervalCron);
                 RecurringJob.AddOrUpdate<ISportRadarOddsJob>("FetchOdds", job => job.FetchDaily(), ScheduleIntervalCron);
             }
 

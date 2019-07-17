@@ -1,8 +1,6 @@
 ﻿namespace LiveScore.Soccer.Odds.Jobs
 {
     using System;
-    using System.Collections.Generic;
-    using System.Text;
     using System.Linq;
     using System.Threading.Tasks;
     using LiveScore.Features.Odds;
@@ -26,7 +24,7 @@
 
         public SportRadarOddsJob(
             IOddsFetcher oddsFetcher,
-            OddsService oddsService, 
+            OddsService oddsService,
             Func<DateTime> getCurrentTimeFunc,
             IAppSettings appSettings)
         {
@@ -47,22 +45,29 @@
             {
                 var oddSchedule = await oddsFetcher.Fetch(date);
 
-                if (oddSchedule.sport_events != null 
-                    && oddSchedule.sport_events.Any())
-                {
-                    var oddsMatches = SportRadarOddsBuilder.BuildMatchOddsList(oddSchedule);
+                await InsertOdds(oddSchedule);
+            }
+        }
 
-                    foreach (var oddsMatch in oddsMatches)
-                    {
-                        await oddsService.InsertOdds(oddsMatch);
-                    }
+        private async Task InsertOdds(Providers.SportRadar.Dtos.OddsScheduleDto oddSchedule)
+        {
+            if (oddSchedule.sport_events != null
+                                && oddSchedule.sport_events.Any())
+            {
+                var oddsMatches = SportRadarOddsBuilder.BuildMatchOddsList(oddSchedule);
+
+                foreach (var oddsMatch in oddsMatches)
+                {
+                    await oddsService.InsertOdds(oddsMatch);
                 }
             }
         }
 
-        public Task FetchOddsChange()
+        public async Task FetchOddsChange()
         {
-            throw new NotImplementedException();
+            var oddSchedule = await oddsFetcher.FetchChangeLog();
+
+            await InsertOdds(oddSchedule);
         }
     }
 }
