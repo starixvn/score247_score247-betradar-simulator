@@ -26,15 +26,17 @@
 
         public DateTime LastUpdatedTime { get; set; }
 
-        public void AssginOpeningData(BetOptionOdds openingOdds)
+        public void AssginOpeningData(BetOptionOdds openingBetOption)
         {
-            if(openingOdds == null)
+            if(openingBetOption == null)
             {
                 return;
             }
 
-            OpeningOptionValue = openingOdds.OptionValue;
-            OpeningOdds = openingOdds.OpeningOdds;
+            OpeningOptionValue = string.IsNullOrWhiteSpace(openingBetOption.OpeningOptionValue) 
+                ? openingBetOption.OptionValue
+                : openingBetOption.OpeningOptionValue;
+            OpeningOdds = openingBetOption.OpeningOdds;
         }
 
         public override bool Equals(object obj)

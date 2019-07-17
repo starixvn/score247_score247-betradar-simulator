@@ -87,19 +87,27 @@
             };
 
         private static BetOptionOdds BuildBetOption((int, string) betType, Outcome oc)
-            => new BetOptionOdds
+        {
+            var betOption = new BetOptionOdds
             {
                 Id = oc.odds_field_id,
                 LiveOdds = oc.odds == null
                                     ? 0
                                     : Math.Round(decimal.Parse(oc.odds), numOfRounding),
-                OpeningOdds = oc.opening_odds == null
-                                    ? 0
-                                    : Math.Round(decimal.Parse(oc.opening_odds), numOfRounding),
+
                 Type = oc.type,
                 OptionValue = GetOptionValue(betType.Item1, oc),
                 Name = GetOptionName(betType.Item1, oc.type)
             };
+
+            betOption.OpeningOdds = oc.opening_odds == null
+                                    ? betOption.LiveOdds
+                                    : Math.Round(decimal.Parse(oc.opening_odds), numOfRounding);
+
+            betOption.OpeningOptionValue = GetOpeningOptionValue(betType.Item1, oc);
+
+            return betOption;
+        }
 
         private static string GetOptionValue(int betTypeId, Outcome oc)
         {
@@ -110,6 +118,18 @@
 
                 case OverUnderBeTypeId:
                     return oc.total;
+
+                default:
+                    return string.Empty;
+            }
+        }
+
+        private static string GetOpeningOptionValue(int betTypeId, Outcome oc)
+        {
+            switch (betTypeId)
+            {
+                case OverUnderBeTypeId:
+                    return oc.opening_total?.ToString();
 
                 default:
                     return string.Empty;
