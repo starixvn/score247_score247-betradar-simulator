@@ -46,7 +46,7 @@
 
         public IEnumerable<Region> Regions { get; set; }
 
-        public OddSetting OddSetting { get; set; }
+        public OddsSetting OddsSetting { get; set; }
 
         public int MaxDaysStoredData { get; set; }
 
@@ -63,7 +63,7 @@
         }
     }
 
-    public class OddSetting
+    public class OddsSetting
     {
         public string EndPoint { get; set; }
 

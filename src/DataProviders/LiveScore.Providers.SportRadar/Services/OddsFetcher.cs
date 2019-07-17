@@ -35,10 +35,16 @@
 
         public async Task<OddsScheduleDto> FetchChangeLog()
         {
-            var soccerSport = appSettings.DataProviderSettings.Sports.FirstOrDefault(sport => sport.Id == SportConstants.SoccerId);
+            var soccerSport = appSettings.DataProviderSettings.GetSportSetting(SportConstants.SoccerId);
             var formattedEndpoint = string.Format(
-                soccerSport.OddSetting.ChangeLogEndPoint, 
-                DateTimeOffset.UtcNow.AddSeconds(-soccerSport.OddSetting.GetOddsChangeInterval).ToUnixTimeSeconds());
+                soccerSport.OddsSetting.ChangeLogEndPoint,
+                DateTimeOffset.UtcNow.AddMinutes(-soccerSport.OddsSetting.GetOddsChangeInterval).ToUnixTimeSeconds());
+
+            return await Fetch(formattedEndpoint);
+        }
+
+        private async Task<OddsScheduleDto> Fetch(string formattedEndpoint)
+        {
             var apiUrl = $"{appSettings.DataProviderSettings.ApiUrl}{formattedEndpoint}";
 
             try
@@ -59,24 +65,10 @@
 
         public async Task<OddsScheduleDto> Fetch(DateTime date)
         {
-            var soccerSport = appSettings.DataProviderSettings.Sports.FirstOrDefault(sport => sport.Id == SportConstants.SoccerId);
-            var formattedEndpoint = string.Format(soccerSport.OddSetting.EndPoint, date.ToString(SportRadarDateFormat));
-            var apiUrl = $"{appSettings.DataProviderSettings.ApiUrl}{formattedEndpoint}";
+            var soccerSport = appSettings.DataProviderSettings.GetSportSetting(SportConstants.SoccerId);
+            var formattedEndpoint = string.Format(soccerSport.OddsSetting.EndPoint, date.ToString(SportRadarDateFormat));
 
-            try
-            {
-                return await restClient.ExecuteGetAsync<OddsScheduleDto>(apiUrl);
-            }
-            catch (Exception ex)
-            {
-                await logger.ErrorAsync(
-                        string.Join("\r\n",
-                        apiUrl,
-                        $"Exception: {ex}"),
-                        ex);
-            }
-
-            return new OddsScheduleDto();
+            return await Fetch(formattedEndpoint);
         }
     }
 }
