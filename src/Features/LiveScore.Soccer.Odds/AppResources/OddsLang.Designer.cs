@@ -70,11 +70,29 @@ namespace LiveScore.Soccer.Odds.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to KO.
+        /// </summary>
+        internal static string KO {
+            get {
+                return ResourceManager.GetString("KO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 1x2.
         /// </summary>
         internal static string OneXTwo {
             get {
                 return ResourceManager.GetString("OneXTwo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opening.
+        /// </summary>
+        internal static string Opening {
+            get {
+                return ResourceManager.GetString("Opening", resourceCulture);
             }
         }
         
@@ -93,6 +111,15 @@ namespace LiveScore.Soccer.Odds.AppResources {
         internal static string OverUnder {
             get {
                 return ResourceManager.GetString("OverUnder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Today.
+        /// </summary>
+        internal static string Today {
+            get {
+                return ResourceManager.GetString("Today", resourceCulture);
             }
         }
         

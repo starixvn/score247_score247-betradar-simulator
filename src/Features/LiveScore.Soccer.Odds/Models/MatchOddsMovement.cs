@@ -2,15 +2,13 @@
 {
     using System;
     using System.Collections.Generic;
-    using LiveScore.Features.Odds.Models;
+    using LiveScore.Soccer.Odds.Models;
 
     public class MatchOddsMovement
     {
         public string MatchId { get; set; }
 
         public Bookmaker Bookmaker { get; set; }
-
-        public DateTime? LastUpdated { get; set; }
 
         public IEnumerable<OddsMovement> OddsMovements { get; set; }
     }

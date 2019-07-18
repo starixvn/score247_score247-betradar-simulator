@@ -1,7 +1,7 @@
 ﻿namespace LiveScore.Soccer.Odds.Models
 {
     using System.Collections.Generic;
-    using LiveScore.Features.Odds.Models;
+    using LiveScore.Soccer.Odds.Models;
     using LiveScore.Soccer.Models;
 
     public class OddsMovement : Entity<int, string>

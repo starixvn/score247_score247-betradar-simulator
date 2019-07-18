@@ -1,4 +1,4 @@
-﻿namespace LiveScore.Features.Odds.Models
+﻿namespace LiveScore.Soccer.Odds.Models
 {
     using System;
     using LiveScore.Soccer.Models;
@@ -23,8 +23,6 @@
                     ? OddsTrend.Down
                     : OddsTrend.Up;
 #pragma warning restore S3358 // Ternary operators should not be nested
-
-        public DateTime LastUpdatedTime { get; set; }
 
         public void AssginOpeningData(BetOptionOdds openingBetOption)
         {

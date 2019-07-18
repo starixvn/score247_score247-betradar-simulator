@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using LiveScore.Database.Entities;
     using LiveScore.Features.Odds;
-    using LiveScore.Features.Odds.Models;
+    using LiveScore.Soccer.Odds.Models;
     using LiveScore.Soccer.Database;
     using NSubstitute;
     using Xunit;

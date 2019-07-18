@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using LiveScore.Features.Odds.Models;
+    using LiveScore.Soccer.Odds.Models;
     using LiveScore.Providers.SportRadar.Dtos;
     using LiveScore.Soccer.Odds.AppResources;
 

@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
     using LiveScore.Features.Odds;
-    using LiveScore.Features.Odds.Models;
+    using LiveScore.Soccer.Odds.Models;
     using Microsoft.AspNetCore.Mvc;
 
     [Route("api/soccer/")]
@@ -19,10 +19,10 @@
 
         [HttpGet("{lang}/odds/{matchId}/{betTypeId}/{format}")]
         public async Task<MatchOdds> Get(string matchId, int betTypeId, string lang = "en-US", string format = "dec")
-            => await oddsService.GetOdds(matchId, betTypeId);
+            => await oddsService.GetOdds(matchId, betTypeId, lang);
 
-        [HttpGet("{lang}/odds-movement/{matchId}/{betTypeId}/{format}")]
-        public async Task<MatchOdds> OddsMovement(string matchId, int betTypeId, string lang = "en-US", string format = "dec")
-            => await oddsService.GetOdds(matchId, betTypeId);
+        [HttpGet("{lang}/odds-movement/{matchId}/{betTypeId}/{format}/{bookmakerId}")]
+        public async Task<MatchOddsMovement> OddsMovement(string matchId, int betTypeId, string bookmakerId, string lang = "en-US", string format = "dec")
+            => await oddsService.GetOddsMovement(matchId, betTypeId, bookmakerId, lang);
     }
 }

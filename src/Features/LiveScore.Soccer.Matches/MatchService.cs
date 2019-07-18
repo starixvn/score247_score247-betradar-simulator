@@ -32,6 +32,8 @@
 
         Task<Match> GetMatch(int sportId, string matchId, string language, TimeSpan clientTimeZone);
 
+        Task<Match> GetMatch(string matchId, string language);
+
         Task AddFullTimelines(int sportId, string matchId, string language, string region);
 
         Task<IEnumerable<Timeline>> GetTimelines(int sportId, string region, string matchId, string language = "");
@@ -276,6 +278,19 @@
             var matchDataAccess = matchDataAccessFactory(sportId, DataProvider.Database);
 
             return await matchDataAccess.GetTimelines(sportId, region, matchId, language);
+        }
+
+        public async Task<Match> GetMatch(string matchId, string language)
+        {
+            var matchDataAccess = matchDataAccessFactory(SportConstants.SoccerId, DataProvider.Database);
+            var match = await matchDataAccess.GetMatch(SportConstants.SoccerId, matchId, language);
+
+            if (match != null && !match.MatchResult.EventStatus.IsNotStartOrDelay())
+            {
+                match.TimeLines = await GetTimelines(SportConstants.SoccerId, match.Region, matchId, language);
+            }
+
+            return match;
         }
     }
 }

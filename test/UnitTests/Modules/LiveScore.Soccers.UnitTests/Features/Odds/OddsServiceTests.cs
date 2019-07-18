@@ -6,22 +6,25 @@
     using System.Threading.Tasks;
     using LiveScore.Database.Entities;
     using LiveScore.Features.Odds;
-    using LiveScore.Features.Odds.Models;
+    using LiveScore.Soccer.Odds.Models;
     using LiveScore.Soccer.Database;
     using NSubstitute;
     using Xunit;
+    using LiveScore.Soccer.Matches;
 
     [Trait("LiveScore.Soccer", "Odds")]
     public class OddsServiceTests
     {
         private readonly OddsServiceImpl oddsServiceImpl;
         private readonly IDynamicRepository dynamicRepository;
+        private readonly IMatchService matchService;
         
 
         public OddsServiceTests()
         {
             dynamicRepository = Substitute.For<IDynamicRepository>();
-            oddsServiceImpl = new OddsServiceImpl(dynamicRepository);
+            matchService = Substitute.For<IMatchService>();
+            oddsServiceImpl = new OddsServiceImpl(dynamicRepository, matchService);
         }
 
         [Fact]
@@ -31,7 +34,7 @@
             var matchId = "mathcId";
             var betTypeId = 2;
 
-            var matchOdds = await oddsServiceImpl.GetOdds(matchId, betTypeId);
+            var matchOdds = await oddsServiceImpl.GetOdds(matchId, betTypeId, string.Empty);
 
             Assert.Equal(matchId, matchOdds.MatchId);
         }
@@ -41,7 +44,7 @@
         {
             dynamicRepository.Query(Arg.Any<Func<OddsEntity, bool>>()).Returns(StubBetTypeOddsEntities());
 
-            var actualBetTypeOddsList = await oddsServiceImpl.GetOdds("matchId", 1);
+            var actualBetTypeOddsList = await oddsServiceImpl.GetOdds("matchId", 1, string.Empty);
 
             var firstBetTypeOdds = actualBetTypeOddsList.BetTypeOddsList.First();
             var secondBetTypeOdds = actualBetTypeOddsList.BetTypeOddsList.ElementAt(1);

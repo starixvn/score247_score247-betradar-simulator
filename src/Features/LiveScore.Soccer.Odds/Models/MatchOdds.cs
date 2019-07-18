@@ -1,4 +1,4 @@
-﻿namespace LiveScore.Features.Odds.Models
+﻿namespace LiveScore.Soccer.Odds.Models
 {
     using System;
     using System.Collections.Generic;

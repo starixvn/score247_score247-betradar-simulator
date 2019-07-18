@@ -5,13 +5,19 @@
     using System.Linq;
     using System.Threading.Tasks;
     using LiveScore.Database.Entities;
-    using LiveScore.Features.Odds.Models;
+    using LiveScore.Soccer.Odds.Models;
     using LiveScore.Soccer.Database;
     using Newtonsoft.Json;
+    using LiveScore.Soccer.Matches;
+    using LiveScore.Soccer;
+    using LiveScore.Soccer.Matches.Models;
+    using LiveScore.Soccer.Odds.AppResources;
 
     public interface OddsService
     {
-        Task<MatchOdds> GetOdds(string matchId, int betTypeId);
+        Task<MatchOdds> GetOdds(string matchId, int betTypeId, string language);
+
+        Task<MatchOddsMovement> GetOddsMovement(string matchId, int betTypeId, string bookmakerId, string language);
 
         Task<bool> InsertOdds(MatchOdds matchOdds);
     }
@@ -19,14 +25,17 @@
     public class OddsServiceImpl : OddsService
     {
         private readonly IDynamicRepository dynamicRepository;
+        private readonly IMatchService matchService;
 
         public OddsServiceImpl(
-            IDynamicRepository dynamicRepository)
+            IDynamicRepository dynamicRepository,
+            IMatchService matchService)
         {
             this.dynamicRepository = dynamicRepository;
+            this.matchService = matchService;
         }
 
-        public async Task<MatchOdds> GetOdds(string matchId, int betTypeId)
+        public async Task<MatchOdds> GetOdds(string matchId, int betTypeId, string language)
             => new MatchOdds
             {
                 MatchId = matchId,
@@ -93,17 +102,166 @@
             IEnumerable<BetTypeOdds> BetTypeOddsList, 
             DateTime? lastUpdate)
             => await dynamicRepository.InsertRange(BetTypeOddsList.Select(betTypeOdds
-               => new OddsEntity
-               {
-                   Id = Guid.NewGuid().ToString(),
-                   BetTypeId = betTypeOdds.Id,
-                   BookmakerId = betTypeOdds.Bookmaker.Id,
-                   MatchId = matchId,
-                   ModifiedTime = lastUpdate.HasValue
+               =>
+            {
+                betTypeOdds.LastUpdatedTime = lastUpdate.HasValue
                        ? lastUpdate.Value
-                       : DateTimeOffset.Now,
-                   Value = JsonConvert.SerializeObject(betTypeOdds),
-                   CreatedTime = DateTimeOffset.Now
-               }));
+                       : DateTimeOffset.Now;
+
+                var oddsEntity = new OddsEntity
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    BetTypeId = betTypeOdds.Id,
+                    BookmakerId = betTypeOdds.Bookmaker.Id,
+                    MatchId = matchId,
+                    ModifiedTime = betTypeOdds.LastUpdatedTime,
+                    Value = JsonConvert.SerializeObject(betTypeOdds),
+                    CreatedTime = DateTimeOffset.Now
+                };
+
+                return oddsEntity;
+            }));
+
+        public async Task<MatchOddsMovement> GetOddsMovement(string matchId, int betTypeId, string bookmakerId, string language)
+        {
+            var betTypeOddList = dynamicRepository
+                            .Query<OddsEntity>(
+                                o => o.MatchId == matchId
+                                    && o.BetTypeId == betTypeId
+                                    && o.BookmakerId == bookmakerId
+                            )
+                            .OrderByDescending(o => o.ModifiedTime)
+                            .Select(o => 
+                            {
+                                var bto = JsonConvert.DeserializeObject<BetTypeOdds>(o.Value);
+                                bto.LastUpdatedTime = o.ModifiedTime;
+
+                                return bto;
+                            })
+                            .ToList();
+
+
+            var firstOdds = betTypeOddList.FirstOrDefault();
+
+            if(firstOdds == null)
+            {
+                return new MatchOddsMovement();
+            }
+
+            return new MatchOddsMovement
+            {
+                Bookmaker = firstOdds.Bookmaker,
+                MatchId = matchId,
+                OddsMovements = await BuildOddsMovement(matchId, betTypeOddList, language)
+            };
+        }
+
+        private static readonly IList<string> OddChangeEventIds
+            = new List<string>
+            {
+                EventTypes.PeriodStart.Value,
+                EventTypes.ScoreChange.Value,
+                EventTypes.MatchEnded.Value,
+                EventTypes.MatchStarted.Value
+            };
+
+
+        private async Task<IEnumerable<OddsMovement>> BuildOddsMovement(string matchId, List<BetTypeOdds> betTypeOddsList, string language)
+        {
+            var oddsMovements = new List<OddsMovement>();
+            var match = await matchService.GetMatch(matchId, language);
+
+            if(match.TimeLines == null)
+            {
+                return oddsMovements;
+            }
+
+            var timelineEvents = match.TimeLines.Where(tl 
+                => OddChangeEventIds.Contains(tl.Type.ToLowerInvariant()) 
+                    && (string.IsNullOrEmpty(tl.PeriodType) || tl.PeriodType == PeriodType.RegularPeriod.Value));
+
+            var homeScore = 0;
+            var awayScore = 0;
+            Timeline firstHalfEvent = null;
+            Timeline matchStartedEvent = null;
+            Timeline secondHalfEvent = null;
+            var liveMatchOdds = betTypeOddsList.Where(o => o.LastUpdatedTime >= match.EventDate);
+
+            foreach (var betTypeOdds in liveMatchOdds)
+            {
+                var timelineEvent = timelineEvents.FirstOrDefault(e => e.Time == betTypeOdds.LastUpdatedTime);
+                var oddsMovement = new OddsMovement
+                {
+                    BetOptions = betTypeOdds.BetOptions,
+                };
+
+                if(timelineEvent != null)
+                {
+                    if(timelineEvent.Type == EventTypes.ScoreChange.Value)
+                    {
+                        homeScore = timelineEvent.HomeScore;
+                        awayScore = timelineEvent.AwayScore;
+                    }
+
+                    if (timelineEvent.Type == EventTypes.MatchStarted.Value)
+                    {
+                        matchStartedEvent = timelineEvent;
+                    }
+
+                    if (timelineEvent.Type == EventTypes.PeriodStart.Value
+                        && timelineEvent.Period == 1
+                        && timelineEvent.PeriodType == PeriodType.RegularPeriod.Value)
+                    {
+                        firstHalfEvent = timelineEvent;
+                    }
+
+                    if (timelineEvent.Type == EventTypes.PeriodStart.Value
+                        && timelineEvent.Period == 2
+                        && timelineEvent.PeriodType == PeriodType.RegularPeriod.Value)
+                    {
+                        secondHalfEvent = timelineEvent;
+                    }
+                }
+
+                const int startSecondHaft = 46;
+
+                if(secondHalfEvent != null)
+                {
+                    oddsMovement.Name = ((betTypeOdds.LastUpdatedTime - secondHalfEvent.Time).TotalMinutes + startSecondHaft).ToString();
+                }
+                else if (firstHalfEvent != null)
+                {
+                    oddsMovement.Name = (betTypeOdds.LastUpdatedTime - firstHalfEvent.Time).TotalMinutes.ToString();
+                }
+                else if (matchStartedEvent != null)
+                {
+                    oddsMovement.Name = OddsLang.KO;
+                }
+
+                oddsMovement.HomeScore = homeScore;
+                oddsMovement.AwayScore = awayScore;
+
+                oddsMovements.Add(oddsMovement);
+            }
+
+            var todayOdds = betTypeOddsList.FirstOrDefault(o => o.LastUpdatedTime.Date == match.EventDate.Date);
+
+            if (todayOdds != null)
+            {
+                oddsMovements.Add(new OddsMovement
+                {
+                    BetOptions = todayOdds.BetOptions,
+                    MatchTime = OddsLang.Today
+                });
+            }
+
+            oddsMovements.Add(new OddsMovement
+            {
+                BetOptions = betTypeOddsList.Last().BetOptions,
+                MatchTime = OddsLang.Opening
+            });
+
+            return oddsMovements;
+        }
     }
 }

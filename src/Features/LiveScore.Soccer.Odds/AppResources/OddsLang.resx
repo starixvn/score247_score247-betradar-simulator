@@ -132,4 +132,13 @@
   <data name="Under" xml:space="preserve">
     <value>Under</value>
   </data>
+  <data name="Opening" xml:space="preserve">
+    <value>Opening</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="KO" xml:space="preserve">
+    <value>KO</value>
+  </data>
 </root>

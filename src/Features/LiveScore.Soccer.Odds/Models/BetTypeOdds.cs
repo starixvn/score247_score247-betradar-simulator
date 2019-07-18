@@ -1,5 +1,6 @@
-﻿namespace LiveScore.Features.Odds.Models
+﻿namespace LiveScore.Soccer.Odds.Models
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using LiveScore.Soccer.Models;
@@ -7,6 +8,8 @@
     public class BetTypeOdds : Entity<int, string>
     {
         public Bookmaker Bookmaker { get; set; }
+
+        public DateTimeOffset LastUpdatedTime { get; set; }
 
         public IEnumerable<BetOptionOdds> BetOptions { get; set; }
 

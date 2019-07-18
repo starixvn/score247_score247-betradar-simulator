@@ -71,6 +71,8 @@
 
         public string GetOddsScheduleCron { get; set; }
 
+        public string MatchOddsEnpPoint { get; set; }
+
         public string GetOddsChangeScheduleCron { get; set; }
 
         public int GetOddsChangeInterval { get; set; }
