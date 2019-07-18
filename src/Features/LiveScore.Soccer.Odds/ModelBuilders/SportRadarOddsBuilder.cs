@@ -93,7 +93,7 @@
                 Id = oc.odds_field_id,
                 LiveOdds = oc.odds == null
                                     ? 0
-                                    : Math.Round(decimal.Parse(oc.odds), numOfRounding),
+                                    : Math.Round(decimal.Parse(oc.odds), numOfRounding, MidpointRounding.AwayFromZero),
 
                 Type = oc.type,
                 OptionValue = GetOptionValue(betType.Item1, oc),
@@ -102,7 +102,7 @@
 
             betOption.OpeningOdds = oc.opening_odds == null
                                     ? betOption.LiveOdds
-                                    : Math.Round(decimal.Parse(oc.opening_odds), numOfRounding);
+                                    : Math.Round(decimal.Parse(oc.opening_odds), numOfRounding, MidpointRounding.AwayFromZero);
 
             betOption.OpeningOptionValue = GetOpeningOptionValue(betType.Item1, oc);
 
