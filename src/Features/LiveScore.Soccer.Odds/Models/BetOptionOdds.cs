@@ -32,6 +32,12 @@
             ReCalculateOddsTrend();
         }
 
+        public void ResetOpeningOdds()
+        {
+            LiveOdds = OpeningOdds;
+            OddsTrend = OddsTrend.Neutral;
+        }
+
         public override bool Equals(object obj)
         {
             var betOptionOdds = obj as BetOptionOdds;

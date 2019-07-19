@@ -141,4 +141,7 @@
   <data name="KO" xml:space="preserve">
     <value>KO</value>
   </data>
+  <data name="Live" xml:space="preserve">
+    <value>Live</value>
+  </data>
 </root>

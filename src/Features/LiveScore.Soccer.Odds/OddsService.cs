@@ -183,15 +183,31 @@
             var awayScore = 0;
             Timeline firstHalfEvent = null;
             Timeline secondHalfEvent = null;
-            var liveMatchOdds = betTypeOddsList.Where(o => o.LastUpdatedTime >= match.EventDate);
             var firstBetTypeOdds = betTypeOddsList.First();
+            var liveMatchOdds = betTypeOddsList.Where(o => o.LastUpdatedTime >= match.EventDate);
+            var beforeLiveMatchOdds = betTypeOddsList.Where(o => o.LastUpdatedTime < match.EventDate && o.LastUpdatedTime > firstBetTypeOdds.LastUpdatedTime);
             var openingOddsMovement = new OddsMovement
             {
                 BetOptions = firstBetTypeOdds.BetOptions,
                 MatchTime = OddsLang.Opening,
                 UpdateTime = firstBetTypeOdds.LastUpdatedTime
             };
+            openingOddsMovement.ResetToOpeningOdds();
+            oddsMovements.Add(openingOddsMovement);
 
+            foreach (var betTypeOdds in beforeLiveMatchOdds)
+            {
+                var oddsMovement = new OddsMovement
+                {
+                    BetOptions = betTypeOdds.BetOptions,
+                    UpdateTime = betTypeOdds.LastUpdatedTime,
+                    MatchTime = OddsLang.Live
+                };
+
+                BetTypeOdds.AssignOpeningData(oddsMovement.BetOptions, firstBetTypeOdds.BetOptions);
+                oddsMovements.Add(oddsMovement);
+            }
+            
             foreach (var betTypeOdds in liveMatchOdds)
             {
                 var timelineEvent = timelineEvents.FirstOrDefault(e => e.Time == betTypeOdds.LastUpdatedTime);
@@ -236,6 +252,11 @@
                     oddsMovement.MatchTime = (betTypeOdds.LastUpdatedTime - firstHalfEvent.Time).TotalMinutes.ToString("0");
                 }
 
+                if(firstHalfEvent != null)
+                {
+                    oddsMovement.IsMatchStarted = true;
+                }
+
                 oddsMovement.HomeScore = homeScore;
                 oddsMovement.AwayScore = awayScore;
                 BetTypeOdds.AssignOpeningData(oddsMovement.BetOptions, firstBetTypeOdds.BetOptions);
@@ -243,22 +264,11 @@
             }
 
             oddsMovements.Reverse();
-
-            var todayOdds = betTypeOddsList.FirstOrDefault(o => o.LastUpdatedTime.Date == match.EventDate.Date);
-
-            if (todayOdds != null)
-            {
-                oddsMovements.Add(new OddsMovement
-                {
-                    BetOptions = todayOdds.BetOptions,
-                    MatchTime = OddsLang.Today,
-                    UpdateTime = todayOdds.LastUpdatedTime
-                });
-            }
-
-            oddsMovements.Add(openingOddsMovement);
+            
 
             return oddsMovements;
         }
+
+
     }
 }

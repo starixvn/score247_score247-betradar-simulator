@@ -14,6 +14,16 @@
 
         public int AwayScore { get; set; }
 
+        public bool IsMatchStarted { get; set; }
+
         public DateTimeOffset UpdateTime { get; set; }
+
+        public void ResetToOpeningOdds()
+        {
+            foreach (var betOption in BetOptions)
+            {
+                betOption.ResetOpeningOdds();
+            }
+        }
     }
 }

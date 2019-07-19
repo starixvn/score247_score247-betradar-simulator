@@ -79,6 +79,15 @@ namespace LiveScore.Soccer.Odds.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Live.
+        /// </summary>
+        internal static string Live {
+            get {
+                return ResourceManager.GetString("Live", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 1x2.
         /// </summary>
         internal static string OneXTwo {
