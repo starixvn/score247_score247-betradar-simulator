@@ -53,7 +53,7 @@
                     var first = group.First();
                     var last = group.Last();
 
-                    first.AssignOpeningData(last.BetOptions);
+                    BetTypeOdds.AssignOpeningData(first.BetOptions, last.BetOptions);
 
                     return first;
                 })
@@ -182,9 +182,15 @@
             var homeScore = 0;
             var awayScore = 0;
             Timeline firstHalfEvent = null;
-            Timeline matchStartedEvent = null;
             Timeline secondHalfEvent = null;
             var liveMatchOdds = betTypeOddsList.Where(o => o.LastUpdatedTime >= match.EventDate);
+            var firstBetTypeOdds = betTypeOddsList.First();
+            var openingOddsMovement = new OddsMovement
+            {
+                BetOptions = firstBetTypeOdds.BetOptions,
+                MatchTime = OddsLang.Opening,
+                UpdateTime = firstBetTypeOdds.LastUpdatedTime
+            };
 
             foreach (var betTypeOdds in liveMatchOdds)
             {
@@ -232,7 +238,7 @@
 
                 oddsMovement.HomeScore = homeScore;
                 oddsMovement.AwayScore = awayScore;
-
+                BetTypeOdds.AssignOpeningData(oddsMovement.BetOptions, firstBetTypeOdds.BetOptions);
                 oddsMovements.Add(oddsMovement);
             }
 
@@ -250,13 +256,7 @@
                 });
             }
 
-            var firstBetTypeOdds = betTypeOddsList.First();
-            oddsMovements.Add(new OddsMovement
-            {
-                BetOptions = firstBetTypeOdds.BetOptions,
-                MatchTime = OddsLang.Opening,
-                UpdateTime = firstBetTypeOdds.LastUpdatedTime
-            });
+            oddsMovements.Add(openingOddsMovement);
 
             return oddsMovements;
         }
