@@ -17,6 +17,7 @@
         private const int AsianHandicapBetTypeId = 3;// 5, asian_handicap
         private const string AsianHandicapSportRadarBetTypeName = "asian_handicap";
         private const int UnknownBetTypeId = 1000;
+        private const string RegularGroupName = "regular";
         private const string home = "home";
         private const string away = "away";
         private const string one = "1";
@@ -56,21 +57,27 @@
             {
                 foreach (var market in sport_event.markets)
                 {
-                    var betType = GetBetType(market);
+                    BuildBetTypeOdds(betTypeOddsList, market);
+                }
+            }
 
-                    if (betType.Item1 == UnknownBetTypeId)
-                    {
-                        continue;
-                    }
+            return betTypeOddsList;
+        }
 
+        private static void BuildBetTypeOdds(List<BetTypeOdds> betTypeOddsList, Market market)
+        {
+            if (market.group_name?.ToLowerInvariant() == RegularGroupName)
+            {
+                var betType = GetBetType(market);
+
+                if (betType.Item1 != UnknownBetTypeId)
+                {
                     foreach (var book in market.books)
                     {
                         betTypeOddsList.Add(BuildBetTypeOdds(betType, book));
                     }
                 }
             }
-
-            return betTypeOddsList;
         }
 
         private static BetTypeOdds BuildBetTypeOdds((int, string) betType, Book book)

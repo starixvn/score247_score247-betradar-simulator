@@ -5,6 +5,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using LiveScore.Database.Entities;
+    using LiveScore.Soccer;
+    using LiveScore.Soccer.Configurations;
     using LiveScore.Soccer.Database;
     using LiveScore.Soccer.Matches;
     using LiveScore.Soccer.Matches.Models;
@@ -19,19 +21,24 @@
         Task<MatchOddsMovement> GetOddsMovement(string matchId, int betTypeId, string bookmakerId, string language);
 
         Task<bool> InsertOdds(MatchOdds matchOdds);
+
+        Task<bool> InsertOdds(IEnumerable<MatchOdds> matchOdds);
     }
 
     public class OddsServiceImpl : OddsService
     {
         private readonly IDynamicRepository dynamicRepository;
         private readonly IMatchService matchService;
+        private readonly IAppSettings appSettings;
 
         public OddsServiceImpl(
             IDynamicRepository dynamicRepository,
-            IMatchService matchService)
+            IMatchService matchService,
+            IAppSettings appSettings)
         {
             this.dynamicRepository = dynamicRepository;
             this.matchService = matchService;
+            this.appSettings = appSettings;
         }
 
         public async Task<MatchOdds> GetOdds(string matchId, int betTypeId, string language)
@@ -315,6 +322,25 @@
                 };
                 oddsMovements.Add(oddsMovement);
             }
+        }
+
+        public async Task<bool> InsertOdds(IEnumerable<MatchOdds> matchOdds)
+        {
+            var matches = await matchService.GetMatches(
+                SportConstants.SoccerId,
+                DateTime.UtcNow.Date,
+                DateTime.UtcNow.AddDays(appSettings.Jobs.FetchScheduleDateSpan + 1),
+                new TimeSpan(),
+                Language.En.Value);
+
+            var filteredMatchOdds = matchOdds.Where(m => matches.Any(match => match.Id == m.MatchId));
+
+            foreach (var oddsMatch in filteredMatchOdds)
+            {
+                await InsertOdds(oddsMatch);
+            }
+
+            return true;
         }
     }
 }

@@ -11,6 +11,7 @@
     using NSubstitute;
     using Xunit;
     using LiveScore.Soccer.Matches;
+    using LiveScore.Soccer.Configurations;
 
     [Trait("LiveScore.Soccer", "Odds")]
     public class OddsServiceTests
@@ -18,13 +19,15 @@
         private readonly OddsServiceImpl oddsServiceImpl;
         private readonly IDynamicRepository dynamicRepository;
         private readonly IMatchService matchService;
+        private readonly IAppSettings appSettings;
         
 
         public OddsServiceTests()
         {
             dynamicRepository = Substitute.For<IDynamicRepository>();
             matchService = Substitute.For<IMatchService>();
-            oddsServiceImpl = new OddsServiceImpl(dynamicRepository, matchService);
+            appSettings = Substitute.For<IAppSettings>();
+            oddsServiceImpl = new OddsServiceImpl(dynamicRepository, matchService, appSettings);
         }
 
         [Fact]

@@ -58,11 +58,7 @@
         {
             var matchOddsList = SportRadarOddsBuilder.BuildMatchOddsList(oddsSchedule);
 
-            foreach (var matchOdds in matchOddsList)
-            {
-                await oddsService.InsertOdds(matchOdds);
-                //oddsService.InsertBetTypeOdds()
-            }
+            await oddsService.InsertOdds(matchOddsList);
         }
 
         ////[HttpPost(nameof(AddResult))]
