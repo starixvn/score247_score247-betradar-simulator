@@ -122,10 +122,12 @@
                 GenerateMatchTimeForLiveMatch(pushEvents[matchId]);
             }
 
+            var basicPushEvents = await GetBasicPushEvents(pushEvents);
+
             var tasks = new List<Task>
             {
-                InsertToDatabase(pushEvents),
-                PushBasicEvents(pushEvents)
+                InsertToDatabase(basicPushEvents),
+                PushBasicEvents(basicPushEvents)
             };
 
             await Task.WhenAll(tasks);
@@ -133,15 +135,13 @@
 
         private async Task PushBasicEvents(Dictionary<string, MatchPushEvent> pushEvents)
         {
-            var basicPushEvents = await GetBasicPushEvents(pushEvents);
-
-            if (basicPushEvents.Keys.Count > 0)
+            if (pushEvents.Keys.Count > 0)
             {
-                await pushHandler.Handle(basicPushEvents);
+                await pushHandler.Handle(pushEvents);
 
-                foreach (var matchId in basicPushEvents.Keys)
+                foreach (var matchId in pushEvents.Keys)
                 {
-                    var pushEvent = basicPushEvents[matchId];
+                    var pushEvent = pushEvents[matchId];
                     await UpdateMatch(matchId, pushEvent);
                 }
             }

@@ -170,22 +170,133 @@
             var oddsMovements = new List<OddsMovement>();
             var match = await matchService.GetMatch(matchId, language);
 
-            if(match.TimeLines == null)
+            if (match.TimeLines == null)
             {
                 return oddsMovements;
             }
 
-            var timelineEvents = match.TimeLines.Where(tl 
-                => OddChangeEventIds.Contains(tl.Type.ToLowerInvariant()) 
-                    && (string.IsNullOrEmpty(tl.PeriodType) || tl.PeriodType == PeriodType.RegularPeriod.Value));
+            var timelineEvents = GetMainEvents(match);
+            var firstBetTypeOdds = betTypeOddsList.First();
 
+            BuildOddMovementBeforeMatchStart(betTypeOddsList, oddsMovements, match, firstBetTypeOdds);
+            BuildOddMovementAfterMatchStarted(betTypeOddsList, oddsMovements, match, timelineEvents);
+            CalculateOddsTrend(oddsMovements);
+
+            oddsMovements.Reverse();
+
+            return oddsMovements;
+        }
+
+        private static IEnumerable<Timeline> GetMainEvents(Match match)
+            => match.TimeLines.Where(tl
+                 => OddChangeEventIds.Contains(tl.Type.ToLowerInvariant())
+                     && (string.IsNullOrEmpty(tl.PeriodType) || tl.PeriodType == PeriodType.RegularPeriod.Value));
+
+        private static void CalculateOddsTrend(List<OddsMovement> oddsMovements)
+        {
+            OddsMovement prevOdds = null;
+            foreach (var oddsMovement in oddsMovements)
+            {
+                if (prevOdds == null)
+                {
+                    prevOdds = oddsMovement;
+                }
+                else
+                {
+                    oddsMovement.CalculateOddsTrend(prevOdds.BetOptions);
+                    prevOdds = oddsMovement;
+                }
+            }
+        }
+
+        private static void BuildOddMovementAfterMatchStarted(
+            List<BetTypeOdds> betTypeOddsList, 
+            List<OddsMovement> oddsMovements, Match match, IEnumerable<Timeline> timelineEvents)
+        {
             var homeScore = 0;
             var awayScore = 0;
             Timeline firstHalfEvent = null;
             Timeline secondHalfEvent = null;
-            var firstBetTypeOdds = betTypeOddsList.First();
             var liveMatchOdds = betTypeOddsList.Where(o => o.LastUpdatedTime >= match.EventDate);
-            var beforeLiveMatchOdds = betTypeOddsList.Where(o => o.LastUpdatedTime < match.EventDate && o.LastUpdatedTime > firstBetTypeOdds.LastUpdatedTime);
+            foreach (var betTypeOdds in liveMatchOdds)
+            {
+                var timelineEvent = timelineEvents.FirstOrDefault(e => e.Time == betTypeOdds.LastUpdatedTime);
+                var oddsMovement = new OddsMovement
+                {
+                    BetOptions = betTypeOdds.BetOptions,
+                    UpdateTime = betTypeOdds.LastUpdatedTime
+                };
+
+                CalculateEvents(ref homeScore, ref awayScore, ref firstHalfEvent, ref secondHalfEvent, timelineEvent, oddsMovement);
+                CalculateMatchTime(firstHalfEvent, secondHalfEvent, betTypeOdds, oddsMovement);
+
+                if (firstHalfEvent != null)
+                {
+                    oddsMovement.IsMatchStarted = true;
+                }
+
+                oddsMovement.HomeScore = homeScore;
+                oddsMovement.AwayScore = awayScore;
+                oddsMovements.Add(oddsMovement);
+            }
+        }
+
+        private static void CalculateEvents(ref int homeScore, ref int awayScore, ref Timeline firstHalfEvent, ref Timeline secondHalfEvent, Timeline timelineEvent, OddsMovement oddsMovement)
+        {
+            if (timelineEvent != null)
+            {
+                if (timelineEvent.Type == EventTypes.ScoreChange.Value)
+                {
+                    homeScore = timelineEvent.HomeScore;
+                    awayScore = timelineEvent.AwayScore;
+                }
+
+                const int firstPeriod = 1;
+                const int secondPeriod = 2;
+                if (timelineEvent.Type == EventTypes.PeriodStart.Value
+                    && timelineEvent.Period == firstPeriod
+                    && timelineEvent.PeriodType == PeriodType.RegularPeriod.Value)
+                {
+                    firstHalfEvent = timelineEvent;
+                    oddsMovement.MatchTime = OddsLang.KO;
+                }
+
+                if (timelineEvent.Type == EventTypes.PeriodStart.Value
+                    && timelineEvent.Period == secondPeriod
+                    && timelineEvent.PeriodType == PeriodType.RegularPeriod.Value)
+                {
+                    secondHalfEvent = timelineEvent;
+                }
+            }
+        }
+
+        private static void CalculateMatchTime(
+            Timeline firstHalfEvent, 
+            Timeline secondHalfEvent, 
+            BetTypeOdds betTypeOdds, 
+            OddsMovement oddsMovement)
+        {
+            const int startSecondHaft = 46;
+
+            if (secondHalfEvent != null)
+            {
+                oddsMovement.MatchTime = ((betTypeOdds.LastUpdatedTime - secondHalfEvent.Time).TotalMinutes + startSecondHaft).ToString("0");
+            }
+            else 
+            {
+                if (string.IsNullOrWhiteSpace(oddsMovement.MatchTime))
+                {
+                    oddsMovement.MatchTime = (betTypeOdds.LastUpdatedTime - firstHalfEvent.Time).TotalMinutes.ToString("0");
+                }
+            }
+        }
+
+        private static void BuildOddMovementBeforeMatchStart(
+            List<BetTypeOdds> betTypeOddsList, 
+            List<OddsMovement> oddsMovements, 
+            Match match, 
+            BetTypeOdds firstBetTypeOdds)
+        {
             var openingOddsMovement = new OddsMovement
             {
                 BetOptions = firstBetTypeOdds.BetOptions,
@@ -195,6 +306,7 @@
             openingOddsMovement.ResetToOpeningOdds();
             oddsMovements.Add(openingOddsMovement);
 
+            var beforeLiveMatchOdds = betTypeOddsList.Where(o => o.LastUpdatedTime < match.EventDate && o.LastUpdatedTime > firstBetTypeOdds.LastUpdatedTime);
             foreach (var betTypeOdds in beforeLiveMatchOdds)
             {
                 var oddsMovement = new OddsMovement
@@ -205,81 +317,6 @@
                 };
                 oddsMovements.Add(oddsMovement);
             }
-            
-            foreach (var betTypeOdds in liveMatchOdds)
-            {
-                var timelineEvent = timelineEvents.FirstOrDefault(e => e.Time == betTypeOdds.LastUpdatedTime);
-                var oddsMovement = new OddsMovement
-                {
-                    BetOptions = betTypeOdds.BetOptions,
-                    UpdateTime = betTypeOdds.LastUpdatedTime
-                };
-
-                if(timelineEvent != null)
-                {
-                    if(timelineEvent.Type == EventTypes.ScoreChange.Value)
-                    {
-                        homeScore = timelineEvent.HomeScore;
-                        awayScore = timelineEvent.AwayScore;
-                    }
-
-                    if (timelineEvent.Type == EventTypes.PeriodStart.Value
-                        && timelineEvent.Period == 1
-                        && timelineEvent.PeriodType == PeriodType.RegularPeriod.Value)
-                    {
-                        firstHalfEvent = timelineEvent;
-                        oddsMovement.MatchTime = OddsLang.KO;
-                    }
-
-                    if (timelineEvent.Type == EventTypes.PeriodStart.Value
-                        && timelineEvent.Period == 2
-                        && timelineEvent.PeriodType == PeriodType.RegularPeriod.Value)
-                    {
-                        secondHalfEvent = timelineEvent;
-                    }
-                }
-
-                const int startSecondHaft = 46;
-
-                if(secondHalfEvent != null)
-                {
-                    oddsMovement.MatchTime = ((betTypeOdds.LastUpdatedTime - secondHalfEvent.Time).TotalMinutes + startSecondHaft).ToString("0");
-                }
-                else if (firstHalfEvent != null && string.IsNullOrWhiteSpace(oddsMovement.MatchTime))
-                {
-                    oddsMovement.MatchTime = (betTypeOdds.LastUpdatedTime - firstHalfEvent.Time).TotalMinutes.ToString("0");
-                }
-
-                if(firstHalfEvent != null)
-                {
-                    oddsMovement.IsMatchStarted = true;
-                }
-
-                oddsMovement.HomeScore = homeScore;
-                oddsMovement.AwayScore = awayScore;
-                oddsMovements.Add(oddsMovement);
-            }
-
-            OddsMovement prevOdds = null;
-            foreach (var oddsMovement in oddsMovements)
-            {
-                if(prevOdds == null)
-                {
-                    prevOdds = oddsMovement;
-                }
-                else
-                {
-                    oddsMovement.CalculateOddsTrend(prevOdds.BetOptions);
-                    prevOdds = oddsMovement;
-                }
-            }
-
-            oddsMovements.Reverse();
-            
-
-            return oddsMovements;
         }
-
-
     }
 }

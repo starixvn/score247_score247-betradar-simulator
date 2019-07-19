@@ -125,16 +125,9 @@
         }
 
         private static string GetOpeningOptionValue(int betTypeId, Outcome oc)
-        {
-            switch (betTypeId)
-            {
-                case OverUnderBeTypeId:
-                    return oc.opening_total?.ToString();
-
-                default:
-                    return string.Empty;
-            }
-        }
+            => betTypeId == OverUnderBeTypeId
+                ? oc.opening_total?.ToString()
+                : string.Empty;
 
         private static (int, string) GetBetType(Market market)
         {
