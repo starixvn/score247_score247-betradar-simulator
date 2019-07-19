@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using LiveScore.Soccer.Models;
 
     public class OddsMovement : Entity<int, string>
@@ -17,6 +18,21 @@
         public bool IsMatchStarted { get; set; }
 
         public DateTimeOffset UpdateTime { get; set; }
+
+        public void CalculateOddsTrend(IEnumerable<BetOptionOdds> prevBetOptions)
+        {
+            if (prevBetOptions.Count() != BetOptions.Count())
+            {
+                return;
+            }
+
+            var totalBetOptions = prevBetOptions.Count();
+
+            for (int i = 0; i < totalBetOptions; i++)
+            {
+                BetOptions.ElementAt(i).ReCalculateOddsTrend(prevBetOptions.ElementAt(i).LiveOdds);
+            }
+        }
 
         public void ResetToOpeningOdds()
         {

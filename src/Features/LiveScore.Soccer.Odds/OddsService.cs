@@ -203,8 +203,6 @@
                     UpdateTime = betTypeOdds.LastUpdatedTime,
                     MatchTime = OddsLang.Live
                 };
-
-                BetTypeOdds.AssignOpeningData(oddsMovement.BetOptions, firstBetTypeOdds.BetOptions);
                 oddsMovements.Add(oddsMovement);
             }
             
@@ -259,8 +257,21 @@
 
                 oddsMovement.HomeScore = homeScore;
                 oddsMovement.AwayScore = awayScore;
-                BetTypeOdds.AssignOpeningData(oddsMovement.BetOptions, firstBetTypeOdds.BetOptions);
                 oddsMovements.Add(oddsMovement);
+            }
+
+            OddsMovement prevOdds = null;
+            foreach (var oddsMovement in oddsMovements)
+            {
+                if(prevOdds == null)
+                {
+                    prevOdds = oddsMovement;
+                }
+                else
+                {
+                    oddsMovement.CalculateOddsTrend(prevOdds.BetOptions);
+                    prevOdds = oddsMovement;
+                }
             }
 
             oddsMovements.Reverse();

@@ -29,7 +29,7 @@
             OpeningOdds = openingBetOption.OpeningOdds == 0
                     ? openingBetOption.LiveOdds
                     : openingBetOption.OpeningOdds;
-            ReCalculateOddsTrend();
+            ReCalculateOddsTrend(OpeningOdds);
         }
 
         public void ResetOpeningOdds()
@@ -58,12 +58,12 @@
                 + LiveOdds.GetHashCode()
                 + OpeningOdds.GetHashCode();
 
-        public void ReCalculateOddsTrend()
+        public void ReCalculateOddsTrend(decimal prevOdds)
         {
-            OddsTrend = OpeningOdds == LiveOdds
+            OddsTrend = prevOdds == LiveOdds
                 ? OddsTrend.Neutral
 #pragma warning disable S3358 // Ternary operators should not be nested
-                : OpeningOdds > LiveOdds
+                : prevOdds > LiveOdds
                     ? OddsTrend.Down
                     : OddsTrend.Up;
 #pragma warning restore S3358 // Ternary operators should not be nested
