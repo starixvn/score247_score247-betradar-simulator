@@ -5,13 +5,12 @@
     using System.Linq;
     using System.Threading.Tasks;
     using LiveScore.Database.Entities;
-    using LiveScore.Soccer.Odds.Models;
     using LiveScore.Soccer.Database;
-    using Newtonsoft.Json;
     using LiveScore.Soccer.Matches;
-    using LiveScore.Soccer;
     using LiveScore.Soccer.Matches.Models;
     using LiveScore.Soccer.Odds.AppResources;
+    using LiveScore.Soccer.Odds.Models;
+    using Newtonsoft.Json;
 
     public interface OddsService
     {
@@ -49,7 +48,8 @@
                 .GroupBy(o => o.Bookmaker.Id);
 
             var betTypeOdssList = oddsEntities
-                .Select(group => {
+                .Select(group =>
+                {
                     var first = group.First();
                     var last = group.Last();
 
@@ -98,8 +98,8 @@
         }
 
         private async Task<bool> InsertOddsByBetType(
-            string matchId, 
-            IEnumerable<BetTypeOdds> BetTypeOddsList, 
+            string matchId,
+            IEnumerable<BetTypeOdds> BetTypeOddsList,
             DateTime? lastUpdate)
             => await dynamicRepository.InsertRange(BetTypeOddsList.Select(betTypeOdds
                =>
@@ -131,7 +131,7 @@
                                     && o.BookmakerId == bookmakerId
                             )
                             .OrderBy(o => o.ModifiedTime)
-                            .Select(o => 
+                            .Select(o =>
                             {
                                 var bto = JsonConvert.DeserializeObject<BetTypeOdds>(o.Value);
                                 bto.LastUpdatedTime = o.ModifiedTime;
@@ -140,10 +140,9 @@
                             })
                             .ToList();
 
-
             var firstOdds = betTypeOddList.FirstOrDefault();
 
-            if(firstOdds == null)
+            if (firstOdds == null)
             {
                 return new MatchOddsMovement();
             }
@@ -164,22 +163,21 @@
                 EventTypes.MatchEnded.Value
             };
 
-
         private async Task<IEnumerable<OddsMovement>> BuildOddsMovement(string matchId, List<BetTypeOdds> betTypeOddsList, string language)
         {
             var oddsMovements = new List<OddsMovement>();
             var match = await matchService.GetMatch(matchId, language);
 
-            if (match.TimeLines == null)
-            {
-                return oddsMovements;
-            }
-
             var timelineEvents = GetMainEvents(match);
             var firstBetTypeOdds = betTypeOddsList.First();
 
             BuildOddMovementBeforeMatchStart(betTypeOddsList, oddsMovements, match, firstBetTypeOdds);
-            BuildOddMovementAfterMatchStarted(betTypeOddsList, oddsMovements, match, timelineEvents);
+
+            if (match.TimeLines != null)
+            {
+                BuildOddMovementAfterMatchStarted(betTypeOddsList, oddsMovements, match, timelineEvents);
+            }
+
             CalculateOddsTrend(oddsMovements);
 
             oddsMovements.Reverse();
@@ -210,7 +208,7 @@
         }
 
         private static void BuildOddMovementAfterMatchStarted(
-            List<BetTypeOdds> betTypeOddsList, 
+            List<BetTypeOdds> betTypeOddsList,
             List<OddsMovement> oddsMovements, Match match, IEnumerable<Timeline> timelineEvents)
         {
             var homeScore = 0;
@@ -271,9 +269,9 @@
         }
 
         private static void CalculateMatchTime(
-            Timeline firstHalfEvent, 
-            Timeline secondHalfEvent, 
-            BetTypeOdds betTypeOdds, 
+            Timeline firstHalfEvent,
+            Timeline secondHalfEvent,
+            BetTypeOdds betTypeOdds,
             OddsMovement oddsMovement)
         {
             const int startSecondHaft = 46;
@@ -282,7 +280,7 @@
             {
                 oddsMovement.MatchTime = ((betTypeOdds.LastUpdatedTime - secondHalfEvent.Time).TotalMinutes + startSecondHaft).ToString("0");
             }
-            else 
+            else
             {
                 if (string.IsNullOrWhiteSpace(oddsMovement.MatchTime))
                 {
@@ -292,9 +290,9 @@
         }
 
         private static void BuildOddMovementBeforeMatchStart(
-            List<BetTypeOdds> betTypeOddsList, 
-            List<OddsMovement> oddsMovements, 
-            Match match, 
+            List<BetTypeOdds> betTypeOddsList,
+            List<OddsMovement> oddsMovements,
+            Match match,
             BetTypeOdds firstBetTypeOdds)
         {
             var openingOddsMovement = new OddsMovement
