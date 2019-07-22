@@ -70,6 +70,15 @@ namespace LiveScore.Soccer.Odds.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to HT.
+        /// </summary>
+        internal static string HT {
+            get {
+                return ResourceManager.GetString("HT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to KO.
         /// </summary>
         internal static string KO {

@@ -230,10 +230,7 @@
 
             var matchDataAccess = matchDataAccessFactory(sportId, DataProvider.Database);
 
-            var liveMatches = await GetLiveMatches(sportId, language);
-            var match = liveMatches.Any(m => m.Id == matchId)
-                  ? liveMatches.FirstOrDefault(m => m.Id == matchId)
-                  : await matchDataAccess.GetMatch(sportId, matchId, language);
+            var match = await GetMatch(sportId, matchId, language, matchDataAccess);
 
             if (match != null)
             {
@@ -249,6 +246,15 @@
             }
 
             return match;
+        }
+
+        private async Task<Match> GetMatch(int sportId, string matchId, string language, IMatchDataAccess matchDataAccess)
+        {
+            var liveMatches = await GetLiveMatches(sportId, language);
+
+            return liveMatches.Any(m => m.Id == matchId)
+                  ? liveMatches.FirstOrDefault(m => m.Id == matchId)
+                  : await matchDataAccess.GetMatch(sportId, matchId, language);
         }
 
         public async Task AddFullTimelines(int sportId, string matchId, string language, string region)
@@ -283,7 +289,7 @@
         public async Task<Match> GetMatch(string matchId, string language)
         {
             var matchDataAccess = matchDataAccessFactory(SportConstants.SoccerId, DataProvider.Database);
-            var match = await matchDataAccess.GetMatch(SportConstants.SoccerId, matchId, language);
+            var match = await GetMatch(SportConstants.SoccerId, matchId, language, matchDataAccess);
 
             if (match != null && !match.MatchResult.EventStatus.IsNotStartOrDelay())
             {
