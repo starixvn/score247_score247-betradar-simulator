@@ -170,18 +170,21 @@
                 EventTypes.MatchEnded.Value
             };
 
-        private async Task<IEnumerable<OddsMovement>> BuildOddsMovement(string matchId, List<BetTypeOdds> betTypeOddsList, string language)
+        private async Task<IEnumerable<OddsMovement>> BuildOddsMovement(
+            string matchId, 
+            List<BetTypeOdds> betTypeOddsList, 
+            string language)
         {
             var oddsMovements = new List<OddsMovement>();
             var match = await matchService.GetMatch(matchId, language);
 
-            var timelineEvents = GetMainEvents(match);
             var firstBetTypeOdds = betTypeOddsList.First();
 
             BuildOddMovementBeforeMatchStart(betTypeOddsList, oddsMovements, match, firstBetTypeOdds);
 
             if (match.TimeLines != null)
             {
+                var timelineEvents = GetMainEvents(match);
                 BuildOddMovementAfterMatchStarted(betTypeOddsList, oddsMovements, match, timelineEvents);
             }
 
@@ -194,7 +197,7 @@
 
         private static IEnumerable<Timeline> GetMainEvents(Match match)
             => match.TimeLines.Where(tl
-                 => OddChangeEventIds.Contains(tl.Type.ToLowerInvariant())
+                 => OddChangeEventIds.Contains(tl.Type?.ToLowerInvariant())
                      && (string.IsNullOrEmpty(tl.PeriodType) || tl.PeriodType == PeriodType.RegularPeriod.Value));
 
         private static void CalculateOddsTrend(List<OddsMovement> oddsMovements)
@@ -216,7 +219,9 @@
 
         private static void BuildOddMovementAfterMatchStarted(
             List<BetTypeOdds> betTypeOddsList,
-            List<OddsMovement> oddsMovements, Match match, IEnumerable<Timeline> timelineEvents)
+            List<OddsMovement> oddsMovements, 
+            Match match, 
+            IEnumerable<Timeline> timelineEvents)
         {
             var homeScore = 0;
             var awayScore = 0;
@@ -246,7 +251,13 @@
             }
         }
 
-        private static void CalculateEvents(ref int homeScore, ref int awayScore, ref Timeline firstHalfEvent, ref Timeline secondHalfEvent, Timeline timelineEvent, OddsMovement oddsMovement)
+        private static void CalculateEvents(
+            ref int homeScore, 
+            ref int awayScore, 
+            ref Timeline firstHalfEvent, 
+            ref Timeline secondHalfEvent, 
+            Timeline timelineEvent, 
+            OddsMovement oddsMovement)
         {
             if (timelineEvent != null)
             {
@@ -285,13 +296,15 @@
 
             if (secondHalfEvent != null)
             {
-                oddsMovement.MatchTime = ((betTypeOdds.LastUpdatedTime - secondHalfEvent.Time).TotalMinutes + startSecondHaft).ToString("0");
+                var totalSecondHalfMinutes = (betTypeOdds.LastUpdatedTime - secondHalfEvent.Time).TotalMinutes;
+                oddsMovement.MatchTime = (totalSecondHalfMinutes + startSecondHaft).ToString("0");
             }
             else
             {
                 if (string.IsNullOrWhiteSpace(oddsMovement.MatchTime))
                 {
-                    oddsMovement.MatchTime = (betTypeOdds.LastUpdatedTime - firstHalfEvent.Time).TotalMinutes.ToString("0");
+                    var totalFirstHalfMinutes = (betTypeOdds.LastUpdatedTime - firstHalfEvent.Time).TotalMinutes;
+                    oddsMovement.MatchTime = totalFirstHalfMinutes.ToString("0");
                 }
             }
         }
@@ -311,7 +324,11 @@
             openingOddsMovement.ResetToOpeningOdds();
             oddsMovements.Add(openingOddsMovement);
 
-            var beforeLiveMatchOdds = betTypeOddsList.Where(o => o.LastUpdatedTime < match.EventDate && o.LastUpdatedTime > firstBetTypeOdds.LastUpdatedTime);
+            var beforeLiveMatchOdds = betTypeOddsList.Where(
+                o => 
+                    o.LastUpdatedTime < match.EventDate 
+                    && o.LastUpdatedTime > firstBetTypeOdds.LastUpdatedTime);
+
             foreach (var betTypeOdds in beforeLiveMatchOdds)
             {
                 var oddsMovement = new OddsMovement
@@ -320,6 +337,7 @@
                     UpdateTime = betTypeOdds.LastUpdatedTime,
                     MatchTime = OddsLang.Live
                 };
+
                 oddsMovements.Add(oddsMovement);
             }
         }
