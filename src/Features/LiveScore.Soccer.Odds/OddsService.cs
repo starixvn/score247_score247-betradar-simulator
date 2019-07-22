@@ -20,9 +20,7 @@
 
         Task<MatchOddsMovement> GetOddsMovement(string matchId, int betTypeId, string bookmakerId, string language);
 
-        Task<bool> InsertOdds(MatchOdds matchOdds);
-
-        Task<bool> InsertOdds(IEnumerable<MatchOdds> matchOdds);
+        Task<bool> InsertOdds(IEnumerable<MatchOdds> matchOdds, bool forceInsert = false);
     }
 
     public class OddsServiceImpl : OddsService
@@ -80,18 +78,19 @@
                             .OrderByDescending(o => o.ModifiedTime)
                             .ToList();
 
-        public async Task<bool> InsertOdds(MatchOdds matchOdds)
+        public async Task<bool> InsertOdds(MatchOdds matchOdds, bool forceInsert = false)
         {
             var insertOddsList = new List<BetTypeOdds>();
 
             foreach (var betTypeOdds in matchOdds.BetTypeOddsList)
             {
                 var lastOddsList = GetOddsData(matchOdds.MatchId, betTypeOdds.Id);
-                var lastBookMakerOdds = lastOddsList.FirstOrDefault(odds => odds.BookmakerId == betTypeOdds.Bookmaker.Id);
+                var lastOdds = lastOddsList.FirstOrDefault(odds => odds.BookmakerId == betTypeOdds.Bookmaker.Id);
 
-                if (lastBookMakerOdds == null
-                    || (lastBookMakerOdds.ModifiedTime < matchOdds.LastUpdated
-                        && !JsonConvert.DeserializeObject<BetTypeOdds>(lastBookMakerOdds.Value).Equals(betTypeOdds)))
+                if (lastOdds == null
+                    || forceInsert
+                    || (lastOdds.ModifiedTime < matchOdds.LastUpdated
+                        && !JsonConvert.DeserializeObject<BetTypeOdds>(lastOdds.Value).Equals(betTypeOdds)))
                 {
                     insertOddsList.Add(betTypeOdds);
                 }
@@ -378,7 +377,7 @@
             }
         }
 
-        public async Task<bool> InsertOdds(IEnumerable<MatchOdds> matchOdds)
+        public async Task<bool> InsertOdds(IEnumerable<MatchOdds> matchOdds, bool forceInsert = false)
         {
             var matches = await matchService.GetMatches(
                 SportConstants.SoccerId,
@@ -391,7 +390,7 @@
 
             foreach (var oddsMatch in filteredMatchOdds)
             {
-                await InsertOdds(oddsMatch);
+                await InsertOdds(oddsMatch, forceInsert);
             }
 
             return true;
