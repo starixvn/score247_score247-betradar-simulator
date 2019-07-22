@@ -178,6 +178,11 @@
             var oddsMovements = new List<OddsMovement>();
             var match = await matchService.GetMatch(matchId, language);
 
+            if(match == null)
+            {
+                return oddsMovements;
+            }
+
             var firstBetTypeOdds = betTypeOddsList.First();
 
             BuildOddMovementBeforeMatchStart(betTypeOddsList, oddsMovements, match, firstBetTypeOdds);
@@ -197,7 +202,7 @@
 
         private static IEnumerable<Timeline> GetMainEvents(Match match)
             => match.TimeLines.Where(tl
-                 => OddChangeEventIds.Contains(tl.Type?.ToLowerInvariant())
+                 => tl != null && OddChangeEventIds.Contains(tl.Type?.ToLowerInvariant())
                      && (string.IsNullOrEmpty(tl.PeriodType) || tl.PeriodType == PeriodType.RegularPeriod.Value));
 
         private static void CalculateOddsTrend(List<OddsMovement> oddsMovements)
