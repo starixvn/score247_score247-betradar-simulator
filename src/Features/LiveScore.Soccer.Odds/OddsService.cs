@@ -335,7 +335,9 @@
                 {
                     oddsMovement.MatchTime = OddsLang.HT;
                 }
-                else
+#pragma warning disable S126 // "if ... else if" constructs should end with "else" clauses
+                else if (firstHalfEvent != null)
+#pragma warning restore S126 // "if ... else if" constructs should end with "else" clauses
                 {
                     var totalFirstHalfMinutes = (betTypeOdds.LastUpdatedTime - firstHalfEvent.Time).TotalMinutes;
                     oddsMovement.MatchTime = totalFirstHalfMinutes.ToString("0");

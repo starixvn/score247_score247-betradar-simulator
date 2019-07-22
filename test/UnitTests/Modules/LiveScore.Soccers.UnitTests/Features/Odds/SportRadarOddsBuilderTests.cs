@@ -81,8 +81,7 @@
             };
 
         private static SportEvent StubSportEvent(string matchId, string betTypeName)
-        {
-            return new SportEvent
+            => new SportEvent
             {
                 id = matchId,
                 markets = new List<Market>
@@ -102,7 +101,6 @@
                         }
 
             };
-        }
 
         private static Book StubBook(string id, string name)
             => new Book
