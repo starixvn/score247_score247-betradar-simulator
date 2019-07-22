@@ -23,7 +23,7 @@ namespace LiveScore.Providers.SportRadar.Dtos
     {
         public long id { get; set; }
         public string type { get; set; }
-        public DateTime time { get; set; }
+        public DateTimeOffset time { get; set; }
         public IEnumerable<CommentaryDto> commentaries { get; set; }
         public int period { get; set; }
         public string period_type { get; set; }

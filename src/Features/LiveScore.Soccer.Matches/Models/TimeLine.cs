@@ -10,7 +10,7 @@
     {
         public string Type { get; set; }
 
-        public DateTime Time { get; set; }
+        public DateTimeOffset Time { get; set; }
 
         public int MatchTime { get; set; }
 
