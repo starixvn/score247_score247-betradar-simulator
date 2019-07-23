@@ -61,7 +61,7 @@ namespace LiveScore.Soccer.Odds.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Handicap.
+        ///   Looks up a localized string similar to Asian Handicap.
         /// </summary>
         internal static string Handicap {
             get {

@@ -279,7 +279,7 @@
                 {
                     homeScore = timelineEvent.HomeScore;
                     awayScore = timelineEvent.AwayScore;
-                    oddsMovement.MatchTime = timelineEvent.MatchTime.ToString();
+                    oddsMovement.MatchTime = $"{timelineEvent.MatchTime}'";
                 }
                 else if (timelineEvent.Type == EventTypes.BreakStart.Value
                     && timelineEvent.PeriodType.ToLowerInvariant() == pause)
@@ -328,7 +328,7 @@
                 if (secondHalfEvent != null)
                 {
                     var totalSecondHalfMinutes = (betTypeOdds.LastUpdatedTime - secondHalfEvent.Time).TotalMinutes;
-                    oddsMovement.MatchTime = (totalSecondHalfMinutes + startSecondHaft).ToString("0");
+                    oddsMovement.MatchTime = (totalSecondHalfMinutes + startSecondHaft).ToString("0") + "'";
                 }
                 else if(firstBreakStartEvent != null)
                 {
@@ -339,7 +339,7 @@
 #pragma warning restore S126 // "if ... else if" constructs should end with "else" clauses
                 {
                     var totalFirstHalfMinutes = (betTypeOdds.LastUpdatedTime - firstHalfEvent.Time).TotalMinutes;
-                    oddsMovement.MatchTime = totalFirstHalfMinutes.ToString("0");
+                    oddsMovement.MatchTime = totalFirstHalfMinutes.ToString("0") + "'";
                 }
             }
         }

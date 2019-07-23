@@ -55,7 +55,7 @@
         [HttpPost(nameof(InsertOdds))]
         public async Task InsertOdds(
             [FromBody]OddsScheduleDto oddsSchedule,
-            [FromQuery]bool forceInsert = false)
+            [FromQuery]bool forceInsert = true)
         {
             var matchOddsList = SportRadarOddsBuilder.BuildMatchOddsList(oddsSchedule);
 
