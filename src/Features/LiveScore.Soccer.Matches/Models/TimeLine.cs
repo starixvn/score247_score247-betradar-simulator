@@ -73,6 +73,8 @@
         public bool IsFirstShoot { get; set; }
 
         public string PenaltyStatus { get; set; }
+
+        public bool IsInBreakStart => Type == EventTypes.BreakStart.Value;
     }
 
     public class Commentary

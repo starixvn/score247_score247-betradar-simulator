@@ -13,9 +13,9 @@
 
         public IEnumerable<BetOptionOdds> BetOptions { get; set; }
 
-        public static void AssignOpeningData(IEnumerable<BetOptionOdds> betOptions, IEnumerable<BetOptionOdds> openingBetOptions)
+        public void AssignOpeningData(IEnumerable<BetOptionOdds> openingBetOptions)
         {
-            if(openingBetOptions.Count() != betOptions.Count())
+            if(openingBetOptions.Count() != BetOptions.Count())
             {
                 return;
             }
@@ -24,7 +24,7 @@
 
             for (int i = 0; i < totalBetOptions; i++)
             {
-                betOptions.ElementAt(i).AssginOpeningData(openingBetOptions.ElementAt(i));
+                BetOptions.ElementAt(i).AssginOpeningData(openingBetOptions.ElementAt(i));
             }
         }
 
