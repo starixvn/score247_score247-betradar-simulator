@@ -1,0 +1,804 @@
+{
+  "generated_at": "2019-07-30T10:12:54+00:00",
+  "schema": "http:\/\/schemas.sportradar.com\/bsa\/soccer\/v1\/json\/endpoints\/soccer\/schedule.json",
+  "sport_events": [
+    {
+      "id": "sr:match:18808330",
+      "scheduled": "2019-07-30T15:45:00+00:00",
+      "start_time_tbd": false,
+      "status": "not_started",
+      "tournament_round": {
+        "type": "qualification",
+        "number": 2,
+        "name": "cupqround",
+        "cup_round_match_number": 2,
+        "cup_round_matches": 2,
+        "other_match_id": "sr:match:18808328",
+        "phase": "qualification_playoffs"
+      },
+      "season": {
+        "id": "sr:season:68134",
+        "name": "UEFA Europa League 19\/20",
+        "start_date": "2019-06-27",
+        "end_date": "2020-05-28",
+        "year": "19\/20",
+        "tournament_id": "sr:tournament:679"
+      },
+      "tournament": {
+        "id": "sr:tournament:679",
+        "name": "UEFA Europa League",
+        "sport": {
+          "id": "sr:sport:1",
+          "name": "Soccer"
+        },
+        "category": {
+          "id": "sr:category:393",
+          "name": "International Clubs"
+        }
+      },
+      "competitors": [
+        {
+          "id": "sr:competitor:5343",
+          "name": "FK Suduva Marijampole",
+          "country": "Lithuania",
+          "country_code": "LTU",
+          "abbreviation": "SUD",
+          "qualifier": "home"
+        },
+        {
+          "id": "sr:competitor:37862",
+          "name": "Tre Penne",
+          "country": "San Marino",
+          "country_code": "SMR",
+          "abbreviation": "TRP",
+          "qualifier": "away"
+        }
+      ],
+      "venue": {
+        "id": "sr:venue:3796",
+        "name": "Arvi Arena",
+        "capacity": 6250,
+        "city_name": "Marijampole",
+        "country_name": "Lithuania",
+        "map_coordinates": "54.574547,23.365392",
+        "country_code": "LTU"
+      }
+    },
+    {
+      "id": "sr:match:18808486",
+      "scheduled": "2019-07-30T15:45:00+00:00",
+      "start_time_tbd": false,
+      "status": "not_started",
+      "tournament_round": {
+        "type": "qualification",
+        "number": 2,
+        "name": "cupqround",
+        "cup_round_match_number": 2,
+        "cup_round_matches": 2,
+        "other_match_id": "sr:match:18808482",
+        "phase": "qualification_playoffs"
+      },
+      "season": {
+        "id": "sr:season:68134",
+        "name": "UEFA Europa League 19\/20",
+        "start_date": "2019-06-27",
+        "end_date": "2020-05-28",
+        "year": "19\/20",
+        "tournament_id": "sr:tournament:679"
+      },
+      "tournament": {
+        "id": "sr:tournament:679",
+        "name": "UEFA Europa League",
+        "sport": {
+          "id": "sr:sport:1",
+          "name": "Soccer"
+        },
+        "category": {
+          "id": "sr:category:393",
+          "name": "International Clubs"
+        }
+      },
+      "competitors": [
+        {
+          "id": "sr:competitor:126304",
+          "name": "Lincoln Red Imps FC",
+          "country": "Gibraltar",
+          "country_code": "GIB",
+          "abbreviation": "LIN",
+          "qualifier": "home"
+        },
+        {
+          "id": "sr:competitor:364472",
+          "name": "FC Ararat-Armenia",
+          "country": "Armenia",
+          "country_code": "ARM",
+          "abbreviation": "FCA",
+          "qualifier": "away"
+        }
+      ],
+      "venue": {
+        "id": "sr:venue:13246",
+        "name": "Victoria Stadium",
+        "capacity": 5000,
+        "city_name": "Gibraltar",
+        "country_name": "Gibraltar",
+        "map_coordinates": "36.149356,-5.350342",
+        "country_code": "GIB"
+      }
+    },
+    {
+      "id": "sr:match:18808332",
+      "scheduled": "2019-07-30T15:55:00+00:00",
+      "start_time_tbd": false,
+      "status": "not_started",
+      "tournament_round": {
+        "type": "qualification",
+        "number": 2,
+        "name": "cupqround",
+        "cup_round_match_number": 2,
+        "cup_round_matches": 2,
+        "other_match_id": "sr:match:18808322",
+        "phase": "qualification_playoffs"
+      },
+      "season": {
+        "id": "sr:season:68134",
+        "name": "UEFA Europa League 19\/20",
+        "start_date": "2019-06-27",
+        "end_date": "2020-05-28",
+        "year": "19\/20",
+        "tournament_id": "sr:tournament:679"
+      },
+      "tournament": {
+        "id": "sr:tournament:679",
+        "name": "UEFA Europa League",
+        "sport": {
+          "id": "sr:sport:1",
+          "name": "Soccer"
+        },
+        "category": {
+          "id": "sr:category:393",
+          "name": "International Clubs"
+        }
+      },
+      "competitors": [
+        {
+          "id": "sr:competitor:5207",
+          "name": "F91 Dudelange",
+          "country": "Luxembourg",
+          "country_code": "LUX",
+          "abbreviation": "F91",
+          "qualifier": "home"
+        },
+        {
+          "id": "sr:competitor:5413",
+          "name": "FK Shkendija",
+          "country": "North Macedonia",
+          "country_code": "MKD",
+          "abbreviation": "FKS",
+          "qualifier": "away"
+        }
+      ],
+      "venue": {
+        "id": "sr:venue:3748",
+        "name": "Stade Jos Nosbaum",
+        "capacity": 4650,
+        "city_name": "Dudelange",
+        "country_name": "Luxembourg",
+        "map_coordinates": "49.472222,6.084722",
+        "country_code": "LUX"
+      }
+    },
+    {
+      "id": "sr:match:18506824",
+      "scheduled": "2019-07-30T16:00:00+00:00",
+      "start_time_tbd": false,
+      "status": "not_started",
+      "tournament_round": {
+        "type": "group",
+        "number": 1,
+        "phase": "regular season"
+      },
+      "season": {
+        "id": "sr:season:67467",
+        "name": "Premier League 19\/20",
+        "start_date": "2019-07-26",
+        "end_date": "2020-05-31",
+        "year": "19\/20",
+        "tournament_id": "sr:tournament:218"
+      },
+      "tournament": {
+        "id": "sr:tournament:218",
+        "name": "Premier League",
+        "sport": {
+          "id": "sr:sport:1",
+          "name": "Soccer"
+        },
+        "category": {
+          "id": "sr:category:86",
+          "name": "Ukraine",
+          "country_code": "UKR"
+        }
+      },
+      "competitors": [
+        {
+          "id": "sr:competitor:25480",
+          "name": "SFC Desna Chernihiv",
+          "country": "Ukraine",
+          "country_code": "UKR",
+          "abbreviation": "DES",
+          "qualifier": "home"
+        },
+        {
+          "id": "sr:competitor:23790",
+          "name": "FC Lviv",
+          "country": "Ukraine",
+          "country_code": "UKR",
+          "abbreviation": "LVI",
+          "qualifier": "away"
+        }
+      ],
+      "venue": {
+        "id": "sr:venue:12173",
+        "name": "Yuri Gagarin Stadium",
+        "capacity": 12060,
+        "city_name": "Chernihiv",
+        "country_name": "Ukraine",
+        "map_coordinates": "51.501667,31.327222",
+        "country_code": "UKR"
+      }
+    },
+    {
+      "id": "sr:match:18506828",
+      "scheduled": "2019-07-30T16:00:00+00:00",
+      "start_time_tbd": false,
+      "status": "not_started",
+      "tournament_round": {
+        "type": "group",
+        "number": 1,
+        "phase": "regular season"
+      },
+      "season": {
+        "id": "sr:season:67467",
+        "name": "Premier League 19\/20",
+        "start_date": "2019-07-26",
+        "end_date": "2020-05-31",
+        "year": "19\/20",
+        "tournament_id": "sr:tournament:218"
+      },
+      "tournament": {
+        "id": "sr:tournament:218",
+        "name": "Premier League",
+        "sport": {
+          "id": "sr:sport:1",
+          "name": "Soccer"
+        },
+        "category": {
+          "id": "sr:category:86",
+          "name": "Ukraine",
+          "country_code": "UKR"
+        }
+      },
+      "competitors": [
+        {
+          "id": "sr:competitor:213176",
+          "name": "Kolos Kovalivka",
+          "country": "Ukraine",
+          "country_code": "UKR",
+          "abbreviation": "KKO",
+          "qualifier": "home"
+        },
+        {
+          "id": "sr:competitor:3319",
+          "name": "FC Mariupol",
+          "country": "Ukraine",
+          "country_code": "UKR",
+          "abbreviation": "FCM",
+          "qualifier": "away"
+        }
+      ],
+      "venue": {
+        "id": "sr:venue:18844",
+        "name": "Kolos Stadium",
+        "capacity": 1020,
+        "city_name": "Kovalivka",
+        "country_name": "Ukraine",
+        "map_coordinates": "49.985966,30.008585",
+        "country_code": "UKR"
+      }
+    },
+    {
+      "id": "sr:match:18808490",
+      "scheduled": "2019-07-30T16:00:00+00:00",
+      "start_time_tbd": false,
+      "status": "not_started",
+      "tournament_round": {
+        "type": "qualification",
+        "number": 2,
+        "name": "cupqround",
+        "cup_round_match_number": 2,
+        "cup_round_matches": 2,
+        "other_match_id": "sr:match:18808488",
+        "phase": "qualification_playoffs"
+      },
+      "season": {
+        "id": "sr:season:68134",
+        "name": "UEFA Europa League 19\/20",
+        "start_date": "2019-06-27",
+        "end_date": "2020-05-28",
+        "year": "19\/20",
+        "tournament_id": "sr:tournament:679"
+      },
+      "tournament": {
+        "id": "sr:tournament:679",
+        "name": "UEFA Europa League",
+        "sport": {
+          "id": "sr:sport:1",
+          "name": "Soccer"
+        },
+        "category": {
+          "id": "sr:category:393",
+          "name": "International Clubs"
+        }
+      },
+      "competitors": [
+        {
+          "id": "sr:competitor:275019",
+          "name": "KF Feronikeli",
+          "abbreviation": "FER",
+          "qualifier": "home"
+        },
+        {
+          "id": "sr:competitor:2404",
+          "name": "SK Slovan Bratislava",
+          "country": "Slovakia",
+          "country_code": "SVK",
+          "abbreviation": "SLB",
+          "qualifier": "away"
+        }
+      ],
+      "venue": {
+        "id": "sr:venue:19082",
+        "name": "Stadiumi I Futbollit",
+        "capacity": 2000,
+        "city_name": "Gllogoc",
+        "country_name": "Kosovo",
+        "map_coordinates": "42.634343,20.884849",
+        "country_code": "KOS"
+      }
+    },
+    {
+      "id": "sr:match:18808272",
+      "scheduled": "2019-07-30T17:00:00+00:00",
+      "start_time_tbd": false,
+      "status": "not_started",
+      "tournament_round": {
+        "type": "qualification",
+        "number": 2,
+        "name": "cupqround",
+        "cup_round_match_number": 2,
+        "cup_round_matches": 2,
+        "other_match_id": "sr:match:18808268",
+        "phase": "qualification_playoffs"
+      },
+      "season": {
+        "id": "sr:season:67681",
+        "name": "UEFA Champions League 19\/20",
+        "start_date": "2019-06-25",
+        "end_date": "2020-06-01",
+        "year": "19\/20",
+        "tournament_id": "sr:tournament:7"
+      },
+      "tournament": {
+        "id": "sr:tournament:7",
+        "name": "UEFA Champions League",
+        "sport": {
+          "id": "sr:sport:1",
+          "name": "Soccer"
+        },
+        "category": {
+          "id": "sr:category:393",
+          "name": "International Clubs"
+        }
+      },
+      "competitors": [
+        {
+          "id": "sr:competitor:8091",
+          "name": "Nomme Kalju FC",
+          "country": "Estonia",
+          "country_code": "EST",
+          "abbreviation": "NKA",
+          "qualifier": "home"
+        },
+        {
+          "id": "sr:competitor:2352",
+          "name": "Celtic FC",
+          "country": "Scotland",
+          "country_code": "SCO",
+          "abbreviation": "CEL",
+          "qualifier": "away"
+        }
+      ],
+      "venue": {
+        "id": "sr:venue:3551",
+        "name": "Hiiu Kunstmurustaadion",
+        "capacity": 1000,
+        "city_name": "Tallinn",
+        "country_name": "Estonia",
+        "map_coordinates": "59.385456,24.659603",
+        "country_code": "EST"
+      }
+    },
+    {
+      "id": "sr:match:18808274",
+      "scheduled": "2019-07-30T17:00:00+00:00",
+      "start_time_tbd": false,
+      "status": "not_started",
+      "tournament_round": {
+        "type": "qualification",
+        "number": 2,
+        "name": "cupqround",
+        "cup_round_match_number": 2,
+        "cup_round_matches": 2,
+        "other_match_id": "sr:match:18808230",
+        "phase": "qualification_playoffs"
+      },
+      "season": {
+        "id": "sr:season:67681",
+        "name": "UEFA Champions League 19\/20",
+        "start_date": "2019-06-25",
+        "end_date": "2020-06-01",
+        "year": "19\/20",
+        "tournament_id": "sr:tournament:7"
+      },
+      "tournament": {
+        "id": "sr:tournament:7",
+        "name": "UEFA Champions League",
+        "sport": {
+          "id": "sr:sport:1",
+          "name": "Soccer"
+        },
+        "category": {
+          "id": "sr:category:393",
+          "name": "International Clubs"
+        }
+      },
+      "competitors": [
+        {
+          "id": "sr:competitor:3398",
+          "name": "Apoel Nicosia FC",
+          "country": "Cyprus",
+          "country_code": "CYP",
+          "abbreviation": "APO",
+          "qualifier": "home"
+        },
+        {
+          "id": "sr:competitor:6224",
+          "name": "FK Sutjeska",
+          "country": "Montenegro",
+          "country_code": "MNE",
+          "abbreviation": "SUT",
+          "qualifier": "away"
+        }
+      ],
+      "venue": {
+        "id": "sr:venue:929",
+        "name": "GSP Stadium",
+        "capacity": 22859,
+        "city_name": "Nicosia",
+        "country_name": "Cyprus",
+        "map_coordinates": "35.114542,33.362864",
+        "country_code": "CYP"
+      }
+    },
+    {
+      "id": "sr:match:18808276",
+      "scheduled": "2019-07-30T17:00:00+00:00",
+      "start_time_tbd": false,
+      "status": "not_started",
+      "tournament_round": {
+        "type": "qualification",
+        "number": 2,
+        "name": "cupqround",
+        "cup_round_match_number": 2,
+        "cup_round_matches": 2,
+        "other_match_id": "sr:match:18808260",
+        "phase": "qualification_playoffs"
+      },
+      "season": {
+        "id": "sr:season:67681",
+        "name": "UEFA Champions League 19\/20",
+        "start_date": "2019-06-25",
+        "end_date": "2020-06-01",
+        "year": "19\/20",
+        "tournament_id": "sr:tournament:7"
+      },
+      "tournament": {
+        "id": "sr:tournament:7",
+        "name": "UEFA Champions League",
+        "sport": {
+          "id": "sr:sport:1",
+          "name": "Soccer"
+        },
+        "category": {
+          "id": "sr:category:393",
+          "name": "International Clubs"
+        }
+      },
+      "competitors": [
+        {
+          "id": "sr:competitor:5198",
+          "name": "Maccabi Tel Aviv FC",
+          "country": "Israel",
+          "country_code": "ISR",
+          "abbreviation": "MTA",
+          "qualifier": "home"
+        },
+        {
+          "id": "sr:competitor:5287",
+          "name": "FC CFR 1907 Cluj",
+          "country": "Romania",
+          "country_code": "ROU",
+          "abbreviation": "CFR",
+          "qualifier": "away"
+        }
+      ],
+      "venue": {
+        "id": "sr:venue:11981",
+        "name": "Netanya Stadium",
+        "capacity": 13800,
+        "city_name": "Netanya",
+        "country_name": "Israel",
+        "map_coordinates": "32.294333,34.864575",
+        "country_code": "ISR"
+      }
+    },
+    {
+      "id": "sr:match:18481848",
+      "scheduled": "2019-07-30T18:00:00+00:00",
+      "start_time_tbd": false,
+      "status": "not_started",
+      "tournament_round": {
+        "type": "qualification",
+        "number": 2,
+        "name": "cupqround",
+        "cup_round_match_number": 2,
+        "cup_round_matches": 2,
+        "other_match_id": "sr:match:18481846",
+        "phase": "qualification_playoffs"
+      },
+      "season": {
+        "id": "sr:season:67681",
+        "name": "UEFA Champions League 19\/20",
+        "start_date": "2019-06-25",
+        "end_date": "2020-06-01",
+        "year": "19\/20",
+        "tournament_id": "sr:tournament:7"
+      },
+      "tournament": {
+        "id": "sr:tournament:7",
+        "name": "UEFA Champions League",
+        "sport": {
+          "id": "sr:sport:1",
+          "name": "Soccer"
+        },
+        "category": {
+          "id": "sr:category:393",
+          "name": "International Clubs"
+        }
+      },
+      "competitors": [
+        {
+          "id": "sr:competitor:2501",
+          "name": "FC Basel 1893",
+          "country": "Switzerland",
+          "country_code": "CHE",
+          "abbreviation": "FCB",
+          "qualifier": "home"
+        },
+        {
+          "id": "sr:competitor:2952",
+          "name": "PSV Eindhoven",
+          "country": "Netherlands",
+          "country_code": "NLD",
+          "abbreviation": "PSV",
+          "qualifier": "away"
+        }
+      ],
+      "venue": {
+        "id": "sr:venue:764",
+        "name": "St. Jakob-Park",
+        "capacity": 37994,
+        "city_name": "Basel",
+        "country_name": "Switzerland",
+        "map_coordinates": "47.541575,7.620181",
+        "country_code": "CHE"
+      }
+    },
+    {
+      "id": "sr:match:18798000",
+      "scheduled": "2019-07-30T18:00:00+00:00",
+      "start_time_tbd": false,
+      "status": "not_started",
+      "tournament_round": {
+        "type": "qualification",
+        "number": 2,
+        "name": "cupqround",
+        "cup_round_match_number": 2,
+        "cup_round_matches": 2,
+        "other_match_id": "sr:match:18797882",
+        "phase": "qualification_playoffs"
+      },
+      "season": {
+        "id": "sr:season:67681",
+        "name": "UEFA Champions League 19\/20",
+        "start_date": "2019-06-25",
+        "end_date": "2020-06-01",
+        "year": "19\/20",
+        "tournament_id": "sr:tournament:7"
+      },
+      "tournament": {
+        "id": "sr:tournament:7",
+        "name": "UEFA Champions League",
+        "sport": {
+          "id": "sr:sport:1",
+          "name": "Soccer"
+        },
+        "category": {
+          "id": "sr:category:393",
+          "name": "International Clubs"
+        }
+      },
+      "competitors": [
+        {
+          "id": "sr:competitor:2032",
+          "name": "GNK Dinamo Zagreb",
+          "country": "Croatia",
+          "country_code": "HRV",
+          "abbreviation": "DZA",
+          "qualifier": "home"
+        },
+        {
+          "id": "sr:competitor:116312",
+          "name": "FC Saburtalo Tbilisi",
+          "country": "Georgia",
+          "country_code": "GEO",
+          "abbreviation": "SAT",
+          "qualifier": "away"
+        }
+      ],
+      "venue": {
+        "id": "sr:venue:900",
+        "name": "Maksimir",
+        "capacity": 35423,
+        "city_name": "Zagreb",
+        "country_name": "Croatia",
+        "map_coordinates": "45.818858,16.018078",
+        "country_code": "HRV"
+      }
+    },
+    {
+      "id": "sr:match:18808278",
+      "scheduled": "2019-07-30T18:00:00+00:00",
+      "start_time_tbd": false,
+      "status": "not_started",
+      "tournament_round": {
+        "type": "qualification",
+        "number": 2,
+        "name": "cupqround",
+        "cup_round_match_number": 2,
+        "cup_round_matches": 2,
+        "other_match_id": "sr:match:18808258",
+        "phase": "qualification_playoffs"
+      },
+      "season": {
+        "id": "sr:season:67681",
+        "name": "UEFA Champions League 19\/20",
+        "start_date": "2019-06-25",
+        "end_date": "2020-06-01",
+        "year": "19\/20",
+        "tournament_id": "sr:tournament:7"
+      },
+      "tournament": {
+        "id": "sr:tournament:7",
+        "name": "UEFA Champions League",
+        "sport": {
+          "id": "sr:sport:1",
+          "name": "Soccer"
+        },
+        "category": {
+          "id": "sr:category:393",
+          "name": "International Clubs"
+        }
+      },
+      "competitors": [
+        {
+          "id": "sr:competitor:5332",
+          "name": "Valletta FC",
+          "country": "Malta",
+          "country_code": "MLT",
+          "abbreviation": "VAL",
+          "qualifier": "home"
+        },
+        {
+          "id": "sr:competitor:1925",
+          "name": "Ferencvarosi TC",
+          "country": "Hungary",
+          "country_code": "HUN",
+          "abbreviation": "FTC",
+          "qualifier": "away"
+        }
+      ],
+      "venue": {
+        "id": "sr:venue:8545",
+        "name": "Mfa Centenary Stadium",
+        "capacity": 3000,
+        "city_name": "Ta' Qali",
+        "country_name": "Malta",
+        "map_coordinates": "35.896638,14.415425",
+        "country_code": "MLT"
+      }
+    },
+    {
+      "id": "sr:match:18481844",
+      "scheduled": "2019-07-30T18:30:00+00:00",
+      "start_time_tbd": false,
+      "status": "not_started",
+      "tournament_round": {
+        "type": "qualification",
+        "number": 2,
+        "name": "cupqround",
+        "cup_round_match_number": 2,
+        "cup_round_matches": 2,
+        "other_match_id": "sr:match:18481842",
+        "phase": "qualification_playoffs"
+      },
+      "season": {
+        "id": "sr:season:67681",
+        "name": "UEFA Champions League 19\/20",
+        "start_date": "2019-06-25",
+        "end_date": "2020-06-01",
+        "year": "19\/20",
+        "tournament_id": "sr:tournament:7"
+      },
+      "tournament": {
+        "id": "sr:tournament:7",
+        "name": "UEFA Champions League",
+        "sport": {
+          "id": "sr:sport:1",
+          "name": "Soccer"
+        },
+        "category": {
+          "id": "sr:category:393",
+          "name": "International Clubs"
+        }
+      },
+      "competitors": [
+        {
+          "id": "sr:competitor:3245",
+          "name": "Olympiacos FC",
+          "country": "Greece",
+          "country_code": "GRC",
+          "abbreviation": "OLY",
+          "qualifier": "home"
+        },
+        {
+          "id": "sr:competitor:4502",
+          "name": "FC Viktoria Plzen",
+          "country": "Czech Republic",
+          "country_code": "CZE",
+          "abbreviation": "PLZ",
+          "qualifier": "away"
+        }
+      ],
+      "venue": {
+        "id": "sr:venue:906",
+        "name": "Georgios Karaiskakis",
+        "capacity": 33334,
+        "city_name": "Piraeus",
+        "country_name": "Greece",
+        "map_coordinates": "37.946447,23.664317",
+        "country_code": "GRC"
+      }
+    }
+  ]
+}

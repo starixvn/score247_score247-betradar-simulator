@@ -1,0 +1,766 @@
+{
+    "generated_at": "2019-06-03T04:33:24+00:00",
+    "schema": "http://schemas.sportradar.com/bsa/soccer/v1/json/endpoints/soccer/results.json",
+    "results": [
+        {
+            "sport_event": {
+                "id": "sr:match:17305429",
+                "scheduled": "2019-06-02T14:00:00+00:00",
+                "start_time_tbd": false,
+                "tournament_round": {
+                    "type": "group",
+                    "number": 12
+                },
+                "season": {
+                    "id": "sr:season:63527",
+                    "name": "Premier League 2019",
+                    "start_date": "2019-03-10",
+                    "end_date": "2019-10-28",
+                    "year": "2019",
+                    "tournament_id": "sr:tournament:673"
+                },
+                "tournament": {
+                    "id": "sr:tournament:673",
+                    "name": "Premier League",
+                    "sport": {
+                        "id": "sr:sport:1",
+                        "name": "Soccer"
+                    },
+                    "category": {
+                        "id": "sr:category:201",
+                        "name": "Faroe Islands",
+                        "country_code": "FRO"
+                    }
+                },
+                "competitors": [
+                    {
+                        "id": "sr:competitor:5193",
+                        "name": "Vikingur Gota",
+                        "country": "Faroe Islands",
+                        "country_code": "FRO",
+                        "abbreviation": "GOT",
+                        "qualifier": "home"
+                    },
+                    {
+                        "id": "sr:competitor:5190",
+                        "name": "Skala IF",
+                        "country": "Faroe Islands",
+                        "country_code": "FRO",
+                        "abbreviation": "SKA",
+                        "qualifier": "away"
+                    }
+                ],
+                "venue": {
+                    "id": "sr:venue:4292",
+                    "name": "Sarpugerdi Stadium",
+                    "capacity": 3000,
+                    "city_name": "Nordragota",
+                    "country_name": "Faroe Islands",
+                    "map_coordinates": "62.199482,-6.745700",
+                    "country_code": "FRO"
+                }
+            },
+            "sport_event_status": {
+                "status": "closed",
+                "match_status": "ended",
+                "home_score": 2,
+                "away_score": 1,
+                "winner_id": "sr:competitor:5193",
+                "period_scores": [
+                    {
+                        "home_score": 0,
+                        "away_score": 1,
+                        "type": "regular_period",
+                        "number": 1
+                    },
+                    {
+                        "home_score": 2,
+                        "away_score": 0,
+                        "type": "regular_period",
+                        "number": 2
+                    }
+                ]
+            }
+        },
+        {
+            "sport_event": {
+                "id": "sr:match:17305431",
+                "scheduled": "2019-06-02T14:00:00+00:00",
+                "start_time_tbd": false,
+                "tournament_round": {
+                    "type": "group",
+                    "number": 12
+                },
+                "season": {
+                    "id": "sr:season:63527",
+                    "name": "Premier League 2019",
+                    "start_date": "2019-03-10",
+                    "end_date": "2019-10-28",
+                    "year": "2019",
+                    "tournament_id": "sr:tournament:673"
+                },
+                "tournament": {
+                    "id": "sr:tournament:673",
+                    "name": "Premier League",
+                    "sport": {
+                        "id": "sr:sport:1",
+                        "name": "Soccer"
+                    },
+                    "category": {
+                        "id": "sr:category:201",
+                        "name": "Faroe Islands",
+                        "country_code": "FRO"
+                    }
+                },
+                "competitors": [
+                    {
+                        "id": "sr:competitor:5187",
+                        "name": "HB Torshavn",
+                        "country": "Faroe Islands",
+                        "country_code": "FRO",
+                        "abbreviation": "HBT",
+                        "qualifier": "home"
+                    },
+                    {
+                        "id": "sr:competitor:5260",
+                        "name": "Eb/Streymur",
+                        "country": "Faroe Islands",
+                        "country_code": "FRO",
+                        "abbreviation": "STR",
+                        "qualifier": "away"
+                    }
+                ],
+                "venue": {
+                    "id": "sr:venue:1901",
+                    "name": "Gundadalur",
+                    "capacity": 5000,
+                    "city_name": "Torshavn",
+                    "country_name": "Faroe Islands",
+                    "map_coordinates": "62.019237,-6.781212",
+                    "country_code": "FRO"
+                }
+            },
+            "sport_event_status": {
+                "status": "closed",
+                "match_status": "ended",
+                "home_score": 6,
+                "away_score": 4,
+                "winner_id": "sr:competitor:5187",
+                "period_scores": [
+                    {
+                        "home_score": 3,
+                        "away_score": 3,
+                        "type": "regular_period",
+                        "number": 1
+                    },
+                    {
+                        "home_score": 3,
+                        "away_score": 1,
+                        "type": "regular_period",
+                        "number": 2
+                    }
+                ]
+            }
+        },
+        {
+            "sport_event": {
+                "id": "sr:match:17305435",
+                "scheduled": "2019-06-02T14:00:00+00:00",
+                "start_time_tbd": false,
+                "tournament_round": {
+                    "type": "group",
+                    "number": 12
+                },
+                "season": {
+                    "id": "sr:season:63527",
+                    "name": "Premier League 2019",
+                    "start_date": "2019-03-10",
+                    "end_date": "2019-10-28",
+                    "year": "2019",
+                    "tournament_id": "sr:tournament:673"
+                },
+                "tournament": {
+                    "id": "sr:tournament:673",
+                    "name": "Premier League",
+                    "sport": {
+                        "id": "sr:sport:1",
+                        "name": "Soccer"
+                    },
+                    "category": {
+                        "id": "sr:category:201",
+                        "name": "Faroe Islands",
+                        "country_code": "FRO"
+                    }
+                },
+                "competitors": [
+                    {
+                        "id": "sr:competitor:5188",
+                        "name": "IF Fuglafjordur",
+                        "country": "Faroe Islands",
+                        "country_code": "FRO",
+                        "abbreviation": "IFF",
+                        "qualifier": "home"
+                    },
+                    {
+                        "id": "sr:competitor:5185",
+                        "name": "B36 Torshavn",
+                        "country": "Faroe Islands",
+                        "country_code": "FRO",
+                        "abbreviation": "TOR",
+                        "qualifier": "away"
+                    }
+                ],
+                "venue": {
+                    "id": "sr:venue:4286",
+                    "name": "Fuglafjørdur Stadium",
+                    "capacity": 3000,
+                    "city_name": "Fuglafjørdur",
+                    "country_name": "Faroe Islands",
+                    "map_coordinates": "62.244842,-6.814297",
+                    "country_code": "FRO"
+                }
+            },
+            "sport_event_status": {
+                "status": "closed",
+                "match_status": "ended",
+                "home_score": 1,
+                "away_score": 3,
+                "winner_id": "sr:competitor:5185",
+                "period_scores": [
+                    {
+                        "home_score": 0,
+                        "away_score": 2,
+                        "type": "regular_period",
+                        "number": 1
+                    },
+                    {
+                        "home_score": 1,
+                        "away_score": 1,
+                        "type": "regular_period",
+                        "number": 2
+                    }
+                ]
+            }
+        },
+        {
+            "sport_event": {
+                "id": "sr:match:18337487",
+                "scheduled": "2019-06-02T14:00:00+00:00",
+                "start_time_tbd": false,
+                "tournament_round": {
+                    "type": "cup",
+                    "name": "final",
+                    "cup_round_match_number": 1,
+                    "cup_round_matches": 1,
+                    "phase": "playoffs"
+                },
+                "season": {
+                    "id": "sr:season:57890",
+                    "name": "Serie D, Prom. Playoffs 18/19",
+                    "start_date": "2018-09-15",
+                    "end_date": "2019-06-11",
+                    "year": "18/19",
+                    "tournament_id": "sr:tournament:1710"
+                },
+                "tournament": {
+                    "id": "sr:tournament:1710",
+                    "name": "Serie D, Prom. Playoffs",
+                    "sport": {
+                        "id": "sr:sport:1",
+                        "name": "Soccer"
+                    },
+                    "category": {
+                        "id": "sr:category:31",
+                        "name": "Italy",
+                        "country_code": "ITA"
+                    }
+                },
+                "competitors": [
+                    {
+                        "id": "sr:competitor:7933",
+                        "name": "Calcio Lecco",
+                        "country": "Italy",
+                        "country_code": "ITA",
+                        "abbreviation": "LEC",
+                        "qualifier": "home"
+                    },
+                    {
+                        "id": "sr:competitor:2730",
+                        "name": "US Avellino 1912",
+                        "country": "Italy",
+                        "country_code": "ITA",
+                        "abbreviation": "USA",
+                        "qualifier": "away"
+                    }
+                ]
+            },
+            "sport_event_status": {
+                "status": "not_started"
+            }
+        },
+        {
+            "sport_event": {
+                "id": "sr:match:18143639",
+                "scheduled": "2019-06-02T21:00:00+00:00",
+                "start_time_tbd": false,
+                "tournament_round": {
+                    "type": "group",
+                    "number": 1,
+                    "group": "Northwest Division",
+                    "phase": "division"
+                },
+                "season": {
+                    "id": "sr:season:66099",
+                    "name": "USL League Two 2019",
+                    "start_date": "2019-05-03",
+                    "end_date": "2019-07-31",
+                    "year": "2019",
+                    "tournament_id": "sr:tournament:28743"
+                },
+                "tournament": {
+                    "id": "sr:tournament:28743",
+                    "name": "Usl League Two",
+                    "sport": {
+                        "id": "sr:sport:1",
+                        "name": "Soccer"
+                    },
+                    "category": {
+                        "id": "sr:category:26",
+                        "name": "USA",
+                        "country_code": "USA"
+                    }
+                },
+                "competitors": [
+                    {
+                        "id": "sr:competitor:334499",
+                        "name": "Portland Timbers U23",
+                        "country": "USA",
+                        "country_code": "USA",
+                        "abbreviation": "PTI",
+                        "qualifier": "home"
+                    },
+                    {
+                        "id": "sr:competitor:334495",
+                        "name": "Calgary Foothills FC",
+                        "country": "USA",
+                        "country_code": "USA",
+                        "abbreviation": "CAL",
+                        "qualifier": "away"
+                    }
+                ]
+            },
+            "sport_event_status": {
+                "status": "closed",
+                "match_status": "ended",
+                "home_score": 1,
+                "away_score": 1,
+                "period_scores": [
+                    {
+                        "home_score": 0,
+                        "away_score": 1,
+                        "type": "regular_period",
+                        "number": 1
+                    },
+                    {
+                        "home_score": 1,
+                        "away_score": 0,
+                        "type": "regular_period",
+                        "number": 2
+                    }
+                ]
+            }
+        },
+        {
+            "sport_event": {
+                "id": "sr:match:18143641",
+                "scheduled": "2019-06-02T21:00:00+00:00",
+                "start_time_tbd": false,
+                "tournament_round": {
+                    "type": "group",
+                    "number": 1,
+                    "group": "Northwest Division",
+                    "phase": "division"
+                },
+                "season": {
+                    "id": "sr:season:66099",
+                    "name": "USL League Two 2019",
+                    "start_date": "2019-05-03",
+                    "end_date": "2019-07-31",
+                    "year": "2019",
+                    "tournament_id": "sr:tournament:28743"
+                },
+                "tournament": {
+                    "id": "sr:tournament:28743",
+                    "name": "Usl League Two",
+                    "sport": {
+                        "id": "sr:sport:1",
+                        "name": "Soccer"
+                    },
+                    "category": {
+                        "id": "sr:category:26",
+                        "name": "USA",
+                        "country_code": "USA"
+                    }
+                },
+                "competitors": [
+                    {
+                        "id": "sr:competitor:334503",
+                        "name": "Victoria Highlanders",
+                        "country": "USA",
+                        "country_code": "USA",
+                        "abbreviation": "VHI",
+                        "qualifier": "home"
+                    },
+                    {
+                        "id": "sr:competitor:334497",
+                        "name": "Lane United FC",
+                        "country": "USA",
+                        "country_code": "USA",
+                        "abbreviation": "LAN",
+                        "qualifier": "away"
+                    }
+                ]
+            },
+            "sport_event_status": {
+                "status": "not_started"
+            }
+        },
+        {
+            "sport_event": {
+                "id": "sr:match:17809482",
+                "scheduled": "2019-06-02T22:00:00+00:00",
+                "start_time_tbd": false,
+                "tournament_round": {
+                    "type": "group",
+                    "number": 1,
+                    "phase": "regular season"
+                },
+                "season": {
+                    "id": "sr:season:65198",
+                    "name": "National Premier Soccer League 2019",
+                    "start_date": "2019-02-09",
+                    "end_date": "2019-07-30",
+                    "year": "2019",
+                    "tournament_id": "sr:tournament:28424"
+                },
+                "tournament": {
+                    "id": "sr:tournament:28424",
+                    "name": "National Premier Soccer League",
+                    "sport": {
+                        "id": "sr:sport:1",
+                        "name": "Soccer"
+                    },
+                    "category": {
+                        "id": "sr:category:26",
+                        "name": "USA",
+                        "country_code": "USA"
+                    }
+                },
+                "competitors": [
+                    {
+                        "id": "sr:competitor:559118",
+                        "name": "Torch FC",
+                        "country": "USA",
+                        "country_code": "USA",
+                        "abbreviation": "TOR",
+                        "qualifier": "home"
+                    },
+                    {
+                        "id": "sr:competitor:447643",
+                        "name": "West Chester United SC",
+                        "country": "USA",
+                        "country_code": "USA",
+                        "abbreviation": "WES",
+                        "qualifier": "away"
+                    }
+                ]
+            },
+            "sport_event_status": {
+                "status": "not_started"
+            }
+        },
+        {
+            "sport_event": {
+                "id": "sr:match:17809484",
+                "scheduled": "2019-06-02T22:00:00+00:00",
+                "start_time_tbd": false,
+                "tournament_round": {
+                    "type": "group",
+                    "number": 1,
+                    "phase": "regular season"
+                },
+                "season": {
+                    "id": "sr:season:65198",
+                    "name": "National Premier Soccer League 2019",
+                    "start_date": "2019-02-09",
+                    "end_date": "2019-07-30",
+                    "year": "2019",
+                    "tournament_id": "sr:tournament:28424"
+                },
+                "tournament": {
+                    "id": "sr:tournament:28424",
+                    "name": "National Premier Soccer League",
+                    "sport": {
+                        "id": "sr:sport:1",
+                        "name": "Soccer"
+                    },
+                    "category": {
+                        "id": "sr:category:26",
+                        "name": "USA",
+                        "country_code": "USA"
+                    }
+                },
+                "competitors": [
+                    {
+                        "id": "sr:competitor:559114",
+                        "name": "Charlottesville Alliance FC",
+                        "country": "USA",
+                        "country_code": "USA",
+                        "abbreviation": "CHA",
+                        "qualifier": "home"
+                    },
+                    {
+                        "id": "sr:competitor:447527",
+                        "name": "FC Baltimore Christos",
+                        "country": "USA",
+                        "country_code": "USA",
+                        "abbreviation": "FCB",
+                        "qualifier": "away"
+                    }
+                ]
+            },
+            "sport_event_status": {
+                "status": "not_started"
+            }
+        },
+        {
+            "sport_event": {
+                "id": "sr:match:18143643",
+                "scheduled": "2019-06-03T00:00:00+00:00",
+                "start_time_tbd": false,
+                "tournament_round": {
+                    "type": "group",
+                    "number": 1,
+                    "group": "Southwest Division",
+                    "phase": "division"
+                },
+                "season": {
+                    "id": "sr:season:66099",
+                    "name": "USL League Two 2019",
+                    "start_date": "2019-05-03",
+                    "end_date": "2019-07-31",
+                    "year": "2019",
+                    "tournament_id": "sr:tournament:28743"
+                },
+                "tournament": {
+                    "id": "sr:tournament:28743",
+                    "name": "Usl League Two",
+                    "sport": {
+                        "id": "sr:sport:1",
+                        "name": "Soccer"
+                    },
+                    "category": {
+                        "id": "sr:category:26",
+                        "name": "USA",
+                        "country_code": "USA"
+                    }
+                },
+                "competitors": [
+                    {
+                        "id": "sr:competitor:334517",
+                        "name": "Orange County SC U23",
+                        "country": "USA",
+                        "country_code": "USA",
+                        "abbreviation": "OCO",
+                        "qualifier": "home"
+                    },
+                    {
+                        "id": "sr:competitor:334171",
+                        "name": "FC Golden State Force",
+                        "country": "USA",
+                        "country_code": "USA",
+                        "abbreviation": "GSF",
+                        "qualifier": "away"
+                    }
+                ]
+            },
+            "sport_event_status": {
+                "status": "not_started"
+            }
+        },
+        {
+            "sport_event": {
+                "id": "sr:match:18298895",
+                "scheduled": "2019-06-03T00:00:00+00:00",
+                "start_time_tbd": false,
+                "tournament_round": {
+                    "type": "group",
+                    "number": 1
+                },
+                "season": {
+                    "id": "sr:season:66099",
+                    "name": "USL League Two 2019",
+                    "start_date": "2019-05-03",
+                    "end_date": "2019-07-31",
+                    "year": "2019",
+                    "tournament_id": "sr:tournament:28743"
+                },
+                "tournament": {
+                    "id": "sr:tournament:28743",
+                    "name": "Usl League Two",
+                    "sport": {
+                        "id": "sr:sport:1",
+                        "name": "Soccer"
+                    },
+                    "category": {
+                        "id": "sr:category:26",
+                        "name": "USA",
+                        "country_code": "USA"
+                    }
+                },
+                "competitors": [
+                    {
+                        "id": "sr:competitor:566843",
+                        "name": "South Georgia Tormenta FC 2",
+                        "country": "USA",
+                        "country_code": "USA",
+                        "abbreviation": "SOU",
+                        "qualifier": "home"
+                    },
+                    {
+                        "id": "sr:competitor:575821",
+                        "name": "Dalton Red Wolves SC",
+                        "country": "USA",
+                        "country_code": "USA",
+                        "abbreviation": "DAL",
+                        "qualifier": "away"
+                    }
+                ]
+            },
+            "sport_event_status": {
+                "status": "not_started"
+            }
+        },
+        {
+            "sport_event": {
+                "id": "sr:match:17809490",
+                "scheduled": "2019-06-03T02:00:00+00:00",
+                "start_time_tbd": false,
+                "tournament_round": {
+                    "type": "group",
+                    "number": 1,
+                    "phase": "main_round_1"
+                },
+                "season": {
+                    "id": "sr:season:65198",
+                    "name": "National Premier Soccer League 2019",
+                    "start_date": "2019-02-09",
+                    "end_date": "2019-07-30",
+                    "year": "2019",
+                    "tournament_id": "sr:tournament:28424"
+                },
+                "tournament": {
+                    "id": "sr:tournament:28424",
+                    "name": "National Premier Soccer League",
+                    "sport": {
+                        "id": "sr:sport:1",
+                        "name": "Soccer"
+                    },
+                    "category": {
+                        "id": "sr:category:26",
+                        "name": "USA",
+                        "country_code": "USA"
+                    }
+                },
+                "competitors": [
+                    {
+                        "id": "sr:competitor:558656",
+                        "name": "AS Los Angeles",
+                        "country": "USA",
+                        "country_code": "USA",
+                        "abbreviation": "ASL",
+                        "qualifier": "home"
+                    },
+                    {
+                        "id": "sr:competitor:558174",
+                        "name": "City of Angels FC",
+                        "country": "USA",
+                        "country_code": "USA",
+                        "abbreviation": "CIT",
+                        "qualifier": "away"
+                    }
+                ]
+            },
+            "sport_event_status": {
+                "status": "not_started"
+            }
+        },
+		{
+            "sport_event": {
+                "id": "sr:match:18201887",
+                "scheduled": "2019-06-04T08:00:00+00:00",
+                "start_time_tbd": false,
+                "tournament_round": {
+                    "type": "group",
+                    "number": 27,
+                    "group": "Relegation Round",
+                    "phase": "relegation_round"
+                },
+                "season": {
+                    "id": "sr:season:55557",
+                    "name": "PFL, Ural-Povolzhye 18/19",
+                    "start_date": "2018-07-20",
+                    "end_date": "2019-06-16",
+                    "year": "18/19",
+                    "tournament_id": "sr:tournament:1097"
+                },
+                "tournament": {
+                    "id": "sr:tournament:1097",
+                    "name": "PFL, Ural-Povolzhye",
+                    "sport": {
+                        "id": "sr:sport:1",
+                        "name": "Soccer"
+                    },
+                    "category": {
+                        "id": "sr:category:21",
+                        "name": "Russia",
+                        "country_code": "RUS"
+                    }
+                },
+                "competitors": [
+                    {
+                        "id": "sr:competitor:453973",
+                        "name": "FC UFA-2",
+                        "country": "Russia",
+                        "country_code": "RUS",
+                        "abbreviation": "FCU",
+                        "qualifier": "home"
+                    },
+                    {
+                        "id": "sr:competitor:357474",
+                        "name": "Ural-2",
+                        "country": "Russia",
+                        "country_code": "RUS",
+                        "abbreviation": "URA",
+                        "qualifier": "away"
+                    }
+                ]
+            },
+            "sport_event_status": {
+                "status": "live",
+                "match_status": "1st_half",
+                "home_score": 0,
+                "away_score": 0,
+                "period": 1,
+                "period_scores": [
+                    {
+                        "home_score": 0,
+                        "away_score": 0,
+                        "type": "regular_period",
+                        "number": 1
+                    }
+                ]
+            }
+        }
+    ]
+}
