@@ -1,14 +1,17 @@
 ﻿namespace LiveScore.BetRadarSimulator.Api.Features.Matches
 {
-    using System;
-    using System.Threading.Tasks;
     using LiveScore.Providers.SportRadar.Dtos;
     using Microsoft.AspNetCore.Mvc;
-
+    using Newtonsoft.Json;
+    using System;
+    using System.Threading.Tasks;
 
     [ApiController]
-    public class MatchesController : ControllerBase
+    public class MatchesController : Controller
     {
+        private const string FormatDate = "MM-dd-yyyy";
+        private readonly string DirectoryRoot = AppDomain.CurrentDomain.BaseDirectory + "/App_Data";
+
         private readonly IMatchService matchService;
 
         public MatchesController(IMatchService matchService)
@@ -25,23 +28,86 @@
 
         [Route("~/api/{sportType}-{accessLevel}/{region}/{lang}/schedules/live/results.json")]
         [HttpGet]
-        public Task<DailyResultDto> LiveMatches(string sportType, string accessLevel, string region, string lang)
+        public Task<DailyResultDto> LiveResults(string sportType, string accessLevel, string region, string lang)
         {
-            return matchService.GetLiveMatches();
+            var path = $"{DirectoryRoot}/live/{DateTime.Now.ToString(FormatDate)}.json";
+
+            return matchService.GetLiveMatches(path);
+        }
+
+        [Route(nameof(LiveResults)), HttpPost]
+        public async Task<JsonResult> LiveResults(DailyResultDto resultDto)
+        {
+            var resultFolder = $"{DirectoryRoot}/live";
+            resultDto.generated_at = DateTime.Now;
+
+            var path = $"{resultFolder}/{DateTime.Now.ToString(FormatDate)}.json";
+            var json = JsonConvert.SerializeObject(resultDto);
+
+            System.IO.Directory.CreateDirectory(resultFolder);
+            await System.IO.File.WriteAllTextAsync(path, json);
+
+            return Json(new
+            {
+                message = "OK!",
+                data = json
+            });
         }
 
         [Route("~/api/{sportType}-{accessLevel}/{region}/{lang}/schedules/{date}/schedule.json")]
         [HttpGet]
         public Task<DailyScheduleDto> DailySchedule(string sportType, string accessLevel, string region, string lang, DateTime date)
         {
-            return matchService.GetMatchSchedule(date);
+            var path = $"{DirectoryRoot}/schedule/{date.ToString(FormatDate)}.json";
+
+            return matchService.GetMatchSchedule(date, path);
+        }
+
+        [Route(nameof(DailySchedule)), HttpPost]
+        public async Task<JsonResult> DailySchedule(DateTime date, DailyScheduleDto scheduleDto)
+        {
+            var scheduleFolder = $"{DirectoryRoot}/schedule";
+            scheduleDto.generated_at = DateTime.Now;
+
+            var path = $"{scheduleFolder}/{date.ToString(FormatDate)}.json";
+            var json = JsonConvert.SerializeObject(scheduleDto);
+
+            System.IO.Directory.CreateDirectory(scheduleFolder);
+            await System.IO.File.WriteAllTextAsync(path, json);
+
+            return Json(new
+            {
+                message = "OK!",
+                data = json
+            });
         }
 
         [Route("~/api/{sportType}-{accessLevel}/{region}/{lang}/schedules/{date}/results.json")]
         [HttpGet]
         public Task<DailyResultDto> DailyResults(string sportType, string accessLevel, string region, string lang, DateTime date)
         {
-            return matchService.GetMatchResults(date);
+            var path = $"{DirectoryRoot}/results/{date.ToString(FormatDate)}.json";
+
+            return matchService.GetMatchResults(date, path);
+        }
+
+        [Route(nameof(DailyResults)), HttpPost]
+        public async Task<JsonResult> DailyResults(DateTime date, DailyResultDto resultDto)
+        {
+            var resultFolder = $"{DirectoryRoot}/results";
+            resultDto.generated_at = DateTime.Now;
+
+            var path = $"{resultFolder}/{date.ToString(FormatDate)}.json";
+            var json = JsonConvert.SerializeObject(resultDto);
+
+            System.IO.Directory.CreateDirectory(resultFolder);
+            await System.IO.File.WriteAllTextAsync(path, json);
+
+            return Json(new
+            {
+                message = "OK!",
+                data = json
+            });
         }
     }
 }
