@@ -45,6 +45,7 @@
                     var startHour = result.sport_event.scheduled.Hour;
                     var startMinute = result.sport_event.scheduled.Minute;
 
+                    result.sport_event.id = result.sport_event.id.Replace("match", $"match{date.Day}");
                     result.sport_event.scheduled = new DateTime(date.Year, date.Month, date.Day, startHour, startMinute, 0);
                 }
 
@@ -65,7 +66,8 @@
             {
                 var startHour = sportEvent.scheduled.Hour;
                 var startMinute = sportEvent.scheduled.Minute;
-
+                                
+                sportEvent.id = sportEvent.id.Replace("match", $"match{date.Day}");
                 sportEvent.scheduled = new DateTime(date.Year, date.Month, date.Day, startHour, startMinute, 0);
             }
 
