@@ -33,10 +33,10 @@
         }
 
         public async Task<DailyResultDto> GetMatchResults(DateTime date, string path)
-        {            
+        {
             var jsonData = await File.ReadAllTextAsync(path);
 
-            if (date < DateTime.Now)
+            if (date < DateTime.Now || File.Exists(path))
             {
                 var resultDto = JsonConvert.DeserializeObject<DailyResultDto>(jsonData);
 
@@ -58,20 +58,27 @@
         }
 
         public async Task<DailyScheduleDto> GetMatchSchedule(DateTime date, string path)
-        {            
-            var jsonData = await File.ReadAllTextAsync(path);
-            var scheduleDto = JsonConvert.DeserializeObject<DailyScheduleDto>(jsonData);
-
-            foreach (var sportEvent in scheduleDto.sport_events)
+        {
+            if (File.Exists(path))
             {
-                var startHour = sportEvent.scheduled.Hour;
-                var startMinute = sportEvent.scheduled.Minute;
-                                
-                sportEvent.id = sportEvent.id.Replace("match", $"match{date.Day}");
-                sportEvent.scheduled = new DateTime(date.Year, date.Month, date.Day, startHour, startMinute, 0);
-            }
+                var jsonData = await File.ReadAllTextAsync(path);
+                var scheduleDto = JsonConvert.DeserializeObject<DailyScheduleDto>(jsonData);
 
-            return scheduleDto;
+                foreach (var sportEvent in scheduleDto.sport_events)
+                {
+                    var startHour = sportEvent.scheduled.Hour;
+                    var startMinute = sportEvent.scheduled.Minute;
+
+                    sportEvent.id = sportEvent.id.Replace("match", $"match{date.Day}");
+                    sportEvent.scheduled = new DateTime(date.Year, date.Month, date.Day, startHour, startMinute, 0);
+                }
+
+                return scheduleDto;
+            }
+            else
+            {
+                return new DailyScheduleDto { generated_at = date, sport_events = new List<Sport_Event>() };
+            }
         }
 
         public async Task<MatchTimelineDto> GetTimeline(string matchId)
