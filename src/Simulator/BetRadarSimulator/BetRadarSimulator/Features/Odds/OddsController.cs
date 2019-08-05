@@ -56,6 +56,7 @@
                 oddsScheduleDto.sport_events.AddRange(oldData.sport_events);
             }
 
+            CreateOddsFolder();
             var json = JsonConvert.SerializeObject(oddsScheduleDto);
             await System.IO.File.WriteAllTextAsync(path, json);
 
@@ -69,7 +70,8 @@
         [Route(nameof(ScheduleOdds)), HttpPost]
         public async Task<JsonResult> ScheduleOdds(OddsScheduleDto oddsScheduleDto)
         {
-            var oddsFolder = AppDomain.CurrentDomain.BaseDirectory + "/App_Data/odds";
+            var oddsFolder = CreateOddsFolder();
+
             var eventDate = oddsScheduleDto.sport_events.FirstOrDefault()?.scheduled;
 
             if (eventDate.HasValue)
@@ -77,20 +79,27 @@
                 var path = $"{oddsFolder}/{eventDate.Value.ToString(FormatDate)}.json";
                 var json = JsonConvert.SerializeObject(oddsScheduleDto);
 
-                System.IO.Directory.CreateDirectory(oddsFolder);
+
                 await System.IO.File.WriteAllTextAsync(path, json);
 
                 return Json(new
-                        {
-                            message = "OK!",
-                            data = json
-                        });
+                {
+                    message = "OK!",
+                    data = json
+                });
             }
 
             return Json(new
-                {
-                    message = "Not Found Event Date"
-                });
+            {
+                message = "Not Found Event Date"
+            });
+        }
+
+        private static string CreateOddsFolder()
+        {
+            var oddsFolder = AppDomain.CurrentDomain.BaseDirectory + "/App_Data/odds";
+            System.IO.Directory.CreateDirectory(oddsFolder);
+            return oddsFolder;
         }
     }
 }
