@@ -23,21 +23,26 @@
     {
         public async Task<DailyResultDto> GetLiveMatches(string path)
         {
-            //var path = $"{AppDomain.CurrentDomain.BaseDirectory}/App_Data/staticdata/live-results.json";
-            var jsonData = await File.ReadAllTextAsync(path);
-            var resultDto = JsonConvert.DeserializeObject<DailyResultDto>(jsonData);
+            if (File.Exists(path))
+            {
+                var jsonData = await File.ReadAllTextAsync(path);
+                var resultDto = JsonConvert.DeserializeObject<DailyResultDto>(jsonData);
 
-            resultDto.generated_at = DateTime.Now;
+                resultDto.generated_at = DateTime.Now;
 
-            return resultDto;
+                return resultDto;
+            }
+            else
+            {
+                return new DailyResultDto { generated_at = DateTime.Now, results = new List<Result>() };
+            }
         }
 
         public async Task<DailyResultDto> GetMatchResults(DateTime date, string path)
         {
-            var jsonData = await File.ReadAllTextAsync(path);
-
             if (date < DateTime.Now || File.Exists(path))
             {
+                var jsonData = await File.ReadAllTextAsync(path);
                 var resultDto = JsonConvert.DeserializeObject<DailyResultDto>(jsonData);
 
                 foreach (var result in resultDto.results)
@@ -45,7 +50,6 @@
                     var startHour = result.sport_event.scheduled.Hour;
                     var startMinute = result.sport_event.scheduled.Minute;
 
-                    result.sport_event.id = result.sport_event.id.Replace("match", $"match{date.Day}");
                     result.sport_event.scheduled = new DateTime(date.Year, date.Month, date.Day, startHour, startMinute, 0);
                 }
 
@@ -69,7 +73,6 @@
                     var startHour = sportEvent.scheduled.Hour;
                     var startMinute = sportEvent.scheduled.Minute;
 
-                    sportEvent.id = sportEvent.id.Replace("match", $"match{date.Day}");
                     sportEvent.scheduled = new DateTime(date.Year, date.Month, date.Day, startHour, startMinute, 0);
                 }
 
