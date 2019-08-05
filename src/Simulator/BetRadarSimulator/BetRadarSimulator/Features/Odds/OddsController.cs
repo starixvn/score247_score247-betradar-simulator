@@ -27,6 +27,45 @@
             return new OddsScheduleDto();
         }
 
+        [Route("~/api/oddscomparison-rowt1/en/eu/sport_events/{unixTimeStamp}/changelog.json"), HttpGet]
+        public async Task<OddsScheduleDto> OddChangeLog(long unixTimeStamp)
+        {
+            var path = $"{AppDomain.CurrentDomain.BaseDirectory}/App_Data/odds/{DateTime.Now.ToString(FormatDate)}-odds-changes.json";
+
+            if (System.IO.File.Exists(path))
+            {
+                var jsonData = await System.IO.File.ReadAllTextAsync(path);
+
+                return JsonConvert.DeserializeObject<OddsScheduleDto>(jsonData);
+            }
+
+            return new OddsScheduleDto();
+        }
+
+        [Route(nameof(OddsChange)), HttpPost]
+        public async Task<JsonResult> OddsChange(OddsScheduleDto oddsScheduleDto)
+        {
+            var path = $"{AppDomain.CurrentDomain.BaseDirectory}/App_Data/odds/{DateTime.Now.ToString(FormatDate)}-odds-changes.json";
+
+            if (System.IO.File.Exists(path))
+            {
+                var jsonData = await System.IO.File.ReadAllTextAsync(path);
+
+                var oldData = JsonConvert.DeserializeObject<OddsScheduleDto>(jsonData);
+
+                oddsScheduleDto.sport_events.AddRange(oldData.sport_events);
+            }
+
+            var json = JsonConvert.SerializeObject(oddsScheduleDto);
+            await System.IO.File.WriteAllTextAsync(path, json);
+
+            return Json(new
+            {
+                message = "OK!",
+                data = json
+            });
+        }
+
         [Route(nameof(ScheduleOdds)), HttpPost]
         public async Task<JsonResult> ScheduleOdds(OddsScheduleDto oddsScheduleDto)
         {
