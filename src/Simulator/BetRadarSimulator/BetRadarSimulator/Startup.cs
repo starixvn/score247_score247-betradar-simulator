@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 using Sentry;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -41,7 +42,12 @@ namespace LiveScoreSimulator
                 c.SwaggerDoc("v1", new Info { Title = "Sport Radar Simulator", Version = "v1" });
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+                .AddJsonOptions(options =>
+                {
+                    options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
 #pragma warning disable S2325 // Methods and properties that don't access instance data should be static
