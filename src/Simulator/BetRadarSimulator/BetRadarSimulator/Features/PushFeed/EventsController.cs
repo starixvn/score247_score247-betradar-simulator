@@ -108,10 +108,9 @@ namespace LiveScore.BetRadarSimulator.Controllers
 
                 foreach (var pushEvent in pushEvents)
                 {
-                    eventStr += JsonConvert.SerializeObject(pushEvent);
+                    eventStr = JsonConvert.SerializeObject(pushEvent);
+                    await SendEvent(eventStr);
                 }
-
-                await SendEvent(eventStr);
             }
             catch (Exception ex)
             {
