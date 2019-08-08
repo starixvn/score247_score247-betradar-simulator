@@ -84,7 +84,7 @@
         public Tournament tournament { get; set; }
         public List<Competitor> competitors { get; set; }
         public List<Market> markets { get; set; }
-        public DateTime? markets_last_updated { get; set; }
+        public DateTime markets_last_updated { get; set; }
         public Consensus consensus { get; set; }
         public VenueDto venue { get; set; }
         public string uuids { get; set; }
@@ -96,5 +96,12 @@
         public string schema { get; set; }
         public Sport sport { get; set; }
         public List<SportEvent> sport_events { get; set; }
+    }
+
+    public class MatchOddsDto
+    {
+        public DateTime generated_at { get; set; }
+        public string schema { get; set; }
+        public SportEvent sport_event { get; set; }
     }
 }
