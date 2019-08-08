@@ -97,6 +97,7 @@
 
         private async Task<JsonResult> SaveAndReturnOKMessage(OddsScheduleDto oddsScheduleDto, string path)
         {
+            CreateOddsFolder();
             var json = JsonConvert.SerializeObject(oddsScheduleDto);
             await System.IO.File.WriteAllTextAsync(path, json);
 
