@@ -23,7 +23,31 @@
         [HttpGet]
         public Task<MatchTimelineDto> Timeline(string sportType, string accessLevel, string region, string lang, string matchId)
         {
-            return matchService.GetTimeline(matchId);
+            var formattedMatchId = matchId.Replace(':', '-');
+            var path = $"{DirectoryRoot}/timelines/{formattedMatchId}/match-timelines.json";
+
+            return matchService.GetTimeline(matchId, path);
+        }
+
+        [Route(nameof(Timelines)), HttpPost]
+        public async Task<JsonResult> Timelines(string matchId, MatchTimelineDto resultDto)
+        {
+            var formattedMatchId = matchId.Replace(':', '-');
+            var resultFolder = $"{DirectoryRoot}/timelines/{formattedMatchId}";
+
+            resultDto.generated_at = DateTime.Now;
+            
+            var path = $"{resultFolder}/match-timelines.json";
+            var json = JsonConvert.SerializeObject(resultDto);
+
+            System.IO.Directory.CreateDirectory(resultFolder);
+            await System.IO.File.WriteAllTextAsync(path, json);
+
+            return Json(new
+            {
+                message = "OK!",
+                data = json
+            });
         }
 
         [Route("~/api/{sportType}-{accessLevel}/{region}/{lang}/schedules/live/results.json")]
