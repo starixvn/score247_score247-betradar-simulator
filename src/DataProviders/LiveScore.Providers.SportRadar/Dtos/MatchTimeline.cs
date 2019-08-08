@@ -14,6 +14,8 @@ namespace LiveScore.Providers.SportRadar.Dtos
 
         public Sport_Event_Status sport_event_status { get; set; }
 
+        public Sport_Event_Conditions sport_event_conditions { get; set; }
+
         public IEnumerable<TimelineDto> timeline { get; set; }
 
         public Statistics statistics { get; set; }
