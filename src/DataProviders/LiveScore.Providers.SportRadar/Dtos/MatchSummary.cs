@@ -18,6 +18,9 @@ namespace LiveScore.Providers.SportRadar.Dtos
     public class Sport_Event
     {
         public string id { get; set; }
+
+        public string status { get; set; }
+
         public DateTime scheduled { get; set; }
         public bool start_time_tbd { get; set; }
         public Tournament_Round tournament_round { get; set; }
