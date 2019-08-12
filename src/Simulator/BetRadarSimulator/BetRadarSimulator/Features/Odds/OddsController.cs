@@ -12,6 +12,7 @@
     public class OddsController : Controller
     {
         private const string FormatDate = "MM-dd-yyyy";
+        private static object ReadOddsByMatchIdLockObject = new object();
 
         [Route("~/api/oddscomparison-rowt1/en/eu/sports/sr:sport:1/{scheduleDate}/schedule.json"), HttpGet]
         public async Task<OddsScheduleDto> ScheduleOdds(DateTime scheduleDate)
@@ -32,32 +33,39 @@
         [Route("~/api/oddscomparison-rowt1/en/eu/sport_events/{matchId}/markets.json"), HttpGet]
         public async Task<MatchOddsDto> MatchOdds(string matchId)
         {
-            var path = $"{AppDomain.CurrentDomain.BaseDirectory}/App_Data/odds/{DateTime.Now.ToString(FormatDate)}-match-{matchId.Replace(":", "_")}-odds.json";
-
-            var oddsScheduleDto = await ReadAndDeserializeJson(path);
-            var matchOddsDto = new MatchOddsDto();
-
-            if (oddsScheduleDto.sport_events != null 
-                && oddsScheduleDto.sport_events.Any())
+            try
             {
-                var firstOddsByMatch = oddsScheduleDto
-                    .sport_events
-                    .Where(se => se.id == matchId)
-                    .OrderBy(se => se.markets_last_updated)
-                    .FirstOrDefault();
+                var path = $"{AppDomain.CurrentDomain.BaseDirectory}/App_Data/odds/{DateTime.Now.ToString(FormatDate)}-match-{matchId.Replace(":", "_")}-odds.json";
 
-                if (firstOddsByMatch != null)
+                var oddsScheduleDto = await ReadAndDeserializeJson(path);
+                var matchOddsDto = new MatchOddsDto();
+
+                if (oddsScheduleDto.sport_events != null
+                    && oddsScheduleDto.sport_events.Any())
                 {
+                    var firstOddsByMatch = oddsScheduleDto
+                        .sport_events
+                        .Where(se => se.id == matchId)
+                        .OrderBy(se => se.markets_last_updated)
+                        .FirstOrDefault();
 
-                    matchOddsDto.sport_event = firstOddsByMatch;
+                    if (firstOddsByMatch != null)
+                    {
 
-                    oddsScheduleDto.sport_events.RemoveAll(sp => sp.id == matchId && sp.markets_last_updated == firstOddsByMatch.markets_last_updated);
+                        matchOddsDto.sport_event = firstOddsByMatch;
+
+                        oddsScheduleDto.sport_events.RemoveAll(sp => sp.id == matchId && sp.markets_last_updated == firstOddsByMatch.markets_last_updated);
+                    }
                 }
+
+                await SaveAndReturnOKMessage(oddsScheduleDto, path);
+
+                return matchOddsDto;
             }
-
-            await SaveAndReturnOKMessage(oddsScheduleDto, path);
-
-            return matchOddsDto;
+            catch(Exception ex)
+            {
+                return new MatchOddsDto();
+            }
         }
 
         private static async Task<OddsScheduleDto> ReadAndDeserializeJson(string path)
