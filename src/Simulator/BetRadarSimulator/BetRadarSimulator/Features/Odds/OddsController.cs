@@ -121,14 +121,14 @@
         {
             var path = $"{AppDomain.CurrentDomain.BaseDirectory}/App_Data/odds/{DateTime.Now.ToString(FormatDate)}-odds-changes.json";
 
-            if (System.IO.File.Exists(path))
-            {
-                var jsonData = await System.IO.File.ReadAllTextAsync(path);
+            ////if (System.IO.File.Exists(path))
+            ////{
+            ////    var jsonData = await System.IO.File.ReadAllTextAsync(path);
 
-                var oldData = JsonConvert.DeserializeObject<OddsScheduleDto>(jsonData);
+            ////    var oldData = JsonConvert.DeserializeObject<OddsScheduleDto>(jsonData);
 
-                oddsScheduleDto.sport_events.AddRange(oldData.sport_events);
-            }
+            ////    oddsScheduleDto.sport_events.AddRange(oldData.sport_events);
+            ////}
 
             CreateOddsFolder();
 
