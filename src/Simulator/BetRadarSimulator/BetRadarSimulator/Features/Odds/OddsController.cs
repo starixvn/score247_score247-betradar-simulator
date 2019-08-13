@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Fanex.Logging;
     using LiveScore.Providers.SportRadar.Dtos;
     using Microsoft.AspNetCore.Mvc;
     using Newtonsoft.Json;
@@ -35,7 +36,7 @@
         {
             try
             {
-                var path = $"{AppDomain.CurrentDomain.BaseDirectory}/App_Data/odds/{DateTime.Now.ToString(FormatDate)}-match-{matchId.Replace(":", "_")}-odds.json";
+                var path = AppDomain.CurrentDomain.BaseDirectory + $"/App_Data/odds/match-odds-by-id-{matchId.Replace(":", "-")}.json";
 
                 var oddsScheduleDto = await ReadAndDeserializeJson(path);
                 var matchOddsDto = new MatchOddsDto();
@@ -51,19 +52,19 @@
 
                     if (firstOddsByMatch != null)
                     {
-
                         matchOddsDto.sport_event = firstOddsByMatch;
 
                         oddsScheduleDto.sport_events.RemoveAll(sp => sp.id == matchId && sp.markets_last_updated == firstOddsByMatch.markets_last_updated);
                     }
-                }
 
-                await SaveAndReturnOKMessage(oddsScheduleDto, path);
+                    await SaveAndReturnOKMessage(oddsScheduleDto, path);
+                }
 
                 return matchOddsDto;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
+                await LogService.ErrorAsync(ex.ToString(), ex);
                 return new MatchOddsDto();
             }
         }
@@ -81,26 +82,25 @@
         }
 
         [Route(nameof(MatchOdds)), HttpPost]
-        public async Task<JsonResult> MatchOdds(MatchOddsDto matchOddsDto)
+        public async Task<JsonResult> MatchOdds(OddsScheduleDto oddsScheduleDto)
         {
-            var path = $"{AppDomain.CurrentDomain.BaseDirectory}/App_Data/odds/{DateTime.Now.ToString(FormatDate)}-match-{matchOddsDto.sport_event.id.Replace(":", "_")}-odds.json";
-            var oddsScheduleDto = new OddsScheduleDto
+            var path = AppDomain.CurrentDomain.BaseDirectory + "/App_Data/odds/match-odds-by-id-{0}.json";
+
+            var groupByMatchId = oddsScheduleDto.sport_events.GroupBy(e => e.id);
+
+            foreach (var group in groupByMatchId)
             {
-                sport_events = new List<SportEvent> { matchOddsDto.sport_event }
-            };
-
-            if (System.IO.File.Exists(path))
-            {
-                var jsonData = await System.IO.File.ReadAllTextAsync(path);
-
-                var oldData = JsonConvert.DeserializeObject<OddsScheduleDto>(jsonData);
-
-                oddsScheduleDto.sport_events.AddRange(oldData.sport_events);
+                var pathByMatchId = string.Format(path, group.Key.Replace(":", "-"));
+                await SaveAndReturnOKMessage(new OddsScheduleDto
+                {
+                    sport_events = group.ToList()
+                }, pathByMatchId);
             }
 
-            CreateOddsFolder();
-
-            return await SaveAndReturnOKMessage(oddsScheduleDto, path);
+            return Json(new
+            {
+                message = "OK!"
+            });
         }
 
         private async Task<JsonResult> SaveAndReturnOKMessage(OddsScheduleDto oddsScheduleDto, string path)
@@ -130,21 +130,17 @@
             ////    oddsScheduleDto.sport_events.AddRange(oldData.sport_events);
             ////}
 
-            CreateOddsFolder();
-
             return await SaveAndReturnOKMessage(oddsScheduleDto, path);
         }
 
         [Route(nameof(ScheduleOdds)), HttpPost]
         public async Task<JsonResult> ScheduleOdds(OddsScheduleDto oddsScheduleDto)
         {
-            var oddsFolder = CreateOddsFolder();
-
             var eventDate = oddsScheduleDto.sport_events.FirstOrDefault()?.scheduled;
 
             if (eventDate.HasValue)
             {
-                var path = $"{oddsFolder}/{eventDate.Value.ToString(FormatDate)}.json";
+                var path = $"{AppDomain.CurrentDomain.BaseDirectory}/App_Data/odds/{eventDate.Value.ToString(FormatDate)}.json";
 
                 return await SaveAndReturnOKMessage(oddsScheduleDto, path);
             }
@@ -155,11 +151,11 @@
             });
         }
 
-        private static string CreateOddsFolder()
+        private static void CreateOddsFolder()
         {
             var oddsFolder = AppDomain.CurrentDomain.BaseDirectory + "/App_Data/odds";
+
             System.IO.Directory.CreateDirectory(oddsFolder);
-            return oddsFolder;
         }
     }
 }
