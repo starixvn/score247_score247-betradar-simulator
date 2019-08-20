@@ -33,6 +33,7 @@
         public async Task<JsonResult> Timelines(string matchId, MatchTimelineDto resultDto)
         {
             var formattedMatchId = matchId.Replace(':', '-');
+            System.IO.Directory.CreateDirectory($"{DirectoryRoot}/timelines");
             var resultFolder = $"{DirectoryRoot}/timelines/{formattedMatchId}";
 
             resultDto.generated_at = DateTime.Now;
@@ -63,6 +64,7 @@
         public async Task<JsonResult> LiveResults(DailyResultDto resultDto)
         {
             var resultFolder = $"{DirectoryRoot}/live";
+            System.IO.Directory.CreateDirectory(resultFolder);
             resultDto.generated_at = DateTime.Now;
 
             var path = $"{resultFolder}/{DateTime.Now.ToString(FormatDate)}.json";
@@ -91,6 +93,7 @@
         public async Task<JsonResult> DailySchedule(DateTime date, DailyScheduleDto scheduleDto)
         {
             var scheduleFolder = $"{DirectoryRoot}/schedule";
+            System.IO.Directory.CreateDirectory(scheduleFolder);
             scheduleDto.generated_at = DateTime.Now;
 
             var path = $"{scheduleFolder}/{date.ToString(FormatDate)}.json";
@@ -119,6 +122,7 @@
         public async Task<JsonResult> DailyResults(DateTime date, DailyResultDto resultDto)
         {
             var resultFolder = $"{DirectoryRoot}/results";
+            System.IO.Directory.CreateDirectory(resultFolder);
             resultDto.generated_at = DateTime.Now;
 
             var path = $"{resultFolder}/{date.ToString(FormatDate)}.json";
