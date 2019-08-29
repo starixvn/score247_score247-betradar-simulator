@@ -39,8 +39,8 @@
         }
 
         public async Task<DailyResultDto> GetMatchResults(DateTime date, string path)
-        {
-            if (date < DateTime.Now || File.Exists(path))
+        {            
+            if (File.Exists(path))
             {
                 var jsonData = await File.ReadAllTextAsync(path);
                 var resultDto = JsonConvert.DeserializeObject<DailyResultDto>(jsonData);
