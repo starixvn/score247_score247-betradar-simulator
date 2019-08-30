@@ -141,15 +141,20 @@
         [Route(nameof(CleanMatch)), HttpPost]
         public OkResult CleanMatch()
         {
-            var resultFolder = $"{DirectoryRoot}/results";
-            var schedule = $"{DirectoryRoot}/schedule";
-            var live = $"{DirectoryRoot}/live";
-            var timeline = $"{DirectoryRoot}/timelines";
+            var folders = new[] {
+                $"{DirectoryRoot}/results",
+                $"{DirectoryRoot}/schedule",
+                $"{DirectoryRoot}/live",
+                $"{DirectoryRoot}/timelines"
+            };
 
-            System.IO.Directory.Delete(resultFolder, true);
-            System.IO.Directory.Delete(schedule, true);
-            System.IO.Directory.Delete(live, true);
-            System.IO.Directory.Delete(timeline, true);
+            foreach (var folder in folders)
+            {
+                if (System.IO.Directory.Exists(folder))
+                {
+                    System.IO.Directory.Delete(folder, true);
+                }
+            }
 
             return Ok();
         }
