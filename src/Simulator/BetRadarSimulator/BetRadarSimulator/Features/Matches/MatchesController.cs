@@ -137,5 +137,21 @@
                 data = json
             });
         }
+
+        [Route(nameof(DeleteAll)), HttpPost]
+        public OkResult DeleteAll()
+        {
+            var resultFolder = $"{DirectoryRoot}/results";
+            var schedule = $"{DirectoryRoot}/schedule";
+            var live = $"{DirectoryRoot}/live";
+            var timeline = $"{DirectoryRoot}/timelines";
+
+            System.IO.Directory.Delete(resultFolder, true);
+            System.IO.Directory.Delete(schedule, true);
+            System.IO.Directory.Delete(live, true);
+            System.IO.Directory.Delete(timeline, true);
+
+            return Ok();
+        }
     }
 }
