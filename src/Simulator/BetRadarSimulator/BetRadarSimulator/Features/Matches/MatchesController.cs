@@ -138,8 +138,8 @@
             });
         }
 
-        [Route(nameof(DeleteAll)), HttpPost]
-        public OkResult DeleteAll()
+        [Route(nameof(CleanMatch)), HttpPost]
+        public OkResult CleanMatch()
         {
             var resultFolder = $"{DirectoryRoot}/results";
             var schedule = $"{DirectoryRoot}/schedule";
