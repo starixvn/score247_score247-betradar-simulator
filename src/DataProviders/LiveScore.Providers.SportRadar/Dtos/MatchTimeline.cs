@@ -19,6 +19,8 @@ namespace LiveScore.Providers.SportRadar.Dtos
         public IEnumerable<TimelineDto> timeline { get; set; }
 
         public Statistics statistics { get; set; }
+
+        public CoverageInfoDto coverage_info { get; set; }
     }
 
     public class TimelineDto
