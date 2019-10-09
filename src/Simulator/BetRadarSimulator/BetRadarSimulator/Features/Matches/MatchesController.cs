@@ -37,7 +37,7 @@
             var resultFolder = $"{DirectoryRoot}/timelines/{formattedMatchId}";
 
             resultDto.generated_at = DateTime.Now;
-            
+
             var path = $"{resultFolder}/match-timelines.json";
             var json = JsonConvert.SerializeObject(resultDto);
 
@@ -144,8 +144,7 @@
             var folders = new[] {
                 $"{DirectoryRoot}/results",
                 $"{DirectoryRoot}/schedule",
-                $"{DirectoryRoot}/live",
-                $"{DirectoryRoot}/timelines"
+                $"{DirectoryRoot}/live"
             };
 
             foreach (var folder in folders)
@@ -158,5 +157,18 @@
 
             return Ok();
         }
+
+        [Route(nameof(CleanTimeline)), HttpPost]
+        public OkResult CleanTimeline()
+        {
+            var timelineFolder = $"{DirectoryRoot}/timelines";
+            if (System.IO.Directory.Exists(timelineFolder))
+            {
+                System.IO.Directory.Delete(timelineFolder, true);
+            }
+
+            return Ok();
+        }
     }
+}
 }
