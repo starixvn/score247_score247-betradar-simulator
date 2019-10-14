@@ -134,6 +134,7 @@ namespace LiveScore.Providers.SportRadar.Dtos
         public int offsides { get; set; }
         public int yellow_cards { get; set; }
         public int red_cards { get; set; }
+        public int yellow_red_cards { get; set; }
         public int injuries { get; set; }
     }
 
