@@ -143,8 +143,7 @@
         {
             var folders = new[] {
                 $"{DirectoryRoot}/results",
-                $"{DirectoryRoot}/schedule",
-                $"{DirectoryRoot}/live"
+                $"{DirectoryRoot}/schedule"
             };
 
             foreach (var folder in folders)
