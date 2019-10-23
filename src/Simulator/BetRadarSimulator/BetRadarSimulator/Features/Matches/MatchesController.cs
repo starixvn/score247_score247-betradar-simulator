@@ -139,8 +139,9 @@
         }
 
         [Route(nameof(Lineups)), HttpPost]
-        public async Task<JsonResult> Lineups(string matchId, LineUpsDto lineUpsDto)
+        public async Task<JsonResult> Lineups(LineUpsDto lineUpsDto)
         {
+            var matchId = lineUpsDto.sport_event.id;
             var formattedMatchId = matchId.Replace(':', '-');
             System.IO.Directory.CreateDirectory($"{DirectoryRoot}/lineups");
             var lineupsFolder = $"{DirectoryRoot}/lineups/{formattedMatchId}";
