@@ -138,6 +138,38 @@
             });
         }
 
+        [Route(nameof(Lineups)), HttpPost]
+        public async Task<JsonResult> Lineups(string matchId, LineUpsDto lineUpsDto)
+        {
+            var formattedMatchId = matchId.Replace(':', '-');
+            System.IO.Directory.CreateDirectory($"{DirectoryRoot}/lineups");
+            var lineupsFolder = $"{DirectoryRoot}/lineups/{formattedMatchId}";
+
+            lineUpsDto.generated_at = DateTime.Now;
+
+            var path = $"{lineupsFolder}/match-lineups.json";
+            var json = JsonConvert.SerializeObject(lineUpsDto);
+
+            System.IO.Directory.CreateDirectory(lineupsFolder);
+            await System.IO.File.WriteAllTextAsync(path, json);
+
+            return Json(new
+            {
+                message = "OK!",
+                data = json
+            });
+        }
+
+        [Route("~/api/{sportType}-{accessLevel}/{region}/{lang}/matches/{matchId}/lineups.json")]
+        [HttpGet]
+        public Task<LineUpsDto> LineUps(string sportType, string accessLevel, string region, string lang, string matchId)
+        {
+            var formattedMatchId = matchId.Replace(':', '-');
+            var path = $"{DirectoryRoot}/lineups/{formattedMatchId}/match-lineups.json";
+
+            return matchService.GetMatchLineups(matchId, path);
+        }
+
         [Route(nameof(CleanMatch)), HttpPost]
         public OkResult CleanMatch()
         {
