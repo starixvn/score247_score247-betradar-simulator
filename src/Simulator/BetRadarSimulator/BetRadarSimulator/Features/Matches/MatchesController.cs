@@ -192,10 +192,17 @@
         [Route(nameof(CleanTimeline)), HttpPost]
         public OkResult CleanTimeline()
         {
-            var timelineFolder = $"{DirectoryRoot}/timelines";
-            if (System.IO.Directory.Exists(timelineFolder))
+            var folders = new[] {
+                $"{DirectoryRoot}/timelines",
+                $"{DirectoryRoot}/lineups"
+            };
+
+            foreach (var folder in folders)
             {
-                System.IO.Directory.Delete(timelineFolder, true);
+                if (System.IO.Directory.Exists(folder))
+                {
+                    System.IO.Directory.Delete(folder, true);
+                }
             }
 
             return Ok();
