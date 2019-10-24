@@ -3,6 +3,7 @@ namespace LiveScore.Providers.SportRadar.Dtos
 {
     using System;
     using System.Collections.Generic;
+    using Newtonsoft.Json;
 
     public class DailyResultDto
     {
@@ -21,6 +22,7 @@ namespace LiveScore.Providers.SportRadar.Dtos
     public class Result
     {
         public Sport_Event sport_event { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Sport_Event_Status sport_event_status { get; set; }
     }
 
@@ -28,13 +30,19 @@ namespace LiveScore.Providers.SportRadar.Dtos
     {
         public string type { get; set; }
         public int number { get; set; }
-        public string name { get; set; }
-        public int cup_round_match_number { get; set; }
-        public int cup_round_matches { get; set; }
-        public string other_match_id { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string phase { get; set; }
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string group { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string name { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public int cup_round_match_number { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public int cup_round_matches { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string other_match_id { get; set; }
     }
 
     public class Season
@@ -58,6 +66,7 @@ namespace LiveScore.Providers.SportRadar.Dtos
         public string id { get; set; }
         public string name { get; set; }
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string country_code { get; set; }
     }
 
@@ -79,6 +88,8 @@ namespace LiveScore.Providers.SportRadar.Dtos
         public string country { get; set; }
         public string country_code { get; set; }
         public string abbreviation { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string qualifier { get; set; }
     }
 

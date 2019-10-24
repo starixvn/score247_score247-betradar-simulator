@@ -2,6 +2,7 @@
 using Fanex.Logging;
 using Fanex.Logging.Sentry;
 using LiveScore.BetRadarSimulator.Api.Features.Matches;
+using LiveScore.BetRadarSimulator.Api.Features.Teams;
 using LiveScore.BetRadarSimulator.Api.Midlewares;
 using LiveScore.BetRadarSimulator.Services;
 using Microsoft.AspNetCore.Builder;
@@ -31,6 +32,7 @@ namespace LiveScoreSimulator
             InitLogging(services);
             services.AddSingleton<INotificationService, NotificationService>();
             services.AddSingleton<IMatchService, MatchService>();
+            services.AddSingleton<ITeamService, TeamService>();
 
             services.AddResponseCompression(options =>
             {
@@ -52,6 +54,7 @@ namespace LiveScoreSimulator
 
 #pragma warning disable S2325 // Methods and properties that don't access instance data should be static
 #pragma warning disable RECS0154 // Parameter is never used
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 #pragma warning restore RECS0154 // Parameter is never used
         {

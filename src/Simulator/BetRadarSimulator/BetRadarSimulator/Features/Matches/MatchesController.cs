@@ -168,7 +168,7 @@
             var formattedMatchId = matchId.Replace(':', '-');
             var path = $"{DirectoryRoot}/lineups/{formattedMatchId}/match-lineups.json";
 
-            return matchService.GetMatchLineups(matchId, path);
+            return matchService.GetMatchLineups(path);
         }
 
         [Route(nameof(CleanMatch)), HttpPost]
@@ -195,7 +195,8 @@
         {
             var folders = new[] {
                 $"{DirectoryRoot}/timelines",
-                $"{DirectoryRoot}/lineups"
+                $"{DirectoryRoot}/lineups",
+                $"{DirectoryRoot}/h2h"
             };
 
             foreach (var folder in folders)

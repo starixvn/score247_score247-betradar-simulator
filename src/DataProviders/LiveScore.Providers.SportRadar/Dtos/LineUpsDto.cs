@@ -8,8 +8,15 @@ namespace LiveScore.Providers.SportRadar.Dtos
     {
         public DateTime generated_at { get; set; }
         public string schema { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Sport_Event sport_event { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public IEnumerable<LineUp> lineups { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string message { get; set; }
     }
 
     public class LineUp

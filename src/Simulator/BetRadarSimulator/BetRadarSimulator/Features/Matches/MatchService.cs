@@ -17,7 +17,7 @@
 
         Task<DailyResultDto> GetMatchResults(DateTime date, string path);
 
-        Task<LineUpsDto> GetMatchLineups(string matchId, string path);
+        Task<LineUpsDto> GetMatchLineups(string path);
     }
 
     public class MatchService : IMatchService
@@ -39,21 +39,19 @@
             }
         }
 
-        public async Task<LineUpsDto> GetMatchLineups(string matchId, string path)
+        public async Task<LineUpsDto> GetMatchLineups(string path)
         {
             if (File.Exists(path))
             {
                 var jsonData = await File.ReadAllTextAsync(path);
                 var timelineDto = JsonConvert.DeserializeObject<LineUpsDto>(jsonData);
-
                 timelineDto.generated_at = DateTime.Now;
-                timelineDto.sport_event.id = matchId;
 
                 return timelineDto;
             }
             else
             {
-                return new LineUpsDto { generated_at = DateTime.Now, sport_event = new Sport_Event { id = matchId } };
+                return new LineUpsDto { generated_at = DateTime.Now, schema = "", message = "No lineups." };
             }
         }
 
