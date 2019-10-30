@@ -9,6 +9,8 @@ namespace LiveScore.BetRadarSimulator.Api.Features.Teams
     public interface ITeamService
     {
         Task<H2HDto> GetH2H(string path);
+
+        Task<TeamResultDto> GetResults(string path);
     }
 
     public class TeamService : ITeamService
@@ -26,6 +28,22 @@ namespace LiveScore.BetRadarSimulator.Api.Features.Teams
             else
             {
                 return new H2HDto { generated_at = DateTime.Now, schema = "", message = "No data." };
+            }
+        }
+
+        public async Task<TeamResultDto> GetResults(string path)
+        {
+            if (File.Exists(path))
+            {
+                var jsonData = await File.ReadAllTextAsync(path);
+                var resultDto = JsonConvert.DeserializeObject<TeamResultDto>(jsonData);
+                resultDto.generated_at = DateTime.Now;
+
+                return resultDto;
+            }
+            else
+            {
+                return new TeamResultDto { generated_at = DateTime.Now, schema = "", message = "No data." };
             }
         }
     }

@@ -54,5 +54,38 @@
 
             return teamService.GetH2H(path);
         }
+
+        [Route(nameof(Results)), HttpPost]
+        public async Task<JsonResult> TeamResults(TeamResultDto teamResultDto)
+        {
+            var teamId = teamResultDto.team.id;
+            var teamIdFilename = teamId.Replace(':', '-');
+            Directory.CreateDirectory($"{DirectoryRoot}/teams");
+            var teamFolder = $"{DirectoryRoot}/teams/{teamIdFilename}";
+
+            teamResultDto.generated_at = DateTime.Now;
+
+            var path = $"{teamFolder}/results.json";
+            var json = JsonConvert.SerializeObject(teamResultDto);
+
+            Directory.CreateDirectory(teamFolder);
+            await System.IO.File.WriteAllTextAsync(path, json);
+
+            return Json(new
+            {
+                message = "OK!",
+                data = json
+            });
+        }
+
+        [Route("~/api/{sportType}-{accessLevel}/{region}/{lang}/teams/{teamId}/results.json")]
+        [HttpGet]
+        public Task<TeamResultDto> TeamResult(string sportType, string accessLevel, string region, string lang, string teamId)
+        {
+            var teamFilename = teamId.Replace(':', '-');
+            var path = $"{DirectoryRoot}/teams/{teamFilename}/results.json";
+
+            return teamService.GetResults(path);
+        }
     }
 }
