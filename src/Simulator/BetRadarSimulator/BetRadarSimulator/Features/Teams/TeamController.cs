@@ -55,7 +55,7 @@
             return teamService.GetH2H(path);
         }
 
-        [Route(nameof(Results)), HttpPost]
+        [Route(nameof(TeamResults)), HttpPost]
         public async Task<JsonResult> TeamResults(TeamResultDto teamResultDto)
         {
             var teamId = teamResultDto.team.id;
