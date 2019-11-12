@@ -163,41 +163,10 @@
             return matchService.GetMatchLineups(path);
         }
 
-        [Route(nameof(CleanMatch)), HttpPost]
-        public OkResult CleanMatch()
+        [Route(nameof(CleanMatches)), HttpPost]
+        public async Task<OkResult> CleanMatches()
         {
-            var folders = new[] {
-                $"results",
-                $"schedule"
-            };
-
-            foreach (var folder in folders)
-            {
-                if (System.IO.Directory.Exists(folder))
-                {
-                    System.IO.Directory.Delete(folder, true);
-                }
-            }
-
-            return Ok();
-        }
-
-        [Route(nameof(CleanTimeline)), HttpPost]
-        public OkResult CleanTimeline()
-        {
-            var folders = new[] {
-                $"timelines",
-                $"lineups",
-                $"h2h"
-            };
-
-            foreach (var folder in folders)
-            {
-                if (System.IO.Directory.Exists(folder))
-                {
-                    System.IO.Directory.Delete(folder, true);
-                }
-            }
+            await fileService.CleanMatches();
 
             return Ok();
         }

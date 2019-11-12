@@ -11,6 +11,8 @@
         Task<int> SaveFile(string path, string value);
 
         Task<string> GetFile(string path);
+
+        Task CleanMatches();
     }
 
     public class FileService : IFileService
@@ -22,6 +24,13 @@
         {
             enviroment = configuration.GetValue<string>("DevelopmentEnvironment");
             repository = new DynamicRepository();
+        }
+
+        public Task CleanMatches()
+        {
+            var command = new CleanScheduleCommand();
+
+            return repository.ExecuteAsync(command);
         }
 
         public Task<string> GetFile(string path)

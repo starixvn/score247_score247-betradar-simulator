@@ -2,5 +2,6 @@
   <Function Name="SimulatorFile">
     <Setting Key="SimulatorFile_InsertOrUpdate" SpName="SimulatorFile_InsertOrUpdate" DbName="DefaultConnection" />
     <Setting Key="SimulatorFile_GetFile" SpName="SimulatorFile_GetFile" DbName="DefaultConnection" />
+    <Setting Key="SimulatorFile_CleanFiles" SpName="SimulatorFile_CleanFiles" DbName="DefaultConnection" />
   </Function>
 </Functions>
