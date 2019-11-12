@@ -8,34 +8,34 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using LiveScore.BetRadarSimulator.Api.Shared;
 
     [ApiController]
     public class TeamController : Controller
     {
-        private readonly string DirectoryRoot = AppDomain.CurrentDomain.BaseDirectory + "/App_Data";
-
         private readonly ITeamService teamService;
+        private readonly IFileService fileService;
 
-        public TeamController(ITeamService teamService)
+        public TeamController(ITeamService teamService, IFileService fileService)
         {
             this.teamService = teamService;
+            this.fileService = fileService;
         }
 
         [Route(nameof(H2H)), HttpPost]
-        public async Task<JsonResult> H2H(H2HDto h2HDto)
+        public async Task<JsonResult> H2H(object h2HData)
         {
+            var h2HDto = h2HData as H2HDto;
             var teamIds = h2HDto.teams.Select(team => team.id).OrderBy(teamId => teamId).ToList();
             var teamIdsFilename = string.Join("vs", teamIds).Replace(':', '-');
-            Directory.CreateDirectory($"{DirectoryRoot}/h2h");
-            var h2hFolder = $"{DirectoryRoot}/h2h/{teamIdsFilename}";
+            var h2hFolder = $"h2h/{teamIdsFilename}";
 
             h2HDto.generated_at = DateTime.Now;
 
             var path = $"{h2hFolder}/h2h.json";
             var json = JsonConvert.SerializeObject(h2HDto);
 
-            Directory.CreateDirectory(h2hFolder);
-            await System.IO.File.WriteAllTextAsync(path, json);
+            await fileService.SaveFile(path, json);
 
             return Json(new
             {
@@ -50,7 +50,7 @@
         {
             var teamIds = (new List<string> { homeId, awayId }).OrderBy(teamId => teamId);
             var h2hTeamIds = string.Join("vs", teamIds).Replace(':', '-');
-            var path = $"{DirectoryRoot}/h2h/{h2hTeamIds}/h2h.json";
+            var path = $"h2h/{h2hTeamIds}/h2h.json";
 
             return teamService.GetH2H(path);
         }
@@ -60,16 +60,14 @@
         {
             var teamId = teamResultDto.team.id;
             var teamIdFilename = teamId.Replace(':', '-');
-            Directory.CreateDirectory($"{DirectoryRoot}/teams");
-            var teamFolder = $"{DirectoryRoot}/teams/{teamIdFilename}";
+            var teamFolder = $"teams/{teamIdFilename}";
 
             teamResultDto.generated_at = DateTime.Now;
 
             var path = $"{teamFolder}/results.json";
             var json = JsonConvert.SerializeObject(teamResultDto);
 
-            Directory.CreateDirectory(teamFolder);
-            await System.IO.File.WriteAllTextAsync(path, json);
+            await fileService.SaveFile(path, json);
 
             return Json(new
             {
@@ -83,7 +81,7 @@
         public Task<TeamResultDto> TeamResult(string sportType, string accessLevel, string region, string lang, string teamId)
         {
             var teamFilename = teamId.Replace(':', '-');
-            var path = $"{DirectoryRoot}/teams/{teamFilename}/results.json";
+            var path = $"teams/{teamFilename}/results.json";
 
             return teamService.GetResults(path);
         }

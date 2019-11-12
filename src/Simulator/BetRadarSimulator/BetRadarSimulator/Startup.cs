@@ -1,9 +1,13 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using Fanex.Data;
+using Fanex.Data.MySql;
 using Fanex.Logging;
 using Fanex.Logging.Sentry;
 using LiveScore.BetRadarSimulator.Api.Features.Matches;
 using LiveScore.BetRadarSimulator.Api.Features.Teams;
 using LiveScore.BetRadarSimulator.Api.Midlewares;
+using LiveScore.BetRadarSimulator.Api.Shared;
 using LiveScore.BetRadarSimulator.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,6 +37,7 @@ namespace LiveScoreSimulator
             services.AddSingleton<INotificationService, NotificationService>();
             services.AddSingleton<IMatchService, MatchService>();
             services.AddSingleton<ITeamService, TeamService>();
+            services.AddSingleton<IFileService, FileService>();
 
             services.AddResponseCompression(options =>
             {
@@ -69,6 +74,18 @@ namespace LiveScoreSimulator
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            var connections = Configuration
+                 .GetSection("ConnectionStrings")
+                 .GetChildren()
+                 .ToDictionary(connection => connection.Key,
+                               connection => new ConnectionConfiguration(connection.Key, connection.Value));
+
+            DbSettingProviderManager
+               .StartNewSession()
+               .Use(connections)
+               .WithMySql(resourcePath: Configuration["AppDataPath"])
+               .Run();
 
             app.UseSwagger()
                 .UseSwaggerUI(c =>

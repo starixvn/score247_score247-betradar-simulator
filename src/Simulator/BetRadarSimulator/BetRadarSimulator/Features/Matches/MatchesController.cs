@@ -1,5 +1,6 @@
 ﻿namespace LiveScore.BetRadarSimulator.Api.Features.Matches
 {
+    using LiveScore.BetRadarSimulator.Api.Shared;
     using LiveScore.Providers.SportRadar.Dtos;
     using Microsoft.AspNetCore.Mvc;
     using Newtonsoft.Json;
@@ -10,13 +11,14 @@
     public class MatchesController : Controller
     {
         private const string FormatDate = "MM-dd-yyyy";
-        private readonly string DirectoryRoot = AppDomain.CurrentDomain.BaseDirectory + "/App_Data";
 
         private readonly IMatchService matchService;
+        private readonly IFileService fileService;
 
-        public MatchesController(IMatchService matchService)
+        public MatchesController(IMatchService matchService, IFileService fileService)
         {
             this.matchService = matchService;
+            this.fileService = fileService;
         }
 
         [Route("~/api/{sportType}-{accessLevel}/{region}/{lang}/matches/{matchId}/timeline.json")]
@@ -24,7 +26,7 @@
         public Task<MatchTimelineDto> Timeline(string sportType, string accessLevel, string region, string lang, string matchId)
         {
             var formattedMatchId = matchId.Replace(':', '-');
-            var path = $"{DirectoryRoot}/timelines/{formattedMatchId}/match-timelines.json";
+            var path = $"timelines/{formattedMatchId}/match-timelines.json";
 
             return matchService.GetTimeline(matchId, path);
         }
@@ -33,16 +35,14 @@
         public async Task<JsonResult> Timelines(string matchId, MatchTimelineDto resultDto)
         {
             var formattedMatchId = matchId.Replace(':', '-');
-            System.IO.Directory.CreateDirectory($"{DirectoryRoot}/timelines");
-            var resultFolder = $"{DirectoryRoot}/timelines/{formattedMatchId}";
+            var resultFolder = $"timelines/{formattedMatchId}";
 
             resultDto.generated_at = DateTime.Now;
 
             var path = $"{resultFolder}/match-timelines.json";
             var json = JsonConvert.SerializeObject(resultDto);
 
-            System.IO.Directory.CreateDirectory(resultFolder);
-            await System.IO.File.WriteAllTextAsync(path, json);
+            await fileService.SaveFile(path, json);
 
             return Json(new
             {
@@ -55,7 +55,7 @@
         [HttpGet]
         public Task<DailyResultDto> LiveResults(string sportType, string accessLevel, string region, string lang)
         {
-            var path = $"{DirectoryRoot}/live/{DateTime.Now.ToString(FormatDate)}.json";
+            var path = $"live/{DateTime.Now.ToString(FormatDate)}.json";
 
             return matchService.GetLiveMatches(path);
         }
@@ -63,15 +63,13 @@
         [Route(nameof(LiveResults)), HttpPost]
         public async Task<JsonResult> LiveResults(DailyResultDto resultDto)
         {
-            var resultFolder = $"{DirectoryRoot}/live";
-            System.IO.Directory.CreateDirectory(resultFolder);
+            var resultFolder = $"live";
             resultDto.generated_at = DateTime.Now;
 
             var path = $"{resultFolder}/{DateTime.Now.ToString(FormatDate)}.json";
             var json = JsonConvert.SerializeObject(resultDto);
 
-            System.IO.Directory.CreateDirectory(resultFolder);
-            await System.IO.File.WriteAllTextAsync(path, json);
+            await fileService.SaveFile(path, json);
 
             return Json(new
             {
@@ -84,7 +82,7 @@
         [HttpGet]
         public Task<DailyScheduleDto> DailySchedule(string sportType, string accessLevel, string region, string lang, DateTime date)
         {
-            var path = $"{DirectoryRoot}/schedule/{date.ToString(FormatDate)}.json";
+            var path = $"schedule/{date.ToString(FormatDate)}.json";
 
             return matchService.GetMatchSchedule(date, path);
         }
@@ -92,15 +90,12 @@
         [Route(nameof(DailySchedule)), HttpPost]
         public async Task<JsonResult> DailySchedule(DateTime date, DailyScheduleDto scheduleDto)
         {
-            var scheduleFolder = $"{DirectoryRoot}/schedule";
-            System.IO.Directory.CreateDirectory(scheduleFolder);
+            var scheduleFolder = $"schedule";
             scheduleDto.generated_at = DateTime.Now;
 
             var path = $"{scheduleFolder}/{date.ToString(FormatDate)}.json";
             var json = JsonConvert.SerializeObject(scheduleDto);
-
-            System.IO.Directory.CreateDirectory(scheduleFolder);
-            await System.IO.File.WriteAllTextAsync(path, json);
+            await fileService.SaveFile(path, json);
 
             return Json(new
             {
@@ -113,7 +108,7 @@
         [HttpGet]
         public Task<DailyResultDto> DailyResults(string sportType, string accessLevel, string region, string lang, DateTime date)
         {
-            var path = $"{DirectoryRoot}/results/{date.ToString(FormatDate)}.json";
+            var path = $"results/{date.ToString(FormatDate)}.json";
 
             return matchService.GetMatchResults(date, path);
         }
@@ -121,15 +116,14 @@
         [Route(nameof(DailyResults)), HttpPost]
         public async Task<JsonResult> DailyResults(DateTime date, DailyResultDto resultDto)
         {
-            var resultFolder = $"{DirectoryRoot}/results";
+            var resultFolder = $"results";
             System.IO.Directory.CreateDirectory(resultFolder);
             resultDto.generated_at = DateTime.Now;
 
             var path = $"{resultFolder}/{date.ToString(FormatDate)}.json";
             var json = JsonConvert.SerializeObject(resultDto);
 
-            System.IO.Directory.CreateDirectory(resultFolder);
-            await System.IO.File.WriteAllTextAsync(path, json);
+            await fileService.SaveFile(path, json);
 
             return Json(new
             {
@@ -143,16 +137,14 @@
         {
             var matchId = lineUpsDto.sport_event.id;
             var formattedMatchId = matchId.Replace(':', '-');
-            System.IO.Directory.CreateDirectory($"{DirectoryRoot}/lineups");
-            var lineupsFolder = $"{DirectoryRoot}/lineups/{formattedMatchId}";
+            var lineupsFolder = $"lineups/{formattedMatchId}";
 
             lineUpsDto.generated_at = DateTime.Now;
 
             var path = $"{lineupsFolder}/match-lineups.json";
             var json = JsonConvert.SerializeObject(lineUpsDto);
 
-            System.IO.Directory.CreateDirectory(lineupsFolder);
-            await System.IO.File.WriteAllTextAsync(path, json);
+            await fileService.SaveFile(path, json);
 
             return Json(new
             {
@@ -166,7 +158,7 @@
         public Task<LineUpsDto> LineUps(string sportType, string accessLevel, string region, string lang, string matchId)
         {
             var formattedMatchId = matchId.Replace(':', '-');
-            var path = $"{DirectoryRoot}/lineups/{formattedMatchId}/match-lineups.json";
+            var path = $"lineups/{formattedMatchId}/match-lineups.json";
 
             return matchService.GetMatchLineups(path);
         }
@@ -175,8 +167,8 @@
         public OkResult CleanMatch()
         {
             var folders = new[] {
-                $"{DirectoryRoot}/results",
-                $"{DirectoryRoot}/schedule"
+                $"results",
+                $"schedule"
             };
 
             foreach (var folder in folders)
@@ -194,9 +186,9 @@
         public OkResult CleanTimeline()
         {
             var folders = new[] {
-                $"{DirectoryRoot}/timelines",
-                $"{DirectoryRoot}/lineups",
-                $"{DirectoryRoot}/h2h"
+                $"timelines",
+                $"lineups",
+                $"h2h"
             };
 
             foreach (var folder in folders)

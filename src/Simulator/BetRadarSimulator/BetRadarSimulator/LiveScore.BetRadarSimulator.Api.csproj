@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>    
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <RuntimeFrameworkName>Microsoft.AspNetCore.App</RuntimeFrameworkName>
   </PropertyGroup>
 
@@ -14,16 +14,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="App_Data\SpNames.xml" />
     <None Remove="deployment.ignore" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="App_Data\SpNames.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="deployment.ignore">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Fanex.Data" Version="4.2.0" />
+    <PackageReference Include="Fanex.Data.MySql" Version="4.2.1" />
+    <PackageReference Include="Fanex.Data.Repository" Version="4.2.0" />
     <PackageReference Include="Fanex.Logging.Extensions.AspNetCore" Version="1.0.0" />
     <PackageReference Include="Fanex.Logging.Sentry" Version="1.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
@@ -50,5 +57,4 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
 </Project>
