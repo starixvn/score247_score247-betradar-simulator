@@ -28,7 +28,7 @@
 
         public Task CleanMatches()
         {
-            var command = new CleanScheduleCommand();
+            var command = new CleanScheduleCommand(enviroment);
 
             return repository.ExecuteAsync(command);
         }

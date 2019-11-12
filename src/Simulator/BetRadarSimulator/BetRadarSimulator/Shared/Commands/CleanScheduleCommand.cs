@@ -4,6 +4,11 @@
 
     public class CleanScheduleCommand : NonQueryCommand
     {
+        public CleanScheduleCommand(string environment)
+        {
+            Environment = environment;
+        }
+
         public string Environment { get; set; }
 
         public override string GetSettingKey()
