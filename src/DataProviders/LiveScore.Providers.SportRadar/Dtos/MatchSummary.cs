@@ -127,9 +127,17 @@ namespace LiveScore.Providers.SportRadar.Dtos
     {
         public string id { get; set; }
         public string name { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string abbreviation { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string qualifier { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Statistics1 statistics { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public IEnumerable<PlayerDto> players { get; set; }
     }
 

@@ -18,31 +18,31 @@
     public class FileService : IFileService
     {
         private readonly IDynamicRepository repository;
-        private readonly string enviroment;
+        private readonly string environment;
 
         public FileService(IConfiguration configuration)
         {
-            enviroment = configuration.GetValue<string>("DevelopmentEnvironment");
+            environment = configuration.GetValue<string>("DevelopmentEnvironment");
             repository = new DynamicRepository();
         }
 
         public Task CleanMatches()
         {
-            var command = new CleanScheduleCommand(enviroment);
+            var command = new CleanScheduleCommand(environment);
 
             return repository.ExecuteAsync(command);
         }
 
         public Task<string> GetFile(string path)
         {
-            var criteria = new GetFileContentCriteria(path, enviroment);
+            var criteria = new GetFileContentCriteria(path, environment);
 
             return repository.GetAsync<string>(criteria);
         }
 
         public Task<int> SaveFile(string path, string value)
         {
-            var command = new InsertOrUpdateFileCommand(path, enviroment, value);
+            var command = new InsertOrUpdateFileCommand(path, environment, value);
 
             return repository.ExecuteAsync(command);
         }

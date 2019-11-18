@@ -6,6 +6,7 @@ using Fanex.Logging;
 using Fanex.Logging.Sentry;
 using LiveScore.BetRadarSimulator.Api.Features.Matches;
 using LiveScore.BetRadarSimulator.Api.Features.Teams;
+using LiveScore.BetRadarSimulator.Api.Features.Tournaments;
 using LiveScore.BetRadarSimulator.Api.Midlewares;
 using LiveScore.BetRadarSimulator.Api.Shared;
 using LiveScore.BetRadarSimulator.Services;
@@ -38,6 +39,7 @@ namespace LiveScoreSimulator
             services.AddSingleton<IMatchService, MatchService>();
             services.AddSingleton<ITeamService, TeamService>();
             services.AddSingleton<IFileService, FileService>();
+            services.AddSingleton<ITournamentService, TournamentService>();
 
             services.AddResponseCompression(options =>
             {
