@@ -39,8 +39,9 @@ namespace LiveScore.BetRadarSimulator.Api.Features.Tournaments
         }
 
         [Route("~/api/{sportType}-{accessLevel}/{region}/{lang}/tournaments/{tournamentId}/live_standings.json")]
+        [Route("~/api/{sportType}-{accessLevel}/{region}/{lang}/tournaments/{tournamentId}/standings.json")]
         [HttpGet]
-        public Task<TournamentStandingDto> TournamentStandings(string sportType, string accessLevel, string region, string lang, string tournamentId)
+        public Task<TournamentStandingDto> TournamentLiveStandings(string sportType, string accessLevel, string region, string lang, string tournamentId)
         {
             var path = $"standing/{tournamentId}.json";
 
