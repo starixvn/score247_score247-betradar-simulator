@@ -20,12 +20,18 @@ namespace LiveScore.Providers.SportRadar.Dtos
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public IEnumerable<StandingDto> standings { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public IEnumerable<NoteDto> notes { get; set; }
     }
 
     public class StandingDto
     {
         public string tie_break_rule { get; set; }
         public string type { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public IEnumerable<GroupStandingDto> groups { get; set; }
     }
 
     public class GroupStandingDto
@@ -36,9 +42,6 @@ namespace LiveScore.Providers.SportRadar.Dtos
         public string name { get; set; }
 
         public IEnumerable<TeamStandingDto> team_standings { get; set; }
-
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public IEnumerable<GroupLogDto> notes { get; set; }
     }
 
     public class TeamStandingDto
@@ -58,6 +61,11 @@ namespace LiveScore.Providers.SportRadar.Dtos
         public int goal_diff { get; set; }
         public int points { get; set; }
         public int change { get; set; }
+    }
+
+    public class NoteDto
+    {
+        public GroupLogDto group { get; set; }
     }
 
     public class GroupLogDto
