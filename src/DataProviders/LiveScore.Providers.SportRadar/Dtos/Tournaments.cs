@@ -26,6 +26,9 @@ namespace LiveScore.Providers.SportRadar.Dtos
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Season_Coverage_Info season_coverage_info { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public CoverageInfoDto coverage_info { get; set; }
     }
 
     public class Current_Season
