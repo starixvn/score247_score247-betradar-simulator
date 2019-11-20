@@ -47,5 +47,12 @@ namespace LiveScore.BetRadarSimulator.Api.Features.Tournaments
 
             return tournamentService.GetTournamentStandings(path);
         }
+
+        [Route("~/api/{sportType}-{accessLevel}/{region}/{lang}/tournaments.json")]
+        [HttpGet]
+        public Task<RegionTournamentDto> GetRegionTournament(string sportType, string accessLevel, string region, string lang)
+        {
+            return tournamentService.GetRegionTournaments(region);
+        }
     }
 }

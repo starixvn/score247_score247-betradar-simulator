@@ -9,6 +9,8 @@ namespace LiveScore.BetRadarSimulator.Api.Features.Tournaments
     public interface ITournamentService
     {
         Task<TournamentStandingDto> GetTournamentStandings(string path);
+
+        Task<RegionTournamentDto> GetRegionTournaments(string region);
     }
 
     public class TournamentService : ITournamentService
@@ -18,6 +20,20 @@ namespace LiveScore.BetRadarSimulator.Api.Features.Tournaments
         public TournamentService(IFileService fileService)
         {
             this.fileService = fileService;
+        }
+
+        public async Task<RegionTournamentDto> GetRegionTournaments(string region)
+        {
+            var path = $"{AppDomain.CurrentDomain.BaseDirectory}/App_Data/staticdata/{region}-tournaments.json";
+
+            if (System.IO.File.Exists(path))
+            {
+                var jsonData = await System.IO.File.ReadAllTextAsync(path);
+
+                return JsonConvert.DeserializeObject<RegionTournamentDto>(jsonData);
+            }
+
+            return new RegionTournamentDto();
         }
 
         public async Task<TournamentStandingDto> GetTournamentStandings(string path)
