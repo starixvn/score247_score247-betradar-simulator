@@ -29,7 +29,8 @@ namespace LiveScore.Providers.SportRadar.Dtos
     public class Tournament_Round
     {
         public string type { get; set; }
-        public int number { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public int? number { get; set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string phase { get; set; }
 
@@ -38,9 +39,9 @@ namespace LiveScore.Providers.SportRadar.Dtos
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string name { get; set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int cup_round_match_number { get; set; }
+        public int? cup_round_match_number { get; set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int cup_round_matches { get; set; }
+        public int? cup_round_matches { get; set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string other_match_id { get; set; }
     }
