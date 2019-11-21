@@ -57,9 +57,16 @@ namespace LiveScore.BetRadarSimulator.Api.Features.Tournaments
 
         [Route("~/api/{sportType}-{accessLevel}/{region}/{lang}/tournaments/{tournamentId}/schedule.json")]
         [HttpGet]
-        public Task<TournamentScheduleDto> GetRegionTournament(string sportType, string accessLevel, string region, string lang, string tournamentId)
+        public Task<TournamentScheduleDto> GetRegionTournamentSchedule(string sportType, string accessLevel, string region, string lang, string tournamentId)
         {
-            return tournamentService.TournamentSchedule(tournamentId);
+            return tournamentService.GetTournamentSchedule(tournamentId);
+        }
+
+        [Route("~/api/{sportType}-{accessLevel}/{region}/{lang}/tournaments/{tournamentId}/results.json")]
+        [HttpGet]
+        public Task<TournamentScheduleDto> GetRegionTournamentResult(string sportType, string accessLevel, string region, string lang, string tournamentId)
+        {
+            return tournamentService.GetTournamentResult(tournamentId);
         }
     }
 }

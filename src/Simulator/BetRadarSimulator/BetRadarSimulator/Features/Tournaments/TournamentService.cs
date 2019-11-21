@@ -12,7 +12,9 @@ namespace LiveScore.BetRadarSimulator.Api.Features.Tournaments
 
         Task<RegionTournamentDto> GetRegionTournaments(string region);
 
-        Task<TournamentScheduleDto> TournamentSchedule(string tournamentId);
+        Task<TournamentScheduleDto> GetTournamentSchedule(string tournamentId);
+
+        Task<TournamentScheduleDto> GetTournamentResult(string tournamentId);
     }
 
     public class TournamentService : ITournamentService
@@ -54,9 +56,23 @@ namespace LiveScore.BetRadarSimulator.Api.Features.Tournaments
             }
         }
 
-        public async Task<TournamentScheduleDto> TournamentSchedule(string tournamentId)
+        public async Task<TournamentScheduleDto> GetTournamentSchedule(string tournamentId)
         {
             var path = $"{AppDomain.CurrentDomain.BaseDirectory}/App_Data/staticdata/tournament-schedule.json";
+
+            if (!System.IO.File.Exists(path))
+            {
+                return new TournamentScheduleDto();
+            }
+
+            var jsonData = await System.IO.File.ReadAllTextAsync(path);
+
+            return JsonConvert.DeserializeObject<TournamentScheduleDto>(jsonData);
+        }
+
+        public async Task<TournamentScheduleDto> GetTournamentResult(string tournamentId)
+        {
+            var path = $"{AppDomain.CurrentDomain.BaseDirectory}/App_Data/staticdata/tournament-result.json";
 
             if (!System.IO.File.Exists(path))
             {
