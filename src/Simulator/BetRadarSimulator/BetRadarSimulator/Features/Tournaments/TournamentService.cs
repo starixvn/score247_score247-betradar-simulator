@@ -67,7 +67,15 @@ namespace LiveScore.BetRadarSimulator.Api.Features.Tournaments
 
             var jsonData = await System.IO.File.ReadAllTextAsync(path);
 
-            return JsonConvert.DeserializeObject<TournamentScheduleDto>(jsonData);
+            var schedule = JsonConvert.DeserializeObject<TournamentScheduleDto>(jsonData);
+            schedule.tournament.id = tournamentId;
+            foreach (var match in schedule.sport_events)
+            {
+                match.tournament.id = tournamentId;
+                match.season.id = tournamentId;
+            }
+
+            return schedule;
         }
 
         public async Task<TournamentScheduleDto> GetTournamentResult(string tournamentId)
@@ -81,7 +89,15 @@ namespace LiveScore.BetRadarSimulator.Api.Features.Tournaments
 
             var jsonData = await System.IO.File.ReadAllTextAsync(path);
 
-            return JsonConvert.DeserializeObject<TournamentScheduleDto>(jsonData);
+            var results = JsonConvert.DeserializeObject<TournamentScheduleDto>(jsonData);
+            results.tournament.id = tournamentId;
+            foreach (var result in results.results)
+            {
+                result.sport_event.tournament.id = tournamentId;
+                result.sport_event.season.id = tournamentId;
+            }
+
+            return results;
         }
     }
 }
