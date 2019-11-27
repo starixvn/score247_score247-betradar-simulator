@@ -58,24 +58,21 @@ namespace LiveScore.BetRadarSimulator.Api.Features.Tournaments
 
         public async Task<TournamentScheduleDto> GetTournamentSchedule(string tournamentId)
         {
-            var path = $"{AppDomain.CurrentDomain.BaseDirectory}/App_Data/staticdata/tournament-schedule.json";
+            var path = $"tournaments/schedule/{tournamentId}.json";
 
-            if (!System.IO.File.Exists(path))
+            var fileContent = await fileService.GetFile(path);
+            if (string.IsNullOrWhiteSpace(fileContent))
             {
-                return new TournamentScheduleDto();
+                return new TournamentScheduleDto { generated_at = DateTime.Now, message = "No schedule" };
             }
-
-            var jsonData = await System.IO.File.ReadAllTextAsync(path);
-
-            var schedule = JsonConvert.DeserializeObject<TournamentScheduleDto>(jsonData);
-            schedule.tournament.id = tournamentId;
-            foreach (var match in schedule.sport_events)
+            else
             {
-                match.tournament.id = tournamentId;
-                match.season.id = tournamentId;
-            }
+                var resultDto = JsonConvert.DeserializeObject<TournamentScheduleDto>(fileContent);
 
-            return schedule;
+                resultDto.generated_at = DateTime.Now;
+
+                return resultDto;
+            }
         }
 
         public async Task<TournamentScheduleDto> GetTournamentResult(string tournamentId)
