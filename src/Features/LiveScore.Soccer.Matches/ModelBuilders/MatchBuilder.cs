@@ -78,7 +78,6 @@
                         ? 0
                         : ParseMatchClock(sportEventStatusDto.clock.match_time);
                 }
-
             }
 
             return matchResult;
@@ -186,6 +185,5 @@
         => string.IsNullOrWhiteSpace(matchClock)
                         ? 0
                         : int.Parse(matchClock.Split(':')[0]);
-
     }
 }

@@ -81,27 +81,28 @@ namespace LiveScore.Providers.SportRadar.Dtos
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string match_status { get; set; }
-        public int home_score { get; set; }
-        public int away_score { get; set; }
+        public int? home_score { get; set; }
+        public int? away_score { get; set; }
         public string winner_id { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int aggregate_home_score { get; set; }
+        public int? aggregate_home_score { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int aggregate_away_score { get; set; }
+        public int? aggregate_away_score { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string aggregate_winner_id { get; set; }
 
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int period { get; set; }
+        public int? period { get; set; }
 
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Clock clock { get; set; }
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public IEnumerable<Period_Scores> period_scores { get; set; }
     }
 
