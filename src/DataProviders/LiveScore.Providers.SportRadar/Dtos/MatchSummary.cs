@@ -81,8 +81,11 @@ namespace LiveScore.Providers.SportRadar.Dtos
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string match_status { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int? home_score { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int? away_score { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string winner_id { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
