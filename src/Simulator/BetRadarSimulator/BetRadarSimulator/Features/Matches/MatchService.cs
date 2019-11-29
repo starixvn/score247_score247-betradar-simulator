@@ -51,12 +51,14 @@
             var fileContent = await fileService.GetFile(path);
             if (string.IsNullOrWhiteSpace(fileContent))
             {
-                return new LineUpsDto { generated_at = DateTime.Now, schema = "", message = "No lineups." };
+                var result = new LineUpsDto { generated_at = DateTime.Now, schema = "", message = "No lineups." };
+
+                return result;
             }
             else
             {
                 var timelineDto = JsonConvert.DeserializeObject<LineUpsDto>(fileContent);
-                timelineDto.generated_at = DateTimeOffset.Now;
+                timelineDto.generated_at = DateTime.Now;
 
                 return timelineDto;
             }

@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using LiveScore.Providers.SportRadar.Converters;
 using Newtonsoft.Json;
 
 namespace LiveScore.Providers.SportRadar.Dtos
 {
     public class TournamentStandingDto
     {
-        public DateTimeOffset generated_at { get; set; }
+        [JsonConverter(typeof(DateFormatConverter), "yyyy-MM-ddTHH:mm:sszzz")]
+        public DateTime generated_at { get; set; }
+
         public string schema { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]

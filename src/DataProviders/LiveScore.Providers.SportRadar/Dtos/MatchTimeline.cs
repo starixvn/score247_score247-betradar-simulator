@@ -3,12 +3,14 @@ namespace LiveScore.Providers.SportRadar.Dtos
 {   
     using System;
     using System.Collections.Generic;
+    using LiveScore.Providers.SportRadar.Converters;
     using Newtonsoft.Json;
 
     public class MatchTimelineDto
     {
+        [JsonConverter(typeof(DateFormatConverter), "yyyy-MM-ddTHH:mm:sszzz")]
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public DateTimeOffset generated_at { get; set; }
+        public DateTime generated_at { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string schema { get; set; }
@@ -38,8 +40,9 @@ namespace LiveScore.Providers.SportRadar.Dtos
         public long id { get; set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string type { get; set; }
+        [JsonConverter(typeof(DateFormatConverter), "yyyy-MM-ddTHH:mm:sszzz")]
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public DateTimeOffset time { get; set; }
+        public DateTime time { get; set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public IEnumerable<CommentaryDto> commentaries { get; set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]

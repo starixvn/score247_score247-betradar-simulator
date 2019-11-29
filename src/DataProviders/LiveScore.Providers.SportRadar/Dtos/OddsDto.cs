@@ -2,7 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+    using LiveScore.Providers.SportRadar.Converters;
     using LiveScore.Providers.SportRadar.Dtos;
+    using Newtonsoft.Json;
 
     public class TournamentRound
     {
@@ -76,7 +78,9 @@
     public class SportEvent
     {
         public string id { get; set; }
+
         public DateTime scheduled { get; set; }
+
         public bool start_time_tbd { get; set; }
         public string status { get; set; }
         public TournamentRound tournament_round { get; set; }
@@ -100,7 +104,9 @@
 
     public class MatchOddsDto
     {
+        [JsonConverter(typeof(DateFormatConverter), "yyyy-MM-ddTHH:mm:ss")]
         public DateTime generated_at { get; set; }
+
         public string schema { get; set; }
         public SportEvent sport_event { get; set; }
     }

@@ -3,18 +3,21 @@ namespace LiveScore.Providers.SportRadar.Dtos
 {
     using System;
     using System.Collections.Generic;
+    using LiveScore.Providers.SportRadar.Converters;
     using Newtonsoft.Json;
 
     public class DailyResultDto
     {
-        public DateTimeOffset generated_at { get; set; }
+        [JsonConverter(typeof(DateFormatConverter), "yyyy-MM-ddTHH:mm:sszzz")]
+        public DateTime generated_at { get; set; }
         public string schema { get; set; }
         public IEnumerable<Result> results { get; set; }
     }
 
     public class DailyScheduleDto
     {
-        public DateTimeOffset generated_at { get; set; }
+        [JsonConverter(typeof(DateFormatConverter), "yyyy-MM-ddTHH:mm:sszzz")]
+        public DateTime generated_at { get; set; }
         public string schema { get; set; }
         public IEnumerable<Sport_Event> sport_events { get; set; }
     }
