@@ -1,7 +1,62 @@
 {
-  "generated_at": "2019-11-21T07:53:40+00:00",
-  "schema": "http://schemas.sportradar.com/bsa/soccer/v1/json/endpoints/soccer/tournaments.json",
+  "generated_at": "2019-11-29T08:20:17+00:00",
+  "schema": "http:\/\/schemas.sportradar.com\/bsa\/soccer\/v1\/json\/endpoints\/soccer\/tournaments.json",
   "tournaments": [
+    {
+      "id": "sr:tournament:7",
+      "name": "UEFA Champions League",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:393",
+        "name": "International Clubs"
+      },
+      "current_season": {
+        "id": "sr:season:67681",
+        "name": "UEFA Champions League 19\/20",
+        "start_date": "2019-06-25",
+        "end_date": "2020-06-01",
+        "year": "19\/20"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:67681",
+        "scheduled": 188,
+        "played": 171,
+        "max_coverage_level": "platinum",
+        "max_covered": 80,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:8",
+      "name": "LaLiga",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:32",
+        "name": "Spain",
+        "country_code": "ESP"
+      },
+      "current_season": {
+        "id": "sr:season:66633",
+        "name": "LaLiga 19\/20",
+        "start_date": "2019-08-16",
+        "end_date": "2020-05-25",
+        "year": "19\/20"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:66633",
+        "scheduled": 381,
+        "played": 140,
+        "max_coverage_level": "platinum",
+        "max_covered": 139,
+        "min_coverage_level": "silver"
+      }
+    },
     {
       "id": "sr:tournament:17",
       "name": "Premier League",
@@ -16,18 +71,406 @@
       },
       "current_season": {
         "id": "sr:season:66441",
-        "name": "Premier League 19/20",
+        "name": "Premier League 19\/20",
         "start_date": "2019-08-09",
         "end_date": "2020-05-18",
-        "year": "19/20"
+        "year": "19\/20"
       },
       "season_coverage_info": {
         "season_id": "sr:season:66441",
         "scheduled": 381,
-        "played": 120,
+        "played": 130,
         "max_coverage_level": "platinum",
-        "max_covered": 120,
+        "max_covered": 130,
         "min_coverage_level": "platinum"
+      }
+    },
+    {
+      "id": "sr:tournament:23",
+      "name": "Serie A",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:31",
+        "name": "Italy",
+        "country_code": "ITA"
+      },
+      "current_season": {
+        "id": "sr:season:67061",
+        "name": "Serie A 19\/20",
+        "start_date": "2019-08-24",
+        "end_date": "2020-06-10",
+        "year": "19\/20"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:67061",
+        "scheduled": 381,
+        "played": 130,
+        "max_coverage_level": "platinum",
+        "max_covered": 127,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:34",
+      "name": "Ligue 1",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:7",
+        "name": "France",
+        "country_code": "FRA"
+      },
+      "current_season": {
+        "id": "sr:season:66881",
+        "name": "Ligue 1 19\/20",
+        "start_date": "2019-08-09",
+        "end_date": "2020-06-01",
+        "year": "19\/20"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:66881",
+        "scheduled": 382,
+        "played": 140,
+        "max_coverage_level": "gold",
+        "max_covered": 140,
+        "min_coverage_level": "gold"
+      }
+    },
+    {
+      "id": "sr:tournament:35",
+      "name": "Bundesliga",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:30",
+        "name": "Germany",
+        "country_code": "DEU"
+      },
+      "current_season": {
+        "id": "sr:season:66509",
+        "name": "Bundesliga 19\/20",
+        "start_date": "2019-08-16",
+        "end_date": "2020-05-28",
+        "year": "19\/20"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:66509",
+        "scheduled": 307,
+        "played": 108,
+        "max_coverage_level": "platinum",
+        "max_covered": 108,
+        "min_coverage_level": "platinum"
+      }
+    },
+    {
+      "id": "sr:tournament:37",
+      "name": "Eredivisie",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:35",
+        "name": "Netherlands",
+        "country_code": "NLD"
+      },
+      "current_season": {
+        "id": "sr:season:67181",
+        "name": "Eredivisie 19\/20",
+        "start_date": "2019-08-02",
+        "end_date": "2020-05-25",
+        "year": "19\/20"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:67181",
+        "scheduled": 308,
+        "played": 128,
+        "max_coverage_level": "gold",
+        "max_covered": 126,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:38",
+      "name": "First Division A",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:33",
+        "name": "Belgium",
+        "country_code": "BEL"
+      },
+      "current_season": {
+        "id": "sr:season:66731",
+        "name": "First Division A 19\/20",
+        "start_date": "2019-07-26",
+        "end_date": "2020-06-01",
+        "year": "19\/20"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:66731",
+        "scheduled": 246,
+        "played": 129,
+        "max_coverage_level": "gold",
+        "max_covered": 53,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:52",
+      "name": "Super Lig",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:46",
+        "name": "Turkey",
+        "country_code": "TUR"
+      },
+      "current_season": {
+        "id": "sr:season:67445",
+        "name": "Super Lig 19\/20",
+        "start_date": "2019-08-16",
+        "end_date": "2020-05-30",
+        "year": "19\/20"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:67445",
+        "scheduled": 309,
+        "played": 108,
+        "max_coverage_level": "gold",
+        "max_covered": 108,
+        "min_coverage_level": "gold"
+      }
+    },
+    {
+      "id": "sr:tournament:185",
+      "name": "Super League 1",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:67",
+        "name": "Greece",
+        "country_code": "GRC"
+      },
+      "current_season": {
+        "id": "sr:season:66983",
+        "name": "Super League 1 19\/20",
+        "start_date": "2019-08-24",
+        "end_date": "2020-06-01",
+        "year": "19\/20"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:66983",
+        "scheduled": 182,
+        "played": 77,
+        "max_coverage_level": "gold",
+        "max_covered": 76,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:203",
+      "name": "Premier League",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:21",
+        "name": "Russia",
+        "country_code": "RUS"
+      },
+      "current_season": {
+        "id": "sr:season:67295",
+        "name": "Premier League 19\/20",
+        "start_date": "2019-07-12",
+        "end_date": "2020-05-25",
+        "year": "19\/20"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:67295",
+        "scheduled": 240,
+        "played": 136,
+        "max_coverage_level": "gold",
+        "max_covered": 136,
+        "min_coverage_level": "gold"
+      }
+    },
+    {
+      "id": "sr:tournament:218",
+      "name": "Premier League",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:86",
+        "name": "Ukraine",
+        "country_code": "UKR"
+      },
+      "current_season": {
+        "id": "sr:season:67467",
+        "name": "Premier League 19\/20",
+        "start_date": "2019-07-26",
+        "end_date": "2020-05-31",
+        "year": "19\/20"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:67467",
+        "scheduled": 132,
+        "played": 90,
+        "max_coverage_level": "gold",
+        "max_covered": 6,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:238",
+      "name": "Primeira Liga",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:44",
+        "name": "Portugal",
+        "country_code": "PRT"
+      },
+      "current_season": {
+        "id": "sr:season:67257",
+        "name": "Primeira Liga 19\/20",
+        "start_date": "2019-08-09",
+        "end_date": "2020-06-10",
+        "year": "19\/20"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:67257",
+        "scheduled": 307,
+        "played": 100,
+        "max_coverage_level": "gold",
+        "max_covered": 99,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:465",
+      "name": "UEFA Super Cup",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:393",
+        "name": "International Clubs"
+      },
+      "current_season": {
+        "id": "sr:season:67671",
+        "name": "UEFA Super Cup 2019",
+        "start_date": "2019-08-14",
+        "end_date": "2019-08-15",
+        "year": "2019"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:67671",
+        "scheduled": 1,
+        "played": 1,
+        "max_coverage_level": "gold",
+        "max_covered": 1,
+        "min_coverage_level": "gold"
+      }
+    },
+    {
+      "id": "sr:tournament:679",
+      "name": "UEFA Europa League",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:393",
+        "name": "International Clubs"
+      },
+      "current_season": {
+        "id": "sr:season:68134",
+        "name": "UEFA Europa League 19\/20",
+        "start_date": "2019-06-27",
+        "end_date": "2020-05-28",
+        "year": "19\/20"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:68134",
+        "scheduled": 460,
+        "played": 436,
+        "max_coverage_level": "gold",
+        "max_covered": 189,
+        "min_coverage_level": "bronze"
+      }
+    },
+    {
+      "id": "sr:tournament:2324",
+      "name": "UEFA Youth League",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:392",
+        "name": "International Youth"
+      },
+      "current_season": {
+        "id": "sr:season:71044",
+        "name": "UEFA Youth League 19\/20",
+        "start_date": "2019-09-16",
+        "end_date": "2020-04-30",
+        "year": "19\/20"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:71044",
+        "scheduled": 144,
+        "played": 127,
+        "max_coverage_level": "gold",
+        "max_covered": 10,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:23755",
+      "name": "UEFA Nations League",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:4",
+        "name": "International"
+      },
+      "current_season": {
+        "id": "sr:season:50817",
+        "name": "UEFA Nations League 18\/19",
+        "start_date": "2018-09-06",
+        "end_date": "2019-06-10",
+        "year": "2018"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:50817",
+        "scheduled": 142,
+        "played": 142,
+        "max_coverage_level": "platinum",
+        "max_covered": 24,
+        "min_coverage_level": "silver"
       }
     }
   ]

@@ -1,1 +1,414 @@
-{"generated_at":"2019-11-20T03:24:50+00:00","schema":"http:\/\/schemas.sportradar.com\/bsa\/soccer\/v1\/json\/endpoints\/soccer\/tournaments.json","tournaments":[{"id":"sr:tournament:155","name":"Superliga","sport":{"id":"sr:sport:1","name":"Soccer"},"category":{"id":"sr:category:48","name":"Argentina","country_code":"ARG"},"current_season":{"id":"sr:season:69056","name":"Superliga 19\/20","start_date":"2019-07-26","end_date":"2020-03-03","year":"19\/20"},"season_coverage_info":{"season_id":"sr:season:69056","scheduled":277,"played":155,"max_coverage_level":"gold","max_covered":152,"min_coverage_level":"silver"}},{"id":"sr:tournament:242","name":"Major League Soccer","sport":{"id":"sr:sport:1","name":"Soccer"},"category":{"id":"sr:category:26","name":"USA","country_code":"USA"},"current_season":{"id":"sr:season:62475","name":"Major League Soccer 2019","start_date":"2019-03-02","end_date":"2019-12-17","year":"2019"},"season_coverage_info":{"season_id":"sr:season:62475","scheduled":422,"played":422,"max_coverage_level":"gold","max_covered":417,"min_coverage_level":"silver"}},{"id":"sr:tournament:278","name":"Primera Division","sport":{"id":"sr:sport:1","name":"Soccer"},"category":{"id":"sr:category:57","name":"Uruguay","country_code":"URY"},"current_season":{"id":"sr:season:63773","name":"Primera Division 2019","start_date":"2019-02-16","end_date":"2019-12-31","year":"2019"},"season_coverage_info":{"season_id":"sr:season:63773","scheduled":306,"played":298,"max_coverage_level":"gold","max_covered":62,"min_coverage_level":"silver"}},{"id":"sr:tournament:325","name":"Brasileiro Serie A","sport":{"id":"sr:sport:1","name":"Soccer"},"category":{"id":"sr:category:13","name":"Brazil","country_code":"BRA"},"current_season":{"id":"sr:season:65068","name":"Brasileiro Serie A 2019","start_date":"2019-04-27","end_date":"2019-12-16","year":"2019"},"season_coverage_info":{"season_id":"sr:season:65068","scheduled":382,"played":333,"max_coverage_level":"gold","max_covered":320,"min_coverage_level":"silver"}},{"id":"sr:tournament:384","name":"Copa Libertadores","sport":{"id":"sr:sport:1","name":"Soccer"},"category":{"id":"sr:category:393","name":"International Clubs"},"current_season":{"id":"sr:season:62251","name":"Copa Libertadores 2019","start_date":"2019-01-22","end_date":"2019-12-31","year":"2019"},"season_coverage_info":{"season_id":"sr:season:62251","scheduled":156,"played":155,"max_coverage_level":"gold","max_covered":150,"min_coverage_level":"silver"}},{"id":"sr:tournament:480","name":"Copa Sudamericana","sport":{"id":"sr:sport:1","name":"Soccer"},"category":{"id":"sr:category:393","name":"International Clubs"},"current_season":{"id":"sr:season:62253","name":"Copa Sudamericana 2019","start_date":"2019-02-04","end_date":"2019-11-11","year":"2019"},"season_coverage_info":{"season_id":"sr:season:62253","scheduled":106,"played":106,"max_coverage_level":"gold","max_covered":103,"min_coverage_level":"silver"}},{"id":"sr:tournament:490","name":"Recopa Sudamericana","sport":{"id":"sr:sport:1","name":"Soccer"},"category":{"id":"sr:category:393","name":"International Clubs"},"current_season":{"id":"sr:season:62255","name":"Recopa Sudamericana 2019","start_date":"2019-05-22","end_date":"2019-05-31","year":"2019"},"season_coverage_info":{"season_id":"sr:season:62255","scheduled":2,"played":2,"max_coverage_level":"gold","max_covered":2,"min_coverage_level":"gold"}},{"id":"sr:tournament:498","name":"CONCACAF Champions League","sport":{"id":"sr:sport:1","name":"Soccer"},"category":{"id":"sr:category:393","name":"International Clubs"},"current_season":{"id":"sr:season:61523","name":"CONCACAF CL 2019","start_date":"2019-02-19","end_date":"2019-05-06","year":"2019"},"season_coverage_info":{"season_id":"sr:season:61523","scheduled":30,"played":30,"max_coverage_level":"gold","max_covered":27,"min_coverage_level":"silver"}},{"id":"sr:tournament:27070","name":"Primera A, Apertura","sport":{"id":"sr:sport:1","name":"Soccer"},"category":{"id":"sr:category:274","name":"Colombia","country_code":"COL"},"current_season":{"id":"sr:season:62695","name":"Primera A 2019","start_date":"2019-01-26","end_date":"2019-12-31","year":"2019"},"season_coverage_info":{"season_id":"sr:season:62695","scheduled":228,"played":228,"max_coverage_level":"gold","max_covered":214,"min_coverage_level":"bronze"}},{"id":"sr:tournament:27072","name":"Primera A, Clausura","sport":{"id":"sr:sport:1","name":"Soccer"},"category":{"id":"sr:category:274","name":"Colombia","country_code":"COL"},"current_season":{"id":"sr:season:68430","name":"Primera A 2019, Clausura","start_date":"2019-07-12","end_date":"2019-12-31","year":"2019"},"season_coverage_info":{"season_id":"sr:season:68430","scheduled":224,"played":212,"max_coverage_level":"gold","max_covered":191,"min_coverage_level":"silver"}},{"id":"sr:tournament:27464","name":"Primera Division, Apertura","sport":{"id":"sr:sport:1","name":"Soccer"},"category":{"id":"sr:category:12","name":"Mexico","country_code":"MEX"},"current_season":{"id":"sr:season:67153","name":"Primera Division, Apertura 2019","start_date":"2019-07-19","end_date":"2019-12-31","year":"2019"},"season_coverage_info":{"season_id":"sr:season:67153","scheduled":171,"played":162,"max_coverage_level":"gold","max_covered":156,"min_coverage_level":"silver"}},{"id":"sr:tournament:27466","name":"Primera Division, Clausura","sport":{"id":"sr:sport:1","name":"Soccer"},"category":{"id":"sr:category:12","name":"Mexico","country_code":"MEX"},"current_season":{"id":"sr:season:62219","name":"Primera Division 18\/19. Clausura","start_date":"2019-01-04","end_date":"2019-05-28","year":"18\/19"},"season_coverage_info":{"season_id":"sr:season:62219","scheduled":167,"played":167,"max_coverage_level":"gold","max_covered":167,"min_coverage_level":"gold"}},{"id":"sr:tournament:27518","name":"Primera Divison, Apertura","sport":{"id":"sr:sport:1","name":"Soccer"},"category":{"id":"sr:category:49","name":"Chile","country_code":"CHL"},"current_season":{"id":"sr:season:33349","name":"Primera Division 16\/17","start_date":"2016-07-24","end_date":"2017-06-11","year":"16\/17"},"season_coverage_info":{"season_id":"sr:season:33349","scheduled":252,"played":252,"max_coverage_level":"silver","max_covered":252,"min_coverage_level":"silver"}},{"id":"sr:tournament:27520","name":"Primera Divison, Clausura","sport":{"id":"sr:sport:1","name":"Soccer"},"category":{"id":"sr:category:49","name":"Chile","country_code":"CHL"},"current_season":{"id":"sr:season:62199","name":"Primera Division 16\/17","start_date":"2016-07-24","end_date":"2017-06-11","year":"16\/17"}},{"id":"sr:tournament:27665","name":"Primera Division","sport":{"id":"sr:sport:1","name":"Soccer"},"category":{"id":"sr:category:49","name":"Chile","country_code":"CHL"},"current_season":{"id":"sr:season:63023","name":"Primera Division 2019","start_date":"2019-02-15","end_date":"2019-12-31","year":"2019"},"season_coverage_info":{"season_id":"sr:season:63023","scheduled":260,"played":236,"max_coverage_level":"gold","max_covered":189,"min_coverage_level":"silver"}}]}
+{
+  "generated_at": "2019-11-20T03:24:50+00:00",
+  "schema": "http:\/\/schemas.sportradar.com\/bsa\/soccer\/v1\/json\/endpoints\/soccer\/tournaments.json",
+  "tournaments": [
+    {
+      "id": "sr:tournament:155",
+      "name": "Superliga",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:48",
+        "name": "Argentina",
+        "country_code": "ARG"
+      },
+      "current_season": {
+        "id": "sr:season:69056",
+        "name": "Superliga 19\/20",
+        "start_date": "2019-07-26",
+        "end_date": "2020-03-03",
+        "year": "19\/20"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:69056",
+        "scheduled": 277,
+        "played": 155,
+        "max_coverage_level": "gold",
+        "max_covered": 152,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:242",
+      "name": "Major League Soccer",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:26",
+        "name": "USA",
+        "country_code": "USA"
+      },
+      "current_season": {
+        "id": "sr:season:62475",
+        "name": "Major League Soccer 2019",
+        "start_date": "2019-03-02",
+        "end_date": "2019-12-17",
+        "year": "2019"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:62475",
+        "scheduled": 422,
+        "played": 422,
+        "max_coverage_level": "gold",
+        "max_covered": 417,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:278",
+      "name": "Primera Division",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:57",
+        "name": "Uruguay",
+        "country_code": "URY"
+      },
+      "current_season": {
+        "id": "sr:season:63773",
+        "name": "Primera Division 2019",
+        "start_date": "2019-02-16",
+        "end_date": "2019-12-31",
+        "year": "2019"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:63773",
+        "scheduled": 306,
+        "played": 298,
+        "max_coverage_level": "gold",
+        "max_covered": 62,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:325",
+      "name": "Brasileiro Serie A",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:13",
+        "name": "Brazil",
+        "country_code": "BRA"
+      },
+      "current_season": {
+        "id": "sr:season:65068",
+        "name": "Brasileiro Serie A 2019",
+        "start_date": "2019-04-27",
+        "end_date": "2019-12-16",
+        "year": "2019"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:65068",
+        "scheduled": 382,
+        "played": 333,
+        "max_coverage_level": "gold",
+        "max_covered": 320,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:384",
+      "name": "Copa Libertadores",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:393",
+        "name": "International Clubs"
+      },
+      "current_season": {
+        "id": "sr:season:62251",
+        "name": "Copa Libertadores 2019",
+        "start_date": "2019-01-22",
+        "end_date": "2019-12-31",
+        "year": "2019"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:62251",
+        "scheduled": 156,
+        "played": 155,
+        "max_coverage_level": "gold",
+        "max_covered": 150,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:480",
+      "name": "Copa Sudamericana",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:393",
+        "name": "International Clubs"
+      },
+      "current_season": {
+        "id": "sr:season:62253",
+        "name": "Copa Sudamericana 2019",
+        "start_date": "2019-02-04",
+        "end_date": "2019-11-11",
+        "year": "2019"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:62253",
+        "scheduled": 106,
+        "played": 106,
+        "max_coverage_level": "gold",
+        "max_covered": 103,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:490",
+      "name": "Recopa Sudamericana",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:393",
+        "name": "International Clubs"
+      },
+      "current_season": {
+        "id": "sr:season:62255",
+        "name": "Recopa Sudamericana 2019",
+        "start_date": "2019-05-22",
+        "end_date": "2019-05-31",
+        "year": "2019"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:62255",
+        "scheduled": 2,
+        "played": 2,
+        "max_coverage_level": "gold",
+        "max_covered": 2,
+        "min_coverage_level": "gold"
+      }
+    },
+    {
+      "id": "sr:tournament:498",
+      "name": "CONCACAF Champions League",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:393",
+        "name": "International Clubs"
+      },
+      "current_season": {
+        "id": "sr:season:61523",
+        "name": "CONCACAF CL 2019",
+        "start_date": "2019-02-19",
+        "end_date": "2019-05-06",
+        "year": "2019"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:61523",
+        "scheduled": 30,
+        "played": 30,
+        "max_coverage_level": "gold",
+        "max_covered": 27,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:27070",
+      "name": "Primera A, Apertura",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:274",
+        "name": "Colombia",
+        "country_code": "COL"
+      },
+      "current_season": {
+        "id": "sr:season:62695",
+        "name": "Primera A 2019",
+        "start_date": "2019-01-26",
+        "end_date": "2019-12-31",
+        "year": "2019"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:62695",
+        "scheduled": 228,
+        "played": 228,
+        "max_coverage_level": "gold",
+        "max_covered": 214,
+        "min_coverage_level": "bronze"
+      }
+    },
+    {
+      "id": "sr:tournament:27072",
+      "name": "Primera A, Clausura",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:274",
+        "name": "Colombia",
+        "country_code": "COL"
+      },
+      "current_season": {
+        "id": "sr:season:68430",
+        "name": "Primera A 2019, Clausura",
+        "start_date": "2019-07-12",
+        "end_date": "2019-12-31",
+        "year": "2019"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:68430",
+        "scheduled": 224,
+        "played": 212,
+        "max_coverage_level": "gold",
+        "max_covered": 191,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:27464",
+      "name": "Primera Division, Apertura",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:12",
+        "name": "Mexico",
+        "country_code": "MEX"
+      },
+      "current_season": {
+        "id": "sr:season:67153",
+        "name": "Primera Division, Apertura 2019",
+        "start_date": "2019-07-19",
+        "end_date": "2019-12-31",
+        "year": "2019"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:67153",
+        "scheduled": 171,
+        "played": 162,
+        "max_coverage_level": "gold",
+        "max_covered": 156,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:27466",
+      "name": "Primera Division, Clausura",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:12",
+        "name": "Mexico",
+        "country_code": "MEX"
+      },
+      "current_season": {
+        "id": "sr:season:62219",
+        "name": "Primera Division 18\/19. Clausura",
+        "start_date": "2019-01-04",
+        "end_date": "2019-05-28",
+        "year": "18\/19"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:62219",
+        "scheduled": 167,
+        "played": 167,
+        "max_coverage_level": "gold",
+        "max_covered": 167,
+        "min_coverage_level": "gold"
+      }
+    },
+    {
+      "id": "sr:tournament:27518",
+      "name": "Primera Divison, Apertura",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:49",
+        "name": "Chile",
+        "country_code": "CHL"
+      },
+      "current_season": {
+        "id": "sr:season:33349",
+        "name": "Primera Division 16\/17",
+        "start_date": "2016-07-24",
+        "end_date": "2017-06-11",
+        "year": "16\/17"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:33349",
+        "scheduled": 252,
+        "played": 252,
+        "max_coverage_level": "silver",
+        "max_covered": 252,
+        "min_coverage_level": "silver"
+      }
+    },
+    {
+      "id": "sr:tournament:27520",
+      "name": "Primera Divison, Clausura",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:49",
+        "name": "Chile",
+        "country_code": "CHL"
+      },
+      "current_season": {
+        "id": "sr:season:62199",
+        "name": "Primera Division 16\/17",
+        "start_date": "2016-07-24",
+        "end_date": "2017-06-11",
+        "year": "16\/17"
+      }
+    },
+    {
+      "id": "sr:tournament:27665",
+      "name": "Primera Division",
+      "sport": {
+        "id": "sr:sport:1",
+        "name": "Soccer"
+      },
+      "category": {
+        "id": "sr:category:49",
+        "name": "Chile",
+        "country_code": "CHL"
+      },
+      "current_season": {
+        "id": "sr:season:63023",
+        "name": "Primera Division 2019",
+        "start_date": "2019-02-15",
+        "end_date": "2019-12-31",
+        "year": "2019"
+      },
+      "season_coverage_info": {
+        "season_id": "sr:season:63023",
+        "scheduled": 260,
+        "played": 236,
+        "max_coverage_level": "gold",
+        "max_covered": 189,
+        "min_coverage_level": "silver"
+      }
+    }
+  ]
+}
