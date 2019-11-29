@@ -56,7 +56,7 @@
             else
             {
                 var timelineDto = JsonConvert.DeserializeObject<LineUpsDto>(fileContent);
-                timelineDto.generated_at = DateTime.Now;
+                timelineDto.generated_at = DateTimeOffset.Now;
 
                 return timelineDto;
             }

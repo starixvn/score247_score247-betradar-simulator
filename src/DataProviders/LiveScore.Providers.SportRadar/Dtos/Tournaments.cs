@@ -9,7 +9,7 @@ namespace LiveScore.Providers.SportRadar.Dtos
 
     public class Tournaments
     {
-        public DateTime generated_at { get; set; }
+        public DateTimeOffset generated_at { get; set; }
         public string schema { get; set; }
         public IEnumerable<Tournament> tournaments { get; set; }
     }

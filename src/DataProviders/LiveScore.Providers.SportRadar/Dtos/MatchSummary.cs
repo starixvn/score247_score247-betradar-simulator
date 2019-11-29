@@ -8,7 +8,7 @@ namespace LiveScore.Providers.SportRadar.Dtos
 
     public class MatchSummary
     {
-        public DateTime generated_at { get; set; }
+        public DateTimeOffset generated_at { get; set; }
         public string schema { get; set; }
         public Sport_Event sport_event { get; set; }
         public Sport_Event_Conditions sport_event_conditions { get; set; }
@@ -23,7 +23,7 @@ namespace LiveScore.Providers.SportRadar.Dtos
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string status { get; set; }
 
-        public DateTime scheduled { get; set; }
+        public DateTimeOffset scheduled { get; set; }
         public bool start_time_tbd { get; set; }
         public Tournament_Round tournament_round { get; set; }
         public Season season { get; set; }

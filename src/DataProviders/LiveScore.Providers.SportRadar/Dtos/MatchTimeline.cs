@@ -8,7 +8,7 @@ namespace LiveScore.Providers.SportRadar.Dtos
     public class MatchTimelineDto
     {
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime generated_at { get; set; }
+        public DateTimeOffset generated_at { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string schema { get; set; }

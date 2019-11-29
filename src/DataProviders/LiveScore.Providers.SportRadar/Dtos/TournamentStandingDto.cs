@@ -6,7 +6,7 @@ namespace LiveScore.Providers.SportRadar.Dtos
 {
     public class TournamentStandingDto
     {
-        public DateTime generated_at { get; set; }
+        public DateTimeOffset generated_at { get; set; }
         public string schema { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
