@@ -46,25 +46,25 @@ namespace LiveScore.Providers.SportRadar.Dtos
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public IEnumerable<CommentaryDto> commentaries { get; set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int period { get; set; }
+        public int? period { get; set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string period_type { get; set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string period_name { get; set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int match_time { get; set; }
+        public int? match_time { get; set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string match_clock { get; set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string team { get; set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int x { get; set; }
+        public int? x { get; set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int y { get; set; }
+        public int? y { get; set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int home_score { get; set; }
+        public int? home_score { get; set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int away_score { get; set; }
+        public int? away_score { get; set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Goal_Scorer goal_scorer { get; set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -80,7 +80,7 @@ namespace LiveScore.Providers.SportRadar.Dtos
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string stoppage_time { get; set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int injury_time_announced { get; set; }
+        public int? injury_time_announced { get; set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string description { get; set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
