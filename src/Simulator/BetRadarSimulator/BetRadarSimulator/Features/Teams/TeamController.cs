@@ -23,17 +23,16 @@
         }
 
         [Route(nameof(H2H)), HttpPost]
-        public async Task<JsonResult> H2H(object h2HData)
+        public async Task<JsonResult> H2H(H2HDto h2HData)
         {
-            var h2HDto = h2HData as H2HDto;
-            var teamIds = h2HDto.teams.Select(team => team.id).OrderBy(teamId => teamId).ToList();
+            var teamIds = h2HData.teams.Select(team => team.id).OrderBy(teamId => teamId).ToList();
             var teamIdsFilename = string.Join("vs", teamIds).Replace(':', '-');
             var h2hFolder = $"h2h/{teamIdsFilename}";
 
-            h2HDto.generated_at = DateTime.Now;
+            h2HData.generated_at = DateTime.Now;
 
             var path = $"{h2hFolder}/h2h.json";
-            var json = JsonConvert.SerializeObject(h2HDto);
+            var json = JsonConvert.SerializeObject(h2HData);
 
             await fileService.SaveFile(path, json);
 
