@@ -14,7 +14,7 @@
             var match = new Match
             {
                 Id = sportEvent.id,
-                EventDate = sportEvent.scheduled.UtcDateTime,
+                EventDate = sportEvent.scheduled.ToUniversalTime(),
                 Teams = TeamBuilder.BuildTeams(sportEvent),
                 League = LeagueBuilder.BuildLeague(sportEvent.tournament),
                 LeagueRound = LeagueBuilder.BuildLeagueRound(sportEvent.tournament_round),

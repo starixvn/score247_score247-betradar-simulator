@@ -200,11 +200,12 @@
         private static IEnumerable<Timeline> GetMainEvents(Match match)
             => match.TimeLines.Where(tl
 #pragma warning disable S1067 // Expressions should not be too complex
-                 => tl != null 
+                 => tl != null
                     && OddChangeEventIds.Contains(tl.Type?.ToLowerInvariant())
-                    && (string.IsNullOrEmpty(tl.PeriodType) 
+                    && (string.IsNullOrEmpty(tl.PeriodType)
                             || tl.PeriodType == PeriodType.RegularPeriod.Value
                             || tl.PeriodType == pause));
+
 #pragma warning restore S1067 // Expressions should not be too complex
 
         private static void CalculateOddsTrend(IEnumerable<OddsMovement> oddsMovements)
@@ -228,7 +229,7 @@
             IEnumerable<BetTypeOdds> betTypeOddsList,
             Match match)
         {
-            if(match.TimeLines == null)
+            if (match.TimeLines == null)
             {
                 return Enumerable.Empty<OddsMovement>();
             }
@@ -266,8 +267,8 @@
 
             if (IsScoreChange(timelineEvent))
             {
-                homeScore = timelineEvent.HomeScore;
-                awayScore = timelineEvent.AwayScore;
+                homeScore = (int)timelineEvent.HomeScore;
+                awayScore = (int)timelineEvent.AwayScore;
                 oddsMovement.MatchTime = $"{timelineEvent.MatchTime}'";
             }
 
@@ -289,7 +290,7 @@
                 currentEvent.Time = currentEvent.Time.AddMinutes(-startSecondHaft);
             }
 
-            if(string.IsNullOrWhiteSpace(oddsMovement.MatchTime))
+            if (string.IsNullOrWhiteSpace(oddsMovement.MatchTime))
             {
                 var totalMinutes = (oddsMovement.UpdateTime - currentEvent.Time).TotalMinutes;
                 oddsMovement.MatchTime = totalMinutes.ToString("0") + "'";
@@ -303,7 +304,7 @@
         }
 
         private static bool IsScoreChange(Timeline timelineEvent)
-            => timelineEvent != null 
+            => timelineEvent != null
                 && timelineEvent.Type == EventTypes.ScoreChange.Value;
 
         private static bool IsHalfTimeBreakStart(Timeline timelineEvent)
@@ -318,7 +319,7 @@
                 && timelineEvent.PeriodType == PeriodType.RegularPeriod.Value;
 
         private static bool IsFirstPeriodStart(Timeline timelineEvent)
-            => timelineEvent != null 
+            => timelineEvent != null
                 && timelineEvent.Type == EventTypes.PeriodStart.Value
                 && timelineEvent.Period == firstPeriod
                 && timelineEvent.PeriodType == PeriodType.RegularPeriod.Value;

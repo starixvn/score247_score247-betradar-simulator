@@ -12,7 +12,7 @@
 
         public DateTimeOffset Time { get; set; }
 
-        public int MatchTime { get; set; }
+        public int? MatchTime { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string MatchClock { get; set; }
@@ -20,13 +20,13 @@
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string Team { get; set; }
 
-        public int Period { get; set; }
+        public int? Period { get; set; }
 
         public string PeriodType { get; set; }
 
-        public int HomeScore { get; set; }
+        public int? HomeScore { get; set; }
 
-        public int AwayScore { get; set; }
+        public int? AwayScore { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public GoalScorer GoalScorer { get; set; }
@@ -46,7 +46,7 @@
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Player Player { get; set; }
 
-        public int InjuryTimeAnnounced { get; set; }
+        public int? InjuryTimeAnnounced { get; set; }
 
         public string Description { get; set; }
 
