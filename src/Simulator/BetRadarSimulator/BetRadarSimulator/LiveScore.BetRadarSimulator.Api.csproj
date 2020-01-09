@@ -39,6 +39,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="appsettings.localtest1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="App_Data\staticdata\am-tournaments.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
