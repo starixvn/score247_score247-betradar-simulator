@@ -117,7 +117,6 @@
         public async Task<JsonResult> DailyResults(DateTime date, DailyResultDto resultDto)
         {
             var resultFolder = $"results";
-            System.IO.Directory.CreateDirectory(resultFolder);
             resultDto.generated_at = DateTime.Now;
 
             var path = $"{resultFolder}/{date.ToString(FormatDate)}.json";

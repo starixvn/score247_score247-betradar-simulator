@@ -155,7 +155,7 @@
         {
             var oddsFolder = AppDomain.CurrentDomain.BaseDirectory + "/App_Data/odds";
 
-            System.IO.Directory.CreateDirectory(oddsFolder);
+            //System.IO.Directory.CreateDirectory(oddsFolder);
         }
     }
 }
