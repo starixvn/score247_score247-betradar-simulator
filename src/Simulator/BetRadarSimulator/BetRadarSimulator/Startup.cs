@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Sentry;
 using Swashbuckle.AspNetCore.Swagger;
@@ -48,7 +49,7 @@ namespace LiveScoreSimulator
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "Sport Radar Simulator", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Sport Radar Simulator", Version = "v1" });
             });
 
             services.AddMvc()
@@ -89,7 +90,14 @@ namespace LiveScoreSimulator
                .WithMySql(resourcePath: Configuration["AppDataPath"])
                .Run();
 
-            app.UseSwagger()
+            var basePath = Configuration["HostingVirtualPath"];
+            app.UseSwagger(c =>
+            {
+                c.PreSerializeFilters.Add((swagger, httpReq) =>
+                {
+                    swagger.Servers.Add(new OpenApiServer { Url = basePath });
+                });
+            })
                 .UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint($"../swagger/v1/swagger.json", "Sport Radar Simulator Docs");
