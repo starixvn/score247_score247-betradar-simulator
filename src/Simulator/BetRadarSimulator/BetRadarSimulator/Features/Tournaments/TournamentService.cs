@@ -15,6 +15,8 @@ namespace LiveScore.BetRadarSimulator.Api.Features.Tournaments
         Task<TournamentScheduleDto> GetTournamentSchedule(string tournamentId);
 
         Task<TournamentScheduleDto> GetTournamentResult(string tournamentId);
+
+        Task<TournamentInfoDto> GetTournamentInfo(string tournamentId);
     }
 
     public class TournamentService : ITournamentService
@@ -95,6 +97,25 @@ namespace LiveScore.BetRadarSimulator.Api.Features.Tournaments
             }
 
             return results;
+        }
+
+        public async Task<TournamentInfoDto> GetTournamentInfo(string tournamentId)
+        {
+            var path = $"tournaments/info/{tournamentId}.json";
+
+            var fileContent = await fileService.GetFile(path);
+            if (string.IsNullOrWhiteSpace(fileContent))
+            {
+                return new TournamentInfoDto { generated_at = DateTime.Now, message = "No info" };
+            }
+            else
+            {
+                var resultDto = JsonConvert.DeserializeObject<TournamentInfoDto>(fileContent);
+
+                resultDto.generated_at = DateTime.Now;
+
+                return resultDto;
+            }
         }
     }
 }

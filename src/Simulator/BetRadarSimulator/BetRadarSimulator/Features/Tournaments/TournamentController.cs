@@ -87,5 +87,31 @@ namespace LiveScore.BetRadarSimulator.Api.Features.Tournaments
         {
             return tournamentService.GetTournamentResult(tournamentId);
         }
+
+        [Route("~/api/{sportType}-{accessLevel}/{region}/{lang}/tournaments/{tournamentId}/info.json")]
+        [HttpGet]
+        public Task<TournamentInfoDto> GetTournamentInfo(string sportType, string accessLevel, string region, string lang, string tournamentId)
+        {
+            return tournamentService.GetTournamentInfo(tournamentId);
+        }
+
+        [Route(nameof(TournamentInfo)), HttpPost]
+        public async Task<JsonResult> TournamentInfo(TournamentInfoDto tournamentInfoDto)
+        {
+            var tournamentId = tournamentInfoDto.tournament.id;
+
+            tournamentInfoDto.generated_at = DateTime.Now;
+
+            var path = $"tournaments/info/{tournamentId}.json";
+            var json = JsonConvert.SerializeObject(tournamentInfoDto);
+
+            await fileService.SaveFile(path, json);
+
+            return Json(new
+            {
+                message = "OK!",
+                data = json
+            });
+        }
     }
 }

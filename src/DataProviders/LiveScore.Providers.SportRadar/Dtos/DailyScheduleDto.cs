@@ -89,7 +89,9 @@ namespace LiveScore.Providers.SportRadar.Dtos
     {
         public string id { get; set; }
         public string name { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string country { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string country_code { get; set; }
         public string abbreviation { get; set; }
 
