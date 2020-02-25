@@ -1,0 +1,193 @@
+{
+  "generated_at": "2020-02-25T02:46:47+00:00",
+  "schema": "http://schemas.sportradar.com/bsa/soccer/v1/json/endpoints/soccer/tournament_info.json",
+  "tournament": {
+    "id": "sr:tournament:17",
+    "name": "Premier League",
+    "sport": {
+      "id": "sr:sport:1",
+      "name": "Soccer"
+    },
+    "category": {
+      "id": "sr:category:1",
+      "name": "England",
+      "country_code": "ENG"
+    },
+    "current_season": {
+      "id": "sr:season:66441",
+      "name": "Premier League 19/20",
+      "start_date": "2019-08-09",
+      "end_date": "2020-05-18",
+      "year": "19/20"
+    }
+  },
+  "season": {
+    "id": "sr:season:66441",
+    "name": "Premier League 19/20",
+    "start_date": "2019-08-09",
+    "end_date": "2020-05-18",
+    "year": "19/20",
+    "tournament_id": "sr:tournament:17"
+  },
+  "round": {
+    "type": "group",
+    "number": 27
+  },
+  "season_coverage_info": {
+    "season_id": "sr:season:66441",
+    "scheduled": 385,
+    "played": 272,
+    "max_coverage_level": "platinum",
+    "max_covered": 270,
+    "min_coverage_level": "silver"
+  },
+  "coverage_info": {
+    "live_coverage": true
+  },
+  "groups": [
+    {
+      "teams": [
+        {
+          "id": "sr:competitor:17",
+          "name": "Manchester City",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "MNC"
+        },
+        {
+          "id": "sr:competitor:35",
+          "name": "Manchester United",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "MNU"
+        },
+        {
+          "id": "sr:competitor:37",
+          "name": "West Ham United",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "WHU"
+        },
+        {
+          "id": "sr:competitor:48",
+          "name": "Everton FC",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "EVE"
+        },
+        {
+          "id": "sr:competitor:45",
+          "name": "Southampton FC",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "SOT"
+        },
+        {
+          "id": "sr:competitor:38",
+          "name": "Chelsea FC",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "CFC"
+        },
+        {
+          "id": "sr:competitor:42",
+          "name": "Arsenal FC",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "ARS"
+        },
+        {
+          "id": "sr:competitor:39",
+          "name": "Newcastle United",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "NEW"
+        },
+        {
+          "id": "sr:competitor:31",
+          "name": "Leicester City",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "LEI"
+        },
+        {
+          "id": "sr:competitor:44",
+          "name": "Liverpool FC",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "LFC"
+        },
+        {
+          "id": "sr:competitor:40",
+          "name": "Aston Villa",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "VIL"
+        },
+        {
+          "id": "sr:competitor:33",
+          "name": "Tottenham Hotspur",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "TOT"
+        },
+        {
+          "id": "sr:competitor:3",
+          "name": "Wolverhampton Wanderers",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "WOL"
+        },
+        {
+          "id": "sr:competitor:7",
+          "name": "Crystal Palace",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "PAL"
+        },
+        {
+          "id": "sr:competitor:263",
+          "name": "Norwich City",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "NOR"
+        },
+        {
+          "id": "sr:competitor:15",
+          "name": "Sheffield United",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "SHU"
+        },
+        {
+          "id": "sr:competitor:24",
+          "name": "Watford FC",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "WAT"
+        },
+        {
+          "id": "sr:competitor:6",
+          "name": "Burnley FC",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "BUR"
+        },
+        {
+          "id": "sr:competitor:30",
+          "name": "Brighton & Hove Albion",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "BHA"
+        },
+        {
+          "id": "sr:competitor:60",
+          "name": "AFC Bournemouth",
+          "country": "England",
+          "country_code": "ENG",
+          "abbreviation": "BRN"
+        }
+      ]
+    }
+  ]
+}

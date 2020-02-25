@@ -106,16 +106,15 @@ namespace LiveScore.BetRadarSimulator.Api.Features.Tournaments
             var fileContent = await fileService.GetFile(path);
             if (string.IsNullOrWhiteSpace(fileContent))
             {
-                return new TournamentInfoDto { generated_at = DateTime.Now, message = "No info" };
+                var staticPath = $"{AppDomain.CurrentDomain.BaseDirectory}/App_Data/staticdata/tournament-info.json";
+                fileContent = await System.IO.File.ReadAllTextAsync(staticPath);
             }
-            else
-            {
-                var resultDto = JsonConvert.DeserializeObject<TournamentInfoDto>(fileContent);
 
-                resultDto.generated_at = DateTime.Now;
+            var resultDto = JsonConvert.DeserializeObject<TournamentInfoDto>(fileContent);
 
-                return resultDto;
-            }
+            resultDto.generated_at = DateTime.Now;
+
+            return resultDto;
         }
     }
 }

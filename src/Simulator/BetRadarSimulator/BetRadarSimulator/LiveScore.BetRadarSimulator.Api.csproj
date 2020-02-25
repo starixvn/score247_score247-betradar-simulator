@@ -76,6 +76,9 @@
     <Content Update="App_Data\staticdata\schedule.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="App_Data\staticdata\tournament-info.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="App_Data\staticdata\tournament-results.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
